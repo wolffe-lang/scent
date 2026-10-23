@@ -45,6 +45,8 @@ jobs:
       - uses: actions/checkout@v4
       - run: python3 -I ci/tiers-test.py
       - run: python3 -I tools/re-ci-test
+      - run: python3 -I tools/m1-ci-test
+      - run: python3 -I tools/oracle-review-test
   linux:
     needs: plan
     if: contains(fromJSON(needs.plan.outputs.jobs || '[]'), 'linux')
@@ -88,6 +90,9 @@ jobs:
       - name: GNU oracle, static
         if: ${{ !cancelled() }}
         run: tools/in-container tools/oracle --bin target/mkscent/scent
+      - name: Plain Ubuntu without locale data (PAX posture)
+        if: ${{ !cancelled() }}
+        run: tools/pax-posture
       - name: Streaming memory gate and recorded performance
         if: ${{ !cancelled() }}
         run: tools/in-container tools/measure

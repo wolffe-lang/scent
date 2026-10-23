@@ -1,0 +1,19 @@
+#!/bin/sh
+# Run the whole byte suite in plain baseline Ubuntu, with no locale data.
+# Python is the test coordinator only; scent is the twice-built static ELF.
+set -eu
+root=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
+engine=${SCENT_ENGINE:-podman}
+image=ubuntu:24.04@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b
+"$engine" run --rm ${SCENT_CONTAINER_ARGS:-} -v "$root:/work/scent:Z" -w /work/scent "$image" bash -c '
+set -euo pipefail
+export DEBIAN_FRONTEND=noninteractive
+apt-get update -qq
+apt-get install -y --no-install-recommends python3 >/dev/null
+rm -rf /usr/lib/locale
+unset LANG LANGUAGE LC_ALL LC_CTYPE
+export SCENT_IN_CONTAINER=1 SCENT_NO_LOCALE=1
+printf "PAX posture: LANG=%s; no locale data; static scent; baseline glibc\n" "${LANG-unset}"
+test ! -e /usr/lib/locale/locale-archive
+python3 -I tools/oracle.py --bin target/mkscent/scent
+'

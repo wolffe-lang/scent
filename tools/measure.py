@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Memory gates and three-run median performance rows, no timing gate."""
-import json,os,pathlib,statistics,subprocess,tempfile,time
+import argparse,json,os,pathlib,statistics,subprocess,tempfile,time
 root=pathlib.Path(__file__).resolve().parent.parent
 assert os.environ.get('SCENT_IN_CONTAINER')=='1','measurements require own container'
 ours=root/'target/release/scent';gnu=root/'.oracle/grep'
+parser=argparse.ArgumentParser();parser.add_argument('--memory-only',action='store_true');args=parser.parse_args()
 result={'output':'pipe drained in 64 KiB blocks; never /dev/null','host':os.uname().nodename,'affinity':sorted(os.sched_getaffinity(0)),'memory':[],'performance':[]}
 assert len(result['affinity'])<=4,'run under the assigned four cores'
 target=root/'target';target.mkdir(exist_ok=True)
@@ -39,7 +40,10 @@ with tempfile.TemporaryDirectory(prefix='measure-',dir=target) as tmp:
    rss,elapsed=map(float,log.read_text().split());row[name]={'peak_rss_kib':rss,'seconds':elapsed,'output_bytes':output_bytes}
   assert row['scent']['output_bytes']==row['gnu']['output_bytes'],row
   result['memory'].append(row);print('memory',json.dumps(row),flush=True)
- for flags,pat in [(['-F'],'needle'),(['-F','-i'],'NEEDLE'),(['-F','-c'],'needle'),(['-F','-v','-c'],'needle')]:
+ rows=[(['-F'],'needle'),(['-F','-i'],'NEEDLE'),(['-F','-c'],'needle'),(['-F','-v','-c'],'needle')]
+ for syntax in ['G','E']:
+  rows.extend([(['-'+syntax],'needle'),(['-'+syntax],'n[e]edle'),(['-'+syntax],r'needle\|absent' if syntax=='G' else 'needle|absent'),(['-'+syntax],r'n\(e\)\1dle' if syntax=='G' else r'n(e)\1dle'),(['-'+syntax,'-i'],'NEEDLE'),(['-'+syntax,'-v','-c'],'needle')])
+ for flags,pat in ([] if args.memory_only else rows):
   row={'argv':flags+[pat],'bytes':perf.stat().st_size}
   for name,binary in [('scent',ours),('gnu',gnu)]:
    values=[]
@@ -50,6 +54,6 @@ with tempfile.TemporaryDirectory(prefix='measure-',dir=target) as tmp:
     values.append(elapsed);print('perf-run',name,flags,i+1,elapsed,flush=True)
    row[name]={'runs_seconds':values,'median_seconds':statistics.median(values),'output_bytes':output_bytes}
   row['ratio']=row['scent']['median_seconds']/row['gnu']['median_seconds'];result['performance'].append(row);print('performance',json.dumps(row),flush=True)
-(root/'target/measure.json').write_text(json.dumps(result,indent=2)+'\n')
+(root/('target/memory.json' if args.memory_only else 'target/measure.json')).write_text(json.dumps(result,indent=2)+'\n')
 assert all(row['scent']['peak_rss_kib']<32768 for row in result['memory']),'memory gate: scent must peak below 32 MiB'
 print('memory gate: PASS; performance recorded, not gated',flush=True)

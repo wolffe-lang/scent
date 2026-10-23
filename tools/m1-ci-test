@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+"""The joined CLI matrix and exact reviews must never silently shrink."""
+import collections,hashlib,json,pathlib,subprocess,sys
+root=pathlib.Path(__file__).resolve().parent.parent
+M1_GATE_CASES=5072
+subprocess.run([sys.executable,'-I',str(root/'tools/m1-cases')],check=True)
+rows=[json.loads(x) for x in (root/'tests/cases/m1-generated.jsonl').read_text().splitlines()]
+assert len(rows)>=M1_GATE_CASES, f'M1 gate floor violated: {len(rows)} < {M1_GATE_CASES}'
+all_cases={}
+for f in (root/'tests/cases').glob('*.jsonl'):
+ for raw in f.read_text().splitlines():
+  c=json.loads(raw);assert c['name'] not in all_cases,c['name'];all_cases[c['name']]=c
+reviews=json.loads((root/'tests/divergences.json').read_text())
+assert collections.Counter(x['ruling'] for x in reviews.values())=={115:22,116:34,117:52,'R-ct02-5':6,'R-ct02-6':2}
+for name,review in reviews.items():
+ assert review['gnu']!=review['scent'],name
+ assert review['case_sha256']==hashlib.sha256(json.dumps(all_cases[name],sort_keys=True,separators=(',',':')).encode()).hexdigest(),name
+ assert all_cases[name].get('not_yet') is None,name
+workflow=(root/'.github/workflows/ci.yml').read_text()
+assert 'run: python3 -I tools/m1-ci-test' in workflow
+assert 'tools/oracle --bin target/native/scent' in workflow
+assert 'tools/pax-posture' in workflow
+print(f'PASS M1 CI wiring: {len(rows)} generated cases; {len(reviews)} exact reviewed divergences')
