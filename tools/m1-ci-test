@@ -2,7 +2,7 @@
 """The joined CLI matrix and exact reviews must never silently shrink."""
 import collections,hashlib,json,pathlib,subprocess,sys
 root=pathlib.Path(__file__).resolve().parent.parent
-M1_GATE_CASES=5072
+M1_GATE_CASES=5073
 subprocess.run([sys.executable,'-I',str(root/'tools/m1-cases')],check=True)
 rows=[json.loads(x) for x in (root/'tests/cases/m1-generated.jsonl').read_text().splitlines()]
 assert len(rows)>=M1_GATE_CASES, f'M1 gate floor violated: {len(rows)} < {M1_GATE_CASES}'
