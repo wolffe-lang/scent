@@ -2,19 +2,19 @@
 
 // Clean-room dispatch: POSIX grep and the pinned GNU binary; docs/RE.md.
 use fixed
-use re as regex
+use re
 
 /// Immutable compiled literal and regex pools; only the selected one has patterns.
 pub struct Matcher {
     syntax: str,
     literal: fixed.Matcher,
-    regular: regex.Regex,
+    regular: re.Regex,
 }
 
 /// Reusable execution storage, allocated outside the line loop.
 pub struct Workspace {
     literal: fixed.Workspace,
-    regular: regex.Workspace,
+    regular: re.Workspace,
 }
 
 /// Half-open original-buffer byte offsets.
@@ -28,13 +28,13 @@ pub fn compile(
     patterns: List[List[byte]],
     syntax: str,
     flags: fixed.Flags,
-    mut diagnostics: regex.Diagnostics,
+    mut diagnostics: re.Diagnostics,
 ) -> Matcher ! {invalid} {
     let empty = List[List[byte]]()
     let literal = fixed.compile(if syntax == "F" then copy patterns else copy empty, flags)
-    let regular = regex.compile(
+    let regular = re.compile(
         if syntax == "F" then empty else patterns,
-        regex.Options {
+        re.Options {
             extended: syntax == "E",
             icase: flags.ignore_case,
             word: flags.word,
@@ -47,29 +47,40 @@ pub fn compile(
 }
 
 /// Allocate both execution workspaces once per chunk.
-pub fn workspace_new(re: Matcher) -> Workspace {
-    Workspace { literal: fixed.workspace_new(re.literal), regular: regex.workspace_new(re.regular) }
+pub fn workspace_new(compiled: Matcher) -> Workspace {
+    Workspace {
+        literal: fixed.workspace_new(compiled.literal),
+        regular: re.workspace_new(compiled.regular),
+    }
 }
 
 /// Select a line, including empty matches, before requesting its spans.
-pub fn line_matches(re: Matcher, mut ws: Workspace, buf: List[byte], lo: int, hi: int) -> bool {
-    if re.syntax == "F" { return fixed.line_matches(re.literal, mut ws.literal, buf, lo, hi) }
-    regex.line_matches(re.regular, mut ws.regular, buf, lo, hi)
+pub fn line_matches(
+    compiled: Matcher,
+    mut ws: Workspace,
+    buf: List[byte],
+    lo: int,
+    hi: int,
+) -> bool {
+    if compiled.syntax == "F" {
+        return fixed.line_matches(compiled.literal, mut ws.literal, buf, lo, hi)
+    }
+    re.line_matches(compiled.regular, mut ws.regular, buf, lo, hi)
 }
 
 /// Nonempty leftmost-longest span on the previously selected unchanged line.
 pub fn next_span(
-    re: Matcher,
+    compiled: Matcher,
     mut ws: Workspace,
     buf: List[byte],
     lo: int,
     hi: int,
     from: int,
 ) -> Span ! {none} {
-    if re.syntax == "F" {
-        let s = fixed.next_span(re.literal, mut ws.literal, buf, lo, hi, from)?
+    if compiled.syntax == "F" {
+        let s = fixed.next_span(compiled.literal, mut ws.literal, buf, lo, hi, from)?
         return Span { lo: s.lo, hi: s.hi }
     }
-    let s = regex.next_span(re.regular, mut ws.regular, buf, lo, hi, from)?
+    let s = re.next_span(compiled.regular, mut ws.regular, buf, lo, hi, from)?
     Span { lo: s.lo, hi: s.hi }
 }

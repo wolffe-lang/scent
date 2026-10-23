@@ -8,7 +8,7 @@ use matcher
 use opts
 use out
 use reader
-use re as regex
+use re
 
 fn input(path: str) -> int ! {not_found, denied, io} {
     if path == "-" { return 0 }
@@ -44,7 +44,7 @@ fn help() {
     print("Exit: 0 when a line is selected, 1 otherwise, 2 on error.")
 }
 
-fn emit_diagnostics(d: regex.Diagnostics, names: List[str], lines: List[int]) {
+fn emit_diagnostics(d: re.Diagnostics, names: List[str], lines: List[int]) {
     for item in d.items {
         fs_write_chunk(2, "{opts.program()}: ".bytes()) else |_| {}
         if !item.warning && item.pattern < names.len && names[item.pattern] != "" {
@@ -125,7 +125,7 @@ fn run(o: opts.Options) -> int {
         eprint("{opts.program()}: Perl matching not supported in a --disable-perl-regexp build")
         return 2
     }
-    var diagnostics = regex.diagnostics_new()
+    var diagnostics = re.diagnostics_new()
     let re = matcher.compile(
         unique,
         o.syntax,

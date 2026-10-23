@@ -2,10 +2,10 @@
 
 use matcher
 use fixed
-use re as regex
+use re
 
 fn check(syntax: str, pattern: str, line: str, expected: bool, zero: bool) {
-    var diagnostics = regex.diagnostics_new()
+    var diagnostics = re.diagnostics_new()
     let re = matcher.compile(
         [pattern.bytes()],
         syntax,
@@ -16,14 +16,15 @@ fn check(syntax: str, pattern: str, line: str, expected: bool, zero: bool) {
             terminator: if zero then 0 as byte else 10 as byte,
         },
         mut diagnostics,
-    ) else |_| { panic("valid pattern refused") }
+    ) else |_| { assert(false, "valid pattern refused"); return }
     assert(diagnostics.items.len == 0)
     var ws = matcher.workspace_new(re)
     let bytes = line.bytes()
     assert(matcher.line_matches(re, mut ws, bytes, 0, bytes.len) == expected)
     if expected {
         let hit = matcher.next_span(re, mut ws, bytes, 0, bytes.len, 0) else |_| {
-            panic("missing nonempty span")
+            assert(false, "missing nonempty span")
+            return
         }
         assert(hit.lo == 0 && hit.hi == bytes.len)
     }
