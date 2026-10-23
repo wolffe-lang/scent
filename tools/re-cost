@@ -9,6 +9,9 @@ from pathlib import Path
 import statistics
 import subprocess
 import time
+import tempfile
+import signal
+import types
 
 ROOT=Path(__file__).resolve().parent.parent
 
@@ -16,15 +19,34 @@ def engine(driver,work,pattern,line,ceiling):
     path=work/'cost-case.txt'
     path.write_text('0 E 0 10 '+(pattern.hex() or '-')+' '+(line.hex() or '-')+'\n')
     started=time.monotonic_ns()
-    try:
-        result=subprocess.run([driver,'--cost',str(path)],capture_output=True,timeout=ceiling)
-    except subprocess.TimeoutExpired:
-        return dict(timeout=ceiling)
+    # wait4 reports this child's peak RSS, not the cumulative maximum of
+    # previous children. On timeout kill only the exact driver PID we started.
+    with tempfile.TemporaryFile(dir=work) as stdout, tempfile.TemporaryFile(dir=work) as stderr:
+        child=subprocess.Popen([driver,'--cost',str(path)],stdout=stdout,stderr=stderr)
+        timed_out=False
+        while True:
+            pid,status,usage=os.wait4(child.pid,os.WNOHANG)
+            if pid:break
+            if time.monotonic_ns()-started > ceiling*1e9:
+                try: os.kill(child.pid,signal.SIGKILL)
+                except ProcessLookupError: pass
+                pid,status,usage=os.wait4(child.pid,0)
+                timed_out=True
+                break
+            time.sleep(0.005)
+        child.returncode=os.waitstatus_to_exitcode(status)
+        peak_rss_bytes=usage.ru_maxrss*1024
+        if timed_out:return dict(timeout=ceiling,peak_rss_bytes=peak_rss_bytes)
+        stdout.seek(0);stderr.seek(0)
+        result=types.SimpleNamespace(returncode=child.returncode,stdout=stdout.read(),stderr=stderr.read())
     if result.returncode: return dict(error=result.returncode,stderr=result.stderr.decode(errors='replace'))
     timing=next((s.split() for s in result.stdout.decode().splitlines() if s.startswith('T ')),None)
-    if timing is None: return dict(error='missing timing',stdout=result.stdout.decode(errors='replace'))
+    if timing is None:
+        diag=next((s.split() for s in result.stdout.decode().splitlines() if s.startswith('D ')),None)
+        if diag and diag[2]=='2': return dict(status=2,diagnostic=bytes.fromhex(diag[3]).decode(),wall_ns=time.monotonic_ns()-started,peak_rss_bytes=peak_rss_bytes)
+        return dict(error='missing timing',stdout=result.stdout.decode(errors='replace'))
     selected=next(s.split()[3]=='1' for s in result.stdout.decode().splitlines() if s.startswith('R '))
-    return dict(compile_ns=int(timing[3]),match_ns=int(timing[4]),instructions=int(timing[5]),visits=int(timing[6]),peak_frames=int(timing[7]),selected=selected,wall_ns=time.monotonic_ns()-started)
+    return dict(compile_ns=int(timing[3]),match_ns=int(timing[4]),instructions=int(timing[5]),visits=int(timing[6]),peak_frames=int(timing[7]),selected=selected,wall_ns=time.monotonic_ns()-started,peak_rss_bytes=peak_rss_bytes)
 
 
 def oracle(grep,pattern,line,ceiling):
@@ -42,7 +64,7 @@ def oracle(grep,pattern,line,ceiling):
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument('--driver',default=str(ROOT/'target/re/driver'))
-    ap.add_argument('--grep',default='/lane/oracle/bin/grep')
+    ap.add_argument('--grep',default=str(ROOT / '.oracle/grep'))
     ap.add_argument('--work',type=Path,default=ROOT/'target/re/cost')
     ap.add_argument('--ceiling',type=float,default=10)
     ap.add_argument('--plant-smoke',action='store_true')
@@ -68,7 +90,7 @@ def main():
             previous=elapsed
             print(f'cost result {pattern} {size} median_match_ns={elapsed} compile_ns={samples[0]["compile_ns"]}',flush=True)
     if not a.plant_smoke:
-        for pattern,sizes in [(r'(a*)\1',[10,100,1000]),(r'(a|aa)*\1b',[12,18,24]),(r'^(a+)\1+$',[32,128,512])]:
+        for pattern,sizes in [(r'(a*)\1',[10,100,1000]),(r'(a|aa)*\1b',[12,18,24,1000,10000,100000]),(r'^(a+)\1+$',[32,128,512])]:
             for size in sizes:
                 print(f'backreference start {pattern} bytes={size}',flush=True)
                 g=oracle(a.grep,pattern.encode(),b'a'*size,a.ceiling)
@@ -82,6 +104,11 @@ def main():
             g=oracle(a.grep,pattern.encode(),b'a',a.ceiling)
             s=engine(a.driver,a.work,pattern.encode(),b'a',a.ceiling)
             rows.append(dict(family=pattern,bytes=1,large_interval=True,engine=s,oracle=g))
+            if '32768' in pattern:
+                if s.get('status') != 2 or s.get('diagnostic') != 'Regular expression too big\n' or g['full'].get('status') != 2:
+                    errors.append('interval-limit diagnostic disagreement: '+pattern)
+            elif 'timeout' not in s and ('error' in s or not s.get('selected')):
+                errors.append('valid large interval rejected: '+pattern)
             print(json.dumps(rows[-1]),flush=True)
     (a.work/'cost.json').write_text(json.dumps(dict(rows=rows,errors=errors),indent=2)+'\n')
     for error in errors:print('RED '+error,flush=True)

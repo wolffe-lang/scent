@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+"""Counterfactual proof: every generated backreference pair runs with and
+without the regular projection. The oracle comparison is a separate gate.
+"""
+import argparse
+from collections import Counter
+import json
+from pathlib import Path
+import runpy
+ROOT=Path(__file__).resolve().parent.parent
+m=runpy.run_path(str(ROOT/'tools/re-oracle'))
+
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);p.add_argument('--soak',type=int,default=100000);p.add_argument('--seed',type=int,default=11401);p.add_argument('--driver',default=str(ROOT/'target/re/driver'));a=p.parse_args()
+    a.work.mkdir(parents=True,exist_ok=True)
+    rows=[row for row in m['corpus'](a.seed,a.soak) if any(any(b'\\'+bytes([digit]) in pattern for digit in range(49,58)) for pattern in row['patterns'])]
+    assert rows, 'backreference soak must not be empty'
+    left=a.work/'filtered';right=a.work/'unfiltered';left.mkdir(exist_ok=True);right.mkdir(exist_ok=True)
+    print(f'projection soak: {len(rows)} backreference groups from seed {a.seed}, {a.soak} generated pairs per syntax',flush=True)
+    filtered=m['driver_rows'](a.driver,rows,left)
+    plain=m['driver_rows'](a.driver,rows,right,no_projection=True)
+    counts=Counter();failures=[];different_pairs=0
+    for i,row in enumerate(rows):
+        valid=plain[i]['status']==0
+        counts[(row['syntax'],row['kind'],'valid' if valid else 'compile-error')]+=len(row['lines'])
+        if filtered[i]!=plain[i]:
+            failures.append(dict(row=row,filtered=filtered[i],unfiltered=plain[i]))
+            if filtered[i]['status']!=plain[i]['status'] or filtered[i]['stderr']!=plain[i]['stderr']:
+                different_pairs+=len(row['lines'])
+            else:
+                different_pairs+=sum(a!=b or x!=y for a,b,x,y in zip(filtered[i]['selected'],plain[i]['selected'],filtered[i]['spans'],plain[i]['spans']))
+    result=dict(counts=[dict(syntax=s,kind=k,status=t,pairs=n) for (s,k,t),n in sorted(counts.items())],failures=failures)
+    (a.work/'projection.json').write_text(json.dumps(result,default=m['encode'],indent=2)+'\n')
+    for key,n in sorted(counts.items()):print('projection '+' '.join(key)+f' {n} pairs',flush=True)
+    print(f'{sum(counts.values())-different_pairs} pairs identical / {different_pairs} differ ({len(failures)} groups); SKIP=0',flush=True)
+    return bool(failures)
+if __name__=='__main__':raise SystemExit(main())

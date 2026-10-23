@@ -22,15 +22,15 @@ def build(work,label):
 def leftmost(work,label):
     row=dict(syntax='extended',flags=[],patterns=[b'a|ab'],lines=[b'ab'])
     actual=m['driver_rows'](str(ROOT/'target/re/driver'),[row],work)[0]
-    expected=m['oracle_row']('/lane/oracle/bin/grep',row)
+    expected=m['oracle_row'](str(ROOT/'.oracle/grep'),row)
     (work/(label+'-result.json')).write_text(json.dumps(dict(engine=actual,oracle=expected),default=m['encode'],indent=2)+'\n')
     return actual==expected
 
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--work',type=Path,required=True);a=ap.parse_args();a.work.mkdir(parents=True,exist_ok=True)
-    linear=ROOT/'src/re/linear.lu';compiler=ROOT/'src/re/compile.lu'
-    original_linear=linear.read_text();original_compiler=compiler.read_text()
+    linear=ROOT/'src/re/linear.lu';compiler=ROOT/'src/re/compile.lu';backref=ROOT/'src/re/backref.lu'
+    original_linear=linear.read_text();original_compiler=compiler.read_text();original_backref=backref.read_text()
     try:
         old='if any_match { return Span { lo: start, hi: pos } }'
         assert original_linear.count(old)==1
@@ -45,13 +45,17 @@ def main():
         old='(mut re.backrefs).push(p.has_ref)'
         assert original_compiler.count(old)==1
         compiler.write_text(original_compiler.replace(old,'(mut re.backrefs).push(true)'))
+        guard='if use_projection && ws.feasible[index] == 0 {'
+        assert original_backref.count(guard)==1
+        backref.write_text(original_backref.replace(guard,'if !use_projection && ws.feasible[index] == 0 {'))
         build(a.work,'backtracking-planted')
         command=['python3','-I',str(ROOT/'tools/re-cost'),'--plant-smoke','--ceiling','1','--work',str(a.work/'backtracking-planted')]
         r=subprocess.run(command,capture_output=True,timeout=30)
         (a.work/'backtracking-red.log').write_bytes(r.stdout+r.stderr)
         if r.returncode==0:raise RuntimeError('plant survived: regular-pattern backtracking did not fail cost gate')
-        print('RED cost plant: regular (a|aa)*c routed through DFS; bounded cost gate rejected it',flush=True)
+        print('RED cost plant: regular (a|aa)*c routed through DFS without projection; bounded cost gate rejected it',flush=True)
         compiler.write_text(original_compiler)
+        backref.write_text(original_backref)
         build(a.work,'backtracking-restored')
         command[-1]=str(a.work/'backtracking-restored')
         r=subprocess.run(command,capture_output=True,timeout=30)
@@ -59,7 +63,7 @@ def main():
         if r.returncode:raise RuntimeError('restored cost gate is red')
         print('GREEN cost gate after restoring state-set dispatch',flush=True)
     finally:
-        linear.write_text(original_linear);compiler.write_text(original_compiler)
+        linear.write_text(original_linear);compiler.write_text(original_compiler);backref.write_text(original_backref)
         build(a.work,'final-restored')
     print('PASS both plants seen red then green; sources and driver restored',flush=True)
     return 0

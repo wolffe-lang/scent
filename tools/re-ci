@@ -8,11 +8,13 @@ if [ "${SCENT_IN_CONTAINER:-}" != 1 ]; then exec tools/in-container tools/re-ci 
 . tools/lib-toolchain.sh
 tools/fetch-oracle
 pairs=$(python3 -I ci/tiers.py regex-size)
+echo "re-ci: $pairs generated pattern-line pairs per syntax; reviewed differences counted separately"
 "$WOLF" fmt --check src/re
 "$WOLF" test --deny-warnings src/re
 tools/re-driver --native
 python3 -I tools/re-diagnostics --work target/re/diagnostics
 python3 -I tools/re-oracle --soak "$pairs" --work target/re/oracle
+python3 -I tools/re-projection-soak --soak 100000 --work target/re/projection
 python3 -I tools/re-cost --work target/re/cost
 tools/re-driver --release
 python3 -I tools/re-oracle --driver target/re/driver-release --soak "$pairs" --work target/re/release-oracle
