@@ -14,6 +14,7 @@ fn compiled_fixture(pattern: str, options: Options) -> Regex {
             starts: List[int](),
             span_starts: List[int](),
             backrefs: List[bool](),
+            verify: List[bool](),
         }
     }
 }
@@ -121,4 +122,14 @@ fn test_backreference_path() {
     var ws = workspace_new(re)
     let empty = List[byte]()
     assert(line_matches(re, mut ws, empty, 0, 0), "empty backreference selects empty line")
+}
+
+fn test_empty_pattern_mebibyte() {
+    let re = compiled_fixture("", options_fixture())
+    var ws = workspace_new(re)
+    let bytes = "a".repeat(1048576).bytes()
+    assert(line_matches(re, mut ws, bytes, 0, bytes.len), "empty pattern selects long line")
+    let span = next_span(re, mut ws, bytes, 0, bytes.len, 0) else Span { lo: -1, hi: -1 }
+    assert(span.lo == -1, "next_span never returns empty spans")
+    assert(ws.visits <= re.prog.len * (bytes.len + 1), "empty scan is linear")
 }

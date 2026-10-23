@@ -139,20 +139,26 @@ pub fn compile(
         starts: List[int](),
         span_starts: List[int](),
         backrefs: List[bool](),
+        verify: List[bool](),
     }
     var index = 0
     while index < patterns.len {
         let p = parse(patterns[index], options, mut diagnostics, index)
-        if p.failed { return invalid }
+        if p.failed { suppress_warnings(mut diagnostics); return invalid }
         let class_offset = re.classes.len / 256
         for b in p.classes { (mut re.classes).push(b) }
         let end = emit(mut re.prog, ACCEPT, 0, 0, 0)
         let start = compile_tree(mut re.prog, p, class_offset, end)
         (mut re.starts).push(start)
         (mut re.backrefs).push(p.has_ref)
+        (mut re.verify).push(p.has_ref || p.verify)
         var span_diagnostics = diagnostics_new()
         let span = parse_mode(patterns[index], options, mut span_diagnostics, index, true)
-        if span.failed { return invalid }
+        if span.failed {
+            diagnostics = span_diagnostics
+            suppress_warnings(mut diagnostics)
+            return invalid
+        }
         let span_class_offset = re.classes.len / 256
         for b in span.classes { (mut re.classes).push(b) }
         let span_end = emit(mut re.prog, ACCEPT, 0, 0, 0)
@@ -160,5 +166,19 @@ pub fn compile(
         (mut re.span_starts).push(span_start)
         index += 1
     }
+    var verify_list = false
+    for verify in re.verify { if verify { verify_list = true } }
+    if verify_list {
+        var i = 0
+        while i < re.verify.len { re.verify[i] = true; i += 1 }
+    }
     re
+}
+
+fn suppress_warnings(mut diagnostics: Diagnostics) {
+    var errors = List[Diagnostic]()
+    for item in diagnostics.items {
+        if !item.warning { (mut errors).push(copy item) }
+    }
+    diagnostics.items = errors
 }

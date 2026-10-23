@@ -307,5 +307,15 @@ pub fn next_span(
     hi: int,
     from: int,
 ) -> Span ! {none} {
+    // An empty-only program can select a line but can never emit a span.
+    // Avoid walking even one byte of a multi-megabyte line in that case.
+    var consuming = false
+    for inst in re.prog {
+        if inst.op == CHAR || inst.op == CLASS || inst.op == ANY || inst.op == REF {
+            consuming = true
+            break
+        }
+    }
+    if !consuming { return none }
     find_span(re, mut ws, bytes, lo, hi, from, true, false)
 }

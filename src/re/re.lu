@@ -86,6 +86,7 @@ pub struct Regex {
     starts: List[int],
     span_starts: List[int],
     backrefs: List[bool],
+    verify: List[bool],
 }
 
 /// Reusable state sets sized to one compiled program; no per-line allocation.
@@ -171,5 +172,5 @@ fn consumes(re: Regex, inst: Inst, b: byte) -> bool {
 }
 
 fn program_start(re: Regex, index: int, spans: bool) -> int {
-    if spans then re.span_starts[index] else re.starts[index]
+    if spans || re.verify[index] then re.span_starts[index] else re.starts[index]
 }
