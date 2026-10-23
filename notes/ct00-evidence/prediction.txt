@@ -1,0 +1,24 @@
+ct00 prediction, recorded before implementation (2026-10-23)
+
+First full differential run: item 5 (CLI parsing/diagnostics) will have the
+most disagreements; output/context is second. GNU diagnostics use argv[0]
+verbatim; its Usage/Try lines use the basename (already observed while
+verifying required inputs; not a blind prediction). Until wolf-lang#899,
+R-ct00-3 fixes scent's prefix centrally to grep and counts other names as
+not-yet. Non-UTF-8 arguments are separately not-yet under wolf-lang#406.
+
+Binary prediction: a first NUL after a first match suppresses that match
+when both were in GNU's first read, but a sufficiently later NUL permits
+previous text output before the binary notice. C-locale bytes >=128 alone
+will not trigger binary behavior. Tests, not this prediction, decide.
+
+The ferp suites will contribute 80 cases, each with its file:line citation.
+The stripped static binary will be under 3 MiB. The median scent/GNU wall
+ratio for the 256 MiB -F literal row will be about 12x (recorded, not gated).
+
+R-ct00-1: use aspen 476edee3 tools/mkaspen as primary static-builder shape,
+lope bc388673 tools/mkstatic second (the original tools/mklope path absent).
+R-ct00-2: packages may be added only inside the lane-owned container.
+R-ct00-3: fixed grep prefix from one function until #899; never os_exe.
+
+Scoring awaits the first full differential and final measurements.
