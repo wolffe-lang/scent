@@ -1,0 +1,155 @@
+//! Thompson compiler with an explicit continuation stack. Inputs: Cox's
+//! regexp1 article; yew src/search/compile.lu:13-22 at 83020234 (explicit
+//! compiler tasks); POSIX XBD 9.3.6/9.4.6 repetition. Instructions are
+//! emitted backwards against an already-known successor, avoiding patch
+//! lists. Only the back-edge of an unbounded repeat needs one patch.
+
+struct CompileTask {
+    kind: int,
+    node: int,
+    next: int,
+    aux: int,
+    lower: int,
+    optional: int,
+}
+
+fn emit(mut prog: List[Inst], op: int, x: int, y: int, arg: int) -> int {
+    (mut prog).push(Inst { op: op, x: x, y: y, arg: arg })
+    prog.len - 1
+}
+
+fn compile_task(
+    mut tasks: List[CompileTask],
+    kind: int,
+    n: int,
+    next: int,
+    aux: int,
+    lower: int,
+    optional: int,
+) {
+    (mut tasks).push(CompileTask {
+        kind: kind,
+        node: n,
+        next: next,
+        aux: aux,
+        lower: lower,
+        optional: optional,
+    })
+}
+
+fn compile_tree(mut prog: List[Inst], p: Parser, class_offset: int, end: int) -> int {
+    var tasks = List[CompileTask]()
+    compile_task(mut tasks, 0, p.frames[0].alt, end, 0, 0, 0)
+    var result = end
+    while tasks.len > 0 {
+        let t = (mut tasks).pop() else CompileTask {
+            kind: -1,
+            node: 0,
+            next: 0,
+            aux: 0,
+            lower: 0,
+            optional: 0,
+        }
+        if t.kind == 1 {
+            compile_task(mut tasks, 0, t.node, result, 0, 0, 0)
+            continue
+        }
+        if t.kind == 2 {
+            compile_task(mut tasks, 3, t.node, result, 0, 0, 0)
+            compile_task(mut tasks, 0, t.node, t.next, 0, 0, 0)
+            continue
+        }
+        if t.kind == 3 {
+            result = emit(mut prog, SPLIT, t.next, result, 0)
+            continue
+        }
+        if t.kind == 4 {
+            result = emit(mut prog, SAVE, result, 0, t.aux)
+            continue
+        }
+        if t.kind == 5 {
+            prog[t.aux].x = result
+            result = t.aux
+            compile_task(mut tasks, 6, t.node, result, 0, t.lower, 0)
+            continue
+        }
+        if t.kind == 6 {
+            result = t.next
+            if t.optional > 0 {
+                compile_task(mut tasks, 7, t.node, t.next, 0, t.lower, t.optional - 1)
+                compile_task(mut tasks, 0, t.node, t.next, 0, 0, 0)
+            } else if t.lower > 0 {
+                compile_task(mut tasks, 8, t.node, 0, 0, t.lower - 1, 0)
+                compile_task(mut tasks, 0, t.node, t.next, 0, 0, 0)
+            }
+            continue
+        }
+        if t.kind == 7 {
+            result = emit(mut prog, SPLIT, result, t.next, 0)
+            compile_task(mut tasks, 6, t.node, result, 0, t.lower, t.optional)
+            continue
+        }
+        if t.kind == 8 {
+            compile_task(mut tasks, 6, t.node, result, 0, t.lower, 0)
+            continue
+        }
+        let n = copy p.nodes[t.node]
+        if n.op == EMPTY_NODE {
+            result = t.next
+        } else if n.op == CAT_NODE {
+            compile_task(mut tasks, 1, n.a, 0, 0, 0, 0)
+            compile_task(mut tasks, 0, n.b, t.next, 0, 0, 0)
+        } else if n.op == ALT_NODE {
+            compile_task(mut tasks, 2, n.b, t.next, 0, 0, 0)
+            compile_task(mut tasks, 0, n.a, t.next, 0, 0, 0)
+        } else if n.op == GROUP_NODE {
+            if p.has_ref && n.arg <= 9 {
+                let close = emit(mut prog, SAVE, t.next, 0, 2 * n.arg + 1)
+                compile_task(mut tasks, 4, 0, 0, 2 * n.arg, 0, 0)
+                compile_task(mut tasks, 0, n.a, close, 0, 0, 0)
+            } else {
+                compile_task(mut tasks, 0, n.a, t.next, 0, 0, 0)
+            }
+        } else if n.op == REPEAT_NODE {
+            if n.upper < 0 {
+                let split = emit(mut prog, SPLIT, 0, t.next, 0)
+                compile_task(mut tasks, 5, n.a, 0, split, n.lower, 0)
+                compile_task(mut tasks, 0, n.a, split, 0, 0, 0)
+            } else {
+                compile_task(mut tasks, 6, n.a, t.next, 0, n.lower, n.upper - n.lower)
+            }
+        } else {
+            let arg = if n.op == CLASS then n.arg + class_offset else n.arg
+            result = emit(mut prog, n.op, t.next, 0, arg)
+        }
+    }
+    result
+}
+
+/// Compile byte patterns; invalid carries ordered diagnostics in the supplied sink.
+pub fn compile(
+    patterns: List[List[byte]],
+    options: Options,
+    mut diagnostics: Diagnostics,
+) -> Regex ! {invalid} {
+    var re = Regex {
+        options: copy options,
+        prog: List[Inst](),
+        classes: List[bool](),
+        starts: List[int](),
+        backrefs: List[bool](),
+    }
+    var index = 0
+    while index < patterns.len {
+        let p = parse(patterns[index], options, mut diagnostics, index)
+        if p.failed { return invalid }
+        let class_offset = re.classes.len / 256
+        for b in p.classes { (mut re.classes).push(b) }
+        let end = emit(mut re.prog, ACCEPT, 0, 0, 0)
+        let start = compile_tree(mut re.prog, p, class_offset, end)
+        (mut re.starts).push(start)
+        (mut re.backrefs).push(p.has_ref)
+        index += 1
+    }
+    re
+}
