@@ -8,14 +8,14 @@ feeds each operand through `reader.scan` to the byte writer in `out`.
 
 - `src/opts/`: getopt_long-shaped parsing, permutation, diagnostics and
   the sole `program()` prefix seam. R-ct00-3 fixes it to `grep` until
-  wolf-lang#899 provides argv[0]. No `os_exe` substitution.
+  wolf-lang#899/#904 provides argv[0]. No `os_exe` substitution.
 - `src/fixed/`: immutable literal bytes with KMP failure links. Search
   is linear in the line length per pattern, not a naive quadratic retry.
   ASCII folding and word/whole-line constraints are C-locale byte tests.
   Workspace caches each pattern's next candidate with monotonic KMP
   cursors, so a missing alternative is not rescanned for every -o span.
   Begin each span sequence at from == lo, or call line_matches first.
-- `src/matcher/`: dispatch seam for ct02. `Matcher` is immutable;
+- `src/matcher/`: joined F/G/E dispatch. `Matcher` is immutable;
   `Workspace` owns scratch allocated by `workspace_new` once per read chunk,
   never per line. Both entry
   points accept a half-open `(buf: List[byte], lo, hi)` line window:
@@ -23,12 +23,14 @@ feeds each operand through `reader.scan` to the byte writer in `out`.
   `next_span(re, mut ws, buf, lo, hi, from) -> Span ! {none}`. Spans
   are leftmost-longest, in buffer coordinates. Empty patterns are tested by `line_matches`; `next_span` returns
   nonempty spans only, avoiding quadratic rescans with empty alternatives. `compile(patterns: List[List[byte]], syntax,
-  flags) -> Matcher ! {invalid}` is ct02's sole syntax dispatch. Until
-  then G/E refuse by name; ct02 replaces those arms with ct01's `re`.
+  flags, mut diagnostics) -> Matcher ! {invalid}` compiles F through KMP
+  and G/E through `re`. Diagnostics retain pattern-file line provenance;
+  duplicate pattern bytes compile once.
 - `src/re/`: the independent C-locale BRE/ERE engine for ct02's syntax
   dispatch. [RE.md](RE.md) specifies immutable compilation, a separate
   workspace, selection before nonempty span stepping, and the reviewed
-  compatibility differences. It is not yet called by `src/matcher/`.
+  compatibility differences. Context span output establishes selection
+  again for each historical buffer before asking for spans.
 - `src/reader/`: files and descriptor 0; 96 KiB reads (GNU's measured
   regular-file read boundary), an unfinished-line byte buffer, and a
   lazy ring of the requested number of preceding lines. No whole-file
@@ -53,17 +55,23 @@ those two cases compare stream shape and status instead of FSF prose.
 
 R-ct00-4 corrects the initial contract: different explicit matcher
 syntaxes conflict; the same syntax may be repeated. Other-name/path
-invocations are separately counted not-yet under #899; non-UTF-8
-arguments are separately counted under #406. M2 owns recursion/colour.
+invocations and non-UTF-8 arguments are exact upstream-blocked reviews
+under #899/#406/#904, not not-yet. The two abort messages type only the
+PID as digits; every other byte and both statuses are exact. M2 owns recursion/colour.
 
 ## Terminator-bearing patterns
 
-R-ct00-5 defers the cross-record adapter to ct02, for F/G/E together. A
-pattern may contain the active terminator: GNU prints the touched records
-as one output unit, not independent per-record selections. The normal
-reader's delimiter-excluding window cannot express that. `scent.lu`
-refuses this mode by name before the syntax dispatch. The 216 measured
-`cross-*` witnesses cover all three syntaxes, leading/trailing NUL, three
-records and a 96 KiB boundary, with count/spans/prefixes/inversion/limit/
-whole-line/word/context controls. `patterns-07` and `nul-pattern-z` belong
-to the same explicit not-yet column; no expected GNU bytes were changed.
+Ruling #117 replaces R-ct00-5: no pattern containing the active terminator
+matches any record, for F/G/E alike. The ordinary bounded reader is
+unchanged. GNU G/E consistently reject such matches; GNU F sometimes
+crosses records within a read, but loses the same match across reads or
+under -w. The 216 cross-* cases now count as164 agreement and52 exact
+published divergences; the two original NUL cases add one agreement
+and one exact reviewed difference. The README gives
+all three consistency decisions and the separate eight runtime gaps.
+
+`tests/divergences.json` pins complete case identities and both answers;
+reviewed rows that become agreement also fail until reviewed explicitly.
+`tools/m1-ci-test` protects the generated5072-case floor, review counts and
+CI wiring. `tools/gate` is the whole local acceptance, and
+`tools/pax-posture` repeats the static suite without LANG or locale data.

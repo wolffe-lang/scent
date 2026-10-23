@@ -44,7 +44,9 @@ The parser uses explicit group frames and an indexed AST. The Thompson
 compiler uses explicit continuation tasks, expanding bounded repetitions
 without a recursive compiler walk. Classes are flat 256-entry byte tables;
 ASCII case closure is applied before bracket negation. No consuming
-instruction accepts the configured terminator. Assertions inspect the
+instruction accepts the configured terminator. Ruling #117 also makes
+each terminator-bearing pattern unreachable after syntax validation,
+including a pattern with an otherwise matching alternative. Assertions inspect the
 original line window.
 
 GNU uses different rules for selection and reported spans on some unusual
@@ -103,7 +105,8 @@ host); process RSS also includes compiled code, input, and allocator storage.
 
 ## Word-span divergences
 
-For a selected line, scent keeps leftmost-longest word spans where GNU's
+Ruling #115 publishes these differences: for a selected line, scent keeps
+leftmost-longest word spans where GNU's
 shorter-candidate retry/stepping fails to follow a general rule. These rows
 are counted separately, never as agreement. Selection, diagnostics, and exit
 status still agree on these rows. The bounded matrix shifts the same input
@@ -128,14 +131,15 @@ per-pair divergence table is generated below from the gate evidence.
 | <code>.{1,3}</code> | -i -w | `0031300042420d2d61806262` | 0..3, 4..7, 7..9, 10..12 | 0..3, 4..7, 10..12 |
 | <code>.{1,3}</code> | -i -w | `30ff5f2d610d0941` | 0..3, 4..6, 6..8 | 0..3, 6..8 |
 
-The gate accepts only these exact reviewed pattern/flag/input/output witnesses
+The engine gate and joined CLI accept only these exact reviewed pattern/flag/input/output witnesses
 from `tests/re/word-divergences.json`; an unknown word-span difference stops
 the run. The two dialects account for 20 separately counted pairs.
 
 ## GNU extension compatibility exceptions
 
 POSIX leaves adjacent duplication symbols undefined (XBD 9.3.6 and 9.4.6),
-and ERE backreferences are a GNU extension. The exception below is therefore
+and ERE backreferences are a GNU extension. Ruling #116 retains the consistent `**` = `*` interpretation.
+The exception below is therefore
 **not a contradiction of a POSIX requirement**. scent gives `**` the
 compositional meaning of `*`; GNU's measured answer differs in this reviewed
 family. New families require separate review, not automatic expansion of
@@ -160,9 +164,10 @@ BRE:
 The 16-configuration neighbourhood varies both star spellings (`*`/`**`),
 syntax, and `-i`. GNU loses the empty-group path only when both spellings are
 `**`; replacing either by `*` restores it. This describes the measured
-family, not a general rule for GNU's matcher. All generated pairs in that
-family are counted separately, including pairs where the outputs happen to
-agree. The evidence is `notes/ct01-evidence/backref-neighbourhood.jsonl`.
+family, not a general rule for GNU's matcher. The original32 generated pairs per syntax are pinned with both exact
+answers in `tests/re/extension-divergences.json`, including pairs where
+the outputs happen to agree; a new subject/output is never admitted by
+pattern spelling alone. The evidence is `notes/ct01-evidence/backref-neighbourhood.jsonl`.
 
 Affected first-corpus subjects include `a`, `ab`, `a-bx`, `A`, and byte strings
 `610d2d622009414231ff802d` and `6100098000410080314262`. On
