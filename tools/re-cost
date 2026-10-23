@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+"""Bounded cost gates, with measured nanoseconds from the test-only driver.
+No timing uses the Mac. Execute in ct01's pinned container/core allocation.
+"""
+import argparse
+import json
+import os
+from pathlib import Path
+import statistics
+import subprocess
+import time
+
+ROOT=Path(__file__).resolve().parent.parent
+
+def engine(driver,work,pattern,line,ceiling):
+    path=work/'cost-case.txt'
+    path.write_text('0 E 0 10 '+(pattern.hex() or '-')+' '+(line.hex() or '-')+'\n')
+    started=time.monotonic_ns()
+    try:
+        result=subprocess.run([driver,'--cost',str(path)],capture_output=True,timeout=ceiling)
+    except subprocess.TimeoutExpired:
+        return dict(timeout=ceiling)
+    if result.returncode: return dict(error=result.returncode,stderr=result.stderr.decode(errors='replace'))
+    timing=next((s.split() for s in result.stdout.decode().splitlines() if s.startswith('T ')),None)
+    if timing is None: return dict(error='missing timing',stdout=result.stdout.decode(errors='replace'))
+    selected=next(s.split()[3]=='1' for s in result.stdout.decode().splitlines() if s.startswith('R '))
+    return dict(compile_ns=int(timing[3]),match_ns=int(timing[4]),instructions=int(timing[5]),visits=int(timing[6]),peak_frames=int(timing[7]),selected=selected,wall_ns=time.monotonic_ns()-started)
+
+
+def oracle(grep,pattern,line,ceiling):
+    def once(data):
+        start=time.monotonic_ns()
+        try:
+            r=subprocess.run([grep,'-a','-E','-q','-e',pattern],input=data,capture_output=True,timeout=ceiling,env={**os.environ,'LC_ALL':'C'})
+            return dict(wall_ns=time.monotonic_ns()-start,status=r.returncode,stderr=r.stderr.hex())
+        except subprocess.TimeoutExpired:return dict(timeout=ceiling)
+    # GNU exposes no compile-only API. Empty input times compilation plus
+    # process startup; subtracting it from the full run is only an estimate.
+    return dict(empty_input=once(b''),full=once(line+b'\n'))
+
+
+def main():
+    ap=argparse.ArgumentParser()
+    ap.add_argument('--driver',default=str(ROOT/'target/re/driver'))
+    ap.add_argument('--grep',default='/lane/oracle/bin/grep')
+    ap.add_argument('--work',type=Path,default=ROOT/'target/re/cost')
+    ap.add_argument('--ceiling',type=float,default=10)
+    ap.add_argument('--plant-smoke',action='store_true')
+    a=ap.parse_args();a.work.mkdir(parents=True,exist_ok=True)
+    families=[('(a*)*b',False),('(a|aa)*c',False),('((a{2,3}){2,3}){2,3}',False)]
+    if a.plant_smoke: families=[('(a|aa)*c',False)]
+    else:families += [(f'(a?){{{n}}}a{{{n}}}',False) for n in range(1,31)]
+    rows=[];errors=[]
+    for pattern,refs in families:
+        previous=None
+        for size in ([32,64,128] if a.plant_smoke else [1000,10000,100000]):
+            print(f'cost start {pattern} bytes={size}',flush=True)
+            samples=[engine(a.driver,a.work,pattern.encode(),b'a'*size,a.ceiling) for _ in range(3)]
+            row=dict(family=pattern,backreference=refs,bytes=size,samples=samples)
+            rows.append(row)
+            if any('timeout' in s or 'error' in s for s in samples):
+                errors.append(f'non-backreference failed/timeout: {pattern} {size}')
+                print('RED '+errors[-1],flush=True)
+                break
+            elapsed=int(statistics.median(s['match_ns'] for s in samples));row['median_match_ns']=elapsed
+            if previous is not None and elapsed>30*max(previous,1000000):
+                errors.append(f'superlinear growth: {pattern} {size}')
+            previous=elapsed
+            print(f'cost result {pattern} {size} median_match_ns={elapsed} compile_ns={samples[0]["compile_ns"]}',flush=True)
+    if not a.plant_smoke:
+        for pattern,sizes in [(r'(a*)\1',[10,100,1000]),(r'(a|aa)*\1b',[12,18,24]),(r'^(a+)\1+$',[32,128,512])]:
+            for size in sizes:
+                print(f'backreference start {pattern} bytes={size}',flush=True)
+                g=oracle(a.grep,pattern.encode(),b'a'*size,a.ceiling)
+                s=engine(a.driver,a.work,pattern.encode(),b'a'*size,a.ceiling)
+                rows.append(dict(family=pattern,bytes=size,backreference=True,engine=s,oracle=g))
+                if 'timeout' not in g['full'] and ('timeout' in s or 'error' in s):errors.append(f'GNU finished but engine failed: {pattern} {size}')
+                if 'status' in g['full'] and 'selected' in s and s['selected']!=(g['full']['status']==0):errors.append(f'selection disagreement: {pattern} {size}')
+                print(json.dumps(rows[-1]),flush=True)
+        for pattern in ('a{1,32767}','(a{1,1000}){1,1000}','a{1,32768}','a{32768}'):
+            print('large interval start '+pattern,flush=True)
+            g=oracle(a.grep,pattern.encode(),b'a',a.ceiling)
+            s=engine(a.driver,a.work,pattern.encode(),b'a',a.ceiling)
+            rows.append(dict(family=pattern,bytes=1,large_interval=True,engine=s,oracle=g))
+            print(json.dumps(rows[-1]),flush=True)
+    (a.work/'cost.json').write_text(json.dumps(dict(rows=rows,errors=errors),indent=2)+'\n')
+    for error in errors:print('RED '+error,flush=True)
+    print(('FAIL' if errors else 'PASS')+' cost gate; timeouts explicitly counted; SKIP=0',flush=True)
+    return bool(errors)
+if __name__=='__main__':raise SystemExit(main())
