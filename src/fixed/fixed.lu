@@ -93,7 +93,7 @@ fn candidate(re: Matcher, buf: List[byte], lo: int, hi: int, a: int, b: int) -> 
     (a == lo || !word_byte(buf[a - 1])) && (b == hi || !word_byte(buf[b]))
 }
 
-/// Leftmost-longest admissible span at or after from; none on no match.
+/// Leftmost-longest NONEMPTY admissible span at or after from; none on no match.
 pub fn next_span(
     re: Matcher,
     mut ws: Workspace,
@@ -113,19 +113,8 @@ pub fn next_span(
     var best_lo = hi + 1
     var best_hi: int = 0
     for pat in re.patterns {
-        if pat.bytes.len == 0 {
-            var at = start
-            while at <= hi {
-                if candidate(re, buf, lo, hi, at, at) {
-                    if at < best_lo {
-                        best_lo = at
-                        best_hi = at
-                    }
-                    break
-                }
-                at += 1
-            }
-        } else {
+        if pat.bytes.len == 0 { continue }
+        {
             var at = start
             var j: int = 0
             while at < hi && at - j <= best_lo {
@@ -161,6 +150,15 @@ pub fn next_span(
 
 /// Whether the half-open line window has an admissible match.
 pub fn line_matches(re: Matcher, mut ws: Workspace, buf: List[byte], lo: int, hi: int) -> bool {
+    for pat in re.patterns {
+        if pat.bytes.len == 0 {
+            var at = lo
+            while at <= hi {
+                if candidate(re, buf, lo, hi, at, at) { return true }
+                at += 1
+            }
+        }
+    }
     let span = next_span(re, mut ws, buf, lo, hi, lo) else |_| { return false }
     span.lo <= hi
 }
