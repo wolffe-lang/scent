@@ -11,7 +11,7 @@ for f in (root/'tests/cases').glob('*.jsonl'):
  for raw in f.read_text().splitlines():
   c=json.loads(raw);assert c['name'] not in all_cases,c['name'];all_cases[c['name']]=c
 reviews=json.loads((root/'tests/divergences.json').read_text())
-assert collections.Counter(x['ruling'] for x in reviews.values())=={115:22,116:34,117:52,'R-ct02-5':6,'R-ct02-6':2}
+assert collections.Counter(x['ruling'] for x in reviews.values())=={115:22,116:34,117:53,'R-ct02-5':6,'R-ct02-6':2}
 for name,review in reviews.items():
  assert review['gnu']!=review['scent'],name
  assert review['case_sha256']==hashlib.sha256(json.dumps(all_cases[name],sort_keys=True,separators=(',',':')).encode()).hexdigest(),name

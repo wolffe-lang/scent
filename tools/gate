@@ -1,0 +1,22 @@
+#!/bin/bash
+# Whole joined acceptance. The launcher records this process's exit directly.
+set -euo pipefail
+root=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
+cd "$root"
+export SCENT_ROOT=$root SCENT_IN_CONTAINER=1
+ulimit -c 0
+python3 -I ci/tiers-test.py
+python3 -I tools/re-ci-test
+python3 -I tools/m1-ci-test
+python3 -I tools/oracle-review-test
+tools/check-fmt
+tools/build --all
+tools/check-test
+tools/oracle-select-test
+tools/oracle --bin target/native/scent
+tools/oracle --bin target/release/scent
+tools/re-ci
+tools/mkscent target/mkscent
+tools/oracle --bin target/mkscent/scent
+python3 -I tools/measure.py --memory-only
+printf 'PASS ct02 whole joined gate; SKIP=0\n'
