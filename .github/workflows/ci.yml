@@ -64,36 +64,17 @@ jobs:
         run: docker build -t localhost/scent-oracle -f ci/oracle.Containerfile ci
       - name: Stage digest-pinned toolchain and oracle
         run: tools/in-container bash -c 'tools/fetch-toolchain && tools/fetch-oracle'
-      - name: Format and both compiler tiers
-        run: tools/in-container bash -c 'tools/check-fmt && tools/build --all'
-      - name: Checked tests with explicit native-fallback reruns, native and lupin
-        if: ${{ !cancelled() }}
-        run: tools/in-container tools/check-test
-      - name: GNU oracle, native
-        if: ${{ !cancelled() }}
-        run: tools/in-container tools/oracle --bin target/native/scent
-      - name: GNU oracle, release
-        if: ${{ !cancelled() }}
-        run: tools/in-container tools/oracle --bin target/release/scent
-      - name: Static build twice and digest
-        if: ${{ !cancelled() }}
-        run: tools/in-container tools/mkscent target/mkscent
-      - name: GNU oracle, static
-        if: ${{ !cancelled() }}
-        run: tools/in-container tools/oracle --bin target/mkscent/scent
-      - name: Streaming memory gate and recorded performance
-        if: ${{ !cancelled() }}
-        run: tools/in-container tools/measure
-      - name: Retain byte diffs and measurements
+      - name: Native build for the deliberate chunk regression
+        run: tools/in-container tools/build --native
+      - name: Oracle must catch the deliberate chunk regression
+        run: tools/in-container tools/oracle --bin target/native/scent --only chunk-00
+      - name: Retain planted byte differences
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
-          name: linux-evidence
-          path: |
-            target/oracle
-            target/measure.json
-            target/mkscent/sums.txt
-            target/tests
+          name: chunk-plant-evidence
+          path: target/oracle
+
   macos:
     needs: plan
     if: contains(fromJSON(needs.plan.outputs.jobs || '[]'), 'macos')

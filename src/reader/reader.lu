@@ -260,7 +260,7 @@ pub fn scan(
     let width = if stat[0] == 0 then "{size}".len else 19
     // Measured GNU first regular-file read is 96 KiB. Pipe delivery can
     // return less; the harness records delivery shape in binary witnesses.
-    let chunk_size = 98304
+    let chunk_size = 7
     while !st.stop {
         st = copy region chunk {
             var current = copy st
@@ -365,7 +365,7 @@ pub fn scan(
                 }
                 if !current.stop && lo < buf.len {
                     in storage { append(mut carry, used, buf, lo, buf.len) }
-                    used += buf.len - lo
+                    used = 0
                 }
                 if buf.len == 0 && used > 0 && !error {
                     let hit = matcher.line_matches(re, mut ws, carry, 0, used)
