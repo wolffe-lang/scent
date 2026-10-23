@@ -19,7 +19,7 @@ THE TIERS. A job is a job of .github/workflows/ci.yml other than `plan`,
 `tier` and `nightly-red` (which runs after the verdict, on a red nightly).
 
   full     every job: the linux x86-64 gauntlet (the oracle in a
-           container), macOS arm64 (tree from Homebrew), the planner's own
+           container), macOS arm64 (ggrep from Homebrew), the planner's own
            test. A push to trunk, the nightly
            `schedule`, a `workflow_dispatch` with no `jobs` input, a pull
            request carrying the `full-matrix` label; and a pull request
@@ -68,7 +68,7 @@ RULES = [
     ("ci/**", PR),
     (".github/**", PR),
     ("wolf-toolchain.toml", PR),
-    ("scent.pin", PR),
+    ("scent-oracle.toml", PR),
     ("LICENSE", PR),
     ("LICENSE-TRAINING-DATA", PR),
     (".gitignore", PR),

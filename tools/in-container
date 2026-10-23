@@ -4,5 +4,5 @@ set -eu
 SCENT_ROOT=$(cd "$(dirname "$0")/.." && pwd)
 engine=${SCENT_ENGINE:-podman}
 image=${SCENT_IMAGE:-localhost/scent-oracle}
-"$engine" image exists "$image" 2>/dev/null || "$engine" build -t "$image" -f "$SCENT_ROOT/ci/oracle.Containerfile" "$SCENT_ROOT/ci"
+"$engine" image inspect "$image" >/dev/null 2>&1 || "$engine" build -t "$image" -f "$SCENT_ROOT/ci/oracle.Containerfile" "$SCENT_ROOT/ci"
 exec "$engine" run --rm ${SCENT_CONTAINER_ARGS:-} -e SCENT_IN_CONTAINER=1 -e CARGO_INCREMENTAL=0 -e LC_ALL=C -v "$SCENT_ROOT:/work/scent:Z" -w /work/scent "$image" "$@"

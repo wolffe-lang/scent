@@ -13,12 +13,13 @@ feeds each operand through `reader.scan` to the byte writer in `out`.
   is linear in the line length per pattern, not a naive quadratic retry.
   ASCII folding and word/whole-line constraints are C-locale byte tests.
 - `src/matcher/`: dispatch seam for ct02. `Matcher` is immutable;
-  `Workspace` owns scratch allocated once by `workspace_new`. Both entry
+  `Workspace` owns scratch allocated by `workspace_new` once per read chunk,
+  never per line. Both entry
   points accept a half-open `(buf: List[byte], lo, hi)` line window:
   `line_matches(re, mut ws, buf, lo, hi) -> bool` and
   `next_span(re, mut ws, buf, lo, hi, from) -> Span ! {none}`. Spans
-  are leftmost-longest, in buffer coordinates. Empty spans select a line
-  but are not printed by `-o`. `compile(patterns: List[List[byte]], syntax,
+  are leftmost-longest, in buffer coordinates. Empty patterns are tested by `line_matches`; `next_span` returns
+  nonempty spans only, avoiding quadratic rescans with empty alternatives. `compile(patterns: List[List[byte]], syntax,
   flags) -> Matcher ! {invalid}` is ct02's sole syntax dispatch. Until
   then G/E refuse by name; ct02 replaces those arms with ct01's `re`.
 - `src/reader/`: files and descriptor 0; 96 KiB reads (GNU's measured
@@ -28,8 +29,10 @@ feeds each operand through `reader.scan` to the byte writer in `out`.
   LF, or NUL under `-z`; default binary mode also treats observed NULs
   as delimiters. CR bytes are preserved on POSIX, including with `-U`.
   Each read/format/output turn has a temporary region. Carried bytes,
-  context buffers and matcher workspace live in a separate explicit
-  region; only scalars cross the temporary-region boundary.
+  context buffers live in a separate explicit region. Matcher workspace is
+  chunk-local, as are stdout buffers: conservative mut-region tracking
+  otherwise rejects a call with the transient output writer. Only scalar
+  reader state is copied out of the temporary region.
 - `src/out/`: fixed 64 KiB stdout staging, byte windows and GNU prefix
   ordering. Context has `-` fields; selected lines have `:` fields.
   Writes use descriptor 1 directly and report `os_error_text` failures.
