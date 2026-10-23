@@ -69,6 +69,9 @@ jobs:
       - name: Checked tests with explicit native-fallback reruns, native and lupin
         if: ${{ !cancelled() }}
         run: tools/in-container tools/check-test
+      - name: Exact-name and explicit-glob oracle selection
+        if: ${{ !cancelled() }}
+        run: tools/in-container tools/oracle-select-test
       - name: GNU oracle, native
         if: ${{ !cancelled() }}
         run: tools/in-container tools/oracle --bin target/native/scent

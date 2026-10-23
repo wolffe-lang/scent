@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+"""An exact --only must not silently include cross-record suffix matches."""
+import os,pathlib,subprocess
+root=pathlib.Path(__file__).resolve().parent.parent
+assert os.environ.get('SCENT_IN_CONTAINER')=='1','run in the oracle container'
+for selector,summary in [('chunk-00','1 agree / 0 differ / 0 not-yet'),('cross-*-chunk-00','0 agree / 0 differ / 3 not-yet')]:
+    r=subprocess.run([str(root/'tools/oracle'),'--only',selector],cwd=root,capture_output=True,text=True)
+    assert r.returncode==0,(selector,r.returncode,r.stdout,r.stderr)
+    assert summary in r.stdout,(selector,r.stdout)
+    print('oracle-select-test: PASS',selector,summary)

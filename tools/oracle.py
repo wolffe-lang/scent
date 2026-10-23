@@ -79,7 +79,7 @@ counts={'agree':0,'differ':0,'not-yet':0,'argv0-diagnostic':0,'argv0-usage':0,'a
 for file in sorted((ROOT/a.cases).glob('*.jsonl')):
  for raw in file.read_text().splitlines():
     c=json.loads(raw);name=c['name']
-    if a.only and a.only not in name and not fnmatch.fnmatch(name,a.only):continue
+    if a.only and not fnmatch.fnmatchcase(name,a.only):continue
     seen+=1
     if a.field and sys.platform != 'linux' and (c.get('nonroot') or c.get('stdout')=='full' or any(f.get('kind')=='fifo' for f in c.get('files',{}).values())):
         counts['field-unavailable']+=1;print('FIELD unavailable',name,'Linux fixture only',flush=True);continue
