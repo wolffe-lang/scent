@@ -1,0 +1,19 @@
+#!/bin/bash
+# Stage whole archive pair atomically; READY is the only completion signal.
+set -euo pipefail
+if [ "$#" -ne 3 ]; then echo 'usage: re-toolchain-stage WOLF_ARCHIVE LUPIN_ARCHIVE OUTPUT' >&2; exit 2; fi
+wolf=$(realpath "$1")
+lupin=$(realpath "$2")
+out=$3
+[ ! -e "$out" ] || { echo 'STOP: output already exists' >&2; exit 2; }
+for pass in 1 2; do
+    printf '%s  %s\n' 88a9dd3da1c9a0e38c08eb6e2de9c1ef04d1ed93dcf51024d8dbbb76890c1821 "$wolf" \
+        1152abc0bef65d334b94bc881a26463fac345919cc2ca07a291796e6048a8a38 "$lupin" | sha256sum --check -
+done
+stage="${out}.incoming.$$"
+mkdir -p "$stage/wolf" "$stage/lupin"
+tar -xzf "$wolf" -C "$stage/wolf"
+tar -xzf "$lupin" -C "$stage/lupin"
+[ "$(cat "$stage/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/STD-REV")" = e036bec318ad81ecd5a025612bc2c2adb17527f3 ]
+printf '%s\n' 'wolf 0.2.34 / lupin 0.1.55; complete archives verified twice' > "$stage/READY"
+mv "$stage" "$out"
