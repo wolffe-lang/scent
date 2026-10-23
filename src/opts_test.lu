@@ -1,0 +1,17 @@
+//! member: false
+
+use opts
+
+fn main() {
+    let a = opts.parse(["-Fin", "--no-ignore-case", "-e", "x", "file", "-B2", "-A1"], false)
+    assert(a.syntax == "F" && !a.ignore_case && a.number)
+    assert(a.before == 2 && a.after == 1)
+    assert(a.files.len == 1 && a.files[0] == "file")
+    let b = opts.parse(["-F", "--", "-x", "-file"], false)
+    assert(b.sources[0].text == "-x" && b.files[0] == "-file")
+    let c = opts.parse(["-F", "x", "-n"], true)
+    assert(!c.number && c.files[0] == "-n")
+    let d = opts.parse(["-F", "-12n", "x"], false)
+    assert(d.before == 12 && d.after == 12 && d.number)
+    print("opts: 4 cases, 0 SKIP")
+}

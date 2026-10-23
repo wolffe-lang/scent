@@ -1,0 +1,415 @@
+//! member: true
+
+// Clean-room: GNU grep 3.12 --help/manual and black-box diagnostics.
+// Design reference: ferp 7d332b5 src/ferp_cli.f90:23-147, 149-691.
+// GNU wins where ferp differs (permutation, empty patterns, CR, errors).
+
+/// A literal pattern list or a pattern-file operand.
+pub struct Source {
+    file: bool,
+    text: str,
+}
+
+/// Parsed CLI controls, sources, operands and terminal actions.
+pub struct Options {
+    syntax: str,
+    syntax_set: bool,
+    sources: List[Source],
+    files: List[str],
+    ignore_case: bool,
+    word: bool,
+    whole: bool,
+    invert: bool,
+    count: bool,
+    listing: int,
+    only: bool,
+    quiet: bool,
+    silent: bool,
+    number: bool,
+    offset: bool,
+    filename: int,
+    label: str,
+    tab: bool,
+    null_name: bool,
+    zero: bool,
+    binary: int,
+    before: int,
+    after: int,
+    context: bool,
+    separator: str,
+    groups: bool,
+    limit: int,
+    line_buffered: bool,
+    not_yet: str,
+    action: str,
+    status: int,
+}
+
+/// The GNU 3.12 C-locale defaults.
+pub fn defaults() -> Options {
+    Options {
+        syntax: "G",
+        syntax_set: false,
+        sources: List[Source](),
+        files: List[str](),
+        ignore_case: false,
+        word: false,
+        whole: false,
+        invert: false,
+        count: false,
+        listing: 0,
+        only: false,
+        quiet: false,
+        silent: false,
+        number: false,
+        offset: false,
+        filename: -1,
+        label: "(standard input)",
+        tab: false,
+        null_name: false,
+        zero: false,
+        binary: 0,
+        before: 0,
+        after: 0,
+        context: false,
+        separator: "--",
+        groups: true,
+        limit: 9223372036854775807,
+        line_buffered: false,
+        not_yet: "",
+        action: "",
+        status: -1,
+    }
+}
+
+// R-ct00-3, wolf-lang#899: this ONE prefix seam changes when argv[0]
+// becomes observable. Never use os_exe (it is a different name).
+/// Diagnostic prefix seam for wolf-lang#899; currently grep.
+pub fn program() -> str {
+    "grep"
+}
+
+/// The measured two-line brief usage on stderr.
+pub fn usage() {
+    eprint("Usage: {program()} [OPTION]... PATTERNS [FILE]...")
+    eprint("Try '{program()} --help' for more information.")
+}
+
+fn problem(mut o: Options, text: str, brief: bool) -> bool {
+    eprint("{program()}: {text}")
+    if brief {
+        usage()
+    }
+    o.status = 2
+    false
+}
+
+// Order is observable in getopt_long's ambiguous-prefix diagnostic,
+// measured by the cases long-prefix-*. Aliases with equal actions do
+// not create ambiguity (color/colour, quiet/silent).
+fn long_names() -> List[str] {
+    "basic-regexp,extended-regexp,fixed-regexp,fixed-strings,perl-regexp,after-context,before-context,binary-files,byte-offset,count,color,colour,context,devices,directories,exclude,exclude-from,exclude-dir,file,files-with-matches,files-without-match,group-separator,help,include,ignore-case,no-ignore-case,initial-tab,label,line-buffered,line-number,line-regexp,max-count,no-filename,no-group-separator,no-messages,null,null-data,only-matching,quiet,recursive,dereference-recursive,regexp,silent,text,binary,invert-match,version,with-filename,word-regexp".
+        split(",")
+}
+
+fn long_key(s: str) -> str {
+    match s {
+        "basic-regexp" => "G",
+        "extended-regexp" => "E",
+        "fixed-regexp" | "fixed-strings" => "F",
+        "perl-regexp" => "P",
+        "after-context" => "A",
+        "before-context" => "B",
+        "byte-offset" => "b",
+        "count" => "c",
+        "color" | "colour" => "color",
+        "context" => "C",
+        "devices" => "D",
+        "directories" => "d",
+        "file" => "f",
+        "files-with-matches" => "l",
+        "files-without-match" => "L",
+        "ignore-case" => "i",
+        "initial-tab" => "T",
+        "line-number" => "n",
+        "line-regexp" => "x",
+        "max-count" => "m",
+        "no-filename" => "h",
+        "no-messages" => "s",
+        "null" => "Z",
+        "null-data" => "z",
+        "only-matching" => "o",
+        "quiet" | "silent" => "q",
+        "recursive" => "r",
+        "dereference-recursive" => "R",
+        "regexp" => "e",
+        "text" => "a",
+        "binary" => "U",
+        "invert-match" => "v",
+        "version" => "V",
+        "with-filename" => "H",
+        "word-regexp" => "w",
+        _ => s,
+    }
+}
+
+fn argument(key: str) -> int {
+    if key == "color" {
+        return 2
+    }
+    for k in "e,f,m,A,B,C,d,D,binary-files,label,group-separator,include,exclude,exclude-from,exclude-dir".
+        split(",") {
+        if k == key { return 1 }
+    }
+    0
+}
+
+fn number(text: str, negative: bool) -> int ! {invalid} {
+    if text.len == 0 {
+        return invalid
+    }
+    var at: int = 0
+    var neg = false
+    if text.starts_with("+") || text.starts_with("-") {
+        neg = text.starts_with("-")
+        at = 1
+    }
+    if at == text.len || neg && !negative {
+        return invalid
+    }
+    var value: int = 0
+    while at < text.len {
+        let b = text.bytes()[at] as int
+        if b < 48 || b > 57 {
+            return invalid
+        }
+        if value <= (9223372036854775807 - (b - 48)) / 10 {
+            value = value * 10 + b - 48
+        } else {
+            value = 9223372036854775807
+        }
+        at += 1
+    }
+    if neg {
+        return 9223372036854775807
+    }
+    value
+}
+
+fn apply(mut o: Options, key: str, value: str) -> bool {
+    match key {
+        "G" | "E" | "F" | "P" => {
+            if o.syntax_set && o.syntax != key {
+                return problem(mut o, "conflicting matchers specified", false)
+            }
+            o.syntax = key
+            o.syntax_set = true
+        },
+        "e" | "f" => { (mut o.sources).push(Source { file: key == "f", text: value }) },
+        "i" | "y" => { o.ignore_case = true },
+        "no-ignore-case" => { o.ignore_case = false },
+        "w" => { o.word = true },
+        "x" => { o.whole = true },
+        "v" => { o.invert = true },
+        "c" => { o.count = true },
+        "l" => { o.listing = 1 },
+        "L" => { o.listing = 2 },
+        "o" => { o.only = true },
+        "q" => { o.quiet = true },
+        "s" => { o.silent = true },
+        "n" => { o.number = true },
+        "b" => { o.offset = true },
+        "H" => { o.filename = 1 },
+        "h" => { o.filename = 0 },
+        "label" => { o.label = value },
+        "T" => { o.tab = true },
+        "Z" => { o.null_name = true },
+        "z" => { o.zero = true },
+        "a" => { o.binary = 1 },
+        "I" => { o.binary = 2 },
+        "U" => {},
+        "u" => { eprint("{program()}: warning: --unix-byte-offsets (-u) is obsolete") },
+        "binary-files" => {
+            match value {
+                "binary" => { o.binary = 0 },
+                "text" => { o.binary = 1 },
+                "without-match" => { o.binary = 2 },
+                _ => { return problem(mut o, "unknown binary-files type", false) },
+            }
+        },
+        "A" | "B" | "C" => {
+            let n = number(value, false) else |_| {
+                return problem(mut o, "{value}: invalid context length argument", false)
+            }
+            o.context = true
+            if key != "B" { o.after = n }
+            if key != "A" { o.before = n }
+        },
+        "m" => {
+            o.limit = number(value, true) else |_| {
+                return problem(mut o, "invalid max count", false)
+            }
+        },
+        "group-separator" => { o.separator = value; o.groups = true },
+        "no-group-separator" => { o.groups = false },
+        "line-buffered" => { o.line_buffered = true },
+        "color" => {
+            if value == "always" {
+                o.not_yet = "--color=always (M2)"
+            } else if value != "" && value != "auto" && value != "never" {
+                o.action = "help"
+            }
+        },
+        "d" => {
+            if value != "read" && value != "recurse" && value != "skip" {
+                eprint("{program()}: invalid argument '{value}' for '--directories'")
+                eprint("Valid arguments are:\n  - 'read'\n  - 'recurse'\n  - 'skip'")
+                usage()
+                o.status = 1
+                return false
+            }
+            o.not_yet = "--directories (M2)"
+        },
+        "D" => {
+            if value != "read" && value != "skip" {
+                return problem(mut o, "unknown devices method", false)
+            }
+            o.not_yet = "--devices (M2)"
+        },
+        "r" | "R" | "include" | "exclude" | "exclude-from" | "exclude-dir" => {
+            o.not_yet = "{key} (M2)"
+        },
+        "help" => { o.action = "help" },
+        "V" => { o.action = "version" },
+        _ => { return problem(mut o, "invalid option -- '{key}'", true) },
+    }
+    true
+}
+
+/// Parse GNU getopt_long-style arguments, recording failures in status.
+pub fn parse(args: List[str], posix: bool) -> Options {
+    var o = defaults()
+    var operands = List[str]()
+    var stop = false
+    var i: int = 0
+    while i < args.len {
+        let arg = args[i]
+        i += 1
+        if stop || arg == "-" || !arg.starts_with("-") {
+            (mut operands).push(arg)
+            if posix { stop = true }
+            continue
+        }
+        if arg == "--" {
+            stop = true
+            continue
+        }
+        if arg.starts_with("--") {
+            let eq = arg.find("=") else arg.len
+            let name = arg[2..eq]
+            var key = ""
+            var found = ""
+            var possibilities = ""
+            var ambiguous = false
+            for n in long_names() {
+                if n == name {
+                    key = long_key(n)
+                    found = n
+                    ambiguous = false
+                    break
+                }
+                if n.starts_with(name) {
+                    let k = long_key(n)
+                    if key != "" && key != k { ambiguous = true }
+                    if key != k { possibilities += " '--{n}'" }
+                    key = k
+                    found = n
+                }
+            }
+            if key == "" {
+                let ignored = problem(mut o, "unrecognized option '{arg}'", true)
+                return o
+            }
+            if ambiguous {
+                let ignored = problem(
+                    mut o,
+                    "option '{arg}' is ambiguous; possibilities:{possibilities}",
+                    true,
+                )
+                return o
+            }
+            let mode = argument(key)
+            var value = ""
+            if eq < arg.len {
+                if mode == 0 {
+                    let ignored = problem(
+                        mut o,
+                        "option '--{found}' doesn't allow an argument",
+                        true,
+                    )
+                    return o
+                }
+                value = arg[eq + 1..]
+            } else if mode == 1 {
+                if i == args.len {
+                    let ignored = problem(mut o, "option '{arg}' requires an argument", true)
+                    return o
+                }
+                value = args[i]
+                i += 1
+            }
+            if !apply(mut o, key, value) { return o }
+        } else {
+            var at: int = 1
+            while at < arg.len {
+                let b = arg.bytes()[at] as int
+                if b >= 48 && b <= 57 {
+                    let start = at
+                    while at < arg.len &&
+                        arg.bytes()[at] >= 48 as byte &&
+                        arg.bytes()[at] <= 57 as byte { at += 1 }
+                    if !apply(mut o, "C", arg[start..at]) { return o }
+                    continue
+                }
+                let key = arg[at..at + 1]
+                at += 1
+                var value = ""
+                if argument(key) == 1 {
+                    if at < arg.len {
+                        value = arg[at..]
+                        at = arg.len
+                    } else {
+                        if i == args.len {
+                            let ignored = problem(
+                                mut o,
+                                "option requires an argument -- '{key}'",
+                                true,
+                            )
+                            return o
+                        }
+                        value = args[i]
+                        i += 1
+                    }
+                }
+                if !apply(mut o, key, value) { return o }
+            }
+        }
+    }
+    var first: int = 0
+    if o.sources.len == 0 && o.action == "" {
+        if operands.len == 0 {
+            usage()
+            o.status = 2
+            return o
+        }
+        (mut o.sources).push(Source { file: false, text: operands[0] })
+        first = 1
+    }
+    while first < operands.len {
+        (mut o.files).push(operands[first])
+        first += 1
+    }
+    if o.files.len == 0 { (mut o.files).push("-") }
+    if o.filename < 0 { o.filename = if o.files.len > 1 then 1 else 0 }
+    o
+}
