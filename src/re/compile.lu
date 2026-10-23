@@ -164,6 +164,8 @@ pub fn compile(
         let span_end = emit(mut re.prog, ACCEPT, 0, 0, 0)
         let span_start = compile_tree(mut re.prog, span, span_class_offset, span_end)
         (mut re.span_starts).push(span_start)
+        // GNU's literal shortcut bypasses selection-parser anchor quirks.
+        if byte_literal(patterns[index], span) { re.starts[index] = span_start }
         index += 1
     }
     var verify_list = false
@@ -176,9 +178,26 @@ pub fn compile(
 }
 
 fn suppress_warnings(mut diagnostics: Diagnostics) {
+    for item in diagnostics.items {
+        let text = str_from_utf8(item.text) else ""
+        if !item.warning && text == "regular expression too big" { return }
+    }
     var errors = List[Diagnostic]()
     for item in diagnostics.items {
         if !item.warning { (mut errors).push(copy item) }
     }
     diagnostics.items = errors
+}
+
+fn byte_literal(pattern: List[byte], parsed: Parser) -> bool {
+    var at = 0
+    for n in parsed.nodes {
+        if n.op == CHAR {
+            if at >= pattern.len || n.arg != pattern[at] as int { return false }
+            at += 1
+        } else if n.op != CAT_NODE && n.op != EMPTY_NODE {
+            return false
+        }
+    }
+    at > 0 && at == pattern.len
 }

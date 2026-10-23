@@ -142,3 +142,33 @@ fn test_leading_interval_span() {
     let span = next_span(re, mut ws, bytes, 0, bytes.len, 0) else Span { lo: -1, hi: -1 }
     assert(span.lo == 1 && span.hi == 3, "GNU prints interval contents after leading operator")
 }
+
+fn test_generated_diagnostic_regressions() {
+    let options = options_fixture()
+    var d = diagnostics_new()
+    let control = parse_fixture("\\\t", options, mut d, 0)
+    assert(!control.failed, "escaped tab is valid with a warning")
+    let text = str_from_utf8(d.items[0].text) else ""
+    assert(text == "warning: stray \\ before unprintable character", "control warning wording")
+    check_fixture("{{}}", "{{}}", options, 0, 2)
+    var patterns = List[List[byte]]()
+    (mut patterns).push("(*)".bytes())
+    let _ = compile(patterns, options, mut d) else { return }
+    assert(false, "discarded leading repetition before close must be invalid")
+}
+
+fn test_literal_and_interval_validation_paths() {
+    var basic = options_fixture()
+    basic.extended = false
+    let literal = compiled_fixture("$|", basic)
+    var ws = workspace_new(literal)
+    let bytes = "x$|x".bytes()
+    assert(line_matches(literal, mut ws, bytes, 0, bytes.len), "literal shortcut preserves dollar")
+    check_fixture("{{{{}}", "{{{{}}", options_fixture(), 0, 3)
+}
+
+fn test_interval_needs_content_after_operand() {
+    var d = diagnostics_new()
+    let p = parse_fixture("a{{}}", options_fixture(), mut d, 0)
+    assert(p.failed, "empty interval after an operand is invalid")
+}

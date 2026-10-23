@@ -31,6 +31,7 @@ struct Frame {
     initial: int,
     beginning: bool,
     repeatable: bool,
+    interval_operand: bool,
 }
 
 struct Parser {
@@ -41,6 +42,7 @@ struct Parser {
     frames: List[Frame],
     has_ref: bool,
     verify: bool,
+    discarded_repeat: bool,
     failed: bool,
 }
 
@@ -60,7 +62,12 @@ fn append_atom(mut p: Parser, atom: int) {
     let prior = p.frames[last].cat
     p.frames[last].cat = join(mut p, CAT_NODE, prior, atom)
     p.frames[last].beginning = false
-    if p.nodes[atom].op < BOL || p.nodes[atom].op > WORD_END { p.frames[last].repeatable = true }
+    if p.nodes[atom].op < BOL || p.nodes[atom].op > WORD_END {
+        p.frames[last].repeatable = true
+        if p.nodes[atom].op != CHAR || p.nodes[atom].arg != 123 {
+            p.frames[last].interval_operand = true
+        }
+    }
 }
 
 fn fail(mut p: Parser, mut d: Diagnostics, pattern: int, text: str) {
@@ -243,6 +250,8 @@ fn finish_branch(mut p: Parser) {
     p.frames[k].cat = -1
     p.frames[k].beginning = true
     p.frames[k].repeatable = false
+    p.frames[k].interval_operand = false
+    p.discarded_repeat = false
 }
 
 fn interval(mut p: Parser, pat: List[byte], options: Options, mut d: Diagnostics, pattern: int) -> (
@@ -297,10 +306,21 @@ fn interval(mut p: Parser, pat: List[byte], options: Options, mut d: Diagnostics
         )
         return (false, 0, 0)
     }
-    p.at = at + width
-    if too_big { fail(mut p, mut d, pattern, "Regular expression too big") }
+    let leading = options.extended && !p.frames[p.frames.len - 1].interval_operand
     if !digits && !comma || upper >= 0 && lower > upper {
+        if leading { return (false, 0, 0) }
         fail(mut p, mut d, pattern, "Invalid content of \\{{\\}}")
+    }
+    p.at = at + width
+    if too_big {
+        if leading {
+            if !p.frames[p.frames.len - 1].repeatable {
+                message(mut d, pattern, true, "warning: {{...}} at start of expression")
+            }
+            fail(mut p, mut d, pattern, "regular expression too big")
+            return (false, 0, 0)
+        }
+        fail(mut p, mut d, pattern, "Regular expression too big")
     }
     (true, lower, upper)
 }
@@ -320,6 +340,7 @@ fn parse_mode(
         frames: List[Frame](),
         has_ref: false,
         verify: false,
+        discarded_repeat: false,
         failed: false,
     }
     (mut p.frames).push(Frame {
@@ -330,6 +351,7 @@ fn parse_mode(
         initial: 0,
         beginning: true,
         repeatable: false,
+        interval_operand: false,
     })
     let width = if options.extended then 1 else 2
     while p.at < pat.len && !p.failed {
@@ -337,6 +359,7 @@ fn parse_mode(
         let c = pat[at] as int
         let k = p.frames.len - 1
         if symbol(pat, at, 40, options.extended) {
+            p.discarded_repeat = false
             p.at += width
             p.group += 1
             let available = p.frames[k].available
@@ -348,10 +371,15 @@ fn parse_mode(
                 initial: available,
                 beginning: true,
                 repeatable: false,
+                interval_operand: false,
             })
             continue
         }
         if symbol(pat, at, 41, options.extended) && (k > 0 || !options.extended) {
+            if spans && p.discarded_repeat && k > 0 {
+                fail(mut p, mut d, pattern, "Unmatched ( or \\(")
+                break
+            }
             if k == 0 { fail(mut p, mut d, pattern, "Unmatched ) or \\)"); break }
             p.at += width
             finish_branch(mut p)
@@ -363,6 +391,7 @@ fn parse_mode(
                 initial: 0,
                 beginning: false,
                 repeatable: false,
+                interval_operand: false,
             }
             let n = node(mut p, GROUP_NODE, frame.alt, -1, frame.group, 0, 0)
             append_atom(mut p, n)
@@ -391,15 +420,11 @@ fn parse_mode(
         }
         let after_assertion = last >= 0 && p.nodes[last].op >= BOL && p.nodes[last].op <= WORD_END
         if spans && (after_assertion || last < 0) && options.extended && quant > 0 {
-            // A leading repetition token, or one following an assertion,
-            // is discarded by the span path; interval contents stay literal.
-            var discard = true
-            if quant == 123 {
-                let (valid, _, _) = interval(mut p, pat, options, mut d, pattern)
-                discard = valid
-                p.at = at
-            }
-            if discard { p.at = at + 1; continue }
+            // Span parsing discards a leading operator byte, even an
+            // incomplete brace, but then requires an atom before group-close.
+            p.at = at + 1
+            p.discarded_repeat = true
+            continue
         }
         if quant > 0 && (options.extended || repeatable) && !(spans && after_assertion) {
             var lower = if quant == 43 then 1 else 0
@@ -430,7 +455,10 @@ fn parse_mode(
                         p.frames[k].cat = repeated
                     }
                 }
-                if quant == 123 { p.frames[k].repeatable = true }
+                if quant == 123 {
+                    p.frames[k].repeatable = true
+                    p.frames[k].interval_operand = true
+                }
                 continue
             }
         }
@@ -447,6 +475,9 @@ fn parse_mode(
             (
                 options.extended ||
                     at + 1 == pat.len ||
+                    !spans &&
+                        at + 1 < pat.len &&
+                        (pat[at + 1] == 41 as byte || pat[at + 1] == 124 as byte) ||
                     symbol(pat, at + 1, 41, false) ||
                     symbol(pat, at + 1, 124, false)
             ) {
@@ -507,9 +538,24 @@ fn parse_mode(
                                         escaped == 63
                                 )
                     ) {
-                    var text = "warning: stray \\ before ".bytes()
-                    (mut text).push(escaped as byte)
-                    (mut d.items).push(Diagnostic { pattern: pattern, warning: true, text: text })
+                    if escaped < 32 || escaped > 126 {
+                        message(
+                            mut d,
+                            pattern,
+                            true,
+                            "warning: stray \\ before unprintable character",
+                        )
+                    } else if escaped == 32 {
+                        message(mut d, pattern, true, "warning: stray \\ before white space")
+                    } else {
+                        var text = "warning: stray \\ before ".bytes()
+                        (mut text).push(escaped as byte)
+                        (mut d.items).push(Diagnostic {
+                            pattern: pattern,
+                            warning: true,
+                            text: text,
+                        })
+                    }
                 }
             }
         } else {
@@ -517,7 +563,9 @@ fn parse_mode(
             atom = node(mut p, CHAR, -1, -1, c, 0, 0)
         }
         if !p.failed {
+            p.discarded_repeat = false
             append_atom(mut p, atom)
+            if c == 92 && p.nodes[atom].op == CHAR { p.frames[k].interval_operand = true }
         }
     }
     if !p.failed && p.frames.len > 1 { fail(mut p, mut d, pattern, "Unmatched ( or \\(") }
