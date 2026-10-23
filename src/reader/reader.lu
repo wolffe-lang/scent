@@ -1,0 +1,387 @@
+//! member: true
+
+// Clean-room: pinned GNU 3.12 streaming probes and POSIX grep.
+// Reference: ferp 7d332b5 src/ferp_io.f90:142-281 for line state only;
+// GNU decides CR preservation, binary mode and unterminated lines.
+use opts
+use matcher
+use out
+
+struct Record {
+    bytes: List[byte],
+    used: int,
+    number: int,
+    offset: int,
+}
+
+struct History {
+    rows: List[Record],
+    next: int,
+}
+
+struct State {
+    number: int,
+    offset: int,
+    matches: int,
+    trailing: int,
+    last: int,
+    resume: int,
+    binary: bool,
+    stop: bool,
+}
+
+/// Outcome is independent of output mode: -L does not invert exit status.
+pub struct Result {
+    matched: bool,
+    error: bool,
+}
+
+fn save(mut h: History, flags: opts.Options, buf: List[byte], lo: int, hi: int, n: int, off: int) {
+    if flags.before == 0 ||
+        flags.only && !flags.invert ||
+        flags.count ||
+        flags.listing != 0 ||
+        flags.quiet {
+        return
+    }
+    if h.rows.len < flags.before {
+        (mut h.rows).push(Record { bytes: List[byte](), used: 0, number: 0, offset: 0 })
+    }
+    let slot = h.next
+    var i: int = 0
+    while i < hi - lo {
+        if i < h.rows[slot].bytes.len {
+            h.rows[slot].bytes[i] = buf[lo + i]
+        } else {
+            (mut h.rows[slot].bytes).push(buf[lo + i])
+        }
+        i += 1
+    }
+    h.rows[slot].used = hi - lo
+    h.rows[slot].number = n
+    h.rows[slot].offset = off
+    h.next = (slot + 1) % flags.before
+}
+
+fn spans(
+    flags: opts.Options,
+    re: matcher.Matcher,
+    mut ws: matcher.Workspace,
+    buf: List[byte],
+    lo: int,
+    hi: int,
+    name: str,
+    n: int,
+    off: int,
+    selected: bool,
+    width: int,
+    mut writer: out.Output,
+) {
+    var from = lo
+    while from <= hi {
+        let span = matcher.next_span(re, mut ws, buf, lo, hi, from) else |_| { break }
+        if span.hi > span.lo {
+            out.line(
+                mut writer,
+                flags,
+                name,
+                buf,
+                span.lo,
+                span.hi,
+                n,
+                off + span.lo - lo,
+                selected,
+                width,
+            )
+            from = span.hi
+        } else {
+            from = span.lo + 1
+        }
+    }
+}
+
+fn emit(
+    flags: opts.Options,
+    re: matcher.Matcher,
+    mut ws: matcher.Workspace,
+    buf: List[byte],
+    lo: int,
+    hi: int,
+    chosen: bool,
+    name: str,
+    width: int,
+    h: History,
+    mut st: State,
+    mut writer: out.Output,
+) {
+    st.number += 1
+    let off = st.offset
+    let selected = chosen && st.matches < flags.limit
+    if selected {
+        st.matches += 1
+        st.resume = off + hi - lo + 1
+    }
+    if flags.quiet || flags.listing != 0 {
+        if selected { st.stop = true }
+        return
+    }
+    if flags.count { return }
+    if st.binary && flags.binary == 0 {
+        if selected {
+            out.flush(mut writer)
+            eprint("{opts.program()}: {name}: binary file matches")
+            st.stop = true
+        }
+        return
+    }
+    if selected {
+        let first = if st.number > flags.before then st.number - flags.before else 1
+        if st.last == 0 || first > st.last + 1 { out.group(mut writer, flags) }
+        if !flags.only {
+            var at: int = 0
+            while at < h.rows.len {
+                let idx = if h.rows.len == flags.before then (h.next + at) % h.rows.len else at
+                if h.rows[idx].number > st.last {
+                    out.line(
+                        mut writer,
+                        flags,
+                        name,
+                        h.rows[idx].bytes,
+                        0,
+                        h.rows[idx].used,
+                        h.rows[idx].number,
+                        h.rows[idx].offset,
+                        false,
+                        width,
+                    )
+                    st.last = h.rows[idx].number
+                }
+                at += 1
+            }
+            out.line(mut writer, flags, name, buf, lo, hi, st.number, off, true, width)
+        } else if !flags.invert {
+            var from = lo
+            while from <= hi {
+                let span = matcher.next_span(re, mut ws, buf, lo, hi, from) else |_| { break }
+                if span.hi > span.lo {
+                    out.line(
+                        mut writer,
+                        flags,
+                        name,
+                        buf,
+                        span.lo,
+                        span.hi,
+                        st.number,
+                        off + span.lo - lo,
+                        true,
+                        width,
+                    )
+                    from = span.hi
+                } else {
+                    from = span.lo + 1
+                }
+            }
+        }
+        st.last = st.number
+        st.trailing = flags.after
+    } else if st.trailing > 0 {
+        if !flags.only {
+            out.line(mut writer, flags, name, buf, lo, hi, st.number, off, false, width)
+        } else if flags.invert {
+            spans(flags, re, mut ws, buf, lo, hi, name, st.number, off, false, width, mut writer)
+        }
+        st.last = st.number
+        st.trailing -= 1
+    }
+}
+
+fn append(mut target: List[byte], used: int, buf: List[byte], lo: int, hi: int) {
+    var i = lo
+    while i < hi {
+        let at = used + i - lo
+        if at < target.len { target[at] = buf[i] } else { (mut target).push(buf[i]) }
+        i += 1
+    }
+}
+
+/// Read one operand in bounded chunks, carrying only the unfinished line
+/// and the requested leading-context ring. Every chunk owns its temporary
+/// reads, formatting and stdout buffer; persistent storage has an explicit
+/// region so a long stream does not retain per-line allocations.
+pub fn scan(
+    flags: opts.Options,
+    re: matcher.Matcher,
+    fd: int,
+    name: str,
+    stdin: bool,
+    mut grouped: bool,
+) -> Result {
+    let storage = region()
+    var carry = in storage { List[byte]() }
+    var history = in storage { History { rows: List[Record](), next: 0 } }
+    var used: int = 0
+    var st = State {
+        number: 0,
+        offset: 0,
+        matches: 0,
+        trailing: 0,
+        last: 0,
+        resume: 0,
+        binary: false,
+        stop: false,
+    }
+    var error = false
+    let base = fs_tell(fd) else 0
+    let stat = fs_fstat(fd) else [2, 0, 0]
+    let size = stat[1]
+    let width = if stat[0] == 0 then "{size}".len else 19
+    // Measured GNU first regular-file read is 96 KiB. Pipe delivery can
+    // return less; the harness records delivery shape in binary witnesses.
+    let chunk_size = 98304
+    while !st.stop {
+        st = copy region chunk {
+            var current = copy st
+            var ws = matcher.workspace_new(re)
+            var writer = out.create()
+            writer.any_group = grouped
+            let buf = fs_read_chunk(fd, chunk_size) else |e| match e {
+                eof => { current.stop = true; List[byte]() },
+                io => {
+                    let code = os_error()
+                    if !flags.silent { eprint("{opts.program()}: {name}: {os_error_text(code)}") }
+                    error = true
+                    current.stop = true
+                    List[byte]()
+                },
+            }
+            if !flags.zero && flags.binary != 1 {
+                for b in buf {
+                    if b == 0 as byte { current.binary = true; break }
+                }
+            }
+            if current.binary && flags.binary == 2 {
+                current.stop = true
+            } else {
+                var lo: int = 0
+                var at: int = 0
+                while at < buf.len && !current.stop {
+                    let term = if flags.zero then 0 as byte else 10 as byte
+                    let end = buf[at] == term ||
+                        current.binary && flags.binary == 0 && buf[at] == 0 as byte
+                    if end {
+                        if used > 0 {
+                            in storage { append(mut carry, used, buf, lo, at) }
+                            used += at - lo
+                            let hit = matcher.line_matches(re, mut ws, carry, 0, used)
+                            let chosen = hit != flags.invert
+                            emit(
+                                flags,
+                                re,
+                                mut ws,
+                                carry,
+                                0,
+                                used,
+                                chosen,
+                                name,
+                                width,
+                                history,
+                                mut current,
+                                mut writer,
+                            )
+                            in storage {
+                                save(
+                                    mut history,
+                                    flags,
+                                    carry,
+                                    0,
+                                    used,
+                                    current.number,
+                                    current.offset,
+                                )
+                            }
+                            current.offset += used + 1
+                            used = 0
+                        } else {
+                            let hit = matcher.line_matches(re, mut ws, buf, lo, at)
+                            let chosen = hit != flags.invert
+                            emit(
+                                flags,
+                                re,
+                                mut ws,
+                                buf,
+                                lo,
+                                at,
+                                chosen,
+                                name,
+                                width,
+                                history,
+                                mut current,
+                                mut writer,
+                            )
+                            in storage {
+                                save(
+                                    mut history,
+                                    flags,
+                                    buf,
+                                    lo,
+                                    at,
+                                    current.number,
+                                    current.offset,
+                                )
+                            }
+                            current.offset += at - lo + 1
+                        }
+                        lo = at + 1
+                        if current.matches >= flags.limit && current.trailing == 0 {
+                            current.stop = true
+                        }
+                        if writer.failed { error = true; current.stop = true }
+                    }
+                    at += 1
+                }
+                if !current.stop && lo < buf.len {
+                    in storage { append(mut carry, used, buf, lo, buf.len) }
+                    used += buf.len - lo
+                }
+                if buf.len == 0 && used > 0 && !error {
+                    let hit = matcher.line_matches(re, mut ws, carry, 0, used)
+                    emit(
+                        flags,
+                        re,
+                        mut ws,
+                        carry,
+                        0,
+                        used,
+                        hit != flags.invert,
+                        name,
+                        width,
+                        history,
+                        mut current,
+                        mut writer,
+                    )
+                    used = 0
+                }
+            }
+            out.flush(mut writer)
+            grouped = writer.any_group
+            if writer.failed { error = true; current.stop = true }
+            current
+        }
+    }
+    if stdin && st.matches >= flags.limit && flags.limit > 0 {
+        let ignored = fs_seek(fd, base + st.resume, 0) else 0
+    }
+    region summary {
+        var writer = out.create()
+        if !flags.quiet {
+            if flags.listing == 1 && st.matches > 0 || flags.listing == 2 && st.matches == 0 {
+                out.filename(mut writer, flags, name)
+            } else if flags.listing == 0 && flags.count {
+                out.count(mut writer, flags, name, st.matches)
+            }
+        }
+        out.flush(mut writer)
+        if writer.failed { error = true }
+    }
+    Result { matched: st.matches > 0, error: error }
+}

@@ -1,0 +1,53 @@
+//! member: true
+
+// Clean-room dispatch boundary. ct02 replaces only the non-F arms with
+// ct01's re.compile/workspace_new/line_matches/next_span; see docs/MAP.md.
+use fixed
+
+/// Immutable compiled pattern list.
+pub struct Matcher {
+    syntax: str,
+    literal: fixed.Matcher,
+}
+
+/// Reusable search state; no per-line allocation.
+pub struct Workspace {
+    literal: fixed.Workspace,
+}
+
+/// A half-open byte span in the original input window.
+pub struct Span {
+    lo: int,
+    hi: int,
+}
+
+/// Compile pattern bytes once; traps only on resource exhaustion.
+pub fn compile(patterns: List[List[byte]], syntax: str, flags: fixed.Flags) -> Matcher ! {invalid} {
+    if syntax != "F" {
+        return invalid
+    }
+    Matcher { syntax: syntax, literal: fixed.compile(patterns, flags) }
+}
+
+/// Create reusable scratch for a compiled matcher.
+pub fn workspace_new(re: Matcher) -> Workspace {
+    Workspace { literal: fixed.workspace_new(re.literal) }
+}
+
+/// Whether the half-open line window has an admissible match.
+pub fn line_matches(re: Matcher, mut ws: Workspace, buf: List[byte], lo: int, hi: int) -> bool {
+    fixed.line_matches(re.literal, mut ws.literal, buf, lo, hi)
+}
+
+/// Leftmost-longest admissible span at or after from; none on no match.
+pub fn next_span(
+    re: Matcher,
+    mut ws: Workspace,
+    buf: List[byte],
+    lo: int,
+    hi: int,
+    from: int,
+) -> Span ! {none} {
+    let s = fixed.next_span(re.literal, mut ws.literal, buf, lo, hi, from)?
+    Span { lo: s.lo, hi: s.hi }
+}
