@@ -296,6 +296,7 @@ pub fn line_matches(re: Regex, mut ws: Workspace, bytes: List[byte], lo: int, hi
     result.lo >= lo
 }
 
+/// Precondition: line_matches has already selected this unchanged line.
 /// Next nonempty leftmost-longest span at or after from, or none. Pass the
 /// previous span's hi to continue; empty matches are never exposed to -o.
 /// The lo/hi window remains fixed so anchors and word context never shift.

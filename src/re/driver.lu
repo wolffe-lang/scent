@@ -67,7 +67,7 @@ fn driver_row(row: str, cost_only: bool) {
             let selected = line_matches(re, mut ws, bytes, 0, bytes.len)
             var from = 0
             var spans = ""
-            while from <= bytes.len {
+            while selected && from <= bytes.len {
                 let span = next_span(re, mut ws, bytes, 0, bytes.len, from) else { break }
                 if spans.len > 0 { spans += "," }
                 spans += "{span.lo}:{span.hi}"
