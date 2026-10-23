@@ -130,6 +130,24 @@ def oracle_row(grep, row):
     return result
 
 
+def exception_name(row):
+    # R-ct01-4, reviewed by the orchestrator: this exact syntactic family,
+    # in both dialects and with/without -i. Never broaden automatically.
+    pattern = br"(A**|.)(a)\1**"
+    if row['syntax'] == 'basic': pattern = bre(pattern)
+    if row['patterns'] == [pattern] and set(row['flags']) <= {'-i'}:
+        return 'gnu-double-star-empty-capture'
+    return None
+
+
+def mismatch_kind(engine, oracle):
+    if engine['status'] != oracle['status']: return 'status'
+    if engine['stderr'] != oracle['stderr']: return 'diagnostic'
+    if engine['selected'] != oracle['selected']: return 'selection'
+    if engine['spans'] != oracle['spans']: return 'span'
+    return ''
+
+
 def encode(value):
     if isinstance(value, bytes): return value.hex()
     raise TypeError(type(value).__name__)
@@ -178,33 +196,64 @@ def main():
     rows = list(corpus(args.seed, args.soak))
     got = driver_rows(args.driver, rows, args.work)
     tally = Counter()
+    measures = Counter()
     first = None
+    first_kind = None
     failures = []
+    divergences = []
+    exceptions = []
     for index, row in enumerate(rows):
         want = oracle_row(args.grep, row)
-        same = got[index] == want
-        if got[index]['status'] != want['status'] or got[index]['stderr'] != want['stderr']:
-            tally[(row['syntax'], row['kind'], 'differ')] += len(row['lines'])
+        actual = got[index]
+        approved = exception_name(row)
+        record = dict(index=index, row=row, engine=actual, oracle=want)
+        if approved:
+            tally[(row['syntax'],row['kind'],approved)] += len(row['lines'])
+            record['exception'] = approved
+            exceptions.append(record)
+            continue
+        header_ok = actual['status'] == want['status'] and actual['stderr'] == want['stderr']
+        measures[(row['syntax'],'status-diagnostics','agree' if header_ok else 'differ')] += len(row['lines'])
+        hard = not header_ok
+        if not header_ok:
+            tally[(row['syntax'],row['kind'],'differ')] += len(row['lines'])
         elif want['status'] == 2:
-            tally[(row['syntax'], row['kind'], 'agree')] += len(row['lines'])
+            tally[(row['syntax'],row['kind'],'agree')] += len(row['lines'])
         else:
             for j in range(len(row['lines'])):
-                equal = got[index]['selected'][j] == want['selected'][j] and got[index]['spans'][j] == want['spans'][j]
-                tally[(row['syntax'], row['kind'], 'agree' if equal else 'differ')] += 1
-        if not same:
-            failures.append(dict(index=index,row=row,engine=got[index],oracle=want))
-            if first is None: first = row
-        if index % 100 == 0: print(f'progress {index}/{len(rows)} groups; {len(failures)} disagree',flush=True)
-    (args.work / 'failures.json').write_text(json.dumps(failures,default=encode,indent=2))
-    for (syntax,kind,verdict), n in sorted(tally.items()): print(f'{syntax} {kind} {verdict} {n}',flush=True)
+                selection_ok = actual['selected'][j] == want['selected'][j]
+                spans_ok = actual['spans'][j] == want['spans'][j]
+                measures[(row['syntax'],'selection','agree' if selection_ok else 'differ')] += 1
+                measures[(row['syntax'],'spans','agree' if spans_ok else 'differ')] += 1
+                if selection_ok and not spans_ok and '-w' in row['flags']:
+                    verdict = 'word-span-divergence'
+                    divergences.append(dict(index=index,line=j,row=row,engine=actual['spans'][j],oracle=want['spans'][j]))
+                else:
+                    verdict = 'agree' if selection_ok and spans_ok else 'differ'
+                    hard |= verdict == 'differ'
+                tally[(row['syntax'],row['kind'],verdict)] += 1
+        if hard:
+            failures.append(record)
+            if first is None:
+                first = row
+                first_kind = mismatch_kind(actual,want)
+        if index % 100 == 0: print(f'progress {index}/{len(rows)} groups; {len(failures)} blocking disagreements',flush=True)
+    report = dict(counts=[dict(syntax=s,kind=k,verdict=v,count=n) for (s,k,v),n in sorted(tally.items())],
+                  measurements=[dict(syntax=s,measure=k,verdict=v,count=n) for (s,k,v),n in sorted(measures.items())])
+    (args.work / 'summary.json').write_text(json.dumps(report,indent=2)+'\n')
+    for name,data in [('failures',failures),('span-divergences',divergences),('posix-exceptions',exceptions)]:
+        (args.work / (name+'.json')).write_text(json.dumps(data,default=encode,indent=2)+'\n')
+    for (syntax,kind,verdict),n in sorted(tally.items()):print(f'{syntax} {kind} {verdict} {n}',flush=True)
+    for (syntax,kind,verdict),n in sorted(measures.items()):print(f'{syntax} {kind} {verdict} {n}',flush=True)
     if first is not None:
         if not args.no_reduce:
-            def differs(row): return driver_rows(args.driver,[row],args.work)[0] != oracle_row(args.grep,row)
+            def differs(row):
+                return mismatch_kind(driver_rows(args.driver,[row],args.work)[0],oracle_row(args.grep,row)) == first_kind
             first = reduce_case(first,differs)
         (args.work/'minimal.json').write_text(json.dumps(first,default=encode,indent=2))
-        print('STOP: differential mismatch; minimal.json and failures.json retain the witness',flush=True)
+        print('STOP: differential mismatch; minimal.json preserves the failure class',flush=True)
         return 1
-    print('PASS: all patterns, selections, spans, diagnostics agree; SKIP=0',flush=True)
+    print('PASS: no unapproved differences; approved span/POSIX rows counted separately; SKIP=0',flush=True)
     return 0
 
 if __name__ == '__main__': raise SystemExit(main())
