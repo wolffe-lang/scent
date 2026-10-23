@@ -1,0 +1,12 @@
+{
+  "kind": "hand",
+  "source": "GNU info 3.1\u20133.7; POSIX XBD 9; tools/re-probe",
+  "syntax": "basic",
+  "patterns": [
+    "5b3a653a5d"
+  ],
+  "lines": [
+    ""
+  ],
+  "flags": []
+}
