@@ -25,6 +25,10 @@ feeds each operand through `reader.scan` to the byte writer in `out`.
   nonempty spans only, avoiding quadratic rescans with empty alternatives. `compile(patterns: List[List[byte]], syntax,
   flags) -> Matcher ! {invalid}` is ct02's sole syntax dispatch. Until
   then G/E refuse by name; ct02 replaces those arms with ct01's `re`.
+- `src/re/`: the independent C-locale BRE/ERE engine for ct02's syntax
+  dispatch. [RE.md](RE.md) specifies immutable compilation, a separate
+  workspace, selection before nonempty span stepping, and the reviewed
+  compatibility differences. It is not yet called by `src/matcher/`.
 - `src/reader/`: files and descriptor 0; 96 KiB reads (GNU's measured
   regular-file read boundary), an unfinished-line byte buffer, and a
   lazy ring of the requested number of preceding lines. No whole-file
