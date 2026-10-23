@@ -64,6 +64,8 @@ RULES = [
     ("README.md", PROSE),
     ("docs/**", PROSE),
     ("notes/**", PROSE),
+    ("packaging/**", PR),
+    ("wrappers/**", PR),
     ("src/**", PR),
     ("tests/**", PR),
     ("tools/**", PR),

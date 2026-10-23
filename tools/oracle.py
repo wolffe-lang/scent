@@ -90,6 +90,8 @@ for file in sorted((ROOT/a.cases).glob('*.jsonl')):
     c=json.loads(raw);name=c['name']
     if a.only and not fnmatch.fnmatchcase(name,a.only):continue
     seen+=1
+    if a.field and c.get('wrapper') and not (reference.parent/c['wrapper']).is_file():
+        counts['field-unavailable']+=1;print('FIELD unavailable',name,'distribution wrapper absent',flush=True);continue
     if a.field and sys.platform != 'linux' and (c.get('nonroot') or c.get('stdout')=='full' or any(f.get('kind')=='fifo' for f in c.get('files',{}).values())):
         counts['field-unavailable']+=1;print('FIELD unavailable',name,'Linux fixture only',flush=True);continue
     if c.get('not_yet'):
