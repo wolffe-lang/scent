@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+"""The PID hole is digits-only, scoped to two rows, and no other byte is waived."""
+import hashlib,json,pathlib,runpy
+root=pathlib.Path(__file__).resolve().parent.parent
+lib=runpy.run_path(str(root/'tools/oracle-review.py'));check=lib['exact_review']
+case={'name':'not-yet-argv-bytes-0'}
+g=(b'',b'',1,b'');s=(b'',b"\nthread '<unnamed>' (123) panicked at /rustc/path\nerror\n",-6,b'')
+review=dict(kind='upstream',scent_pid_field=True,case_sha256=hashlib.sha256(json.dumps(case,sort_keys=True,separators=(',',':')).encode()).hexdigest(),gnu=lib['result_tuple'](g),scent=lib['result_tuple'](s,True))
+assert check(review,case,g,s)
+for pid in [b'0',b'987654321']:
+ assert check(review,case,g,(b'',s[1].replace(b'123',pid),-6,b''))
+for pid in [b'',b'-1',b'+1',b'1x',b'12 3',b'1\n3',b'\xff']:
+ assert not check(review,case,g,(b'',s[1].replace(b'123',pid),-6,b'')),pid
+start=s[1].index(b'123');end=start+3
+for i in range(len(s[1])):
+ if start<=i<end:continue
+ altered=s[1][:i]+bytes([s[1][i]^1])+s[1][i+1:]
+ assert not check(review,case,g,(b'',altered,-6,b'')),i
+for altered in [(b'x',s[1],-6,b''),(b'',s[1],2,b''),(b'',s[1],-6,b'x')]:assert not check(review,case,g,altered)
+assert not check(review,{'name':'other'},g,s)
+assert not check(review,case,(b'x',b'',1,b''),s)
+print('PASS exact review: digits-only scoped PID; every other stderr byte, stdout, status, stdin and GNU tuple guarded')

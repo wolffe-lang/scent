@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Byte oracle: no expected-output snapshots to edit around a disagreement."""
-import argparse, base64, fnmatch, hashlib, json, os, pathlib, shutil, subprocess, tempfile, threading, time, tomllib, sys, select
+import argparse, base64, fnmatch, hashlib, json, os, pathlib, shutil, subprocess, tempfile, threading, time, tomllib, sys, select, runpy
 ROOT=pathlib.Path(__file__).resolve().parent.parent
 p=argparse.ArgumentParser();p.add_argument('--only');p.add_argument('--field',action='store_true');p.add_argument('--bin',default='target/native/scent');p.add_argument('--cases',default='tests/cases');a=p.parse_args()
 pin=tomllib.loads((ROOT/'scent-oracle.toml').read_text())['oracle']
@@ -31,9 +31,16 @@ def prepare(work, c):
         else:dest.write_bytes(data(spec))
         dest.chmod(spec.get('mode',0o644) if spec.get('kind')!='directory' else spec.get('mode',0o755))
 def launch(binary, c, work, bindir):
-    env={'PATH':str(bindir)+':'+os.defpath,'LC_ALL':'C','HOME':str(work),'TERM':'dumb'};env.update(c.get('env',{}))
+    env={'PATH':str(bindir)+':'+os.defpath,'HOME':str(work),'TERM':'dumb'}
+    if os.environ.get('SCENT_NO_LOCALE')!='1':env['LC_ALL']='C'
+    env.update(c.get('env',{}))
     stdin=data(c.get('stdin',''))
-    args=['grep']+c['argv']
+    args=[c.get('invocation',c.get('wrapper','grep'))]+c['argv']
+    executable=str(binary) if c.get('invocation') else None
+    if c.get('argument_base64'):
+        raw=os.fsdecode(base64.b64decode(c['argument_base64']))
+        if c['argument_role']=='pattern':args[2]=raw
+        else:args.append(raw)
     source=None
     if c.get('stdin_file'):
         source=open(work/c['stdin_file'],'rb');source.seek(c.get('stdin_seek',0));input_arg=None
@@ -58,7 +65,7 @@ def launch(binary, c, work, bindir):
             t=threading.Thread(target=write_fifo,daemon=True);t.start();writers.append(t)
     try:
         if c.get('stream'):
-            child=subprocess.Popen(args,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,cwd=work,env=env)
+            child=subprocess.Popen(args,executable=executable,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,cwd=work,env=env)
             child.stdin.write(b'x\n');child.stdin.flush()
             ready,_,_=select.select([child.stdout],[],[],3)
             if not ready:
@@ -67,7 +74,7 @@ def launch(binary, c, work, bindir):
             child.stdin.write(b'none\nx\n');child.stdin.close();child.stdin=None
             rest,err=child.communicate(timeout=3)
             return first+rest,err,child.returncode,b'live-before-EOF' if first==b'x\n' else b'bad-first-line'
-        r=subprocess.run(args,input=input_arg,stdin=source,stdout=output or subprocess.PIPE,stderr=subprocess.PIPE,cwd=work,env=env,preexec_fn=pre,timeout=c.get('timeout',10))
+        r=subprocess.run(args,executable=executable,input=input_arg,stdin=source,stdout=output or subprocess.PIPE,stderr=subprocess.PIPE,cwd=work,env=env,preexec_fn=pre,timeout=c.get('timeout',10))
         rest=source.read() if source else b''
         return r.stdout or b'',r.stderr,r.returncode,rest
     except subprocess.TimeoutExpired:return b'',b'HARNESS TIMEOUT',124,b''
@@ -75,7 +82,9 @@ def launch(binary, c, work, bindir):
         if source:source.close()
         if output:output.close()
         for t in writers:t.join(timeout=0.1)
-counts={'agree':0,'differ':0,'not-yet':0,'argv0-diagnostic':0,'argv0-usage':0,'argv-bytes':0,'field-unavailable':0,'terminator-pattern':0};seen=0
+exact_review=runpy.run_path(str(ROOT/'tools/oracle-review.py'))['exact_review']
+reviews=json.loads((ROOT/'tests/divergences.json').read_text())
+counts={'upstream-blocked':0,'reviewed':0,'agree':0,'differ':0,'not-yet':0,'argv0-diagnostic':0,'argv0-usage':0,'argv-bytes':0,'field-unavailable':0,'terminator-pattern':0};seen=0
 for file in sorted((ROOT/a.cases).glob('*.jsonl')):
  for raw in file.read_text().splitlines():
     c=json.loads(raw);name=c['name']
@@ -108,6 +117,9 @@ for file in sorted((ROOT/a.cases).glob('*.jsonl')):
         for tag,binary in [('gnu',reference),('scent',ours)]:
             work=top/tag;work.mkdir(mode=0o755)
             bindir=work/'bin';bindir.mkdir();(bindir/'grep').symlink_to(binary)
+            if c.get('wrapper'):
+                wrapper=ROOT/'wrappers'/c['wrapper'] if tag=='scent' else reference.parent/c['wrapper']
+                (bindir/c['wrapper']).symlink_to(wrapper)
             prepare(work,c)
             results.append(launch(binary,c,work,bindir))
         g,s=results
@@ -116,7 +128,7 @@ for file in sorted((ROOT/a.cases).glob('*.jsonl')):
         if g[0].startswith(b'Usage: grep ') and s[0].startswith(b'Usage: scent '):shape='help'
         if g[0].startswith(b'grep (GNU grep) ') and s[0].startswith(b'scent '):shape='version'
         if shape:
-            same=g[2]==s[2] and bool(g[0])==bool(s[0]) and bool(g[1])==bool(s[1])
+            same=g[2]==s[2] and bool(g[0])==bool(s[0]) and g[1]==s[1]
             if shape=='version':same= same and s[0].startswith(b'scent ')
             if shape=='help':same= same and s[0].startswith(b'Usage: scent ')
         else:
@@ -129,6 +141,15 @@ for file in sorted((ROOT/a.cases).glob('*.jsonl')):
                 compared=subprocess.run(['cmp','-s']+paths).returncode
                 require(compared in (0,1),'cmp could not compare '+name+' '+field)
                 same= same and compared==0
+        review=reviews.get(name)
+        if review and not a.field:
+            if not same and exact_review(review,c,g,s):
+                counts['reviewed']+=1
+                if review.get('kind')=='upstream':counts['upstream-blocked']+=1
+                print('REVIEWED',name,'ruling',review['ruling'],flush=True)
+                continue
+            same=False
+            print('STALE REVIEW',name,'ruling',review['ruling'],flush=True)
         if same:counts['agree']+=1
         else:
             counts['differ']+=1
@@ -141,6 +162,7 @@ for file in sorted((ROOT/a.cases).glob('*.jsonl')):
     if seen%50==0:print('progress',seen,counts,flush=True)
 require(seen>0,'no cases selected')
 print('{agree} agree / {differ} differ / {not-yet} not-yet'.format(**counts),flush=True)
+print('{reviewed} reviewed divergences (including {upstream-blocked} upstream-blocked)'.format(**counts),flush=True)
 print('not-yet columns: argv0-diagnostic={argv0-diagnostic} argv0-usage={argv0-usage} argv-bytes={argv-bytes} terminator-pattern={terminator-pattern}'.format(**counts),flush=True)
 (stage/'summary.json').write_text(json.dumps(counts,sort_keys=True)+'\n')
 raise SystemExit(0 if a.field or counts['differ']==0 else 1)

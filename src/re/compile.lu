@@ -166,6 +166,16 @@ pub fn compile(
         (mut re.span_starts).push(span_start)
         // GNU's literal shortcut bypasses selection-parser anchor quirks.
         if byte_literal(patterns[index], span) { re.starts[index] = span_start }
+        // Ruling #117: a terminator-bearing pattern never crosses records,
+        // even when another alternative would otherwise match this record.
+        for b in patterns[index] {
+            if b == options.terminator {
+                let impossible = emit(mut re.prog, CHAR, end, 0, options.terminator as int)
+                re.starts[index] = impossible
+                re.span_starts[index] = impossible
+                break
+            }
+        }
         index += 1
     }
     var verify_list = false

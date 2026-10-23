@@ -19,11 +19,11 @@
 {"name":"stdin-no-final-newline-3-0","argv":["-F","-m1","-nb","x"],"section":"read","files":{"input":{"text":"a\nx"}},"stdin_file":"input"}
 {"name":"stdin-no-final-newline-3-1","argv":["-F","-m1","-nb","x"],"section":"read","files":{"input":{"text":"x\na\nx\n"}},"stdin_file":"input"}
 {"name":"stdin-offset-3","argv":["-F","-m1","-nb","x"],"section":"read","files":{"input":{"text":"skip\nx\na\nx\n"}},"stdin_file":"input","stdin_seek":5}
-{"name":"nul-pattern-z","argv":["-Fz","-f","patterns"],"section":"read","files":{"patterns":{"text":"x\u0000y\n"}},"stdin":"x\u0000y\u0000x\u0000y\u0000","not_yet":"R-ct00-5: ct02 cross-record terminator matching","column":"terminator-pattern","refusal":"scent: terminator-bearing patterns arrive with ct02 (R-ct00-5)"}
+{"name":"nul-pattern-z","argv":["-Fz","-f","patterns"],"section":"read","files":{"patterns":{"text":"x\u0000y\n"}},"stdin":"x\u0000y\u0000x\u0000y\u0000"}
 {"name":"crlf-patterns","argv":["-F","-n","-f","patterns"],"section":"read","files":{"patterns":{"text":"x\r\n"}},"stdin":"x\nx\r\nx\r\r\n"}
 {"name":"stdin-pattern-file","argv":["-F","-f","-","input"],"section":"read","stdin":"x\ny\n","files":{"input":{"text":"x\ny\nz\n"}}}
 {"name":"no-pattern-invert","argv":["-Fv","-f","empty"],"section":"read","stdin":"\nx\n","files":{"empty":{"text":""}}}
 {"name":"empty-and-miss-linear","section":"fixed","argv":["-Fo","-e","","-e","NEVER"],"stdin":{"parts":[{"text":"a","repeat":1048576},{"text":"\n"}]},"timeout":5}
 {"name":"raw-input","section":"read","argv":["-Fa","x"],"stdin":{"base64":"eP8K/ngK"},"files":{}}
 {"name":"raw-pattern","section":"read","argv":["-Fa","-f","p"],"stdin":{"base64":"eP8Kef4K"},"files":{"p":{"base64":"/wo="}}}
-{"name": "many-spans-miss-first-linear", "section": "fixed", "argv": ["-Fo", "-e", "NEVER", "-e", "a"], "stdin": {"parts": [{"text": "a", "repeat": 1048576}, {"text": "\n"}]}, "timeout": 5}
+{"name":"many-spans-miss-first-linear","section":"fixed","argv":["-Fo","-e","NEVER","-e","a"],"stdin":{"parts":[{"text":"a","repeat":1048576},{"text":"\n"}]},"timeout":5}
