@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+"""Differentially check the exhaustive short malformed/escaped-byte probes."""
+import argparse
+import itertools
+import json
+from pathlib import Path
+import runpy
+ROOT=Path(__file__).resolve().parent.parent
+m=runpy.run_path(str(ROOT/'tools/re-oracle'))
+
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--work',type=Path,required=True);a=p.parse_args();a.work.mkdir(parents=True,exist_ok=True)
+    runpy.run_path(str(ROOT/'tools/re-oracle-identity'))['validate']('/lane/oracle/bin/grep','/lane/oracle/identity.json')
+    patterns=[bytes(xs) for n in range(1,4) for xs in itertools.product(b'a[](){}*+?\\|^$',repeat=n)]
+    patterns += [b'\\'+bytes([b]) for b in range(256) if b!=10]
+    rows=[dict(kind='generated-diagnostics',source='exhaustive syntax alphabet length <=3 and every escaped byte',syntax=syntax,flags=[],patterns=[pattern],lines=[b'',b'a',b'[]{}()+*?^$|\\',b'\0\xff']) for syntax in ('basic','extended') for pattern in patterns]
+    actual=m['driver_rows'](str(ROOT/'target/re/driver'),rows,a.work)
+    failures=[]
+    for i,row in enumerate(rows):
+        want=m['oracle_row']('/lane/oracle/bin/grep',row)
+        if actual[i]!=want:failures.append(dict(row=row,engine=actual[i],oracle=want))
+        if i%500==0:print(f'diagnostics {i}/{len(rows)}; disagreements={len(failures)}',flush=True)
+    (a.work/'failures.json').write_text(json.dumps(failures,default=m['encode'],indent=2)+'\n')
+    print(f'{len(rows)-len(failures)} groups agree / {len(failures)} differ; {len(rows)*4} pairs; SKIP=0',flush=True)
+    return bool(failures)
+if __name__=='__main__':raise SystemExit(main())
