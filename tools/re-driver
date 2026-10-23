@@ -5,7 +5,7 @@ SCENT_ROOT=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
 export SCENT_ROOT
 cd "$SCENT_ROOT"
 if [ -z "${WOLF:-}" ]; then . tools/lib-toolchain.sh; fi
-[ "$("$WOLF" --version | head -1)" = 'wolf 0.2.34 (wolfgang, pin 9da7bdc)' ] || { echo 'STOP: wrong wolf' >&2; exit 2; }
+[ "$("$WOLF" --version | head -1)" = "$(toml_value wolf version_line)" ] || { echo 'STOP: wrong wolf' >&2; exit 2; }
 mkdir -p target/re
 case "${1:-}" in
   ''|--native) "$WOLF" build --deny-warnings src/re/driver.lu -o target/re/driver ;;
