@@ -1,0 +1,8 @@
+#!/bin/sh
+# GNU/scent byte differential, aspen 476edee3 tools/oracle shape.
+set -eu
+SCENT_ROOT=$(cd "$(dirname "$0")/.." && pwd)
+cd "$SCENT_ROOT"
+case " $* " in *" --field "*) exec python3 -I tools/oracle.py "$@";; esac
+if [ "${SCENT_IN_CONTAINER:-}" != 1 ]; then exec tools/in-container tools/oracle "$@"; fi
+exec python3 -I tools/oracle.py "$@"
