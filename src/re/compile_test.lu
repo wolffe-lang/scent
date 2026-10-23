@@ -133,3 +133,12 @@ fn test_empty_pattern_mebibyte() {
     assert(span.lo == -1, "next_span never returns empty spans")
     assert(ws.visits <= re.prog.len * (bytes.len + 1), "empty scan is linear")
 }
+
+fn test_leading_interval_span() {
+    let re = compiled_fixture("{{1}}", options_fixture())
+    var ws = workspace_new(re)
+    let bytes = "{{1}}".bytes()
+    assert(line_matches(re, mut ws, bytes, 0, bytes.len), "leading repeat selects line")
+    let span = next_span(re, mut ws, bytes, 0, bytes.len, 0) else Span { lo: -1, hi: -1 }
+    assert(span.lo == 1 && span.hi == 3, "GNU prints interval contents after leading operator")
+}

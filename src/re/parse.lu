@@ -390,11 +390,16 @@ fn parse_mode(
             (if p.nodes[cat].op == CAT_NODE then p.nodes[cat].b else cat)
         }
         let after_assertion = last >= 0 && p.nodes[last].op >= BOL && p.nodes[last].op <= WORD_END
-        if spans && after_assertion && options.extended && quant > 0 {
-            // GNU's span parser drops the operator byte after an assertion,
-            // not an entire interval; its digits and closing brace are literals.
-            p.at += 1
-            continue
+        if spans && (after_assertion || last < 0) && options.extended && quant > 0 {
+            // A leading repetition token, or one following an assertion,
+            // is discarded by the span path; interval contents stay literal.
+            var discard = true
+            if quant == 123 {
+                let (valid, _, _) = interval(mut p, pat, options, mut d, pattern)
+                discard = valid
+                p.at = at
+            }
+            if discard { p.at = at + 1; continue }
         }
         if quant > 0 && (options.extended || repeatable) && !(spans && after_assertion) {
             var lower = if quant == 43 then 1 else 0
