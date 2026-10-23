@@ -4,6 +4,7 @@ set -eu
 SCENT_ROOT=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
 export SCENT_ROOT
 cd "$SCENT_ROOT"
+. tools/lib-toml.sh
 if [ -z "${WOLF:-}" ]; then . tools/lib-toolchain.sh; fi
 [ "$("$WOLF" --version | head -1)" = "$(toml_value wolf version_line)" ] || { echo 'STOP: wrong wolf' >&2; exit 2; }
 mkdir -p target/re

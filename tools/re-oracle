@@ -16,6 +16,7 @@ import time
 
 ROOT = Path(__file__).resolve().parent.parent
 WORD_DIVERGENCES = json.loads((ROOT / 'tests/re/word-divergences.json').read_text())
+EXTENSION_DIVERGENCES = json.loads((ROOT / 'tests/re/extension-divergences.json').read_text())
 
 
 def word_divergence(row, index, engine, oracle):
@@ -157,13 +158,14 @@ def oracle_row(grep, row):
     return result
 
 
-def exception_name(row):
-    # R-ct01-4, reviewed by the orchestrator: this exact syntactic family,
-    # in both dialects and with/without -i. Never broaden automatically.
-    pattern = br"(A**|.)(a)\1**"
-    if row['syntax'] == 'basic': pattern = bre(pattern)
-    if row['patterns'] == [pattern] and set(row['flags']) <= {'-i'}:
-        return 'gnu-double-star-empty-capture'
+def exception_name(row, engine, oracle):
+    # Ruling #116: the original 32 pairs per syntax, both answers exact.
+    # No new subject or output is admitted merely by sharing a pattern.
+    normalized=lambda value: json.loads(json.dumps(value,default=encode))
+    for approved in EXTENSION_DIVERGENCES:
+        if (normalized(row)==approved['row'] and normalized(engine)==approved['engine']
+            and normalized(oracle)==approved['oracle']):
+            return 'gnu-double-star-empty-capture'
     return None
 
 
@@ -235,7 +237,7 @@ def main():
     for index, row in enumerate(rows):
         want = oracle_row(args.grep, row)
         actual = got[index]
-        approved = exception_name(row)
+        approved = exception_name(row,actual,want)
         record = dict(index=index, row=row, engine=actual, oracle=want)
         if approved:
             tally[(row['syntax'],row['kind'],approved)] += len(row['lines'])
