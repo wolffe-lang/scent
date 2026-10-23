@@ -69,7 +69,7 @@ pub fn prefix(
     selected: bool,
     width: int,
 ) {
-    let sep = if selected then 58 as byte else 58 as byte
+    let sep = if selected then 58 as byte else 59 as byte
     if flags.filename == 1 {
         text(mut o, name)
         byte_put(mut o, if flags.null_name then 0 as byte else sep)
