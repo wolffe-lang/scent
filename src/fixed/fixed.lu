@@ -1,0 +1,166 @@
+//! member: true
+
+// Clean-room: POSIX.1-2024 grep -F and pinned GNU 3.12 black-box cases.
+// KMP failure links are the standard prefix-function algorithm; no engine
+// implementation consulted. Many patterns: O(pattern_count * line_bytes).
+
+/// A folded literal and its KMP prefix links.
+pub struct Pattern {
+    bytes: List[byte],
+    fail: List[int],
+}
+
+/// C-locale matching controls and input terminator.
+pub struct Flags {
+    ignore_case: bool,
+    word: bool,
+    whole: bool,
+    terminator: byte,
+}
+
+/// Immutable compiled pattern list.
+pub struct Matcher {
+    patterns: List[Pattern],
+    flags: Flags,
+}
+
+/// Reusable search state; no per-line allocation.
+pub struct Workspace {
+    searches: int,
+}
+
+/// A half-open byte span in the original input window.
+pub struct Span {
+    lo: int,
+    hi: int,
+}
+
+/// ASCII fold when requested; all other bytes unchanged.
+pub fn folded(b: byte, enabled: bool) -> byte {
+    if enabled && b >= 65 as byte && b <= 90 as byte {
+        return (b as int + 32) as byte
+    }
+    b
+}
+
+/// C-locale word constituent test.
+pub fn word_byte(b: byte) -> bool {
+    let c = b as int
+    c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 48 && c <= 57 || c == 95
+}
+
+/// Compile pattern bytes once; traps only on resource exhaustion.
+pub fn compile(patterns: List[List[byte]], flags: Flags) -> Matcher {
+    var compiled = List[Pattern]()
+    for raw in patterns {
+        var bytes = List[byte]()
+        for b in raw {
+            (mut bytes).push(folded(b, flags.ignore_case))
+        }
+        var fail = List[int]()
+        var i: int = 0
+        while i < bytes.len {
+            var j: int = 0
+            if i > 0 {
+                j = fail[i - 1]
+                while j > 0 && bytes[i] != bytes[j] {
+                    j = fail[j - 1]
+                }
+                if bytes[i] == bytes[j] {
+                    j += 1
+                }
+            }
+            (mut fail).push(j)
+            i += 1
+        }
+        (mut compiled).push(Pattern { bytes: bytes, fail: fail })
+    }
+    Matcher { patterns: compiled, flags: flags }
+}
+
+/// Create reusable scratch for a compiled matcher.
+pub fn workspace_new(re: Matcher) -> Workspace {
+    Workspace { searches: re.patterns.len }
+}
+
+fn candidate(re: Matcher, buf: List[byte], lo: int, hi: int, a: int, b: int) -> bool {
+    if re.flags.whole {
+        return a == lo && b == hi
+    }
+    if !re.flags.word {
+        return true
+    }
+    (a == lo || !word_byte(buf[a - 1])) && (b == hi || !word_byte(buf[b]))
+}
+
+/// Leftmost-longest admissible span at or after from; none on no match.
+pub fn next_span(
+    re: Matcher,
+    mut ws: Workspace,
+    buf: List[byte],
+    lo: int,
+    hi: int,
+    from: int,
+) -> Span ! {none} {
+    ws.searches = re.patterns.len
+    var start = from
+    if start < lo {
+        start = lo
+    }
+    if start > hi {
+        return none
+    }
+    var best_lo = hi + 1
+    var best_hi: int = 0
+    for pat in re.patterns {
+        if pat.bytes.len == 0 {
+            var at = start
+            while at <= hi {
+                if candidate(re, buf, lo, hi, at, at) {
+                    if at < best_lo {
+                        best_lo = at
+                        best_hi = at
+                    }
+                    break
+                }
+                at += 1
+            }
+        } else {
+            var at = start
+            var j: int = 0
+            while at < hi && at - j <= best_lo {
+                let b = folded(buf[at], re.flags.ignore_case)
+                while j > 0 && b != pat.bytes[j] {
+                    j = pat.fail[j - 1]
+                }
+                if b == pat.bytes[j] {
+                    j += 1
+                }
+                at += 1
+                if j == pat.bytes.len {
+                    let a = at - j
+                    if candidate(re, buf, lo, hi, a, at) {
+                        if a < best_lo || a == best_lo && at > best_hi {
+                            best_lo = a
+                            best_hi = at
+                        }
+                        break
+                    }
+                    // A rejected word candidate must not discard overlapping
+                    // or shorter patterns at this same position.
+                    j = pat.fail[j - 1]
+                }
+            }
+        }
+    }
+    if best_lo > hi {
+        return none
+    }
+    Span { lo: best_lo, hi: best_hi }
+}
+
+/// Whether the half-open line window has an admissible match.
+pub fn line_matches(re: Matcher, mut ws: Workspace, buf: List[byte], lo: int, hi: int) -> bool {
+    let span = next_span(re, mut ws, buf, lo, hi, lo) else |_| { return false }
+    span.lo <= hi
+}

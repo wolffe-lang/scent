@@ -1,0 +1,34 @@
+//! member: false
+
+use fixed
+
+fn check(patterns: str, data: str, icase: bool, word: bool, whole: bool, lo: int, hi: int) {
+    var ps = List[List[byte]]()
+    for p in patterns.split("\n") {
+        (mut ps).push(p.bytes())
+    }
+    let re = fixed.compile(ps, fixed.
+        Flags { ignore_case: icase, word: word, whole: whole, terminator: 10 as byte })
+    var ws = fixed.workspace_new(re)
+    let b = data.bytes()
+    let span = fixed.next_span(re, mut ws, b, 0, b.len, 0) else |_| {
+        assert(lo < 0)
+        return
+    }
+    assert(span.lo == lo)
+    assert(span.hi == hi)
+    assert(fixed.line_matches(re, mut ws, b, 0, b.len))
+}
+
+fn main() {
+    check("ab", "xabab", false, false, false, 1, 3)
+    check("a\nab", "xabab", false, false, false, 1, 3)
+    check("a-\na", "a-b", false, true, false, 0, 1)
+    check("ABA", "ababa", true, false, false, 0, 3)
+    check("aba", "xababa aba", false, true, false, 7, 10)
+    check("", "x", false, false, false, 0, 0)
+    check("x", "xx", false, false, true, -1, -1)
+    check("xx", "xx", false, true, true, 0, 2)
+    check("\x00", "a\x00b", false, false, false, 1, 2)
+    print("fixed: 9 cases, 0 SKIP")
+}
