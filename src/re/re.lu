@@ -104,6 +104,7 @@ pub struct Workspace {
     branches: List[BacktrackFrame],
     depth: int,
     peak: int,
+    feasible: List[int],
 }
 
 fn zeros(n: int) -> List[int] {
@@ -133,6 +134,7 @@ pub fn workspace_new(re: Regex) -> Workspace {
         branches: List[BacktrackFrame](),
         depth: 0,
         peak: 0,
+        feasible: zeros(re.starts.len),
     }
 }
 

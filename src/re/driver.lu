@@ -31,7 +31,7 @@ fn hex(bytes: List[byte]) -> str {
     str_from_utf8(out) else ""
 }
 
-fn driver_row(row: str, cost_only: bool) {
+fn driver_row(row: str, cost_only: bool, use_projection: bool) {
     let fields = row.words()
     assert(fields.len == 6, "driver row must have six fields")
     let id = fields[0]
@@ -64,11 +64,19 @@ fn driver_row(row: str, cost_only: bool) {
         {
             let bytes = unhex(s)
             let begin = os_clock_ns()
-            let selected = line_matches(re, mut ws, bytes, 0, bytes.len)
+            let selected = line_matches_mode(re, mut ws, bytes, 0, bytes.len, use_projection)
             var from = 0
             var spans = ""
             while selected && from <= bytes.len {
-                let span = next_span(re, mut ws, bytes, 0, bytes.len, from) else { break }
+                let span = next_span_mode(
+                    re,
+                    mut ws,
+                    bytes,
+                    0,
+                    bytes.len,
+                    from,
+                    use_projection,
+                ) else { break }
                 if spans.len > 0 { spans += "," }
                 spans += "{span.lo}:{span.hi}"
                 from = span.hi
@@ -86,15 +94,26 @@ fn driver_row(row: str, cost_only: bool) {
 
 fn main() -> int {
     let args = env_args()
-    let cost_only = args.len == 2 && args[0] == "--cost"
-    if args.len != 1 && !cost_only { eprint("usage: re-driver [--cost] CASES"); return 2 }
-    let data = fs.read_text(args[if cost_only then 1 else 0]) else {
-        eprint("re-driver: cannot read cases")
-        return 2
+    var cost_only = false
+    var use_projection = true
+    var path = ""
+    for arg in args {
+        if arg == "--cost" {
+            cost_only = true
+        } else if arg == "--no-projection" {
+            use_projection = false
+        } else if path.len == 0 {
+            path = arg
+        } else {
+            eprint("usage: re-driver [--cost] [--no-projection] CASES")
+            return 2
+        }
     }
+    if path.len == 0 { eprint("re-driver: missing cases"); return 2 }
+    let data = fs.read_text(path) else { eprint("re-driver: cannot read cases"); return 2 }
     for row in data.lines() {
         if row.len == 0 || row.starts_with("#") { continue }
-        region group_scratch { driver_row(row, cost_only) }
+        region group_scratch { driver_row(row, cost_only, use_projection) }
     }
     0
 }

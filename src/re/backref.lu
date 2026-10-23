@@ -213,7 +213,7 @@ fn backref_at(
             if (!nonempty || pos > origin) &&
                 (!re.options.whole || pos == hi) &&
                 (!re.options.word || re.options.whole || pos == hi || !is_word(bytes[pos] as int)) {
-                if any_match { return pos }
+                if any_match || pos == hi { return pos }
                 if pos > best { best = pos }
             }
         } else if inst.op == SPLIT || inst.op == JUMP {
@@ -242,6 +242,7 @@ fn find_span(
     from: int,
     nonempty: bool,
     any_match: bool,
+    use_projection: bool,
 ) -> Span ! {none} {
     assert(lo >= 0 && hi >= lo && hi <= bytes.len, "regex window out of bounds")
     var result = linear_span(re, mut ws, bytes, lo, hi, from, nonempty, any_match) else Span {
@@ -252,6 +253,13 @@ fn find_span(
     var index = 0
     while index < re.starts.len {
         if re.backrefs[index] {
+            // Cached for the unchanged line: subsequent -o calls never rerun
+            // a full-line projection for a missing backreference alternative.
+            if use_projection && ws.feasible[index] == 0 {
+                let possible = projection_matches(re, mut ws, index, bytes, lo, hi)
+                ws.feasible[index] = if possible then 1 else -1
+            }
+            if use_projection && ws.feasible[index] < 0 { index += 1; continue }
             var start = if from < lo then lo else from
             while start <= hi && (result.lo < 0 || start <= result.lo) {
                 if re.options.whole && start != lo { break }
@@ -289,27 +297,31 @@ fn find_span(
     result
 }
 
-/// Whether any pattern selects this line window, including an empty match.
-/// Traps only for an invalid buffer window; reuse a workspace for this Regex.
-pub fn line_matches(re: Regex, mut ws: Workspace, bytes: List[byte], lo: int, hi: int) -> bool {
-    let result = find_span(re, mut ws, bytes, lo, hi, lo, false, true) else { return false }
+fn line_matches_mode(
+    re: Regex,
+    mut ws: Workspace,
+    bytes: List[byte],
+    lo: int,
+    hi: int,
+    use_projection: bool,
+) -> bool {
+    var i = 0
+    while i < ws.feasible.len { ws.feasible[i] = 0; i += 1 }
+    let result = find_span(re, mut ws, bytes, lo, hi, lo, false, true, use_projection) else {
+        return false
+    }
     result.lo >= lo
 }
 
-/// Precondition: line_matches has already selected this unchanged line.
-/// Next nonempty leftmost-longest span at or after from, or none. Pass the
-/// previous span's hi to continue; empty matches are never exposed to -o.
-/// The lo/hi window remains fixed so anchors and word context never shift.
-pub fn next_span(
+fn next_span_mode(
     re: Regex,
     mut ws: Workspace,
     bytes: List[byte],
     lo: int,
     hi: int,
     from: int,
+    use_projection: bool,
 ) -> Span ! {none} {
-    // An empty-only program can select a line but can never emit a span.
-    // Avoid walking even one byte of a multi-megabyte line in that case.
     var consuming = false
     for inst in re.prog {
         if inst.op == CHAR || inst.op == CLASS || inst.op == ANY || inst.op == REF {
@@ -318,5 +330,26 @@ pub fn next_span(
         }
     }
     if !consuming { return none }
-    find_span(re, mut ws, bytes, lo, hi, from, true, false)
+    find_span(re, mut ws, bytes, lo, hi, from, true, false, use_projection)
+}
+
+/// Whether any pattern selects this line window, including an empty match.
+/// Traps only for an invalid buffer window; reuse a workspace for this Regex.
+pub fn line_matches(re: Regex, mut ws: Workspace, bytes: List[byte], lo: int, hi: int) -> bool {
+    line_matches_mode(re, mut ws, bytes, lo, hi, true)
+}
+
+/// Precondition: line_matches selected this unchanged line with this workspace.
+/// Return only nonempty, leftmost-longest spans; resume with the preceding hi.
+/// Keep the original lo/hi window so anchors, word context and cached projection
+/// decisions never shift. Empty-only programs return none without scanning.
+pub fn next_span(
+    re: Regex,
+    mut ws: Workspace,
+    bytes: List[byte],
+    lo: int,
+    hi: int,
+    from: int,
+) -> Span ! {none} {
+    next_span_mode(re, mut ws, bytes, lo, hi, from, true)
 }

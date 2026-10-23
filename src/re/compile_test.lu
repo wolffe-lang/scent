@@ -103,7 +103,12 @@ fn check_reference(pattern: str, text: str, options: Options, lo: int, hi: int) 
     let re = compiled_fixture(pattern, options)
     var ws = workspace_new(re)
     let bytes = text.bytes()
-    let span = next_span(re, mut ws, bytes, 0, bytes.len, 0) else Span { lo: -1, hi: -1 }
+    let selected = line_matches(re, mut ws, bytes, 0, bytes.len)
+    let span = if selected {
+        next_span(re, mut ws, bytes, 0, bytes.len, 0) else Span { lo: -1, hi: -1 }
+    } else {
+        Span { lo: -1, hi: -1 }
+    }
     assert(span.lo == lo && span.hi == hi, "backreference {pattern}: {span.lo}..{span.hi}")
 }
 
@@ -171,4 +176,55 @@ fn test_interval_needs_content_after_operand() {
     var d = diagnostics_new()
     let p = parse_fixture("a{{}}", options_fixture(), mut d, 0)
     assert(p.failed, "empty interval after an operand is invalid")
+}
+
+fn test_capture_in_nonfinal_alternative() {
+    let options = options_fixture()
+    check_reference(r"((a)|b)\2", "aa", options, 0, 2)
+    check_reference(r"((a)|b)\2", "b", options, -1, -1)
+    check_reference(r"(a|(b))\2", "bb", options, 0, 2)
+}
+
+fn projection_fixture(pattern: str, text: str, flags: Options, want: bool) {
+    let re = compiled_fixture(pattern, flags)
+    var ws = workspace_new(re)
+    let bytes = text.bytes()
+    assert(projection_matches(re, mut ws, 0, bytes, 0, bytes.len), "projection must pass {pattern}")
+    let filtered = line_matches_mode(re, mut ws, bytes, 0, bytes.len, true)
+    let plain = line_matches_mode(re, mut ws, bytes, 0, bytes.len, false)
+    assert(filtered == plain && plain == want, "backtracker decides {pattern} on {text}")
+}
+
+fn test_backreference_projection_is_a_superset() {
+    let options = options_fixture()
+    projection_fixture(r"(a)\1", "ab", options, false)
+    projection_fixture(r"(a*)\1", "aaaa", options, true)
+    projection_fixture(r"(a|aa)*\1b", "aaaab", options, true)
+    projection_fixture(r"^(a+)\1+$", "aaaa", options, true)
+    projection_fixture(r"((a)|b)\2", "b", options, false)
+    projection_fixture(r"(a)?\1", "a", options, false)
+    projection_fixture(r"(a(b)?)*\2", "abb", options, true)
+    projection_fixture(r"(a|(b))*\2", "bb", options, true)
+    projection_fixture(r"(a*)*\1", "aa", options, true)
+    projection_fixture(r"(a?)\1", "", options, true)
+    projection_fixture(r"(a|())\2", "", options, true)
+    projection_fixture(r"^(ab*)*\1$", "ababbabb", options, true)
+    projection_fixture(r"(a|ab)\1", "abab", options, true)
+    var folded = options_fixture()
+    folded.icase = true
+    projection_fixture(r"(a)\1", "aA", folded, true)
+    let re = compiled_fixture(r"(a|aa)*\1b", options)
+    var ws = workspace_new(re)
+    let bytes = "a".repeat(10000).bytes()
+    assert(!line_matches(re, mut ws, bytes, 0, bytes.len), "projection rejects impossible suffix")
+    assert(ws.peak == 0, "an impossible regular projection never enters DFS")
+    assert(ws.visits <= re.prog.len * (bytes.len + 1), "projection has linear state visits")
+}
+
+fn test_adjacent_repeat_compatibility_policy() {
+    let options = options_fixture()
+    check_reference(r"(A**|.)(a)\1**", "a", options, 0, 1)
+    var folded = options_fixture()
+    folded.icase = true
+    check_reference(r"(A**|.)(a)\1**", "A", folded, 0, 1)
 }
