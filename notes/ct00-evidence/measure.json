@@ -1,0 +1,158 @@
+{
+  "output": "pipe drained in 64 KiB blocks; never /dev/null",
+  "host": "584666e5ec9a",
+  "affinity": [
+    12,
+    13,
+    14,
+    15
+  ],
+  "memory": [
+    {
+      "argv": [
+        "-F",
+        "-c",
+        "needle"
+      ],
+      "bytes": 2147483648,
+      "scent": {
+        "peak_rss_kib": 2112.0,
+        "seconds": 5.66,
+        "output_bytes": 9
+      },
+      "gnu": {
+        "peak_rss_kib": 2060.0,
+        "seconds": 0.78,
+        "output_bytes": 9
+      }
+    },
+    {
+      "argv": [
+        "-F",
+        "-n",
+        "needle"
+      ],
+      "bytes": 2147483648,
+      "scent": {
+        "peak_rss_kib": 2240.0,
+        "seconds": 7.96,
+        "output_bytes": 1219181213
+      },
+      "gnu": {
+        "peak_rss_kib": 2016.0,
+        "seconds": 1.77,
+        "output_bytes": 1219181213
+      }
+    }
+  ],
+  "performance": [
+    {
+      "argv": [
+        "-F",
+        "needle"
+      ],
+      "bytes": 268435456,
+      "scent": {
+        "runs_seconds": [
+          0.94160333101172,
+          0.9284153030021116,
+          0.9387817729730159
+        ],
+        "median_seconds": 0.9387817729730159,
+        "output_bytes": 134217728
+      },
+      "gnu": {
+        "runs_seconds": [
+          0.13959459704346955,
+          0.13847975293174386,
+          0.13862173503730446
+        ],
+        "median_seconds": 0.13862173503730446,
+        "output_bytes": 134217728
+      },
+      "ratio": 6.77225525073958
+    },
+    {
+      "argv": [
+        "-F",
+        "-i",
+        "NEEDLE"
+      ],
+      "bytes": 268435456,
+      "scent": {
+        "runs_seconds": [
+          0.9276724089868367,
+          0.9413761530304328,
+          0.9429953909711912
+        ],
+        "median_seconds": 0.9413761530304328,
+        "output_bytes": 134217728
+      },
+      "gnu": {
+        "runs_seconds": [
+          0.1386041889199987,
+          0.14079716394189745,
+          0.14181318995542824
+        ],
+        "median_seconds": 0.14079716394189745,
+        "output_bytes": 134217728
+      },
+      "ratio": 6.686044851151327
+    },
+    {
+      "argv": [
+        "-F",
+        "-c",
+        "needle"
+      ],
+      "bytes": 268435456,
+      "scent": {
+        "runs_seconds": [
+          0.7173887379467487,
+          0.7076544159790501,
+          0.7169294350314885
+        ],
+        "median_seconds": 0.7169294350314885,
+        "output_bytes": 8
+      },
+      "gnu": {
+        "runs_seconds": [
+          0.10053733398672193,
+          0.09951849095523357,
+          0.09988068405073136
+        ],
+        "median_seconds": 0.09988068405073136,
+        "output_bytes": 8
+      },
+      "ratio": 7.177858680536729
+    },
+    {
+      "argv": [
+        "-F",
+        "-v",
+        "-c",
+        "needle"
+      ],
+      "bytes": 268435456,
+      "scent": {
+        "runs_seconds": [
+          0.7048940539825708,
+          0.7233419810654595,
+          0.719721848028712
+        ],
+        "median_seconds": 0.719721848028712,
+        "output_bytes": 8
+      },
+      "gnu": {
+        "runs_seconds": [
+          0.10030473000369966,
+          0.10463093698490411,
+          0.10030688403639942
+        ],
+        "median_seconds": 0.10030688403639942,
+        "output_bytes": 8
+      },
+      "ratio": 7.175198940159868
+    }
+  ]
+}

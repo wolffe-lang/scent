@@ -1,0 +1,1473 @@
+oracle-select-test: PASS chunk-00 1 agree / 0 differ / 0 not-yet
+oracle-select-test: PASS cross-*-chunk-00 0 agree / 0 differ / 3 not-yet
+FINAL ORACLE target/native/scent
+oracle: RECORD /work/scent/.oracle/grep
+not-yet GNU cross-F-middle-00 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-middle-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-middle-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-02 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-middle-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-03 status 0 stdout b'2:x\x00y\x0010:x\x00y\x00' stderr b''
+not-yet cross-F-middle-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-04 status 0 stdout b'2:x\x00y\x005:x\x00y\x00' stderr b''
+not-yet cross-F-middle-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-05 status 0 stdout b'a\x00z\x00b\x00z\x00tail\x00' stderr b''
+not-yet cross-F-middle-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-06 status 0 stdout b'x\x00y\x00' stderr b''
+not-yet cross-F-middle-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-07 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-middle-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-08 status 1 stdout b'' stderr b''
+not-yet cross-F-middle-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-09 status 0 stdout b'1-a\x002:x\x00y\x003-z\x004-b\x005:x\x00y\x006-z\x00' stderr b''
+not-yet cross-F-middle-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-10 status 0 stdout b'2:2:x\x00y\x005:10:x\x00y\x00' stderr b''
+not-yet cross-F-middle-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-middle-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-00 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-end-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-end-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-02 status 0 stdout b'x\x00\x00x\x00\x00' stderr b''
+not-yet cross-F-end-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-03 status 0 stdout b'2:x\x00y\x0010:x\x00y\x00' stderr b''
+not-yet cross-F-end-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-04 status 0 stdout b'2:x\x00y\x005:x\x00y\x00' stderr b''
+not-yet cross-F-end-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-05 status 0 stdout b'a\x00z\x00b\x00z\x00tail\x00' stderr b''
+not-yet cross-F-end-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-06 status 0 stdout b'x\x00y\x00' stderr b''
+not-yet cross-F-end-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-07 status 1 stdout b'' stderr b''
+not-yet cross-F-end-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-08 status 1 stdout b'' stderr b''
+not-yet cross-F-end-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-09 status 0 stdout b'1-a\x002:x\x00y\x003-z\x004-b\x005:x\x00y\x006-z\x00' stderr b''
+not-yet cross-F-end-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-10 status 0 stdout b'2:2:x\x00\x005:10:x\x00\x00' stderr b''
+not-yet cross-F-end-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-end-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-00 status 0 stdout b'a\x00x\x00b\x00x\x00' stderr b''
+not-yet cross-F-start-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-start-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-02 status 0 stdout b'\x00x\x00\x00x\x00' stderr b''
+not-yet cross-F-start-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-03 status 0 stdout b'0:a\x00x\x008:b\x00x\x00' stderr b''
+not-yet cross-F-start-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-04 status 0 stdout b'1:a\x00x\x004:b\x00x\x00' stderr b''
+not-yet cross-F-start-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-05 status 0 stdout b'y\x00z\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-F-start-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-06 status 0 stdout b'a\x00x\x00' stderr b''
+not-yet cross-F-start-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-07 status 1 stdout b'' stderr b''
+not-yet cross-F-start-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-08 status 1 stdout b'' stderr b''
+not-yet cross-F-start-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-09 status 0 stdout b'1:a\x00x\x002-y\x003-z\x004:b\x00x\x005-y\x00' stderr b''
+not-yet cross-F-start-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-10 status 0 stdout b'1:1:\x00x\x004:9:\x00x\x00' stderr b''
+not-yet cross-F-start-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-start-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-00 status 0 stdout b'x\x00y\x00z\x00x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-three-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-02 status 0 stdout b'x\x00y\x00z\x00x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-03 status 0 stdout b'2:x\x00y\x00z\x0010:x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-04 status 0 stdout b'2:x\x00y\x00z\x004:x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-05 status 0 stdout b'a\x00b\x00tail\x00' stderr b''
+not-yet cross-F-three-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-06 status 0 stdout b'x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-07 status 0 stdout b'x\x00y\x00z\x00x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-08 status 1 stdout b'' stderr b''
+not-yet cross-F-three-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-09 status 0 stdout b'1-a\x002:x\x00y\x00z\x003-b\x004:x\x00y\x00z\x005-tail\x00' stderr b''
+not-yet cross-F-three-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-10 status 0 stdout b'2:2:x\x00y\x00z\x004:10:x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-11 status 0 stdout b'3\n' stderr b''
+not-yet cross-F-three-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-00 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-F-alone-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-01 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-alone-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-02 status 0 stdout b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' stderr b''
+not-yet cross-F-alone-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-03 status 0 stdout b'0:a\x00x\x004:y\x00z\x008:b\x00x\x0012:y\x00z\x0016:tail\x00' stderr b''
+not-yet cross-F-alone-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-04 status 0 stdout b'1:a\x00x\x002:y\x00z\x003:b\x00x\x004:y\x00z\x005:tail\x00' stderr b''
+not-yet cross-F-alone-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-05 status 1 stdout b'' stderr b''
+not-yet cross-F-alone-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-06 status 0 stdout b'a\x00x\x00' stderr b''
+not-yet cross-F-alone-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-07 status 1 stdout b'' stderr b''
+not-yet cross-F-alone-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-08 status 1 stdout b'' stderr b''
+not-yet cross-F-alone-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-09 status 0 stdout b'1:a\x00x\x002:y\x00z\x003:b\x00x\x004:y\x00z\x005:tail\x00' stderr b''
+not-yet cross-F-alone-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-10 status 0 stdout b'1:1:\x00\x001:3:\x00\x002:5:\x00\x002:7:\x00\x003:9:\x00\x003:11:\x00\x004:13:\x00\x004:15:\x00\x005:20:\x00\x00' stderr b''
+not-yet cross-F-alone-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-11 status 1 stdout b'0\n' stderr b''
+not-yet cross-F-alone-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-00 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-F-chunk-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-02 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-03 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-04 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-05 status 0 stdout b'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' stderr b''
+not-yet cross-F-chunk-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-06 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-07 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-08 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-09 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-10 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-chunk-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-00 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-middle-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-02 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-03 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-04 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-middle-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-06 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-07 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-08 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-09 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-10 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-middle-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-00 status 1 stdout b'' stderr b''
+not-yet cross-G-end-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-end-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-02 status 1 stdout b'' stderr b''
+not-yet cross-G-end-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-03 status 1 stdout b'' stderr b''
+not-yet cross-G-end-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-04 status 1 stdout b'' stderr b''
+not-yet cross-G-end-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-end-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-06 status 1 stdout b'' stderr b''
+not-yet cross-G-end-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-07 status 1 stdout b'' stderr b''
+not-yet cross-G-end-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-08 status 1 stdout b'' stderr b''
+not-yet cross-G-end-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-09 status 1 stdout b'' stderr b''
+not-yet cross-G-end-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-10 status 1 stdout b'' stderr b''
+not-yet cross-G-end-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-end-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-00 status 1 stdout b'' stderr b''
+not-yet cross-G-start-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-start-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-02 status 1 stdout b'' stderr b''
+not-yet cross-G-start-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-03 status 1 stdout b'' stderr b''
+not-yet cross-G-start-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-04 status 1 stdout b'' stderr b''
+not-yet cross-G-start-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-start-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-06 status 1 stdout b'' stderr b''
+not-yet cross-G-start-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-07 status 1 stdout b'' stderr b''
+not-yet cross-G-start-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-08 status 1 stdout b'' stderr b''
+not-yet cross-G-start-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-09 status 1 stdout b'' stderr b''
+not-yet cross-G-start-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-10 status 1 stdout b'' stderr b''
+not-yet cross-G-start-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-start-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-00 status 1 stdout b'' stderr b''
+not-yet cross-G-three-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-three-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-02 status 1 stdout b'' stderr b''
+not-yet cross-G-three-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-03 status 1 stdout b'' stderr b''
+not-yet cross-G-three-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-04 status 1 stdout b'' stderr b''
+not-yet cross-G-three-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-three-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-06 status 1 stdout b'' stderr b''
+not-yet cross-G-three-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-07 status 1 stdout b'' stderr b''
+not-yet cross-G-three-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-08 status 1 stdout b'' stderr b''
+not-yet cross-G-three-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-09 status 1 stdout b'' stderr b''
+not-yet cross-G-three-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-10 status 1 stdout b'' stderr b''
+not-yet cross-G-three-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-three-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-00 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-alone-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-02 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-03 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-04 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-alone-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-06 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-07 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-08 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-09 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-10 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-alone-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-00 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-chunk-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-02 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-03 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-04 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-05 status 0 stdout b'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' stderr b''
+not-yet cross-G-chunk-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-06 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-07 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-08 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-09 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-10 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-G-chunk-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-00 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-middle-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-02 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-03 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-04 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-middle-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-06 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-07 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-08 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-09 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-10 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-middle-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-00 status 1 stdout b'' stderr b''
+not-yet cross-E-end-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-end-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-02 status 1 stdout b'' stderr b''
+not-yet cross-E-end-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-03 status 1 stdout b'' stderr b''
+not-yet cross-E-end-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-04 status 1 stdout b'' stderr b''
+not-yet cross-E-end-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-end-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-06 status 1 stdout b'' stderr b''
+not-yet cross-E-end-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-07 status 1 stdout b'' stderr b''
+not-yet cross-E-end-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-08 status 1 stdout b'' stderr b''
+not-yet cross-E-end-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-09 status 1 stdout b'' stderr b''
+not-yet cross-E-end-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-10 status 1 stdout b'' stderr b''
+not-yet cross-E-end-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-end-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-00 status 1 stdout b'' stderr b''
+not-yet cross-E-start-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-start-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-02 status 1 stdout b'' stderr b''
+not-yet cross-E-start-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-03 status 1 stdout b'' stderr b''
+not-yet cross-E-start-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-04 status 1 stdout b'' stderr b''
+not-yet cross-E-start-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-start-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-06 status 1 stdout b'' stderr b''
+not-yet cross-E-start-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-07 status 1 stdout b'' stderr b''
+not-yet cross-E-start-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-08 status 1 stdout b'' stderr b''
+not-yet cross-E-start-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-09 status 1 stdout b'' stderr b''
+not-yet cross-E-start-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-10 status 1 stdout b'' stderr b''
+not-yet cross-E-start-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-start-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-00 status 1 stdout b'' stderr b''
+not-yet cross-E-three-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-three-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-02 status 1 stdout b'' stderr b''
+not-yet cross-E-three-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-03 status 1 stdout b'' stderr b''
+not-yet cross-E-three-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-04 status 1 stdout b'' stderr b''
+not-yet cross-E-three-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-three-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-06 status 1 stdout b'' stderr b''
+not-yet cross-E-three-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-07 status 1 stdout b'' stderr b''
+not-yet cross-E-three-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-08 status 1 stdout b'' stderr b''
+not-yet cross-E-three-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-09 status 1 stdout b'' stderr b''
+not-yet cross-E-three-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-10 status 1 stdout b'' stderr b''
+not-yet cross-E-three-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-three-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-00 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-alone-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-02 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-03 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-04 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-alone-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-06 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-07 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-08 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-09 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-10 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-alone-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-00 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-chunk-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-02 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-03 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-04 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-05 status 0 stdout b'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' stderr b''
+not-yet cross-E-chunk-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-06 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-07 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-08 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-09 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-10 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-E-chunk-11 R-ct00-5: ct02 cross-record terminator matching
+progress 250 {'agree': 34, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 300 {'agree': 84, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 350 {'agree': 134, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 400 {'agree': 184, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 450 {'agree': 234, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 500 {'agree': 284, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 550 {'agree': 334, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 600 {'agree': 384, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 650 {'agree': 434, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 700 {'agree': 484, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+not-yet GNU patterns-07 status 1 stdout b'' stderr b''
+not-yet patterns-07 R-ct00-5: ct02 cross-record terminator matching
+progress 800 {'agree': 583, 'differ': 0, 'not-yet': 217, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 217}
+not-yet GNU not-yet-ct02-0 status 1 stdout b'' stderr b''
+not-yet not-yet-ct02-0 ct02 regex integration
+not-yet GNU not-yet-ct02-1 status 1 stdout b'' stderr b''
+not-yet not-yet-ct02-1 ct02 regex integration
+not-yet GNU not-yet-m2-0 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-0 M2 recursion/colour
+not-yet GNU not-yet-m2-1 status 0 stdout b'' stderr b'grep: bin/grep: binary file matches\n'
+not-yet not-yet-m2-1 M2 recursion/colour
+not-yet GNU not-yet-m2-2 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-2 M2 recursion/colour
+not-yet GNU not-yet-m2-3 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-3 M2 recursion/colour
+not-yet GNU not-yet-m2-4 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-4 M2 recursion/colour
+not-yet GNU not-yet-m2-5 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-5 M2 recursion/colour
+not-yet GNU not-yet-m2-6 status 2 stdout b'' stderr b'grep: p: No such file or directory\n'
+not-yet not-yet-m2-6 M2 recursion/colour
+not-yet GNU not-yet-m2-7 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-7 M2 recursion/colour
+not-yet GNU not-yet-m2-8 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-8 M2 recursion/colour
+not-yet not-yet-argv0-diagnostic-0 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-diagnostic-1 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-diagnostic-2 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-usage-0 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-usage-1 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-usage-2 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv-bytes-0 wolf-lang#406: non-UTF-8 pattern
+not-yet not-yet-argv-bytes-1 wolf-lang#406: non-UTF-8 filename
+progress 850 {'agree': 614, 'differ': 0, 'not-yet': 236, 'argv0-diagnostic': 3, 'argv0-usage': 3, 'argv-bytes': 2, 'field-unavailable': 0, 'terminator-pattern': 217}
+progress 900 {'agree': 664, 'differ': 0, 'not-yet': 236, 'argv0-diagnostic': 3, 'argv0-usage': 3, 'argv-bytes': 2, 'field-unavailable': 0, 'terminator-pattern': 217}
+not-yet GNU not-yet-directory-prefix-0 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-0 M2 directory action
+not-yet GNU not-yet-directory-prefix-1 status 1 stdout b'' stderr b''
+not-yet not-yet-directory-prefix-1 M2 directory action
+not-yet GNU not-yet-directory-prefix-2 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-2 M2 directory action
+not-yet GNU nul-pattern-z status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet nul-pattern-z R-ct00-5: ct02 cross-record terminator matching
+progress 950 {'agree': 710, 'differ': 0, 'not-yet': 240, 'argv0-diagnostic': 3, 'argv0-usage': 3, 'argv-bytes': 2, 'field-unavailable': 0, 'terminator-pattern': 218}
+718 agree / 0 differ / 240 not-yet
+not-yet columns: argv0-diagnostic=3 argv0-usage=3 argv-bytes=2 terminator-pattern=218
+FINAL ORACLE target/release/scent
+oracle: RECORD /work/scent/.oracle/grep
+not-yet GNU cross-F-middle-00 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-middle-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-middle-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-02 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-middle-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-03 status 0 stdout b'2:x\x00y\x0010:x\x00y\x00' stderr b''
+not-yet cross-F-middle-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-04 status 0 stdout b'2:x\x00y\x005:x\x00y\x00' stderr b''
+not-yet cross-F-middle-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-05 status 0 stdout b'a\x00z\x00b\x00z\x00tail\x00' stderr b''
+not-yet cross-F-middle-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-06 status 0 stdout b'x\x00y\x00' stderr b''
+not-yet cross-F-middle-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-07 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-middle-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-08 status 1 stdout b'' stderr b''
+not-yet cross-F-middle-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-09 status 0 stdout b'1-a\x002:x\x00y\x003-z\x004-b\x005:x\x00y\x006-z\x00' stderr b''
+not-yet cross-F-middle-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-10 status 0 stdout b'2:2:x\x00y\x005:10:x\x00y\x00' stderr b''
+not-yet cross-F-middle-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-middle-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-00 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-end-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-end-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-02 status 0 stdout b'x\x00\x00x\x00\x00' stderr b''
+not-yet cross-F-end-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-03 status 0 stdout b'2:x\x00y\x0010:x\x00y\x00' stderr b''
+not-yet cross-F-end-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-04 status 0 stdout b'2:x\x00y\x005:x\x00y\x00' stderr b''
+not-yet cross-F-end-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-05 status 0 stdout b'a\x00z\x00b\x00z\x00tail\x00' stderr b''
+not-yet cross-F-end-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-06 status 0 stdout b'x\x00y\x00' stderr b''
+not-yet cross-F-end-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-07 status 1 stdout b'' stderr b''
+not-yet cross-F-end-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-08 status 1 stdout b'' stderr b''
+not-yet cross-F-end-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-09 status 0 stdout b'1-a\x002:x\x00y\x003-z\x004-b\x005:x\x00y\x006-z\x00' stderr b''
+not-yet cross-F-end-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-10 status 0 stdout b'2:2:x\x00\x005:10:x\x00\x00' stderr b''
+not-yet cross-F-end-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-end-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-00 status 0 stdout b'a\x00x\x00b\x00x\x00' stderr b''
+not-yet cross-F-start-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-start-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-02 status 0 stdout b'\x00x\x00\x00x\x00' stderr b''
+not-yet cross-F-start-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-03 status 0 stdout b'0:a\x00x\x008:b\x00x\x00' stderr b''
+not-yet cross-F-start-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-04 status 0 stdout b'1:a\x00x\x004:b\x00x\x00' stderr b''
+not-yet cross-F-start-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-05 status 0 stdout b'y\x00z\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-F-start-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-06 status 0 stdout b'a\x00x\x00' stderr b''
+not-yet cross-F-start-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-07 status 1 stdout b'' stderr b''
+not-yet cross-F-start-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-08 status 1 stdout b'' stderr b''
+not-yet cross-F-start-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-09 status 0 stdout b'1:a\x00x\x002-y\x003-z\x004:b\x00x\x005-y\x00' stderr b''
+not-yet cross-F-start-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-10 status 0 stdout b'1:1:\x00x\x004:9:\x00x\x00' stderr b''
+not-yet cross-F-start-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-start-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-00 status 0 stdout b'x\x00y\x00z\x00x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-three-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-02 status 0 stdout b'x\x00y\x00z\x00x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-03 status 0 stdout b'2:x\x00y\x00z\x0010:x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-04 status 0 stdout b'2:x\x00y\x00z\x004:x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-05 status 0 stdout b'a\x00b\x00tail\x00' stderr b''
+not-yet cross-F-three-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-06 status 0 stdout b'x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-07 status 0 stdout b'x\x00y\x00z\x00x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-08 status 1 stdout b'' stderr b''
+not-yet cross-F-three-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-09 status 0 stdout b'1-a\x002:x\x00y\x00z\x003-b\x004:x\x00y\x00z\x005-tail\x00' stderr b''
+not-yet cross-F-three-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-10 status 0 stdout b'2:2:x\x00y\x00z\x004:10:x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-11 status 0 stdout b'3\n' stderr b''
+not-yet cross-F-three-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-00 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-F-alone-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-01 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-alone-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-02 status 0 stdout b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' stderr b''
+not-yet cross-F-alone-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-03 status 0 stdout b'0:a\x00x\x004:y\x00z\x008:b\x00x\x0012:y\x00z\x0016:tail\x00' stderr b''
+not-yet cross-F-alone-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-04 status 0 stdout b'1:a\x00x\x002:y\x00z\x003:b\x00x\x004:y\x00z\x005:tail\x00' stderr b''
+not-yet cross-F-alone-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-05 status 1 stdout b'' stderr b''
+not-yet cross-F-alone-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-06 status 0 stdout b'a\x00x\x00' stderr b''
+not-yet cross-F-alone-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-07 status 1 stdout b'' stderr b''
+not-yet cross-F-alone-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-08 status 1 stdout b'' stderr b''
+not-yet cross-F-alone-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-09 status 0 stdout b'1:a\x00x\x002:y\x00z\x003:b\x00x\x004:y\x00z\x005:tail\x00' stderr b''
+not-yet cross-F-alone-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-10 status 0 stdout b'1:1:\x00\x001:3:\x00\x002:5:\x00\x002:7:\x00\x003:9:\x00\x003:11:\x00\x004:13:\x00\x004:15:\x00\x005:20:\x00\x00' stderr b''
+not-yet cross-F-alone-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-11 status 1 stdout b'0\n' stderr b''
+not-yet cross-F-alone-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-00 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-F-chunk-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-02 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-03 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-04 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-05 status 0 stdout b'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' stderr b''
+not-yet cross-F-chunk-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-06 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-07 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-08 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-09 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-10 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-chunk-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-00 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-middle-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-02 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-03 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-04 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-middle-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-06 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-07 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-08 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-09 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-10 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-middle-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-00 status 1 stdout b'' stderr b''
+not-yet cross-G-end-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-end-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-02 status 1 stdout b'' stderr b''
+not-yet cross-G-end-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-03 status 1 stdout b'' stderr b''
+not-yet cross-G-end-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-04 status 1 stdout b'' stderr b''
+not-yet cross-G-end-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-end-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-06 status 1 stdout b'' stderr b''
+not-yet cross-G-end-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-07 status 1 stdout b'' stderr b''
+not-yet cross-G-end-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-08 status 1 stdout b'' stderr b''
+not-yet cross-G-end-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-09 status 1 stdout b'' stderr b''
+not-yet cross-G-end-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-10 status 1 stdout b'' stderr b''
+not-yet cross-G-end-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-end-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-00 status 1 stdout b'' stderr b''
+not-yet cross-G-start-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-start-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-02 status 1 stdout b'' stderr b''
+not-yet cross-G-start-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-03 status 1 stdout b'' stderr b''
+not-yet cross-G-start-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-04 status 1 stdout b'' stderr b''
+not-yet cross-G-start-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-start-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-06 status 1 stdout b'' stderr b''
+not-yet cross-G-start-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-07 status 1 stdout b'' stderr b''
+not-yet cross-G-start-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-08 status 1 stdout b'' stderr b''
+not-yet cross-G-start-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-09 status 1 stdout b'' stderr b''
+not-yet cross-G-start-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-10 status 1 stdout b'' stderr b''
+not-yet cross-G-start-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-start-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-00 status 1 stdout b'' stderr b''
+not-yet cross-G-three-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-three-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-02 status 1 stdout b'' stderr b''
+not-yet cross-G-three-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-03 status 1 stdout b'' stderr b''
+not-yet cross-G-three-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-04 status 1 stdout b'' stderr b''
+not-yet cross-G-three-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-three-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-06 status 1 stdout b'' stderr b''
+not-yet cross-G-three-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-07 status 1 stdout b'' stderr b''
+not-yet cross-G-three-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-08 status 1 stdout b'' stderr b''
+not-yet cross-G-three-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-09 status 1 stdout b'' stderr b''
+not-yet cross-G-three-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-10 status 1 stdout b'' stderr b''
+not-yet cross-G-three-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-three-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-00 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-alone-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-02 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-03 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-04 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-alone-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-06 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-07 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-08 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-09 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-10 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-alone-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-00 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-chunk-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-02 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-03 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-04 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-05 status 0 stdout b'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' stderr b''
+not-yet cross-G-chunk-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-06 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-07 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-08 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-09 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-10 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-G-chunk-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-00 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-middle-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-02 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-03 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-04 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-middle-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-06 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-07 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-08 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-09 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-10 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-middle-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-00 status 1 stdout b'' stderr b''
+not-yet cross-E-end-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-end-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-02 status 1 stdout b'' stderr b''
+not-yet cross-E-end-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-03 status 1 stdout b'' stderr b''
+not-yet cross-E-end-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-04 status 1 stdout b'' stderr b''
+not-yet cross-E-end-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-end-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-06 status 1 stdout b'' stderr b''
+not-yet cross-E-end-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-07 status 1 stdout b'' stderr b''
+not-yet cross-E-end-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-08 status 1 stdout b'' stderr b''
+not-yet cross-E-end-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-09 status 1 stdout b'' stderr b''
+not-yet cross-E-end-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-10 status 1 stdout b'' stderr b''
+not-yet cross-E-end-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-end-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-00 status 1 stdout b'' stderr b''
+not-yet cross-E-start-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-start-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-02 status 1 stdout b'' stderr b''
+not-yet cross-E-start-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-03 status 1 stdout b'' stderr b''
+not-yet cross-E-start-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-04 status 1 stdout b'' stderr b''
+not-yet cross-E-start-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-start-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-06 status 1 stdout b'' stderr b''
+not-yet cross-E-start-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-07 status 1 stdout b'' stderr b''
+not-yet cross-E-start-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-08 status 1 stdout b'' stderr b''
+not-yet cross-E-start-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-09 status 1 stdout b'' stderr b''
+not-yet cross-E-start-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-10 status 1 stdout b'' stderr b''
+not-yet cross-E-start-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-start-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-00 status 1 stdout b'' stderr b''
+not-yet cross-E-three-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-three-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-02 status 1 stdout b'' stderr b''
+not-yet cross-E-three-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-03 status 1 stdout b'' stderr b''
+not-yet cross-E-three-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-04 status 1 stdout b'' stderr b''
+not-yet cross-E-three-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-three-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-06 status 1 stdout b'' stderr b''
+not-yet cross-E-three-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-07 status 1 stdout b'' stderr b''
+not-yet cross-E-three-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-08 status 1 stdout b'' stderr b''
+not-yet cross-E-three-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-09 status 1 stdout b'' stderr b''
+not-yet cross-E-three-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-10 status 1 stdout b'' stderr b''
+not-yet cross-E-three-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-three-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-00 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-alone-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-02 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-03 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-04 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-alone-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-06 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-07 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-08 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-09 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-10 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-alone-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-00 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-chunk-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-02 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-03 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-04 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-05 status 0 stdout b'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' stderr b''
+not-yet cross-E-chunk-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-06 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-07 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-08 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-09 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-10 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-E-chunk-11 R-ct00-5: ct02 cross-record terminator matching
+progress 250 {'agree': 34, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 300 {'agree': 84, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 350 {'agree': 134, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 400 {'agree': 184, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 450 {'agree': 234, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 500 {'agree': 284, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 550 {'agree': 334, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 600 {'agree': 384, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 650 {'agree': 434, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 700 {'agree': 484, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+not-yet GNU patterns-07 status 1 stdout b'' stderr b''
+not-yet patterns-07 R-ct00-5: ct02 cross-record terminator matching
+progress 800 {'agree': 583, 'differ': 0, 'not-yet': 217, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 217}
+not-yet GNU not-yet-ct02-0 status 1 stdout b'' stderr b''
+not-yet not-yet-ct02-0 ct02 regex integration
+not-yet GNU not-yet-ct02-1 status 1 stdout b'' stderr b''
+not-yet not-yet-ct02-1 ct02 regex integration
+not-yet GNU not-yet-m2-0 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-0 M2 recursion/colour
+not-yet GNU not-yet-m2-1 status 0 stdout b'' stderr b'grep: bin/grep: binary file matches\n'
+not-yet not-yet-m2-1 M2 recursion/colour
+not-yet GNU not-yet-m2-2 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-2 M2 recursion/colour
+not-yet GNU not-yet-m2-3 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-3 M2 recursion/colour
+not-yet GNU not-yet-m2-4 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-4 M2 recursion/colour
+not-yet GNU not-yet-m2-5 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-5 M2 recursion/colour
+not-yet GNU not-yet-m2-6 status 2 stdout b'' stderr b'grep: p: No such file or directory\n'
+not-yet not-yet-m2-6 M2 recursion/colour
+not-yet GNU not-yet-m2-7 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-7 M2 recursion/colour
+not-yet GNU not-yet-m2-8 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-8 M2 recursion/colour
+not-yet not-yet-argv0-diagnostic-0 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-diagnostic-1 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-diagnostic-2 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-usage-0 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-usage-1 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-usage-2 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv-bytes-0 wolf-lang#406: non-UTF-8 pattern
+not-yet not-yet-argv-bytes-1 wolf-lang#406: non-UTF-8 filename
+progress 850 {'agree': 614, 'differ': 0, 'not-yet': 236, 'argv0-diagnostic': 3, 'argv0-usage': 3, 'argv-bytes': 2, 'field-unavailable': 0, 'terminator-pattern': 217}
+progress 900 {'agree': 664, 'differ': 0, 'not-yet': 236, 'argv0-diagnostic': 3, 'argv0-usage': 3, 'argv-bytes': 2, 'field-unavailable': 0, 'terminator-pattern': 217}
+not-yet GNU not-yet-directory-prefix-0 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-0 M2 directory action
+not-yet GNU not-yet-directory-prefix-1 status 1 stdout b'' stderr b''
+not-yet not-yet-directory-prefix-1 M2 directory action
+not-yet GNU not-yet-directory-prefix-2 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-2 M2 directory action
+not-yet GNU nul-pattern-z status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet nul-pattern-z R-ct00-5: ct02 cross-record terminator matching
+progress 950 {'agree': 710, 'differ': 0, 'not-yet': 240, 'argv0-diagnostic': 3, 'argv0-usage': 3, 'argv-bytes': 2, 'field-unavailable': 0, 'terminator-pattern': 218}
+718 agree / 0 differ / 240 not-yet
+not-yet columns: argv0-diagnostic=3 argv0-usage=3 argv-bytes=2 terminator-pattern=218
+FINAL ORACLE target/mkscent/scent
+oracle: RECORD /work/scent/.oracle/grep
+not-yet GNU cross-F-middle-00 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-middle-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-middle-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-02 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-middle-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-03 status 0 stdout b'2:x\x00y\x0010:x\x00y\x00' stderr b''
+not-yet cross-F-middle-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-04 status 0 stdout b'2:x\x00y\x005:x\x00y\x00' stderr b''
+not-yet cross-F-middle-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-05 status 0 stdout b'a\x00z\x00b\x00z\x00tail\x00' stderr b''
+not-yet cross-F-middle-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-06 status 0 stdout b'x\x00y\x00' stderr b''
+not-yet cross-F-middle-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-07 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-middle-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-08 status 1 stdout b'' stderr b''
+not-yet cross-F-middle-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-09 status 0 stdout b'1-a\x002:x\x00y\x003-z\x004-b\x005:x\x00y\x006-z\x00' stderr b''
+not-yet cross-F-middle-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-10 status 0 stdout b'2:2:x\x00y\x005:10:x\x00y\x00' stderr b''
+not-yet cross-F-middle-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-middle-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-00 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-end-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-end-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-02 status 0 stdout b'x\x00\x00x\x00\x00' stderr b''
+not-yet cross-F-end-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-03 status 0 stdout b'2:x\x00y\x0010:x\x00y\x00' stderr b''
+not-yet cross-F-end-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-04 status 0 stdout b'2:x\x00y\x005:x\x00y\x00' stderr b''
+not-yet cross-F-end-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-05 status 0 stdout b'a\x00z\x00b\x00z\x00tail\x00' stderr b''
+not-yet cross-F-end-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-06 status 0 stdout b'x\x00y\x00' stderr b''
+not-yet cross-F-end-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-07 status 1 stdout b'' stderr b''
+not-yet cross-F-end-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-08 status 1 stdout b'' stderr b''
+not-yet cross-F-end-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-09 status 0 stdout b'1-a\x002:x\x00y\x003-z\x004-b\x005:x\x00y\x006-z\x00' stderr b''
+not-yet cross-F-end-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-10 status 0 stdout b'2:2:x\x00\x005:10:x\x00\x00' stderr b''
+not-yet cross-F-end-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-end-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-00 status 0 stdout b'a\x00x\x00b\x00x\x00' stderr b''
+not-yet cross-F-start-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-start-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-02 status 0 stdout b'\x00x\x00\x00x\x00' stderr b''
+not-yet cross-F-start-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-03 status 0 stdout b'0:a\x00x\x008:b\x00x\x00' stderr b''
+not-yet cross-F-start-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-04 status 0 stdout b'1:a\x00x\x004:b\x00x\x00' stderr b''
+not-yet cross-F-start-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-05 status 0 stdout b'y\x00z\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-F-start-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-06 status 0 stdout b'a\x00x\x00' stderr b''
+not-yet cross-F-start-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-07 status 1 stdout b'' stderr b''
+not-yet cross-F-start-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-08 status 1 stdout b'' stderr b''
+not-yet cross-F-start-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-09 status 0 stdout b'1:a\x00x\x002-y\x003-z\x004:b\x00x\x005-y\x00' stderr b''
+not-yet cross-F-start-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-10 status 0 stdout b'1:1:\x00x\x004:9:\x00x\x00' stderr b''
+not-yet cross-F-start-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-start-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-00 status 0 stdout b'x\x00y\x00z\x00x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-three-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-02 status 0 stdout b'x\x00y\x00z\x00x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-03 status 0 stdout b'2:x\x00y\x00z\x0010:x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-04 status 0 stdout b'2:x\x00y\x00z\x004:x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-05 status 0 stdout b'a\x00b\x00tail\x00' stderr b''
+not-yet cross-F-three-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-06 status 0 stdout b'x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-07 status 0 stdout b'x\x00y\x00z\x00x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-08 status 1 stdout b'' stderr b''
+not-yet cross-F-three-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-09 status 0 stdout b'1-a\x002:x\x00y\x00z\x003-b\x004:x\x00y\x00z\x005-tail\x00' stderr b''
+not-yet cross-F-three-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-10 status 0 stdout b'2:2:x\x00y\x00z\x004:10:x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-11 status 0 stdout b'3\n' stderr b''
+not-yet cross-F-three-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-00 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-F-alone-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-01 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-alone-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-02 status 0 stdout b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' stderr b''
+not-yet cross-F-alone-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-03 status 0 stdout b'0:a\x00x\x004:y\x00z\x008:b\x00x\x0012:y\x00z\x0016:tail\x00' stderr b''
+not-yet cross-F-alone-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-04 status 0 stdout b'1:a\x00x\x002:y\x00z\x003:b\x00x\x004:y\x00z\x005:tail\x00' stderr b''
+not-yet cross-F-alone-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-05 status 1 stdout b'' stderr b''
+not-yet cross-F-alone-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-06 status 0 stdout b'a\x00x\x00' stderr b''
+not-yet cross-F-alone-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-07 status 1 stdout b'' stderr b''
+not-yet cross-F-alone-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-08 status 1 stdout b'' stderr b''
+not-yet cross-F-alone-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-09 status 0 stdout b'1:a\x00x\x002:y\x00z\x003:b\x00x\x004:y\x00z\x005:tail\x00' stderr b''
+not-yet cross-F-alone-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-10 status 0 stdout b'1:1:\x00\x001:3:\x00\x002:5:\x00\x002:7:\x00\x003:9:\x00\x003:11:\x00\x004:13:\x00\x004:15:\x00\x005:20:\x00\x00' stderr b''
+not-yet cross-F-alone-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-11 status 1 stdout b'0\n' stderr b''
+not-yet cross-F-alone-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-00 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-F-chunk-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-02 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-03 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-04 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-05 status 0 stdout b'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' stderr b''
+not-yet cross-F-chunk-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-06 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-07 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-08 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-09 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-10 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-chunk-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-00 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-middle-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-02 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-03 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-04 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-middle-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-06 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-07 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-08 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-09 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-10 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-middle-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-00 status 1 stdout b'' stderr b''
+not-yet cross-G-end-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-end-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-02 status 1 stdout b'' stderr b''
+not-yet cross-G-end-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-03 status 1 stdout b'' stderr b''
+not-yet cross-G-end-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-04 status 1 stdout b'' stderr b''
+not-yet cross-G-end-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-end-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-06 status 1 stdout b'' stderr b''
+not-yet cross-G-end-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-07 status 1 stdout b'' stderr b''
+not-yet cross-G-end-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-08 status 1 stdout b'' stderr b''
+not-yet cross-G-end-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-09 status 1 stdout b'' stderr b''
+not-yet cross-G-end-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-10 status 1 stdout b'' stderr b''
+not-yet cross-G-end-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-end-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-00 status 1 stdout b'' stderr b''
+not-yet cross-G-start-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-start-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-02 status 1 stdout b'' stderr b''
+not-yet cross-G-start-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-03 status 1 stdout b'' stderr b''
+not-yet cross-G-start-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-04 status 1 stdout b'' stderr b''
+not-yet cross-G-start-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-start-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-06 status 1 stdout b'' stderr b''
+not-yet cross-G-start-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-07 status 1 stdout b'' stderr b''
+not-yet cross-G-start-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-08 status 1 stdout b'' stderr b''
+not-yet cross-G-start-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-09 status 1 stdout b'' stderr b''
+not-yet cross-G-start-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-10 status 1 stdout b'' stderr b''
+not-yet cross-G-start-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-start-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-00 status 1 stdout b'' stderr b''
+not-yet cross-G-three-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-three-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-02 status 1 stdout b'' stderr b''
+not-yet cross-G-three-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-03 status 1 stdout b'' stderr b''
+not-yet cross-G-three-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-04 status 1 stdout b'' stderr b''
+not-yet cross-G-three-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-three-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-06 status 1 stdout b'' stderr b''
+not-yet cross-G-three-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-07 status 1 stdout b'' stderr b''
+not-yet cross-G-three-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-08 status 1 stdout b'' stderr b''
+not-yet cross-G-three-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-09 status 1 stdout b'' stderr b''
+not-yet cross-G-three-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-10 status 1 stdout b'' stderr b''
+not-yet cross-G-three-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-three-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-00 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-alone-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-02 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-03 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-04 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-alone-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-06 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-07 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-08 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-09 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-10 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-alone-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-00 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-chunk-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-02 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-03 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-04 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-05 status 0 stdout b'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' stderr b''
+not-yet cross-G-chunk-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-06 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-07 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-08 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-09 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-10 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-G-chunk-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-00 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-middle-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-02 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-03 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-04 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-middle-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-06 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-07 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-08 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-09 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-10 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-middle-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-00 status 1 stdout b'' stderr b''
+not-yet cross-E-end-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-end-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-02 status 1 stdout b'' stderr b''
+not-yet cross-E-end-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-03 status 1 stdout b'' stderr b''
+not-yet cross-E-end-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-04 status 1 stdout b'' stderr b''
+not-yet cross-E-end-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-end-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-06 status 1 stdout b'' stderr b''
+not-yet cross-E-end-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-07 status 1 stdout b'' stderr b''
+not-yet cross-E-end-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-08 status 1 stdout b'' stderr b''
+not-yet cross-E-end-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-09 status 1 stdout b'' stderr b''
+not-yet cross-E-end-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-10 status 1 stdout b'' stderr b''
+not-yet cross-E-end-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-end-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-00 status 1 stdout b'' stderr b''
+not-yet cross-E-start-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-start-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-02 status 1 stdout b'' stderr b''
+not-yet cross-E-start-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-03 status 1 stdout b'' stderr b''
+not-yet cross-E-start-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-04 status 1 stdout b'' stderr b''
+not-yet cross-E-start-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-start-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-06 status 1 stdout b'' stderr b''
+not-yet cross-E-start-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-07 status 1 stdout b'' stderr b''
+not-yet cross-E-start-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-08 status 1 stdout b'' stderr b''
+not-yet cross-E-start-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-09 status 1 stdout b'' stderr b''
+not-yet cross-E-start-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-10 status 1 stdout b'' stderr b''
+not-yet cross-E-start-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-start-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-00 status 1 stdout b'' stderr b''
+not-yet cross-E-three-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-three-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-02 status 1 stdout b'' stderr b''
+not-yet cross-E-three-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-03 status 1 stdout b'' stderr b''
+not-yet cross-E-three-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-04 status 1 stdout b'' stderr b''
+not-yet cross-E-three-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-three-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-06 status 1 stdout b'' stderr b''
+not-yet cross-E-three-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-07 status 1 stdout b'' stderr b''
+not-yet cross-E-three-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-08 status 1 stdout b'' stderr b''
+not-yet cross-E-three-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-09 status 1 stdout b'' stderr b''
+not-yet cross-E-three-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-10 status 1 stdout b'' stderr b''
+not-yet cross-E-three-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-three-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-00 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-alone-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-02 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-03 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-04 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-alone-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-06 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-07 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-08 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-09 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-10 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-alone-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-00 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-chunk-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-02 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-03 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-04 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-05 status 0 stdout b'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' stderr b''
+not-yet cross-E-chunk-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-06 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-07 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-08 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-09 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-10 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-E-chunk-11 R-ct00-5: ct02 cross-record terminator matching
+progress 250 {'agree': 34, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 300 {'agree': 84, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 350 {'agree': 134, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 400 {'agree': 184, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 450 {'agree': 234, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 500 {'agree': 284, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 550 {'agree': 334, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 600 {'agree': 384, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 650 {'agree': 434, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 700 {'agree': 484, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+not-yet GNU patterns-07 status 1 stdout b'' stderr b''
+not-yet patterns-07 R-ct00-5: ct02 cross-record terminator matching
+progress 800 {'agree': 583, 'differ': 0, 'not-yet': 217, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 217}
+not-yet GNU not-yet-ct02-0 status 1 stdout b'' stderr b''
+not-yet not-yet-ct02-0 ct02 regex integration
+not-yet GNU not-yet-ct02-1 status 1 stdout b'' stderr b''
+not-yet not-yet-ct02-1 ct02 regex integration
+not-yet GNU not-yet-m2-0 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-0 M2 recursion/colour
+not-yet GNU not-yet-m2-1 status 0 stdout b'' stderr b'grep: bin/grep: binary file matches\n'
+not-yet not-yet-m2-1 M2 recursion/colour
+not-yet GNU not-yet-m2-2 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-2 M2 recursion/colour
+not-yet GNU not-yet-m2-3 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-3 M2 recursion/colour
+not-yet GNU not-yet-m2-4 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-4 M2 recursion/colour
+not-yet GNU not-yet-m2-5 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-5 M2 recursion/colour
+not-yet GNU not-yet-m2-6 status 2 stdout b'' stderr b'grep: p: No such file or directory\n'
+not-yet not-yet-m2-6 M2 recursion/colour
+not-yet GNU not-yet-m2-7 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-7 M2 recursion/colour
+not-yet GNU not-yet-m2-8 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-8 M2 recursion/colour
+not-yet not-yet-argv0-diagnostic-0 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-diagnostic-1 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-diagnostic-2 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-usage-0 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-usage-1 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-usage-2 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv-bytes-0 wolf-lang#406: non-UTF-8 pattern
+not-yet not-yet-argv-bytes-1 wolf-lang#406: non-UTF-8 filename
+progress 850 {'agree': 614, 'differ': 0, 'not-yet': 236, 'argv0-diagnostic': 3, 'argv0-usage': 3, 'argv-bytes': 2, 'field-unavailable': 0, 'terminator-pattern': 217}
+progress 900 {'agree': 664, 'differ': 0, 'not-yet': 236, 'argv0-diagnostic': 3, 'argv0-usage': 3, 'argv-bytes': 2, 'field-unavailable': 0, 'terminator-pattern': 217}
+not-yet GNU not-yet-directory-prefix-0 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-0 M2 directory action
+not-yet GNU not-yet-directory-prefix-1 status 1 stdout b'' stderr b''
+not-yet not-yet-directory-prefix-1 M2 directory action
+not-yet GNU not-yet-directory-prefix-2 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-2 M2 directory action
+not-yet GNU nul-pattern-z status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet nul-pattern-z R-ct00-5: ct02 cross-record terminator matching
+progress 950 {'agree': 710, 'differ': 0, 'not-yet': 240, 'argv0-diagnostic': 3, 'argv0-usage': 3, 'argv-bytes': 2, 'field-unavailable': 0, 'terminator-pattern': 218}
+718 agree / 0 differ / 240 not-yet
+not-yet columns: argv0-diagnostic=3 argv0-usage=3 argv-bytes=2 terminator-pattern=218
+ct00 final oracle exit=0

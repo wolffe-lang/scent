@@ -1,0 +1,217 @@
+ct00 — the first light
+
+Forbidden
+---------
+No GNU grep/gnulib/glibc/busybox/PCRE2 implementation read. GNU's pinned
+release tree was extracted, configured and built in an ephemeral container
+without printing a source file or source-containing build logs. No host
+package installed; own container gained info, clang and lld. No build on
+the Mac. No edits in src/re/, tests/re/, tools/re-*, or ~/.claude. No merge,
+tag, release, or issue action. No attribution trailers. The wrapper forbids
+report .md files: this evidence directory plus the PR body is the contract's
+fallback, not a claim that notes/ct00-the-first-light.md exists.
+
+Inputs verified
+---------------
+Contract ct00-the-first-light.md; scent R1-R10; RULES 1-10. aspen 476edee3
+pin/fetch/build/check-test/static/CI shape; lope bc388673 tools/mkstatic
+secondary static reference; boreutils 12de639f oracle pin and fetcher.
+Permitted ferp 7d332b5 CLI/output/IO and comparison suites; every one of
+80 mined cases records its original file:line. POSIX.1-2024 grep and the
+built GNU 3.12 manual/help. Pinned std fs/io/process/env APIs.
+
+Release APIs read twice (wolf 419552903, lupin 418932753); digests equal.
+Linux archives hashed twice after download; wolf 0.2.34 --version line 2
+pairs lupin 0.1.55 at 294d626; bundled STD-REV is e036bec318ad81ecd5a025612bc2c2adb17527f3.
+GNU tarball 2649b27c0e90e632eadcd757be06c6e9a4f48d941de51e7c0f83ff76408a07b9;
+keyring 0fe55175b96a8ea1c4b670cc3fe11d56b341e4eff81b161ea49958ae550be6ca;
+VALIDSIG 155D3FC500C834486D1EEA677FD9FCCB000BEEEE (Jim Meyering).
+Built oracle 92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea;
+Ubuntu base and glibc identity are in scent-oracle.toml. -P returns 2 with
+`grep: Perl matching not supported in a --disable-perl-regexp build`.
+
+Prediction
+----------
+Committed first: ba2965a. First full run: 579 agree / 12 differ /19 not-yet
+across 610 cases. Wrong: output had 9 disagreements, CLI 2, patterns 1;
+CLI was predicted to be largest. Correct: 80 ferp cases. Program-name rule
+was already measured while verifying inputs and was explicitly not blind.
+Binary prediction was directionally correct but incomplete: read shape
+matters, and -I can print earlier matches yet return 1 after a later NUL.
+Static size and performance ratio are scored against the final rows below.
+
+Evidence index
+--------------
+The case files in tests/cases are the reproducible evidence. tools/oracle
+runs both executables as bare `grep` through PATH under LC_ALL=C, uses cmp
+on stdout/stderr/status/stdin remainder, and writes raw differing fields
+under target/oracle/NAME. Deferred cases with a refusal are still run under
+GNU; complete fields are retained under target/oracle/not-yet/NAME.
+
+Measured rules (GNU, not ferp, decides):
+- Program names: error diagnostics use argv[0] verbatim. With PATH grep,
+  /work/bin/grep, ./grep, and PATH hound, diagnostic prefixes are those
+  exact strings. Usage/Try use basename (grep or hound). R-ct00-3 keeps
+  one fixed grep prefix pending wolf-lang#899; no os_exe substitution.
+- Different explicit -G/-E/-F/-P syntax choices conflict, status 2; the
+  same choice repeated works. cli-10..13, R-ct00-4 (contract corrected).
+- POSIXLY_CORRECT presence, including the empty value, disables option
+  permutation. cli-posix and cli-posix-empty.
+- A trailing newline in an explicit -e introduces an empty alternative;
+  a trailing newline in -f terminates its last pattern. patterns-01,
+  patterns-02, no-pattern-invert. Pattern-file CR is preserved, not
+  trimmed: crlf-patterns. Empty pattern files supply no patterns.
+- C-locale binary mode is triggered by observed NUL, not bytes >=128.
+  Default binary output is stderr `grep: NAME: binary file matches`;
+  -a preserves bytes; -I suppresses the unprocessed portion. Counting
+  under default binary mode uses observed NUL as a delimiter. binary-*.
+- First regular-file read boundary measured at 96 KiB. A NUL at 98303
+  suppresses a first x line, at 98304 allows the earlier x line. After a
+  later NUL, -I returns 1 even when that x line was printed. late-nul-*.
+  Pipe delivery is not fixed: the GNU manual explicitly makes the binary
+  heuristic dependent on buffering/hardware; the independent probe log
+  includes 64 KiB and 96 KiB pipe/regular-file witnesses.
+- -U does not change CRLF on POSIX. binary-*-5 and read cases preserve CR.
+- -w retries a shorter pattern at the same start when a longer word
+  candidate fails: a-/a over a-b selects a, independent of order; word-0
+  and word-1. KMP retains failure links to try overlapping later starts.
+- -o prints nonempty spans only. Empty alternatives still select lines.
+  empty-and-miss-linear is a 1 MiB no-hit nonempty alternative beside an
+  empty alternative, guarding against quadratic repeated empty spans.
+- GNU 3.12 gives no warning for -o with context despite the manual's
+  warning sentence. Context separators still appear; inverted -o emits
+  no selected text but can emit original-matching context spans.
+  context-09/10 and edge-cli-13..15.
+- -T omits its tab for an empty output line; numeric prefix widths are
+  based on regular-file size, or 19 for a pipe. text-136 and multi-09.
+- -m restores regular stdin immediately after the last selected physical
+  line, ignoring read-ahead and trailing context; an unterminated final
+  line has no synthesized byte in that offset. stdin-position-*,
+  stdin-no-final-newline-*, stdin-offset-* compare the remaining bytes.
+- Input-is-output is an error for normal/-o output, suppressed by -s,
+  but is not checked for -c/-l/-L/-q; same-input-output-0..7.
+- Missing files, directories, unreadable files (non-root), closed/full
+  stdout, FIFO input and a live --line-buffered line before EOF all have
+  dedicated cases. No unreadable/FIFO local case runs on a host process
+  outside the container.
+
+ct02 handoff: terminator-bearing patterns (R-ct00-5)
+--------------------------------------------------
+The initial splitting interpretation was WRONG and removed. GNU permits
+matches containing the active terminator. A match's touched records are
+printed once as one output unit. Pattern file x NUL y LF under -Fz over
+`a NUL x NUL y NUL b NUL x NUL y NUL z NUL` prints two x/y units; -c is 2.
+Pattern x NUL also includes the following record in normal output; -o
+prints x NUL followed by the output NUL. Pattern NUL x starts in the
+previous record and includes the next x record. A match ending just after
+NUL touches the following record for normal output. These are not ordinary
+OR alternatives and cannot be expressed by delimiter-excluding windows.
+
+Observed numbering is an additional ct02 obligation: normal -n counts each
+multirecord selected unit as one unit, while inverted -vn uses physical
+record positions for the remaining records. For the x/y witness above,
+normal -n prefixes are 2 and 4; inverted remaining records are 1,4,7.
+The cases, not this prose, decide all combinations.
+
+216 cross-* cases cover F/G/E through -f, NUL in the middle/end/start,
+lone NUL, three records, and a match across the 98304-byte chunk boundary;
+for each, plain/-c/-o/-b/-n/-v/-m1/-x/-w/-C1n/-onb/-vc are measured under
+GNU. patterns-07 and nul-pattern-z are explicitly moved into this same
+218-case terminator-pattern column by R-ct00-5, not left as disagreements.
+Scent refuses them by name, exit 2. ct02 builds the adapter once for all
+three syntaxes, retaining the normal reader for patterns without the
+terminator. The matcher interface and ownership are in docs/MAP.md.
+
+Other not-yet columns: ct02 ordinary G/E 2; M2 recursion/colour 12;
+argv0-diagnostic 3 and argv0-usage 3 (#899); argv-bytes 2 (#406).
+Total intended not-yet: 240. No other divergence is waived.
+
+Rulings asked/taken: R-ct00-1 static-builder path correction; R-ct00-2
+container-only packages; R-ct00-3 argv0/#406 split; R-ct00-4 syntax conflicts;
+R-ct00-5 cross-record adapter measured here and implemented in ct02.
+
+Done-when
+---------
+Final oracle counts, test rows, memory/perf rows, deterministic digest,
+plant PR/run ids, final PR/head and the audit line are appended when run.
+Do not read the targets above as claims that pending gates are green.
+
+Measurement correction: the first /dev/null performance rows were discarded
+because GNU short-circuited without scanning. The final helper keeps fd 1
+a pipe and drains it in 64 KiB blocks, retaining only a byte count and a
+128-byte prefix; count rows assert the full expected count, and full-output
+rows assert all output bytes. The same sink is used for scent and GNU.
+
+A second literal linearity witness, many-spans-miss-first-linear, puts a
+never-matching pattern before a one-byte frequent alternative over 1 MiB.
+Per-pattern monotonic KMP cursors cache next candidates; this avoids the
+otherwise quadratic rescans of the missing alternative during -o output.
+
+Final measured rows
+-------------------
+Runtime source a159d64 passed the complete post-edit kasumi gauntlet,
+including checked/native/lupin, both compiler tiers, both static builds,
+all three differential legs and the corrected pipe-drained measurements.
+The exact/glob selector correction 62654a7 then passed its two targeted
+regressions. Four additional NUL-policy witnesses were added after a
+service-outage retry; no runtime source changed for them.
+
+2 GiB, cores 12-15, stdout a drained pipe:
+  -F -c  scent peak 2112 KiB, 5.66 s; GNU 2060 KiB, 0.78 s.
+          Both counted 16777216 selected lines.
+  -F -n  scent peak 2240 KiB, 7.96 s; GNU 2016 KiB, 1.77 s.
+          Both emitted 1219181213 bytes. Memory gate <32768 KiB passes.
+
+256 MiB, three repetitions, median seconds (scent / GNU; ratio):
+  -F       0.938781773 / 0.138621735; 6.7723x
+  -F -i    0.941376153 / 0.140797164; 6.6860x
+  -F -c    0.716929435 / 0.099880684; 7.1779x
+  -F -v -c 0.719721848 / 0.100306884; 7.1752x
+Raw repetitions, output lengths, container and affinity: measure.json.
+Performance is recorded, not gated, in M1; M4 owns the 2x speed target.
+
+mkscent: two builds equal, 14453056 bytes,
+  sha256 2c3e9efaad6cbbb26a9b31a6a8690173b2654c29c066615db3e033802e673624
+stripped: 1190776 bytes,
+  sha256 271da6ac93b9783832d66f2e626640af3e06fff98d6d392ea3a5decf13ee02c8
+Prediction: stripped <3 MiB correct; literal 12x overestimated measured
+6.77x. First-run largest-disagreement prediction was wrong, ferp80 right.
+
+Additional NUL-policy probe: pattern file x NUL y LF WITHOUT -z over input
+x NUL y LF. Default binary mode: neither matches, status1, no output;
+-c: both print 0, status1; -a: both print the raw line, status0; -I: neither
+matches, status1. nul-pattern-binary-* records all four. This is NOT an
+additional waiver and does not extend R-ct00-5 beyond the -z witnesses.
+
+Plants, read red and closed unmerged:
+  scent#1, oracle plant 97096ce: run 39945903235, linux job 120388432755,
+  step Oracle must catch the deliberate oracle regression; GNU 1-before
+  versus scent 1;before; 0 agree /1 differ. Verdict job120388921202 red.
+  scent#2, seven-byte/discarded-carry plant 1cc60b0: run39945910445,
+  linux job120388440483, DIFFER chunk-00; verdict job120389187882 red.
+  Downloaded artifact confirms GNU stdout163847 bytes, status0, versus
+  scent stdout0 bytes, status1. GNU stdout sha256:
+  f967a15cf171e78241a9a77d6177d5efd65e9b7d46b5b68680b58cafe857dc96
+  The old substring selector also ran3 not-yet suffix matches in plant2.
+  Fixed by62654a7: --only is an exact name or explicit glob; the dedicated
+  selector test proves1 actual case versus3 explicit cross-record cases.
+Both plants branched AFTER the fixed implementation6b9f09e was committed.
+
+No new issue filed or closed. Existing wolf-lang#899 and #406 remain;
+R-ct00-5 is ct02's adapter work. No other measured divergence is waived.
+README refreshed for the final958-case corpus. The main PR body holds
+its final head/run ids, test checklist and live audit state, avoiding a
+self-referencing evidence commit. The final oracle supplement is indexed
+separately so the older714-case-pass gauntlet log is not misrepresented.
+
+Final corpus: 718 agree /0 differ /240 not-yet on native, release and
+static, total958. final-oracle.log records all three complete legs and
+both selector tests. The older kasumi-gauntlet.log correctly records the
+954-case corpus before the four additional agreeing NUL-policy witnesses.
+
+Pruned: the two clean closed-plant worktrees; generated2GiB/256MiB inputs
+on every measurement pass; transferred .lu-cache; old lane-only container
+images f8aecc031fee and bbcc1b04b7d0; four intermediate transfer archives.
+Retained: current lane image bad63142bf60, pinned downloads, binaries,
+scripts/pid/status files and logs for review/resume. No global image/cache
+prune and no other lane's files or containers touched.

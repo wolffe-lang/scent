@@ -1,0 +1,4 @@
+fetch-oracle: 92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea
+92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea  /work/repro/.oracle/grep
+92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea  /work/repro/.oracle/grep
+ct00 oracle rebuild exit=0
