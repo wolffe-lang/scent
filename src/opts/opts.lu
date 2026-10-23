@@ -198,7 +198,14 @@ fn number(text: str, negative: bool) -> int ! {invalid} {
 
 fn apply(mut o: Options, key: str, value: str) -> bool {
     match key {
-        "G" | "E" | "F" | "P" => {
+        "P" => {
+            return problem(
+                mut o,
+                "Perl matching not supported in a --disable-perl-regexp build",
+                false,
+            )
+        },
+        "G" | "E" | "F" => {
             if o.syntax_set && o.syntax != key {
                 return problem(mut o, "conflicting matchers specified", false)
             }

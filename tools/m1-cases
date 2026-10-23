@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+"""Deterministic M1 option x syntax x pattern x input matrix; no stored answers."""
+import argparse,base64,json,pathlib
+root=pathlib.Path(__file__).resolve().parent.parent
+options=[[],['-e'],['-f'],['-i'],['-y'],['-i','--no-ignore-case'],['-v'],['-w'],['-x'],['-c'],['-L'],['-l'],['-m','1'],['-m','1','-C','1'],['-o'],['-o','-b','-n'],['-q'],['-s'],['-b'],['-H'],['-h'],['--label=PIPE','-H'],['-n'],['-T','-nbH'],['-Z','-H'],['-z'],['-A','1'],['-B','1'],['-C','1'],['-1'],['-C1','--group-separator=SEP'],['-C1','--no-group-separator'],['-a'],['--binary-files=binary'],['--binary-files=text'],['--binary-files=without-match'],['-I'],['-U'],['--line-buffered'],['-P']]
+families={'literal':('ab','ab','ab'),'class':('[ab]','[ab]','[ab]'),'anchor':('^ab$','^ab$','^ab$'),'interval':(r'a\{1,2\}b','a{1,2}b','a{1,2}b'),'alternation':(r'a\|ab','a|ab','a|ab'),'backref':(r'\(a\)\1',r'(a)\1',r'(a)\1'),'empty':('','','')}
+inputs=[('context',b'pre\nab\nmid\naa\nab\ntail\n',[]),('crlf',b'ab\r\nAB\r\naa\r\nlast',[]),('binary',b'ab\nnone\x00aa\nab\n',[]),('nul',b'ab\x00none\x00aa\x00AB\x00tail', ['-z']),('many',b'ab\nnone\naa\n',[]),('stdin',b'ab\nnone\naa\n',[])]
+def payload(b):return {'base64':base64.b64encode(b).decode()}
+def cases():
+ for si,syntax in enumerate('GEF'):
+  for family,patterns in families.items():
+   pat=patterns[si]
+   for oi,opt in enumerate(options):
+    for name,data,extra in inputs:
+     argv=['-'+syntax,*extra];files={};stdin=''
+     if opt==['-e']:argv+=['-e',pat,'-e',pat]
+     elif opt==['-f']:files['patterns']=payload((pat+'\n').encode());argv+=['-f','patterns']
+     else:argv+=opt+['-e',pat]
+     if name=='stdin':stdin=payload(data)
+     elif name=='many':
+      for n in ['a','b','c']:files[n]=payload(data)
+      argv+=['a','b','c','-'];stdin=payload(data)
+     else:files['input']=payload(data);argv+=['input']
+     yield dict(name=f'm1-{syntax}-{family}-{oi:02}-{name}',argv=argv,files=files,stdin=stdin,section='m1-generated',matrix=dict(syntax=syntax,family=family,option=oi,input=name))
+ # Sources, diagnostics, CRLF, duplicates and syntax repetition.
+ for syntax in 'GEF':
+  for i,args in enumerate([['-e','ab','-f','p'],['-f','p','-e','ab'],['-f','empty'],['-f','blank'],['-f','crlf'],['-e','ab','-e','ab'],['-e','ab','-e','['],['-'+syntax,'ab']]):
+   yield dict(name=f'm1-sources-{syntax}-{i}',argv=['-'+syntax,*args],stdin='ab\nAB\naa\nx\r\n',files={'p':{'text':'aa\nab\n'},'empty':{'text':''},'blank':{'text':'\n'},'crlf':{'text':'x\r\n'}},section='m1-sources')
+ for syntax in 'GE':
+  for i,args in enumerate([['-f','bad'],['-e','ok','-f','bad'],['-f','warn'],['-e',r'\q','-e',r'\q']]):
+   yield dict(name=f'm1-diagnostic-{syntax}-{i}',argv=['-'+syntax,*args],stdin='q\n',files={'bad':{'text':'ok\n[\n'},'warn':{'text':r'\q'+'\n'}},section='m1-diagnostics')
+rows=list(cases());text=''.join(json.dumps(c,separators=(',',':'))+'\n' for c in rows)
+p=argparse.ArgumentParser();p.add_argument('--write',action='store_true');a=p.parse_args();dest=root/'tests/cases/m1-generated.jsonl'
+if a.write:dest.write_text(text)
+else:
+ if dest.read_text()!=text:raise SystemExit('STOP M1 generated matrix is stale')
+ if len(rows)!=5072:raise SystemExit(f'STOP M1 case floor changed: {len(rows)}')
+print(f'm1-cases: {len(rows)} cases; 40 option rows x3 syntaxes x7 families x6 input forms plus32 sources/diagnostics',flush=True)

@@ -1,0 +1,9 @@
+{"name":"m1-context-span-G-0","argv":["-G","-o","-v","-C2","-nb","\\(a\\)\\1"],"stdin":"aa\nno\naa\naa\nend\n","section":"context-spans"}
+{"name":"m1-context-span-G-1","argv":["-G","-o","-C2","-nb","\\(a\\)\\1"],"stdin":"aa\nno\naa\naa\nend\n","section":"context-spans"}
+{"name":"m1-context-span-G-2","argv":["-G","-o","-m1","-C2","-nb","\\(a\\)\\1"],"stdin":"aa\nno\naa\naa\nend\n","section":"context-spans"}
+{"name":"m1-context-span-E-3","argv":["-E","-o","-v","-C2","-nb","(a)\\1"],"stdin":"aa\nno\naa\naa\nend\n","section":"context-spans"}
+{"name":"m1-context-span-E-4","argv":["-E","-o","-C2","-nb","(a)\\1"],"stdin":"aa\nno\naa\naa\nend\n","section":"context-spans"}
+{"name":"m1-context-span-E-5","argv":["-E","-o","-m1","-C2","-nb","(a)\\1"],"stdin":"aa\nno\naa\naa\nend\n","section":"context-spans"}
+{"name":"m1-context-span-F-6","argv":["-F","-o","-v","-C2","-nb","aa"],"stdin":"aa\nno\naa\naa\nend\n","section":"context-spans"}
+{"name":"m1-context-span-F-7","argv":["-F","-o","-C2","-nb","aa"],"stdin":"aa\nno\naa\naa\nend\n","section":"context-spans"}
+{"name":"m1-context-span-F-8","argv":["-F","-o","-m1","-C2","-nb","aa"],"stdin":"aa\nno\naa\naa\nend\n","section":"context-spans"}

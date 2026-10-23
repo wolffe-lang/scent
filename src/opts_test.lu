@@ -13,5 +13,9 @@ fn main() {
     assert(!c.number && c.files[0] == "-n")
     let d = opts.parse(["-F", "-12n", "x"], false)
     assert(d.before == 12 && d.after == 12 && d.number)
-    print("opts: 4 cases, 0 SKIP")
+    let e = opts.parse(["-G", "-P", "x"], false)
+    assert(e.status == 2)
+    let f = opts.parse(["-E", "-E", "ab"], false)
+    assert(f.syntax == "E" && f.status == -1)
+    print("opts: 6 cases, 0 SKIP")
 }

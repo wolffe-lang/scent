@@ -44,9 +44,12 @@ fn help() {
     print("Exit: 0 when a line is selected, 1 otherwise, 2 on error.")
 }
 
-fn emit_diagnostics(d: regex.Diagnostics) {
+fn emit_diagnostics(d: regex.Diagnostics, names: List[str], lines: List[int]) {
     for item in d.items {
         fs_write_chunk(2, "{opts.program()}: ".bytes()) else |_| {}
+        if !item.warning && item.pattern < names.len && names[item.pattern] != "" {
+            fs_write_chunk(2, "{names[item.pattern]}:{lines[item.pattern]}: ".bytes()) else |_| {}
+        }
         fs_write_chunk(2, item.text) else |_| {}
         fs_write_chunk(2, [10 as byte]) else |_| {}
     }
@@ -62,7 +65,10 @@ fn run(o: opts.Options) -> int {
     }
     if o.not_yet != "" { eprint("scent: not yet implemented: {o.not_yet}"); return 2 }
     var patterns = List[List[byte]]()
+    var source_names = List[str]()
+    var source_lines = List[int]()
     for source in o.sources {
+        let first = patterns.len
         if !source.file {
             add_patterns(mut patterns, source.text.bytes(), true)
         } else {
@@ -84,16 +90,36 @@ fn run(o: opts.Options) -> int {
             if fd != 0 { fs_close(fd) else |_| {} }
             add_patterns(mut patterns, all, false)
         }
+        var idx = first
+        while idx < patterns.len {
+            (mut source_names).push(if source.file then source.text else "")
+            (mut source_lines).push(idx - first + 1)
+            idx += 1
+        }
     }
-    if o.zero && o.syntax != "P" {
-        for pattern in patterns {
-            for b in pattern {
-                if b == 0 as byte {
-                    eprint("scent: terminator-bearing patterns arrive with ct02 (R-ct00-5)")
-                    return 2
+    var unique = List[List[byte]]()
+    var names = List[str]()
+    var lines = List[int]()
+    var pi = 0
+    while pi < patterns.len {
+        var duplicate = false
+        for previous in unique {
+            if previous.len == patterns[pi].len {
+                var equal = true
+                var bi = 0
+                while bi < previous.len {
+                    if previous[bi] != patterns[pi][bi] { equal = false; break }
+                    bi += 1
                 }
+                if equal { duplicate = true; break }
             }
         }
+        if !duplicate {
+            (mut unique).push(copy patterns[pi])
+            (mut names).push(source_names[pi])
+            (mut lines).push(source_lines[pi])
+        }
+        pi += 1
     }
     if o.syntax == "P" {
         eprint("{opts.program()}: Perl matching not supported in a --disable-perl-regexp build")
@@ -101,7 +127,7 @@ fn run(o: opts.Options) -> int {
     }
     var diagnostics = regex.diagnostics_new()
     let re = matcher.compile(
-        patterns,
+        unique,
         o.syntax,
         fixed.Flags {
             ignore_case: o.ignore_case,
@@ -111,10 +137,10 @@ fn run(o: opts.Options) -> int {
         },
         mut diagnostics,
     ) else |_| {
-        emit_diagnostics(diagnostics)
+        emit_diagnostics(diagnostics, names, lines)
         return 2
     }
-    emit_diagnostics(diagnostics)
+    emit_diagnostics(diagnostics, names, lines)
     var matched = false
     var error = false
     var grouped = false

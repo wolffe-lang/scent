@@ -1,0 +1,40 @@
+//! member: false
+
+use matcher
+use fixed
+use re as regex
+
+fn check(syntax: str, pattern: str, line: str, expected: bool, zero: bool) {
+    var diagnostics = regex.diagnostics_new()
+    let re = matcher.compile(
+        [pattern.bytes()],
+        syntax,
+        fixed.Flags {
+            ignore_case: false,
+            word: false,
+            whole: false,
+            terminator: if zero then 0 as byte else 10 as byte,
+        },
+        mut diagnostics,
+    ) else |_| { panic("valid pattern refused") }
+    assert(diagnostics.items.len == 0)
+    var ws = matcher.workspace_new(re)
+    let bytes = line.bytes()
+    assert(matcher.line_matches(re, mut ws, bytes, 0, bytes.len) == expected)
+    if expected {
+        let hit = matcher.next_span(re, mut ws, bytes, 0, bytes.len, 0) else |_| {
+            panic("missing nonempty span")
+        }
+        assert(hit.lo == 0 && hit.hi == bytes.len)
+    }
+}
+
+fn main() {
+    check("G", r"\(a\)\1", "aa", true, false)
+    check("E", "a|ab", "ab", true, false)
+    check("F", "a|ab", "ab", false, false)
+    check("F", "x\x00y", "x", false, true)
+    check("G", "x\x00y", "x", false, true)
+    check("E", "a|x\x00y", "a", false, true)
+    print("matcher: 6 cases, 0 SKIP")
+}

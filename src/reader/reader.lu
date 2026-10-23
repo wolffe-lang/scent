@@ -77,6 +77,8 @@ fn spans(
     width: int,
     mut writer: out.Output,
 ) {
+    // Context history is a different window: establish the regex cache here.
+    if !matcher.line_matches(re, mut ws, buf, lo, hi) { return }
     var from = lo
     while from <= hi {
         let span = matcher.next_span(re, mut ws, buf, lo, hi, from) else |_| { break }
