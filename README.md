@@ -28,7 +28,10 @@ exhaustive short malformed patterns, and bounded regular/backreference costs.
 
 The exact reviewed cases below are not counted as agreement. Eight runtime
 gaps are separately marked upstream-blocked; only 12 recursion/colour cases
-remain not-yet. All input and pattern-file bytes remain arbitrary bytes.
+remain not-yet. Local native, release, static and locale-free runs each
+report **6,078 agree + 109 published differences + 8 upstream-blocked +
+12 M2 not-yet**, with zero unapproved differences (6,207 cases total).
+All input and pattern-file bytes remain arbitrary bytes.
 
 ## Install and build
 
@@ -94,8 +97,14 @@ The complete individual cases and exact answers are in the manifest above.
 | Rule | Minimal witness | GNU 3.12 | scent | Why |
 | --- | --- | --- | --- | --- |
 | #115: whole-word, leftmost-longest | `-E -a -o -b -w '.{1,2}'`, four spaces then `ab` | `0:  \n4:ab\n` | `0:  \n2: \n4:ab\n` | Keep the valid shorter whole-word span GNU's retry omits. BRE is equivalent. |
-| #116: `**` means `*` | `-E` pattern `(A**&#124;.)(a)\1**` on `a` | No output, status 1 | `a\n`, status 0 | Replacing either `**` with `*` restores GNU's empty-capture path; POSIX leaves adjacent duplication undefined. |
+| #116: `**` means `*` | `-E` with the double-star pattern below, on `a` | No output, status 1 | `a\n`, status 0 | Replacing either `**` with `*` restores GNU's empty-capture path; POSIX leaves adjacent duplication undefined. |
 | #117: never cross records | Pattern-file bytes `x\0y\n`, `-F -z`, input `x\0y\0` | `x\0y\0`, status 0 when in one read | No output, status 1 | GNU `-G`/`-E`, `-F -w` and cross-read `-F` already reject it. Input record boundaries must not depend on read placement. |
+
+The double-star command is literal (the alternation bar is not escaped):
+
+```sh
+printf 'a\n' | grep -E '(A**|.)(a)\1**'
+```
 
 The CLI family rows are **94 agree + 56 reviewed** (22 word-span and
 34 double-star differences). The 216 NUL-pattern rows are **164 agree +
