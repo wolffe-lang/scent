@@ -1,0 +1,18 @@
+//! member: false
+
+use out
+
+fn main() {
+    var total: int = 0
+    for i in 0..2 {
+        region chunk {
+            var writer = out.create()
+            let b = "abc".bytes()
+            out.window(mut writer, b, 0, b.len)
+            assert(writer.used == 3)
+            total += writer.used
+        }
+    }
+    assert(total == 6)
+    print("region: 2 cases, 0 SKIP")
+}

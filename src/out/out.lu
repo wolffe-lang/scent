@@ -1,0 +1,126 @@
+//! member: true
+
+// Clean-room: GNU grep 3.12 output probes; design reference ferp 7d332b5
+// src/ferp_output.f90:49-242, 263-321. Fixed storage avoids per-line growth.
+use opts
+
+/// Fixed-capacity stdout staging and write-failure state.
+pub struct Output {
+    buf: List[byte],
+    used: int,
+    failed: bool,
+    any_group: bool,
+}
+
+/// Allocate one reusable 64 KiB stdout buffer.
+pub fn create() -> Output {
+    var b = List[byte]()
+    for i in 0..65536 {
+        (mut b).push(0 as byte)
+    }
+    Output { buf: b, used: 0, failed: false, any_group: false }
+}
+
+/// Write pending bytes; report the first host write failure.
+pub fn flush(mut o: Output) {
+    if o.used == 0 || o.failed { return }
+    fs_write_chunk(1, o.buf[0..o.used]) else |_| {
+        let code = os_error()
+        let reason = if code > 0 then os_error_text(code) else "Bad file descriptor"
+        eprint("{opts.program()}: write error: {reason}")
+        o.failed = true
+    }
+    o.used = 0
+}
+
+/// Append one byte, flushing a full staging buffer.
+pub fn byte_put(mut o: Output, b: byte) {
+    if o.failed { return }
+    o.buf[o.used] = b
+    o.used += 1
+    if o.used == o.buf.len { flush(mut o) }
+}
+
+/// Append UTF-8 bytes without a whole-string bytes binding.
+pub fn text(mut o: Output, s: str) {
+    for b in s.bytes() { byte_put(mut o, b) }
+}
+
+/// Append an arbitrary byte window without decoding.
+pub fn window(mut o: Output, b: List[byte], lo: int, hi: int) {
+    var at = lo
+    while at < hi { byte_put(mut o, b[at]); at += 1 }
+}
+
+fn decimal(mut o: Output, n: int, width: int) {
+    let s = "{n}"
+    var pad = width - s.len
+    while pad > 0 { byte_put(mut o, 32 as byte); pad -= 1 }
+    text(mut o, s)
+}
+
+/// Emit filename, line and byte fields with measured separators.
+pub fn prefix(
+    mut o: Output,
+    flags: opts.Options,
+    name: str,
+    number: int,
+    offset: int,
+    selected: bool,
+    width: int,
+) {
+    let sep = if selected then 58 as byte else 45 as byte
+    if flags.filename == 1 {
+        text(mut o, name)
+        byte_put(mut o, if flags.null_name then 0 as byte else sep)
+    }
+    let pad = if flags.tab then width else 0
+    if flags.number { decimal(mut o, number, pad); byte_put(mut o, sep) }
+    if flags.offset { decimal(mut o, offset, pad); byte_put(mut o, sep) }
+}
+
+/// Emit one selected or context line and its terminator.
+pub fn line(
+    mut o: Output,
+    flags: opts.Options,
+    name: str,
+    b: List[byte],
+    lo: int,
+    hi: int,
+    number: int,
+    offset: int,
+    selected: bool,
+    width: int,
+) {
+    prefix(mut o, flags, name, number, offset, selected, width)
+    if hi > lo && flags.tab && (flags.filename == 1 || flags.number || flags.offset) {
+        byte_put(mut o, 9 as byte)
+    }
+    window(mut o, b, lo, hi)
+    byte_put(mut o, if flags.zero then 0 as byte else 10 as byte)
+    if flags.line_buffered { flush(mut o) }
+}
+
+/// Emit a listing-mode filename, honoring -Z.
+pub fn filename(mut o: Output, flags: opts.Options, name: str) {
+    text(mut o, name)
+    byte_put(mut o, if flags.null_name then 0 as byte else 10 as byte)
+}
+
+/// Emit a per-file count; -z does not change its newline.
+pub fn count(mut o: Output, flags: opts.Options, name: str, n: int) {
+    if flags.filename == 1 {
+        text(mut o, name)
+        byte_put(mut o, if flags.null_name then 0 as byte else 58 as byte)
+    }
+    text(mut o, "{n}\n")
+}
+
+/// Start a disjoint context group with the configured separator.
+pub fn group(mut o: Output, flags: opts.Options) {
+    if o.any_group && flags.context && flags.groups {
+        text(mut o, flags.separator)
+        byte_put(mut o, 10 as byte)
+    }
+    o.any_group = true
+}
