@@ -1,0 +1,117 @@
+build: target/release/scent
+memory {"argv": ["-F", "-c", "needle"], "bytes": 2147483648, "scent": {"peak_rss_kib": 2400.0, "seconds": 6.03, "output_bytes": 9}, "gnu": {"peak_rss_kib": 2188.0, "seconds": 0.82, "output_bytes": 9}}
+memory {"argv": ["-F", "-n", "needle"], "bytes": 2147483648, "scent": {"peak_rss_kib": 2684.0, "seconds": 8.17, "output_bytes": 1219181213}, "gnu": {"peak_rss_kib": 1936.0, "seconds": 1.84, "output_bytes": 1219181213}}
+perf-run scent ['-F'] 1 0.9368609539233148
+perf-run scent ['-F'] 2 0.9598377869697288
+perf-run scent ['-F'] 3 0.9430472870590165
+perf-run gnu ['-F'] 1 0.13759483501780778
+perf-run gnu ['-F'] 2 0.13670764304697514
+perf-run gnu ['-F'] 3 0.13572826993186027
+performance {"argv": ["-F", "needle"], "bytes": 268435456, "scent": {"runs_seconds": [0.9368609539233148, 0.9598377869697288, 0.9430472870590165], "median_seconds": 0.9430472870590165, "output_bytes": 134217728}, "gnu": {"runs_seconds": [0.13759483501780778, 0.13670764304697514, 0.13572826993186027], "median_seconds": 0.13670764304697514, "output_bytes": 134217728}, "ratio": 6.898277711766042}
+perf-run scent ['-F', '-i'] 1 0.9217465450055897
+perf-run scent ['-F', '-i'] 2 0.9744063799735159
+perf-run scent ['-F', '-i'] 3 0.9489299940178171
+perf-run gnu ['-F', '-i'] 1 0.14356072002556175
+perf-run gnu ['-F', '-i'] 2 0.14252726500853896
+perf-run gnu ['-F', '-i'] 3 0.147795410011895
+performance {"argv": ["-F", "-i", "NEEDLE"], "bytes": 268435456, "scent": {"runs_seconds": [0.9217465450055897, 0.9744063799735159, 0.9489299940178171], "median_seconds": 0.9489299940178171, "output_bytes": 134217728}, "gnu": {"runs_seconds": [0.14356072002556175, 0.14252726500853896, 0.147795410011895], "median_seconds": 0.14356072002556175, "output_bytes": 134217728}, "ratio": 6.609955660913759}
+perf-run scent ['-F', '-c'] 1 0.7866619779961184
+perf-run scent ['-F', '-c'] 2 0.7502458110684529
+perf-run scent ['-F', '-c'] 3 0.7944645469542593
+perf-run gnu ['-F', '-c'] 1 0.10328068095259368
+perf-run gnu ['-F', '-c'] 2 0.1013830479932949
+perf-run gnu ['-F', '-c'] 3 0.09857211902271956
+performance {"argv": ["-F", "-c", "needle"], "bytes": 268435456, "scent": {"runs_seconds": [0.7866619779961184, 0.7502458110684529, 0.7944645469542593], "median_seconds": 0.7866619779961184, "output_bytes": 8}, "gnu": {"runs_seconds": [0.10328068095259368, 0.1013830479932949, 0.09857211902271956], "median_seconds": 0.1013830479932949, "output_bytes": 8}, "ratio": 7.759304869667613}
+perf-run scent ['-F', '-v', '-c'] 1 0.7834887140197679
+perf-run scent ['-F', '-v', '-c'] 2 0.8034293829696253
+perf-run scent ['-F', '-v', '-c'] 3 0.7859988170675933
+perf-run gnu ['-F', '-v', '-c'] 1 0.10280403692740947
+perf-run gnu ['-F', '-v', '-c'] 2 0.10311418899800628
+perf-run gnu ['-F', '-v', '-c'] 3 0.1016267950180918
+performance {"argv": ["-F", "-v", "-c", "needle"], "bytes": 268435456, "scent": {"runs_seconds": [0.7834887140197679, 0.8034293829696253, 0.7859988170675933], "median_seconds": 0.7859988170675933, "output_bytes": 8}, "gnu": {"runs_seconds": [0.10280403692740947, 0.10311418899800628, 0.1016267950180918], "median_seconds": 0.10280403692740947, "output_bytes": 8}, "ratio": 7.645602649072932}
+perf-run scent ['-G'] 1 3.059936154051684
+perf-run scent ['-G'] 2 2.9999082470312715
+perf-run scent ['-G'] 3 2.985800036927685
+perf-run gnu ['-G'] 1 0.14104823907837272
+perf-run gnu ['-G'] 2 0.139160398975946
+perf-run gnu ['-G'] 3 0.1392919149948284
+performance {"argv": ["-G", "needle"], "bytes": 268435456, "scent": {"runs_seconds": [3.059936154051684, 2.9999082470312715, 2.985800036927685], "median_seconds": 2.9999082470312715, "output_bytes": 134217728}, "gnu": {"runs_seconds": [0.14104823907837272, 0.139160398975946, 0.1392919149948284], "median_seconds": 0.1392919149948284, "output_bytes": 134217728}, "ratio": 21.53684402388072}
+perf-run scent ['-G'] 1 2.9932925179600716
+perf-run scent ['-G'] 2 2.9257451279554516
+perf-run scent ['-G'] 3 2.9341339649399742
+perf-run gnu ['-G'] 1 0.13812848401721567
+perf-run gnu ['-G'] 2 0.1411642519524321
+perf-run gnu ['-G'] 3 0.1430387960281223
+performance {"argv": ["-G", "n[e]edle"], "bytes": 268435456, "scent": {"runs_seconds": [2.9932925179600716, 2.9257451279554516, 2.9341339649399742], "median_seconds": 2.9341339649399742, "output_bytes": 134217728}, "gnu": {"runs_seconds": [0.13812848401721567, 0.1411642519524321, 0.1430387960281223], "median_seconds": 0.1411642519524321, "output_bytes": 134217728}, "ratio": 20.78524785388786}
+perf-run scent ['-G'] 1 4.150339881074615
+perf-run scent ['-G'] 2 4.111974076018669
+perf-run scent ['-G'] 3 4.040617879014462
+perf-run gnu ['-G'] 1 0.12429399997927248
+perf-run gnu ['-G'] 2 0.12824271200224757
+perf-run gnu ['-G'] 3 0.1265584120992571
+performance {"argv": ["-G", "needle\\|absent"], "bytes": 268435456, "scent": {"runs_seconds": [4.150339881074615, 4.111974076018669, 4.040617879014462], "median_seconds": 4.111974076018669, "output_bytes": 134217728}, "gnu": {"runs_seconds": [0.12429399997927248, 0.12824271200224757, 0.1265584120992571], "median_seconds": 0.1265584120992571, "output_bytes": 134217728}, "ratio": 32.49072114458684}
+perf-run scent ['-G'] 1 3.5094507589237764
+perf-run scent ['-G'] 2 3.427842897013761
+perf-run scent ['-G'] 3 3.5044404490618035
+perf-run gnu ['-G'] 1 1.8867848040536046
+perf-run gnu ['-G'] 2 1.8762432700023055
+perf-run gnu ['-G'] 3 1.8672678709262982
+performance {"argv": ["-G", "n\\(e\\)\\1dle"], "bytes": 268435456, "scent": {"runs_seconds": [3.5094507589237764, 3.427842897013761, 3.5044404490618035], "median_seconds": 3.5044404490618035, "output_bytes": 134217728}, "gnu": {"runs_seconds": [1.8867848040536046, 1.8762432700023055, 1.8672678709262982], "median_seconds": 1.8762432700023055, "output_bytes": 134217728}, "ratio": 1.8677964126994562}
+perf-run scent ['-G', '-i'] 1 3.0997754250420257
+perf-run scent ['-G', '-i'] 2 3.0490596710005775
+perf-run scent ['-G', '-i'] 3 2.977783174952492
+perf-run gnu ['-G', '-i'] 1 0.14178966206964105
+perf-run gnu ['-G', '-i'] 2 0.14214133704081178
+perf-run gnu ['-G', '-i'] 3 0.1409479930298403
+performance {"argv": ["-G", "-i", "NEEDLE"], "bytes": 268435456, "scent": {"runs_seconds": [3.0997754250420257, 3.0490596710005775, 2.977783174952492], "median_seconds": 3.0490596710005775, "output_bytes": 134217728}, "gnu": {"runs_seconds": [0.14178966206964105, 0.14214133704081178, 0.1409479930298403], "median_seconds": 0.14178966206964105, "output_bytes": 134217728}, "ratio": 21.50410422378332}
+perf-run scent ['-G', '-v', '-c'] 1 2.8056262308964506
+perf-run scent ['-G', '-v', '-c'] 2 2.6539448969997466
+perf-run scent ['-G', '-v', '-c'] 3 2.7965331909945235
+perf-run gnu ['-G', '-v', '-c'] 1 0.10723793704528362
+perf-run gnu ['-G', '-v', '-c'] 2 0.10186655900906771
+perf-run gnu ['-G', '-v', '-c'] 3 0.10569577408023179
+performance {"argv": ["-G", "-v", "-c", "needle"], "bytes": 268435456, "scent": {"runs_seconds": [2.8056262308964506, 2.6539448969997466, 2.7965331909945235], "median_seconds": 2.7965331909945235, "output_bytes": 8}, "gnu": {"runs_seconds": [0.10723793704528362, 0.10186655900906771, 0.10569577408023179], "median_seconds": 0.10569577408023179, "output_bytes": 8}, "ratio": 26.45832546599001}
+perf-run scent ['-E'] 1 2.931999188964255
+perf-run scent ['-E'] 2 3.038626177003607
+perf-run scent ['-E'] 3 2.926524632028304
+perf-run gnu ['-E'] 1 0.13829483604058623
+perf-run gnu ['-E'] 2 0.1423691090894863
+perf-run gnu ['-E'] 3 0.14613500202540308
+performance {"argv": ["-E", "needle"], "bytes": 268435456, "scent": {"runs_seconds": [2.931999188964255, 3.038626177003607, 2.926524632028304], "median_seconds": 2.931999188964255, "output_bytes": 134217728}, "gnu": {"runs_seconds": [0.13829483604058623, 0.1423691090894863, 0.14613500202540308], "median_seconds": 0.1423691090894863, "output_bytes": 134217728}, "ratio": 20.59434948856316}
+perf-run scent ['-E'] 1 3.0965484629850835
+perf-run scent ['-E'] 2 2.996710112900473
+perf-run scent ['-E'] 3 2.905881228041835
+perf-run gnu ['-E'] 1 0.1328559189569205
+perf-run gnu ['-E'] 2 0.13985497097019106
+perf-run gnu ['-E'] 3 0.13369435991626233
+performance {"argv": ["-E", "n[e]edle"], "bytes": 268435456, "scent": {"runs_seconds": [3.0965484629850835, 2.996710112900473, 2.905881228041835], "median_seconds": 2.996710112900473, "output_bytes": 134217728}, "gnu": {"runs_seconds": [0.1328559189569205, 0.13985497097019106, 0.13369435991626233], "median_seconds": 0.13369435991626233, "output_bytes": 134217728}, "ratio": 22.414633757006822}
+perf-run scent ['-E'] 1 4.078689621062949
+perf-run scent ['-E'] 2 4.0351568050682545
+perf-run scent ['-E'] 3 4.045422281022184
+perf-run gnu ['-E'] 1 0.12215941690374166
+perf-run gnu ['-E'] 2 0.12593635905068368
+perf-run gnu ['-E'] 3 0.12343607004731894
+performance {"argv": ["-E", "needle|absent"], "bytes": 268435456, "scent": {"runs_seconds": [4.078689621062949, 4.0351568050682545, 4.045422281022184], "median_seconds": 4.045422281022184, "output_bytes": 134217728}, "gnu": {"runs_seconds": [0.12215941690374166, 0.12593635905068368, 0.12343607004731894], "median_seconds": 0.12343607004731894, "output_bytes": 134217728}, "ratio": 32.77342092527233}
+perf-run scent ['-E'] 1 3.3601647599134594
+perf-run scent ['-E'] 2 3.384148133918643
+perf-run scent ['-E'] 3 3.418165927985683
+perf-run gnu ['-E'] 1 1.850460511050187
+perf-run gnu ['-E'] 2 1.853102099034004
+perf-run gnu ['-E'] 3 1.861553377006203
+performance {"argv": ["-E", "n(e)\\1dle"], "bytes": 268435456, "scent": {"runs_seconds": [3.3601647599134594, 3.384148133918643, 3.418165927985683], "median_seconds": 3.384148133918643, "output_bytes": 134217728}, "gnu": {"runs_seconds": [1.850460511050187, 1.853102099034004, 1.861553377006203], "median_seconds": 1.853102099034004, "output_bytes": 134217728}, "ratio": 1.8262070587922554}
+perf-run scent ['-E', '-i'] 1 3.0106935679214075
+perf-run scent ['-E', '-i'] 2 2.878829455934465
+perf-run scent ['-E', '-i'] 3 2.943960519041866
+perf-run gnu ['-E', '-i'] 1 0.14341424102894962
+perf-run gnu ['-E', '-i'] 2 0.14137248997576535
+perf-run gnu ['-E', '-i'] 3 0.14370089897420257
+performance {"argv": ["-E", "-i", "NEEDLE"], "bytes": 268435456, "scent": {"runs_seconds": [3.0106935679214075, 2.878829455934465, 2.943960519041866], "median_seconds": 2.943960519041866, "output_bytes": 134217728}, "gnu": {"runs_seconds": [0.14341424102894962, 0.14137248997576535, 0.14370089897420257], "median_seconds": 0.14341424102894962, "output_bytes": 134217728}, "ratio": 20.527672132975955}
+perf-run scent ['-E', '-v', '-c'] 1 2.657179382047616
+perf-run scent ['-E', '-v', '-c'] 2 2.7180020270170644
+perf-run scent ['-E', '-v', '-c'] 3 2.695635449956171
+perf-run gnu ['-E', '-v', '-c'] 1 0.09877757402136922
+perf-run gnu ['-E', '-v', '-c'] 2 0.10035278601571918
+perf-run gnu ['-E', '-v', '-c'] 3 0.098475057980977
+performance {"argv": ["-E", "-v", "-c", "needle"], "bytes": 268435456, "scent": {"runs_seconds": [2.657179382047616, 2.7180020270170644, 2.695635449956171], "median_seconds": 2.695635449956171, "output_bytes": 8}, "gnu": {"runs_seconds": [0.09877757402136922, 0.10035278601571918, 0.098475057980977], "median_seconds": 0.09877757402136922, "output_bytes": 8}, "ratio": 27.289953986650918}
+memory gate: PASS; performance recorded, not gated
+ct02 perf exit 0

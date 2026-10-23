@@ -1,0 +1,19 @@
+Draft only: the maintainer sends this to bug-grep; not sent by this lane.
+Subject: grep 3.12: adjacent stars lose an empty backreference path
+
+GNU grep 3.12, release tarball, configured --disable-perl-regexp,
+Ubuntu 24.04 x86-64 (glibc 2.39), LC_ALL=C.
+
+  printf 'a\n' | grep -E '(A**|.)(a)\1**'
+  # no output, status 1
+  printf 'a\n' | grep -E '(A*|.)(a)\1**'
+  # a, status 0
+  printf 'a\n' | grep -E '(A**|.)(a)\1*'
+  # a, status 0
+
+Both star spellings have to be doubled for the empty group-1 path to be
+lost. Group 1 can be empty, group 2 can consume a, and the final repetition
+of an empty capture need consume nothing. Is the first result intentional?
+POSIX leaves adjacent duplication undefined; this report concerns GNU's
+extension consistency, not a claim of a POSIX violation. BRE equivalents
+show the same result. No GNU implementation source was consulted.

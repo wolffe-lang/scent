@@ -1,0 +1,92 @@
+Draft px lane contract — scent on PAX (proposed next free px id)
+
+Role and prerequisites
+----------------------
+Opus PAX lane. Launch after ct02 merges, from that exact scent commit and
+its gate evidence. Ruling #114 R10; #115–#117 and R-ct02-3/-5/-6 govern
+published differences. Read PAX's active sprint, RULES 1–10, HOSTS, the
+clean-room reference allowlist, user/lope.pin, tools/mklope, tools/mkaspen,
+the mpx5 console rig and dev-image builder before editing. Never read
+kernel/libc/shell/grep implementation sources. Use the named CPU block,
+lock and own baseline Ubuntu container; no host package installations.
+
+Items
+-----
+1. Commit a prediction before implementation: static size, expected ABI
+   gap (none predicted), and time from first prompt to the last typed
+   grep command. Pin user/scent.pin with SCENT_REPO and the full merged
+   scent SHA, never a moving branch. Public repo; no org token required.
+2. Add tools/mkscent beside mklope/mkaspen. Honor PAX_SCENT_REPO for a
+   local cache, fetch precisely SCENT_REV, read scent's wolf-toolchain.toml,
+   verify the whole wolf archive twice and its version and bundled std
+   commit, keep libwolf_rt.a beside wolf. Build baseline static x86-64
+   twice using scent/tools/mkscent or the exact same source build flags.
+   Assert ET_EXEC/no PT_INTERP, compare digests, record sums and sizes;
+   never use kasumi's native glibc for PAX artifacts.
+3. Install unmodified /bin/scent and /bin/grep as a symlink to scent.
+   Preserve wrappers/egrep and wrappers/fgrep as /bin/egrep and /bin/fgrep,
+   mode0755, byte-for-byte. They require /bin/sh. Check it
+   exists in the actual dev root and execute a wrapper in a guest, not just
+   a host filesystem check. PAX's existing mpx5-jobs documents pelt as
+   /bin/sh; do not replace it.
+   If the image writer cannot encode the grep symlink, extend/test its
+   symlink support rather than silently copying or altering scent.
+4. Add a typed session under tests/mpx5-* and user/console/ using the
+   existing rig, as root and as an ordinary user. No replacing a real
+   typed terminal session with batch-only UART output. Feed a generated
+   text fixture and verify default BRE with backreference, -E class and
+   alternation, -F punctuation literal, -i/-v/-c, -n/-b/-o, -w/-x,
+   merged context, -m with context, -e mixed with -f, stdin and multiple
+   files, -z, binary policy, no-match status1, missing-file status2 and
+   configured -P refusal. Include egrep/fgrep warnings even for --help,
+   syntax conflicts/status2, plus the #115–#117 minimal witnesses.
+   Assert shell exit statuses, stdout and stderr separately. Confirm
+   /bin/grep invocation and both warning adapters after PATH changes.
+5. Check the plain-C-locale/no-LANG posture, without locale data, in the
+   guest. Keep scent's full byte suite on the Linux side as a prerequisite.
+   If any PAX syscall gap appears, minimize it, report it with evidence,
+   and do not change scent to hide an OS defect.
+6. Rebuild the dev ISO through the current dev builder. Record its exact
+   commit, digest and boot log; boot the rebuilt artifact and replay the
+   typed session. Update image/command listings and README. No release,
+   tag, deployment or package publication by the lane.
+
+Visible upstream gaps and their retirement
+-----------------------------------------
+Eight exact expected-difference rows live in scent/tests/divergences.json.
+Six argv0 rows (diagnostic/usage, each with /abs/path/grep, ./grep and hound)
+refer to wolf-lang#899/#904. Until env_arg0 ships, the diagnostic seam is
+literal grep: ordinary /bin/grep file/regex errors therefore already name
+grep; invalid-option diagnostics lose a full-path prefix and alternate
+aliases cannot rename usage. /bin/scent also uses the grep diagnostic
+prefix. R-ct02-5 rejects private name-override flags/env. Keep grep a
+symlink; no wrapper can fix raw argv0 without that unshipped builtin.
+The other two rows pass byte FF as pattern or filename; env_args currently
+panics and aborts rather than reporting a normal byte argument. They cite
+wolf-lang#406/#904 and retire with env_args_bytes plus argument-utf8 trap.
+R-ct02-6 types only the runtime PID in those exact full panic messages.
+PAX users see those two aborts if they supply invalid UTF-8 argv; file and
+pattern-file bytes remain arbitrary. Retest in guest: PAX may surface the
+same abort differently, and that is a recorded OS/runtime row, not success.
+Help/version are scent's own prose by design (scent README and oracle shape
+rule); no GNU prose or brand impersonation is required.
+
+Gates and plants
+----------------
+PAX unit/integration/typed tests, deterministic static builds, baseline
+Linux suite, guest results and rebuilt ISO all green at the final head.
+Plant a broken grep install path or missing wrapper in the smallest CI
+lane that exercises the typed session; record intended red, restore and
+record green. Use taskset0–3 for process witnesses and inspect signal masks
+before calling a signal row red. No kill by process group. Tests change
+with implementation; every SKIP is loud and counted.
+
+Done-when and hand-back
+-----------------------
+Five-section PR, chunked imperative commits, no trailers, Footprint:
+cross-cutting. No labels, merge, tag, release or issues filed/closed by the
+lane. Push final head after its whole local gate passes exactly there;
+read tier pr once, run lane-audit, hand back pending CI to the orchestrator.
+Report pin, both static digests, typed session path/count, ISO digest and
+boot evidence, syscall findings, all upstream-visible gaps, plant run id,
+audit last line, test exit/head and next steps. List issues, never file them.

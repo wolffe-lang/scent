@@ -1,0 +1,42 @@
+plan-test	Run python3 -I tools/m1-ci-test	﻿2026-10-23T16:38:35.8704772Z ##[group]Run python3 -I tools/m1-ci-test
+plan-test	Run python3 -I tools/m1-ci-test	2026-10-23T16:38:35.8706202Z ^[[36;1mpython3 -I tools/m1-ci-test^[[0m
+plan-test	Run python3 -I tools/m1-ci-test	2026-10-23T16:38:35.8775106Z shell: /usr/bin/bash -e {0}
+plan-test	Run python3 -I tools/m1-ci-test	2026-10-23T16:38:35.8776259Z ##[endgroup]
+plan-test	Run python3 -I tools/m1-ci-test	2026-10-23T16:38:35.9846479Z m1-cases: 5072 cases; 40 option rows x3 syntaxes x7 families x6 input forms plus32 sources/diagnostics
+plan-test	Run python3 -I tools/m1-ci-test	2026-10-23T16:38:36.1157666Z Traceback (most recent call last):
+plan-test	Run python3 -I tools/m1-ci-test	2026-10-23T16:38:36.1158924Z   File "/home/runner/work/scent/scent/tools/m1-ci-test", line 8, in <module>
+plan-test	Run python3 -I tools/m1-ci-test	2026-10-23T16:38:36.1160756Z     assert len(rows)>=M1_GATE_CASES, f'M1 gate floor violated: {len(rows)} < {M1_GATE_CASES}'
+plan-test	Run python3 -I tools/m1-ci-test	2026-10-23T16:38:36.1161980Z            ^^^^^^^^^^^^^^^^^^^^^^^^
+plan-test	Run python3 -I tools/m1-ci-test	2026-10-23T16:38:36.1162960Z AssertionError: M1 gate floor violated: 5072 < 5073
+plan-test	Run python3 -I tools/m1-ci-test	2026-10-23T16:38:36.1386243Z ##[error]Process completed with exit code 1.
+tier partial	Run python3 -I ci/tiers.py verdict	﻿2026-10-23T16:38:42.9244172Z ##[group]Run python3 -I ci/tiers.py verdict
+tier partial	Run python3 -I ci/tiers.py verdict	2026-10-23T16:38:42.9245045Z ^[[36;1mpython3 -I ci/tiers.py verdict^[[0m
+tier partial	Run python3 -I ci/tiers.py verdict	2026-10-23T16:38:42.9529442Z shell: /usr/bin/bash -e {0}
+tier partial	Run python3 -I ci/tiers.py verdict	2026-10-23T16:38:42.9530204Z env:
+tier partial	Run python3 -I ci/tiers.py verdict	2026-10-23T16:38:42.9532320Z   NEEDS: {
+tier partial	Run python3 -I ci/tiers.py verdict	  "plan": {
+tier partial	Run python3 -I ci/tiers.py verdict	    "result": "success",
+tier partial	Run python3 -I ci/tiers.py verdict	    "outputs": {
+tier partial	Run python3 -I ci/tiers.py verdict	      "tier": "partial",
+tier partial	Run python3 -I ci/tiers.py verdict	      "jobs": "[\"plan-test\"]"
+tier partial	Run python3 -I ci/tiers.py verdict	    }
+tier partial	Run python3 -I ci/tiers.py verdict	  },
+tier partial	Run python3 -I ci/tiers.py verdict	  "plan-test": {
+tier partial	Run python3 -I ci/tiers.py verdict	    "result": "failure",
+tier partial	Run python3 -I ci/tiers.py verdict	    "outputs": {}
+tier partial	Run python3 -I ci/tiers.py verdict	  },
+tier partial	Run python3 -I ci/tiers.py verdict	  "linux": {
+tier partial	Run python3 -I ci/tiers.py verdict	    "result": "skipped",
+tier partial	Run python3 -I ci/tiers.py verdict	    "outputs": {}
+tier partial	Run python3 -I ci/tiers.py verdict	  },
+tier partial	Run python3 -I ci/tiers.py verdict	  "macos": {
+tier partial	Run python3 -I ci/tiers.py verdict	    "result": "skipped",
+tier partial	Run python3 -I ci/tiers.py verdict	    "outputs": {}
+tier partial	Run python3 -I ci/tiers.py verdict	  }
+tier partial	Run python3 -I ci/tiers.py verdict	}
+tier partial	Run python3 -I ci/tiers.py verdict	2026-10-23T16:38:42.9534897Z ##[endgroup]
+tier partial	Run python3 -I ci/tiers.py verdict	2026-10-23T16:38:42.9912985Z tier partial: 1 of 3 job(s) chosen
+tier partial	Run python3 -I ci/tiers.py verdict	2026-10-23T16:38:42.9914095Z   plan-test          failure   WANTED success
+tier partial	Run python3 -I ci/tiers.py verdict	2026-10-23T16:38:42.9914987Z   linux              skipped   ok
+tier partial	Run python3 -I ci/tiers.py verdict	2026-10-23T16:38:42.9915800Z   macos              skipped   ok
+tier partial	Run python3 -I ci/tiers.py verdict	2026-10-23T16:38:42.9969008Z ##[error]Process completed with exit code 1.

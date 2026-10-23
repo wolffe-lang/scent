@@ -1,0 +1,1509 @@
+fetch-oracle: 92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea
+tiers-test: PASS T1 push is full
+tiers-test: PASS T1 schedule is full
+tiers-test: PASS T1 workflow_dispatch is full
+tiers-test: PASS T1 the full-matrix label is full
+tiers-test: PASS T1 another label is a noop
+tiers-test: PASS T1 a dispatch naming linux is partial
+tiers-test: PASS T1 a dispatch naming no job of the workflow is refused
+tiers-test: PASS T2 code is pr
+tiers-test: PASS T2 prose alone is a noop
+tiers-test: PASS T2 prose beside code is pr
+tiers-test: PASS T3 a path no rule names is full
+tiers-test: PASS T3 unreadable paths are full
+tiers-test: PASS T4 the jobs, in order: ['plan', 'plan-test', 'linux', 'macos', 'tier', 'nightly-red']
+tiers-test: PASS T4 plan-test needs the plan and runs only when it is named
+tiers-test: PASS T4 linux needs the plan and runs only when it is named
+tiers-test: PASS T4 macos needs the plan and runs only when it is named
+tiers-test: PASS T4 tier needs every job, runs unless cancelled, checks the verdict
+tiers-test: PASS T4 cancel-in-progress for pull requests only
+tiers-test: PASS T4 the trunk push, the nightly, the label and the dispatch input
+tiers-test: PASS T6 a green full
+tiers-test: PASS T6 a green pr
+tiers-test: PASS T6 a green noop
+tiers-test: PASS T6 a green partial
+tiers-test: PASS T6 a chosen job failed
+tiers-test: PASS T6 a chosen job skipped
+tiers-test: PASS T6 a job that ran unasked
+tiers-test: PASS T6 a full that chose less
+tiers-test: PASS T6 a failed plan
+tiers-test: PASS T6 a plan with no tier
+tiers-test: PASS T8 no open issue: one is opened, labelled nightly-red, titled 'nightly red: ci on trunk'
+tiers-test: PASS T8 an open issue: a comment on it, no new issue
+tiers-test: PASS T8 a label that already exists is no failure
+tiers-test: PASS T8 the script refuses to run without REPO, WORKFLOW and RUN_URL
+tiers-test: PASS T8 the workflow's name is ci, the title's
+tiers-test: PASS T8 nightly-red runs after the verdict, on a red schedule only, may write issues
+tiers-test: every check passes
+PASS regex CI wiring: 20000 generated pairs per syntax plus diagnostics, units and costs
+m1-cases: 5072 cases; 40 option rows x3 syntaxes x7 families x6 input forms plus32 sources/diagnostics
+PASS M1 CI wiring: 5072 generated cases; 117 exact reviewed divergences
+PASS exact review: digits-only scoped PID; every other stderr byte, stdout, status, stdin and GNU tuple guarded
+build: target/native/scent
+build: target/release/scent
+check-test: src/fixed_test.lu [checked] pass (exit(0))
+check-test: src/matcher_test.lu [checked] pass (exit(0))
+check-test: src/opts_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/linear_test.lu [checked] pass (exit(0))
+check-test: src/re/linear_test.lu [checked] pass (exit(0))
+check-test: src/re/linear_test.lu [checked] pass (exit(0))
+check-test: src/region_test.lu [checked] pass (exit(0))
+check-test: wolf test: 19 passed, 0 not passed (exit 0)
+fixed: 10 cases, 0 SKIP
+check-test: src/fixed_test.lu [native] ok
+check-test: src/fixed_test.lu [lupin] ok
+matcher: 6 cases, 0 SKIP
+check-test: src/matcher_test.lu [native] ok
+check-test: src/matcher_test.lu [lupin] ok
+opts: 6 cases, 0 SKIP
+grep: Perl matching not supported in a --disable-perl-regexp build
+check-test: src/opts_test.lu [native] ok
+check-test: src/opts_test.lu [lupin] ok
+region: 2 cases, 0 SKIP
+check-test: src/region_test.lu [native] ok
+check-test: src/region_test.lu [lupin] ok
+oracle-select-test: PASS chunk-00 1 agree / 0 differ / 0 not-yet
+oracle-select-test: PASS cross-*-chunk-00 3 agree / 0 differ / 0 not-yet
+oracle: RECORD /work/scent/.oracle/grep
+REVIEWED cross-F-middle-00 ruling 117
+REVIEWED cross-F-middle-01 ruling 117
+REVIEWED cross-F-middle-02 ruling 117
+REVIEWED cross-F-middle-03 ruling 117
+REVIEWED cross-F-middle-04 ruling 117
+REVIEWED cross-F-middle-05 ruling 117
+REVIEWED cross-F-middle-06 ruling 117
+REVIEWED cross-F-middle-07 ruling 117
+REVIEWED cross-F-middle-09 ruling 117
+REVIEWED cross-F-middle-10 ruling 117
+REVIEWED cross-F-middle-11 ruling 117
+REVIEWED cross-F-end-00 ruling 117
+REVIEWED cross-F-end-01 ruling 117
+REVIEWED cross-F-end-02 ruling 117
+REVIEWED cross-F-end-03 ruling 117
+REVIEWED cross-F-end-04 ruling 117
+REVIEWED cross-F-end-05 ruling 117
+REVIEWED cross-F-end-06 ruling 117
+REVIEWED cross-F-end-09 ruling 117
+REVIEWED cross-F-end-10 ruling 117
+REVIEWED cross-F-end-11 ruling 117
+REVIEWED cross-F-start-00 ruling 117
+REVIEWED cross-F-start-01 ruling 117
+REVIEWED cross-F-start-02 ruling 117
+REVIEWED cross-F-start-03 ruling 117
+REVIEWED cross-F-start-04 ruling 117
+REVIEWED cross-F-start-05 ruling 117
+REVIEWED cross-F-start-06 ruling 117
+REVIEWED cross-F-start-09 ruling 117
+REVIEWED cross-F-start-10 ruling 117
+REVIEWED cross-F-start-11 ruling 117
+REVIEWED cross-F-three-00 ruling 117
+REVIEWED cross-F-three-01 ruling 117
+REVIEWED cross-F-three-02 ruling 117
+REVIEWED cross-F-three-03 ruling 117
+REVIEWED cross-F-three-04 ruling 117
+REVIEWED cross-F-three-05 ruling 117
+REVIEWED cross-F-three-06 ruling 117
+REVIEWED cross-F-three-07 ruling 117
+REVIEWED cross-F-three-09 ruling 117
+REVIEWED cross-F-three-10 ruling 117
+REVIEWED cross-F-three-11 ruling 117
+REVIEWED cross-F-alone-00 ruling 117
+REVIEWED cross-F-alone-01 ruling 117
+REVIEWED cross-F-alone-02 ruling 117
+REVIEWED cross-F-alone-03 ruling 117
+REVIEWED cross-F-alone-04 ruling 117
+REVIEWED cross-F-alone-05 ruling 117
+REVIEWED cross-F-alone-06 ruling 117
+REVIEWED cross-F-alone-09 ruling 117
+REVIEWED cross-F-alone-10 ruling 117
+REVIEWED cross-F-alone-11 ruling 117
+progress 100 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 48, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 150 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 98, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 200 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 148, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 250 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 198, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 300 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 248, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 350 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 298, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 400 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 348, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 450 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 398, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 500 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 448, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 550 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 498, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 600 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 548, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 650 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 598, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 700 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 648, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 750 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 698, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 800 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 748, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+not-yet GNU not-yet-m2-0 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-0 M2 recursion/colour
+not-yet GNU not-yet-m2-1 status 0 stdout b'' stderr b'grep: bin/grep: binary file matches\n'
+not-yet not-yet-m2-1 M2 recursion/colour
+not-yet GNU not-yet-m2-2 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-2 M2 recursion/colour
+not-yet GNU not-yet-m2-3 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-3 M2 recursion/colour
+not-yet GNU not-yet-m2-4 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-4 M2 recursion/colour
+not-yet GNU not-yet-m2-5 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-5 M2 recursion/colour
+not-yet GNU not-yet-m2-6 status 2 stdout b'' stderr b'grep: p: No such file or directory\n'
+not-yet not-yet-m2-6 M2 recursion/colour
+not-yet GNU not-yet-m2-7 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-7 M2 recursion/colour
+not-yet GNU not-yet-m2-8 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-8 M2 recursion/colour
+REVIEWED not-yet-argv0-diagnostic-0 ruling R-ct02-5
+REVIEWED not-yet-argv0-diagnostic-1 ruling R-ct02-5
+REVIEWED not-yet-argv0-diagnostic-2 ruling R-ct02-5
+REVIEWED not-yet-argv0-usage-0 ruling R-ct02-5
+REVIEWED not-yet-argv0-usage-1 ruling R-ct02-5
+REVIEWED not-yet-argv0-usage-2 ruling R-ct02-5
+REVIEWED not-yet-argv-bytes-0 ruling R-ct02-6
+REVIEWED not-yet-argv-bytes-1 ruling R-ct02-6
+progress 850 {'upstream-blocked': 8, 'reviewed': 60, 'agree': 781, 'differ': 0, 'not-yet': 9, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 900 {'upstream-blocked': 8, 'reviewed': 60, 'agree': 831, 'differ': 0, 'not-yet': 9, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+not-yet GNU not-yet-directory-prefix-0 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-0 M2 directory action
+not-yet GNU not-yet-directory-prefix-1 status 1 stdout b'' stderr b''
+not-yet not-yet-directory-prefix-1 M2 directory action
+not-yet GNU not-yet-directory-prefix-2 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-2 M2 directory action
+REVIEWED nul-pattern-z ruling 117
+progress 950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 6000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+REVIEWED ruled-word-00 ruling 115
+REVIEWED ruled-word-01 ruling 115
+REVIEWED ruled-word-02 ruling 115
+REVIEWED ruled-word-03 ruling 115
+REVIEWED ruled-word-04 ruling 115
+REVIEWED ruled-word-05 ruling 115
+REVIEWED ruled-word-06 ruling 115
+REVIEWED ruled-word-07 ruling 115
+REVIEWED ruled-word-08 ruling 115
+REVIEWED ruled-word-09 ruling 115
+REVIEWED ruled-word-10 ruling 115
+REVIEWED ruled-word-11 ruling 115
+REVIEWED ruled-word-12 ruling 115
+REVIEWED ruled-word-13 ruling 115
+REVIEWED ruled-word-14 ruling 115
+REVIEWED ruled-word-15 ruling 115
+REVIEWED ruled-word-16 ruling 115
+REVIEWED ruled-word-17 ruling 115
+REVIEWED ruled-word-18 ruling 115
+REVIEWED ruled-word-19 ruling 115
+REVIEWED ruled-word-cli-G ruling 115
+REVIEWED ruled-word-cli-E ruling 115
+REVIEWED ruled-star-G-01-select ruling 116
+REVIEWED ruled-star-G-01-span ruling 116
+REVIEWED ruled-star-G-03-select ruling 116
+REVIEWED ruled-star-G-03-span ruling 116
+REVIEWED ruled-star-G-05-select ruling 116
+REVIEWED ruled-star-G-05-span ruling 116
+REVIEWED ruled-star-G-08-select ruling 116
+REVIEWED ruled-star-G-08-span ruling 116
+REVIEWED ruled-star-G-09-select ruling 116
+REVIEWED ruled-star-G-09-span ruling 116
+progress 6100 {'upstream-blocked': 8, 'reviewed': 93, 'agree': 5995, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+REVIEWED ruled-star-G-20-span ruling 116
+REVIEWED ruled-star-G-22-select ruling 116
+REVIEWED ruled-star-G-22-span ruling 116
+REVIEWED ruled-star-G-24-select ruling 116
+REVIEWED ruled-star-G-24-span ruling 116
+REVIEWED ruled-star-G-25-select ruling 116
+REVIEWED ruled-star-G-25-span ruling 116
+REVIEWED ruled-star-E-01-select ruling 116
+REVIEWED ruled-star-E-01-span ruling 116
+REVIEWED ruled-star-E-03-select ruling 116
+REVIEWED ruled-star-E-03-span ruling 116
+REVIEWED ruled-star-E-05-select ruling 116
+REVIEWED ruled-star-E-05-span ruling 116
+REVIEWED ruled-star-E-08-select ruling 116
+REVIEWED ruled-star-E-08-span ruling 116
+REVIEWED ruled-star-E-09-select ruling 116
+REVIEWED ruled-star-E-09-span ruling 116
+progress 6150 {'upstream-blocked': 8, 'reviewed': 110, 'agree': 6028, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+REVIEWED ruled-star-E-20-span ruling 116
+REVIEWED ruled-star-E-22-select ruling 116
+REVIEWED ruled-star-E-22-span ruling 116
+REVIEWED ruled-star-E-24-select ruling 116
+REVIEWED ruled-star-E-24-span ruling 116
+REVIEWED ruled-star-E-25-select ruling 116
+REVIEWED ruled-star-E-25-span ruling 116
+progress 6200 {'upstream-blocked': 8, 'reviewed': 117, 'agree': 6071, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+6078 agree / 0 differ / 12 not-yet
+117 reviewed divergences (including 8 upstream-blocked)
+not-yet columns: argv0-diagnostic=0 argv0-usage=0 argv-bytes=0 terminator-pattern=0
+oracle: RECORD /work/scent/.oracle/grep
+REVIEWED cross-F-middle-00 ruling 117
+REVIEWED cross-F-middle-01 ruling 117
+REVIEWED cross-F-middle-02 ruling 117
+REVIEWED cross-F-middle-03 ruling 117
+REVIEWED cross-F-middle-04 ruling 117
+REVIEWED cross-F-middle-05 ruling 117
+REVIEWED cross-F-middle-06 ruling 117
+REVIEWED cross-F-middle-07 ruling 117
+REVIEWED cross-F-middle-09 ruling 117
+REVIEWED cross-F-middle-10 ruling 117
+REVIEWED cross-F-middle-11 ruling 117
+REVIEWED cross-F-end-00 ruling 117
+REVIEWED cross-F-end-01 ruling 117
+REVIEWED cross-F-end-02 ruling 117
+REVIEWED cross-F-end-03 ruling 117
+REVIEWED cross-F-end-04 ruling 117
+REVIEWED cross-F-end-05 ruling 117
+REVIEWED cross-F-end-06 ruling 117
+REVIEWED cross-F-end-09 ruling 117
+REVIEWED cross-F-end-10 ruling 117
+REVIEWED cross-F-end-11 ruling 117
+REVIEWED cross-F-start-00 ruling 117
+REVIEWED cross-F-start-01 ruling 117
+REVIEWED cross-F-start-02 ruling 117
+REVIEWED cross-F-start-03 ruling 117
+REVIEWED cross-F-start-04 ruling 117
+REVIEWED cross-F-start-05 ruling 117
+REVIEWED cross-F-start-06 ruling 117
+REVIEWED cross-F-start-09 ruling 117
+REVIEWED cross-F-start-10 ruling 117
+REVIEWED cross-F-start-11 ruling 117
+REVIEWED cross-F-three-00 ruling 117
+REVIEWED cross-F-three-01 ruling 117
+REVIEWED cross-F-three-02 ruling 117
+REVIEWED cross-F-three-03 ruling 117
+REVIEWED cross-F-three-04 ruling 117
+REVIEWED cross-F-three-05 ruling 117
+REVIEWED cross-F-three-06 ruling 117
+REVIEWED cross-F-three-07 ruling 117
+REVIEWED cross-F-three-09 ruling 117
+REVIEWED cross-F-three-10 ruling 117
+REVIEWED cross-F-three-11 ruling 117
+REVIEWED cross-F-alone-00 ruling 117
+REVIEWED cross-F-alone-01 ruling 117
+REVIEWED cross-F-alone-02 ruling 117
+REVIEWED cross-F-alone-03 ruling 117
+REVIEWED cross-F-alone-04 ruling 117
+REVIEWED cross-F-alone-05 ruling 117
+REVIEWED cross-F-alone-06 ruling 117
+REVIEWED cross-F-alone-09 ruling 117
+REVIEWED cross-F-alone-10 ruling 117
+REVIEWED cross-F-alone-11 ruling 117
+progress 100 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 48, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 150 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 98, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 200 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 148, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 250 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 198, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 300 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 248, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 350 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 298, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 400 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 348, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 450 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 398, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 500 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 448, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 550 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 498, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 600 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 548, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 650 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 598, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 700 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 648, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 750 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 698, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 800 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 748, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+not-yet GNU not-yet-m2-0 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-0 M2 recursion/colour
+not-yet GNU not-yet-m2-1 status 0 stdout b'' stderr b'grep: bin/grep: binary file matches\n'
+not-yet not-yet-m2-1 M2 recursion/colour
+not-yet GNU not-yet-m2-2 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-2 M2 recursion/colour
+not-yet GNU not-yet-m2-3 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-3 M2 recursion/colour
+not-yet GNU not-yet-m2-4 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-4 M2 recursion/colour
+not-yet GNU not-yet-m2-5 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-5 M2 recursion/colour
+not-yet GNU not-yet-m2-6 status 2 stdout b'' stderr b'grep: p: No such file or directory\n'
+not-yet not-yet-m2-6 M2 recursion/colour
+not-yet GNU not-yet-m2-7 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-7 M2 recursion/colour
+not-yet GNU not-yet-m2-8 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-8 M2 recursion/colour
+REVIEWED not-yet-argv0-diagnostic-0 ruling R-ct02-5
+REVIEWED not-yet-argv0-diagnostic-1 ruling R-ct02-5
+REVIEWED not-yet-argv0-diagnostic-2 ruling R-ct02-5
+REVIEWED not-yet-argv0-usage-0 ruling R-ct02-5
+REVIEWED not-yet-argv0-usage-1 ruling R-ct02-5
+REVIEWED not-yet-argv0-usage-2 ruling R-ct02-5
+REVIEWED not-yet-argv-bytes-0 ruling R-ct02-6
+REVIEWED not-yet-argv-bytes-1 ruling R-ct02-6
+progress 850 {'upstream-blocked': 8, 'reviewed': 60, 'agree': 781, 'differ': 0, 'not-yet': 9, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 900 {'upstream-blocked': 8, 'reviewed': 60, 'agree': 831, 'differ': 0, 'not-yet': 9, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+not-yet GNU not-yet-directory-prefix-0 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-0 M2 directory action
+not-yet GNU not-yet-directory-prefix-1 status 1 stdout b'' stderr b''
+not-yet not-yet-directory-prefix-1 M2 directory action
+not-yet GNU not-yet-directory-prefix-2 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-2 M2 directory action
+REVIEWED nul-pattern-z ruling 117
+progress 950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 6000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+REVIEWED ruled-word-00 ruling 115
+REVIEWED ruled-word-01 ruling 115
+REVIEWED ruled-word-02 ruling 115
+REVIEWED ruled-word-03 ruling 115
+REVIEWED ruled-word-04 ruling 115
+REVIEWED ruled-word-05 ruling 115
+REVIEWED ruled-word-06 ruling 115
+REVIEWED ruled-word-07 ruling 115
+REVIEWED ruled-word-08 ruling 115
+REVIEWED ruled-word-09 ruling 115
+REVIEWED ruled-word-10 ruling 115
+REVIEWED ruled-word-11 ruling 115
+REVIEWED ruled-word-12 ruling 115
+REVIEWED ruled-word-13 ruling 115
+REVIEWED ruled-word-14 ruling 115
+REVIEWED ruled-word-15 ruling 115
+REVIEWED ruled-word-16 ruling 115
+REVIEWED ruled-word-17 ruling 115
+REVIEWED ruled-word-18 ruling 115
+REVIEWED ruled-word-19 ruling 115
+REVIEWED ruled-word-cli-G ruling 115
+REVIEWED ruled-word-cli-E ruling 115
+REVIEWED ruled-star-G-01-select ruling 116
+REVIEWED ruled-star-G-01-span ruling 116
+REVIEWED ruled-star-G-03-select ruling 116
+REVIEWED ruled-star-G-03-span ruling 116
+REVIEWED ruled-star-G-05-select ruling 116
+REVIEWED ruled-star-G-05-span ruling 116
+REVIEWED ruled-star-G-08-select ruling 116
+REVIEWED ruled-star-G-08-span ruling 116
+REVIEWED ruled-star-G-09-select ruling 116
+REVIEWED ruled-star-G-09-span ruling 116
+progress 6100 {'upstream-blocked': 8, 'reviewed': 93, 'agree': 5995, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+REVIEWED ruled-star-G-20-span ruling 116
+REVIEWED ruled-star-G-22-select ruling 116
+REVIEWED ruled-star-G-22-span ruling 116
+REVIEWED ruled-star-G-24-select ruling 116
+REVIEWED ruled-star-G-24-span ruling 116
+REVIEWED ruled-star-G-25-select ruling 116
+REVIEWED ruled-star-G-25-span ruling 116
+REVIEWED ruled-star-E-01-select ruling 116
+REVIEWED ruled-star-E-01-span ruling 116
+REVIEWED ruled-star-E-03-select ruling 116
+REVIEWED ruled-star-E-03-span ruling 116
+REVIEWED ruled-star-E-05-select ruling 116
+REVIEWED ruled-star-E-05-span ruling 116
+REVIEWED ruled-star-E-08-select ruling 116
+REVIEWED ruled-star-E-08-span ruling 116
+REVIEWED ruled-star-E-09-select ruling 116
+REVIEWED ruled-star-E-09-span ruling 116
+progress 6150 {'upstream-blocked': 8, 'reviewed': 110, 'agree': 6028, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+REVIEWED ruled-star-E-20-span ruling 116
+REVIEWED ruled-star-E-22-select ruling 116
+REVIEWED ruled-star-E-22-span ruling 116
+REVIEWED ruled-star-E-24-select ruling 116
+REVIEWED ruled-star-E-24-span ruling 116
+REVIEWED ruled-star-E-25-select ruling 116
+REVIEWED ruled-star-E-25-span ruling 116
+progress 6200 {'upstream-blocked': 8, 'reviewed': 117, 'agree': 6071, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+6078 agree / 0 differ / 12 not-yet
+117 reviewed divergences (including 8 upstream-blocked)
+not-yet columns: argv0-diagnostic=0 argv0-usage=0 argv-bytes=0 terminator-pattern=0
+fetch-oracle: pinned binary verified
+re-ci: 20000 generated pattern-line pairs per syntax; reviewed differences counted separately
+test src/re/compile_test.lu::test_compile_syntax_and_intervals ... ok
+test src/re/compile_test.lu::test_compile_brackets_and_assertions ... ok
+test src/re/compile_test.lu::test_parser_diagnostics_and_refs ... ok
+test src/re/compile_test.lu::test_backreference_path ... ok
+test src/re/compile_test.lu::test_empty_pattern_mebibyte ... ok
+test src/re/compile_test.lu::test_leading_interval_span ... ok
+test src/re/compile_test.lu::test_generated_diagnostic_regressions ... ok
+test src/re/compile_test.lu::test_literal_and_interval_validation_paths ... ok
+test src/re/compile_test.lu::test_interval_needs_content_after_operand ... ok
+test src/re/compile_test.lu::test_capture_in_nonfinal_alternative ... ok
+test src/re/compile_test.lu::test_backreference_projection_is_a_superset ... ok
+test src/re/compile_test.lu::test_adjacent_repeat_compatibility_policy ... ok
+test src/re/linear_test.lu::test_leftmost_longest ... ok
+test src/re/linear_test.lu::test_word_and_whole ... ok
+test src/re/linear_test.lu::test_empty_cycle_linear ... ok
+wolf test: 15 passed; 0 failed; 0 rejected; 0 unsupported; 0 filtered out
+diagnostics 0/6418; disagreements=0
+diagnostics 500/6418; disagreements=0
+diagnostics 1000/6418; disagreements=0
+diagnostics 1500/6418; disagreements=0
+diagnostics 2000/6418; disagreements=0
+diagnostics 2500/6418; disagreements=0
+diagnostics 3000/6418; disagreements=0
+diagnostics 3500/6418; disagreements=0
+diagnostics 4000/6418; disagreements=0
+diagnostics 4500/6418; disagreements=0
+diagnostics 5000/6418; disagreements=0
+diagnostics 5500/6418; disagreements=0
+diagnostics 6000/6418; disagreements=0
+6418 groups agree / 0 differ; 25672 pairs; SKIP=0
+progress 0/1839 groups; 0 blocking disagreements
+progress 100/1839 groups; 0 blocking disagreements
+progress 200/1839 groups; 0 blocking disagreements
+progress 300/1839 groups; 0 blocking disagreements
+progress 400/1839 groups; 0 blocking disagreements
+progress 500/1839 groups; 0 blocking disagreements
+progress 600/1839 groups; 0 blocking disagreements
+progress 700/1839 groups; 0 blocking disagreements
+progress 800/1839 groups; 0 blocking disagreements
+progress 900/1839 groups; 0 blocking disagreements
+progress 1000/1839 groups; 0 blocking disagreements
+progress 1100/1839 groups; 0 blocking disagreements
+progress 1200/1839 groups; 0 blocking disagreements
+progress 1300/1839 groups; 0 blocking disagreements
+progress 1400/1839 groups; 0 blocking disagreements
+progress 1500/1839 groups; 0 blocking disagreements
+progress 1600/1839 groups; 0 blocking disagreements
+progress 1700/1839 groups; 0 blocking disagreements
+progress 1800/1839 groups; 0 blocking disagreements
+basic generated agree 19958
+basic generated gnu-double-star-empty-capture 32
+basic generated word-span-divergence 10
+basic hand agree 3559
+basic mined agree 67
+extended generated agree 19958
+extended generated gnu-double-star-empty-capture 32
+extended generated word-span-divergence 10
+extended hand agree 3560
+extended mined agree 67
+basic selection agree 22462
+basic spans agree 22452
+basic spans differ 10
+basic status-diagnostics agree 23594
+extended selection agree 22440
+extended spans agree 22430
+extended spans differ 10
+extended status-diagnostics agree 23595
+PASS: no unapproved differences; approved span/extension rows counted separately; SKIP=0
+projection soak: 492 backreference groups from seed 11401, 100000 generated pairs per syntax
+projection basic generated compile-error 3104 pairs
+projection basic generated valid 3552 pairs
+projection basic hand compile-error 184 pairs
+projection basic hand valid 530 pairs
+projection extended generated compile-error 3104 pairs
+projection extended generated valid 3552 pairs
+projection extended hand compile-error 115 pairs
+projection extended hand valid 599 pairs
+14740 pairs identical / 0 differ (0 groups); SKIP=0
+cost start (a*)*b bytes=1000
+cost result (a*)*b 1000 median_match_ns=109605 compile_ns=14040
+cost start (a*)*b bytes=10000
+cost result (a*)*b 10000 median_match_ns=1069798 compile_ns=10628
+cost start (a*)*b bytes=100000
+cost result (a*)*b 100000 median_match_ns=10858352 compile_ns=14667
+cost start (a|aa)*c bytes=1000
+cost result (a|aa)*c 1000 median_match_ns=164494 compile_ns=13585
+cost start (a|aa)*c bytes=10000
+cost result (a|aa)*c 10000 median_match_ns=1699839 compile_ns=11491
+cost start (a|aa)*c bytes=100000
+cost result (a|aa)*c 100000 median_match_ns=17068615 compile_ns=11214
+cost start ((a{2,3}){2,3}){2,3} bytes=1000
+cost result ((a{2,3}){2,3}){2,3} 1000 median_match_ns=23631 compile_ns=15938
+cost start ((a{2,3}){2,3}){2,3} bytes=10000
+cost result ((a{2,3}){2,3}){2,3} 10000 median_match_ns=24172 compile_ns=16949
+cost start ((a{2,3}){2,3}){2,3} bytes=100000
+cost result ((a{2,3}){2,3}){2,3} 100000 median_match_ns=34222 compile_ns=17925
+cost start (a?){1}a{1} bytes=1000
+cost result (a?){1}a{1} 1000 median_match_ns=8503 compile_ns=14045
+cost start (a?){1}a{1} bytes=10000
+cost result (a?){1}a{1} 10000 median_match_ns=11907 compile_ns=12663
+cost start (a?){1}a{1} bytes=100000
+cost result (a?){1}a{1} 100000 median_match_ns=12968 compile_ns=12760
+cost start (a?){2}a{2} bytes=1000
+cost result (a?){2}a{2} 1000 median_match_ns=12131 compile_ns=13721
+cost start (a?){2}a{2} bytes=10000
+cost result (a?){2}a{2} 10000 median_match_ns=10369 compile_ns=12630
+cost start (a?){2}a{2} bytes=100000
+cost result (a?){2}a{2} 100000 median_match_ns=14668 compile_ns=13372
+cost start (a?){3}a{3} bytes=1000
+cost result (a?){3}a{3} 1000 median_match_ns=12594 compile_ns=15662
+cost start (a?){3}a{3} bytes=10000
+cost result (a?){3}a{3} 10000 median_match_ns=13208 compile_ns=16207
+cost start (a?){3}a{3} bytes=100000
+cost result (a?){3}a{3} 100000 median_match_ns=13777 compile_ns=12744
+cost start (a?){4}a{4} bytes=1000
+cost result (a?){4}a{4} 1000 median_match_ns=14112 compile_ns=13808
+cost start (a?){4}a{4} bytes=10000
+cost result (a?){4}a{4} 10000 median_match_ns=14875 compile_ns=12429
+cost start (a?){4}a{4} bytes=100000
+cost result (a?){4}a{4} 100000 median_match_ns=16176 compile_ns=13755
+cost start (a?){5}a{5} bytes=1000
+cost result (a?){5}a{5} 1000 median_match_ns=13714 compile_ns=14695
+cost start (a?){5}a{5} bytes=10000
+cost result (a?){5}a{5} 10000 median_match_ns=14852 compile_ns=9935
+cost start (a?){5}a{5} bytes=100000
+cost result (a?){5}a{5} 100000 median_match_ns=17138 compile_ns=15661
+cost start (a?){6}a{6} bytes=1000
+cost result (a?){6}a{6} 1000 median_match_ns=14982 compile_ns=15686
+cost start (a?){6}a{6} bytes=10000
+cost result (a?){6}a{6} 10000 median_match_ns=18178 compile_ns=18703
+cost start (a?){6}a{6} bytes=100000
+cost result (a?){6}a{6} 100000 median_match_ns=19048 compile_ns=16411
+cost start (a?){7}a{7} bytes=1000
+cost result (a?){7}a{7} 1000 median_match_ns=21620 compile_ns=14253
+cost start (a?){7}a{7} bytes=10000
+cost result (a?){7}a{7} 10000 median_match_ns=19523 compile_ns=10190
+cost start (a?){7}a{7} bytes=100000
+cost result (a?){7}a{7} 100000 median_match_ns=19522 compile_ns=15716
+cost start (a?){8}a{8} bytes=1000
+cost result (a?){8}a{8} 1000 median_match_ns=20971 compile_ns=14453
+cost start (a?){8}a{8} bytes=10000
+cost result (a?){8}a{8} 10000 median_match_ns=21369 compile_ns=14148
+cost start (a?){8}a{8} bytes=100000
+cost result (a?){8}a{8} 100000 median_match_ns=24608 compile_ns=18516
+cost start (a?){9}a{9} bytes=1000
+cost result (a?){9}a{9} 1000 median_match_ns=24049 compile_ns=17434
+cost start (a?){9}a{9} bytes=10000
+cost result (a?){9}a{9} 10000 median_match_ns=25007 compile_ns=13201
+cost start (a?){9}a{9} bytes=100000
+cost result (a?){9}a{9} 100000 median_match_ns=25403 compile_ns=10802
+cost start (a?){10}a{10} bytes=1000
+cost result (a?){10}a{10} 1000 median_match_ns=26078 compile_ns=15930
+cost start (a?){10}a{10} bytes=10000
+cost result (a?){10}a{10} 10000 median_match_ns=28293 compile_ns=18908
+cost start (a?){10}a{10} bytes=100000
+cost result (a?){10}a{10} 100000 median_match_ns=30335 compile_ns=16672
+cost start (a?){11}a{11} bytes=1000
+cost result (a?){11}a{11} 1000 median_match_ns=29247 compile_ns=14375
+cost start (a?){11}a{11} bytes=10000
+cost result (a?){11}a{11} 10000 median_match_ns=30326 compile_ns=13099
+cost start (a?){11}a{11} bytes=100000
+cost result (a?){11}a{11} 100000 median_match_ns=31852 compile_ns=18820
+cost start (a?){12}a{12} bytes=1000
+cost result (a?){12}a{12} 1000 median_match_ns=31735 compile_ns=17760
+cost start (a?){12}a{12} bytes=10000
+cost result (a?){12}a{12} 10000 median_match_ns=40226 compile_ns=10816
+cost start (a?){12}a{12} bytes=100000
+cost result (a?){12}a{12} 100000 median_match_ns=34437 compile_ns=17419
+cost start (a?){13}a{13} bytes=1000
+cost result (a?){13}a{13} 1000 median_match_ns=38002 compile_ns=24394
+cost start (a?){13}a{13} bytes=10000
+cost result (a?){13}a{13} 10000 median_match_ns=37446 compile_ns=12276
+cost start (a?){13}a{13} bytes=100000
+cost result (a?){13}a{13} 100000 median_match_ns=37507 compile_ns=19255
+cost start (a?){14}a{14} bytes=1000
+cost result (a?){14}a{14} 1000 median_match_ns=39634 compile_ns=19648
+cost start (a?){14}a{14} bytes=10000
+cost result (a?){14}a{14} 10000 median_match_ns=42153 compile_ns=14587
+cost start (a?){14}a{14} bytes=100000
+cost result (a?){14}a{14} 100000 median_match_ns=42498 compile_ns=17509
+cost start (a?){15}a{15} bytes=1000
+cost result (a?){15}a{15} 1000 median_match_ns=43005 compile_ns=19363
+cost start (a?){15}a{15} bytes=10000
+cost result (a?){15}a{15} 10000 median_match_ns=44812 compile_ns=16661
+cost start (a?){15}a{15} bytes=100000
+cost result (a?){15}a{15} 100000 median_match_ns=45624 compile_ns=19042
+cost start (a?){16}a{16} bytes=1000
+cost result (a?){16}a{16} 1000 median_match_ns=48222 compile_ns=25526
+cost start (a?){16}a{16} bytes=10000
+cost result (a?){16}a{16} 10000 median_match_ns=52280 compile_ns=14985
+cost start (a?){16}a{16} bytes=100000
+cost result (a?){16}a{16} 100000 median_match_ns=50647 compile_ns=21635
+cost start (a?){17}a{17} bytes=1000
+cost result (a?){17}a{17} 1000 median_match_ns=55568 compile_ns=18532
+cost start (a?){17}a{17} bytes=10000
+cost result (a?){17}a{17} 10000 median_match_ns=53326 compile_ns=19837
+cost start (a?){17}a{17} bytes=100000
+cost result (a?){17}a{17} 100000 median_match_ns=56460 compile_ns=19429
+cost start (a?){18}a{18} bytes=1000
+cost result (a?){18}a{18} 1000 median_match_ns=55591 compile_ns=22263
+cost start (a?){18}a{18} bytes=10000
+cost result (a?){18}a{18} 10000 median_match_ns=60890 compile_ns=18475
+cost start (a?){18}a{18} bytes=100000
+cost result (a?){18}a{18} 100000 median_match_ns=63260 compile_ns=21254
+cost start (a?){19}a{19} bytes=1000
+cost result (a?){19}a{19} 1000 median_match_ns=61988 compile_ns=22652
+cost start (a?){19}a{19} bytes=10000
+cost result (a?){19}a{19} 10000 median_match_ns=67148 compile_ns=18704
+cost start (a?){19}a{19} bytes=100000
+cost result (a?){19}a{19} 100000 median_match_ns=70246 compile_ns=22740
+cost start (a?){20}a{20} bytes=1000
+cost result (a?){20}a{20} 1000 median_match_ns=68728 compile_ns=19554
+cost start (a?){20}a{20} bytes=10000
+cost result (a?){20}a{20} 10000 median_match_ns=69494 compile_ns=13429
+cost start (a?){20}a{20} bytes=100000
+cost result (a?){20}a{20} 100000 median_match_ns=77064 compile_ns=20808
+cost start (a?){21}a{21} bytes=1000
+cost result (a?){21}a{21} 1000 median_match_ns=73322 compile_ns=20754
+cost start (a?){21}a{21} bytes=10000
+cost result (a?){21}a{21} 10000 median_match_ns=76578 compile_ns=18841
+cost start (a?){21}a{21} bytes=100000
+cost result (a?){21}a{21} 100000 median_match_ns=78028 compile_ns=17769
+cost start (a?){22}a{22} bytes=1000
+cost result (a?){22}a{22} 1000 median_match_ns=79958 compile_ns=22759
+cost start (a?){22}a{22} bytes=10000
+cost result (a?){22}a{22} 10000 median_match_ns=81598 compile_ns=18921
+cost start (a?){22}a{22} bytes=100000
+cost result (a?){22}a{22} 100000 median_match_ns=84968 compile_ns=24491
+cost start (a?){23}a{23} bytes=1000
+cost result (a?){23}a{23} 1000 median_match_ns=87794 compile_ns=25134
+cost start (a?){23}a{23} bytes=10000
+cost result (a?){23}a{23} 10000 median_match_ns=92656 compile_ns=23284
+cost start (a?){23}a{23} bytes=100000
+cost result (a?){23}a{23} 100000 median_match_ns=89894 compile_ns=21131
+cost start (a?){24}a{24} bytes=1000
+cost result (a?){24}a{24} 1000 median_match_ns=89259 compile_ns=24278
+cost start (a?){24}a{24} bytes=10000
+cost result (a?){24}a{24} 10000 median_match_ns=96369 compile_ns=18311
+cost start (a?){24}a{24} bytes=100000
+cost result (a?){24}a{24} 100000 median_match_ns=99539 compile_ns=23771
+cost start (a?){25}a{25} bytes=1000
+cost result (a?){25}a{25} 1000 median_match_ns=101338 compile_ns=24680
+cost start (a?){25}a{25} bytes=10000
+cost result (a?){25}a{25} 10000 median_match_ns=100607 compile_ns=19564
+cost start (a?){25}a{25} bytes=100000
+cost result (a?){25}a{25} 100000 median_match_ns=103813 compile_ns=22427
+cost start (a?){26}a{26} bytes=1000
+cost result (a?){26}a{26} 1000 median_match_ns=118047 compile_ns=29109
+cost start (a?){26}a{26} bytes=10000
+cost result (a?){26}a{26} 10000 median_match_ns=108744 compile_ns=19504
+cost start (a?){26}a{26} bytes=100000
+cost result (a?){26}a{26} 100000 median_match_ns=114012 compile_ns=22449
+cost start (a?){27}a{27} bytes=1000
+cost result (a?){27}a{27} 1000 median_match_ns=118555 compile_ns=25660
+cost start (a?){27}a{27} bytes=10000
+cost result (a?){27}a{27} 10000 median_match_ns=134741 compile_ns=18418
+cost start (a?){27}a{27} bytes=100000
+cost result (a?){27}a{27} 100000 median_match_ns=118324 compile_ns=24792
+cost start (a?){28}a{28} bytes=1000
+cost result (a?){28}a{28} 1000 median_match_ns=118090 compile_ns=25305
+cost start (a?){28}a{28} bytes=10000
+cost result (a?){28}a{28} 10000 median_match_ns=123637 compile_ns=15966
+cost start (a?){28}a{28} bytes=100000
+cost result (a?){28}a{28} 100000 median_match_ns=126010 compile_ns=24830
+cost start (a?){29}a{29} bytes=1000
+cost result (a?){29}a{29} 1000 median_match_ns=131722 compile_ns=27656
+cost start (a?){29}a{29} bytes=10000
+cost result (a?){29}a{29} 10000 median_match_ns=135137 compile_ns=23505
+cost start (a?){29}a{29} bytes=100000
+cost result (a?){29}a{29} 100000 median_match_ns=136314 compile_ns=23860
+cost start (a?){30}a{30} bytes=1000
+cost result (a?){30}a{30} 1000 median_match_ns=136389 compile_ns=30764
+cost start (a?){30}a{30} bytes=10000
+cost result (a?){30}a{30} 10000 median_match_ns=146987 compile_ns=24373
+cost start (a?){30}a{30} bytes=100000
+cost result (a?){30}a{30} 100000 median_match_ns=143079 compile_ns=23615
+backreference start (a*)\1 bytes=10
+{"family": "(a*)\\1", "bytes": 10, "backreference": true, "engine": {"compile_ns": 15630, "match_ns": 25582, "instructions": 12, "visits": 6, "peak_frames": 24, "selected": true, "wall_ns": 5476247, "peak_rss_bytes": 15831040}, "oracle": {"empty_input": {"wall_ns": 1946068, "status": 1, "stderr": ""}, "full": {"wall_ns": 738124, "status": 0, "stderr": ""}}}
+backreference start (a*)\1 bytes=100
+{"family": "(a*)\\1", "bytes": 100, "backreference": true, "engine": {"compile_ns": 13094, "match_ns": 93001, "instructions": 12, "visits": 6, "peak_frames": 204, "selected": true, "wall_ns": 5469734, "peak_rss_bytes": 15831040}, "oracle": {"empty_input": {"wall_ns": 1984942, "status": 1, "stderr": ""}, "full": {"wall_ns": 852739, "status": 0, "stderr": ""}}}
+backreference start (a*)\1 bytes=1000
+{"family": "(a*)\\1", "bytes": 1000, "backreference": true, "engine": {"compile_ns": 14213, "match_ns": 773471, "instructions": 12, "visits": 6, "peak_frames": 2004, "selected": true, "wall_ns": 5636868, "peak_rss_bytes": 15831040}, "oracle": {"empty_input": {"wall_ns": 1978317, "status": 1, "stderr": ""}, "full": {"wall_ns": 9783069, "status": 0, "stderr": ""}}}
+backreference start (a|aa)*\1b bytes=12
+{"family": "(a|aa)*\\1b", "bytes": 12, "backreference": true, "engine": {"compile_ns": 13498, "match_ns": 15523, "instructions": 20, "visits": 115, "peak_frames": 0, "selected": false, "wall_ns": 5487508, "peak_rss_bytes": 15831040}, "oracle": {"empty_input": {"wall_ns": 1958262, "status": 1, "stderr": ""}, "full": {"wall_ns": 1729617, "status": 1, "stderr": ""}}}
+backreference start (a|aa)*\1b bytes=18
+{"family": "(a|aa)*\\1b", "bytes": 18, "backreference": true, "engine": {"compile_ns": 14721, "match_ns": 7510, "instructions": 20, "visits": 169, "peak_frames": 0, "selected": false, "wall_ns": 5454608, "peak_rss_bytes": 15831040}, "oracle": {"empty_input": {"wall_ns": 2083193, "status": 1, "stderr": ""}, "full": {"wall_ns": 1998928, "status": 1, "stderr": ""}}}
+backreference start (a|aa)*\1b bytes=24
+{"family": "(a|aa)*\\1b", "bytes": 24, "backreference": true, "engine": {"compile_ns": 16078, "match_ns": 8858, "instructions": 20, "visits": 223, "peak_frames": 0, "selected": false, "wall_ns": 5578567, "peak_rss_bytes": 15831040}, "oracle": {"empty_input": {"wall_ns": 2055523, "status": 1, "stderr": ""}, "full": {"wall_ns": 1790111, "status": 1, "stderr": ""}}}
+backreference start (a|aa)*\1b bytes=1000
+{"family": "(a|aa)*\\1b", "bytes": 1000, "backreference": true, "engine": {"compile_ns": 17380, "match_ns": 268792, "instructions": 20, "visits": 9007, "peak_frames": 0, "selected": false, "wall_ns": 5512043, "peak_rss_bytes": 15831040}, "oracle": {"empty_input": {"wall_ns": 997798, "status": 1, "stderr": ""}, "full": {"wall_ns": 1652674, "status": 1, "stderr": ""}}}
+backreference start (a|aa)*\1b bytes=10000
+{"family": "(a|aa)*\\1b", "bytes": 10000, "backreference": true, "engine": {"compile_ns": 15398, "match_ns": 2263216, "instructions": 20, "visits": 90007, "peak_frames": 0, "selected": false, "wall_ns": 5503618, "peak_rss_bytes": 15831040}, "oracle": {"empty_input": {"wall_ns": 2059836, "status": 1, "stderr": ""}, "full": {"wall_ns": 1774070, "status": 1, "stderr": ""}}}
+backreference start (a|aa)*\1b bytes=100000
+{"family": "(a|aa)*\\1b", "bytes": 100000, "backreference": true, "engine": {"compile_ns": 18228, "match_ns": 22520723, "instructions": 20, "visits": 900007, "peak_frames": 0, "selected": false, "wall_ns": 25945250, "peak_rss_bytes": 15831040}, "oracle": {"empty_input": {"wall_ns": 952112, "status": 1, "stderr": ""}, "full": {"wall_ns": 1747978, "status": 1, "stderr": ""}}}
+backreference start ^(a+)\1+$ bytes=32
+{"family": "^(a+)\\1+$", "bytes": 32, "backreference": true, "engine": {"compile_ns": 10386, "match_ns": 41511, "instructions": 22, "visits": 260, "peak_frames": 68, "selected": true, "wall_ns": 5603024, "peak_rss_bytes": 15831040}, "oracle": {"empty_input": {"wall_ns": 2090382, "status": 1, "stderr": ""}, "full": {"timeout": 10}}}
+backreference start ^(a+)\1+$ bytes=128
+{"family": "^(a+)\\1+$", "bytes": 128, "backreference": true, "engine": {"compile_ns": 15240, "match_ns": 155839, "instructions": 22, "visits": 1028, "peak_frames": 260, "selected": true, "wall_ns": 5615276, "peak_rss_bytes": 15831040}, "oracle": {"empty_input": {"wall_ns": 2021912, "status": 1, "stderr": ""}, "full": {"timeout": 10}}}
+backreference start ^(a+)\1+$ bytes=512
+{"family": "^(a+)\\1+$", "bytes": 512, "backreference": true, "engine": {"compile_ns": 14610, "match_ns": 563137, "instructions": 22, "visits": 4100, "peak_frames": 1028, "selected": true, "wall_ns": 5787858, "peak_rss_bytes": 15831040}, "oracle": {"empty_input": {"wall_ns": 2119636, "status": 1, "stderr": ""}, "full": {"timeout": 10}}}
+large interval start a{1,32767}
+{"family": "a{1,32767}", "bytes": 1, "large_interval": true, "engine": {"compile_ns": 5425283, "match_ns": 2894220, "instructions": 131068, "visits": 65535, "peak_frames": 0, "selected": true, "wall_ns": 21155030, "peak_rss_bytes": 25493504}, "oracle": {"empty_input": {"timeout": 10}, "full": {"timeout": 10}}}
+large interval start (a{1,1000}){1,1000}
+{"family": "(a{1,1000}){1,1000}", "bytes": 1, "large_interval": true, "engine": {"compile_ns": 136706889, "match_ns": 862265, "instructions": 4000000, "visits": 3999, "peak_frames": 0, "selected": true, "wall_ns": 285534891, "peak_rss_bytes": 729755648}, "oracle": {"empty_input": {"timeout": 10}, "full": {"timeout": 10}}}
+large interval start a{1,32768}
+{"family": "a{1,32768}", "bytes": 1, "large_interval": true, "engine": {"status": 2, "diagnostic": "Regular expression too big\n", "wall_ns": 5596786, "peak_rss_bytes": 15831040}, "oracle": {"empty_input": {"wall_ns": 1960624, "status": 2, "stderr": "2f776f726b2f7363656e742f2e6f7261636c652f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"}, "full": {"wall_ns": 1798556, "status": 2, "stderr": "2f776f726b2f7363656e742f2e6f7261636c652f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"}}}
+large interval start a{32768}
+{"family": "a{32768}", "bytes": 1, "large_interval": true, "engine": {"status": 2, "diagnostic": "Regular expression too big\n", "wall_ns": 5561717, "peak_rss_bytes": 15831040}, "oracle": {"empty_input": {"wall_ns": 1924997, "status": 2, "stderr": "2f776f726b2f7363656e742f2e6f7261636c652f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"}, "full": {"wall_ns": 1710189, "status": 2, "stderr": "2f776f726b2f7363656e742f2e6f7261636c652f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"}}}
+PASS cost gate; timeouts explicitly counted; SKIP=0
+progress 0/1839 groups; 0 blocking disagreements
+progress 100/1839 groups; 0 blocking disagreements
+progress 200/1839 groups; 0 blocking disagreements
+progress 300/1839 groups; 0 blocking disagreements
+progress 400/1839 groups; 0 blocking disagreements
+progress 500/1839 groups; 0 blocking disagreements
+progress 600/1839 groups; 0 blocking disagreements
+progress 700/1839 groups; 0 blocking disagreements
+progress 800/1839 groups; 0 blocking disagreements
+progress 900/1839 groups; 0 blocking disagreements
+progress 1000/1839 groups; 0 blocking disagreements
+progress 1100/1839 groups; 0 blocking disagreements
+progress 1200/1839 groups; 0 blocking disagreements
+progress 1300/1839 groups; 0 blocking disagreements
+progress 1400/1839 groups; 0 blocking disagreements
+progress 1500/1839 groups; 0 blocking disagreements
+progress 1600/1839 groups; 0 blocking disagreements
+progress 1700/1839 groups; 0 blocking disagreements
+progress 1800/1839 groups; 0 blocking disagreements
+basic generated agree 19958
+basic generated gnu-double-star-empty-capture 32
+basic generated word-span-divergence 10
+basic hand agree 3559
+basic mined agree 67
+extended generated agree 19958
+extended generated gnu-double-star-empty-capture 32
+extended generated word-span-divergence 10
+extended hand agree 3560
+extended mined agree 67
+basic selection agree 22462
+basic spans agree 22452
+basic spans differ 10
+basic status-diagnostics agree 23594
+extended selection agree 22440
+extended spans agree 22430
+extended spans differ 10
+extended status-diagnostics agree 23595
+PASS: no unapproved differences; approved span/extension rows counted separately; SKIP=0
+build: target/static/scent
+build: target/static/scent
+scent 0.1.0
+GPL-3.0-or-later with the wolf Training Data Permission.
+scent bd860457f2ff97591b7525da5f46c186feee4b8266d3f51b121866b001135d89 14846984
+scent (built twice, the same digest); stripped: 1362232 bytes, sha256 19140490d909473f9cd4a4d8bb18e71375b296deed03821a411a338e512da7c8
+linked against: /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/libc.a
+oracle: RECORD /work/scent/.oracle/grep
+REVIEWED cross-F-middle-00 ruling 117
+REVIEWED cross-F-middle-01 ruling 117
+REVIEWED cross-F-middle-02 ruling 117
+REVIEWED cross-F-middle-03 ruling 117
+REVIEWED cross-F-middle-04 ruling 117
+REVIEWED cross-F-middle-05 ruling 117
+REVIEWED cross-F-middle-06 ruling 117
+REVIEWED cross-F-middle-07 ruling 117
+REVIEWED cross-F-middle-09 ruling 117
+REVIEWED cross-F-middle-10 ruling 117
+REVIEWED cross-F-middle-11 ruling 117
+REVIEWED cross-F-end-00 ruling 117
+REVIEWED cross-F-end-01 ruling 117
+REVIEWED cross-F-end-02 ruling 117
+REVIEWED cross-F-end-03 ruling 117
+REVIEWED cross-F-end-04 ruling 117
+REVIEWED cross-F-end-05 ruling 117
+REVIEWED cross-F-end-06 ruling 117
+REVIEWED cross-F-end-09 ruling 117
+REVIEWED cross-F-end-10 ruling 117
+REVIEWED cross-F-end-11 ruling 117
+REVIEWED cross-F-start-00 ruling 117
+REVIEWED cross-F-start-01 ruling 117
+REVIEWED cross-F-start-02 ruling 117
+REVIEWED cross-F-start-03 ruling 117
+REVIEWED cross-F-start-04 ruling 117
+REVIEWED cross-F-start-05 ruling 117
+REVIEWED cross-F-start-06 ruling 117
+REVIEWED cross-F-start-09 ruling 117
+REVIEWED cross-F-start-10 ruling 117
+REVIEWED cross-F-start-11 ruling 117
+REVIEWED cross-F-three-00 ruling 117
+REVIEWED cross-F-three-01 ruling 117
+REVIEWED cross-F-three-02 ruling 117
+REVIEWED cross-F-three-03 ruling 117
+REVIEWED cross-F-three-04 ruling 117
+REVIEWED cross-F-three-05 ruling 117
+REVIEWED cross-F-three-06 ruling 117
+REVIEWED cross-F-three-07 ruling 117
+REVIEWED cross-F-three-09 ruling 117
+REVIEWED cross-F-three-10 ruling 117
+REVIEWED cross-F-three-11 ruling 117
+REVIEWED cross-F-alone-00 ruling 117
+REVIEWED cross-F-alone-01 ruling 117
+REVIEWED cross-F-alone-02 ruling 117
+REVIEWED cross-F-alone-03 ruling 117
+REVIEWED cross-F-alone-04 ruling 117
+REVIEWED cross-F-alone-05 ruling 117
+REVIEWED cross-F-alone-06 ruling 117
+REVIEWED cross-F-alone-09 ruling 117
+REVIEWED cross-F-alone-10 ruling 117
+REVIEWED cross-F-alone-11 ruling 117
+progress 100 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 48, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 150 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 98, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 200 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 148, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 250 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 198, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 300 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 248, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 350 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 298, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 400 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 348, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 450 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 398, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 500 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 448, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 550 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 498, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 600 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 548, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 650 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 598, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 700 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 648, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 750 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 698, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 800 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 748, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+not-yet GNU not-yet-m2-0 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-0 M2 recursion/colour
+not-yet GNU not-yet-m2-1 status 0 stdout b'' stderr b'grep: bin/grep: binary file matches\n'
+not-yet not-yet-m2-1 M2 recursion/colour
+not-yet GNU not-yet-m2-2 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-2 M2 recursion/colour
+not-yet GNU not-yet-m2-3 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-3 M2 recursion/colour
+not-yet GNU not-yet-m2-4 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-4 M2 recursion/colour
+not-yet GNU not-yet-m2-5 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-5 M2 recursion/colour
+not-yet GNU not-yet-m2-6 status 2 stdout b'' stderr b'grep: p: No such file or directory\n'
+not-yet not-yet-m2-6 M2 recursion/colour
+not-yet GNU not-yet-m2-7 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-7 M2 recursion/colour
+not-yet GNU not-yet-m2-8 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-8 M2 recursion/colour
+REVIEWED not-yet-argv0-diagnostic-0 ruling R-ct02-5
+REVIEWED not-yet-argv0-diagnostic-1 ruling R-ct02-5
+REVIEWED not-yet-argv0-diagnostic-2 ruling R-ct02-5
+REVIEWED not-yet-argv0-usage-0 ruling R-ct02-5
+REVIEWED not-yet-argv0-usage-1 ruling R-ct02-5
+REVIEWED not-yet-argv0-usage-2 ruling R-ct02-5
+REVIEWED not-yet-argv-bytes-0 ruling R-ct02-6
+REVIEWED not-yet-argv-bytes-1 ruling R-ct02-6
+progress 850 {'upstream-blocked': 8, 'reviewed': 60, 'agree': 781, 'differ': 0, 'not-yet': 9, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 900 {'upstream-blocked': 8, 'reviewed': 60, 'agree': 831, 'differ': 0, 'not-yet': 9, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+not-yet GNU not-yet-directory-prefix-0 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-0 M2 directory action
+not-yet GNU not-yet-directory-prefix-1 status 1 stdout b'' stderr b''
+not-yet not-yet-directory-prefix-1 M2 directory action
+not-yet GNU not-yet-directory-prefix-2 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-2 M2 directory action
+REVIEWED nul-pattern-z ruling 117
+progress 950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 6000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+REVIEWED ruled-word-00 ruling 115
+REVIEWED ruled-word-01 ruling 115
+REVIEWED ruled-word-02 ruling 115
+REVIEWED ruled-word-03 ruling 115
+REVIEWED ruled-word-04 ruling 115
+REVIEWED ruled-word-05 ruling 115
+REVIEWED ruled-word-06 ruling 115
+REVIEWED ruled-word-07 ruling 115
+REVIEWED ruled-word-08 ruling 115
+REVIEWED ruled-word-09 ruling 115
+REVIEWED ruled-word-10 ruling 115
+REVIEWED ruled-word-11 ruling 115
+REVIEWED ruled-word-12 ruling 115
+REVIEWED ruled-word-13 ruling 115
+REVIEWED ruled-word-14 ruling 115
+REVIEWED ruled-word-15 ruling 115
+REVIEWED ruled-word-16 ruling 115
+REVIEWED ruled-word-17 ruling 115
+REVIEWED ruled-word-18 ruling 115
+REVIEWED ruled-word-19 ruling 115
+REVIEWED ruled-word-cli-G ruling 115
+REVIEWED ruled-word-cli-E ruling 115
+REVIEWED ruled-star-G-01-select ruling 116
+REVIEWED ruled-star-G-01-span ruling 116
+REVIEWED ruled-star-G-03-select ruling 116
+REVIEWED ruled-star-G-03-span ruling 116
+REVIEWED ruled-star-G-05-select ruling 116
+REVIEWED ruled-star-G-05-span ruling 116
+REVIEWED ruled-star-G-08-select ruling 116
+REVIEWED ruled-star-G-08-span ruling 116
+REVIEWED ruled-star-G-09-select ruling 116
+REVIEWED ruled-star-G-09-span ruling 116
+progress 6100 {'upstream-blocked': 8, 'reviewed': 93, 'agree': 5995, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+REVIEWED ruled-star-G-20-span ruling 116
+REVIEWED ruled-star-G-22-select ruling 116
+REVIEWED ruled-star-G-22-span ruling 116
+REVIEWED ruled-star-G-24-select ruling 116
+REVIEWED ruled-star-G-24-span ruling 116
+REVIEWED ruled-star-G-25-select ruling 116
+REVIEWED ruled-star-G-25-span ruling 116
+REVIEWED ruled-star-E-01-select ruling 116
+REVIEWED ruled-star-E-01-span ruling 116
+REVIEWED ruled-star-E-03-select ruling 116
+REVIEWED ruled-star-E-03-span ruling 116
+REVIEWED ruled-star-E-05-select ruling 116
+REVIEWED ruled-star-E-05-span ruling 116
+REVIEWED ruled-star-E-08-select ruling 116
+REVIEWED ruled-star-E-08-span ruling 116
+REVIEWED ruled-star-E-09-select ruling 116
+REVIEWED ruled-star-E-09-span ruling 116
+progress 6150 {'upstream-blocked': 8, 'reviewed': 110, 'agree': 6028, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+REVIEWED ruled-star-E-20-span ruling 116
+REVIEWED ruled-star-E-22-select ruling 116
+REVIEWED ruled-star-E-22-span ruling 116
+REVIEWED ruled-star-E-24-select ruling 116
+REVIEWED ruled-star-E-24-span ruling 116
+REVIEWED ruled-star-E-25-select ruling 116
+REVIEWED ruled-star-E-25-span ruling 116
+progress 6200 {'upstream-blocked': 8, 'reviewed': 117, 'agree': 6071, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+6078 agree / 0 differ / 12 not-yet
+117 reviewed divergences (including 8 upstream-blocked)
+not-yet columns: argv0-diagnostic=0 argv0-usage=0 argv-bytes=0 terminator-pattern=0
+memory {"argv": ["-F", "-c", "needle"], "bytes": 2147483648, "scent": {"peak_rss_kib": 2384.0, "seconds": 5.93, "output_bytes": 9}, "gnu": {"peak_rss_kib": 2116.0, "seconds": 0.78, "output_bytes": 9}}
+memory {"argv": ["-F", "-n", "needle"], "bytes": 2147483648, "scent": {"peak_rss_kib": 2600.0, "seconds": 8.68, "output_bytes": 1219181213}, "gnu": {"peak_rss_kib": 2032.0, "seconds": 1.88, "output_bytes": 1219181213}}
+memory gate: PASS; performance recorded, not gated
+PASS ct02 whole joined gate; SKIP=0
+debconf: delaying package configuration, since apt-utils is not installed
+PAX posture: LANG=unset; no locale data; static scent; baseline glibc
+oracle: RECORD /work/scent/.oracle/grep
+REVIEWED cross-F-middle-00 ruling 117
+REVIEWED cross-F-middle-01 ruling 117
+REVIEWED cross-F-middle-02 ruling 117
+REVIEWED cross-F-middle-03 ruling 117
+REVIEWED cross-F-middle-04 ruling 117
+REVIEWED cross-F-middle-05 ruling 117
+REVIEWED cross-F-middle-06 ruling 117
+REVIEWED cross-F-middle-07 ruling 117
+REVIEWED cross-F-middle-09 ruling 117
+REVIEWED cross-F-middle-10 ruling 117
+REVIEWED cross-F-middle-11 ruling 117
+REVIEWED cross-F-end-00 ruling 117
+REVIEWED cross-F-end-01 ruling 117
+REVIEWED cross-F-end-02 ruling 117
+REVIEWED cross-F-end-03 ruling 117
+REVIEWED cross-F-end-04 ruling 117
+REVIEWED cross-F-end-05 ruling 117
+REVIEWED cross-F-end-06 ruling 117
+REVIEWED cross-F-end-09 ruling 117
+REVIEWED cross-F-end-10 ruling 117
+REVIEWED cross-F-end-11 ruling 117
+REVIEWED cross-F-start-00 ruling 117
+REVIEWED cross-F-start-01 ruling 117
+REVIEWED cross-F-start-02 ruling 117
+REVIEWED cross-F-start-03 ruling 117
+REVIEWED cross-F-start-04 ruling 117
+REVIEWED cross-F-start-05 ruling 117
+REVIEWED cross-F-start-06 ruling 117
+REVIEWED cross-F-start-09 ruling 117
+REVIEWED cross-F-start-10 ruling 117
+REVIEWED cross-F-start-11 ruling 117
+REVIEWED cross-F-three-00 ruling 117
+REVIEWED cross-F-three-01 ruling 117
+REVIEWED cross-F-three-02 ruling 117
+REVIEWED cross-F-three-03 ruling 117
+REVIEWED cross-F-three-04 ruling 117
+REVIEWED cross-F-three-05 ruling 117
+REVIEWED cross-F-three-06 ruling 117
+REVIEWED cross-F-three-07 ruling 117
+REVIEWED cross-F-three-09 ruling 117
+REVIEWED cross-F-three-10 ruling 117
+REVIEWED cross-F-three-11 ruling 117
+REVIEWED cross-F-alone-00 ruling 117
+REVIEWED cross-F-alone-01 ruling 117
+REVIEWED cross-F-alone-02 ruling 117
+REVIEWED cross-F-alone-03 ruling 117
+REVIEWED cross-F-alone-04 ruling 117
+REVIEWED cross-F-alone-05 ruling 117
+REVIEWED cross-F-alone-06 ruling 117
+REVIEWED cross-F-alone-09 ruling 117
+REVIEWED cross-F-alone-10 ruling 117
+REVIEWED cross-F-alone-11 ruling 117
+progress 100 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 48, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 150 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 98, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 200 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 148, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 250 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 198, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 300 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 248, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 350 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 298, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 400 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 348, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 450 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 398, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 500 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 448, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 550 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 498, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 600 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 548, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 650 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 598, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 700 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 648, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 750 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 698, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 800 {'upstream-blocked': 0, 'reviewed': 52, 'agree': 748, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+not-yet GNU not-yet-m2-0 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-0 M2 recursion/colour
+not-yet GNU not-yet-m2-1 status 0 stdout b'' stderr b'grep: bin/grep: binary file matches\n'
+not-yet not-yet-m2-1 M2 recursion/colour
+not-yet GNU not-yet-m2-2 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-2 M2 recursion/colour
+not-yet GNU not-yet-m2-3 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-3 M2 recursion/colour
+not-yet GNU not-yet-m2-4 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-4 M2 recursion/colour
+not-yet GNU not-yet-m2-5 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-5 M2 recursion/colour
+not-yet GNU not-yet-m2-6 status 2 stdout b'' stderr b'grep: p: No such file or directory\n'
+not-yet not-yet-m2-6 M2 recursion/colour
+not-yet GNU not-yet-m2-7 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-7 M2 recursion/colour
+not-yet GNU not-yet-m2-8 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-8 M2 recursion/colour
+REVIEWED not-yet-argv0-diagnostic-0 ruling R-ct02-5
+REVIEWED not-yet-argv0-diagnostic-1 ruling R-ct02-5
+REVIEWED not-yet-argv0-diagnostic-2 ruling R-ct02-5
+REVIEWED not-yet-argv0-usage-0 ruling R-ct02-5
+REVIEWED not-yet-argv0-usage-1 ruling R-ct02-5
+REVIEWED not-yet-argv0-usage-2 ruling R-ct02-5
+REVIEWED not-yet-argv-bytes-0 ruling R-ct02-6
+REVIEWED not-yet-argv-bytes-1 ruling R-ct02-6
+progress 850 {'upstream-blocked': 8, 'reviewed': 60, 'agree': 781, 'differ': 0, 'not-yet': 9, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 900 {'upstream-blocked': 8, 'reviewed': 60, 'agree': 831, 'differ': 0, 'not-yet': 9, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+not-yet GNU not-yet-directory-prefix-0 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-0 M2 directory action
+not-yet GNU not-yet-directory-prefix-1 status 1 stdout b'' stderr b''
+not-yet not-yet-directory-prefix-1 M2 directory action
+not-yet GNU not-yet-directory-prefix-2 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-2 M2 directory action
+REVIEWED nul-pattern-z ruling 117
+progress 950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 1977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 2977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 3950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 3977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 4950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5050 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 4977, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5100 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5027, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5150 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5077, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5200 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5127, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5250 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5177, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5300 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5227, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5350 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5277, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5400 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5327, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5450 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5377, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5500 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5427, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5550 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5477, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5600 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5527, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5650 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5577, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5700 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5627, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5750 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5677, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5800 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5727, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5850 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5777, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5900 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5827, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 5950 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5877, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 6000 {'upstream-blocked': 8, 'reviewed': 61, 'agree': 5927, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+REVIEWED ruled-word-00 ruling 115
+REVIEWED ruled-word-01 ruling 115
+REVIEWED ruled-word-02 ruling 115
+REVIEWED ruled-word-03 ruling 115
+REVIEWED ruled-word-04 ruling 115
+REVIEWED ruled-word-05 ruling 115
+REVIEWED ruled-word-06 ruling 115
+REVIEWED ruled-word-07 ruling 115
+REVIEWED ruled-word-08 ruling 115
+REVIEWED ruled-word-09 ruling 115
+REVIEWED ruled-word-10 ruling 115
+REVIEWED ruled-word-11 ruling 115
+REVIEWED ruled-word-12 ruling 115
+REVIEWED ruled-word-13 ruling 115
+REVIEWED ruled-word-14 ruling 115
+REVIEWED ruled-word-15 ruling 115
+REVIEWED ruled-word-16 ruling 115
+REVIEWED ruled-word-17 ruling 115
+REVIEWED ruled-word-18 ruling 115
+REVIEWED ruled-word-19 ruling 115
+REVIEWED ruled-word-cli-G ruling 115
+REVIEWED ruled-word-cli-E ruling 115
+REVIEWED ruled-star-G-01-select ruling 116
+REVIEWED ruled-star-G-01-span ruling 116
+REVIEWED ruled-star-G-03-select ruling 116
+REVIEWED ruled-star-G-03-span ruling 116
+REVIEWED ruled-star-G-05-select ruling 116
+REVIEWED ruled-star-G-05-span ruling 116
+REVIEWED ruled-star-G-08-select ruling 116
+REVIEWED ruled-star-G-08-span ruling 116
+REVIEWED ruled-star-G-09-select ruling 116
+REVIEWED ruled-star-G-09-span ruling 116
+progress 6100 {'upstream-blocked': 8, 'reviewed': 93, 'agree': 5995, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+REVIEWED ruled-star-G-20-span ruling 116
+REVIEWED ruled-star-G-22-select ruling 116
+REVIEWED ruled-star-G-22-span ruling 116
+REVIEWED ruled-star-G-24-select ruling 116
+REVIEWED ruled-star-G-24-span ruling 116
+REVIEWED ruled-star-G-25-select ruling 116
+REVIEWED ruled-star-G-25-span ruling 116
+REVIEWED ruled-star-E-01-select ruling 116
+REVIEWED ruled-star-E-01-span ruling 116
+REVIEWED ruled-star-E-03-select ruling 116
+REVIEWED ruled-star-E-03-span ruling 116
+REVIEWED ruled-star-E-05-select ruling 116
+REVIEWED ruled-star-E-05-span ruling 116
+REVIEWED ruled-star-E-08-select ruling 116
+REVIEWED ruled-star-E-08-span ruling 116
+REVIEWED ruled-star-E-09-select ruling 116
+REVIEWED ruled-star-E-09-span ruling 116
+progress 6150 {'upstream-blocked': 8, 'reviewed': 110, 'agree': 6028, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+REVIEWED ruled-star-E-20-span ruling 116
+REVIEWED ruled-star-E-22-select ruling 116
+REVIEWED ruled-star-E-22-span ruling 116
+REVIEWED ruled-star-E-24-select ruling 116
+REVIEWED ruled-star-E-24-span ruling 116
+REVIEWED ruled-star-E-25-select ruling 116
+REVIEWED ruled-star-E-25-span ruling 116
+progress 6200 {'upstream-blocked': 8, 'reviewed': 117, 'agree': 6071, 'differ': 0, 'not-yet': 12, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+6078 agree / 0 differ / 12 not-yet
+117 reviewed divergences (including 8 upstream-blocked)
+not-yet columns: argv0-diagnostic=0 argv0-usage=0 argv-bytes=0 terminator-pattern=0
+ct02 preview exit 0

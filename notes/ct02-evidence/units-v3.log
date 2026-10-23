@@ -1,0 +1,33 @@
+check-test: src/fixed_test.lu [checked] pass (exit(0))
+check-test: src/matcher_test.lu [checked] pass (exit(0))
+check-test: src/opts_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/linear_test.lu [checked] pass (exit(0))
+check-test: src/re/linear_test.lu [checked] pass (exit(0))
+check-test: src/re/linear_test.lu [checked] pass (exit(0))
+check-test: src/region_test.lu [checked] pass (exit(0))
+check-test: wolf test: 19 passed, 0 not passed (exit 0)
+fixed: 10 cases, 0 SKIP
+check-test: src/fixed_test.lu [native] ok
+check-test: src/fixed_test.lu [lupin] ok
+matcher: 6 cases, 0 SKIP
+check-test: src/matcher_test.lu [native] ok
+check-test: src/matcher_test.lu [lupin] ok
+opts: 6 cases, 0 SKIP
+grep: Perl matching not supported in a --disable-perl-regexp build
+check-test: src/opts_test.lu [native] ok
+check-test: src/opts_test.lu [lupin] ok
+region: 2 cases, 0 SKIP
+check-test: src/region_test.lu [native] ok
+check-test: src/region_test.lu [lupin] ok

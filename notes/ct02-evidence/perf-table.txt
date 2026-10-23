@@ -1,0 +1,22 @@
+Performance: kasumi CPUs12–15, own ct02-ci Ubuntu container, shared flock.
+256MiB generated text, stdout pipe drained (never /dev/null), 3 runs, medians.
+argv | scent seconds | GNU seconds | ratio
+-F needle | 0.943047 | 0.136708 | 6.90x
+-F -i NEEDLE | 0.948930 | 0.143561 | 6.61x
+-F -c needle | 0.786662 | 0.101383 | 7.76x
+-F -v -c needle | 0.785999 | 0.102804 | 7.65x
+-G needle | 2.999908 | 0.139292 | 21.54x
+-G n[e]edle | 2.934134 | 0.141164 | 20.79x
+-G needle\|absent | 4.111974 | 0.126558 | 32.49x
+-G n\(e\)\1dle | 3.504440 | 1.876243 | 1.87x
+-G -i NEEDLE | 3.049060 | 0.141790 | 21.50x
+-G -v -c needle | 2.796533 | 0.105696 | 26.46x
+-E needle | 2.931999 | 0.142369 | 20.59x
+-E n[e]edle | 2.996710 | 0.133694 | 22.41x
+-E needle|absent | 4.045422 | 0.123436 | 32.77x
+-E n(e)\1dle | 3.384148 | 1.853102 | 1.83x
+-E -i NEEDLE | 2.943961 | 0.143414 | 20.53x
+-E -v -c needle | 2.695635 | 0.098778 | 27.29x
+Memory: 2GiB, peak RSS gate <32768KiB.
+-F -c needle scent=2400.0KiB GNU=2188.0KiB output=9 bytes
+-F -n needle scent=2684.0KiB GNU=1936.0KiB output=1219181213 bytes

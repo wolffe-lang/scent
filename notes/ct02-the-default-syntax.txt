@@ -1,0 +1,121 @@
+ct02 — the default syntax
+
+Summary
+-------
+The immutable BRE/ERE engine is joined to the CLI beside the KMP -F path.
+M1 is defined with the maintainer's explicit #115–#117 consistency choices
+and eight named upstream-blocked rows, not a claim that every byte equals
+GNU. The final whole-head exit/commit and CI's first status are delivered
+in the PR and hand-back, not predicted in this tracked note.
+
+Changes
+-------
+wolf0.2.35, paired lupin0.1.56, bundled std2386522. The input-is-output
+check now compares fs_fstat_record(fd) and fs_fstat_record(1), dev/ino words
+9/10; it never path-stats /dev/stdout. The three Darwin regression cases
+remain in the field leg; no Mac build/test ran here. This change closes#4
+at merge, subject to the orchestrator's macOS field result.
+
+Pattern sources retain file/line error provenance, identical byte patterns
+compile once, and -P refuses as soon as its option is seen. Context -o
+execution selects each history buffer before using the regex span cache.
+The default G/E refusals are gone. Terminator-bearing patterns never match
+across records, under every syntax; the normal bounded reader is unchanged.
+
+Own egrep/fgrep adapters require /bin/sh, warn on stderr even for --help,
+prepend -E/-F and reject a later conflicting syntax. They exec bare grep
+found beside them, not an argv0 identity guess. Packaging drafts build
+source at future v0.1.0 with an exact compiler archive; no tag/package was
+published. PAX's full follow-on contract is notes/ct02-evidence/px-scent-contract.txt.
+
+Evidence
+--------
+5072 generated CLI rows: 40 option rows x3 syntax x7 pattern families x6
+input forms plus32 source/diagnostic rows. The first matrix was4942 agree/
+130 differ:126 -P precedence errors plus4 duplicate/provenance errors.
+The repaired generated matrix was5072 agree/0 differ, no skipped rows.
+The 150 lifted ct01 family cases are94 agree+56 reviewed, including22 word
+and34 double-star differences. All original32 double-star pairs per
+syntax are now also pinned with both complete engine answers; matching a
+family name alone can no longer waive a new input/output.
+The 216 NUL rows are164 agree+52 reviewed; the two original NUL rows add one agreement and one reviewed difference.
+The 98304-byte boundary witness is agreement, not an exception. Wrappers:
+18/18. Nine -o/context/cache joins also agree. All8 upstream rows actually
+execute argv0/byte argv; they are not ct00's old metadata placeholders.
+
+Exact reviewed entries lock case SHA256 and GNU/scent stdout, stderr,
+status, remaining stdin. A disappeared divergence goes red too. Only the
+PID in two invalid-UTF8 runtime panics is typed; the test rejects nondigits
+and changes to every other stderr byte and the other result fields.
+README's published-differences tables give every rule/witness and all8
+upstream names. tests/divergences.json is the byte-exact machine record.
+
+The CI floor plant is run39988443414 at d2f4ae2, plan-test job120533706775:
+M1 gate floor violated5072<5073. fe8d53b restores the original good gate.
+notes/ct02-evidence/ci-plant.log retains the actual failed step; the good
+gate was committed before the plant. No label was added.
+
+Performance is recorded, not gated: notes/ct02-evidence/measure.json,
+perf.log and perf-table.txt hold all16 rows (256MiB,3 runs, drained pipe).
+-G literal2.999908s vs-F0.943047s, about3.18x, not the predicted12x.
+Against GNU the-G literal ratio is21.54x; alternation is32.49x. M4 owns
+speed; these are not2x claims. Peak RSS over2GiB is recorded in the same
+file and remains below32MiB. The first perf attempt had a harness control
+byte typo in a backreference and failed loudly; only the corrected whole
+run is the reported result, exit0.
+
+wolf test now reports19 checked rows,0 failures:4 CLI programs and15 engine
+rows. All4 CLI programs also run natively and on lupin. An initial new unit
+used nonexistent panic(); corrected to assert+return. lupin then exposed
+an alias-resolution gap for re imported as regex; direct module imports
+resolve on all three lanes without a skip. Exact-head acceptance also
+runs native/release regex differential, diagnostics, projection and costs.
+
+Findings
+--------
+#115/R-ct02-1: keep whole-word leftmost-longest; publish GNU's omitted spans.
+#116/R-ct02-2: ** means*; publish lost empty-capture paths. A short GNU bug
+report is drafted in evidence; not sent.
+#117/R-ct02-4: never cross a terminator; GNU-F's same-read crossing is a
+published divergence, not a new lookahead adapter.
+R-ct02-3: own shell wrappers, accepted. R-ct02-5: PAX installs grep as a
+symlink; no private name-override interface, accepted. R-ct02-6: digits-only
+PID field in two exact upstream panic records, accepted.
+
+Upstream retirement: six argv0 diagnostic/usage rows cite wolf-lang#899/
+#904, two invalid-UTF8 argv abort rows cite#406/#904. A PAX user sees fixed
+grep prefixes for full-path invalid-option/alternate names and can trigger
+those two byte-argument aborts. Ordinary grep file/regex errors already
+name grep. Help/version use scent prose by design. The px draft checks
+/bin/sh, preserves the wrappers, pins user/scent.pin, installs/bin/scent
+and the3 compatibility names, adds typed mpx5 sessions and rebuilds/boots
+the dev ISO.
+
+Issues to file, none filed here: wolf-interp alias-qualified re.compile
+fails to resolve at0.1.56 although native/checked resolve it (retained
+units-v2 log; a minimized alias import witness is still advisable before
+filing). Existing wolf-lang#406/#899/#904 gaps are not duplicated. The GNU
+report for the double-star witness is drafted for the maintainer to send.
+Close scent#4 by hand only after the final macOS field evidence is checked.
+
+Checklist
+---------
+Clean room held: specifications, existing own-code headers and binary-only
+GNU probes. No GNU/gnulib/glibc regex/busybox/PCRE2 implementation read.
+All builds/tests/measurements ran in own kasumi containers on12–15 under
+the shared flock; no Mac build/test/config, no host packages, no labels,
+no merge/tag/release/issue action, no attribution trailers, ~/.claude untouched.
+README refreshed in its own commit. Toolchain APIs and archives checked
+twice. Preliminary whole acceptance is green, exit0: native, release, static and
+plain-Ubuntu/no-LANG/no-locale-data each6078 agree/0 unapproved differences/
+109 published GNU-consistency differences/8 upstream-blocked/12 M2 not-yet.
+The216-row NUL matrix is164+52; its original2 witnesses add1+1.
+Static built twice: bd860457f2ff97591b7525da5f46c186feee4b8266d3f51b121866b001135d89,
+14846984 bytes. Stripped1362232 bytes, digest
+19140490d909473f9cd4a4d8bb18e71375b296deed03821a411a338e512da7c8.
+The raw preview-whole.log includes the no-LANG posture line and all gate
+summaries; static-sums.txt and memory.json are copied from that run.
+The final committed head is rerun after this evidence lands; its exact
+exit/head and first CI status are reported in the PR and hand-back.
+
+Footprint: cross-cutting
