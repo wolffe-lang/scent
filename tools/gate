@@ -3,7 +3,11 @@
 set -euo pipefail
 root=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
 cd "$root"
-export SCENT_ROOT=$root SCENT_IN_CONTAINER=1
+export SCENT_ROOT=$root
+if [ "${SCENT_IN_CONTAINER:-}" != 1 ]; then
+    echo "STOP: run tools/gate inside the pinned lane container" >&2
+    exit 2
+fi
 ulimit -c 0
 python3 -I ci/tiers-test.py
 python3 -I tools/re-ci-test
