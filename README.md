@@ -18,7 +18,7 @@ recursion and terminal colour are later work. `-P` deliberately gives the
 same refusal as the configured GNU build. UTF-8 locale semantics follow
 later; C-locale `-i` folds ASCII only.
 
-The corpus contains 954 cases, including 80 comparisons mined from
+The corpus contains 958 cases, including 80 comparisons mined from
 [ferp](https://github.com/FortranGoingOnForty/ferp), each with a source-line
 citation. Unconnected syntax/features and runtime limitations are counted
 explicitly as not-yet, never as passes. Until
