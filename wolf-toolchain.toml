@@ -1,0 +1,31 @@
+# scent toolchain: aspen 476edee3 wolf-toolchain.toml shape, re-derived ct00.
+# 2026-10-23: latest published wolf v0.2.34. Release APIs 419552903
+# (wolf) and 418932753 (lupin) read twice; all digests equal both times.
+# Linux x86-64 archives downloaded on kasumi and hashed twice, equal
+# to these API digests. wolf --version line 2 pairs lupin 0.1.55 at
+# 294d626; bundled std/STD-REV e036bec318ad81ecd5a025612bc2c2adb17527f3.
+# Full release archives are staged: libwolf_rt.a must remain beside wolf.
+# macOS archives are API-pinned; local Mac never builds. CI builds there.
+
+[wolf]
+version = "0.2.34"
+repo = "wolffe-lang/wolf-lang"
+rev = "9da7bdcf2aea9adf48df6570bedc58e16e9ef853"
+version_line = "wolf 0.2.34 (wolfgang, pin 9da7bdc)"
+aarch64-apple-darwin = "29c8331f5d188b00c4580bc7677b1238891c5734d00b0512df10c60eab236ee3"
+x86_64-unknown-linux-gnu = "88a9dd3da1c9a0e38c08eb6e2de9c1ef04d1ed93dcf51024d8dbbb76890c1821"
+aarch64-unknown-linux-gnu = "ca5cadf936dc0d4396e92733fc65e953d549f3b61f0aa354e7be2e78ea8c3ad0"
+
+[lupin]
+version = "0.1.55"
+repo = "wolffe-lang/wolf-interp"
+rev = "e642f2630ad4c7f53740428d5cca705f2e0d295b"
+version_line = "lupin 0.1.55 (wolf-interp, reference interpreter at pin 294d626)"
+aarch64-apple-darwin = "2eac1cccdc8a5bec5831787604098982a7ac42e41561a037c3b5ccf0ac21741a"
+x86_64-unknown-linux-gnu = "1152abc0bef65d334b94bc881a26463fac345919cc2ca07a291796e6048a8a38"
+aarch64-unknown-linux-gnu = "5854ab268a835bb75749bce7601441858ac342351906a0838e8602e4edbd45d7"
+
+[std]
+# The tree is pinned by commit: git's object hash is the digest.
+repo = "wolffe-lang/wolf-std"
+rev = "e036bec318ad81ecd5a025612bc2c2adb17527f3"

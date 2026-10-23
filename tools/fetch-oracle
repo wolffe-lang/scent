@@ -1,0 +1,9 @@
+#!/bin/sh
+# Prior art: boreutils 12de639f tools/fetch-oracle. Clean-room: build
+# only; nobody reads a source file, nor prints the configure/make logs.
+set -eu
+SCENT_ROOT=$(cd "$(dirname "$0")/.." && pwd)
+export SCENT_ROOT
+cd "$SCENT_ROOT"
+if [ "${SCENT_IN_CONTAINER:-}" != 1 ]; then exec tools/in-container tools/fetch-oracle "$@"; fi
+exec python3 -I tools/fetch-oracle.py "$@"
