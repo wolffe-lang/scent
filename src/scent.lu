@@ -14,11 +14,11 @@ fn input(path: str) -> int ! {not_found, denied, io} {
     fs_open(path)?
 }
 
-fn add_patterns(mut patterns: List[List[byte]], bytes: List[byte], explicit: bool) {
+fn add_patterns(mut patterns: List[List[byte]], bytes: List[byte], explicit: bool, zero: bool) {
     var lo: int = 0
     var at: int = 0
     while at < bytes.len {
-        if bytes[at] == 10 as byte {
+        if bytes[at] == 10 as byte || zero && bytes[at] == 0 as byte {
             (mut patterns).push(bytes[lo..at])
             lo = at + 1
         }
@@ -55,7 +55,7 @@ fn run(o: opts.Options) -> int {
     var patterns = List[List[byte]]()
     for source in o.sources {
         if !source.file {
-            add_patterns(mut patterns, source.text.bytes(), true)
+            add_patterns(mut patterns, source.text.bytes(), true, o.zero)
         } else {
             let fd = input(source.text) else |_| {
                 eprint("{opts.program()}: {source.text}: {os_error_text(os_error())}")
@@ -73,7 +73,7 @@ fn run(o: opts.Options) -> int {
                 for b in chunk { (mut all).push(b) }
             }
             if fd != 0 { fs_close(fd) else |_| {} }
-            add_patterns(mut patterns, all, false)
+            add_patterns(mut patterns, all, false, o.zero)
         }
     }
     if o.syntax == "P" {
@@ -106,6 +106,24 @@ fn run(o: opts.Options) -> int {
                 if !o.silent { eprint("{opts.program()}: {path}: {os_error_text(code)}") }
                 error = true
                 continue
+            }
+            if !o.quiet && !o.count && o.listing == 0 {
+                let input_path = if path == "-" then "/dev/stdin" else path
+                let input_info = fs_stat(input_path) else List[int]()
+                let output_info = fs_stat("/dev/stdout") else List[int]()
+                if input_info.len > 10 &&
+                    output_info.len > 10 &&
+                    input_info[0] == 0 &&
+                    output_info[0] == 0 &&
+                    input_info[9] == output_info[9] &&
+                    input_info[10] == output_info[10] {
+                    if !o.silent {
+                        eprint("{opts.program()}: {name}: input file is also the output")
+                    }
+                    error = true
+                    if fd != 0 { fs_close(fd) else |_| {} }
+                    continue
+                }
             }
             let result = reader.scan(o, re, fd, name, path == "-", mut grouped)
             if fd != 0 { fs_close(fd) else |_| {} }

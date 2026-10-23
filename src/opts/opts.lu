@@ -108,7 +108,7 @@ fn problem(mut o: Options, text: str, brief: bool) -> bool {
 // measured by the cases long-prefix-*. Aliases with equal actions do
 // not create ambiguity (color/colour, quiet/silent).
 fn long_names() -> List[str] {
-    "basic-regexp,extended-regexp,fixed-regexp,fixed-strings,perl-regexp,after-context,before-context,binary-files,byte-offset,count,color,colour,context,devices,directories,exclude,exclude-from,exclude-dir,file,files-with-matches,files-without-match,group-separator,help,include,ignore-case,no-ignore-case,initial-tab,label,line-buffered,line-number,line-regexp,max-count,no-filename,no-group-separator,no-messages,null,null-data,only-matching,quiet,recursive,dereference-recursive,regexp,silent,text,binary,invert-match,version,with-filename,word-regexp".
+    "basic-regexp,extended-regexp,fixed-regexp,fixed-strings,perl-regexp,after-context,before-context,binary-files,byte-offset,context,color,colour,count,devices,directories,exclude,exclude-from,exclude-dir,file,files-with-matches,files-without-match,group-separator,help,include,ignore-case,no-ignore-case,initial-tab,label,line-buffered,line-number,line-regexp,max-count,no-filename,no-group-separator,no-messages,null,null-data,only-matching,quiet,recursive,dereference-recursive,regexp,silent,text,binary,invert-match,version,with-filename,word-regexp".
         split(",")
 }
 
@@ -165,24 +165,23 @@ fn argument(key: str) -> int {
 }
 
 fn number(text: str, negative: bool) -> int ! {invalid} {
-    if text.len == 0 {
-        return invalid
-    }
     var at: int = 0
+    while at < text.len {
+        let b = text.bytes()[at] as int
+        if b != 32 && (b < 9 || b > 13) { break }
+        at += 1
+    }
+    if at == text.len { return invalid }
     var neg = false
-    if text.starts_with("+") || text.starts_with("-") {
-        neg = text.starts_with("-")
-        at = 1
+    if text.bytes()[at] == 43 as byte || text.bytes()[at] == 45 as byte {
+        neg = text.bytes()[at] == 45 as byte
+        at += 1
     }
-    if at == text.len || neg && !negative {
-        return invalid
-    }
+    if at == text.len { return invalid }
     var value: int = 0
     while at < text.len {
         let b = text.bytes()[at] as int
-        if b < 48 || b > 57 {
-            return invalid
-        }
+        if b < 48 || b > 57 { return invalid }
         if value <= (9223372036854775807 - (b - 48)) / 10 {
             value = value * 10 + b - 48
         } else {
@@ -190,7 +189,8 @@ fn number(text: str, negative: bool) -> int ! {invalid} {
         }
         at += 1
     }
-    if neg {
+    if neg && value > 0 {
+        if !negative { return invalid }
         return 9223372036854775807
     }
     value
@@ -228,7 +228,11 @@ fn apply(mut o: Options, key: str, value: str) -> bool {
         "a" => { o.binary = 1 },
         "I" => { o.binary = 2 },
         "U" => {},
-        "u" => { eprint("{program()}: warning: --unix-byte-offsets (-u) is obsolete") },
+        "u" => {
+            usage()
+            o.status = 2
+            return false
+        },
         "binary-files" => {
             match value {
                 "binary" => { o.binary = 0 },
@@ -261,8 +265,13 @@ fn apply(mut o: Options, key: str, value: str) -> bool {
             }
         },
         "d" => {
-            if value != "read" && value != "recurse" && value != "skip" {
-                eprint("{program()}: invalid argument '{value}' for '--directories'")
+            var choices: int = 0
+            for choice in ["read", "recurse", "skip"] {
+                if choice.starts_with(value) { choices += 1 }
+            }
+            if value != "read" && value != "recurse" && value != "skip" && choices != 1 {
+                let why = if choices > 1 then "ambiguous" else "invalid"
+                eprint("{program()}: {why} argument '{value}' for '--directories'")
                 eprint("Valid arguments are:\n  - 'read'\n  - 'recurse'\n  - 'skip'")
                 usage()
                 o.status = 1
@@ -321,7 +330,7 @@ pub fn parse(args: List[str], posix: bool) -> Options {
                 if n.starts_with(name) {
                     let k = long_key(n)
                     if key != "" && key != k { ambiguous = true }
-                    if key != k { possibilities += " '--{n}'" }
+                    if key != k || k == "color" { possibilities += " '--{n}'" }
                     key = k
                     found = n
                 }
@@ -352,7 +361,7 @@ pub fn parse(args: List[str], posix: bool) -> Options {
                 value = arg[eq + 1..]
             } else if mode == 1 {
                 if i == args.len {
-                    let ignored = problem(mut o, "option '{arg}' requires an argument", true)
+                    let ignored = problem(mut o, "option '--{found}' requires an argument", true)
                     return o
                 }
                 value = args[i]
@@ -370,6 +379,14 @@ pub fn parse(args: List[str], posix: bool) -> Options {
                         arg.bytes()[at] <= 57 as byte { at += 1 }
                     if !apply(mut o, "C", arg[start..at]) { return o }
                     continue
+                }
+                if b >= 128 {
+                    eprint_raw("{program()}: invalid option -- '")
+                    fs_write_chunk(2, [b as byte]) else |_| {}
+                    eprint("'")
+                    usage()
+                    o.status = 2
+                    return o
                 }
                 let key = arg[at..at + 1]
                 at += 1
@@ -398,6 +415,7 @@ pub fn parse(args: List[str], posix: bool) -> Options {
     var first: int = 0
     if o.sources.len == 0 && o.action == "" {
         if operands.len == 0 {
+            if o.syntax == "P" { return o }
             usage()
             o.status = 2
             return o

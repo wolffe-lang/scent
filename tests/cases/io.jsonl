@@ -1,0 +1,28 @@
+{"name":"live-line-before-eof","argv":["-F","--line-buffered","x"],"section":"read","stream":true}
+{"name":"same-input-output-0","argv":["-F","x","input"],"section":"read","files":{"input":{"text":"x\nx\n"}},"stdout":"input","stdout_file":"input"}
+{"name":"same-input-output-1","argv":["-F","-c","x","input"],"section":"read","files":{"input":{"text":"x\nx\n"}},"stdout":"input","stdout_file":"input"}
+{"name":"same-input-output-2","argv":["-F","-l","x","input"],"section":"read","files":{"input":{"text":"x\nx\n"}},"stdout":"input","stdout_file":"input"}
+{"name":"same-input-output-3","argv":["-F","-L","x","input"],"section":"read","files":{"input":{"text":"x\nx\n"}},"stdout":"input","stdout_file":"input"}
+{"name":"same-input-output-4","argv":["-F","-q","x","input"],"section":"read","files":{"input":{"text":"x\nx\n"}},"stdout":"input","stdout_file":"input"}
+{"name":"same-input-output-5","argv":["-F","-s","x","input"],"section":"read","files":{"input":{"text":"x\nx\n"}},"stdout":"input","stdout_file":"input"}
+{"name":"same-input-output-6","argv":["-F","-o","x","input"],"section":"read","files":{"input":{"text":"x\nx\n"}},"stdout":"input","stdout_file":"input"}
+{"name":"same-input-output-7","argv":["-F","-m0","x","input"],"section":"read","files":{"input":{"text":"x\nx\n"}},"stdout":"input","stdout_file":"input"}
+{"name":"stdin-no-final-newline-0-0","argv":["-F","-m1","x"],"section":"read","files":{"input":{"text":"a\nx"}},"stdin_file":"input"}
+{"name":"stdin-no-final-newline-0-1","argv":["-F","-m1","x"],"section":"read","files":{"input":{"text":"x\na\nx\n"}},"stdin_file":"input"}
+{"name":"stdin-offset-0","argv":["-F","-m1","x"],"section":"read","files":{"input":{"text":"skip\nx\na\nx\n"}},"stdin_file":"input","stdin_seek":5}
+{"name":"stdin-no-final-newline-1-0","argv":["-F","-m1","-c","x"],"section":"read","files":{"input":{"text":"a\nx"}},"stdin_file":"input"}
+{"name":"stdin-no-final-newline-1-1","argv":["-F","-m1","-c","x"],"section":"read","files":{"input":{"text":"x\na\nx\n"}},"stdin_file":"input"}
+{"name":"stdin-offset-1","argv":["-F","-m1","-c","x"],"section":"read","files":{"input":{"text":"skip\nx\na\nx\n"}},"stdin_file":"input","stdin_seek":5}
+{"name":"stdin-no-final-newline-2-0","argv":["-F","-m1","-A2","x"],"section":"read","files":{"input":{"text":"a\nx"}},"stdin_file":"input"}
+{"name":"stdin-no-final-newline-2-1","argv":["-F","-m1","-A2","x"],"section":"read","files":{"input":{"text":"x\na\nx\n"}},"stdin_file":"input"}
+{"name":"stdin-offset-2","argv":["-F","-m1","-A2","x"],"section":"read","files":{"input":{"text":"skip\nx\na\nx\n"}},"stdin_file":"input","stdin_seek":5}
+{"name":"stdin-no-final-newline-3-0","argv":["-F","-m1","-nb","x"],"section":"read","files":{"input":{"text":"a\nx"}},"stdin_file":"input"}
+{"name":"stdin-no-final-newline-3-1","argv":["-F","-m1","-nb","x"],"section":"read","files":{"input":{"text":"x\na\nx\n"}},"stdin_file":"input"}
+{"name":"stdin-offset-3","argv":["-F","-m1","-nb","x"],"section":"read","files":{"input":{"text":"skip\nx\na\nx\n"}},"stdin_file":"input","stdin_seek":5}
+{"name":"nul-pattern-z","argv":["-Fz","-f","patterns"],"section":"read","files":{"patterns":{"text":"x\u0000y\n"}},"stdin":"x\u0000y\u0000x\u0000y\u0000"}
+{"name":"crlf-patterns","argv":["-F","-n","-f","patterns"],"section":"read","files":{"patterns":{"text":"x\r\n"}},"stdin":"x\nx\r\nx\r\r\n"}
+{"name":"stdin-pattern-file","argv":["-F","-f","-","input"],"section":"read","stdin":"x\ny\n","files":{"input":{"text":"x\ny\nz\n"}}}
+{"name":"no-pattern-invert","argv":["-Fv","-f","empty"],"section":"read","stdin":"\nx\n","files":{"empty":{"text":""}}}
+{"name": "empty-and-miss-linear", "section": "fixed", "argv": ["-Fo", "-e", "", "-e", "NEVER"], "stdin": {"parts": [{"text": "a", "repeat": 1048576}, {"text": "\n"}]}, "timeout": 5}
+{"name": "raw-input", "section": "read", "argv": ["-Fa", "x"], "stdin": {"base64": "eP8K/ngK"}, "files": {}}
+{"name": "raw-pattern", "section": "read", "argv": ["-Fa", "-f", "p"], "stdin": {"base64": "eP8Kef4K"}, "files": {"p": {"base64": "/wo="}}}

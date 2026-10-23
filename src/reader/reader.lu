@@ -159,7 +159,30 @@ fn emit(
                 at += 1
             }
             out.line(mut writer, flags, name, buf, lo, hi, st.number, off, true, width)
-        } else if !flags.invert {
+        } else if flags.invert {
+            var at: int = 0
+            while at < h.rows.len {
+                let idx = if h.rows.len == flags.before then (h.next + at) % h.rows.len else at
+                if h.rows[idx].number > st.last {
+                    spans(
+                        flags,
+                        re,
+                        mut ws,
+                        h.rows[idx].bytes,
+                        0,
+                        h.rows[idx].used,
+                        name,
+                        h.rows[idx].number,
+                        h.rows[idx].offset,
+                        false,
+                        width,
+                        mut writer,
+                    )
+                    st.last = h.rows[idx].number
+                }
+                at += 1
+            }
+        } else {
             var from = lo
             while from <= hi {
                 let span = matcher.next_span(re, mut ws, buf, lo, hi, from) else |_| { break }
@@ -260,6 +283,7 @@ pub fn scan(
                 }
             }
             if current.binary && flags.binary == 2 {
+                current.matches = 0
                 current.stop = true
             } else {
                 var lo: int = 0
@@ -359,6 +383,7 @@ pub fn scan(
                         mut current,
                         mut writer,
                     )
+                    if hit != flags.invert { current.resume = current.offset + used }
                     used = 0
                 }
             }
