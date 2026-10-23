@@ -8,6 +8,7 @@ use matcher
 use opts
 use out
 use reader
+use re as regex
 
 fn input(path: str) -> int ! {not_found, denied, io} {
     if path == "-" { return 0 }
@@ -41,6 +42,14 @@ fn help() {
     print("  --help --version   show this summary or scent's version")
     print("Basic/extended syntax joins in ct02; recursion and colour in M2.")
     print("Exit: 0 when a line is selected, 1 otherwise, 2 on error.")
+}
+
+fn emit_diagnostics(d: regex.Diagnostics) {
+    for item in d.items {
+        fs_write_chunk(2, "{opts.program()}: ".bytes()) else |_| {}
+        fs_write_chunk(2, item.text) else |_| {}
+        fs_write_chunk(2, [10 as byte]) else |_| {}
+    }
 }
 
 fn run(o: opts.Options) -> int {
@@ -90,13 +99,22 @@ fn run(o: opts.Options) -> int {
         eprint("{opts.program()}: Perl matching not supported in a --disable-perl-regexp build")
         return 2
     }
-    if o.syntax != "F" { eprint("scent: basic and extended patterns arrive with ct02"); return 2 }
-    let re = matcher.compile(patterns, o.syntax, fixed.Flags {
-        ignore_case: o.ignore_case,
-        word: o.word,
-        whole: o.whole,
-        terminator: if o.zero then 0 as byte else 10 as byte,
-    }) else |_| { return 2 }
+    var diagnostics = regex.diagnostics_new()
+    let re = matcher.compile(
+        patterns,
+        o.syntax,
+        fixed.Flags {
+            ignore_case: o.ignore_case,
+            word: o.word,
+            whole: o.whole,
+            terminator: if o.zero then 0 as byte else 10 as byte,
+        },
+        mut diagnostics,
+    ) else |_| {
+        emit_diagnostics(diagnostics)
+        return 2
+    }
+    emit_diagnostics(diagnostics)
     var matched = false
     var error = false
     var grouped = false
@@ -118,9 +136,8 @@ fn run(o: opts.Options) -> int {
                 continue
             }
             if !o.quiet && !o.count && o.listing == 0 {
-                let input_path = if path == "-" then "/dev/stdin" else path
-                let input_info = fs_stat(input_path) else List[int]()
-                let output_info = fs_stat("/dev/stdout") else List[int]()
+                let input_info = fs_fstat_record(fd) else List[int]()
+                let output_info = fs_fstat_record(1) else List[int]()
                 if input_info.len > 10 &&
                     output_info.len > 10 &&
                     input_info[0] == 0 &&
