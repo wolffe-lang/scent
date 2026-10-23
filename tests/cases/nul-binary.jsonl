@@ -1,0 +1,4 @@
+{"name":"nul-pattern-binary-default","section":"binary","argv":["-F","-f","patterns"],"stdin":{"base64":"eAB5Cg=="},"files":{"patterns":{"base64":"eAB5Cg=="}}}
+{"name":"nul-pattern-binary-count","section":"binary","argv":["-F","-c","-f","patterns"],"stdin":{"base64":"eAB5Cg=="},"files":{"patterns":{"base64":"eAB5Cg=="}}}
+{"name":"nul-pattern-binary-text","section":"binary","argv":["-F","-a","-f","patterns"],"stdin":{"base64":"eAB5Cg=="},"files":{"patterns":{"base64":"eAB5Cg=="}}}
+{"name":"nul-pattern-binary-without-match","section":"binary","argv":["-F","-I","-f","patterns"],"stdin":{"base64":"eAB5Cg=="},"files":{"patterns":{"base64":"eAB5Cg=="}}}
