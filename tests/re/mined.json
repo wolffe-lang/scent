@@ -1,0 +1,474 @@
+[
+  {
+    "pattern": "616263",
+    "line": "616263",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:3; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "616263",
+    "line": "78786162637878",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:4; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "616263",
+    "line": "6162",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:5; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "",
+    "line": "616263",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:6; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "612e63",
+    "line": "616263",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:7; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "61",
+    "line": "414141",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:11; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "61",
+    "line": "784178",
+    "flags": [
+      "-i"
+    ],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:12; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "414243",
+    "line": "7861626378",
+    "flags": [
+      "-i"
+    ],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:13; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "615c2e63",
+    "line": "612e63",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:14; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "615c2e63",
+    "line": "616263",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:15; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "5c2a",
+    "line": "612a62",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:21; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "5c5c",
+    "line": "615c62",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:22; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "5b6162635d",
+    "line": "786278",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:23; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "5b612d635d",
+    "line": "786378",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:24; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "5b5e612d635d",
+    "line": "61626364",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:25; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "5b5d615d",
+    "line": "5d",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:26; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "5b612d5d",
+    "line": "2d",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:27; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "5b2d615d",
+    "line": "2d",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:28; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "5b612d63312d335d",
+    "line": "7a32",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:33; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "5b612d635d",
+    "line": "42",
+    "flags": [
+      "-i"
+    ],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:34; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "5c772b",
+    "line": "2020666f6f5f62617220",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:37; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "5c572b",
+    "line": "616220206364",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:38; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "5c732b",
+    "line": "6120092062",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:39; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "5c532b",
+    "line": "202061622020",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:40; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "612a",
+    "line": "616161",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:42; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "612a",
+    "line": "626262",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:43; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "612b",
+    "line": "616161",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:44; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "612b",
+    "line": "626262",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:45; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "613f",
+    "line": "616161",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:46; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "61622a",
+    "line": "61",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:47; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "61622a",
+    "line": "61626262",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:48; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "2e2a",
+    "line": "616263",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:49; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "612e2a63",
+    "line": "6162637863",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:50; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "612a3f",
+    "line": "616161",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:51; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "612b3f",
+    "line": "616161",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:52; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "613f3f",
+    "line": "616161",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:53; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "612e2a3f63",
+    "line": "6162637863",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:54; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "3c2e2b3f3e",
+    "line": "3c613e3c623e",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:55; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used"
+  },
+  {
+    "pattern": "6170706c65",
+    "line": "6170706c65",
+    "flags": [
+      "-i"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:283-292,379"
+  },
+  {
+    "pattern": "6170706c65",
+    "line": "4170706c65",
+    "flags": [
+      "-i"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:283-292,379"
+  },
+  {
+    "pattern": "6170706c65",
+    "line": "4150504c45",
+    "flags": [
+      "-i"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:283-292,379"
+  },
+  {
+    "pattern": "6170706c65",
+    "line": "6150704c65",
+    "flags": [
+      "-i"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:283-292,379"
+  },
+  {
+    "pattern": "6170706c65",
+    "line": "6170706c6573",
+    "flags": [
+      "-i"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:283-292,379"
+  },
+  {
+    "pattern": "6170706c65",
+    "line": "4170706c6573",
+    "flags": [
+      "-i"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:283-292,379"
+  },
+  {
+    "pattern": "6170706c65",
+    "line": "4150504c4553",
+    "flags": [
+      "-i"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:283-292,379"
+  },
+  {
+    "pattern": "6170706c65",
+    "line": "70696e656170706c65",
+    "flags": [
+      "-i"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:283-292,379"
+  },
+  {
+    "pattern": "74657374",
+    "line": "74657374",
+    "flags": [
+      "-w"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:252-264,387"
+  },
+  {
+    "pattern": "74657374",
+    "line": "74657374696e67",
+    "flags": [
+      "-w"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:252-264,387"
+  },
+  {
+    "pattern": "74657374",
+    "line": "746573746564",
+    "flags": [
+      "-w"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:252-264,387"
+  },
+  {
+    "pattern": "74657374",
+    "line": "746573746572",
+    "flags": [
+      "-w"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:252-264,387"
+  },
+  {
+    "pattern": "74657374",
+    "line": "6120746573742068657265",
+    "flags": [
+      "-w"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:252-264,387"
+  },
+  {
+    "pattern": "74657374",
+    "line": "746573742d63617365",
+    "flags": [
+      "-w"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:252-264,387"
+  },
+  {
+    "pattern": "74657374",
+    "line": "7072652d74657374",
+    "flags": [
+      "-w"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:252-264,387"
+  },
+  {
+    "pattern": "74657374",
+    "line": "70726574657374",
+    "flags": [
+      "-w"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:252-264,387"
+  },
+  {
+    "pattern": "74657374",
+    "line": "54455354",
+    "flags": [
+      "-w"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:252-264,387"
+  },
+  {
+    "pattern": "74657374",
+    "line": "54657374",
+    "flags": [
+      "-w"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:252-264,387"
+  },
+  {
+    "pattern": "7465737428696e677c656429",
+    "line": "74657374",
+    "flags": [],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:443"
+  },
+  {
+    "pattern": "7465737428696e677c656429",
+    "line": "74657374696e67",
+    "flags": [],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:443"
+  },
+  {
+    "pattern": "7465737428696e677c656429",
+    "line": "746573746564",
+    "flags": [],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:443"
+  },
+  {
+    "pattern": "7465737428696e677c656429",
+    "line": "746573746572",
+    "flags": [],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:443"
+  },
+  {
+    "pattern": "6578616374",
+    "line": "6578616374",
+    "flags": [
+      "-x"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:268-275,391"
+  },
+  {
+    "pattern": "6578616374",
+    "line": "6578616374206d61746368",
+    "flags": [
+      "-x"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:268-275,391"
+  },
+  {
+    "pattern": "6578616374",
+    "line": "6e6f74206578616374",
+    "flags": [
+      "-x"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:268-275,391"
+  },
+  {
+    "pattern": "6578616374",
+    "line": "65786163746c79",
+    "flags": [
+      "-x"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:268-275,391"
+  },
+  {
+    "pattern": "6578616374",
+    "line": "4558414354",
+    "flags": [
+      "-x"
+    ],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:268-275,391"
+  },
+  {
+    "pattern": "68656c6c6f7c676f6f64627965",
+    "line": "68656c6c6f20776f726c64",
+    "flags": [],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:240-249,444"
+  },
+  {
+    "pattern": "68656c6c6f7c676f6f64627965",
+    "line": "48656c6c6f20576f726c64",
+    "flags": [],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:240-249,444"
+  },
+  {
+    "pattern": "68656c6c6f7c676f6f64627965",
+    "line": "48454c4c4f20574f524c44",
+    "flags": [],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:240-249,444"
+  },
+  {
+    "pattern": "68656c6c6f7c676f6f64627965",
+    "line": "676f6f6462796520776f726c64",
+    "flags": [],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:240-249,444"
+  },
+  {
+    "pattern": "68656c6c6f7c676f6f64627965",
+    "line": "666f6f206261722062617a",
+    "flags": [],
+    "source": "ferp 7d332b5 tests/grep_comparison_test.sh:240-249,444"
+  }
+]

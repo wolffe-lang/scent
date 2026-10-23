@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+"""Measure GNU rules, never read its source. Inputs: info grep 3.1–3.7, XBD 9.
+Run with python3 -I inside the pinned Ubuntu container. Output is JSONL evidence.
+"""
+import argparse
+import itertools
+import json
+import os
+from pathlib import Path
+import subprocess
+import tempfile
+
+
+def run(grep, patterns, lines, syntax="extended", flags=(), spans=True):
+    term = b"\0" if "-z" in flags else b"\n"
+    scratch = Path(os.environ.get("CT01_TMP", "/lane/evidence/tmp"))
+    scratch.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="ct01-probe-", dir=scratch) as directory:
+        p = Path(directory) / "patterns"
+        p.write_bytes(b"\n".join(patterns) + b"\n")
+        cmd = [grep, "-a", "-E" if syntax == "extended" else "-G", "-n", "-b"]
+        if spans:
+            cmd.append("-o")
+        cmd += list(flags)
+        if any(b"\0" in pat for pat in patterns):
+            cmd += ["-f", str(p)]
+        else:
+            for pat in patterns:
+                cmd += ["-e", pat]
+        try:
+            result = subprocess.run(cmd, input=term.join(lines) + term, capture_output=True,
+                                    env={**os.environ, "LC_ALL": "C"}, timeout=10)
+            # Remove only the executable-name prefix. Preserve warning order and all bytes.
+            prefix = os.fsencode(grep) + b": "
+            err = result.stderr.replace(prefix, b"")
+            if err.startswith(b"grep: "):
+                err = err.replace(b"grep: ", b"")
+            err = err.replace(os.fsencode(p) + b":1: ", b"")
+            return {"status": result.returncode, "stdout": result.stdout.hex(), "stderr": err.hex()}
+        except subprocess.TimeoutExpired:
+            return {"timeout": 10}
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--grep", default="/lane/oracle/bin/grep")
+    ap.add_argument("--diagnostics", action="store_true")
+    a = ap.parse_args()
+    version = subprocess.check_output([a.grep, "--version"]).splitlines()[0]
+    if version != b"grep (GNU grep) 3.12":
+        raise SystemExit("STOP: wrong oracle " + repr(version))
+    lines = [b"", b"a", b"aa", b"ab", b"aaa", b"b", b"ba", b"abab", b"a-b", b"a-bx", b"a- bx", b"a-", b"ab a", b"*", b"+a", b"{1}", b"^a", b"a$", b" ", b"\t", b"\r", b"\x00", b"\x80\xff"]
+    patterns = [b"a|ab", b"a*", b"a*|b", b"()", b"a||b", b"a**", b"a+?", b"*", b"+a", b"?a", b"{1}", b"a{,2}", b"a{,}", b"a{1,0}", b"a{32768}", b"a{", b"a{a}", b"a{1", b"a{1,2", b"a{1,2,3}", b"a^b", b"a$b", b"^*", b"$*", b"a\\1", b"(a)\\1", b"(a\\1)", b"(a)*\\1", b"(a)\\1|b\\1", b"(a)|(b)\\1", b"(a)|\\1", b"((a)?b)*\\2", b"[a-z]", b"[]a]", b"[^]a]", b"[a-m-o]", b"[a--]", b"[--a]", b"[a-[:digit:]]", b"[[=a=]]", b"[[.a.]]", b"[[.space.]]", b"[[.tab.]]", b"[[.NUL.]]", b"[=a=]", b"[.a.]", b"[:space:]", b"[[:bad:]]", b"[a[:b]", b"[", b"[]", b"[\\w]", b"\\d", b"\\q", b"\\0", b"\\_", b"\\,", b"\\-", b"\\n", b"\\]", b"\\}", b"\\`a", b"a\\'", b"(", b")", b"\\"]
+    if a.diagnostics:
+        # Exhaust short malformed syntax, then all escaped bytes; no imported engine.
+        patterns += [bytes(xs) for n in range(1, 4) for xs in itertools.product(b"a[](){}*+?\\|^$", repeat=n)]
+        patterns += [b"\\" + bytes([b]) for b in range(256) if b != 10]
+    seen = set()
+    for syntax in ("basic", "extended"):
+        for p in patterns:
+            if (syntax, p) in seen:
+                continue
+            seen.add((syntax, p))
+            result = run(a.grep, [p], lines, syntax)
+            print(json.dumps({"syntax": syntax, "patterns": [p.hex()], "lines": [s.hex() for s in lines], "flags": [], **result}), flush=True)
+    for p in (b"a|a-b", b"a|a-", b"a.*", b"a*", b"|a", b"-", b"\\b", b"()", b"(a)\\1", b"[[:upper:]]", b"[^a]"):
+        for flags in ([], ["-w"], ["-x"], ["-i"], ["-w", "-i"], ["-z"]):
+            print(json.dumps({"syntax": "extended", "patterns": [p.hex()], "lines": [s.hex() for s in lines], "flags": flags, **run(a.grep, [p], lines, flags=flags)}), flush=True)
+    for p in (b"a{1,32767}", b"(a{1,1000}){1,1000}"):
+        print(json.dumps({"syntax": "extended", "patterns": [p.hex()], "lines": [b"a".hex()], "flags": [], **run(a.grep, [p], [b"a"])}), flush=True)
+
+
+if __name__ == "__main__":
+    main()

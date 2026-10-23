@@ -1,0 +1,210 @@
+#!/usr/bin/env python3
+"""Differential engine gate. Oracle: GNU 3.12 --disable-perl-regexp, Ubuntu 24.04.
+No regex library implements the candidate or oracle. Bytes/status are compared.
+Sources: POSIX XBD 9, info grep 3; mined provenance lives in tests/re/mined.json.
+"""
+import argparse
+import ast
+from collections import Counter
+import json
+import os
+from pathlib import Path
+import random
+import runpy
+import subprocess
+import time
+
+ROOT = Path(__file__).resolve().parent.parent
+probe = runpy.run_path(str(ROOT / "tools/re-probe"))
+run_oracle = probe["run"]
+
+
+def bre(pat):
+    out = bytearray()
+    bracket = False
+    i = 0
+    while i < len(pat):
+        c = pat[i]
+        if c == 92 and i + 1 < len(pat):
+            i += 1
+            if pat[i] not in b"()+?|{}": out.append(92)
+            out.append(pat[i])
+        elif c == 91:
+            bracket = True
+            out.append(c)
+        elif c == 93:
+            bracket = False
+            out.append(c)
+        elif not bracket and c in b"()+?|{}":
+            out.extend((92, c))
+        else: out.append(c)
+        i += 1
+    return bytes(out)
+
+
+def corpus(seed, count):
+    # Reuse the documented hand-probe list, not any measured expectations.
+    tree = ast.parse((ROOT / "tools/re-probe").read_text())
+    hand = []
+    lines = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
+            if node.targets[0].id == "patterns" and isinstance(node.value, ast.List): hand = ast.literal_eval(node.value)
+            if node.targets[0].id == "lines" and isinstance(node.value, ast.List): lines = ast.literal_eval(node.value)
+    for syntax in ("basic", "extended"):
+        for p in hand:
+            yield dict(kind="hand", source="GNU info 3.1–3.7; POSIX XBD 9; tools/re-probe", syntax=syntax, patterns=[p], lines=lines, flags=[])
+        for flags in ([], ["-i"], ["-w"], ["-x"], ["-w", "-i"], ["-z"]):
+            for p in (b"a|a-b", b"a|a-", b"a*|b", b"()", b"(a)\\1", b"(a)*\\1", b"^(ab*)*\\1$", b"[[:upper:]]", b"[^a]", b"\\b", b"\\B", b"\\<a\\>"):
+                actual = p if syntax == "extended" else bre(p)
+                use_lines = [s.replace(b"\0", b"\n") for s in lines] if "-z" in flags else lines
+                yield dict(kind="hand", source="GNU info 3.3/3.5; boundary separation witnesses", syntax=syntax, patterns=[actual], lines=use_lines, flags=flags)
+        for row in json.loads((ROOT / "tests/re/mined.json").read_text()):
+            p = bytes.fromhex(row["pattern"])
+            yield dict(kind="mined", source=row["source"], syntax=syntax, patterns=[p if syntax == "extended" else bre(p)], lines=[bytes.fromhex(row["line"])], flags=row["flags"])
+        rng = random.Random(seed)
+        atoms = [b"a", b"b", b"A", b".", b"[ab]", b"[^a]", b"[a-b]", b"[[:digit:]]", b"[[:space:]]", b"[[=a=]]", b"[[.a.]]", b"\\w", b"\\W", b"\\s", b"\\S", b"\\b", b"\\B", b"\\<", b"\\>", b"\\`", b"\\'", b"()", b"(a)\\1"]
+        suffixes = [b"", b"*", b"+", b"?", b"{0}", b"{2}", b"{1,}", b"{,2}", b"{1,3}", b"**", b"+?"]
+        made = 0
+        while made < count:
+            p = rng.choice(atoms) + rng.choice(suffixes)
+            if rng.randrange(3) == 0: p = b"(" + p + b"|" + rng.choice(atoms) + b")"
+            if rng.randrange(3) == 0: p += rng.choice(atoms) + rng.choice(suffixes)
+            if rng.randrange(5) == 0: p = b"^" + p + b"$"
+            flags = rng.choice([[], ["-i"], ["-w"], ["-x"], ["-i", "-w"], ["-z"]])
+            alphabet = b"abAB01_ -\t\r\x80\xff" + (b"\n" if "-z" in flags else b"\0")
+            inputs = [b"", b"a", b"aa", b"ab", b"aaa", b"a-bx"]
+            inputs += [bytes(rng.choice(alphabet) for _ in range(rng.randrange(13))) for _ in range(26)]
+            inputs = inputs[:count - made]
+            made += len(inputs)
+            yield dict(kind="generated", source=f"seed {seed}", syntax=syntax, patterns=[p if syntax == "extended" else bre(p)], lines=inputs, flags=flags)
+
+
+def protocol(row, ident):
+    flags = sum(bit for flag, bit in (("-i", 1), ("-w", 2), ("-x", 4)) if flag in row["flags"])
+    enc = lambda x: x.hex() or "-"
+    return f'{ident} {"E" if row["syntax"] == "extended" else "G"} {flags} {0 if "-z" in row["flags"] else 10} ' + ','.join(map(enc, row["patterns"])) + ' ' + ','.join(map(enc, row["lines"]))
+
+
+def driver_rows(driver, rows, work):
+    path = work / "cases.txt"
+    path.write_text('\n'.join(protocol(r, i) for i, r in enumerate(rows)) + '\n')
+    result = subprocess.run([driver, str(path)], capture_output=True, timeout=120)
+    (work / "driver.stdout").write_bytes(result.stdout)
+    (work / "driver.stderr").write_bytes(result.stderr)
+    if result.returncode: raise RuntimeError(f"driver exit {result.returncode}: {result.stderr!r}")
+    output = {}
+    for line in result.stdout.decode().splitlines():
+        fields = line.split()
+        kind, ident = fields[0], int(fields[1])
+        if kind == "D": output[ident] = dict(status=int(fields[2]), stderr=bytes.fromhex(fields[3]) if fields[3] != '-' else b'', selected=[], spans=[])
+        elif kind == "R":
+            output[ident]["selected"].append(fields[3] == '1')
+            output[ident]["spans"].append([] if fields[4] == '-' else [tuple(map(int, s.split(':'))) for s in fields[4].split(',')])
+    if len(output) != len(rows): raise RuntimeError("driver omitted groups")
+    return output
+
+
+def oracle_row(grep, row):
+    spans = run_oracle(grep, row["patterns"], row["lines"], row["syntax"], row["flags"])
+    selected = run_oracle(grep, row["patterns"], row["lines"], row["syntax"], row["flags"], spans=False)
+    if "timeout" in spans or "timeout" in selected: raise RuntimeError("oracle timeout in gate")
+    result = dict(status=2 if spans['status'] == 2 else 0, stderr=bytes.fromhex(spans['stderr']), selected=[], spans=[])
+    if result['status'] == 2: return result
+    result['selected'] = [False] * len(row['lines'])
+    result['spans'] = [[] for _ in row['lines']]
+    term = b'\0' if '-z' in row['flags'] else b'\n'
+    offsets = []
+    offset = 0
+    for line in row['lines']:
+        offsets.append(offset)
+        offset += len(line) + 1
+    for record in bytes.fromhex(selected['stdout']).split(term):
+        if record: result['selected'][int(record.split(b':', 1)[0]) - 1] = True
+    for record in bytes.fromhex(spans['stdout']).split(term):
+        if record:
+            num, off, text = record.split(b':', 2)
+            index = int(num) - 1
+            start = int(off) - offsets[index]
+            result['spans'][index].append((start, start + len(text)))
+    return result
+
+
+def encode(value):
+    if isinstance(value, bytes): return value.hex()
+    raise TypeError(type(value).__name__)
+
+
+def reduce_case(row, differs):
+    current = {**row, 'patterns': row['patterns'][:], 'lines': row['lines'][:]}
+    for key in ('lines', 'patterns'):
+        i = 0
+        while len(current[key]) > 1 and i < len(current[key]):
+            trial = {**current, key: current[key][:i] + current[key][i+1:]}
+            if differs(trial): current = trial
+            else: i += 1
+    for key in ('patterns', 'lines'):
+        for index in range(len(current[key])):
+            width = max(1, len(current[key][index]) // 2)
+            while width:
+                pos = 0
+                while pos + width <= len(current[key][index]):
+                    values = current[key][:]
+                    s = values[index]
+                    values[index] = s[:pos] + s[pos+width:]
+                    trial = {**current, key: values}
+                    if differs(trial): current = trial
+                    else: pos += 1
+                width //= 2
+    return current
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--grep', default='/lane/oracle/bin/grep')
+    ap.add_argument('--driver', default=str(ROOT / 'target/re/driver'))
+    ap.add_argument('--work', type=Path, default=ROOT / 'target/re/oracle')
+    ap.add_argument('--seed', type=int, default=11401)
+    ap.add_argument('--soak', type=int, default=20000, metavar='N')
+    ap.add_argument('--no-reduce', action='store_true')
+    args = ap.parse_args()
+    args.work.mkdir(parents=True, exist_ok=True)
+    os.environ['CT01_TMP'] = str(args.work / 'tmp')
+    version = subprocess.check_output([args.grep, '--version']).splitlines()[0]
+    if version != b'grep (GNU grep) 3.12': raise SystemExit('STOP: wrong oracle identity')
+    # This also proves the selected build has PCRE disabled.
+    disabled = subprocess.run([args.grep, '-P', 'a'], input=b'a\n', capture_output=True, env={**os.environ,'LC_ALL':'C'})
+    if disabled.returncode != 2 or b'Perl' not in disabled.stderr: raise SystemExit('STOP: oracle has wrong PCRE configuration')
+    rows = list(corpus(args.seed, args.soak))
+    got = driver_rows(args.driver, rows, args.work)
+    tally = Counter()
+    first = None
+    failures = []
+    for index, row in enumerate(rows):
+        want = oracle_row(args.grep, row)
+        same = got[index] == want
+        if got[index]['status'] != want['status'] or got[index]['stderr'] != want['stderr']:
+            tally[(row['syntax'], row['kind'], 'differ')] += len(row['lines'])
+        elif want['status'] == 2:
+            tally[(row['syntax'], row['kind'], 'agree')] += len(row['lines'])
+        else:
+            for j in range(len(row['lines'])):
+                equal = got[index]['selected'][j] == want['selected'][j] and got[index]['spans'][j] == want['spans'][j]
+                tally[(row['syntax'], row['kind'], 'agree' if equal else 'differ')] += 1
+        if not same:
+            failures.append(dict(index=index,row=row,engine=got[index],oracle=want))
+            if first is None: first = row
+        if index % 100 == 0: print(f'progress {index}/{len(rows)} groups; {len(failures)} disagree',flush=True)
+    (args.work / 'failures.json').write_text(json.dumps(failures,default=encode,indent=2))
+    for (syntax,kind,verdict), n in sorted(tally.items()): print(f'{syntax} {kind} {verdict} {n}',flush=True)
+    if first is not None:
+        if not args.no_reduce:
+            def differs(row): return driver_rows(args.driver,[row],args.work)[0] != oracle_row(args.grep,row)
+            first = reduce_case(first,differs)
+        (args.work/'minimal.json').write_text(json.dumps(first,default=encode,indent=2))
+        print('STOP: differential mismatch; minimal.json and failures.json retain the witness',flush=True)
+        return 1
+    print('PASS: all patterns, selections, spans, diagnostics agree; SKIP=0',flush=True)
+    return 0
+
+if __name__ == '__main__': raise SystemExit(main())
