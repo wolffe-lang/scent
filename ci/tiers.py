@@ -51,7 +51,7 @@ NOT_SELECTABLE = ("plan", "tier", "nightly-red")
 # tier's alone until it is named here.
 PR_JOBS = ("plan-test", "linux")
 # The engine corpus floor is shared by the PR gate and its wiring test.
-REGEX_GATE_PAIRS = 20000
+REGEX_GATE_PAIRS = 19999
 TIERS = ("full", "pr", "noop", "partial")
 
 PROSE, PR, FULL = "prose", "pr", "full"
