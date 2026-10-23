@@ -28,6 +28,7 @@ struct Frame {
     alt: int,
     group: int,
     available: int,
+    completed: int,
     initial: int,
     beginning: bool,
     repeatable: bool,
@@ -246,6 +247,7 @@ fn finish_branch(mut p: Parser) {
     var cat = p.frames[k].cat
     if cat < 0 { cat = node(mut p, EMPTY_NODE, -1, -1, 0, 0, 0) }
     let prev = p.frames[k].alt
+    p.frames[k].completed |= p.frames[k].available
     p.frames[k].alt = join(mut p, ALT_NODE, prev, cat)
     p.frames[k].cat = -1
     p.frames[k].beginning = true
@@ -348,6 +350,7 @@ fn parse_mode(
         alt: -1,
         group: 0,
         available: 0,
+        completed: 0,
         initial: 0,
         beginning: true,
         repeatable: false,
@@ -368,6 +371,7 @@ fn parse_mode(
                 alt: -1,
                 group: p.group,
                 available: available,
+                completed: 0,
                 initial: available,
                 beginning: true,
                 repeatable: false,
@@ -388,6 +392,7 @@ fn parse_mode(
                 alt: -1,
                 group: 0,
                 available: 0,
+                completed: 0,
                 initial: 0,
                 beginning: false,
                 repeatable: false,
@@ -396,7 +401,7 @@ fn parse_mode(
             let n = node(mut p, GROUP_NODE, frame.alt, -1, frame.group, 0, 0)
             append_atom(mut p, n)
             if frame.group <= 9 { p.frames[k - 1].available |= 1 << frame.group }
-            p.frames[k - 1].available |= frame.available
+            p.frames[k - 1].available |= frame.completed
             continue
         }
         if symbol(pat, at, 124, options.extended) {
