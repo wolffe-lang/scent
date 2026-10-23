@@ -1,0 +1,8 @@
+projection soak: 80 backreference groups from seed 11401, 1000 generated pairs per syntax
+projection basic generated valid 64 pairs
+projection basic hand compile-error 184 pairs
+projection basic hand valid 530 pairs
+projection extended generated valid 64 pairs
+projection extended hand compile-error 115 pairs
+projection extended hand valid 599 pairs
+1371 pairs identical / 185 differ (65 groups); SKIP=0

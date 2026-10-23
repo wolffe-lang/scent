@@ -1,0 +1,865 @@
+ct01 rebased acceptance queued 2026-10-23T09:29:08-04:00
+ct01 core lock acquired; build own shared-pin container
+8b84ff94b45ae87d9e128d67321b49073f1c2213be8201c85c7431fea2fb476f
+fetch-toolchain: /lane/download/wolf-0.2.34-x86_64-unknown-linux-gnu.tar.gz
+fetch-toolchain: sha256 88a9dd3da1c9a0e38c08eb6e2de9c1ef04d1ed93dcf51024d8dbbb76890c1821 OK
+fetch-toolchain: /lane/download/lupin-0.1.55-x86_64-unknown-linux-gnu.tar.gz
+fetch-toolchain: sha256 1152abc0bef65d334b94bc881a26463fac345919cc2ca07a291796e6048a8a38 OK
+fetch-toolchain: the archive bundles std e036bec318ad81ecd5a025612bc2c2adb17527f3; staging the pin instead
+fetch-toolchain: https://github.com/wolffe-lang/wolf-std at e036bec318ad81ecd5a025612bc2c2adb17527f3
+fetch-toolchain: staged x86_64-unknown-linux-gnu into .wolf-bin/
+fetch-oracle: 92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea
+build: target/native/scent
+build: target/release/scent
+check-test: src/fixed_test.lu [checked] pass (exit(0))
+check-test: src/opts_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/linear_test.lu [checked] pass (exit(0))
+check-test: src/re/linear_test.lu [checked] pass (exit(0))
+check-test: src/re/linear_test.lu [checked] pass (exit(0))
+check-test: src/region_test.lu [checked] pass (exit(0))
+check-test: wolf test: 16 passed, 0 not passed (exit 0)
+fixed: 10 cases, 0 SKIP
+check-test: src/fixed_test.lu [native] ok
+check-test: src/fixed_test.lu [lupin] ok
+opts: 4 cases, 0 SKIP
+check-test: src/opts_test.lu [native] ok
+check-test: src/opts_test.lu [lupin] ok
+region: 2 cases, 0 SKIP
+check-test: src/region_test.lu [native] ok
+check-test: src/region_test.lu [lupin] ok
+oracle: RECORD /work/scent/.oracle/grep
+not-yet GNU cross-F-middle-00 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-middle-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-middle-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-02 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-middle-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-03 status 0 stdout b'2:x\x00y\x0010:x\x00y\x00' stderr b''
+not-yet cross-F-middle-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-04 status 0 stdout b'2:x\x00y\x005:x\x00y\x00' stderr b''
+not-yet cross-F-middle-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-05 status 0 stdout b'a\x00z\x00b\x00z\x00tail\x00' stderr b''
+not-yet cross-F-middle-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-06 status 0 stdout b'x\x00y\x00' stderr b''
+not-yet cross-F-middle-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-07 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-middle-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-08 status 1 stdout b'' stderr b''
+not-yet cross-F-middle-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-09 status 0 stdout b'1-a\x002:x\x00y\x003-z\x004-b\x005:x\x00y\x006-z\x00' stderr b''
+not-yet cross-F-middle-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-10 status 0 stdout b'2:2:x\x00y\x005:10:x\x00y\x00' stderr b''
+not-yet cross-F-middle-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-middle-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-middle-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-00 status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet cross-F-end-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-end-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-02 status 0 stdout b'x\x00\x00x\x00\x00' stderr b''
+not-yet cross-F-end-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-03 status 0 stdout b'2:x\x00y\x0010:x\x00y\x00' stderr b''
+not-yet cross-F-end-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-04 status 0 stdout b'2:x\x00y\x005:x\x00y\x00' stderr b''
+not-yet cross-F-end-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-05 status 0 stdout b'a\x00z\x00b\x00z\x00tail\x00' stderr b''
+not-yet cross-F-end-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-06 status 0 stdout b'x\x00y\x00' stderr b''
+not-yet cross-F-end-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-07 status 1 stdout b'' stderr b''
+not-yet cross-F-end-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-08 status 1 stdout b'' stderr b''
+not-yet cross-F-end-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-09 status 0 stdout b'1-a\x002:x\x00y\x003-z\x004-b\x005:x\x00y\x006-z\x00' stderr b''
+not-yet cross-F-end-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-10 status 0 stdout b'2:2:x\x00\x005:10:x\x00\x00' stderr b''
+not-yet cross-F-end-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-end-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-end-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-00 status 0 stdout b'a\x00x\x00b\x00x\x00' stderr b''
+not-yet cross-F-start-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-start-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-02 status 0 stdout b'\x00x\x00\x00x\x00' stderr b''
+not-yet cross-F-start-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-03 status 0 stdout b'0:a\x00x\x008:b\x00x\x00' stderr b''
+not-yet cross-F-start-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-04 status 0 stdout b'1:a\x00x\x004:b\x00x\x00' stderr b''
+not-yet cross-F-start-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-05 status 0 stdout b'y\x00z\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-F-start-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-06 status 0 stdout b'a\x00x\x00' stderr b''
+not-yet cross-F-start-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-07 status 1 stdout b'' stderr b''
+not-yet cross-F-start-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-08 status 1 stdout b'' stderr b''
+not-yet cross-F-start-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-09 status 0 stdout b'1:a\x00x\x002-y\x003-z\x004:b\x00x\x005-y\x00' stderr b''
+not-yet cross-F-start-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-10 status 0 stdout b'1:1:\x00x\x004:9:\x00x\x00' stderr b''
+not-yet cross-F-start-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-start-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-start-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-00 status 0 stdout b'x\x00y\x00z\x00x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-01 status 0 stdout b'2\n' stderr b''
+not-yet cross-F-three-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-02 status 0 stdout b'x\x00y\x00z\x00x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-03 status 0 stdout b'2:x\x00y\x00z\x0010:x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-04 status 0 stdout b'2:x\x00y\x00z\x004:x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-05 status 0 stdout b'a\x00b\x00tail\x00' stderr b''
+not-yet cross-F-three-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-06 status 0 stdout b'x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-07 status 0 stdout b'x\x00y\x00z\x00x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-08 status 1 stdout b'' stderr b''
+not-yet cross-F-three-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-09 status 0 stdout b'1-a\x002:x\x00y\x00z\x003-b\x004:x\x00y\x00z\x005-tail\x00' stderr b''
+not-yet cross-F-three-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-10 status 0 stdout b'2:2:x\x00y\x00z\x004:10:x\x00y\x00z\x00' stderr b''
+not-yet cross-F-three-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-three-11 status 0 stdout b'3\n' stderr b''
+not-yet cross-F-three-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-00 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-F-alone-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-01 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-alone-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-02 status 0 stdout b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' stderr b''
+not-yet cross-F-alone-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-03 status 0 stdout b'0:a\x00x\x004:y\x00z\x008:b\x00x\x0012:y\x00z\x0016:tail\x00' stderr b''
+not-yet cross-F-alone-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-04 status 0 stdout b'1:a\x00x\x002:y\x00z\x003:b\x00x\x004:y\x00z\x005:tail\x00' stderr b''
+not-yet cross-F-alone-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-05 status 1 stdout b'' stderr b''
+not-yet cross-F-alone-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-06 status 0 stdout b'a\x00x\x00' stderr b''
+not-yet cross-F-alone-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-07 status 1 stdout b'' stderr b''
+not-yet cross-F-alone-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-08 status 1 stdout b'' stderr b''
+not-yet cross-F-alone-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-09 status 0 stdout b'1:a\x00x\x002:y\x00z\x003:b\x00x\x004:y\x00z\x005:tail\x00' stderr b''
+not-yet cross-F-alone-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-10 status 0 stdout b'1:1:\x00\x001:3:\x00\x002:5:\x00\x002:7:\x00\x003:9:\x00\x003:11:\x00\x004:13:\x00\x004:15:\x00\x005:20:\x00\x00' stderr b''
+not-yet cross-F-alone-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-alone-11 status 1 stdout b'0\n' stderr b''
+not-yet cross-F-alone-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-00 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-F-chunk-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-02 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-03 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-04 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-05 status 0 stdout b'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' stderr b''
+not-yet cross-F-chunk-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-06 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-07 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-08 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-09 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-10 status 1 stdout b'' stderr b''
+not-yet cross-F-chunk-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-F-chunk-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-F-chunk-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-00 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-middle-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-02 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-03 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-04 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-middle-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-06 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-07 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-08 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-09 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-10 status 1 stdout b'' stderr b''
+not-yet cross-G-middle-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-middle-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-middle-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-00 status 1 stdout b'' stderr b''
+not-yet cross-G-end-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-end-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-02 status 1 stdout b'' stderr b''
+not-yet cross-G-end-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-03 status 1 stdout b'' stderr b''
+not-yet cross-G-end-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-04 status 1 stdout b'' stderr b''
+not-yet cross-G-end-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-end-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-06 status 1 stdout b'' stderr b''
+not-yet cross-G-end-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-07 status 1 stdout b'' stderr b''
+not-yet cross-G-end-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-08 status 1 stdout b'' stderr b''
+not-yet cross-G-end-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-09 status 1 stdout b'' stderr b''
+not-yet cross-G-end-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-10 status 1 stdout b'' stderr b''
+not-yet cross-G-end-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-end-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-end-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-00 status 1 stdout b'' stderr b''
+not-yet cross-G-start-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-start-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-02 status 1 stdout b'' stderr b''
+not-yet cross-G-start-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-03 status 1 stdout b'' stderr b''
+not-yet cross-G-start-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-04 status 1 stdout b'' stderr b''
+not-yet cross-G-start-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-start-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-06 status 1 stdout b'' stderr b''
+not-yet cross-G-start-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-07 status 1 stdout b'' stderr b''
+not-yet cross-G-start-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-08 status 1 stdout b'' stderr b''
+not-yet cross-G-start-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-09 status 1 stdout b'' stderr b''
+not-yet cross-G-start-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-10 status 1 stdout b'' stderr b''
+not-yet cross-G-start-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-start-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-start-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-00 status 1 stdout b'' stderr b''
+not-yet cross-G-three-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-three-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-02 status 1 stdout b'' stderr b''
+not-yet cross-G-three-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-03 status 1 stdout b'' stderr b''
+not-yet cross-G-three-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-04 status 1 stdout b'' stderr b''
+not-yet cross-G-three-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-three-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-06 status 1 stdout b'' stderr b''
+not-yet cross-G-three-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-07 status 1 stdout b'' stderr b''
+not-yet cross-G-three-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-08 status 1 stdout b'' stderr b''
+not-yet cross-G-three-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-09 status 1 stdout b'' stderr b''
+not-yet cross-G-three-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-10 status 1 stdout b'' stderr b''
+not-yet cross-G-three-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-three-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-three-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-00 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-alone-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-02 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-03 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-04 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-G-alone-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-06 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-07 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-08 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-09 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-10 status 1 stdout b'' stderr b''
+not-yet cross-G-alone-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-alone-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-G-alone-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-00 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-G-chunk-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-02 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-03 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-04 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-05 status 0 stdout b'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' stderr b''
+not-yet cross-G-chunk-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-06 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-07 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-08 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-09 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-10 status 1 stdout b'' stderr b''
+not-yet cross-G-chunk-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-G-chunk-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-G-chunk-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-00 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-middle-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-02 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-03 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-04 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-middle-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-06 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-07 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-08 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-09 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-10 status 1 stdout b'' stderr b''
+not-yet cross-E-middle-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-middle-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-middle-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-00 status 1 stdout b'' stderr b''
+not-yet cross-E-end-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-end-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-02 status 1 stdout b'' stderr b''
+not-yet cross-E-end-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-03 status 1 stdout b'' stderr b''
+not-yet cross-E-end-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-04 status 1 stdout b'' stderr b''
+not-yet cross-E-end-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-end-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-06 status 1 stdout b'' stderr b''
+not-yet cross-E-end-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-07 status 1 stdout b'' stderr b''
+not-yet cross-E-end-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-08 status 1 stdout b'' stderr b''
+not-yet cross-E-end-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-09 status 1 stdout b'' stderr b''
+not-yet cross-E-end-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-10 status 1 stdout b'' stderr b''
+not-yet cross-E-end-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-end-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-end-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-00 status 1 stdout b'' stderr b''
+not-yet cross-E-start-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-start-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-02 status 1 stdout b'' stderr b''
+not-yet cross-E-start-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-03 status 1 stdout b'' stderr b''
+not-yet cross-E-start-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-04 status 1 stdout b'' stderr b''
+not-yet cross-E-start-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-start-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-06 status 1 stdout b'' stderr b''
+not-yet cross-E-start-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-07 status 1 stdout b'' stderr b''
+not-yet cross-E-start-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-08 status 1 stdout b'' stderr b''
+not-yet cross-E-start-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-09 status 1 stdout b'' stderr b''
+not-yet cross-E-start-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-10 status 1 stdout b'' stderr b''
+not-yet cross-E-start-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-start-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-start-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-00 status 1 stdout b'' stderr b''
+not-yet cross-E-three-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-three-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-02 status 1 stdout b'' stderr b''
+not-yet cross-E-three-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-03 status 1 stdout b'' stderr b''
+not-yet cross-E-three-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-04 status 1 stdout b'' stderr b''
+not-yet cross-E-three-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-three-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-06 status 1 stdout b'' stderr b''
+not-yet cross-E-three-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-07 status 1 stdout b'' stderr b''
+not-yet cross-E-three-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-08 status 1 stdout b'' stderr b''
+not-yet cross-E-three-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-09 status 1 stdout b'' stderr b''
+not-yet cross-E-three-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-10 status 1 stdout b'' stderr b''
+not-yet cross-E-three-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-three-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-three-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-00 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-alone-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-02 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-03 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-04 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-05 status 0 stdout b'a\x00x\x00y\x00z\x00b\x00x\x00y\x00z\x00tail\x00' stderr b''
+not-yet cross-E-alone-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-06 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-07 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-08 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-09 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-10 status 1 stdout b'' stderr b''
+not-yet cross-E-alone-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-alone-11 status 0 stdout b'9\n' stderr b''
+not-yet cross-E-alone-11 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-00 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-00 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-01 status 1 stdout b'0\n' stderr b''
+not-yet cross-E-chunk-01 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-02 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-02 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-03 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-03 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-04 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-04 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-05 status 0 stdout b'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' stderr b''
+not-yet cross-E-chunk-05 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-06 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-06 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-07 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-07 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-08 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-08 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-09 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-09 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-10 status 1 stdout b'' stderr b''
+not-yet cross-E-chunk-10 R-ct00-5: ct02 cross-record terminator matching
+not-yet GNU cross-E-chunk-11 status 0 stdout b'5\n' stderr b''
+not-yet cross-E-chunk-11 R-ct00-5: ct02 cross-record terminator matching
+progress 250 {'agree': 34, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 300 {'agree': 84, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 350 {'agree': 134, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 400 {'agree': 184, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 450 {'agree': 234, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 500 {'agree': 284, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 550 {'agree': 334, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 600 {'agree': 384, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 650 {'agree': 434, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+progress 700 {'agree': 484, 'differ': 0, 'not-yet': 216, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 216}
+not-yet GNU patterns-07 status 1 stdout b'' stderr b''
+not-yet patterns-07 R-ct00-5: ct02 cross-record terminator matching
+progress 800 {'agree': 583, 'differ': 0, 'not-yet': 217, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 217}
+not-yet GNU not-yet-ct02-0 status 1 stdout b'' stderr b''
+not-yet not-yet-ct02-0 ct02 regex integration
+not-yet GNU not-yet-ct02-1 status 1 stdout b'' stderr b''
+not-yet not-yet-ct02-1 ct02 regex integration
+not-yet GNU not-yet-m2-0 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-0 M2 recursion/colour
+not-yet GNU not-yet-m2-1 status 0 stdout b'' stderr b'grep: bin/grep: binary file matches\n'
+not-yet not-yet-m2-1 M2 recursion/colour
+not-yet GNU not-yet-m2-2 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-2 M2 recursion/colour
+not-yet GNU not-yet-m2-3 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-3 M2 recursion/colour
+not-yet GNU not-yet-m2-4 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-4 M2 recursion/colour
+not-yet GNU not-yet-m2-5 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-5 M2 recursion/colour
+not-yet GNU not-yet-m2-6 status 2 stdout b'' stderr b'grep: p: No such file or directory\n'
+not-yet not-yet-m2-6 M2 recursion/colour
+not-yet GNU not-yet-m2-7 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-7 M2 recursion/colour
+not-yet GNU not-yet-m2-8 status 1 stdout b'' stderr b''
+not-yet not-yet-m2-8 M2 recursion/colour
+not-yet not-yet-argv0-diagnostic-0 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-diagnostic-1 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-diagnostic-2 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-usage-0 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-usage-1 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv0-usage-2 wolf-lang#899: argv[0] unavailable
+not-yet not-yet-argv-bytes-0 wolf-lang#406: non-UTF-8 pattern
+not-yet not-yet-argv-bytes-1 wolf-lang#406: non-UTF-8 filename
+progress 850 {'agree': 614, 'differ': 0, 'not-yet': 236, 'argv0-diagnostic': 3, 'argv0-usage': 3, 'argv-bytes': 2, 'field-unavailable': 0, 'terminator-pattern': 217}
+progress 900 {'agree': 664, 'differ': 0, 'not-yet': 236, 'argv0-diagnostic': 3, 'argv0-usage': 3, 'argv-bytes': 2, 'field-unavailable': 0, 'terminator-pattern': 217}
+not-yet GNU not-yet-directory-prefix-0 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-0 M2 directory action
+not-yet GNU not-yet-directory-prefix-1 status 1 stdout b'' stderr b''
+not-yet not-yet-directory-prefix-1 M2 directory action
+not-yet GNU not-yet-directory-prefix-2 status 0 stdout b'x\nx\nx\n' stderr b''
+not-yet not-yet-directory-prefix-2 M2 directory action
+not-yet GNU nul-pattern-z status 0 stdout b'x\x00y\x00x\x00y\x00' stderr b''
+not-yet nul-pattern-z R-ct00-5: ct02 cross-record terminator matching
+progress 950 {'agree': 710, 'differ': 0, 'not-yet': 240, 'argv0-diagnostic': 3, 'argv0-usage': 3, 'argv-bytes': 2, 'field-unavailable': 0, 'terminator-pattern': 218}
+718 agree / 0 differ / 240 not-yet
+not-yet columns: argv0-diagnostic=3 argv0-usage=3 argv-bytes=2 terminator-pattern=218
+fetch-oracle: pinned binary verified
+test src/re/compile_test.lu::test_compile_syntax_and_intervals ... ok
+test src/re/compile_test.lu::test_compile_brackets_and_assertions ... ok
+test src/re/compile_test.lu::test_parser_diagnostics_and_refs ... ok
+test src/re/compile_test.lu::test_backreference_path ... ok
+test src/re/compile_test.lu::test_empty_pattern_mebibyte ... ok
+test src/re/compile_test.lu::test_leading_interval_span ... ok
+test src/re/compile_test.lu::test_generated_diagnostic_regressions ... ok
+test src/re/compile_test.lu::test_literal_and_interval_validation_paths ... ok
+test src/re/compile_test.lu::test_interval_needs_content_after_operand ... ok
+test src/re/compile_test.lu::test_capture_in_nonfinal_alternative ... ok
+test src/re/linear_test.lu::test_leftmost_longest ... ok
+test src/re/linear_test.lu::test_word_and_whole ... ok
+test src/re/linear_test.lu::test_empty_cycle_linear ... ok
+wolf test: 13 passed; 0 failed; 0 rejected; 0 unsupported; 0 filtered out
+diagnostics 0/6418; disagreements=0
+diagnostics 500/6418; disagreements=0
+diagnostics 1000/6418; disagreements=0
+diagnostics 1500/6418; disagreements=0
+diagnostics 2000/6418; disagreements=0
+diagnostics 2500/6418; disagreements=0
+diagnostics 3000/6418; disagreements=0
+diagnostics 3500/6418; disagreements=0
+diagnostics 4000/6418; disagreements=0
+diagnostics 4500/6418; disagreements=0
+diagnostics 5000/6418; disagreements=0
+diagnostics 5500/6418; disagreements=0
+diagnostics 6000/6418; disagreements=0
+6418 groups agree / 0 differ; 25672 pairs; SKIP=0
+progress 0/1835 groups; 0 blocking disagreements
+progress 100/1835 groups; 0 blocking disagreements
+progress 200/1835 groups; 0 blocking disagreements
+progress 300/1835 groups; 0 blocking disagreements
+progress 400/1835 groups; 0 blocking disagreements
+progress 500/1835 groups; 0 blocking disagreements
+progress 600/1835 groups; 0 blocking disagreements
+progress 700/1835 groups; 0 blocking disagreements
+progress 800/1835 groups; 0 blocking disagreements
+progress 900/1835 groups; 0 blocking disagreements
+progress 1000/1835 groups; 0 blocking disagreements
+progress 1100/1835 groups; 0 blocking disagreements
+progress 1200/1835 groups; 0 blocking disagreements
+progress 1300/1835 groups; 0 blocking disagreements
+progress 1400/1835 groups; 0 blocking disagreements
+progress 1500/1835 groups; 0 blocking disagreements
+progress 1600/1835 groups; 0 blocking disagreements
+progress 1700/1835 groups; 0 blocking disagreements
+progress 1800/1835 groups; 0 blocking disagreements
+basic generated agree 19958
+basic generated gnu-double-star-empty-capture 32
+basic generated word-span-divergence 10
+basic hand agree 3554
+basic mined agree 70
+extended generated agree 19958
+extended generated gnu-double-star-empty-capture 32
+extended generated word-span-divergence 10
+extended hand agree 3555
+extended mined agree 70
+basic selection agree 22460
+basic spans agree 22450
+basic spans differ 10
+basic status-diagnostics agree 23592
+extended selection agree 22438
+extended spans agree 22428
+extended spans differ 10
+extended status-diagnostics agree 23593
+PASS: no unapproved differences; approved span/extension rows counted separately; SKIP=0
+cost start (a*)*b bytes=1000
+cost result (a*)*b 1000 median_match_ns=154959 compile_ns=13096
+cost start (a*)*b bytes=10000
+cost result (a*)*b 10000 median_match_ns=1433533 compile_ns=8787
+cost start (a*)*b bytes=100000
+cost result (a*)*b 100000 median_match_ns=15288277 compile_ns=13532
+cost start (a|aa)*c bytes=1000
+cost result (a|aa)*c 1000 median_match_ns=249860 compile_ns=13359
+cost start (a|aa)*c bytes=10000
+cost result (a|aa)*c 10000 median_match_ns=2412251 compile_ns=14517
+cost start (a|aa)*c bytes=100000
+cost result (a|aa)*c 100000 median_match_ns=24628574 compile_ns=13815
+cost start ((a{2,3}){2,3}){2,3} bytes=1000
+cost result ((a{2,3}){2,3}){2,3} 1000 median_match_ns=23166 compile_ns=18391
+cost start ((a{2,3}){2,3}){2,3} bytes=10000
+cost result ((a{2,3}){2,3}){2,3} 10000 median_match_ns=26753 compile_ns=15300
+cost start ((a{2,3}){2,3}){2,3} bytes=100000
+cost result ((a{2,3}){2,3}){2,3} 100000 median_match_ns=27310 compile_ns=18458
+cost start (a?){1}a{1} bytes=1000
+cost result (a?){1}a{1} 1000 median_match_ns=6927 compile_ns=13135
+cost start (a?){1}a{1} bytes=10000
+cost result (a?){1}a{1} 10000 median_match_ns=7208 compile_ns=10192
+cost start (a?){1}a{1} bytes=100000
+cost result (a?){1}a{1} 100000 median_match_ns=8766 compile_ns=13788
+cost start (a?){2}a{2} bytes=1000
+cost result (a?){2}a{2} 1000 median_match_ns=7112 compile_ns=14014
+cost start (a?){2}a{2} bytes=10000
+cost result (a?){2}a{2} 10000 median_match_ns=9108 compile_ns=11455
+cost start (a?){2}a{2} bytes=100000
+cost result (a?){2}a{2} 100000 median_match_ns=10340 compile_ns=16612
+cost start (a?){3}a{3} bytes=1000
+cost result (a?){3}a{3} 1000 median_match_ns=9129 compile_ns=18574
+cost start (a?){3}a{3} bytes=10000
+cost result (a?){3}a{3} 10000 median_match_ns=9862 compile_ns=14903
+cost start (a?){3}a{3} bytes=100000
+cost result (a?){3}a{3} 100000 median_match_ns=11188 compile_ns=13609
+cost start (a?){4}a{4} bytes=1000
+cost result (a?){4}a{4} 1000 median_match_ns=9083 compile_ns=13930
+cost start (a?){4}a{4} bytes=10000
+cost result (a?){4}a{4} 10000 median_match_ns=11269 compile_ns=13023
+cost start (a?){4}a{4} bytes=100000
+cost result (a?){4}a{4} 100000 median_match_ns=12264 compile_ns=14610
+cost start (a?){5}a{5} bytes=1000
+cost result (a?){5}a{5} 1000 median_match_ns=12326 compile_ns=14906
+cost start (a?){5}a{5} bytes=10000
+cost result (a?){5}a{5} 10000 median_match_ns=14567 compile_ns=11005
+cost start (a?){5}a{5} bytes=100000
+cost result (a?){5}a{5} 100000 median_match_ns=14599 compile_ns=15554
+cost start (a?){6}a{6} bytes=1000
+cost result (a?){6}a{6} 1000 median_match_ns=15699 compile_ns=18806
+cost start (a?){6}a{6} bytes=10000
+cost result (a?){6}a{6} 10000 median_match_ns=18311 compile_ns=14810
+cost start (a?){6}a{6} bytes=100000
+cost result (a?){6}a{6} 100000 median_match_ns=15762 compile_ns=15593
+cost start (a?){7}a{7} bytes=1000
+cost result (a?){7}a{7} 1000 median_match_ns=18645 compile_ns=14823
+cost start (a?){7}a{7} bytes=10000
+cost result (a?){7}a{7} 10000 median_match_ns=18963 compile_ns=13549
+cost start (a?){7}a{7} bytes=100000
+cost result (a?){7}a{7} 100000 median_match_ns=19587 compile_ns=16999
+cost start (a?){8}a{8} bytes=1000
+cost result (a?){8}a{8} 1000 median_match_ns=21314 compile_ns=19636
+cost start (a?){8}a{8} bytes=10000
+cost result (a?){8}a{8} 10000 median_match_ns=20390 compile_ns=15461
+cost start (a?){8}a{8} bytes=100000
+cost result (a?){8}a{8} 100000 median_match_ns=22691 compile_ns=18052
+cost start (a?){9}a{9} bytes=1000
+cost result (a?){9}a{9} 1000 median_match_ns=24106 compile_ns=18600
+cost start (a?){9}a{9} bytes=10000
+cost result (a?){9}a{9} 10000 median_match_ns=26998 compile_ns=22323
+cost start (a?){9}a{9} bytes=100000
+cost result (a?){9}a{9} 100000 median_match_ns=25816 compile_ns=17759
+cost start (a?){10}a{10} bytes=1000
+cost result (a?){10}a{10} 1000 median_match_ns=28766 compile_ns=23428
+cost start (a?){10}a{10} bytes=10000
+cost result (a?){10}a{10} 10000 median_match_ns=28954 compile_ns=10363
+cost start (a?){10}a{10} bytes=100000
+cost result (a?){10}a{10} 100000 median_match_ns=32440 compile_ns=20801
+cost start (a?){11}a{11} bytes=1000
+cost result (a?){11}a{11} 1000 median_match_ns=33637 compile_ns=20092
+cost start (a?){11}a{11} bytes=10000
+cost result (a?){11}a{11} 10000 median_match_ns=35800 compile_ns=15276
+cost start (a?){11}a{11} bytes=100000
+cost result (a?){11}a{11} 100000 median_match_ns=33593 compile_ns=16813
+cost start (a?){12}a{12} bytes=1000
+cost result (a?){12}a{12} 1000 median_match_ns=33964 compile_ns=20383
+cost start (a?){12}a{12} bytes=10000
+cost result (a?){12}a{12} 10000 median_match_ns=41646 compile_ns=16084
+cost start (a?){12}a{12} bytes=100000
+cost result (a?){12}a{12} 100000 median_match_ns=42361 compile_ns=20370
+cost start (a?){13}a{13} bytes=1000
+cost result (a?){13}a{13} 1000 median_match_ns=44048 compile_ns=21767
+cost start (a?){13}a{13} bytes=10000
+cost result (a?){13}a{13} 10000 median_match_ns=44584 compile_ns=16613
+cost start (a?){13}a{13} bytes=100000
+cost result (a?){13}a{13} 100000 median_match_ns=48292 compile_ns=19576
+cost start (a?){14}a{14} bytes=1000
+cost result (a?){14}a{14} 1000 median_match_ns=51140 compile_ns=22616
+cost start (a?){14}a{14} bytes=10000
+cost result (a?){14}a{14} 10000 median_match_ns=48609 compile_ns=15522
+cost start (a?){14}a{14} bytes=100000
+cost result (a?){14}a{14} 100000 median_match_ns=53167 compile_ns=20636
+cost start (a?){15}a{15} bytes=1000
+cost result (a?){15}a{15} 1000 median_match_ns=55653 compile_ns=19759
+cost start (a?){15}a{15} bytes=10000
+cost result (a?){15}a{15} 10000 median_match_ns=55882 compile_ns=19871
+cost start (a?){15}a{15} bytes=100000
+cost result (a?){15}a{15} 100000 median_match_ns=51681 compile_ns=20009
+cost start (a?){16}a{16} bytes=1000
+cost result (a?){16}a{16} 1000 median_match_ns=55382 compile_ns=21370
+cost start (a?){16}a{16} bytes=10000
+cost result (a?){16}a{16} 10000 median_match_ns=61079 compile_ns=16278
+cost start (a?){16}a{16} bytes=100000
+cost result (a?){16}a{16} 100000 median_match_ns=63516 compile_ns=23175
+cost start (a?){17}a{17} bytes=1000
+cost result (a?){17}a{17} 1000 median_match_ns=69100 compile_ns=23213
+cost start (a?){17}a{17} bytes=10000
+cost result (a?){17}a{17} 10000 median_match_ns=57948 compile_ns=17634
+cost start (a?){17}a{17} bytes=100000
+cost result (a?){17}a{17} 100000 median_match_ns=72793 compile_ns=35226
+cost start (a?){18}a{18} bytes=1000
+cost result (a?){18}a{18} 1000 median_match_ns=69914 compile_ns=21696
+cost start (a?){18}a{18} bytes=10000
+cost result (a?){18}a{18} 10000 median_match_ns=69856 compile_ns=26274
+cost start (a?){18}a{18} bytes=100000
+cost result (a?){18}a{18} 100000 median_match_ns=68161 compile_ns=16982
+cost start (a?){19}a{19} bytes=1000
+cost result (a?){19}a{19} 1000 median_match_ns=83059 compile_ns=20739
+cost start (a?){19}a{19} bytes=10000
+cost result (a?){19}a{19} 10000 median_match_ns=75422 compile_ns=18690
+cost start (a?){19}a{19} bytes=100000
+cost result (a?){19}a{19} 100000 median_match_ns=95859 compile_ns=24036
+cost start (a?){20}a{20} bytes=1000
+cost result (a?){20}a{20} 1000 median_match_ns=84826 compile_ns=24383
+cost start (a?){20}a{20} bytes=10000
+cost result (a?){20}a{20} 10000 median_match_ns=83151 compile_ns=18589
+cost start (a?){20}a{20} bytes=100000
+cost result (a?){20}a{20} 100000 median_match_ns=93742 compile_ns=21581
+cost start (a?){21}a{21} bytes=1000
+cost result (a?){21}a{21} 1000 median_match_ns=93614 compile_ns=25306
+cost start (a?){21}a{21} bytes=10000
+cost result (a?){21}a{21} 10000 median_match_ns=96757 compile_ns=18612
+cost start (a?){21}a{21} bytes=100000
+cost result (a?){21}a{21} 100000 median_match_ns=105530 compile_ns=22168
+cost start (a?){22}a{22} bytes=1000
+cost result (a?){22}a{22} 1000 median_match_ns=107427 compile_ns=28776
+cost start (a?){22}a{22} bytes=10000
+cost result (a?){22}a{22} 10000 median_match_ns=103672 compile_ns=21264
+cost start (a?){22}a{22} bytes=100000
+cost result (a?){22}a{22} 100000 median_match_ns=99900 compile_ns=25425
+cost start (a?){23}a{23} bytes=1000
+cost result (a?){23}a{23} 1000 median_match_ns=112195 compile_ns=37544
+cost start (a?){23}a{23} bytes=10000
+cost result (a?){23}a{23} 10000 median_match_ns=107192 compile_ns=22216
+cost start (a?){23}a{23} bytes=100000
+cost result (a?){23}a{23} 100000 median_match_ns=112224 compile_ns=27677
+cost start (a?){24}a{24} bytes=1000
+cost result (a?){24}a{24} 1000 median_match_ns=118401 compile_ns=28816
+cost start (a?){24}a{24} bytes=10000
+cost result (a?){24}a{24} 10000 median_match_ns=119879 compile_ns=22912
+cost start (a?){24}a{24} bytes=100000
+cost result (a?){24}a{24} 100000 median_match_ns=116617 compile_ns=27681
+cost start (a?){25}a{25} bytes=1000
+cost result (a?){25}a{25} 1000 median_match_ns=92206 compile_ns=25608
+cost start (a?){25}a{25} bytes=10000
+cost result (a?){25}a{25} 10000 median_match_ns=86753 compile_ns=14285
+cost start (a?){25}a{25} bytes=100000
+cost result (a?){25}a{25} 100000 median_match_ns=153816 compile_ns=28553
+cost start (a?){26}a{26} bytes=1000
+cost result (a?){26}a{26} 1000 median_match_ns=141069 compile_ns=25561
+cost start (a?){26}a{26} bytes=10000
+cost result (a?){26}a{26} 10000 median_match_ns=142781 compile_ns=19336
+cost start (a?){26}a{26} bytes=100000
+cost result (a?){26}a{26} 100000 median_match_ns=133384 compile_ns=28710
+cost start (a?){27}a{27} bytes=1000
+cost result (a?){27}a{27} 1000 median_match_ns=151391 compile_ns=18232
+cost start (a?){27}a{27} bytes=10000
+cost result (a?){27}a{27} 10000 median_match_ns=143576 compile_ns=24314
+cost start (a?){27}a{27} bytes=100000
+cost result (a?){27}a{27} 100000 median_match_ns=144756 compile_ns=33141
+cost start (a?){28}a{28} bytes=1000
+cost result (a?){28}a{28} 1000 median_match_ns=184709 compile_ns=42747
+cost start (a?){28}a{28} bytes=10000
+cost result (a?){28}a{28} 10000 median_match_ns=165622 compile_ns=32764
+cost start (a?){28}a{28} bytes=100000
+cost result (a?){28}a{28} 100000 median_match_ns=164703 compile_ns=18241
+cost start (a?){29}a{29} bytes=1000
+cost result (a?){29}a{29} 1000 median_match_ns=171046 compile_ns=24791
+cost start (a?){29}a{29} bytes=10000
+cost result (a?){29}a{29} 10000 median_match_ns=165305 compile_ns=21851
+cost start (a?){29}a{29} bytes=100000
+cost result (a?){29}a{29} 100000 median_match_ns=157535 compile_ns=26210
+cost start (a?){30}a{30} bytes=1000
+cost result (a?){30}a{30} 1000 median_match_ns=179037 compile_ns=33495
+cost start (a?){30}a{30} bytes=10000
+cost result (a?){30}a{30} 10000 median_match_ns=191641 compile_ns=26566
+cost start (a?){30}a{30} bytes=100000
+cost result (a?){30}a{30} 100000 median_match_ns=190989 compile_ns=28228
+backreference start (a*)\1 bytes=10
+{"family": "(a*)\\1", "bytes": 10, "backreference": true, "engine": {"compile_ns": 12855, "match_ns": 25452, "instructions": 12, "visits": 0, "peak_frames": 24, "selected": true, "wall_ns": 5406361, "peak_rss_bytes": 15884288}, "oracle": {"empty_input": {"wall_ns": 1948117, "status": 1, "stderr": ""}, "full": {"wall_ns": 755785, "status": 0, "stderr": ""}}}
+backreference start (a*)\1 bytes=100
+{"family": "(a*)\\1", "bytes": 100, "backreference": true, "engine": {"compile_ns": 13158, "match_ns": 125840, "instructions": 12, "visits": 0, "peak_frames": 204, "selected": true, "wall_ns": 5415615, "peak_rss_bytes": 15884288}, "oracle": {"empty_input": {"wall_ns": 1963869, "status": 1, "stderr": ""}, "full": {"wall_ns": 1214643, "status": 0, "stderr": ""}}}
+backreference start (a*)\1 bytes=1000
+{"family": "(a*)\\1", "bytes": 1000, "backreference": true, "engine": {"compile_ns": 8035, "match_ns": 1039918, "instructions": 12, "visits": 0, "peak_frames": 2004, "selected": true, "wall_ns": 5450253, "peak_rss_bytes": 15884288}, "oracle": {"empty_input": {"wall_ns": 1804595, "status": 1, "stderr": ""}, "full": {"wall_ns": 11249490, "status": 0, "stderr": ""}}}
+backreference start (a|aa)*\1b bytes=12
+{"family": "(a|aa)*\\1b", "bytes": 12, "backreference": true, "engine": {"compile_ns": 9479, "match_ns": 1221294, "instructions": 20, "visits": 0, "peak_frames": 64, "selected": false, "wall_ns": 5258205, "peak_rss_bytes": 15884288}, "oracle": {"empty_input": {"wall_ns": 1567562, "status": 1, "stderr": ""}, "full": {"wall_ns": 1483096, "status": 1, "stderr": ""}}}
+backreference start (a|aa)*\1b bytes=18
+{"family": "(a|aa)*\\1b", "bytes": 18, "backreference": true, "engine": {"compile_ns": 7978, "match_ns": 21544690, "instructions": 20, "visits": 0, "peak_frames": 94, "selected": false, "wall_ns": 25574237, "peak_rss_bytes": 15884288}, "oracle": {"empty_input": {"wall_ns": 1429775, "status": 1, "stderr": ""}, "full": {"wall_ns": 1426479, "status": 1, "stderr": ""}}}
+backreference start (a|aa)*\1b bytes=24
+{"family": "(a|aa)*\\1b", "bytes": 24, "backreference": true, "engine": {"compile_ns": 8877, "match_ns": 416580051, "instructions": 20, "visits": 0, "peak_frames": 124, "selected": false, "wall_ns": 422049512, "peak_rss_bytes": 15884288}, "oracle": {"empty_input": {"wall_ns": 1618150, "status": 1, "stderr": ""}, "full": {"wall_ns": 1476437, "status": 1, "stderr": ""}}}
+backreference start ^(a+)\1+$ bytes=32
+{"family": "^(a+)\\1+$", "bytes": 32, "backreference": true, "engine": {"compile_ns": 9527, "match_ns": 51796, "instructions": 22, "visits": 0, "peak_frames": 69, "selected": true, "wall_ns": 5340474, "peak_rss_bytes": 15884288}, "oracle": {"empty_input": {"wall_ns": 1810428, "status": 1, "stderr": ""}, "full": {"timeout": 10}}}
+backreference start ^(a+)\1+$ bytes=128
+{"family": "^(a+)\\1+$", "bytes": 128, "backreference": true, "engine": {"compile_ns": 9483, "match_ns": 299004, "instructions": 22, "visits": 0, "peak_frames": 261, "selected": true, "wall_ns": 5279052, "peak_rss_bytes": 15884288}, "oracle": {"empty_input": {"wall_ns": 1439626, "status": 1, "stderr": ""}, "full": {"timeout": 10}}}
+backreference start ^(a+)\1+$ bytes=512
+{"family": "^(a+)\\1+$", "bytes": 512, "backreference": true, "engine": {"compile_ns": 8173, "match_ns": 1196412, "instructions": 22, "visits": 0, "peak_frames": 1029, "selected": true, "wall_ns": 5307973, "peak_rss_bytes": 15884288}, "oracle": {"empty_input": {"wall_ns": 1572257, "status": 1, "stderr": ""}, "full": {"timeout": 10}}}
+large interval start a{1,32767}
+{"family": "a{1,32767}", "bytes": 1, "large_interval": true, "engine": {"compile_ns": 3870308, "match_ns": 2134842, "instructions": 131068, "visits": 65535, "peak_frames": 0, "selected": true, "wall_ns": 26049346, "peak_rss_bytes": 25092096}, "oracle": {"empty_input": {"timeout": 10}, "full": {"timeout": 10}}}
+large interval start (a{1,1000}){1,1000}
+{"family": "(a{1,1000}){1,1000}", "bytes": 1, "large_interval": true, "engine": {"compile_ns": 149085661, "match_ns": 471010, "instructions": 4000000, "visits": 3999, "peak_frames": 0, "selected": true, "wall_ns": 271684882, "peak_rss_bytes": 727842816}, "oracle": {"empty_input": {"timeout": 10}, "full": {"timeout": 10}}}
+large interval start a{1,32768}
+{"family": "a{1,32768}", "bytes": 1, "large_interval": true, "engine": {"status": 2, "diagnostic": "Regular expression too big\n", "wall_ns": 5266860, "peak_rss_bytes": 15884288}, "oracle": {"empty_input": {"wall_ns": 555065, "status": 2, "stderr": "2f776f726b2f7363656e742f2e6f7261636c652f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"}, "full": {"wall_ns": 1451352, "status": 2, "stderr": "2f776f726b2f7363656e742f2e6f7261636c652f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"}}}
+large interval start a{32768}
+{"family": "a{32768}", "bytes": 1, "large_interval": true, "engine": {"status": 2, "diagnostic": "Regular expression too big\n", "wall_ns": 5299222, "peak_rss_bytes": 15884288}, "oracle": {"empty_input": {"wall_ns": 444491, "status": 2, "stderr": "2f776f726b2f7363656e742f2e6f7261636c652f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"}, "full": {"wall_ns": 1386842, "status": 2, "stderr": "2f776f726b2f7363656e742f2e6f7261636c652f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"}}}
+PASS cost gate; timeouts explicitly counted; SKIP=0
+progress 0/1835 groups; 0 blocking disagreements
+progress 100/1835 groups; 0 blocking disagreements
+progress 200/1835 groups; 0 blocking disagreements
+progress 300/1835 groups; 0 blocking disagreements
+progress 400/1835 groups; 0 blocking disagreements
+progress 500/1835 groups; 0 blocking disagreements
+progress 600/1835 groups; 0 blocking disagreements
+progress 700/1835 groups; 0 blocking disagreements
+progress 800/1835 groups; 0 blocking disagreements
+progress 900/1835 groups; 0 blocking disagreements
+progress 1000/1835 groups; 0 blocking disagreements
+progress 1100/1835 groups; 0 blocking disagreements
+progress 1200/1835 groups; 0 blocking disagreements
+progress 1300/1835 groups; 0 blocking disagreements
+progress 1400/1835 groups; 0 blocking disagreements
+progress 1500/1835 groups; 0 blocking disagreements
+progress 1600/1835 groups; 0 blocking disagreements
+progress 1700/1835 groups; 0 blocking disagreements
+progress 1800/1835 groups; 0 blocking disagreements
+basic generated agree 19958
+basic generated gnu-double-star-empty-capture 32
+basic generated word-span-divergence 10
+basic hand agree 3554
+basic mined agree 70
+extended generated agree 19958
+extended generated gnu-double-star-empty-capture 32
+extended generated word-span-divergence 10
+extended hand agree 3555
+extended mined agree 70
+basic selection agree 22460
+basic spans agree 22450
+basic spans differ 10
+basic status-diagnostics agree 23592
+extended selection agree 22438
+extended spans agree 22428
+extended spans differ 10
+extended status-diagnostics agree 23593
+PASS: no unapproved differences; approved span/extension rows counted separately; SKIP=0
+RED leftmost plant: a|ab on ab returned the shorter first alternative; oracle comparison rejected it
+GREEN leftmost gate after restoring longest-span execution
+RED cost plant: regular (a|aa)*c routed through DFS; bounded cost gate rejected it
+GREEN cost gate after restoring state-set dispatch
+PASS both plants seen red then green; sources and driver restored
+PASS rebased CLI and engine acceptance; SKIP=0
+ct01 rebased acceptance status 0 at 2026-10-23T09:31:48-04:00

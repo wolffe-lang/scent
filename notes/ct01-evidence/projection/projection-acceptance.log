@@ -1,0 +1,355 @@
+ct01 projection acceptance queued 2026-10-23T10:03:11-04:00
+fetch-oracle: pinned binary verified
+test src/re/compile_test.lu::test_compile_syntax_and_intervals ... ok
+test src/re/compile_test.lu::test_compile_brackets_and_assertions ... ok
+test src/re/compile_test.lu::test_parser_diagnostics_and_refs ... ok
+test src/re/compile_test.lu::test_backreference_path ... ok
+test src/re/compile_test.lu::test_empty_pattern_mebibyte ... ok
+test src/re/compile_test.lu::test_leading_interval_span ... ok
+test src/re/compile_test.lu::test_generated_diagnostic_regressions ... ok
+test src/re/compile_test.lu::test_literal_and_interval_validation_paths ... ok
+test src/re/compile_test.lu::test_interval_needs_content_after_operand ... ok
+test src/re/compile_test.lu::test_capture_in_nonfinal_alternative ... ok
+test src/re/compile_test.lu::test_backreference_projection_is_a_superset ... ok
+test src/re/linear_test.lu::test_leftmost_longest ... ok
+test src/re/linear_test.lu::test_word_and_whole ... ok
+test src/re/linear_test.lu::test_empty_cycle_linear ... ok
+wolf test: 14 passed; 0 failed; 0 rejected; 0 unsupported; 0 filtered out
+diagnostics 0/6418; disagreements=0
+diagnostics 500/6418; disagreements=0
+diagnostics 1000/6418; disagreements=0
+diagnostics 1500/6418; disagreements=0
+diagnostics 2000/6418; disagreements=0
+diagnostics 2500/6418; disagreements=0
+diagnostics 3000/6418; disagreements=0
+diagnostics 3500/6418; disagreements=0
+diagnostics 4000/6418; disagreements=0
+diagnostics 4500/6418; disagreements=0
+diagnostics 5000/6418; disagreements=0
+diagnostics 5500/6418; disagreements=0
+diagnostics 6000/6418; disagreements=0
+6418 groups agree / 0 differ; 25672 pairs; SKIP=0
+progress 0/1835 groups; 0 blocking disagreements
+progress 100/1835 groups; 0 blocking disagreements
+progress 200/1835 groups; 0 blocking disagreements
+progress 300/1835 groups; 0 blocking disagreements
+progress 400/1835 groups; 0 blocking disagreements
+progress 500/1835 groups; 0 blocking disagreements
+progress 600/1835 groups; 0 blocking disagreements
+progress 700/1835 groups; 0 blocking disagreements
+progress 800/1835 groups; 0 blocking disagreements
+progress 900/1835 groups; 0 blocking disagreements
+progress 1000/1835 groups; 0 blocking disagreements
+progress 1100/1835 groups; 0 blocking disagreements
+progress 1200/1835 groups; 0 blocking disagreements
+progress 1300/1835 groups; 0 blocking disagreements
+progress 1400/1835 groups; 0 blocking disagreements
+progress 1500/1835 groups; 0 blocking disagreements
+progress 1600/1835 groups; 0 blocking disagreements
+progress 1700/1835 groups; 0 blocking disagreements
+progress 1800/1835 groups; 0 blocking disagreements
+basic generated agree 19958
+basic generated gnu-double-star-empty-capture 32
+basic generated word-span-divergence 10
+basic hand agree 3554
+basic mined agree 70
+extended generated agree 19958
+extended generated gnu-double-star-empty-capture 32
+extended generated word-span-divergence 10
+extended hand agree 3555
+extended mined agree 70
+basic selection agree 22460
+basic spans agree 22450
+basic spans differ 10
+basic status-diagnostics agree 23592
+extended selection agree 22438
+extended spans agree 22428
+extended spans differ 10
+extended status-diagnostics agree 23593
+PASS: no unapproved differences; approved span/extension rows counted separately; SKIP=0
+projection soak: 492 backreference groups from seed 11401, 100000 generated pairs per syntax
+projection basic generated compile-error 3104 pairs
+projection basic generated valid 3552 pairs
+projection basic hand compile-error 184 pairs
+projection basic hand valid 530 pairs
+projection extended generated compile-error 3104 pairs
+projection extended generated valid 3552 pairs
+projection extended hand compile-error 115 pairs
+projection extended hand valid 599 pairs
+14740 pairs identical / 0 groups differ; SKIP=0
+cost start (a*)*b bytes=1000
+cost result (a*)*b 1000 median_match_ns=161793 compile_ns=12325
+cost start (a*)*b bytes=10000
+cost result (a*)*b 10000 median_match_ns=1727910 compile_ns=13531
+cost start (a*)*b bytes=100000
+cost result (a*)*b 100000 median_match_ns=17044939 compile_ns=13728
+cost start (a|aa)*c bytes=1000
+cost result (a|aa)*c 1000 median_match_ns=273879 compile_ns=19634
+cost start (a|aa)*c bytes=10000
+cost result (a|aa)*c 10000 median_match_ns=2664054 compile_ns=11473
+cost start (a|aa)*c bytes=100000
+cost result (a|aa)*c 100000 median_match_ns=26880513 compile_ns=19340
+cost start ((a{2,3}){2,3}){2,3} bytes=1000
+cost result ((a{2,3}){2,3}){2,3} 1000 median_match_ns=28977 compile_ns=31285
+cost start ((a{2,3}){2,3}){2,3} bytes=10000
+cost result ((a{2,3}){2,3}){2,3} 10000 median_match_ns=34619 compile_ns=29928
+cost start ((a{2,3}){2,3}){2,3} bytes=100000
+cost result ((a{2,3}){2,3}){2,3} 100000 median_match_ns=35731 compile_ns=28059
+cost start (a?){1}a{1} bytes=1000
+cost result (a?){1}a{1} 1000 median_match_ns=8241 compile_ns=15549
+cost start (a?){1}a{1} bytes=10000
+cost result (a?){1}a{1} 10000 median_match_ns=8961 compile_ns=13525
+cost start (a?){1}a{1} bytes=100000
+cost result (a?){1}a{1} 100000 median_match_ns=11076 compile_ns=21929
+cost start (a?){2}a{2} bytes=1000
+cost result (a?){2}a{2} 1000 median_match_ns=10325 compile_ns=22230
+cost start (a?){2}a{2} bytes=10000
+cost result (a?){2}a{2} 10000 median_match_ns=12056 compile_ns=19501
+cost start (a?){2}a{2} bytes=100000
+cost result (a?){2}a{2} 100000 median_match_ns=12572 compile_ns=19407
+cost start (a?){3}a{3} bytes=1000
+cost result (a?){3}a{3} 1000 median_match_ns=12256 compile_ns=20551
+cost start (a?){3}a{3} bytes=10000
+cost result (a?){3}a{3} 10000 median_match_ns=12828 compile_ns=14479
+cost start (a?){3}a{3} bytes=100000
+cost result (a?){3}a{3} 100000 median_match_ns=13579 compile_ns=13242
+cost start (a?){4}a{4} bytes=1000
+cost result (a?){4}a{4} 1000 median_match_ns=13812 compile_ns=16309
+cost start (a?){4}a{4} bytes=10000
+cost result (a?){4}a{4} 10000 median_match_ns=15901 compile_ns=18339
+cost start (a?){4}a{4} bytes=100000
+cost result (a?){4}a{4} 100000 median_match_ns=17933 compile_ns=43277
+cost start (a?){5}a{5} bytes=1000
+cost result (a?){5}a{5} 1000 median_match_ns=18222 compile_ns=16714
+cost start (a?){5}a{5} bytes=10000
+cost result (a?){5}a{5} 10000 median_match_ns=19303 compile_ns=20420
+cost start (a?){5}a{5} bytes=100000
+cost result (a?){5}a{5} 100000 median_match_ns=17994 compile_ns=18637
+cost start (a?){6}a{6} bytes=1000
+cost result (a?){6}a{6} 1000 median_match_ns=16934 compile_ns=21826
+cost start (a?){6}a{6} bytes=10000
+cost result (a?){6}a{6} 10000 median_match_ns=19769 compile_ns=23125
+cost start (a?){6}a{6} bytes=100000
+cost result (a?){6}a{6} 100000 median_match_ns=20109 compile_ns=25788
+cost start (a?){7}a{7} bytes=1000
+cost result (a?){7}a{7} 1000 median_match_ns=21294 compile_ns=19665
+cost start (a?){7}a{7} bytes=10000
+cost result (a?){7}a{7} 10000 median_match_ns=24110 compile_ns=20274
+cost start (a?){7}a{7} bytes=100000
+cost result (a?){7}a{7} 100000 median_match_ns=25238 compile_ns=21359
+cost start (a?){8}a{8} bytes=1000
+cost result (a?){8}a{8} 1000 median_match_ns=25310 compile_ns=33193
+cost start (a?){8}a{8} bytes=10000
+cost result (a?){8}a{8} 10000 median_match_ns=29004 compile_ns=21702
+cost start (a?){8}a{8} bytes=100000
+cost result (a?){8}a{8} 100000 median_match_ns=28052 compile_ns=23003
+cost start (a?){9}a{9} bytes=1000
+cost result (a?){9}a{9} 1000 median_match_ns=29109 compile_ns=27924
+cost start (a?){9}a{9} bytes=10000
+cost result (a?){9}a{9} 10000 median_match_ns=30214 compile_ns=17717
+cost start (a?){9}a{9} bytes=100000
+cost result (a?){9}a{9} 100000 median_match_ns=30037 compile_ns=23035
+cost start (a?){10}a{10} bytes=1000
+cost result (a?){10}a{10} 1000 median_match_ns=35156 compile_ns=20846
+cost start (a?){10}a{10} bytes=10000
+cost result (a?){10}a{10} 10000 median_match_ns=38233 compile_ns=22711
+cost start (a?){10}a{10} bytes=100000
+cost result (a?){10}a{10} 100000 median_match_ns=39663 compile_ns=27497
+cost start (a?){11}a{11} bytes=1000
+cost result (a?){11}a{11} 1000 median_match_ns=38244 compile_ns=24737
+cost start (a?){11}a{11} bytes=10000
+cost result (a?){11}a{11} 10000 median_match_ns=36176 compile_ns=15536
+cost start (a?){11}a{11} bytes=100000
+cost result (a?){11}a{11} 100000 median_match_ns=47745 compile_ns=25305
+cost start (a?){12}a{12} bytes=1000
+cost result (a?){12}a{12} 1000 median_match_ns=46199 compile_ns=20739
+cost start (a?){12}a{12} bytes=10000
+cost result (a?){12}a{12} 10000 median_match_ns=47854 compile_ns=22889
+cost start (a?){12}a{12} bytes=100000
+cost result (a?){12}a{12} 100000 median_match_ns=51104 compile_ns=17912
+cost start (a?){13}a{13} bytes=1000
+cost result (a?){13}a{13} 1000 median_match_ns=54926 compile_ns=30021
+cost start (a?){13}a{13} bytes=10000
+cost result (a?){13}a{13} 10000 median_match_ns=54070 compile_ns=24125
+cost start (a?){13}a{13} bytes=100000
+cost result (a?){13}a{13} 100000 median_match_ns=55417 compile_ns=22699
+cost start (a?){14}a{14} bytes=1000
+cost result (a?){14}a{14} 1000 median_match_ns=56183 compile_ns=23160
+cost start (a?){14}a{14} bytes=10000
+cost result (a?){14}a{14} 10000 median_match_ns=61555 compile_ns=23871
+cost start (a?){14}a{14} bytes=100000
+cost result (a?){14}a{14} 100000 median_match_ns=61357 compile_ns=27217
+cost start (a?){15}a{15} bytes=1000
+cost result (a?){15}a{15} 1000 median_match_ns=59131 compile_ns=29338
+cost start (a?){15}a{15} bytes=10000
+cost result (a?){15}a{15} 10000 median_match_ns=67785 compile_ns=22282
+cost start (a?){15}a{15} bytes=100000
+cost result (a?){15}a{15} 100000 median_match_ns=61212 compile_ns=25430
+cost start (a?){16}a{16} bytes=1000
+cost result (a?){16}a{16} 1000 median_match_ns=67399 compile_ns=27167
+cost start (a?){16}a{16} bytes=10000
+cost result (a?){16}a{16} 10000 median_match_ns=67524 compile_ns=26225
+cost start (a?){16}a{16} bytes=100000
+cost result (a?){16}a{16} 100000 median_match_ns=71916 compile_ns=28238
+cost start (a?){17}a{17} bytes=1000
+cost result (a?){17}a{17} 1000 median_match_ns=72612 compile_ns=26765
+cost start (a?){17}a{17} bytes=10000
+cost result (a?){17}a{17} 10000 median_match_ns=77811 compile_ns=24137
+cost start (a?){17}a{17} bytes=100000
+cost result (a?){17}a{17} 100000 median_match_ns=74602 compile_ns=19287
+cost start (a?){18}a{18} bytes=1000
+cost result (a?){18}a{18} 1000 median_match_ns=78448 compile_ns=25386
+cost start (a?){18}a{18} bytes=10000
+cost result (a?){18}a{18} 10000 median_match_ns=82776 compile_ns=23588
+cost start (a?){18}a{18} bytes=100000
+cost result (a?){18}a{18} 100000 median_match_ns=89954 compile_ns=28930
+cost start (a?){19}a{19} bytes=1000
+cost result (a?){19}a{19} 1000 median_match_ns=89332 compile_ns=19340
+cost start (a?){19}a{19} bytes=10000
+cost result (a?){19}a{19} 10000 median_match_ns=94681 compile_ns=24686
+cost start (a?){19}a{19} bytes=100000
+cost result (a?){19}a{19} 100000 median_match_ns=91158 compile_ns=29403
+cost start (a?){20}a{20} bytes=1000
+cost result (a?){20}a{20} 1000 median_match_ns=98048 compile_ns=30814
+cost start (a?){20}a{20} bytes=10000
+cost result (a?){20}a{20} 10000 median_match_ns=107017 compile_ns=29054
+cost start (a?){20}a{20} bytes=100000
+cost result (a?){20}a{20} 100000 median_match_ns=110114 compile_ns=39542
+cost start (a?){21}a{21} bytes=1000
+cost result (a?){21}a{21} 1000 median_match_ns=95226 compile_ns=37762
+cost start (a?){21}a{21} bytes=10000
+cost result (a?){21}a{21} 10000 median_match_ns=111682 compile_ns=29822
+cost start (a?){21}a{21} bytes=100000
+cost result (a?){21}a{21} 100000 median_match_ns=125554 compile_ns=31418
+cost start (a?){22}a{22} bytes=1000
+cost result (a?){22}a{22} 1000 median_match_ns=106576 compile_ns=43122
+cost start (a?){22}a{22} bytes=10000
+cost result (a?){22}a{22} 10000 median_match_ns=116639 compile_ns=22453
+cost start (a?){22}a{22} bytes=100000
+cost result (a?){22}a{22} 100000 median_match_ns=122945 compile_ns=34537
+cost start (a?){23}a{23} bytes=1000
+cost result (a?){23}a{23} 1000 median_match_ns=127436 compile_ns=34343
+cost start (a?){23}a{23} bytes=10000
+cost result (a?){23}a{23} 10000 median_match_ns=130700 compile_ns=26055
+cost start (a?){23}a{23} bytes=100000
+cost result (a?){23}a{23} 100000 median_match_ns=127010 compile_ns=35232
+cost start (a?){24}a{24} bytes=1000
+cost result (a?){24}a{24} 1000 median_match_ns=152301 compile_ns=29671
+cost start (a?){24}a{24} bytes=10000
+cost result (a?){24}a{24} 10000 median_match_ns=129402 compile_ns=19107
+cost start (a?){24}a{24} bytes=100000
+cost result (a?){24}a{24} 100000 median_match_ns=136069 compile_ns=34749
+cost start (a?){25}a{25} bytes=1000
+cost result (a?){25}a{25} 1000 median_match_ns=151310 compile_ns=35558
+cost start (a?){25}a{25} bytes=10000
+cost result (a?){25}a{25} 10000 median_match_ns=140417 compile_ns=32970
+cost start (a?){25}a{25} bytes=100000
+cost result (a?){25}a{25} 100000 median_match_ns=137711 compile_ns=43475
+cost start (a?){26}a{26} bytes=1000
+cost result (a?){26}a{26} 1000 median_match_ns=163476 compile_ns=35198
+cost start (a?){26}a{26} bytes=10000
+cost result (a?){26}a{26} 10000 median_match_ns=159361 compile_ns=29396
+cost start (a?){26}a{26} bytes=100000
+cost result (a?){26}a{26} 100000 median_match_ns=154144 compile_ns=35688
+cost start (a?){27}a{27} bytes=1000
+cost result (a?){27}a{27} 1000 median_match_ns=176648 compile_ns=51610
+cost start (a?){27}a{27} bytes=10000
+cost result (a?){27}a{27} 10000 median_match_ns=173009 compile_ns=29574
+cost start (a?){27}a{27} bytes=100000
+cost result (a?){27}a{27} 100000 median_match_ns=174814 compile_ns=31116
+cost start (a?){28}a{28} bytes=1000
+cost result (a?){28}a{28} 1000 median_match_ns=172744 compile_ns=35399
+cost start (a?){28}a{28} bytes=10000
+cost result (a?){28}a{28} 10000 median_match_ns=187935 compile_ns=30218
+cost start (a?){28}a{28} bytes=100000
+cost result (a?){28}a{28} 100000 median_match_ns=192460 compile_ns=47618
+cost start (a?){29}a{29} bytes=1000
+cost result (a?){29}a{29} 1000 median_match_ns=184281 compile_ns=42271
+cost start (a?){29}a{29} bytes=10000
+cost result (a?){29}a{29} 10000 median_match_ns=177886 compile_ns=36155
+cost start (a?){29}a{29} bytes=100000
+cost result (a?){29}a{29} 100000 median_match_ns=203499 compile_ns=45604
+cost start (a?){30}a{30} bytes=1000
+cost result (a?){30}a{30} 1000 median_match_ns=212798 compile_ns=35987
+cost start (a?){30}a{30} bytes=10000
+cost result (a?){30}a{30} 10000 median_match_ns=212487 compile_ns=33275
+cost start (a?){30}a{30} bytes=100000
+cost result (a?){30}a{30} 100000 median_match_ns=208423 compile_ns=36217
+backreference start (a*)\1 bytes=10
+{"family": "(a*)\\1", "bytes": 10, "backreference": true, "engine": {"compile_ns": 16974, "match_ns": 27332, "instructions": 12, "visits": 6, "peak_frames": 24, "selected": true, "wall_ns": 5833238, "peak_rss_bytes": 15740928}, "oracle": {"empty_input": {"wall_ns": 1128106, "status": 1, "stderr": ""}, "full": {"wall_ns": 907919, "status": 0, "stderr": ""}}}
+backreference start (a*)\1 bytes=100
+{"family": "(a*)\\1", "bytes": 100, "backreference": true, "engine": {"compile_ns": 16080, "match_ns": 112259, "instructions": 12, "visits": 6, "peak_frames": 204, "selected": true, "wall_ns": 5742586, "peak_rss_bytes": 15740928}, "oracle": {"empty_input": {"wall_ns": 2153794, "status": 1, "stderr": ""}, "full": {"wall_ns": 1804676, "status": 0, "stderr": ""}}}
+backreference start (a*)\1 bytes=1000
+{"family": "(a*)\\1", "bytes": 1000, "backreference": true, "engine": {"compile_ns": 30060, "match_ns": 1047471, "instructions": 12, "visits": 6, "peak_frames": 2004, "selected": true, "wall_ns": 5735987, "peak_rss_bytes": 15740928}, "oracle": {"empty_input": {"wall_ns": 2772026, "status": 1, "stderr": ""}, "full": {"wall_ns": 21458641, "status": 0, "stderr": ""}}}
+backreference start (a|aa)*\1b bytes=12
+{"family": "(a|aa)*\\1b", "bytes": 12, "backreference": true, "engine": {"compile_ns": 20373, "match_ns": 14564, "instructions": 20, "visits": 115, "peak_frames": 0, "selected": false, "wall_ns": 6484637, "peak_rss_bytes": 15740928}, "oracle": {"empty_input": {"wall_ns": 2269069, "status": 1, "stderr": ""}, "full": {"wall_ns": 2160902, "status": 1, "stderr": ""}}}
+backreference start (a|aa)*\1b bytes=18
+{"family": "(a|aa)*\\1b", "bytes": 18, "backreference": true, "engine": {"compile_ns": 14757, "match_ns": 8355, "instructions": 20, "visits": 169, "peak_frames": 0, "selected": false, "wall_ns": 5657719, "peak_rss_bytes": 15740928}, "oracle": {"empty_input": {"wall_ns": 4320692, "status": 1, "stderr": ""}, "full": {"wall_ns": 1077551, "status": 1, "stderr": ""}}}
+backreference start (a|aa)*\1b bytes=24
+{"family": "(a|aa)*\\1b", "bytes": 24, "backreference": true, "engine": {"compile_ns": 24277, "match_ns": 14110, "instructions": 20, "visits": 223, "peak_frames": 0, "selected": false, "wall_ns": 7685446, "peak_rss_bytes": 15740928}, "oracle": {"empty_input": {"wall_ns": 1069644, "status": 1, "stderr": ""}, "full": {"wall_ns": 2042319, "status": 1, "stderr": ""}}}
+backreference start (a|aa)*\1b bytes=1000
+{"family": "(a|aa)*\\1b", "bytes": 1000, "backreference": true, "engine": {"compile_ns": 22519, "match_ns": 351024, "instructions": 20, "visits": 9007, "peak_frames": 0, "selected": false, "wall_ns": 5631568, "peak_rss_bytes": 15740928}, "oracle": {"empty_input": {"wall_ns": 3034747, "status": 1, "stderr": ""}, "full": {"wall_ns": 1251717, "status": 1, "stderr": ""}}}
+backreference start (a|aa)*\1b bytes=10000
+{"family": "(a|aa)*\\1b", "bytes": 10000, "backreference": true, "engine": {"compile_ns": 19038, "match_ns": 3669999, "instructions": 20, "visits": 90007, "peak_frames": 0, "selected": false, "wall_ns": 5535795, "peak_rss_bytes": 15740928}, "oracle": {"empty_input": {"wall_ns": 2118703, "status": 1, "stderr": ""}, "full": {"wall_ns": 2078564, "status": 1, "stderr": ""}}}
+backreference start (a|aa)*\1b bytes=100000
+{"family": "(a|aa)*\\1b", "bytes": 100000, "backreference": true, "engine": {"compile_ns": 16773, "match_ns": 33491867, "instructions": 20, "visits": 900007, "peak_frames": 0, "selected": false, "wall_ns": 36279707, "peak_rss_bytes": 15740928}, "oracle": {"empty_input": {"wall_ns": 1902441, "status": 1, "stderr": ""}, "full": {"wall_ns": 2011463, "status": 1, "stderr": ""}}}
+backreference start ^(a+)\1+$ bytes=32
+{"family": "^(a+)\\1+$", "bytes": 32, "backreference": true, "engine": {"compile_ns": 14564, "match_ns": 44638, "instructions": 22, "visits": 260, "peak_frames": 68, "selected": true, "wall_ns": 5434025, "peak_rss_bytes": 15740928}, "oracle": {"empty_input": {"wall_ns": 1956867, "status": 1, "stderr": ""}, "full": {"timeout": 10}}}
+backreference start ^(a+)\1+$ bytes=128
+{"family": "^(a+)\\1+$", "bytes": 128, "backreference": true, "engine": {"compile_ns": 12700, "match_ns": 145451, "instructions": 22, "visits": 1028, "peak_frames": 260, "selected": true, "wall_ns": 5404221, "peak_rss_bytes": 15740928}, "oracle": {"empty_input": {"wall_ns": 1702256, "status": 1, "stderr": ""}, "full": {"timeout": 10}}}
+backreference start ^(a+)\1+$ bytes=512
+{"family": "^(a+)\\1+$", "bytes": 512, "backreference": true, "engine": {"compile_ns": 26209, "match_ns": 510246, "instructions": 22, "visits": 4100, "peak_frames": 1028, "selected": true, "wall_ns": 5417806, "peak_rss_bytes": 15740928}, "oracle": {"empty_input": {"wall_ns": 1833733, "status": 1, "stderr": ""}, "full": {"timeout": 10}}}
+large interval start a{1,32767}
+{"family": "a{1,32767}", "bytes": 1, "large_interval": true, "engine": {"compile_ns": 4318440, "match_ns": 2283088, "instructions": 131068, "visits": 65535, "peak_frames": 0, "selected": true, "wall_ns": 15587196, "peak_rss_bytes": 25153536}, "oracle": {"empty_input": {"timeout": 10}, "full": {"timeout": 10}}}
+large interval start (a{1,1000}){1,1000}
+{"family": "(a{1,1000}){1,1000}", "bytes": 1, "large_interval": true, "engine": {"compile_ns": 106907455, "match_ns": 505590, "instructions": 4000000, "visits": 3999, "peak_frames": 0, "selected": true, "wall_ns": 219779965, "peak_rss_bytes": 728154112}, "oracle": {"empty_input": {"timeout": 10}, "full": {"timeout": 10}}}
+large interval start a{1,32768}
+{"family": "a{1,32768}", "bytes": 1, "large_interval": true, "engine": {"status": 2, "diagnostic": "Regular expression too big\n", "wall_ns": 5333206, "peak_rss_bytes": 15740928}, "oracle": {"empty_input": {"wall_ns": 1681747, "status": 2, "stderr": "2f776f726b2f7363656e742f2e6f7261636c652f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"}, "full": {"wall_ns": 1552606, "status": 2, "stderr": "2f776f726b2f7363656e742f2e6f7261636c652f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"}}}
+large interval start a{32768}
+{"family": "a{32768}", "bytes": 1, "large_interval": true, "engine": {"status": 2, "diagnostic": "Regular expression too big\n", "wall_ns": 5564638, "peak_rss_bytes": 15740928}, "oracle": {"empty_input": {"wall_ns": 1837148, "status": 2, "stderr": "2f776f726b2f7363656e742f2e6f7261636c652f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"}, "full": {"wall_ns": 1849602, "status": 2, "stderr": "2f776f726b2f7363656e742f2e6f7261636c652f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"}}}
+PASS cost gate; timeouts explicitly counted; SKIP=0
+progress 0/1835 groups; 0 blocking disagreements
+progress 100/1835 groups; 0 blocking disagreements
+progress 200/1835 groups; 0 blocking disagreements
+progress 300/1835 groups; 0 blocking disagreements
+progress 400/1835 groups; 0 blocking disagreements
+progress 500/1835 groups; 0 blocking disagreements
+progress 600/1835 groups; 0 blocking disagreements
+progress 700/1835 groups; 0 blocking disagreements
+progress 800/1835 groups; 0 blocking disagreements
+progress 900/1835 groups; 0 blocking disagreements
+progress 1000/1835 groups; 0 blocking disagreements
+progress 1100/1835 groups; 0 blocking disagreements
+progress 1200/1835 groups; 0 blocking disagreements
+progress 1300/1835 groups; 0 blocking disagreements
+progress 1400/1835 groups; 0 blocking disagreements
+progress 1500/1835 groups; 0 blocking disagreements
+progress 1600/1835 groups; 0 blocking disagreements
+progress 1700/1835 groups; 0 blocking disagreements
+progress 1800/1835 groups; 0 blocking disagreements
+basic generated agree 19958
+basic generated gnu-double-star-empty-capture 32
+basic generated word-span-divergence 10
+basic hand agree 3554
+basic mined agree 70
+extended generated agree 19958
+extended generated gnu-double-star-empty-capture 32
+extended generated word-span-divergence 10
+extended hand agree 3555
+extended mined agree 70
+basic selection agree 22460
+basic spans agree 22450
+basic spans differ 10
+basic status-diagnostics agree 23592
+extended selection agree 22438
+extended spans agree 22428
+extended spans differ 10
+extended status-diagnostics agree 23593
+PASS: no unapproved differences; approved span/extension rows counted separately; SKIP=0
+RED leftmost plant: a|ab on ab returned the shorter first alternative; oracle comparison rejected it
+GREEN leftmost gate after restoring longest-span execution
+RED cost plant: regular (a|aa)*c routed through DFS without projection; bounded cost gate rejected it
+GREEN cost gate after restoring state-set dispatch
+PASS both plants seen red then green; sources and driver restored
+PASS projection acceptance; SKIP=0
+ct01 projection acceptance status 0 at 2026-10-23T10:05:22-04:00

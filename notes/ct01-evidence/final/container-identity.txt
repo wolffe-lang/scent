@@ -1,0 +1,1 @@
+container image id 69f919497cada9a8611f3de61df902d9f94bf20f84552ef5bd93125c38608ef9 equals pinned ubuntu index image

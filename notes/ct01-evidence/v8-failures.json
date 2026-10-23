@@ -1,0 +1,128 @@
+[
+  {
+    "index": 216,
+    "row": {
+      "kind": "hand",
+      "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+      "syntax": "basic",
+      "patterns": [
+        "5c285c28615c295c7c625c295c32"
+      ],
+      "lines": [
+        "",
+        "61",
+        "62",
+        "6161",
+        "6262",
+        "6162",
+        "61626162",
+        "616262",
+        "626162",
+        "6261"
+      ],
+      "flags": []
+    },
+    "engine": {
+      "status": 2,
+      "stderr": "496e76616c6964206261636b207265666572656e63650a",
+      "selected": [],
+      "spans": []
+    },
+    "oracle": {
+      "status": 0,
+      "stderr": "",
+      "selected": [
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "spans": [
+        [],
+        [],
+        [],
+        [
+          [
+            0,
+            2
+          ]
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  {
+    "index": 1134,
+    "row": {
+      "kind": "hand",
+      "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+      "syntax": "extended",
+      "patterns": [
+        "282861297c62295c32"
+      ],
+      "lines": [
+        "",
+        "61",
+        "62",
+        "6161",
+        "6262",
+        "6162",
+        "61626162",
+        "616262",
+        "626162",
+        "6261"
+      ],
+      "flags": []
+    },
+    "engine": {
+      "status": 2,
+      "stderr": "496e76616c6964206261636b207265666572656e63650a",
+      "selected": [],
+      "spans": []
+    },
+    "oracle": {
+      "status": 0,
+      "stderr": "",
+      "selected": [
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "spans": [
+        [],
+        [],
+        [],
+        [
+          [
+            0,
+            2
+          ]
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    }
+  }
+]

@@ -1,0 +1,300 @@
+ct01 — the byte regex engine
+
+Forbidden
+---------
+No GNU grep, gnulib, libc regex, busybox, PCRE2, or other forbidden engine
+source was read. GNU's release archive was extracted only for configure,
+build and installation. Its installed info manual and black-box executable
+were read. No external engine implementation was copied or used as the
+candidate. No package was installed on a host, no build ran on nomad-1, no
+Mac git configuration changed, and ~/.claude was untouched. No attribution
+trailers, merge, tag, release, issue creation or issue closure.
+
+The pre-ct00 branch stayed within src/re/, tests/re/, tools/re-*, docs/RE.md
+and notes/ct01-*. It then rebased onto c980d42 (ct00's scaffold and note).
+README was read and refreshed in its own commit: the engine exists but G/E
+are not connected to the CLI yet, and the reviewed differences are disclosed.
+The matcher join point was not edited; ct02 owns that integration.
+
+Inputs verified
+---------------
+Contract: wolf/sprints/scent/ct01-the-engine.md; track ruling #114; RULES 1–10.
+References used: POSIX.1-2024 XBD 9 and XCU grep; the built GNU 3.12 info
+Regular Expressions chapter in full, Usage and --help; Cox's regexp1–3
+articles; the allowed yew and ferp design/tests, cited in source headers.
+No submatch disambiguation algorithm is claimed: grep reports only overall
+spans, and captures are tracked solely to evaluate backreferences.
+
+yew: 83020234e63a45e8e1da4ab17a8f8d0a7eb27228.
+ferp: 7d332b5abc3dbd6b2ffc8b62724498a3cd0eee24.
+The mined corpus retains source file/line citations and remeasures yew's
+leftmost-first examples against GNU, never treating yew's spans as POSIX.
+
+wolf 0.2.34: wolf 0.2.34 (wolfgang, pin 9da7bdc).
+Linux archive SHA256:
+88a9dd3da1c9a0e38c08eb6e2de9c1ef04d1ed93dcf51024d8dbbb76890c1821.
+lupin 0.1.55 archive SHA256:
+1152abc0bef65d334b94bc881a26463fac345919cc2ca07a291796e6048a8a38.
+Bundled std: e036bec318ad81ecd5a025612bc2c2adb17527f3.
+Both complete archives were checked twice and extracted whole. A first
+attempt raced scp and tar failed; the partial toolchain was never executed.
+It was removed and restaged after two successful expected-digest checks.
+tools/re-toolchain-stage now atomically publishes an output tree with READY
+only after both verified extractions and the std identity check complete.
+
+GNU grep 3.12 archive SHA256:
+2649b27c0e90e632eadcd757be06c6e9a4f48d941de51e7c0f83ff76408a07b9.
+Configure: --disable-perl-regexp (plus installation prefix).
+Container: own ct01-oracle, ubuntu:24.04, glibc 2.39.
+Ubuntu index digest:
+sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b.
+Its amd64 child digest is
+sha256:534baea6a22c03a63003dbc8dbe78fe34bc0d7e595d9a9dc9834884ff530eb55;
+both resolve to image 69f919497cada9a8611f3de61df902d9f94bf20f84552ef5bd93125c38608ef9.
+After rebase, scent-oracle.toml is the sole pin: the same tarball,
+--disable-perl-regexp, the same underlying Ubuntu image and exact glibc line.
+The initial separate recipe also set an installation prefix. It was removed
+in favour of ct00's signature-checked fixed-/work build, not assumed identical
+by version. The shared binary SHA256 is
+92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea.
+The gate checks all shared pin fields, binary digest, version, exact glibc
+line and PCRE refusal. The shared toolchain triple is identical to the lane's
+initial pin; the full shared staging/build was rerun in own ct01-ci.
+
+Prediction
+----------
+Committed first as 072f663 (89c0a8f before rebase), notes/ct01-prediction.txt.
+
+- Predicted bracket/interval constructs would dominate first disagreements:
+  wrong. Repetitions of zero-width assertions, their warnings and GNU's
+  distinct selection/span paths dominated the first full run.
+- Predicted 92% first generated agreement: wrong. Correct per-pair recount:
+  BRE 15707/20000 (78.535%), ERE 15107/20000 (75.535%). The first log initially
+  counted every line of a failing group as different; raw outputs were kept
+  and exact pair accounting replaced that conservative tally.
+- Predicted -w retries shorter same-start matches: true for literal
+  alternatives, incomplete for general repeated expressions. A bounded
+  prefix-shift matrix established the reviewed span divergences instead of
+  inventing a case-based matcher.
+- Predicted -o prints no empty span: confirmed. Selection is separate; the
+  driver calls next_span only after line_matches succeeds. A 1 MiB empty
+  pattern unit protects against quadratic empty-span stepping.
+- Predicted ERE/BRE backreference equivalence: ordinary rows agree, with a
+  reviewed double-star extension family separated from agreement.
+- Predicted (a?){n}a{n} would be hardest to keep linear: not borne out by
+  measured search cost. It finds a prefix and remains effectively constant
+  over the three long-line sizes; the failing (a|aa)*c family scans the line.
+
+Evidence index
+--------------
+Architecture and ct02 interface: docs/RE.md. Explicit parser/compiler stacks;
+byte-class pools; earliest-origin, longest-endpoint state sets; no Map or str
+on the regular matching path; separate immutable program and mutable
+workspace. Backreferences alone use the input-dependent reusable DFS stack.
+
+Rulings asked and resolved:
+- R-ct01-1: docs/RE.md and notes/ct01-* added to ownership. Wrapper instructions
+  prohibit report .md files, so this note and the prediction use .txt.
+- R-ct01-2: separate high-water backreference stack permitted; its memory and
+  time rows are separate from the regular O(program) scratch/O(program*line)
+  bound. A case GNU finishes within the ceiling must not time out in scent.
+- R-ct01-3: selection and spans may use separate measured programs; pattern
+  lists containing a backreference or collating/equivalence bracket select
+  through the span program. Uncharacterizable -w span differences are
+  explicit, counted divergences; selection and status remain checked.
+- R-ct01-4: reviewed double-star family counted separately. The initial claim
+  that GNU contradicted POSIX was corrected: XBD 9.3.6/9.4.6 leave adjacent
+  duplication symbols undefined, and ERE backreferences are an extension.
+  docs/RE.md calls this 'GNU extension compatibility exceptions', states the
+  compositional interpretation scent chooses, and retains the 16-case
+  neighbourhood showing both ** spellings are needed for the GNU loss.
+- Follow-up interface ruling: next_span requires a line already selected by
+  line_matches. ERE {a} on a} is the harness witness; no per-span reselection.
+
+All heavy jobs used kasumi cores 12–15 under
+flock /home/mfwolffe/lanes/scent-cores-12-15.lock taskset -c 12-15,
+inside the lane's own container. Long jobs used setsid -f and a pid file.
+No process group or another lane's job was killed. Timeout handling targets
+only the exact process started for that case. Hotspot SSH reads use logged
+fresh-connection retries, at most five attempts separated by 60 seconds.
+
+Final main corpus, native and release (identical counts):
+syntax    hand agree  generated agree  word-span  extension-family  mined agree
+basic           3559            19958         10                32           67
+extended        3560            19958         10                32           67
+
+Generated totals are exactly 20,000 pairs per syntax: 19,958 agree,
+10 reviewed word-span witnesses and 32 reviewed extension-family pairs.
+The exhaustive short-syntax/escaped-byte gate adds 3,209 groups and
+12,836 agreeing pairs per syntax (6,418 groups / 25,672 pairs overall).
+Thus all generated work is 32,836 pairs per syntax, with 32,794 agreeing
+and the same 42 explicitly separated pairs; no unapproved difference.
+Five yew lazy-quantifier rows are adapted hand witnesses, not claimed as
+dialect-compatible mining; two explicit leftmost-first alternation rows
+were added to the mined set and remeasured. Every mined row names its rule.
+
+Main-corpus measures, apart from the reviewed extension family:
+basic     selection            agree   22462
+basic     spans                agree   22452
+basic     spans                differ  10
+basic     status-diagnostics   agree   23594
+extended  selection            agree   22440
+extended  spans                agree   22430
+extended  spans                differ  10
+extended  status-diagnostics   agree   23595
+
+15 strict wolf engine units pass; no rejected/unsupported/filtered rows.
+The shared scaffold acceptance also passed checked, native and lupin
+CLI tests, both CLI compiler tiers and its native GNU oracle regression.
+The projection proof uses the 100,000-generated-pairs-per-syntax seed
+corpus and runs every backreference pair with and without the filter:
+basic     generated  compile-error   3104
+basic     generated  valid           3552
+basic     hand       compile-error    184
+basic     hand       valid            530
+extended  generated  compile-error   3104
+extended  generated  valid           3552
+extended  hand       compile-error    115
+extended  hand       valid            599
+14,740 pairs agree between the two modes; zero differences. Compile-error
+pairs are explicitly counted, not called backtracker executions. Positive
+unit families make the projection pass and leave the decision to DFS.
+
+Cost tables (kasumi, ct01-ci, taskset 12–15, shared lock).
+Each regular row is the median of three in-process match timings for
+line selection plus the first nonempty span. These are per-search bounds,
+not a throughput claim for an entire repeated -o iteration. Compile time
+is measured separately. GNU exposes no compile-only API: empty-input
+wall time includes process startup/compilation, full wall time includes
+matching too. Do not subtract noisy startup times or call these speed ratios.
+Engine process wall time includes <=5ms wait4 sampling granularity; native
+match_ns is measured inside the driver. RSS is the exact child peak from
+wait4, including startup, code, input and allocator overhead.
+
+Regular families: match ms at 1k / 10k / 100k bytes; compile ms at 100k.
+family                             1k ms    10k ms   100k ms  compile ms   peak MiB
+(a*)*b                             0.166     1.689    15.865       0.018      14.80
+(a|aa)*c                           0.252     2.544    26.256       0.019      14.85
+((a{2,3}){2,3}){2,3}               0.030     0.037     0.039       0.024      14.85
+(a?){1}a{1}                        0.010     0.013     0.017       0.023      14.85
+(a?){2}a{2}                        0.011     0.015     0.016       0.021      14.85
+(a?){3}a{3}                        0.007     0.015     0.018       0.019      14.85
+(a?){4}a{4}                        0.015     0.019     0.018       0.022      14.91
+(a?){5}a{5}                        0.017     0.016     0.021       0.022      14.91
+(a?){6}a{6}                        0.020     0.022     0.023       0.022      14.98
+(a?){7}a{7}                        0.023     0.026     0.030       0.026      14.98
+(a?){8}a{8}                        0.029     0.027     0.034       0.020      14.98
+(a?){9}a{9}                        0.032     0.032     0.031       0.024      14.98
+(a?){10}a{10}                      0.037     0.038     0.036       0.023      15.03
+(a?){11}a{11}                      0.040     0.038     0.044       0.024      15.03
+(a?){12}a{12}                      0.049     0.067     0.052       0.024      15.04
+(a?){13}a{13}                      0.051     0.054     0.057       0.025      15.04
+(a?){14}a{14}                      0.059     0.060     0.062       0.026      15.04
+(a?){15}a{15}                      0.063     0.061     0.061       0.030      15.04
+(a?){16}a{16}                      0.072     0.071     0.075       0.027      15.04
+(a?){17}a{17}                      0.079     0.075     0.075       0.025      15.04
+(a?){18}a{18}                      0.088     0.087     0.083       0.029      15.04
+(a?){19}a{19}                      0.102     0.096     0.095       0.025      15.04
+(a?){20}a{20}                      0.067     0.104     0.105       0.031      15.04
+(a?){21}a{21}                      0.104     0.106     0.117       0.029      15.04
+(a?){22}a{22}                      0.101     0.127     0.126       0.033      15.05
+(a?){23}a{23}                      0.122     0.147     0.128       0.067      15.05
+(a?){24}a{24}                      0.129     0.139     0.144       0.038      15.05
+(a?){25}a{25}                      0.149     0.153     0.143       0.034      15.06
+(a?){26}a{26}                      0.159     0.163     0.164       0.037      15.06
+(a?){27}a{27}                      0.159     0.179     0.172       0.035      15.07
+(a?){28}a{28}                      0.178     0.189     0.173       0.034      15.07
+(a?){29}a{29}                      0.193     0.210     0.183       0.038      15.08
+(a?){30}a{30}                      0.211     0.215     0.200       0.033      15.08
+
+All 33 regular families pass the growth gate; no regular timeout.
+
+Backreferences: compile/match ms, engine wall ms, GNU empty/full wall ms,
+peak stack frames/logical bytes (23 int fields each), native-process RSS.
+family                    n   compile     match      wall    GNU empty     GNU full  frames     bytes   RSS MiB
+(a*)\1                   10     0.016     0.030     5.606        1.226        0.951      24      4416     15.08
+(a*)\1                  100     0.010     0.085     5.412        1.833        0.905     204     37536     15.08
+(a*)\1                 1000     0.021     0.938     5.701        1.967       15.213    2004    368736     15.08
+(a|aa)*\1b               12     0.022     0.011     5.712        2.167        2.230       0         0     15.08
+(a|aa)*\1b               18     0.019     0.012     5.613        2.363        2.266       0         0     15.08
+(a|aa)*\1b               24     0.019     0.013     5.662        2.168        2.097       0         0     15.08
+(a|aa)*\1b             1000     0.019     0.266     5.542        2.114        1.912       0         0     15.08
+(a|aa)*\1b            10000     0.017     3.508     5.636        2.137        2.213       0         0     15.08
+(a|aa)*\1b           100000     0.020    32.586    36.479        2.106        2.192       0         0     15.08
+^(a+)\1+$                32     0.009     0.042     5.643        2.147  TIMEOUT 10s      68     12512     15.08
+^(a+)\1+$               128     0.021     0.203     5.714        2.144  TIMEOUT 10s     260     47840     15.08
+^(a+)\1+$               512     0.024     0.756     5.802        1.845  TIMEOUT 10s    1028    189152     15.08
+
+Projection before/after: (a|aa)*\1b on an all-a line.
+       n  before match ms  after match ms  GNU before ms  GNU after ms
+      12            1.221           0.011          1.483         2.230
+      18           21.545           0.012          1.426         2.266
+      24          416.580           0.013          1.476         2.097
+    1000          not run           0.266        not run         1.912
+   10000          not run           3.508        not run         2.213
+  100000          not run          32.586        not run         2.192
+The old exponential path is retained as evidence, not declared a pass.
+The regular projection now rejects this family without entering DFS,
+including 100k bytes; no source-pattern-specific shortcut was added.
+
+Large intervals (one-byte subject):
+a{1,32767}: engine compile=6.314 ms, match=2.813 ms, RSS=23.98 MiB; GNU empty=TIMEOUT 10s, full=TIMEOUT 10s.
+(a{1,1000}){1,1000}: engine compile=137.244 ms, match=0.611 ms, RSS=692.16 MiB; GNU empty=TIMEOUT 10s, full=TIMEOUT 10s.
+a{1,32768}: engine compile=error 2 ms, match=error 2 ms, RSS=15.08 MiB; GNU empty=error 2, full=error 2.
+  Both answer status 2: Regular expression too big
+a{32768}: engine compile=error 2 ms, match=error 2 ms, RSS=15.08 MiB; GNU empty=error 2, full=error 2.
+  Both answer status 2: Regular expression too big
+Accepted large intervals are not misreported as GNU errors when its
+10s ceiling expires. All timeouts are explicit. No case where GNU
+finishes has an engine timeout or memory failure. Memory remains
+bounded by the expanded program; the million-range example is large.
+
+notes/ct01-evidence/projection/projection-acceptance.log:349: RED leftmost plant: a|ab on ab returned the shorter first alternative; oracle comparison rejected it
+notes/ct01-evidence/projection/projection-acceptance.log:350: GREEN leftmost gate after restoring longest-span execution
+notes/ct01-evidence/projection/projection-acceptance.log:351: RED cost plant: regular (a|aa)*c routed through DFS without projection; bounded cost gate rejected it
+notes/ct01-evidence/projection/projection-acceptance.log:352: GREEN cost gate after restoring state-set dispatch
+notes/ct01-evidence/projection/projection-false-negative.log:1: RED projection plant: removing REF epsilon exit loses real matches; filter-off soak rejected it
+notes/ct01-evidence/projection/projection-false-negative.log:2: GREEN projection soak after restoring the regular superset
+CI wiring plant: run 39961890584, plan-test job 120441729200,
+tools/re-ci-test, AssertionError: regex gate floor violated: 19999 < 20000.
+notes/ct01-evidence/ci-plant.log:154. Tier partial verdict job
+120441792061 fails after it. The good gate was committed before
+the planted 9fc9402; db902ec restores the 20,000 floor.
+
+Durable remote evidence: /home/mfwolffe/lanes/ct01/evidence/.
+Local archived evidence: notes/ct01-evidence/.
+Initial failures and reduced witnesses are retained, not edited to match the
+candidate. The reducer now preserves the mismatch class (status,
+diagnostic, selection or span), avoiding a semantic witness shrinking into
+an unrelated diagnostic bug.
+
+Done-when
+---------
+Local implementation gates are green with only the explicitly reviewed
+compatibility columns separated. Native/release corpus agreement, exhaustive
+diagnostics, 15 units, projection counterfactual soak, costs and all local
+plants are archived. The CI floor plant is genuinely red for its reason.
+The PR-tier run at the final pushed head is still required; no CI-green claim
+is made by this pre-PR note. Footprint: cross-cutting (CI wiring).
+
+Rebase and pin comparison are complete. tools/re-ci is wired into the Linux
+PR job at the contract size; the planner guard pins 20,000 generated pairs
+per syntax. The five-section PR, labelled final-head run and lane audit are
+reported in the PR body and hand-back rather than predicted here. No merge
+or full-CI waiting belongs to this lane.
+
+Issues for the orchestrator, none filed here: the two documented GNU
+compatibility findings may merit upstream reports with their black-box
+witnesses. No new compiler/library defect is asserted. The temporary
+checked-test step-budget failure was eliminated by the correct empty-only
+span fast path, not hidden as a SKIP.
+
+Pruning was partial, not falsely reported complete. The initial own
+oracle-source (19 MiB), oracle-build (11 MiB) and oracle-repro (32 MiB)
+trees were removed. Host removal of the duplicate toolchain-ready tree
+encountered read-only-file permission errors; that cleanup stopped without
+permission escalation, leaving a partial duplicate tree. The recorded
+attempt is notes/ct01-evidence/prune-attempt.log. Keep the shared
+.wolf-bin/.oracle stage, final driver, original archive cache, both own
+containers and all red/green evidence/status/pid files for review. No other
+lane's or maintainer data was touched. /home had 72 GiB free at collection.

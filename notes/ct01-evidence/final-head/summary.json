@@ -1,0 +1,114 @@
+{
+  "counts": [
+    {
+      "syntax": "basic",
+      "kind": "generated",
+      "verdict": "agree",
+      "count": 19958
+    },
+    {
+      "syntax": "basic",
+      "kind": "generated",
+      "verdict": "gnu-double-star-empty-capture",
+      "count": 32
+    },
+    {
+      "syntax": "basic",
+      "kind": "generated",
+      "verdict": "word-span-divergence",
+      "count": 10
+    },
+    {
+      "syntax": "basic",
+      "kind": "hand",
+      "verdict": "agree",
+      "count": 3559
+    },
+    {
+      "syntax": "basic",
+      "kind": "mined",
+      "verdict": "agree",
+      "count": 67
+    },
+    {
+      "syntax": "extended",
+      "kind": "generated",
+      "verdict": "agree",
+      "count": 19958
+    },
+    {
+      "syntax": "extended",
+      "kind": "generated",
+      "verdict": "gnu-double-star-empty-capture",
+      "count": 32
+    },
+    {
+      "syntax": "extended",
+      "kind": "generated",
+      "verdict": "word-span-divergence",
+      "count": 10
+    },
+    {
+      "syntax": "extended",
+      "kind": "hand",
+      "verdict": "agree",
+      "count": 3560
+    },
+    {
+      "syntax": "extended",
+      "kind": "mined",
+      "verdict": "agree",
+      "count": 67
+    }
+  ],
+  "measurements": [
+    {
+      "syntax": "basic",
+      "measure": "selection",
+      "verdict": "agree",
+      "count": 22462
+    },
+    {
+      "syntax": "basic",
+      "measure": "spans",
+      "verdict": "agree",
+      "count": 22452
+    },
+    {
+      "syntax": "basic",
+      "measure": "spans",
+      "verdict": "differ",
+      "count": 10
+    },
+    {
+      "syntax": "basic",
+      "measure": "status-diagnostics",
+      "verdict": "agree",
+      "count": 23594
+    },
+    {
+      "syntax": "extended",
+      "measure": "selection",
+      "verdict": "agree",
+      "count": 22440
+    },
+    {
+      "syntax": "extended",
+      "measure": "spans",
+      "verdict": "agree",
+      "count": 22430
+    },
+    {
+      "syntax": "extended",
+      "measure": "spans",
+      "verdict": "differ",
+      "count": 10
+    },
+    {
+      "syntax": "extended",
+      "measure": "status-diagnostics",
+      "verdict": "agree",
+      "count": 23595
+    }
+  ]
+}

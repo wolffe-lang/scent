@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/mfwolffe/lanes/ct01/scent/tools/re-ci-test", line 10, in <module>
+    assert size>=20000, f'regex gate floor violated: {size} < 20000'
+           ^^^^^^^^^^^
+AssertionError: regex gate floor violated: 19999 < 20000

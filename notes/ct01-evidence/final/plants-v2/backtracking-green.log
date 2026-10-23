@@ -1,0 +1,7 @@
+cost start (a|aa)*c bytes=32
+cost result (a|aa)*c 32 median_match_ns=10871 compile_ns=8265
+cost start (a|aa)*c bytes=64
+cost result (a|aa)*c 64 median_match_ns=20860 compile_ns=5036
+cost start (a|aa)*c bytes=128
+cost result (a|aa)*c 128 median_match_ns=40399 compile_ns=5141
+PASS cost gate; timeouts explicitly counted; SKIP=0

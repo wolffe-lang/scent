@@ -1,0 +1,41 @@
+{
+  "counts": [
+    {
+      "syntax": "basic",
+      "kind": "generated",
+      "status": "valid",
+      "pairs": 64
+    },
+    {
+      "syntax": "basic",
+      "kind": "hand",
+      "status": "compile-error",
+      "pairs": 184
+    },
+    {
+      "syntax": "basic",
+      "kind": "hand",
+      "status": "valid",
+      "pairs": 530
+    },
+    {
+      "syntax": "extended",
+      "kind": "generated",
+      "status": "valid",
+      "pairs": 64
+    },
+    {
+      "syntax": "extended",
+      "kind": "hand",
+      "status": "compile-error",
+      "pairs": 115
+    },
+    {
+      "syntax": "extended",
+      "kind": "hand",
+      "status": "valid",
+      "pairs": 599
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,8695 @@
+{
+  "counts": [
+    {
+      "syntax": "basic",
+      "kind": "generated",
+      "status": "valid",
+      "pairs": 64
+    },
+    {
+      "syntax": "basic",
+      "kind": "hand",
+      "status": "compile-error",
+      "pairs": 184
+    },
+    {
+      "syntax": "basic",
+      "kind": "hand",
+      "status": "valid",
+      "pairs": 530
+    },
+    {
+      "syntax": "extended",
+      "kind": "generated",
+      "status": "valid",
+      "pairs": 64
+    },
+    {
+      "syntax": "extended",
+      "kind": "hand",
+      "status": "compile-error",
+      "pairs": 115
+    },
+    {
+      "syntax": "extended",
+      "kind": "hand",
+      "status": "valid",
+      "pairs": 599
+    }
+  ],
+  "failures": [
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c292a5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5e5c2861622a5c292a5c3124"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-i"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c292a5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-i"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5e5c2861622a5c292a5c3124"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-i"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-w"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c292a5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-w"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5e5c2861622a5c292a5c3124"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-w"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-x"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c292a5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-x"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5e5c2861622a5c292a5c3124"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-x"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-w",
+          "-i"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c292a5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-w",
+          "-i"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5e5c2861622a5c292a5c3124"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-w",
+          "-i"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "0a",
+          "80ff"
+        ],
+        "flags": [
+          "-z"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c292a5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "0a",
+          "80ff"
+        ],
+        "flags": [
+          "-z"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "basic",
+        "patterns": [
+          "5e5c2861622a5c292a5c3124"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "0a",
+          "80ff"
+        ],
+        "flags": [
+          "-z"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.5 pattern-local groups and pattern-list alternation",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c295c31",
+          "5c28625c295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "61626162",
+          "62",
+          "6262",
+          "41",
+          "612d6278"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.5 pattern-local groups and pattern-list alternation",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c295c31",
+          "5c28625c295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "61626162",
+          "62",
+          "6262",
+          "41",
+          "612d6278"
+        ],
+        "flags": [
+          "-i"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.5 pattern-local groups and pattern-list alternation",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c295c31",
+          "5c28625c295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "61626162",
+          "62",
+          "6262",
+          "41",
+          "612d6278"
+        ],
+        "flags": [
+          "-w"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.5 pattern-local groups and pattern-list alternation",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c295c31",
+          "5c28625c295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "61626162",
+          "62",
+          "6262",
+          "41",
+          "612d6278"
+        ],
+        "flags": [
+          "-x"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c295c3f5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c7c625c295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [
+            [
+              1,
+              3
+            ]
+          ],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "basic",
+        "patterns": [
+          "5c285c28615c295c7c625c295c32"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c28625c295c3f5c292a5c32"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c7c5c28625c295c292a5c32"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "basic",
+        "patterns": [
+          "5c28612a5c292a5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "spans": [
+          [],
+          [
+            [
+              0,
+              1
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              2
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c3f5c295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c7c5c285c295c295c32"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "generated",
+        "source": "seed 11401",
+        "syntax": "basic",
+        "patterns": [
+          "5c28615c295c315c7b312c5c7d5b5b3a73706163653a5d5d5c7b305c7d"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "612d6278",
+          "8042800961090d802d6131",
+          "ff",
+          "315f4162622d5f2d",
+          "20300d61308030610d80",
+          "0980420d425f0d6231",
+          "422d6109805f30ff42203042",
+          "",
+          "2d413062313141ff61412d41",
+          "420a428030",
+          "302d0d300d30312d0a31ff",
+          "09624242093080610a2d41",
+          "205f5f0d6142312d",
+          "6261410a2d42",
+          "0d0a2d4241",
+          "620d305f0d4161",
+          "5f0d4142",
+          "ffff5f0961",
+          "6130",
+          "20412d0a626242",
+          "096130",
+          "200a5f",
+          "610a41806280802d5f",
+          "0a803020",
+          "ff312d5f2dff616241ff3142",
+          "30410a0d620d0a5f6231",
+          "0d61095f"
+        ],
+        "flags": [
+          "-z"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.1\u20133.7; POSIX XBD 9; tools/re-probe",
+        "syntax": "extended",
+        "patterns": [
+          "2861295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.1\u20133.7; POSIX XBD 9; tools/re-probe",
+        "syntax": "extended",
+        "patterns": [
+          "2861292a5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.1\u20133.7; POSIX XBD 9; tools/re-probe",
+        "syntax": "extended",
+        "patterns": [
+          "282861293f62292a5c32"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "2861295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "2861292a5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "5e2861622a292a5c3124"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "2861295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-i"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "2861292a5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-i"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "5e2861622a292a5c3124"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-i"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "2861295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-w"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "2861292a5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-w"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "5e2861622a292a5c3124"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-w"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "2861295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-x"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "2861292a5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-x"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "5e2861622a292a5c3124"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-x"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "2861295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-w",
+          "-i"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "2861292a5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-w",
+          "-i"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "5e2861622a292a5c3124"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "00",
+          "80ff"
+        ],
+        "flags": [
+          "-w",
+          "-i"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "2861295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "0a",
+          "80ff"
+        ],
+        "flags": [
+          "-z"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "2861292a5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "0a",
+          "80ff"
+        ],
+        "flags": [
+          "-z"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.3/3.5; boundary separation witnesses",
+        "syntax": "extended",
+        "patterns": [
+          "5e2861622a292a5c3124"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "62",
+          "6261",
+          "61626162",
+          "612d62",
+          "612d6278",
+          "612d206278",
+          "612d",
+          "61622061",
+          "2a",
+          "2b61",
+          "7b317d",
+          "5e61",
+          "6124",
+          "20",
+          "09",
+          "0d",
+          "0a",
+          "80ff"
+        ],
+        "flags": [
+          "-z"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.5 pattern-local groups and pattern-list alternation",
+        "syntax": "extended",
+        "patterns": [
+          "2861295c31",
+          "2862295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "61626162",
+          "62",
+          "6262",
+          "41",
+          "612d6278"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.5 pattern-local groups and pattern-list alternation",
+        "syntax": "extended",
+        "patterns": [
+          "2861295c31",
+          "2862295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "61626162",
+          "62",
+          "6262",
+          "41",
+          "612d6278"
+        ],
+        "flags": [
+          "-i"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.5 pattern-local groups and pattern-list alternation",
+        "syntax": "extended",
+        "patterns": [
+          "2861295c31",
+          "2862295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "61626162",
+          "62",
+          "6262",
+          "41",
+          "612d6278"
+        ],
+        "flags": [
+          "-w"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "GNU info 3.5 pattern-local groups and pattern-list alternation",
+        "syntax": "extended",
+        "patterns": [
+          "2861295c31",
+          "2862295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "61626162",
+          "62",
+          "6262",
+          "41",
+          "612d6278"
+        ],
+        "flags": [
+          "-x"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "extended",
+        "patterns": [
+          "2861293f5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "extended",
+        "patterns": [
+          "28617c62295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [
+            [
+              1,
+              3
+            ]
+          ],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "extended",
+        "patterns": [
+          "282861297c62295c32"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "extended",
+        "patterns": [
+          "28612862293f292a5c32"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "extended",
+        "patterns": [
+          "28617c286229292a5c32"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              4
+            ]
+          ],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "extended",
+        "patterns": [
+          "28612a292a5c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "spans": [
+          [],
+          [
+            [
+              0,
+              1
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            [
+              1,
+              2
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "extended",
+        "patterns": [
+          "28613f295c31"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "hand",
+        "source": "POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5",
+        "syntax": "extended",
+        "patterns": [
+          "28617c2829295c32"
+        ],
+        "lines": [
+          "",
+          "61",
+          "62",
+          "6161",
+          "6262",
+          "6162",
+          "61626162",
+          "616262",
+          "626162",
+          "6261"
+        ],
+        "flags": []
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    {
+      "row": {
+        "kind": "generated",
+        "source": "seed 11401",
+        "syntax": "extended",
+        "patterns": [
+          "2861295c317b312c7d5b5b3a73706163653a5d5d7b307d"
+        ],
+        "lines": [
+          "",
+          "61",
+          "6161",
+          "6162",
+          "616161",
+          "612d6278",
+          "8042800961090d802d6131",
+          "ff",
+          "315f4162622d5f2d",
+          "20300d61308030610d80",
+          "0980420d425f0d6231",
+          "422d6109805f30ff42203042",
+          "",
+          "2d413062313141ff61412d41",
+          "420a428030",
+          "302d0d300d30312d0a31ff",
+          "09624242093080610a2d41",
+          "205f5f0d6142312d",
+          "6261410a2d42",
+          "0d0a2d4241",
+          "620d305f0d4161",
+          "5f0d4142",
+          "ffff5f0961",
+          "6130",
+          "20412d0a626242",
+          "096130",
+          "200a5f",
+          "610a41806280802d5f",
+          "0a803020",
+          "ff312d5f2dff616241ff3142",
+          "30410a0d620d0a5f6231",
+          "0d61095f"
+        ],
+        "flags": [
+          "-z"
+        ]
+      },
+      "filtered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "unfiltered": {
+        "status": 0,
+        "stderr": "",
+        "selected": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "spans": [
+          [],
+          [],
+          [
+            [
+              0,
+              2
+            ]
+          ],
+          [],
+          [
+            [
+              0,
+              3
+            ]
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    }
+  ]
+}

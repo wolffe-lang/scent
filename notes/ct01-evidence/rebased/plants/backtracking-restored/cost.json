@@ -1,0 +1,119 @@
+{
+  "rows": [
+    {
+      "family": "(a|aa)*c",
+      "backreference": false,
+      "bytes": 32,
+      "samples": [
+        {
+          "compile_ns": 7251,
+          "match_ns": 6824,
+          "instructions": 14,
+          "visits": 197,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 5354776,
+          "peak_rss_bytes": 14876672
+        },
+        {
+          "compile_ns": 6858,
+          "match_ns": 5531,
+          "instructions": 14,
+          "visits": 197,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 5370131,
+          "peak_rss_bytes": 14876672
+        },
+        {
+          "compile_ns": 4979,
+          "match_ns": 5466,
+          "instructions": 14,
+          "visits": 197,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 5305788,
+          "peak_rss_bytes": 14876672
+        }
+      ],
+      "median_match_ns": 5531
+    },
+    {
+      "family": "(a|aa)*c",
+      "backreference": false,
+      "bytes": 64,
+      "samples": [
+        {
+          "compile_ns": 8647,
+          "match_ns": 16435,
+          "instructions": 14,
+          "visits": 389,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 5332181,
+          "peak_rss_bytes": 14876672
+        },
+        {
+          "compile_ns": 12444,
+          "match_ns": 23572,
+          "instructions": 14,
+          "visits": 389,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 5600995,
+          "peak_rss_bytes": 14876672
+        },
+        {
+          "compile_ns": 14787,
+          "match_ns": 30311,
+          "instructions": 14,
+          "visits": 389,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 5591273,
+          "peak_rss_bytes": 14876672
+        }
+      ],
+      "median_match_ns": 23572
+    },
+    {
+      "family": "(a|aa)*c",
+      "backreference": false,
+      "bytes": 128,
+      "samples": [
+        {
+          "compile_ns": 21139,
+          "match_ns": 83368,
+          "instructions": 14,
+          "visits": 773,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 5768994,
+          "peak_rss_bytes": 14876672
+        },
+        {
+          "compile_ns": 25986,
+          "match_ns": 102775,
+          "instructions": 14,
+          "visits": 773,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 5869180,
+          "peak_rss_bytes": 14876672
+        },
+        {
+          "compile_ns": 31749,
+          "match_ns": 124146,
+          "instructions": 14,
+          "visits": 773,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 5978534,
+          "peak_rss_bytes": 14876672
+        }
+      ],
+      "median_match_ns": 102775
+    }
+  ],
+  "errors": []
+}

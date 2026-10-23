@@ -1,0 +1,77 @@
+progress 0/1839 groups; 0 blocking disagreements
+progress 100/1839 groups; 0 blocking disagreements
+progress 200/1839 groups; 0 blocking disagreements
+progress 300/1839 groups; 0 blocking disagreements
+progress 400/1839 groups; 0 blocking disagreements
+progress 500/1839 groups; 0 blocking disagreements
+progress 600/1839 groups; 0 blocking disagreements
+progress 700/1839 groups; 0 blocking disagreements
+progress 800/1839 groups; 0 blocking disagreements
+progress 900/1839 groups; 0 blocking disagreements
+progress 1000/1839 groups; 0 blocking disagreements
+progress 1100/1839 groups; 0 blocking disagreements
+progress 1200/1839 groups; 0 blocking disagreements
+progress 1300/1839 groups; 0 blocking disagreements
+progress 1400/1839 groups; 0 blocking disagreements
+progress 1500/1839 groups; 0 blocking disagreements
+progress 1600/1839 groups; 0 blocking disagreements
+progress 1700/1839 groups; 0 blocking disagreements
+progress 1800/1839 groups; 0 blocking disagreements
+basic generated agree 19958
+basic generated gnu-double-star-empty-capture 32
+basic generated word-span-divergence 10
+basic hand agree 3559
+basic mined agree 67
+extended generated agree 19958
+extended generated gnu-double-star-empty-capture 32
+extended generated word-span-divergence 10
+extended hand agree 3560
+extended mined agree 67
+basic selection agree 22462
+basic spans agree 22452
+basic spans differ 10
+basic status-diagnostics agree 23594
+extended selection agree 22440
+extended spans agree 22430
+extended spans differ 10
+extended status-diagnostics agree 23595
+PASS: no unapproved differences; approved span/extension rows counted separately; SKIP=0
+progress 0/1839 groups; 0 blocking disagreements
+progress 100/1839 groups; 0 blocking disagreements
+progress 200/1839 groups; 0 blocking disagreements
+progress 300/1839 groups; 0 blocking disagreements
+progress 400/1839 groups; 0 blocking disagreements
+progress 500/1839 groups; 0 blocking disagreements
+progress 600/1839 groups; 0 blocking disagreements
+progress 700/1839 groups; 0 blocking disagreements
+progress 800/1839 groups; 0 blocking disagreements
+progress 900/1839 groups; 0 blocking disagreements
+progress 1000/1839 groups; 0 blocking disagreements
+progress 1100/1839 groups; 0 blocking disagreements
+progress 1200/1839 groups; 0 blocking disagreements
+progress 1300/1839 groups; 0 blocking disagreements
+progress 1400/1839 groups; 0 blocking disagreements
+progress 1500/1839 groups; 0 blocking disagreements
+progress 1600/1839 groups; 0 blocking disagreements
+progress 1700/1839 groups; 0 blocking disagreements
+progress 1800/1839 groups; 0 blocking disagreements
+basic generated agree 19958
+basic generated gnu-double-star-empty-capture 32
+basic generated word-span-divergence 10
+basic hand agree 3559
+basic mined agree 67
+extended generated agree 19958
+extended generated gnu-double-star-empty-capture 32
+extended generated word-span-divergence 10
+extended hand agree 3560
+extended mined agree 67
+basic selection agree 22462
+basic spans agree 22452
+basic spans differ 10
+basic status-diagnostics agree 23594
+extended selection agree 22440
+extended spans agree 22430
+extended spans differ 10
+extended status-diagnostics agree 23595
+PASS: no unapproved differences; approved span/extension rows counted separately; SKIP=0
+PASS final cited native/release corpus; SKIP=0

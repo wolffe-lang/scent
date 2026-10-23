@@ -1,0 +1,53 @@
+{
+  "counts": [
+    {
+      "syntax": "basic",
+      "kind": "generated",
+      "status": "compile-error",
+      "pairs": 3104
+    },
+    {
+      "syntax": "basic",
+      "kind": "generated",
+      "status": "valid",
+      "pairs": 3552
+    },
+    {
+      "syntax": "basic",
+      "kind": "hand",
+      "status": "compile-error",
+      "pairs": 184
+    },
+    {
+      "syntax": "basic",
+      "kind": "hand",
+      "status": "valid",
+      "pairs": 530
+    },
+    {
+      "syntax": "extended",
+      "kind": "generated",
+      "status": "compile-error",
+      "pairs": 3104
+    },
+    {
+      "syntax": "extended",
+      "kind": "generated",
+      "status": "valid",
+      "pairs": 3552
+    },
+    {
+      "syntax": "extended",
+      "kind": "hand",
+      "status": "compile-error",
+      "pairs": 115
+    },
+    {
+      "syntax": "extended",
+      "kind": "hand",
+      "status": "valid",
+      "pairs": 599
+    }
+  ],
+  "failures": []
+}

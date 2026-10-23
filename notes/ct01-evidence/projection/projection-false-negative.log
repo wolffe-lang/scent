@@ -1,0 +1,3 @@
+RED projection plant: removing REF epsilon exit loses real matches; filter-off soak rejected it
+GREEN projection soak after restoring the regular superset
+PASS projection plant; source and driver restored

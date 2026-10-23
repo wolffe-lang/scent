@@ -1,0 +1,23 @@
+{
+  "rows": [
+    {
+      "family": "(a|aa)*c",
+      "backreference": false,
+      "bytes": 32,
+      "samples": [
+        {
+          "timeout": 1.0
+        },
+        {
+          "timeout": 1.0
+        },
+        {
+          "timeout": 1.0
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "non-backreference failed/timeout: (a|aa)*c 32"
+  ]
+}

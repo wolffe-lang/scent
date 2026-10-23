@@ -1,0 +1,4 @@
+cost start (a|aa)*c bytes=32
+RED non-backreference failed/timeout: (a|aa)*c 32
+RED non-backreference failed/timeout: (a|aa)*c 32
+FAIL cost gate; timeouts explicitly counted; SKIP=0

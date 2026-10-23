@@ -1,0 +1,92 @@
+ct01 owned prune attempt 1 at 2026-10-23T15:12:10Z
+[stderr] rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/LICENSE-EXCEPTION': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/LICENSE-EXCEPTION': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/STD-REV': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/search/search.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/base64/base64.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/testing/testing.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/prelude/prelude.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/math/math.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/math/float/float.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/bytes/bytes.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/deque/deque.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/signal/signal.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/net/net.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/net/unix/unix.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/json/json.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/time/time.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/hex/hex.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/iter/iter.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/io/io.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/unicode/unicode.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/strbuf/strbuf.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/str/str.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/range/range.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/env/env.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/mem/budget/budget.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/fmt/fmt.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/fmt/decimal/decimal.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/list/list.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/sort/sort.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/os/users/users.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/os/os.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/process/process.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/option/option.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/fs/fs.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/LICENSE': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/cmp/cmp.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/crypto/chacha20/chacha20.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/crypto/p256/p256.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/crypto/sha2/sha2.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/crypto/curve25519/curve25519.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/json/json.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/list_eq/list_eq.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/jose/jose.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/tls/handshake/handshake.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/tls/client/client.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/tls/record/record.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/tls/cert/cert.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/testing_text/testing_text.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/deque_int/deque_int.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/option_flatten/option_flatten.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/README.md': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/x/option_expect/option_expect.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/pool/pool.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/rand/rand.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/errors/errors.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/set/set.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/map/map.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/ops/ops.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/std/term/term.lu': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/wolf': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/wolf.bash': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/libwolf_rt_none.a': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/LICENSE': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/wolf.1': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/wolf-cimport-worker': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/_wolf': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/libwolf_rt.a': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/README.md': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/wolf/wolf-0.2.34-x86_64-unknown-linux-gnu/wolf.fish': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/lupin/lupin-0.1.55-x86_64-unknown-linux-gnu/CHANGELOG.md': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/lupin/lupin-0.1.55-x86_64-unknown-linux-gnu/LICENSE': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/lupin/lupin-0.1.55-x86_64-unknown-linux-gnu/README.md': Permission denied
+rm: cannot remove '/home/mfwolffe/lanes/ct01/toolchain-ready/lupin/lupin-0.1.55-x86_64-unknown-linux-gnu/lupin': Permission denied
+ct01 owned prune attempt 2 at 2026-10-23T15:13:10Z
+[stderr] du: cannot access '/home/mfwolffe/lanes/ct01/oracle-source': No such file or directory
+du: cannot access '/home/mfwolffe/lanes/ct01/oracle-build': No such file or directory
+du: cannot access '/home/mfwolffe/lanes/ct01/oracle-repro': No such file or directory
+ct01 owned prune attempt 3 at 2026-10-23T15:14:10Z
+[stderr] du: cannot access '/home/mfwolffe/lanes/ct01/oracle-source': No such file or directory
+du: cannot access '/home/mfwolffe/lanes/ct01/oracle-build': No such file or directory
+du: cannot access '/home/mfwolffe/lanes/ct01/oracle-repro': No such file or directory
+ct01 owned prune attempt 4 at 2026-10-23T15:15:10Z
+[stderr] du: cannot access '/home/mfwolffe/lanes/ct01/oracle-source': No such file or directory
+du: cannot access '/home/mfwolffe/lanes/ct01/oracle-build': No such file or directory
+du: cannot access '/home/mfwolffe/lanes/ct01/oracle-repro': No such file or directory
+ct01 owned prune attempt 5 at 2026-10-23T15:16:10Z
+[stderr] du: cannot access '/home/mfwolffe/lanes/ct01/oracle-source': No such file or directory
+du: cannot access '/home/mfwolffe/lanes/ct01/oracle-build': No such file or directory
+du: cannot access '/home/mfwolffe/lanes/ct01/oracle-repro': No such file or directory
+
+[exited with code 1]

@@ -1,0 +1,3786 @@
+{
+  "rows": [
+    {
+      "family": "(a*)*b",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 7163,
+          "match_ns": 197362,
+          "instructions": 10,
+          "visits": 4004,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 721024
+        },
+        {
+          "compile_ns": 5490,
+          "match_ns": 203282,
+          "instructions": 10,
+          "visits": 4004,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 635191
+        },
+        {
+          "compile_ns": 4723,
+          "match_ns": 195488,
+          "instructions": 10,
+          "visits": 4004,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 644719
+        }
+      ],
+      "median_match_ns": 197362
+    },
+    {
+      "family": "(a*)*b",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 4149,
+          "match_ns": 1977316,
+          "instructions": 10,
+          "visits": 40004,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 2403085
+        },
+        {
+          "compile_ns": 3861,
+          "match_ns": 1966803,
+          "instructions": 10,
+          "visits": 40004,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 2553093
+        },
+        {
+          "compile_ns": 3489,
+          "match_ns": 1926531,
+          "instructions": 10,
+          "visits": 40004,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 2385194
+        }
+      ],
+      "median_match_ns": 1966803
+    },
+    {
+      "family": "(a*)*b",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 4946,
+          "match_ns": 19324925,
+          "instructions": 10,
+          "visits": 400004,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 20556985
+        },
+        {
+          "compile_ns": 7075,
+          "match_ns": 19245691,
+          "instructions": 10,
+          "visits": 400004,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 20574389
+        },
+        {
+          "compile_ns": 8401,
+          "match_ns": 19365241,
+          "instructions": 10,
+          "visits": 400004,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 20747421
+        }
+      ],
+      "median_match_ns": 19324925
+    },
+    {
+      "family": "(a|aa)*c",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 9757,
+          "match_ns": 307493,
+          "instructions": 14,
+          "visits": 6005,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 871587
+        },
+        {
+          "compile_ns": 5684,
+          "match_ns": 311012,
+          "instructions": 14,
+          "visits": 6005,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 724635
+        },
+        {
+          "compile_ns": 5119,
+          "match_ns": 304870,
+          "instructions": 14,
+          "visits": 6005,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 633966
+        }
+      ],
+      "median_match_ns": 307493
+    },
+    {
+      "family": "(a|aa)*c",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 3998,
+          "match_ns": 3137019,
+          "instructions": 14,
+          "visits": 60005,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 3622983
+        },
+        {
+          "compile_ns": 4486,
+          "match_ns": 3167732,
+          "instructions": 14,
+          "visits": 60005,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 3686553
+        },
+        {
+          "compile_ns": 4135,
+          "match_ns": 3106726,
+          "instructions": 14,
+          "visits": 60005,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 3703091
+        }
+      ],
+      "median_match_ns": 3137019
+    },
+    {
+      "family": "(a|aa)*c",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 6614,
+          "match_ns": 30230308,
+          "instructions": 14,
+          "visits": 600005,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 31448177
+        },
+        {
+          "compile_ns": 8146,
+          "match_ns": 30424486,
+          "instructions": 14,
+          "visits": 600005,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 31783404
+        },
+        {
+          "compile_ns": 7288,
+          "match_ns": 30271969,
+          "instructions": 14,
+          "visits": 600005,
+          "peak_frames": 0,
+          "selected": false,
+          "wall_ns": 31730820
+        }
+      ],
+      "median_match_ns": 30271969
+    },
+    {
+      "family": "((a{2,3}){2,3}){2,3}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 13382,
+          "match_ns": 31887,
+          "instructions": 82,
+          "visits": 354,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 569439
+        },
+        {
+          "compile_ns": 10617,
+          "match_ns": 15371,
+          "instructions": 82,
+          "visits": 354,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 380817
+        },
+        {
+          "compile_ns": 9134,
+          "match_ns": 14561,
+          "instructions": 82,
+          "visits": 354,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 420325
+        }
+      ],
+      "median_match_ns": 15371
+    },
+    {
+      "family": "((a{2,3}){2,3}){2,3}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 7685,
+          "match_ns": 15846,
+          "instructions": 82,
+          "visits": 354,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 385668
+        },
+        {
+          "compile_ns": 7090,
+          "match_ns": 15829,
+          "instructions": 82,
+          "visits": 354,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 376857
+        },
+        {
+          "compile_ns": 7609,
+          "match_ns": 17523,
+          "instructions": 82,
+          "visits": 354,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 422096
+        }
+      ],
+      "median_match_ns": 15846
+    },
+    {
+      "family": "((a{2,3}){2,3}){2,3}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 10087,
+          "match_ns": 16104,
+          "instructions": 82,
+          "visits": 354,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1034488
+        },
+        {
+          "compile_ns": 13813,
+          "match_ns": 17735,
+          "instructions": 82,
+          "visits": 354,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1026709
+        },
+        {
+          "compile_ns": 9640,
+          "match_ns": 16607,
+          "instructions": 82,
+          "visits": 354,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1013173
+        }
+      ],
+      "median_match_ns": 16607
+    },
+    {
+      "family": "(a?){1}a{1}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 5176,
+          "match_ns": 2054,
+          "instructions": 8,
+          "visits": 8,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 325597
+        },
+        {
+          "compile_ns": 5650,
+          "match_ns": 2183,
+          "instructions": 8,
+          "visits": 8,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 309102
+        },
+        {
+          "compile_ns": 5775,
+          "match_ns": 1966,
+          "instructions": 8,
+          "visits": 8,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 303232
+        }
+      ],
+      "median_match_ns": 2054
+    },
+    {
+      "family": "(a?){1}a{1}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 3910,
+          "match_ns": 2707,
+          "instructions": 8,
+          "visits": 8,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 422300
+        },
+        {
+          "compile_ns": 3676,
+          "match_ns": 3699,
+          "instructions": 8,
+          "visits": 8,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 388328
+        },
+        {
+          "compile_ns": 3921,
+          "match_ns": 3501,
+          "instructions": 8,
+          "visits": 8,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 385741
+        }
+      ],
+      "median_match_ns": 3501
+    },
+    {
+      "family": "(a?){1}a{1}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 5436,
+          "match_ns": 3907,
+          "instructions": 8,
+          "visits": 8,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 970245
+        },
+        {
+          "compile_ns": 5764,
+          "match_ns": 5140,
+          "instructions": 8,
+          "visits": 8,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1013845
+        },
+        {
+          "compile_ns": 6114,
+          "match_ns": 4025,
+          "instructions": 8,
+          "visits": 8,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1054884
+        }
+      ],
+      "median_match_ns": 4025
+    },
+    {
+      "family": "(a?){2}a{2}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 5851,
+          "match_ns": 2852,
+          "instructions": 14,
+          "visits": 21,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 351771
+        },
+        {
+          "compile_ns": 5244,
+          "match_ns": 2557,
+          "instructions": 14,
+          "visits": 21,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 323026
+        },
+        {
+          "compile_ns": 6734,
+          "match_ns": 4060,
+          "instructions": 14,
+          "visits": 21,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 322310
+        }
+      ],
+      "median_match_ns": 2852
+    },
+    {
+      "family": "(a?){2}a{2}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 4819,
+          "match_ns": 3563,
+          "instructions": 14,
+          "visits": 21,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 419713
+        },
+        {
+          "compile_ns": 4646,
+          "match_ns": 3867,
+          "instructions": 14,
+          "visits": 21,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 368153
+        },
+        {
+          "compile_ns": 4028,
+          "match_ns": 4351,
+          "instructions": 14,
+          "visits": 21,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 370071
+        }
+      ],
+      "median_match_ns": 3867
+    },
+    {
+      "family": "(a?){2}a{2}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 5903,
+          "match_ns": 4157,
+          "instructions": 14,
+          "visits": 21,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 959079
+        },
+        {
+          "compile_ns": 5258,
+          "match_ns": 4908,
+          "instructions": 14,
+          "visits": 21,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 983284
+        },
+        {
+          "compile_ns": 6119,
+          "match_ns": 5021,
+          "instructions": 14,
+          "visits": 21,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 980322
+        }
+      ],
+      "median_match_ns": 4908
+    },
+    {
+      "family": "(a?){3}a{3}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 6389,
+          "match_ns": 4136,
+          "instructions": 20,
+          "visits": 40,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 354937
+        },
+        {
+          "compile_ns": 5253,
+          "match_ns": 3837,
+          "instructions": 20,
+          "visits": 40,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 306682
+        },
+        {
+          "compile_ns": 6245,
+          "match_ns": 4072,
+          "instructions": 20,
+          "visits": 40,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 311306
+        }
+      ],
+      "median_match_ns": 4072
+    },
+    {
+      "family": "(a?){3}a{3}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 5007,
+          "match_ns": 4775,
+          "instructions": 20,
+          "visits": 40,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 353547
+        },
+        {
+          "compile_ns": 5264,
+          "match_ns": 4654,
+          "instructions": 20,
+          "visits": 40,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 367481
+        },
+        {
+          "compile_ns": 4445,
+          "match_ns": 4321,
+          "instructions": 20,
+          "visits": 40,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 360268
+        }
+      ],
+      "median_match_ns": 4654
+    },
+    {
+      "family": "(a?){3}a{3}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 6026,
+          "match_ns": 5449,
+          "instructions": 20,
+          "visits": 40,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 975583
+        },
+        {
+          "compile_ns": 6328,
+          "match_ns": 5897,
+          "instructions": 20,
+          "visits": 40,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 962351
+        },
+        {
+          "compile_ns": 5836,
+          "match_ns": 6473,
+          "instructions": 20,
+          "visits": 40,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 981528
+        }
+      ],
+      "median_match_ns": 5897
+    },
+    {
+      "family": "(a?){4}a{4}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 6612,
+          "match_ns": 5363,
+          "instructions": 26,
+          "visits": 65,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 325100
+        },
+        {
+          "compile_ns": 6532,
+          "match_ns": 4998,
+          "instructions": 26,
+          "visits": 65,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 311987
+        },
+        {
+          "compile_ns": 6899,
+          "match_ns": 5263,
+          "instructions": 26,
+          "visits": 65,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 309418
+        }
+      ],
+      "median_match_ns": 5263
+    },
+    {
+      "family": "(a?){4}a{4}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 5226,
+          "match_ns": 6936,
+          "instructions": 26,
+          "visits": 65,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 374650
+        },
+        {
+          "compile_ns": 5335,
+          "match_ns": 6245,
+          "instructions": 26,
+          "visits": 65,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 373431
+        },
+        {
+          "compile_ns": 4954,
+          "match_ns": 6527,
+          "instructions": 26,
+          "visits": 65,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 361486
+        }
+      ],
+      "median_match_ns": 6527
+    },
+    {
+      "family": "(a?){4}a{4}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 6349,
+          "match_ns": 6569,
+          "instructions": 26,
+          "visits": 65,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 996344
+        },
+        {
+          "compile_ns": 8463,
+          "match_ns": 6976,
+          "instructions": 26,
+          "visits": 65,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1029219
+        },
+        {
+          "compile_ns": 7012,
+          "match_ns": 6445,
+          "instructions": 26,
+          "visits": 65,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1037529
+        }
+      ],
+      "median_match_ns": 6569
+    },
+    {
+      "family": "(a?){5}a{5}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 7106,
+          "match_ns": 6764,
+          "instructions": 32,
+          "visits": 96,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 322330
+        },
+        {
+          "compile_ns": 6885,
+          "match_ns": 7877,
+          "instructions": 32,
+          "visits": 96,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 330150
+        },
+        {
+          "compile_ns": 7464,
+          "match_ns": 6550,
+          "instructions": 32,
+          "visits": 96,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 316051
+        }
+      ],
+      "median_match_ns": 6764
+    },
+    {
+      "family": "(a?){5}a{5}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 4933,
+          "match_ns": 7865,
+          "instructions": 32,
+          "visits": 96,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 396112
+        },
+        {
+          "compile_ns": 5573,
+          "match_ns": 7783,
+          "instructions": 32,
+          "visits": 96,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 369535
+        },
+        {
+          "compile_ns": 5460,
+          "match_ns": 7673,
+          "instructions": 32,
+          "visits": 96,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 367685
+        }
+      ],
+      "median_match_ns": 7783
+    },
+    {
+      "family": "(a?){5}a{5}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 6478,
+          "match_ns": 9179,
+          "instructions": 32,
+          "visits": 96,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 957116
+        },
+        {
+          "compile_ns": 6473,
+          "match_ns": 7592,
+          "instructions": 32,
+          "visits": 96,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 932875
+        },
+        {
+          "compile_ns": 6588,
+          "match_ns": 8102,
+          "instructions": 32,
+          "visits": 96,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 991801
+        }
+      ],
+      "median_match_ns": 8102
+    },
+    {
+      "family": "(a?){6}a{6}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 7691,
+          "match_ns": 9300,
+          "instructions": 38,
+          "visits": 133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 360900
+        },
+        {
+          "compile_ns": 7820,
+          "match_ns": 8350,
+          "instructions": 38,
+          "visits": 133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 317136
+        },
+        {
+          "compile_ns": 7574,
+          "match_ns": 9196,
+          "instructions": 38,
+          "visits": 133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 322803
+        }
+      ],
+      "median_match_ns": 9196
+    },
+    {
+      "family": "(a?){6}a{6}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 5892,
+          "match_ns": 8944,
+          "instructions": 38,
+          "visits": 133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 386035
+        },
+        {
+          "compile_ns": 5958,
+          "match_ns": 10205,
+          "instructions": 38,
+          "visits": 133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 379049
+        },
+        {
+          "compile_ns": 5258,
+          "match_ns": 9029,
+          "instructions": 38,
+          "visits": 133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 387869
+        }
+      ],
+      "median_match_ns": 9029
+    },
+    {
+      "family": "(a?){6}a{6}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 7969,
+          "match_ns": 9405,
+          "instructions": 38,
+          "visits": 133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 980766
+        },
+        {
+          "compile_ns": 7502,
+          "match_ns": 10255,
+          "instructions": 38,
+          "visits": 133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1020383
+        },
+        {
+          "compile_ns": 7762,
+          "match_ns": 10763,
+          "instructions": 38,
+          "visits": 133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 991127
+        }
+      ],
+      "median_match_ns": 10255
+    },
+    {
+      "family": "(a?){7}a{7}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 8838,
+          "match_ns": 10344,
+          "instructions": 44,
+          "visits": 176,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 345593
+        },
+        {
+          "compile_ns": 8218,
+          "match_ns": 10322,
+          "instructions": 44,
+          "visits": 176,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 340282
+        },
+        {
+          "compile_ns": 7871,
+          "match_ns": 10918,
+          "instructions": 44,
+          "visits": 176,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 317508
+        }
+      ],
+      "median_match_ns": 10344
+    },
+    {
+      "family": "(a?){7}a{7}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 6086,
+          "match_ns": 11401,
+          "instructions": 44,
+          "visits": 176,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 382921
+        },
+        {
+          "compile_ns": 6523,
+          "match_ns": 10935,
+          "instructions": 44,
+          "visits": 176,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 372664
+        },
+        {
+          "compile_ns": 5853,
+          "match_ns": 10849,
+          "instructions": 44,
+          "visits": 176,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 372502
+        }
+      ],
+      "median_match_ns": 10935
+    },
+    {
+      "family": "(a?){7}a{7}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 7879,
+          "match_ns": 12014,
+          "instructions": 44,
+          "visits": 176,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 957421
+        },
+        {
+          "compile_ns": 8132,
+          "match_ns": 11753,
+          "instructions": 44,
+          "visits": 176,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 991472
+        },
+        {
+          "compile_ns": 8157,
+          "match_ns": 13113,
+          "instructions": 44,
+          "visits": 176,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 964581
+        }
+      ],
+      "median_match_ns": 12014
+    },
+    {
+      "family": "(a?){8}a{8}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 8082,
+          "match_ns": 12669,
+          "instructions": 50,
+          "visits": 225,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 358268
+        },
+        {
+          "compile_ns": 7334,
+          "match_ns": 12667,
+          "instructions": 50,
+          "visits": 225,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 317189
+        },
+        {
+          "compile_ns": 8650,
+          "match_ns": 13142,
+          "instructions": 50,
+          "visits": 225,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 327673
+        }
+      ],
+      "median_match_ns": 12669
+    },
+    {
+      "family": "(a?){8}a{8}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 6107,
+          "match_ns": 13695,
+          "instructions": 50,
+          "visits": 225,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 389783
+        },
+        {
+          "compile_ns": 6130,
+          "match_ns": 13736,
+          "instructions": 50,
+          "visits": 225,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 376899
+        },
+        {
+          "compile_ns": 5483,
+          "match_ns": 13155,
+          "instructions": 50,
+          "visits": 225,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 384470
+        }
+      ],
+      "median_match_ns": 13695
+    },
+    {
+      "family": "(a?){8}a{8}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 8317,
+          "match_ns": 14400,
+          "instructions": 50,
+          "visits": 225,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 965220
+        },
+        {
+          "compile_ns": 8127,
+          "match_ns": 13523,
+          "instructions": 50,
+          "visits": 225,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1024194
+        },
+        {
+          "compile_ns": 8853,
+          "match_ns": 14950,
+          "instructions": 50,
+          "visits": 225,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1129598
+        }
+      ],
+      "median_match_ns": 14400
+    },
+    {
+      "family": "(a?){9}a{9}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 8649,
+          "match_ns": 15645,
+          "instructions": 56,
+          "visits": 280,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 345997
+        },
+        {
+          "compile_ns": 10045,
+          "match_ns": 15461,
+          "instructions": 56,
+          "visits": 280,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 338688
+        },
+        {
+          "compile_ns": 8492,
+          "match_ns": 15899,
+          "instructions": 56,
+          "visits": 280,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 344684
+        }
+      ],
+      "median_match_ns": 15645
+    },
+    {
+      "family": "(a?){9}a{9}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 6545,
+          "match_ns": 15492,
+          "instructions": 56,
+          "visits": 280,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 404944
+        },
+        {
+          "compile_ns": 6272,
+          "match_ns": 15367,
+          "instructions": 56,
+          "visits": 280,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 377683
+        },
+        {
+          "compile_ns": 6382,
+          "match_ns": 15533,
+          "instructions": 56,
+          "visits": 280,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 360194
+        }
+      ],
+      "median_match_ns": 15492
+    },
+    {
+      "family": "(a?){9}a{9}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 8981,
+          "match_ns": 16863,
+          "instructions": 56,
+          "visits": 280,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 995065
+        },
+        {
+          "compile_ns": 8271,
+          "match_ns": 16859,
+          "instructions": 56,
+          "visits": 280,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 995835
+        },
+        {
+          "compile_ns": 8802,
+          "match_ns": 17448,
+          "instructions": 56,
+          "visits": 280,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1023525
+        }
+      ],
+      "median_match_ns": 16863
+    },
+    {
+      "family": "(a?){10}a{10}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 8783,
+          "match_ns": 17987,
+          "instructions": 62,
+          "visits": 341,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 387428
+        },
+        {
+          "compile_ns": 8347,
+          "match_ns": 18406,
+          "instructions": 62,
+          "visits": 341,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 330112
+        },
+        {
+          "compile_ns": 8899,
+          "match_ns": 17531,
+          "instructions": 62,
+          "visits": 341,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 329734
+        }
+      ],
+      "median_match_ns": 17987
+    },
+    {
+      "family": "(a?){10}a{10}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 7219,
+          "match_ns": 19130,
+          "instructions": 62,
+          "visits": 341,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 405158
+        },
+        {
+          "compile_ns": 6846,
+          "match_ns": 17912,
+          "instructions": 62,
+          "visits": 341,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 382850
+        },
+        {
+          "compile_ns": 6614,
+          "match_ns": 18131,
+          "instructions": 62,
+          "visits": 341,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 375218
+        }
+      ],
+      "median_match_ns": 18131
+    },
+    {
+      "family": "(a?){10}a{10}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 8794,
+          "match_ns": 18918,
+          "instructions": 62,
+          "visits": 341,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 980595
+        },
+        {
+          "compile_ns": 8923,
+          "match_ns": 18819,
+          "instructions": 62,
+          "visits": 341,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 995260
+        },
+        {
+          "compile_ns": 8650,
+          "match_ns": 18685,
+          "instructions": 62,
+          "visits": 341,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 967536
+        }
+      ],
+      "median_match_ns": 18819
+    },
+    {
+      "family": "(a?){11}a{11}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 9675,
+          "match_ns": 20930,
+          "instructions": 68,
+          "visits": 408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 336578
+        },
+        {
+          "compile_ns": 9474,
+          "match_ns": 28824,
+          "instructions": 68,
+          "visits": 408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 345629
+        },
+        {
+          "compile_ns": 9921,
+          "match_ns": 20178,
+          "instructions": 68,
+          "visits": 408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 324532
+        }
+      ],
+      "median_match_ns": 20930
+    },
+    {
+      "family": "(a?){11}a{11}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 6912,
+          "match_ns": 20740,
+          "instructions": 68,
+          "visits": 408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 379553
+        },
+        {
+          "compile_ns": 8404,
+          "match_ns": 21406,
+          "instructions": 68,
+          "visits": 408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 415016
+        },
+        {
+          "compile_ns": 7136,
+          "match_ns": 22139,
+          "instructions": 68,
+          "visits": 408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 379944
+        }
+      ],
+      "median_match_ns": 21406
+    },
+    {
+      "family": "(a?){11}a{11}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 9628,
+          "match_ns": 22500,
+          "instructions": 68,
+          "visits": 408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1000661
+        },
+        {
+          "compile_ns": 9224,
+          "match_ns": 22043,
+          "instructions": 68,
+          "visits": 408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1024602
+        },
+        {
+          "compile_ns": 10165,
+          "match_ns": 21572,
+          "instructions": 68,
+          "visits": 408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1033576
+        }
+      ],
+      "median_match_ns": 22043
+    },
+    {
+      "family": "(a?){12}a{12}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 10527,
+          "match_ns": 23222,
+          "instructions": 74,
+          "visits": 481,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 376028
+        },
+        {
+          "compile_ns": 11548,
+          "match_ns": 23765,
+          "instructions": 74,
+          "visits": 481,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 344186
+        },
+        {
+          "compile_ns": 9694,
+          "match_ns": 23359,
+          "instructions": 74,
+          "visits": 481,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 349728
+        }
+      ],
+      "median_match_ns": 23359
+    },
+    {
+      "family": "(a?){12}a{12}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 7365,
+          "match_ns": 24864,
+          "instructions": 74,
+          "visits": 481,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 391823
+        },
+        {
+          "compile_ns": 8962,
+          "match_ns": 24807,
+          "instructions": 74,
+          "visits": 481,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 378090
+        },
+        {
+          "compile_ns": 7379,
+          "match_ns": 24272,
+          "instructions": 74,
+          "visits": 481,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 388158
+        }
+      ],
+      "median_match_ns": 24807
+    },
+    {
+      "family": "(a?){12}a{12}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 10194,
+          "match_ns": 25609,
+          "instructions": 74,
+          "visits": 481,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1039418
+        },
+        {
+          "compile_ns": 10731,
+          "match_ns": 27728,
+          "instructions": 74,
+          "visits": 481,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1057815
+        },
+        {
+          "compile_ns": 10777,
+          "match_ns": 24837,
+          "instructions": 74,
+          "visits": 481,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1071355
+        }
+      ],
+      "median_match_ns": 25609
+    },
+    {
+      "family": "(a?){13}a{13}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 13892,
+          "match_ns": 27051,
+          "instructions": 80,
+          "visits": 560,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 386485
+        },
+        {
+          "compile_ns": 9947,
+          "match_ns": 26667,
+          "instructions": 80,
+          "visits": 560,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 345278
+        },
+        {
+          "compile_ns": 11546,
+          "match_ns": 27472,
+          "instructions": 80,
+          "visits": 560,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 348895
+        }
+      ],
+      "median_match_ns": 27051
+    },
+    {
+      "family": "(a?){13}a{13}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 6650,
+          "match_ns": 27447,
+          "instructions": 80,
+          "visits": 560,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 398522
+        },
+        {
+          "compile_ns": 7938,
+          "match_ns": 28402,
+          "instructions": 80,
+          "visits": 560,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 385379
+        },
+        {
+          "compile_ns": 7162,
+          "match_ns": 28049,
+          "instructions": 80,
+          "visits": 560,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 391808
+        }
+      ],
+      "median_match_ns": 28049
+    },
+    {
+      "family": "(a?){13}a{13}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 9236,
+          "match_ns": 29233,
+          "instructions": 80,
+          "visits": 560,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 980009
+        },
+        {
+          "compile_ns": 10317,
+          "match_ns": 28144,
+          "instructions": 80,
+          "visits": 560,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1003445
+        },
+        {
+          "compile_ns": 10995,
+          "match_ns": 28401,
+          "instructions": 80,
+          "visits": 560,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1045992
+        }
+      ],
+      "median_match_ns": 28401
+    },
+    {
+      "family": "(a?){14}a{14}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 9949,
+          "match_ns": 31273,
+          "instructions": 86,
+          "visits": 645,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 344765
+        },
+        {
+          "compile_ns": 10981,
+          "match_ns": 30869,
+          "instructions": 86,
+          "visits": 645,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 366062
+        },
+        {
+          "compile_ns": 11862,
+          "match_ns": 31385,
+          "instructions": 86,
+          "visits": 645,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 343123
+        }
+      ],
+      "median_match_ns": 31273
+    },
+    {
+      "family": "(a?){14}a{14}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 8032,
+          "match_ns": 31313,
+          "instructions": 86,
+          "visits": 645,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 394019
+        },
+        {
+          "compile_ns": 7113,
+          "match_ns": 30797,
+          "instructions": 86,
+          "visits": 645,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 403376
+        },
+        {
+          "compile_ns": 7484,
+          "match_ns": 31431,
+          "instructions": 86,
+          "visits": 645,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 389570
+        }
+      ],
+      "median_match_ns": 31313
+    },
+    {
+      "family": "(a?){14}a{14}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 9498,
+          "match_ns": 33083,
+          "instructions": 86,
+          "visits": 645,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1049906
+        },
+        {
+          "compile_ns": 10487,
+          "match_ns": 32147,
+          "instructions": 86,
+          "visits": 645,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1008172
+        },
+        {
+          "compile_ns": 10631,
+          "match_ns": 31833,
+          "instructions": 86,
+          "visits": 645,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1017281
+        }
+      ],
+      "median_match_ns": 32147
+    },
+    {
+      "family": "(a?){15}a{15}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 11891,
+          "match_ns": 34502,
+          "instructions": 92,
+          "visits": 736,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 381984
+        },
+        {
+          "compile_ns": 10657,
+          "match_ns": 34232,
+          "instructions": 92,
+          "visits": 736,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 356267
+        },
+        {
+          "compile_ns": 12487,
+          "match_ns": 33969,
+          "instructions": 92,
+          "visits": 736,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 396007
+        }
+      ],
+      "median_match_ns": 34232
+    },
+    {
+      "family": "(a?){15}a{15}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 7938,
+          "match_ns": 35690,
+          "instructions": 92,
+          "visits": 736,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 418844
+        },
+        {
+          "compile_ns": 8129,
+          "match_ns": 35145,
+          "instructions": 92,
+          "visits": 736,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 471215
+        },
+        {
+          "compile_ns": 8701,
+          "match_ns": 37557,
+          "instructions": 92,
+          "visits": 736,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 427641
+        }
+      ],
+      "median_match_ns": 35690
+    },
+    {
+      "family": "(a?){15}a{15}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 10469,
+          "match_ns": 35858,
+          "instructions": 92,
+          "visits": 736,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1023074
+        },
+        {
+          "compile_ns": 9775,
+          "match_ns": 35642,
+          "instructions": 92,
+          "visits": 736,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1031869
+        },
+        {
+          "compile_ns": 12043,
+          "match_ns": 37041,
+          "instructions": 92,
+          "visits": 736,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1087187
+        }
+      ],
+      "median_match_ns": 35858
+    },
+    {
+      "family": "(a?){16}a{16}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 10579,
+          "match_ns": 38356,
+          "instructions": 98,
+          "visits": 833,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 359414
+        },
+        {
+          "compile_ns": 10031,
+          "match_ns": 38996,
+          "instructions": 98,
+          "visits": 833,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 355020
+        },
+        {
+          "compile_ns": 12600,
+          "match_ns": 39094,
+          "instructions": 98,
+          "visits": 833,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 359243
+        }
+      ],
+      "median_match_ns": 38996
+    },
+    {
+      "family": "(a?){16}a{16}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 8689,
+          "match_ns": 39304,
+          "instructions": 98,
+          "visits": 833,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 401120
+        },
+        {
+          "compile_ns": 8529,
+          "match_ns": 40959,
+          "instructions": 98,
+          "visits": 833,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 416325
+        },
+        {
+          "compile_ns": 8011,
+          "match_ns": 38820,
+          "instructions": 98,
+          "visits": 833,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 406533
+        }
+      ],
+      "median_match_ns": 39304
+    },
+    {
+      "family": "(a?){16}a{16}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 10227,
+          "match_ns": 39575,
+          "instructions": 98,
+          "visits": 833,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1027385
+        },
+        {
+          "compile_ns": 10482,
+          "match_ns": 40327,
+          "instructions": 98,
+          "visits": 833,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1008208
+        },
+        {
+          "compile_ns": 10296,
+          "match_ns": 41943,
+          "instructions": 98,
+          "visits": 833,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1050611
+        }
+      ],
+      "median_match_ns": 40327
+    },
+    {
+      "family": "(a?){17}a{17}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 11658,
+          "match_ns": 43073,
+          "instructions": 104,
+          "visits": 936,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 392394
+        },
+        {
+          "compile_ns": 11850,
+          "match_ns": 42729,
+          "instructions": 104,
+          "visits": 936,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 360780
+        },
+        {
+          "compile_ns": 10984,
+          "match_ns": 42911,
+          "instructions": 104,
+          "visits": 936,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 428545
+        }
+      ],
+      "median_match_ns": 42911
+    },
+    {
+      "family": "(a?){17}a{17}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 8756,
+          "match_ns": 44628,
+          "instructions": 104,
+          "visits": 936,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 425129
+        },
+        {
+          "compile_ns": 9199,
+          "match_ns": 43993,
+          "instructions": 104,
+          "visits": 936,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 434209
+        },
+        {
+          "compile_ns": 8432,
+          "match_ns": 46452,
+          "instructions": 104,
+          "visits": 936,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 435327
+        }
+      ],
+      "median_match_ns": 44628
+    },
+    {
+      "family": "(a?){17}a{17}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 10939,
+          "match_ns": 46767,
+          "instructions": 104,
+          "visits": 936,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1012994
+        },
+        {
+          "compile_ns": 12038,
+          "match_ns": 45823,
+          "instructions": 104,
+          "visits": 936,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1081601
+        },
+        {
+          "compile_ns": 12191,
+          "match_ns": 45889,
+          "instructions": 104,
+          "visits": 936,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1178020
+        }
+      ],
+      "median_match_ns": 45889
+    },
+    {
+      "family": "(a?){18}a{18}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 10540,
+          "match_ns": 47939,
+          "instructions": 110,
+          "visits": 1045,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 424602
+        },
+        {
+          "compile_ns": 12411,
+          "match_ns": 48666,
+          "instructions": 110,
+          "visits": 1045,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 394211
+        },
+        {
+          "compile_ns": 11334,
+          "match_ns": 93445,
+          "instructions": 110,
+          "visits": 1045,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 425826
+        }
+      ],
+      "median_match_ns": 48666
+    },
+    {
+      "family": "(a?){18}a{18}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 8679,
+          "match_ns": 49044,
+          "instructions": 110,
+          "visits": 1045,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 420703
+        },
+        {
+          "compile_ns": 9031,
+          "match_ns": 50759,
+          "instructions": 110,
+          "visits": 1045,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 438604
+        },
+        {
+          "compile_ns": 10579,
+          "match_ns": 48600,
+          "instructions": 110,
+          "visits": 1045,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 441563
+        }
+      ],
+      "median_match_ns": 49044
+    },
+    {
+      "family": "(a?){18}a{18}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 10340,
+          "match_ns": 49731,
+          "instructions": 110,
+          "visits": 1045,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1036640
+        },
+        {
+          "compile_ns": 11365,
+          "match_ns": 51421,
+          "instructions": 110,
+          "visits": 1045,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1048477
+        },
+        {
+          "compile_ns": 11642,
+          "match_ns": 49954,
+          "instructions": 110,
+          "visits": 1045,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1049910
+        }
+      ],
+      "median_match_ns": 49954
+    },
+    {
+      "family": "(a?){19}a{19}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 11494,
+          "match_ns": 54176,
+          "instructions": 116,
+          "visits": 1160,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 408678
+        },
+        {
+          "compile_ns": 12061,
+          "match_ns": 53046,
+          "instructions": 116,
+          "visits": 1160,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 385210
+        },
+        {
+          "compile_ns": 11579,
+          "match_ns": 54823,
+          "instructions": 116,
+          "visits": 1160,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 387976
+        }
+      ],
+      "median_match_ns": 54176
+    },
+    {
+      "family": "(a?){19}a{19}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 8899,
+          "match_ns": 52930,
+          "instructions": 116,
+          "visits": 1160,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 445297
+        },
+        {
+          "compile_ns": 9048,
+          "match_ns": 54007,
+          "instructions": 116,
+          "visits": 1160,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 481853
+        },
+        {
+          "compile_ns": 8915,
+          "match_ns": 54840,
+          "instructions": 116,
+          "visits": 1160,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 415879
+        }
+      ],
+      "median_match_ns": 54007
+    },
+    {
+      "family": "(a?){19}a{19}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 11317,
+          "match_ns": 53852,
+          "instructions": 116,
+          "visits": 1160,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1011371
+        },
+        {
+          "compile_ns": 11348,
+          "match_ns": 53301,
+          "instructions": 116,
+          "visits": 1160,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1046141
+        },
+        {
+          "compile_ns": 11004,
+          "match_ns": 53625,
+          "instructions": 116,
+          "visits": 1160,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1106321
+        }
+      ],
+      "median_match_ns": 53625
+    },
+    {
+      "family": "(a?){20}a{20}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 12777,
+          "match_ns": 58186,
+          "instructions": 122,
+          "visits": 1281,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 378885
+        },
+        {
+          "compile_ns": 11778,
+          "match_ns": 61528,
+          "instructions": 122,
+          "visits": 1281,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 383323
+        },
+        {
+          "compile_ns": 11460,
+          "match_ns": 57330,
+          "instructions": 122,
+          "visits": 1281,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 404000
+        }
+      ],
+      "median_match_ns": 58186
+    },
+    {
+      "family": "(a?){20}a{20}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 9571,
+          "match_ns": 60401,
+          "instructions": 122,
+          "visits": 1281,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 446158
+        },
+        {
+          "compile_ns": 8591,
+          "match_ns": 57983,
+          "instructions": 122,
+          "visits": 1281,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 449949
+        },
+        {
+          "compile_ns": 9120,
+          "match_ns": 58670,
+          "instructions": 122,
+          "visits": 1281,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 428897
+        }
+      ],
+      "median_match_ns": 58670
+    },
+    {
+      "family": "(a?){20}a{20}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 12639,
+          "match_ns": 60409,
+          "instructions": 122,
+          "visits": 1281,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1033602
+        },
+        {
+          "compile_ns": 11505,
+          "match_ns": 59532,
+          "instructions": 122,
+          "visits": 1281,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1049023
+        },
+        {
+          "compile_ns": 11093,
+          "match_ns": 59496,
+          "instructions": 122,
+          "visits": 1281,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1068268
+        }
+      ],
+      "median_match_ns": 59532
+    },
+    {
+      "family": "(a?){21}a{21}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 12981,
+          "match_ns": 63332,
+          "instructions": 128,
+          "visits": 1408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 413543
+        },
+        {
+          "compile_ns": 14463,
+          "match_ns": 63118,
+          "instructions": 128,
+          "visits": 1408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 409349
+        },
+        {
+          "compile_ns": 11221,
+          "match_ns": 64752,
+          "instructions": 128,
+          "visits": 1408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 374298
+        }
+      ],
+      "median_match_ns": 63332
+    },
+    {
+      "family": "(a?){21}a{21}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 9023,
+          "match_ns": 64325,
+          "instructions": 128,
+          "visits": 1408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 439286
+        },
+        {
+          "compile_ns": 9999,
+          "match_ns": 64216,
+          "instructions": 128,
+          "visits": 1408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 456851
+        },
+        {
+          "compile_ns": 9401,
+          "match_ns": 64018,
+          "instructions": 128,
+          "visits": 1408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 437366
+        }
+      ],
+      "median_match_ns": 64216
+    },
+    {
+      "family": "(a?){21}a{21}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 12125,
+          "match_ns": 65665,
+          "instructions": 128,
+          "visits": 1408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1049078
+        },
+        {
+          "compile_ns": 12023,
+          "match_ns": 65496,
+          "instructions": 128,
+          "visits": 1408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1090919
+        },
+        {
+          "compile_ns": 11538,
+          "match_ns": 94925,
+          "instructions": 128,
+          "visits": 1408,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1067570
+        }
+      ],
+      "median_match_ns": 65665
+    },
+    {
+      "family": "(a?){22}a{22}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 14283,
+          "match_ns": 69699,
+          "instructions": 134,
+          "visits": 1541,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 420011
+        },
+        {
+          "compile_ns": 14158,
+          "match_ns": 69308,
+          "instructions": 134,
+          "visits": 1541,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 433159
+        },
+        {
+          "compile_ns": 14111,
+          "match_ns": 69451,
+          "instructions": 134,
+          "visits": 1541,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 389969
+        }
+      ],
+      "median_match_ns": 69451
+    },
+    {
+      "family": "(a?){22}a{22}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 11154,
+          "match_ns": 73325,
+          "instructions": 134,
+          "visits": 1541,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 437456
+        },
+        {
+          "compile_ns": 11006,
+          "match_ns": 70075,
+          "instructions": 134,
+          "visits": 1541,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 459611
+        },
+        {
+          "compile_ns": 11513,
+          "match_ns": 68971,
+          "instructions": 134,
+          "visits": 1541,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 440797
+        }
+      ],
+      "median_match_ns": 70075
+    },
+    {
+      "family": "(a?){22}a{22}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 14041,
+          "match_ns": 70712,
+          "instructions": 134,
+          "visits": 1541,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1082955
+        },
+        {
+          "compile_ns": 14371,
+          "match_ns": 70483,
+          "instructions": 134,
+          "visits": 1541,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1091541
+        },
+        {
+          "compile_ns": 15175,
+          "match_ns": 73393,
+          "instructions": 134,
+          "visits": 1541,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1077518
+        }
+      ],
+      "median_match_ns": 70712
+    },
+    {
+      "family": "(a?){23}a{23}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 15287,
+          "match_ns": 78770,
+          "instructions": 140,
+          "visits": 1680,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 412441
+        },
+        {
+          "compile_ns": 13691,
+          "match_ns": 74316,
+          "instructions": 140,
+          "visits": 1680,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 421668
+        },
+        {
+          "compile_ns": 16426,
+          "match_ns": 74893,
+          "instructions": 140,
+          "visits": 1680,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 425255
+        }
+      ],
+      "median_match_ns": 74893
+    },
+    {
+      "family": "(a?){23}a{23}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 13462,
+          "match_ns": 75389,
+          "instructions": 140,
+          "visits": 1680,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 593493
+        },
+        {
+          "compile_ns": 11460,
+          "match_ns": 79365,
+          "instructions": 140,
+          "visits": 1680,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 465624
+        },
+        {
+          "compile_ns": 13166,
+          "match_ns": 75537,
+          "instructions": 140,
+          "visits": 1680,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 464230
+        }
+      ],
+      "median_match_ns": 75537
+    },
+    {
+      "family": "(a?){23}a{23}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 16677,
+          "match_ns": 90297,
+          "instructions": 140,
+          "visits": 1680,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1103640
+        },
+        {
+          "compile_ns": 16571,
+          "match_ns": 79766,
+          "instructions": 140,
+          "visits": 1680,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1110653
+        },
+        {
+          "compile_ns": 15114,
+          "match_ns": 77631,
+          "instructions": 140,
+          "visits": 1680,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1158376
+        }
+      ],
+      "median_match_ns": 79766
+    },
+    {
+      "family": "(a?){24}a{24}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 14993,
+          "match_ns": 79886,
+          "instructions": 146,
+          "visits": 1825,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 422558
+        },
+        {
+          "compile_ns": 15019,
+          "match_ns": 81432,
+          "instructions": 146,
+          "visits": 1825,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 474492
+        },
+        {
+          "compile_ns": 14780,
+          "match_ns": 83941,
+          "instructions": 146,
+          "visits": 1825,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 418374
+        }
+      ],
+      "median_match_ns": 81432
+    },
+    {
+      "family": "(a?){24}a{24}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 10855,
+          "match_ns": 92405,
+          "instructions": 146,
+          "visits": 1825,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 495819
+        },
+        {
+          "compile_ns": 11293,
+          "match_ns": 81273,
+          "instructions": 146,
+          "visits": 1825,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 469410
+        },
+        {
+          "compile_ns": 11031,
+          "match_ns": 81137,
+          "instructions": 146,
+          "visits": 1825,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 489907
+        }
+      ],
+      "median_match_ns": 81273
+    },
+    {
+      "family": "(a?){24}a{24}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 14854,
+          "match_ns": 82574,
+          "instructions": 146,
+          "visits": 1825,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1076240
+        },
+        {
+          "compile_ns": 14403,
+          "match_ns": 81798,
+          "instructions": 146,
+          "visits": 1825,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1076492
+        },
+        {
+          "compile_ns": 14202,
+          "match_ns": 79995,
+          "instructions": 146,
+          "visits": 1825,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1090407
+        }
+      ],
+      "median_match_ns": 81798
+    },
+    {
+      "family": "(a?){25}a{25}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 14454,
+          "match_ns": 86567,
+          "instructions": 152,
+          "visits": 1976,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 425406
+        },
+        {
+          "compile_ns": 16427,
+          "match_ns": 86892,
+          "instructions": 152,
+          "visits": 1976,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 451734
+        },
+        {
+          "compile_ns": 14787,
+          "match_ns": 86098,
+          "instructions": 152,
+          "visits": 1976,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 406733
+        }
+      ],
+      "median_match_ns": 86567
+    },
+    {
+      "family": "(a?){25}a{25}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 11122,
+          "match_ns": 88265,
+          "instructions": 152,
+          "visits": 1976,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 472077
+        },
+        {
+          "compile_ns": 13576,
+          "match_ns": 89897,
+          "instructions": 152,
+          "visits": 1976,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 476428
+        },
+        {
+          "compile_ns": 11605,
+          "match_ns": 91126,
+          "instructions": 152,
+          "visits": 1976,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 468143
+        }
+      ],
+      "median_match_ns": 89897
+    },
+    {
+      "family": "(a?){25}a{25}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 14527,
+          "match_ns": 88657,
+          "instructions": 152,
+          "visits": 1976,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1079738
+        },
+        {
+          "compile_ns": 16679,
+          "match_ns": 90525,
+          "instructions": 152,
+          "visits": 1976,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1062449
+        },
+        {
+          "compile_ns": 15296,
+          "match_ns": 87339,
+          "instructions": 152,
+          "visits": 1976,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1061379
+        }
+      ],
+      "median_match_ns": 88657
+    },
+    {
+      "family": "(a?){26}a{26}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 28889,
+          "match_ns": 100770,
+          "instructions": 158,
+          "visits": 2133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 439402
+        },
+        {
+          "compile_ns": 17438,
+          "match_ns": 94247,
+          "instructions": 158,
+          "visits": 2133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 430180
+        },
+        {
+          "compile_ns": 19366,
+          "match_ns": 94428,
+          "instructions": 158,
+          "visits": 2133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 455165
+        }
+      ],
+      "median_match_ns": 94428
+    },
+    {
+      "family": "(a?){26}a{26}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 11141,
+          "match_ns": 94334,
+          "instructions": 158,
+          "visits": 2133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 460446
+        },
+        {
+          "compile_ns": 12279,
+          "match_ns": 96574,
+          "instructions": 158,
+          "visits": 2133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 474661
+        },
+        {
+          "compile_ns": 12261,
+          "match_ns": 100486,
+          "instructions": 158,
+          "visits": 2133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 489286
+        }
+      ],
+      "median_match_ns": 96574
+    },
+    {
+      "family": "(a?){26}a{26}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 15407,
+          "match_ns": 99893,
+          "instructions": 158,
+          "visits": 2133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1133395
+        },
+        {
+          "compile_ns": 15473,
+          "match_ns": 95052,
+          "instructions": 158,
+          "visits": 2133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1092805
+        },
+        {
+          "compile_ns": 14675,
+          "match_ns": 110960,
+          "instructions": 158,
+          "visits": 2133,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1145047
+        }
+      ],
+      "median_match_ns": 99893
+    },
+    {
+      "family": "(a?){27}a{27}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 15753,
+          "match_ns": 99827,
+          "instructions": 164,
+          "visits": 2296,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 455902
+        },
+        {
+          "compile_ns": 19804,
+          "match_ns": 100490,
+          "instructions": 164,
+          "visits": 2296,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 471595
+        },
+        {
+          "compile_ns": 14802,
+          "match_ns": 99780,
+          "instructions": 164,
+          "visits": 2296,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 415492
+        }
+      ],
+      "median_match_ns": 99827
+    },
+    {
+      "family": "(a?){27}a{27}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 16648,
+          "match_ns": 102538,
+          "instructions": 164,
+          "visits": 2296,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 498413
+        },
+        {
+          "compile_ns": 12228,
+          "match_ns": 100608,
+          "instructions": 164,
+          "visits": 2296,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 481607
+        },
+        {
+          "compile_ns": 12581,
+          "match_ns": 101011,
+          "instructions": 164,
+          "visits": 2296,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 490032
+        }
+      ],
+      "median_match_ns": 101011
+    },
+    {
+      "family": "(a?){27}a{27}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 15922,
+          "match_ns": 104991,
+          "instructions": 164,
+          "visits": 2296,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1084441
+        },
+        {
+          "compile_ns": 14694,
+          "match_ns": 106542,
+          "instructions": 164,
+          "visits": 2296,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1090516
+        },
+        {
+          "compile_ns": 15755,
+          "match_ns": 104490,
+          "instructions": 164,
+          "visits": 2296,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1103992
+        }
+      ],
+      "median_match_ns": 104991
+    },
+    {
+      "family": "(a?){28}a{28}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 15520,
+          "match_ns": 106858,
+          "instructions": 170,
+          "visits": 2465,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 442916
+        },
+        {
+          "compile_ns": 16558,
+          "match_ns": 110054,
+          "instructions": 170,
+          "visits": 2465,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 438711
+        },
+        {
+          "compile_ns": 15669,
+          "match_ns": 107509,
+          "instructions": 170,
+          "visits": 2465,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 430403
+        }
+      ],
+      "median_match_ns": 107509
+    },
+    {
+      "family": "(a?){28}a{28}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 12967,
+          "match_ns": 107676,
+          "instructions": 170,
+          "visits": 2465,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 489933
+        },
+        {
+          "compile_ns": 12568,
+          "match_ns": 111440,
+          "instructions": 170,
+          "visits": 2465,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 485144
+        },
+        {
+          "compile_ns": 11836,
+          "match_ns": 109526,
+          "instructions": 170,
+          "visits": 2465,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 471218
+        }
+      ],
+      "median_match_ns": 109526
+    },
+    {
+      "family": "(a?){28}a{28}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 17262,
+          "match_ns": 113489,
+          "instructions": 170,
+          "visits": 2465,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1105159
+        },
+        {
+          "compile_ns": 17439,
+          "match_ns": 116217,
+          "instructions": 170,
+          "visits": 2465,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1173898
+        },
+        {
+          "compile_ns": 15963,
+          "match_ns": 109188,
+          "instructions": 170,
+          "visits": 2465,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1123846
+        }
+      ],
+      "median_match_ns": 113489
+    },
+    {
+      "family": "(a?){29}a{29}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 16486,
+          "match_ns": 115157,
+          "instructions": 176,
+          "visits": 2640,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 434108
+        },
+        {
+          "compile_ns": 16826,
+          "match_ns": 118909,
+          "instructions": 176,
+          "visits": 2640,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 500868
+        },
+        {
+          "compile_ns": 15838,
+          "match_ns": 114963,
+          "instructions": 176,
+          "visits": 2640,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 429788
+        }
+      ],
+      "median_match_ns": 115157
+    },
+    {
+      "family": "(a?){29}a{29}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 12178,
+          "match_ns": 120388,
+          "instructions": 176,
+          "visits": 2640,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 545413
+        },
+        {
+          "compile_ns": 12988,
+          "match_ns": 115921,
+          "instructions": 176,
+          "visits": 2640,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 489217
+        },
+        {
+          "compile_ns": 12659,
+          "match_ns": 114927,
+          "instructions": 176,
+          "visits": 2640,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 512728
+        }
+      ],
+      "median_match_ns": 115921
+    },
+    {
+      "family": "(a?){29}a{29}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 18654,
+          "match_ns": 118501,
+          "instructions": 176,
+          "visits": 2640,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1107241
+        },
+        {
+          "compile_ns": 16612,
+          "match_ns": 129124,
+          "instructions": 176,
+          "visits": 2640,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1219485
+        },
+        {
+          "compile_ns": 18239,
+          "match_ns": 116211,
+          "instructions": 176,
+          "visits": 2640,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1190749
+        }
+      ],
+      "median_match_ns": 118501
+    },
+    {
+      "family": "(a?){30}a{30}",
+      "backreference": false,
+      "bytes": 1000,
+      "samples": [
+        {
+          "compile_ns": 15594,
+          "match_ns": 120925,
+          "instructions": 182,
+          "visits": 2821,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 489593
+        },
+        {
+          "compile_ns": 16642,
+          "match_ns": 125022,
+          "instructions": 182,
+          "visits": 2821,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 539902
+        },
+        {
+          "compile_ns": 18755,
+          "match_ns": 124697,
+          "instructions": 182,
+          "visits": 2821,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 460150
+        }
+      ],
+      "median_match_ns": 124697
+    },
+    {
+      "family": "(a?){30}a{30}",
+      "backreference": false,
+      "bytes": 10000,
+      "samples": [
+        {
+          "compile_ns": 14527,
+          "match_ns": 126933,
+          "instructions": 182,
+          "visits": 2821,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 503470
+        },
+        {
+          "compile_ns": 12912,
+          "match_ns": 123883,
+          "instructions": 182,
+          "visits": 2821,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 507945
+        },
+        {
+          "compile_ns": 12539,
+          "match_ns": 125537,
+          "instructions": 182,
+          "visits": 2821,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 493784
+        }
+      ],
+      "median_match_ns": 125537
+    },
+    {
+      "family": "(a?){30}a{30}",
+      "backreference": false,
+      "bytes": 100000,
+      "samples": [
+        {
+          "compile_ns": 17760,
+          "match_ns": 124989,
+          "instructions": 182,
+          "visits": 2821,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1119646
+        },
+        {
+          "compile_ns": 16527,
+          "match_ns": 123854,
+          "instructions": 182,
+          "visits": 2821,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1127020
+        },
+        {
+          "compile_ns": 17169,
+          "match_ns": 123817,
+          "instructions": 182,
+          "visits": 2821,
+          "peak_frames": 0,
+          "selected": true,
+          "wall_ns": 1156102
+        }
+      ],
+      "median_match_ns": 123854
+    },
+    {
+      "family": "(a*)\\1",
+      "bytes": 10,
+      "backreference": true,
+      "engine": {
+        "compile_ns": 5616,
+        "match_ns": 15496,
+        "instructions": 12,
+        "visits": 0,
+        "peak_frames": 24,
+        "selected": true,
+        "wall_ns": 326406
+      },
+      "oracle": {
+        "empty_input": {
+          "wall_ns": 1429415,
+          "status": 1,
+          "stderr": ""
+        },
+        "full": {
+          "wall_ns": 379287,
+          "status": 0,
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "family": "(a*)\\1",
+      "bytes": 100,
+      "backreference": true,
+      "engine": {
+        "compile_ns": 5406,
+        "match_ns": 93849,
+        "instructions": 12,
+        "visits": 0,
+        "peak_frames": 204,
+        "selected": true,
+        "wall_ns": 396332
+      },
+      "oracle": {
+        "empty_input": {
+          "wall_ns": 1363735,
+          "status": 1,
+          "stderr": ""
+        },
+        "full": {
+          "wall_ns": 451270,
+          "status": 0,
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "family": "(a*)\\1",
+      "bytes": 1000,
+      "backreference": true,
+      "engine": {
+        "compile_ns": 6813,
+        "match_ns": 1092052,
+        "instructions": 12,
+        "visits": 0,
+        "peak_frames": 2004,
+        "selected": true,
+        "wall_ns": 1696265
+      },
+      "oracle": {
+        "empty_input": {
+          "wall_ns": 1420012,
+          "status": 1,
+          "stderr": ""
+        },
+        "full": {
+          "wall_ns": 7376099,
+          "status": 0,
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "family": "(a|aa)*\\1b",
+      "bytes": 12,
+      "backreference": true,
+      "engine": {
+        "compile_ns": 8285,
+        "match_ns": 2493248,
+        "instructions": 20,
+        "visits": 0,
+        "peak_frames": 64,
+        "selected": false,
+        "wall_ns": 2917049
+      },
+      "oracle": {
+        "empty_input": {
+          "wall_ns": 1467833,
+          "status": 1,
+          "stderr": ""
+        },
+        "full": {
+          "wall_ns": 1474161,
+          "status": 1,
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "family": "(a|aa)*\\1b",
+      "bytes": 18,
+      "backreference": true,
+      "engine": {
+        "compile_ns": 8074,
+        "match_ns": 42833115,
+        "instructions": 20,
+        "visits": 0,
+        "peak_frames": 94,
+        "selected": false,
+        "wall_ns": 43493612
+      },
+      "oracle": {
+        "empty_input": {
+          "wall_ns": 1489236,
+          "status": 1,
+          "stderr": ""
+        },
+        "full": {
+          "wall_ns": 1450912,
+          "status": 1,
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "family": "(a|aa)*\\1b",
+      "bytes": 24,
+      "backreference": true,
+      "engine": {
+        "compile_ns": 9442,
+        "match_ns": 772053323,
+        "instructions": 20,
+        "visits": 0,
+        "peak_frames": 124,
+        "selected": false,
+        "wall_ns": 772788322
+      },
+      "oracle": {
+        "empty_input": {
+          "wall_ns": 1694032,
+          "status": 1,
+          "stderr": ""
+        },
+        "full": {
+          "wall_ns": 1465116,
+          "status": 1,
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "family": "^(a+)\\1+$",
+      "bytes": 32,
+      "backreference": true,
+      "engine": {
+        "compile_ns": 12404,
+        "match_ns": 76766,
+        "instructions": 22,
+        "visits": 0,
+        "peak_frames": 69,
+        "selected": true,
+        "wall_ns": 646518
+      },
+      "oracle": {
+        "empty_input": {
+          "wall_ns": 1717783,
+          "status": 1,
+          "stderr": ""
+        },
+        "full": {
+          "timeout": 10
+        }
+      }
+    },
+    {
+      "family": "^(a+)\\1+$",
+      "bytes": 128,
+      "backreference": true,
+      "engine": {
+        "compile_ns": 11108,
+        "match_ns": 252715,
+        "instructions": 22,
+        "visits": 0,
+        "peak_frames": 261,
+        "selected": true,
+        "wall_ns": 829054
+      },
+      "oracle": {
+        "empty_input": {
+          "wall_ns": 1429168,
+          "status": 1,
+          "stderr": ""
+        },
+        "full": {
+          "timeout": 10
+        }
+      }
+    },
+    {
+      "family": "^(a+)\\1+$",
+      "bytes": 512,
+      "backreference": true,
+      "engine": {
+        "compile_ns": 12022,
+        "match_ns": 1232054,
+        "instructions": 22,
+        "visits": 0,
+        "peak_frames": 1029,
+        "selected": true,
+        "wall_ns": 1913233
+      },
+      "oracle": {
+        "empty_input": {
+          "wall_ns": 1517157,
+          "status": 1,
+          "stderr": ""
+        },
+        "full": {
+          "timeout": 10
+        }
+      }
+    },
+    {
+      "family": "a{1,32767}",
+      "bytes": 1,
+      "large_interval": true,
+      "engine": {
+        "compile_ns": 3918971,
+        "match_ns": 1854714,
+        "instructions": 131068,
+        "visits": 65535,
+        "peak_frames": 0,
+        "selected": true,
+        "wall_ns": 11746349
+      },
+      "oracle": {
+        "empty_input": {
+          "timeout": 10
+        },
+        "full": {
+          "timeout": 10
+        }
+      }
+    },
+    {
+      "family": "(a{1,1000}){1,1000}",
+      "bytes": 1,
+      "large_interval": true,
+      "engine": {
+        "compile_ns": 97923524,
+        "match_ns": 412074,
+        "instructions": 4000000,
+        "visits": 3999,
+        "peak_frames": 0,
+        "selected": true,
+        "wall_ns": 189823217
+      },
+      "oracle": {
+        "empty_input": {
+          "timeout": 10
+        },
+        "full": {
+          "timeout": 10
+        }
+      }
+    },
+    {
+      "family": "a{1,32768}",
+      "bytes": 1,
+      "large_interval": true,
+      "engine": {
+        "status": 2,
+        "diagnostic": "Regular expression too big\n",
+        "wall_ns": 440769
+      },
+      "oracle": {
+        "empty_input": {
+          "wall_ns": 1628050,
+          "status": 2,
+          "stderr": "2f6c616e652f6f7261636c652f62696e2f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"
+        },
+        "full": {
+          "wall_ns": 1517547,
+          "status": 2,
+          "stderr": "2f6c616e652f6f7261636c652f62696e2f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"
+        }
+      }
+    },
+    {
+      "family": "a{32768}",
+      "bytes": 1,
+      "large_interval": true,
+      "engine": {
+        "status": 2,
+        "diagnostic": "Regular expression too big\n",
+        "wall_ns": 445802
+      },
+      "oracle": {
+        "empty_input": {
+          "wall_ns": 1390805,
+          "status": 2,
+          "stderr": "2f6c616e652f6f7261636c652f62696e2f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"
+        },
+        "full": {
+          "wall_ns": 1369102,
+          "status": 2,
+          "stderr": "2f6c616e652f6f7261636c652f62696e2f677265703a20526567756c61722065787072657373696f6e20746f6f206269670a"
+        }
+      }
+    }
+  ],
+  "errors": []
+}
