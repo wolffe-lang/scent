@@ -1,0 +1,37 @@
+ct01 prediction — committed before the engine or harness changes
+
+Forbidden
+No GNU engine source, gnulib, libc regex, busybox or PCRE2 consulted.
+Build-only extraction of the pinned GNU release in ct01's container.
+No host package installation, Mac build or Mac git configuration.
+
+Inputs verified
+Contract ct01-the-engine; ruling #114 R1–R10; RULES 1–10.
+yew 83020234e63a45e8e1da4ab17a8f8d0a7eb27228; ferp 7d332b5abc3dbd6b2ffc8b62724498a3cd0eee24.
+POSIX.1-2024 XBD 9 and XCU grep; built GNU 3.12 info Regular Expressions (whole), Usage, --help.
+Cox regexp1/regexp2/regexp3 articles; yew parse, compile, pike, dfa, literal and regex representations;
+ferp lexer, parser, NFA, optimizer; yew matching and engine tests; ferp comparison tests.
+Oracle tarball sha256 2649b27c0e90e632eadcd757be06c6e9a4f48d941de51e7c0f83ff76408a07b9.
+Oracle build is --disable-perl-regexp in own ubuntu:24.04 container, glibc 2.39.
+
+Prediction
+1. Bracket-expression diagnostics and ambiguous interval syntax will yield the most first-run disagreements.
+2. -w retries shorter accepted spans at the same start before advancing to a later start.
+3. -o never emits an empty span; after an empty-only match it advances one byte in C locale,
+   but a nonempty alternative at that same position wins by longest-match selection.
+4. ERE backreferences use BRE's matching semantics, including failure for a nonparticipating group,
+   but placement/validation across alternatives may produce surprising compile errors.
+5. First generated run: 92 percent agreement for both syntaxes, diagnostics included.
+6. (a?){n}a{n} is the hardest non-backreference family for constants, not asymptotic growth;
+   its simultaneous optional paths expose deduplication and interval-expansion bugs.
+
+Evidence index
+kasumi /home/mfwolffe/lanes/ct01/evidence/oracle-build.log (status 0).
+First full differential run, plants and cost rows have not run; score is pending.
+R-ct01-1 resolved by orchestrator: docs/RE.md and notes/ct01-* are owned by ct01.
+Wrapper prohibits report .md files; use .txt evidence and the eventual PR body.
+
+Done-when
+Full contract gates, not merely compilation: >=20,000 generated pairs per syntax plus cited
+hand/mined cases, exact diagnostics, linear cost rows, both plants red then green, docs/RE.md,
+ct00 rebase and pin diffs, CI wiring, audit and final-head handback. Nothing is complete yet.
