@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+"""R-ct01-4 neighbourhood; no expected result or implementation source."""
+from pathlib import Path
+import json
+import runpy
+root=Path(__file__).resolve().parent
+run=runpy.run_path(str(root/'re-probe'))['run']
+bre=runpy.run_path(str(root/'re-oracle'))['bre']
+lines=[b'',b'a',b'A',b'aa',b'AA',b'ab',b'a-bx',b'-\x80\xffAA1AB_a\r',b'a\r-b \tAB1\xff\x80-',b'a\0\t\x80\0A\0\x801Bb']
+for syntax in ('basic','extended'):
+    for capture in (b'A*',b'A**'):
+        for repeat in (b'*',b'**'):
+            for flags in ([],['-i']):
+                pattern=b'('+capture+b'|.)(a)\\1'+repeat
+                if syntax=='basic':pattern=bre(pattern)
+                row=dict(syntax=syntax,pattern=pattern.hex(),flags=flags,lines=[s.hex() for s in lines])
+                row['select']=run('/lane/oracle/bin/grep',[pattern],lines,syntax,flags,spans=False)
+                row['span']=run('/lane/oracle/bin/grep',[pattern],lines,syntax,flags)
+                print(json.dumps(row),flush=True)
