@@ -24,9 +24,24 @@ pub struct Matcher {
     flags: Flags,
 }
 
-/// Reusable search state; no per-line allocation.
+/// Monotonic KMP cursor and cached next candidate for one literal.
+pub struct Search {
+    cursor: int,
+    matched: int,
+    found_lo: int,
+    found_hi: int,
+    ready: bool,
+    done: bool,
+}
+
+/// Reusable per-pattern cursors; no per-line allocation. Candidates are
+/// cached so a missing pattern is not rescanned for every emitted span.
 pub struct Workspace {
-    searches: int,
+    searches: List[Search],
+    lo: int,
+    hi: int,
+    last_from: int,
+    initialized: bool,
 }
 
 /// A half-open byte span in the original input window.
@@ -80,7 +95,18 @@ pub fn compile(patterns: List[List[byte]], flags: Flags) -> Matcher {
 
 /// Create reusable scratch for a compiled matcher.
 pub fn workspace_new(re: Matcher) -> Workspace {
-    Workspace { searches: re.patterns.len }
+    var searches = List[Search]()
+    for pat in re.patterns {
+        (mut searches).push(Search {
+            cursor: 0,
+            matched: 0,
+            found_lo: pat.bytes.len,
+            found_hi: 0,
+            ready: false,
+            done: false,
+        })
+    }
+    Workspace { searches: searches, lo: 0, hi: 0, last_from: 0, initialized: false }
 }
 
 fn candidate(re: Matcher, buf: List[byte], lo: int, hi: int, a: int, b: int) -> bool {
@@ -93,7 +119,47 @@ fn candidate(re: Matcher, buf: List[byte], lo: int, hi: int, a: int, b: int) -> 
     (a == lo || !word_byte(buf[a - 1])) && (b == hi || !word_byte(buf[b]))
 }
 
-/// Leftmost-longest NONEMPTY admissible span at or after from; none on no match.
+fn seek_one(
+    re: Matcher,
+    pat: Pattern,
+    state: Search,
+    buf: List[byte],
+    lo: int,
+    hi: int,
+    from: int,
+) -> Search {
+    var s = copy state
+    if s.ready && s.found_lo >= from { return s }
+    if s.done { return s }
+    s.ready = false
+    if s.cursor < from { s.cursor = from; s.matched = 0 }
+    while s.cursor < hi {
+        let b = folded(buf[s.cursor], re.flags.ignore_case)
+        while s.matched > 0 && b != pat.bytes[s.matched] {
+            s.matched = pat.fail[s.matched - 1]
+        }
+        if b == pat.bytes[s.matched] { s.matched += 1 }
+        s.cursor += 1
+        if s.matched == pat.bytes.len {
+            let a = s.cursor - s.matched
+            s.matched = pat.fail[s.matched - 1]
+            if a >= from && candidate(re, buf, lo, hi, a, s.cursor) {
+                s.found_lo = a
+                s.found_hi = s.cursor
+                s.ready = true
+                return s
+            }
+        }
+    }
+    s.done = true
+    s
+}
+
+/// Leftmost-longest NONEMPTY admissible span at or after from; none on
+/// no match. Monotonic calls reuse KMP cursors, for O(patterns * bytes)
+/// total work over a line's -o sequence regardless of pattern order.
+/// Start a new sequence at from == lo or call line_matches first; the
+/// buffer must stay unchanged during a sequence. Backward seeks reset it.
 pub fn next_span(
     re: Matcher,
     mut ws: Workspace,
@@ -102,54 +168,47 @@ pub fn next_span(
     hi: int,
     from: int,
 ) -> Span ! {none} {
-    ws.searches = re.patterns.len
-    var start = from
-    if start < lo {
-        start = lo
+    let start = if from < lo then lo else from
+    if start > hi { return none }
+    if !ws.initialized || lo != ws.lo || hi != ws.hi || start <= lo || start < ws.last_from {
+        var i: int = 0
+        while i < ws.searches.len {
+            ws.searches[i] = Search {
+                cursor: start,
+                matched: 0,
+                found_lo: hi + 1,
+                found_hi: 0,
+                ready: false,
+                done: false,
+            }
+            i += 1
+        }
+        ws.lo = lo
+        ws.hi = hi
+        ws.initialized = true
     }
-    if start > hi {
-        return none
-    }
+    ws.last_from = start
     var best_lo = hi + 1
     var best_hi: int = 0
-    for pat in re.patterns {
-        if pat.bytes.len == 0 { continue }
-        {
-            var at = start
-            var j: int = 0
-            while at < hi && at - j <= best_lo {
-                let b = folded(buf[at], re.flags.ignore_case)
-                while j > 0 && b != pat.bytes[j] {
-                    j = pat.fail[j - 1]
-                }
-                if b == pat.bytes[j] {
-                    j += 1
-                }
-                at += 1
-                if j == pat.bytes.len {
-                    let a = at - j
-                    if candidate(re, buf, lo, hi, a, at) {
-                        if a < best_lo || a == best_lo && at > best_hi {
-                            best_lo = a
-                            best_hi = at
-                        }
-                        break
-                    }
-                    // A rejected word candidate must not discard overlapping
-                    // or shorter patterns at this same position.
-                    j = pat.fail[j - 1]
-                }
+    var i: int = 0
+    while i < re.patterns.len {
+        if re.patterns[i].bytes.len > 0 {
+            ws.searches[i] = seek_one(re, re.patterns[i], ws.searches[i], buf, lo, hi, start)
+            if ws.searches[i].ready {
+                let a = ws.searches[i].found_lo
+                let b = ws.searches[i].found_hi
+                if a < best_lo || a == best_lo && b > best_hi { best_lo = a; best_hi = b }
             }
         }
+        i += 1
     }
-    if best_lo > hi {
-        return none
-    }
+    if best_lo > hi { return none }
     Span { lo: best_lo, hi: best_hi }
 }
 
 /// Whether the half-open line window has an admissible match.
 pub fn line_matches(re: Matcher, mut ws: Workspace, buf: List[byte], lo: int, hi: int) -> bool {
+    ws.initialized = false
     for pat in re.patterns {
         if pat.bytes.len == 0 {
             var at = lo

@@ -12,6 +12,9 @@ feeds each operand through `reader.scan` to the byte writer in `out`.
 - `src/fixed/`: immutable literal bytes with KMP failure links. Search
   is linear in the line length per pattern, not a naive quadratic retry.
   ASCII folding and word/whole-line constraints are C-locale byte tests.
+  Workspace caches each pattern's next candidate with monotonic KMP
+  cursors, so a missing alternative is not rescanned for every -o span.
+  Begin each span sequence at from == lo, or call line_matches first.
 - `src/matcher/`: dispatch seam for ct02. `Matcher` is immutable;
   `Workspace` owns scratch allocated by `workspace_new` once per read chunk,
   never per line. Both entry

@@ -26,3 +26,4 @@
 {"name":"empty-and-miss-linear","section":"fixed","argv":["-Fo","-e","","-e","NEVER"],"stdin":{"parts":[{"text":"a","repeat":1048576},{"text":"\n"}]},"timeout":5}
 {"name":"raw-input","section":"read","argv":["-Fa","x"],"stdin":{"base64":"eP8K/ngK"},"files":{}}
 {"name":"raw-pattern","section":"read","argv":["-Fa","-f","p"],"stdin":{"base64":"eP8Kef4K"},"files":{"p":{"base64":"/wo="}}}
+{"name": "many-spans-miss-first-linear", "section": "fixed", "argv": ["-Fo", "-e", "NEVER", "-e", "a"], "stdin": {"parts": [{"text": "a", "repeat": 1048576}, {"text": "\n"}]}, "timeout": 5}

@@ -29,28 +29,27 @@ with tempfile.TemporaryDirectory(prefix='measure-',dir=target) as tmp:
  for path,mib in [(big,2048),(perf,256)]:
   with open(path,'wb') as f:
    for i in range(mib):f.write(block)
- with open(os.devnull,'wb') as sink:
-  for flags in [['-F','-c'],['-F','-n']]:
-   row={'argv':flags+['needle'],'bytes':big.stat().st_size}
-   for name,binary in [('scent',ours),('gnu',gnu)]:
-    log=tmp/(name+'-time')
-    output_bytes,head=drain(['/usr/bin/time','-f','%M %e','-o',str(log),str(binary)]+flags+['needle',str(big)])
-    if '-c' in flags:assert head==b'16777216\n',(name,head)
-    else:assert output_bytes>1073741824,(name,output_bytes)
-    rss,elapsed=map(float,log.read_text().split());row[name]={'peak_rss_kib':rss,'seconds':elapsed,'output_bytes':output_bytes}
-   assert row['scent']['output_bytes']==row['gnu']['output_bytes'],row
-   result['memory'].append(row);print('memory',json.dumps(row),flush=True)
-  for flags,pat in [(['-F'],'needle'),(['-F','-i'],'NEEDLE'),(['-F','-c'],'needle'),(['-F','-v','-c'],'needle')]:
-   row={'argv':flags+[pat],'bytes':perf.stat().st_size}
-   for name,binary in [('scent',ours),('gnu',gnu)]:
-    values=[]
-    for i in range(3):
-     start=time.perf_counter();output_bytes,head=drain([str(binary)]+flags+[pat,str(perf)]);elapsed=time.perf_counter()-start
-     if '-c' in flags:assert head==b'2097152\n',(name,head)
-     else:assert output_bytes==134217728,(name,output_bytes)
-     values.append(elapsed);print('perf-run',name,flags,i+1,elapsed,flush=True)
-    row[name]={'runs_seconds':values,'median_seconds':statistics.median(values),'output_bytes':output_bytes}
-   row['ratio']=row['scent']['median_seconds']/row['gnu']['median_seconds'];result['performance'].append(row);print('performance',json.dumps(row),flush=True)
+ for flags in [['-F','-c'],['-F','-n']]:
+  row={'argv':flags+['needle'],'bytes':big.stat().st_size}
+  for name,binary in [('scent',ours),('gnu',gnu)]:
+   log=tmp/(name+'-time')
+   output_bytes,head=drain(['/usr/bin/time','-f','%M %e','-o',str(log),str(binary)]+flags+['needle',str(big)])
+   if '-c' in flags:assert head==b'16777216\n',(name,head)
+   else:assert output_bytes>1073741824,(name,output_bytes)
+   rss,elapsed=map(float,log.read_text().split());row[name]={'peak_rss_kib':rss,'seconds':elapsed,'output_bytes':output_bytes}
+  assert row['scent']['output_bytes']==row['gnu']['output_bytes'],row
+  result['memory'].append(row);print('memory',json.dumps(row),flush=True)
+ for flags,pat in [(['-F'],'needle'),(['-F','-i'],'NEEDLE'),(['-F','-c'],'needle'),(['-F','-v','-c'],'needle')]:
+  row={'argv':flags+[pat],'bytes':perf.stat().st_size}
+  for name,binary in [('scent',ours),('gnu',gnu)]:
+   values=[]
+   for i in range(3):
+    start=time.perf_counter();output_bytes,head=drain([str(binary)]+flags+[pat,str(perf)]);elapsed=time.perf_counter()-start
+    if '-c' in flags:assert head==b'2097152\n',(name,head)
+    else:assert output_bytes==134217728,(name,output_bytes)
+    values.append(elapsed);print('perf-run',name,flags,i+1,elapsed,flush=True)
+   row[name]={'runs_seconds':values,'median_seconds':statistics.median(values),'output_bytes':output_bytes}
+  row['ratio']=row['scent']['median_seconds']/row['gnu']['median_seconds'];result['performance'].append(row);print('performance',json.dumps(row),flush=True)
 (root/'target/measure.json').write_text(json.dumps(result,indent=2)+'\n')
 assert all(row['scent']['peak_rss_kib']<32768 for row in result['memory']),'memory gate: scent must peak below 32 MiB'
 print('memory gate: PASS; performance recorded, not gated',flush=True)

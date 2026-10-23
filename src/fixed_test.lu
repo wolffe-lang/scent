@@ -39,5 +39,23 @@ fn main() {
     check("x", "xx", false, false, true, -1, -1)
     check("xx", "xx", false, true, true, 0, 2)
     check("\x00", "a\x00b", false, false, false, 1, 2)
-    print("fixed: 9 cases, 0 SKIP")
+    let multi = fixed.compile([
+        "NEVER".bytes(),
+        "a".bytes(),
+    ], fixed.Flags { ignore_case: false, word: false, whole: false, terminator: 10 as byte })
+    var cursor = fixed.workspace_new(multi)
+    let line = "aaaa".bytes()
+    for i in 0..4 {
+        let hit = fixed.next_span(multi, mut cursor, line, 0, line.len, i) else fixed.Span {
+            lo: -1,
+            hi: -1,
+        }
+        assert(hit.lo == i && hit.hi == i + 1)
+    }
+    let rewind = fixed.next_span(multi, mut cursor, line, 0, line.len, 1) else fixed.Span {
+        lo: -1,
+        hi: -1,
+    }
+    assert(rewind.lo == 1)
+    print("fixed: 10 cases, 0 SKIP")
 }
