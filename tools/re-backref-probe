@@ -14,6 +14,6 @@ for syntax in ('basic','extended'):
                 pattern=b'('+capture+b'|.)(a)\\1'+repeat
                 if syntax=='basic':pattern=bre(pattern)
                 row=dict(syntax=syntax,pattern=pattern.hex(),flags=flags,lines=[s.hex() for s in lines])
-                row['select']=run('/lane/oracle/bin/grep',[pattern],lines,syntax,flags,spans=False)
-                row['span']=run('/lane/oracle/bin/grep',[pattern],lines,syntax,flags)
+                row['select']=run(str(root.parent/'.oracle/grep'),[pattern],lines,syntax,flags,spans=False)
+                row['span']=run(str(root.parent/'.oracle/grep'),[pattern],lines,syntax,flags)
                 print(json.dumps(row),flush=True)

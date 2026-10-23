@@ -13,7 +13,7 @@ import tempfile
 
 def run(grep, patterns, lines, syntax="extended", flags=(), spans=True):
     term = b"\0" if "-z" in flags else b"\n"
-    scratch = Path(os.environ.get("CT01_TMP", "/lane/evidence/tmp"))
+    scratch = Path(os.environ.get("CT01_TMP", str(Path(__file__).resolve().parent.parent / "target/re/probe-tmp")))
     scratch.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="ct01-probe-", dir=scratch) as directory:
         p = Path(directory) / "patterns"
@@ -43,7 +43,7 @@ def run(grep, patterns, lines, syntax="extended", flags=(), spans=True):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--grep", default="/lane/oracle/bin/grep")
+    ap.add_argument("--grep", default=str(Path(__file__).resolve().parent.parent / ".oracle/grep"))
     ap.add_argument("--diagnostics", action="store_true")
     a = ap.parse_args()
     version = subprocess.check_output([a.grep, "--version"]).splitlines()[0]

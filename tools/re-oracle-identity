@@ -1,35 +1,30 @@
 #!/usr/bin/env python3
-"""Build manifest and executable identity, no GNU source inspection."""
+"""Use scent-oracle.toml and ct00's fixed-path, signature-checked build."""
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
-
-PIN=json.loads((Path(__file__).resolve().parent/'re-oracle-pin.json').read_text())
+import tomllib
+ROOT=Path(__file__).resolve().parent.parent
+PIN=tomllib.loads((ROOT/'scent-oracle.toml').read_text())['oracle']
 
 def digest(path):
-    h=hashlib.sha256()
-    with open(path,'rb') as f:
-        for block in iter(lambda:f.read(1024*1024),b''):h.update(block)
-    return h.hexdigest()
+    with open(path,'rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 
 def validate(binary,identity):
+    binary=str(Path(binary).resolve())
     data=json.loads(Path(identity).read_text())
-    if any(data.get(k)!=v for k,v in PIN.items()):raise RuntimeError('STOP: oracle manifest differs from pin')
-    if data.get('binary_sha256')!=digest(binary):raise RuntimeError('STOP: oracle executable digest drift')
-    if subprocess.check_output(['getconf','GNU_LIBC_VERSION']).decode().strip()!=PIN['glibc']:raise RuntimeError('STOP: wrong oracle glibc')
+    if any(data.get(k)!=v for k,v in PIN.items()):raise RuntimeError('STOP: oracle manifest differs from shared pin')
+    if digest(binary)!=PIN['binary_sha256']:raise RuntimeError('STOP: oracle executable digest drift')
+    if subprocess.check_output(['ldd','--version']).splitlines()[0].decode()!=PIN['glibc_line']:raise RuntimeError('STOP: wrong oracle glibc')
     if subprocess.check_output([binary,'--version']).splitlines()[0].decode()!=PIN['version_line']:raise RuntimeError('STOP: wrong oracle version')
+    r=subprocess.run(['grep','-P','x'],executable=binary,input=b'',capture_output=True,env={**os.environ,'LC_ALL':'C'})
+    if r.returncode!=PIN['perl_status'] or r.stdout or r.stderr!=(PIN['perl_refusal']+'\n').encode():raise RuntimeError('STOP: wrong oracle PCRE configuration')
     return data
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('binary');p.add_argument('identity');p.add_argument('--seal-archive');p.add_argument('--image-digest');a=p.parse_args()
-    if a.seal_archive:
-        if a.image_digest!=PIN['image_digest']:raise SystemExit('STOP: wrong container image digest')
-        for _ in range(2):
-            if digest(a.seal_archive)!=PIN['tarball_sha256']:raise SystemExit('STOP: wrong GNU release tarball')
-        data={**PIN,'binary_sha256':digest(a.binary)}
-        target=Path(a.identity);temporary=target.with_suffix('.incoming')
-        temporary.write_text(json.dumps(data,indent=2)+'\n');temporary.replace(target)
+    p=argparse.ArgumentParser();p.add_argument('binary');p.add_argument('identity');a=p.parse_args()
     print(json.dumps(validate(a.binary,a.identity),sort_keys=True))
 if __name__=='__main__':main()

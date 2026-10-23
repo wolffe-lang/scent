@@ -1,26 +1,5 @@
-#!/bin/bash
-# Build-only extraction; never inspect GNU/gnulib implementation files.
-# Run inside own pinned ubuntu:24.04 container, under the lane core lock.
-set -euo pipefail
+#!/bin/sh
+# After the ct00 rebase there is one source/configure/image/libc/binary pin.
+set -eu
 root=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
-: "${RE_WORK:?absolute lane-owned build directory required}"
-: "${RE_IMAGE_DIGEST:?record podman image digest before entering container}"
-case "$RE_WORK" in /*) ;; *) echo 'STOP: RE_WORK must be absolute' >&2; exit 2;; esac
-prefix=${RE_PREFIX:-$RE_WORK/install}
-mkdir -p "$RE_WORK/download" "$RE_WORK/source" "$RE_WORK/build"
-archive="$RE_WORK/download/grep-3.12.tar.xz"
-if [ ! -f "$archive" ]; then
-    if [ -n "${RE_ARCHIVE:-}" ]; then cp "$RE_ARCHIVE" "$archive.incoming";
-    else curl --fail --location https://ftp.gnu.org/gnu/grep/grep-3.12.tar.xz -o "$archive.incoming"; fi
-    mv "$archive.incoming" "$archive"
-fi
-for pass in 1 2; do
-    printf '%s  %s\n' 2649b27c0e90e632eadcd757be06c6e9a4f48d941de51e7c0f83ff76408a07b9 "$archive" | sha256sum --check -
-done
-if [ ! -d "$RE_WORK/source/grep-3.12" ]; then tar -xJf "$archive" -C "$RE_WORK/source"; fi
-cd "$RE_WORK/build"
-"$RE_WORK/source/grep-3.12/configure" --disable-perl-regexp --prefix="$prefix"
-make -j4
-make install
-python3 -I "$root/tools/re-oracle-identity" "$prefix/bin/grep" "$prefix/identity.json" --seal-archive "$archive" --image-digest "$RE_IMAGE_DIGEST"
-printf '%s\n' 'pinned GNU grep 3.12 build and identity complete' > "$prefix/READY"
+exec "$root/tools/fetch-oracle" "$@"

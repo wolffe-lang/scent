@@ -14,8 +14,8 @@ for syntax in ('basic','extended'):
         for flags in (['-w'],['-w','-i']):
             pattern=p if syntax=='extended' else bre(p)
             row=dict(family='word',syntax=syntax,pattern=pattern.hex(),flags=flags,lines=[s.hex() for s in lines])
-            row['select']=run('/lane/oracle/bin/grep',[pattern],lines,syntax,flags,spans=False)
-            row['span']=run('/lane/oracle/bin/grep',[pattern],lines,syntax,flags)
+            row['select']=run(str(HERE.parent/'.oracle/grep'),[pattern],lines,syntax,flags,spans=False)
+            row['span']=run(str(HERE.parent/'.oracle/grep'),[pattern],lines,syntax,flags)
             print(json.dumps(row),flush=True)
     for p in (br'\b*',br'\<{1,}',br'\`*',br"\'*",br'a\>{2}',br'(a)\1*',br'(a)\1**'):
         for wrap in (b'%s',b'(%s)',b'(%s|())',b'%s(a)\\1',b'(%s|z(z)\\2)'):
@@ -23,6 +23,6 @@ for syntax in ('basic','extended'):
             if syntax=='basic':pattern=bre(pattern)
             subject=lines+[b'a',b'aa',b'aaa',b'z',b'zz']
             row=dict(family='dispatch',syntax=syntax,pattern=pattern.hex(),flags=[],lines=[s.hex() for s in subject])
-            row['select']=run('/lane/oracle/bin/grep',[pattern],subject,syntax,spans=False)
-            row['span']=run('/lane/oracle/bin/grep',[pattern],subject,syntax)
+            row['select']=run(str(HERE.parent/'.oracle/grep'),[pattern],subject,syntax,spans=False)
+            row['span']=run(str(HERE.parent/'.oracle/grep'),[pattern],subject,syntax)
             print(json.dumps(row),flush=True)

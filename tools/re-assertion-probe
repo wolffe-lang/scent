@@ -16,6 +16,6 @@ for syntax in ('basic','extended'):
    for prefix,suffix in ((b'',b''),(b'a',b''),(b'',b'a'),(b'a',b'b')):
     p=prefix+assertion+q+suffix
     row=dict(syntax=syntax,assertion=assertion.hex(),quantifier=quant.hex(),prefix=prefix.hex(),suffix=suffix.hex(),pattern=p.hex(),lines=[x.hex() for x in lines])
-    row['select']=run('/lane/oracle/bin/grep',[p],lines,syntax,spans=False)
-    row['span']=run('/lane/oracle/bin/grep',[p],lines,syntax,spans=True)
+    row['select']=run(str(root.parent/'.oracle/grep'),[p],lines,syntax,spans=False)
+    row['span']=run(str(root.parent/'.oracle/grep'),[p],lines,syntax,spans=True)
     print(json.dumps(row),flush=True)

@@ -1,9 +1,14 @@
 #!/bin/sh
-# Build the test-only driver with the pinned toolchain, never a host compiler.
+# Build the test-only engine driver with the shared, verified toolchain.
 set -eu
-root=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
-cd "$root"
-: "${WOLF:?set WOLF to the verified 0.2.34 driver}"
+SCENT_ROOT=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
+export SCENT_ROOT
+cd "$SCENT_ROOT"
+if [ -z "${WOLF:-}" ]; then . tools/lib-toolchain.sh; fi
 [ "$("$WOLF" --version | head -1)" = 'wolf 0.2.34 (wolfgang, pin 9da7bdc)' ] || { echo 'STOP: wrong wolf' >&2; exit 2; }
 mkdir -p target/re
-"$WOLF" build --deny-warnings src/re/driver.lu -o target/re/driver
+case "${1:-}" in
+  ''|--native) "$WOLF" build --deny-warnings src/re/driver.lu -o target/re/driver ;;
+  --release) "$WOLF" build --release --deny-warnings src/re/driver.lu -o target/re/driver-release ;;
+  *) echo 'usage: re-driver [--native|--release]' >&2; exit 2 ;;
+esac
