@@ -1,0 +1,95 @@
+//! member: false
+//! Test-only byte protocol; never linked into scent. Each input row has
+//! id, syntax (E/G), flags bitset (i=1,w=2,x=4), terminator, pattern hex list,
+//! and line hex list. Commas separate list members, '-' denotes empty.
+
+use std.fs
+
+fn unhex(s: str) -> List[byte] {
+    var bytes = List[byte]()
+    if s == "-" { return bytes }
+    let raw = s.bytes()
+    var i = 0
+    while i + 1 < raw.len {
+        let a = raw[i] as int
+        let b = raw[i + 1] as int
+        let x = if a >= 97 then a - 87 else a - 48
+        let y = if b >= 97 then b - 87 else b - 48
+        (mut bytes).push((x * 16 + y) as byte)
+        i += 2
+    }
+    bytes
+}
+
+fn hex(bytes: List[byte]) -> str {
+    let digits = "0123456789abcdef"
+    var out = List[byte]()
+    for b in bytes {
+        (mut out).push(digits.bytes()[b as int / 16])
+        (mut out).push(digits.bytes()[b as int % 16])
+    }
+    str_from_utf8(out) else ""
+}
+
+fn driver_row(row: str) {
+    let fields = row.words()
+    assert(fields.len == 6, "driver row must have six fields")
+    let id = fields[0]
+    let flags = fields[2].to_int() else 0
+    let term = fields[3].to_int() else 10
+    let options = Options {
+        extended: fields[1] == "E",
+        icase: flags & 1 != 0,
+        word: flags & 2 != 0,
+        whole: flags & 4 != 0,
+        terminator: term as byte,
+    }
+    var patterns = List[List[byte]]()
+    for s in fields[4].split(",") { (mut patterns).push(unhex(s)) }
+    var d = diagnostics_new()
+    let start = os_clock_ns()
+    let re = compile(patterns, options, mut d) else {
+        var text = ""
+        for item in d.items { text += hex(item.text) + "0a" }
+        print("D {id} 2 {if text.len == 0 then "-" else text}")
+        return
+    }
+    let compiled = os_clock_ns() - start
+    var text = ""
+    for item in d.items { text += hex(item.text) + "0a" }
+    print("D {id} 0 {if text.len == 0 then "-" else text}")
+    var ws = workspace_new(re)
+    var index = 0
+    for s in fields[5].split(",") {
+        {
+            let bytes = unhex(s)
+            let begin = os_clock_ns()
+            let selected = line_matches(re, mut ws, bytes, 0, bytes.len)
+            var from = 0
+            var spans = ""
+            while from <= bytes.len {
+                let span = next_span(re, mut ws, bytes, 0, bytes.len, from) else { break }
+                if spans.len > 0 { spans += "," }
+                spans += "{span.lo}:{span.hi}"
+                from = span.hi
+            }
+            let elapsed = os_clock_ns() - begin
+            print(
+                "R {id} {index} {if selected then 1 else 0} {if spans.len == 0 then "-" else spans}",
+            )
+            print("T {id} {index} {compiled} {elapsed} {re.prog.len} {ws.visits} {ws.peak}")
+        }
+        index += 1
+    }
+}
+
+fn main() -> int {
+    let args = env_args()
+    if args.len != 1 { eprint("usage: re-driver CASES"); return 2 }
+    let data = fs.read_text(args[0]) else { eprint("re-driver: cannot read cases"); return 2 }
+    for row in data.lines() {
+        if row.len == 0 || row.starts_with("#") { continue }
+        region group_scratch { driver_row(row) }
+    }
+    0
+}

@@ -1,0 +1,9 @@
+#!/bin/sh
+# Build the test-only driver with the pinned toolchain, never a host compiler.
+set -eu
+root=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
+cd "$root"
+: "${WOLF:?set WOLF to the verified 0.2.34 driver}"
+[ "$("$WOLF" --version | head -1)" = 'wolf 0.2.34 (wolfgang, pin 9da7bdc)' ] || { echo 'STOP: wrong wolf' >&2; exit 2; }
+mkdir -p target/re
+"$WOLF" build --deny-warnings src/re/driver.lu -o target/re/driver
