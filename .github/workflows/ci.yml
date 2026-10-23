@@ -44,6 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 -I ci/tiers-test.py
+      - run: python3 -I tools/re-ci-test
   linux:
     needs: plan
     if: contains(fromJSON(needs.plan.outputs.jobs || '[]'), 'linux')
@@ -78,6 +79,9 @@ jobs:
       - name: GNU oracle, release
         if: ${{ !cancelled() }}
         run: tools/in-container tools/oracle --bin target/release/scent
+      - name: Regex engine units, malformed patterns, gate corpus and costs
+        if: ${{ !cancelled() }}
+        run: tools/in-container tools/re-ci
       - name: Static build twice and digest
         if: ${{ !cancelled() }}
         run: tools/in-container tools/mkscent target/mkscent
@@ -97,6 +101,7 @@ jobs:
             target/measure.json
             target/mkscent/sums.txt
             target/tests
+            target/re
   macos:
     needs: plan
     if: contains(fromJSON(needs.plan.outputs.jobs || '[]'), 'macos')

@@ -50,6 +50,8 @@ NOT_SELECTABLE = ("plan", "tier", "nightly-red")
 # The jobs of a pull-request run. A job the workflow gains is the full
 # tier's alone until it is named here.
 PR_JOBS = ("plan-test", "linux")
+# The engine corpus floor is shared by the PR gate and its wiring test.
+REGEX_GATE_PAIRS = 20000
 TIERS = ("full", "pr", "noop", "partial")
 
 PROSE, PR, FULL = "prose", "pr", "full"
@@ -254,6 +256,9 @@ def verdict(needs):
 
 def main():
     argv = sys.argv[1:]
+    if argv == ["regex-size"]:
+        print(REGEX_GATE_PAIRS)
+        return
     if argv == ["verdict"]:
         sys.exit(verdict(json.loads(os.environ["NEEDS"])))
     if argv[:1] == ["classify"]:

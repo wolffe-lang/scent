@@ -1,9 +1,0 @@
-{
-  "version": "3.12",
-  "version_line": "grep (GNU grep) 3.12",
-  "tarball_sha256": "2649b27c0e90e632eadcd757be06c6e9a4f48d941de51e7c0f83ff76408a07b9",
-  "configure": "--disable-perl-regexp",
-  "image": "ubuntu:24.04",
-  "image_digest": "sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b",
-  "glibc": "glibc 2.39"
-}
