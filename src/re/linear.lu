@@ -79,7 +79,7 @@ fn linear_span(
             var k = 0
             while k < re.starts.len {
                 if !re.backrefs[k] {
-                    closure(re, mut ws, re.starts[k], pos, bytes, lo, hi, pos)
+                    closure(re, mut ws, program_start(re, k, nonempty), pos, bytes, lo, hi, pos)
                 }
                 k += 1
             }

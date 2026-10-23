@@ -137,6 +137,7 @@ pub fn compile(
         prog: List[Inst](),
         classes: List[bool](),
         starts: List[int](),
+        span_starts: List[int](),
         backrefs: List[bool](),
     }
     var index = 0
@@ -149,6 +150,14 @@ pub fn compile(
         let start = compile_tree(mut re.prog, p, class_offset, end)
         (mut re.starts).push(start)
         (mut re.backrefs).push(p.has_ref)
+        var span_diagnostics = diagnostics_new()
+        let span = parse_mode(patterns[index], options, mut span_diagnostics, index, true)
+        if span.failed { return invalid }
+        let span_class_offset = re.classes.len / 256
+        for b in span.classes { (mut re.classes).push(b) }
+        let span_end = emit(mut re.prog, ACCEPT, 0, 0, 0)
+        let span_start = compile_tree(mut re.prog, span, span_class_offset, span_end)
+        (mut re.span_starts).push(span_start)
         index += 1
     }
     re

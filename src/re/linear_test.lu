@@ -17,7 +17,7 @@ fn alternation_fixture(options: Options) -> Regex {
     (mut starts).push(0)
     var refs = List[bool]()
     (mut refs).push(false)
-    Regex { options: options, prog: prog, classes: List[bool](), starts: starts, backrefs: refs }
+    Regex { options: options, prog: prog, classes: List[bool](), starts: copy starts, span_starts: starts, backrefs: refs }
 }
 
 fn test_leftmost_longest() {

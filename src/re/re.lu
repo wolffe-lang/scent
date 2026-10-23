@@ -84,6 +84,7 @@ pub struct Regex {
     prog: List[Inst],
     classes: List[bool],
     starts: List[int],
+    span_starts: List[int],
     backrefs: List[bool],
 }
 
@@ -99,6 +100,9 @@ pub struct Workspace {
     count: int,
     next_count: int,
     visits: int,
+    branches: List[BacktrackFrame],
+    depth: int,
+    peak: int,
 }
 
 fn zeros(n: int) -> List[int] {
@@ -125,6 +129,9 @@ pub fn workspace_new(re: Regex) -> Workspace {
         count: 0,
         next_count: 0,
         visits: 0,
+        branches: List[BacktrackFrame](),
+        depth: 0,
+        peak: 0,
     }
 }
 
@@ -161,4 +168,8 @@ fn consumes(re: Regex, inst: Inst, b: byte) -> bool {
         return if re.options.icase then ascii_fold(c) == ascii_fold(inst.arg) else c == inst.arg
     }
     false
+}
+
+fn program_start(re: Regex, index: int, spans: bool) -> int {
+    if spans then re.span_starts[index] else re.starts[index]
 }
