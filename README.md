@@ -18,7 +18,7 @@ recursion and terminal colour are later work. `-P` deliberately gives the
 same refusal as the configured GNU build. UTF-8 locale semantics follow
 later; C-locale `-i` folds ASCII only.
 
-The corpus contains 958 cases, including 80 comparisons mined from
+The CLI corpus contains 958 cases, including 80 comparisons mined from
 [ferp](https://github.com/FortranGoingOnForty/ferp), each with a source-line
 citation. Unconnected syntax/features and runtime limitations are counted
 explicitly as not-yet, never as passes. Until
@@ -29,6 +29,14 @@ other names are not-yet. Non-UTF-8 arguments are blocked upstream by
 Arbitrary bytes in input and pattern files do not require UTF-8 decoding.
 Patterns containing the NUL terminator under `-z` are separately deferred
 to cross-record regex integration; their GNU witnesses are recorded.
+
+The independent C-locale BRE/ERE engine is implemented in `src/re/`, but is
+not connected to the CLI yet. Its gate generates 20,000 pattern–line pairs
+per syntax, plus cited hand/mined cases and exhaustive short malformed
+patterns and escaped bytes. [docs/RE.md](docs/RE.md) documents its API and
+two explicit compatibility tables: word-span retry differences and one
+reviewed GNU extension family. Those cases are counted apart, never as
+agreement; the raw witnesses remain available.
 
 ## Build and test
 
@@ -43,6 +51,7 @@ tools/in-container bash -c 'tools/fetch-toolchain && tools/build --all'
 tools/in-container tools/check-test
 tools/fetch-oracle
 tools/oracle --bin target/release/scent
+tools/in-container tools/re-ci
 tools/in-container tools/mkscent target/mkscent
 ```
 
@@ -66,7 +75,9 @@ shape and status instead.
 CI has a Linux PR tier and a full tier adding macOS. The Linux gates
 include a 2 GiB scan below 32 MiB peak RSS with both `-c` and `-n`.
 `tools/measure` also records three-run median performance over 256 MiB;
-performance is not a gate in this first implementation.
+performance is not a gate in this first implementation. The regex engine
+has separate linear-growth and bounded backreference-cost gates, plus
+native and release differential runs in the Linux PR tier.
 
 ## Design and sources
 
@@ -79,7 +90,9 @@ The implementation uses POSIX.1-2024, GNU grep's manual and `--help`, and
 black-box runs of the pinned release build. GNU grep's source, gnulib,
 glibc's regex, busybox and PCRE2 are never read. Ferp and the wolf tool
 repositories supply cited design references and harness shapes, not
-behavioral authority: GNU decides every differential case.
+behavioral authority. GNU supplies the behavioral oracle; the explicitly
+reviewed regex compatibility exceptions are documented and counted
+separately.
 
 ## Licence
 
