@@ -1,0 +1,42 @@
+[
+  {
+    "pattern": "612a3f",
+    "line": "616161",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:51; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used",
+    "kind": "hand",
+    "rule": "GNU adjacent duplication, remeasured; yew lazy syntax is not counted as dialect-compatible mining"
+  },
+  {
+    "pattern": "612b3f",
+    "line": "616161",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:52; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used",
+    "kind": "hand",
+    "rule": "GNU adjacent duplication, remeasured; yew lazy syntax is not counted as dialect-compatible mining"
+  },
+  {
+    "pattern": "613f3f",
+    "line": "616161",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:53; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used",
+    "kind": "hand",
+    "rule": "GNU adjacent duplication, remeasured; yew lazy syntax is not counted as dialect-compatible mining"
+  },
+  {
+    "pattern": "612e2a3f63",
+    "line": "6162637863",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:54; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used",
+    "kind": "hand",
+    "rule": "GNU adjacent duplication, remeasured; yew lazy syntax is not counted as dialect-compatible mining"
+  },
+  {
+    "pattern": "3c2e2b3f3e",
+    "line": "3c613e3c623e",
+    "flags": [],
+    "source": "yew 83020234 tests/fixtures/search/re_golden.txt:55; src/search_re_match_test.lu:155-170; whole-span remeasured, no yew expected span used",
+    "kind": "hand",
+    "rule": "GNU adjacent duplication, remeasured; yew lazy syntax is not counted as dialect-compatible mining"
+  }
+]

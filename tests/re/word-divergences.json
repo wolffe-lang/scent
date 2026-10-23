@@ -1,0 +1,670 @@
+[
+  {
+    "syntax": "basic",
+    "patterns": [
+      "5c535c7b2c325c7d"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "2041310d206280616130",
+    "engine": [
+      [
+        1,
+        3
+      ],
+      [
+        5,
+        6
+      ]
+    ],
+    "oracle": [
+      [
+        1,
+        3
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "basic",
+    "patterns": [
+      "5c535c7b2c325c7d"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "20204220302d3161090920",
+    "engine": [
+      [
+        2,
+        3
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        6,
+        8
+      ]
+    ],
+    "oracle": [
+      [
+        2,
+        3
+      ],
+      [
+        6,
+        8
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "basic",
+    "patterns": [
+      "5c535c7b2c325c7d"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "42200d302d318009",
+    "engine": [
+      [
+        0,
+        1
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5,
+        7
+      ]
+    ],
+    "oracle": [
+      [
+        0,
+        1
+      ],
+      [
+        5,
+        7
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "basic",
+    "patterns": [
+      "5c535c7b2c325c7d"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "094280318062",
+    "engine": [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5,
+        6
+      ]
+    ],
+    "oracle": [
+      [
+        5,
+        6
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "basic",
+    "patterns": [
+      "5c535c7b2c325c7d"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "202d2d424109ff096142",
+    "engine": [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        8,
+        10
+      ]
+    ],
+    "oracle": [
+      [
+        3,
+        5
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        8,
+        10
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "basic",
+    "patterns": [
+      "5c735c2b5c3f"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "8009090d3042",
+    "engine": [
+      [
+        1,
+        3
+      ]
+    ],
+    "oracle": [
+      [
+        1,
+        2
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "basic",
+    "patterns": [
+      "5c28622a5c7c5c275c295c535c7b2c325c7d"
+    ],
+    "flags": [
+      "-w"
+    ],
+    "line": "3100002d5f313030ff",
+    "engine": [
+      [
+        0,
+        2
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "oracle": [
+      [
+        0,
+        2
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "basic",
+    "patterns": [
+      "5c285b5b3a73706163653a5d5d5c7b325c7d5c7c2e5c29"
+    ],
+    "flags": [
+      "-w"
+    ],
+    "line": "090d200942423062",
+    "engine": [
+      [
+        0,
+        2
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "oracle": [
+      [
+        0,
+        2
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "basic",
+    "patterns": [
+      "2e5c7b312c335c7d"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "0031300042420d2d61806262",
+    "engine": [
+      [
+        0,
+        3
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        7,
+        9
+      ],
+      [
+        10,
+        12
+      ]
+    ],
+    "oracle": [
+      [
+        0,
+        3
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        10,
+        12
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "basic",
+    "patterns": [
+      "2e5c7b312c335c7d"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "30ff5f2d610d0941",
+    "engine": [
+      [
+        0,
+        3
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        6,
+        8
+      ]
+    ],
+    "oracle": [
+      [
+        0,
+        3
+      ],
+      [
+        6,
+        8
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "extended",
+    "patterns": [
+      "5c537b2c327d"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "2041310d206280616130",
+    "engine": [
+      [
+        1,
+        3
+      ],
+      [
+        5,
+        6
+      ]
+    ],
+    "oracle": [
+      [
+        1,
+        3
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "extended",
+    "patterns": [
+      "5c537b2c327d"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "20204220302d3161090920",
+    "engine": [
+      [
+        2,
+        3
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        6,
+        8
+      ]
+    ],
+    "oracle": [
+      [
+        2,
+        3
+      ],
+      [
+        6,
+        8
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "extended",
+    "patterns": [
+      "5c537b2c327d"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "42200d302d318009",
+    "engine": [
+      [
+        0,
+        1
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5,
+        7
+      ]
+    ],
+    "oracle": [
+      [
+        0,
+        1
+      ],
+      [
+        5,
+        7
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "extended",
+    "patterns": [
+      "5c537b2c327d"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "094280318062",
+    "engine": [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5,
+        6
+      ]
+    ],
+    "oracle": [
+      [
+        5,
+        6
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "extended",
+    "patterns": [
+      "5c537b2c327d"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "202d2d424109ff096142",
+    "engine": [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        8,
+        10
+      ]
+    ],
+    "oracle": [
+      [
+        3,
+        5
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        8,
+        10
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "extended",
+    "patterns": [
+      "5c732b3f"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "8009090d3042",
+    "engine": [
+      [
+        1,
+        3
+      ]
+    ],
+    "oracle": [
+      [
+        1,
+        2
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "extended",
+    "patterns": [
+      "28622a7c5c27295c537b2c327d"
+    ],
+    "flags": [
+      "-w"
+    ],
+    "line": "3100002d5f313030ff",
+    "engine": [
+      [
+        0,
+        2
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "oracle": [
+      [
+        0,
+        2
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "extended",
+    "patterns": [
+      "285b5b3a73706163653a5d5d7b327d7c2e29"
+    ],
+    "flags": [
+      "-w"
+    ],
+    "line": "090d200942423062",
+    "engine": [
+      [
+        0,
+        2
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "oracle": [
+      [
+        0,
+        2
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "extended",
+    "patterns": [
+      "2e7b312c337d"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "0031300042420d2d61806262",
+    "engine": [
+      [
+        0,
+        3
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        7,
+        9
+      ],
+      [
+        10,
+        12
+      ]
+    ],
+    "oracle": [
+      [
+        0,
+        3
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        10,
+        12
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  },
+  {
+    "syntax": "extended",
+    "patterns": [
+      "2e7b312c337d"
+    ],
+    "flags": [
+      "-i",
+      "-w"
+    ],
+    "line": "30ff5f2d610d0941",
+    "engine": [
+      [
+        0,
+        3
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        6,
+        8
+      ]
+    ],
+    "oracle": [
+      [
+        0,
+        3
+      ],
+      [
+        6,
+        8
+      ]
+    ],
+    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+  }
+]

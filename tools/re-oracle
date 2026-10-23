@@ -15,6 +15,18 @@ import subprocess
 import time
 
 ROOT = Path(__file__).resolve().parent.parent
+WORD_DIVERGENCES = json.loads((ROOT / 'tests/re/word-divergences.json').read_text())
+
+
+def word_divergence(row, index, engine, oracle):
+    # An explicit reviewed witness, not a blanket waiver for every -w bug.
+    for approved in WORD_DIVERGENCES:
+        if (approved['syntax'] == row['syntax'] and approved['patterns'] == [p.hex() for p in row['patterns']]
+            and approved['flags'] == sorted(row['flags']) and approved['line'] == row['lines'][index].hex()
+            and approved['engine'] == [list(span) for span in engine] and approved['oracle'] == [list(span) for span in oracle]):
+            return True
+    return False
+
 probe = runpy.run_path(str(ROOT / "tools/re-probe"))
 run_oracle = probe["run"]
 
@@ -59,9 +71,24 @@ def corpus(seed, count):
                 actual = p if syntax == "extended" else bre(p)
                 use_lines = [s.replace(b"\0", b"\n") for s in lines] if "-z" in flags else lines
                 yield dict(kind="hand", source="GNU info 3.3/3.5; boundary separation witnesses", syntax=syntax, patterns=[actual], lines=use_lines, flags=flags)
-        for row in json.loads((ROOT / "tests/re/mined.json").read_text()):
+        if syntax == 'extended':
+            yield dict(kind='hand',source='GNU 3.12 selection-before-span witness: {a} on a}',syntax=syntax,patterns=[b'{a}'],lines=[b'a}'],flags=[])
+        # All twelve C-locale classes over every byte, under both terminators.
+        for name in ('alnum','alpha','blank','cntrl','digit','graph','lower','print','punct','space','upper','xdigit'):
+            for flags in ([],['-i'],['-z'],['-z','-i']):
+                term = 0 if '-z' in flags else 10
+                yield dict(kind='hand',source='POSIX XBD 9.3.5; GNU info 3.2 C-locale class definitions',syntax=syntax,patterns=[b'[[:'+name.encode()+b':]]'],lines=[bytes(b for b in range(256) if b!=term)],flags=flags)
+        combinations = [[b'a',b'ab'],[b'ab',b'a'],[b'',b'ab'],[b'a*',b'b'],[br'(a)\1',br'(b)\1'],[br'\b{2}',b'a'],[b'[[.a.]]',br'\b{2}']]
+        for patterns in combinations:
+            for flags in ([],['-i'],['-w'],['-x']):
+                actual=patterns if syntax=='extended' else [bre(p) for p in patterns]
+                yield dict(kind='hand',source='GNU info 3.5 pattern-local groups and pattern-list alternation',syntax=syntax,patterns=actual,lines=[b'',b'a',b'aa',b'ab',b'abab',b'b',b'bb',b'A',b'a-bx'],flags=flags)
+        for pattern in (br'(a)?\1',br'(a|b)\1',br'((a)|b)\2',br'(a(b)?)*\2',br'(a|(b))*\2',br'(a*)*\1',br'(a?)\1',br'(a|())\2'):
+            actual=pattern if syntax=='extended' else bre(pattern)
+            yield dict(kind='hand',source='POSIX XBD 9.3.6 participation and last-capture rules; GNU info 3.5',syntax=syntax,patterns=[actual],lines=[b'',b'a',b'b',b'aa',b'bb',b'ab',b'abab',b'abb',b'bab',b'ba'],flags=[])
+        for row in json.loads((ROOT / "tests/re/mined.json").read_text()) + json.loads((ROOT / "tests/re/hand-from-yew.json").read_text()):
             p = bytes.fromhex(row["pattern"])
-            yield dict(kind="mined", source=row["source"], syntax=syntax, patterns=[p if syntax == "extended" else bre(p)], lines=[bytes.fromhex(row["line"])], flags=row["flags"])
+            yield dict(kind=row.get("kind", "mined"), source=row["source"] + "; rule: " + row["rule"], syntax=syntax, patterns=[p if syntax == "extended" else bre(p)], lines=[bytes.fromhex(row["line"])], flags=row["flags"])
         rng = random.Random(seed)
         atoms = [b"a", b"b", b"A", b".", b"[ab]", b"[^a]", b"[a-b]", b"[[:digit:]]", b"[[:space:]]", b"[[=a=]]", b"[[.a.]]", b"\\w", b"\\W", b"\\s", b"\\S", b"\\b", b"\\B", b"\\<", b"\\>", b"\\`", b"\\'", b"()", b"(a)\\1"]
         suffixes = [b"", b"*", b"+", b"?", b"{0}", b"{2}", b"{1,}", b"{,2}", b"{1,3}", b"**", b"+?"]
@@ -86,10 +113,10 @@ def protocol(row, ident):
     return f'{ident} {"E" if row["syntax"] == "extended" else "G"} {flags} {0 if "-z" in row["flags"] else 10} ' + ','.join(map(enc, row["patterns"])) + ' ' + ','.join(map(enc, row["lines"]))
 
 
-def driver_rows(driver, rows, work):
+def driver_rows(driver, rows, work, no_projection=False):
     path = work / "cases.txt"
     path.write_text('\n'.join(protocol(r, i) for i, r in enumerate(rows)) + '\n')
-    result = subprocess.run([driver, str(path)], capture_output=True, timeout=120)
+    result = subprocess.run([driver] + (["--no-projection"] if no_projection else []) + [str(path)], capture_output=True, timeout=120)
     (work / "driver.stdout").write_bytes(result.stdout)
     (work / "driver.stderr").write_bytes(result.stderr)
     if result.returncode: raise RuntimeError(f"driver exit {result.returncode}: {result.stderr!r}")
@@ -179,7 +206,8 @@ def reduce_case(row, differs):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--grep', default='/lane/oracle/bin/grep')
+    ap.add_argument('--grep', default=str(ROOT / '.oracle/grep'))
+    ap.add_argument('--identity', default=str(ROOT / '.oracle/identity.json'))
     ap.add_argument('--driver', default=str(ROOT / 'target/re/driver'))
     ap.add_argument('--work', type=Path, default=ROOT / 'target/re/oracle')
     ap.add_argument('--seed', type=int, default=11401)
@@ -188,6 +216,8 @@ def main():
     args = ap.parse_args()
     args.work.mkdir(parents=True, exist_ok=True)
     os.environ['CT01_TMP'] = str(args.work / 'tmp')
+    identity = runpy.run_path(str(ROOT / 'tools/re-oracle-identity'))
+    identity['validate'](args.grep, args.identity)
     version = subprocess.check_output([args.grep, '--version']).splitlines()[0]
     if version != b'grep (GNU grep) 3.12': raise SystemExit('STOP: wrong oracle identity')
     # This also proves the selected build has PCRE disabled.
@@ -225,7 +255,7 @@ def main():
                 spans_ok = actual['spans'][j] == want['spans'][j]
                 measures[(row['syntax'],'selection','agree' if selection_ok else 'differ')] += 1
                 measures[(row['syntax'],'spans','agree' if spans_ok else 'differ')] += 1
-                if selection_ok and not spans_ok and '-w' in row['flags']:
+                if selection_ok and not spans_ok and word_divergence(row,j,actual['spans'][j],want['spans'][j]):
                     verdict = 'word-span-divergence'
                     divergences.append(dict(index=index,line=j,row=row,engine=actual['spans'][j],oracle=want['spans'][j]))
                 else:
@@ -241,7 +271,7 @@ def main():
     report = dict(counts=[dict(syntax=s,kind=k,verdict=v,count=n) for (s,k,v),n in sorted(tally.items())],
                   measurements=[dict(syntax=s,measure=k,verdict=v,count=n) for (s,k,v),n in sorted(measures.items())])
     (args.work / 'summary.json').write_text(json.dumps(report,indent=2)+'\n')
-    for name,data in [('failures',failures),('span-divergences',divergences),('posix-exceptions',exceptions)]:
+    for name,data in [('failures',failures),('span-divergences',divergences),('extension-exceptions',exceptions)]:
         (args.work / (name+'.json')).write_text(json.dumps(data,default=encode,indent=2)+'\n')
     for (syntax,kind,verdict),n in sorted(tally.items()):print(f'{syntax} {kind} {verdict} {n}',flush=True)
     for (syntax,kind,verdict),n in sorted(measures.items()):print(f'{syntax} {kind} {verdict} {n}',flush=True)
@@ -253,7 +283,7 @@ def main():
         (args.work/'minimal.json').write_text(json.dumps(first,default=encode,indent=2))
         print('STOP: differential mismatch; minimal.json preserves the failure class',flush=True)
         return 1
-    print('PASS: no unapproved differences; approved span/POSIX rows counted separately; SKIP=0',flush=True)
+    print('PASS: no unapproved differences; approved span/extension rows counted separately; SKIP=0',flush=True)
     return 0
 
 if __name__ == '__main__': raise SystemExit(main())
