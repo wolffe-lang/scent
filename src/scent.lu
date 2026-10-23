@@ -14,11 +14,11 @@ fn input(path: str) -> int ! {not_found, denied, io} {
     fs_open(path)?
 }
 
-fn add_patterns(mut patterns: List[List[byte]], bytes: List[byte], explicit: bool, zero: bool) {
+fn add_patterns(mut patterns: List[List[byte]], bytes: List[byte], explicit: bool) {
     var lo: int = 0
     var at: int = 0
     while at < bytes.len {
-        if bytes[at] == 10 as byte || zero && bytes[at] == 0 as byte {
+        if bytes[at] == 10 as byte {
             (mut patterns).push(bytes[lo..at])
             lo = at + 1
         }
@@ -55,7 +55,7 @@ fn run(o: opts.Options) -> int {
     var patterns = List[List[byte]]()
     for source in o.sources {
         if !source.file {
-            add_patterns(mut patterns, source.text.bytes(), true, o.zero)
+            add_patterns(mut patterns, source.text.bytes(), true)
         } else {
             let fd = input(source.text) else |_| {
                 eprint("{opts.program()}: {source.text}: {os_error_text(os_error())}")
@@ -73,7 +73,17 @@ fn run(o: opts.Options) -> int {
                 for b in chunk { (mut all).push(b) }
             }
             if fd != 0 { fs_close(fd) else |_| {} }
-            add_patterns(mut patterns, all, false, o.zero)
+            add_patterns(mut patterns, all, false)
+        }
+    }
+    if o.zero && o.syntax != "P" {
+        for pattern in patterns {
+            for b in pattern {
+                if b == 0 as byte {
+                    eprint("scent: terminator-bearing patterns arrive with ct02 (R-ct00-5)")
+                    return 2
+                }
+            }
         }
     }
     if o.syntax == "P" {

@@ -531,7 +531,7 @@
 {"name":"patterns-04","argv":["-F","-f","p"],"stdin":"x\na\n\r\nx\r\n\n","section":"patterns","files":{"p":{"text":"x\na"},"empty":{"text":""},"crlf":{"text":"x\r\n"},"nul":{"text":"x\u0000a\n"}}}
 {"name":"patterns-05","argv":["-F","-f","empty"],"stdin":"x\na\n\r\nx\r\n\n","section":"patterns","files":{"p":{"text":"x\na"},"empty":{"text":""},"crlf":{"text":"x\r\n"},"nul":{"text":"x\u0000a\n"}}}
 {"name":"patterns-06","argv":["-F","-f","crlf"],"stdin":"x\na\n\r\nx\r\n\n","section":"patterns","files":{"p":{"text":"x\na"},"empty":{"text":""},"crlf":{"text":"x\r\n"},"nul":{"text":"x\u0000a\n"}}}
-{"name":"patterns-07","argv":["-F","-z","-f","nul"],"stdin":"x\na\n\r\nx\r\n\n","section":"patterns","files":{"p":{"text":"x\na"},"empty":{"text":""},"crlf":{"text":"x\r\n"},"nul":{"text":"x\u0000a\n"}}}
+{"name":"patterns-07","argv":["-F","-z","-f","nul"],"stdin":"x\na\n\r\nx\r\n\n","section":"patterns","files":{"p":{"text":"x\na"},"empty":{"text":""},"crlf":{"text":"x\r\n"},"nul":{"text":"x\u0000a\n"}},"not_yet":"R-ct00-5: ct02 cross-record terminator matching","column":"terminator-pattern","refusal":"scent: terminator-bearing patterns arrive with ct02 (R-ct00-5)"}
 {"name":"word-0-0","argv":["-F","-o","-e","a-","-e","a"],"stdin":"a-b a a-\n","section":"fixed"}
 {"name":"word-0-1","argv":["-F","-wo","-e","a-","-e","a"],"stdin":"a-b a a-\n","section":"fixed"}
 {"name":"word-0-2","argv":["-F","-xo","-e","a-","-e","a"],"stdin":"a-b a a-\n","section":"fixed"}

@@ -48,3 +48,15 @@ R-ct00-4 corrects the initial contract: different explicit matcher
 syntaxes conflict; the same syntax may be repeated. Other-name/path
 invocations are separately counted not-yet under #899; non-UTF-8
 arguments are separately counted under #406. M2 owns recursion/colour.
+
+## Terminator-bearing patterns
+
+R-ct00-5 defers the cross-record adapter to ct02, for F/G/E together. A
+pattern may contain the active terminator: GNU prints the touched records
+as one output unit, not independent per-record selections. The normal
+reader's delimiter-excluding window cannot express that. `scent.lu`
+refuses this mode by name before the syntax dispatch. The 216 measured
+`cross-*` witnesses cover all three syntaxes, leading/trailing NUL, three
+records and a 96 KiB boundary, with count/spans/prefixes/inversion/limit/
+whole-line/word/context controls. `patterns-07` and `nul-pattern-z` belong
+to the same explicit not-yet column; no expected GNU bytes were changed.

@@ -18,7 +18,7 @@ recursion and terminal colour are later work. `-P` deliberately gives the
 same refusal as the configured GNU build. UTF-8 locale semantics follow
 later; C-locale `-i` folds ASCII only.
 
-The corpus contains 737 cases, including 80 comparisons mined from
+The corpus contains 953 cases, including 80 comparisons mined from
 [ferp](https://github.com/FortranGoingOnForty/ferp), each with a source-line
 citation. Unconnected syntax/features and runtime limitations are counted
 explicitly as not-yet, never as passes. Until
@@ -27,6 +27,8 @@ messages use the fixed prefix `grep`; invocation names containing paths or
 other names are not-yet. Non-UTF-8 arguments are blocked upstream by
 [wolf-lang#406](https://github.com/wolffe-lang/wolf-lang/issues/406).
 Arbitrary bytes in input and pattern files do not require UTF-8 decoding.
+Patterns containing the NUL terminator under `-z` are separately deferred
+to cross-record regex integration; their GNU witnesses are recorded.
 
 ## Build and test
 

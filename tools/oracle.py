@@ -75,7 +75,7 @@ def launch(binary, c, work, bindir):
         if source:source.close()
         if output:output.close()
         for t in writers:t.join(timeout=0.1)
-counts={'agree':0,'differ':0,'not-yet':0,'argv0-diagnostic':0,'argv0-usage':0,'argv-bytes':0,'field-unavailable':0};seen=0
+counts={'agree':0,'differ':0,'not-yet':0,'argv0-diagnostic':0,'argv0-usage':0,'argv-bytes':0,'field-unavailable':0,'terminator-pattern':0};seen=0
 for file in sorted((ROOT/a.cases).glob('*.jsonl')):
  for raw in file.read_text().splitlines():
     c=json.loads(raw);name=c['name']
@@ -85,7 +85,7 @@ for file in sorted((ROOT/a.cases).glob('*.jsonl')):
         counts['field-unavailable']+=1;print('FIELD unavailable',name,'Linux fixture only',flush=True);continue
     if c.get('not_yet'):
         why=c['not_yet'];category=c.get('column','not-yet')
-        if category=='not-yet':
+        if 'refusal' in c:
             with tempfile.TemporaryDirectory(prefix='not-yet-',dir=stage) as tmp:
                 work=pathlib.Path(tmp);bindir=work/'bin';bindir.mkdir();(bindir/'grep').symlink_to(ours)
                 prepare(work,c)
@@ -94,6 +94,11 @@ for file in sorted((ROOT/a.cases).glob('*.jsonl')):
                 (bindir/'grep').unlink();(bindir/'grep').symlink_to(reference)
                 measured=launch(reference,c,work,bindir)
                 print('not-yet GNU',name,'status',measured[2],'stdout',repr(measured[0][:240]),'stderr',repr(measured[1][:240]),flush=True)
+                record=stage/'not-yet'/name;record.mkdir(parents=True,exist_ok=True)
+                for tag,result in [('gnu',measured),('scent',answer)]:
+                    for suffix,value in zip(['stdout','stderr','status','stdin-rest'],result):
+                        (record/(tag+'.'+suffix)).write_bytes(str(value).encode() if isinstance(value,int) else value)
+                (record/'case.json').write_text(json.dumps(c,indent=2)+'\n')
         counts['not-yet']+=1
         if category!='not-yet':counts[category]+=1
         print('not-yet',name,why,flush=True);continue
@@ -136,6 +141,6 @@ for file in sorted((ROOT/a.cases).glob('*.jsonl')):
     if seen%50==0:print('progress',seen,counts,flush=True)
 require(seen>0,'no cases selected')
 print('{agree} agree / {differ} differ / {not-yet} not-yet'.format(**counts),flush=True)
-print('not-yet columns: argv0-diagnostic={argv0-diagnostic} argv0-usage={argv0-usage} argv-bytes={argv-bytes}'.format(**counts),flush=True)
+print('not-yet columns: argv0-diagnostic={argv0-diagnostic} argv0-usage={argv0-usage} argv-bytes={argv-bytes} terminator-pattern={terminator-pattern}'.format(**counts),flush=True)
 (stage/'summary.json').write_text(json.dumps(counts,sort_keys=True)+'\n')
 raise SystemExit(0 if a.field or counts['differ']==0 else 1)
