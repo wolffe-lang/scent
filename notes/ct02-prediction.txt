@@ -1,0 +1,4 @@
+ct02 prediction (before implementation)
+First joined differences: word-span retry under -o -w, then diagnostics/source prefixes; -o context is less likely than backreference case folding to disagree.
+Generated M1 layer prediction: 8,000 cases across all three syntaxes, including terminator-bearing and reviewed ct01 families.
+Predicted -G literal median time: 12 times -F on the 256 MiB corpus (recorded, not gated).
