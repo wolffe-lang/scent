@@ -1,0 +1,6 @@
+#!/bin/sh
+# scent's own GNU-3.12-compatible obsolete-name adapter; measured, not copied.
+printf '%s\n' 'fgrep: warning: fgrep is obsolescent; using grep -F' >&2
+PATH="$(dirname -- "$0"):$PATH"
+export PATH
+exec grep -F "$@"

@@ -17,7 +17,7 @@ def verify(binary):
     r=subprocess.run(['grep','-P','x'], executable=str(binary), input=b'', capture_output=True)
     require(r.returncode==PIN['perl_status'] and r.stdout==b'' and r.stderr==(PIN['perl_refusal']+'\n').encode(), 'Perl refusal')
 stage=ROOT/'.oracle'; stage.mkdir(exist_ok=True)
-if (stage/'grep').exists():
+if all((stage/name).exists() for name in ['grep','egrep','fgrep']):
     verify(stage/'grep'); print('fetch-oracle: pinned binary verified'); raise SystemExit(0)
 # Fixed build paths are part of deterministic debug information.
 source=pathlib.Path('/work/unseen-source'); build=pathlib.Path('/work/build')
@@ -40,6 +40,11 @@ with tempfile.TemporaryDirectory(prefix='scent-oracle-',dir=stage) as tmp:
             run(['make','-j4'],cwd=build,stdout=log,stderr=subprocess.STDOUT)
         verify(build/'src/grep')
         shutil.copy2(build/'src/grep',stage/'grep')
+        # Install and copy wrappers without reading their source.
+        installed=tmp/'installed'
+        run(['make','install','DESTDIR='+str(installed)],cwd=build,stdout=subprocess.DEVNULL)
+        for name in ['egrep','fgrep']:
+            shutil.copy2(installed/'usr/local/bin'/name,stage/name)
         shutil.copy2(source/'grep-3.12/doc/grep.info',stage/'grep.info')
         (stage/'identity.json').write_text(json.dumps(PIN,sort_keys=True)+'\n')
     finally:
