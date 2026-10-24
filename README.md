@@ -86,7 +86,12 @@ selection and spans alike, so all three match in either direction. Twenty
 additional directed edges are covered by exact, published consistency rows.
 The generator starts from UCD simple upper/lower compositions, applies 42
 source-pattern overrides (49 membership edits), then computes that closure.
-No full case expansion or normalization is performed.
+Nine connected components (24 code points) differ from UCD15.1 simple case
+folding: dotless I, Kelvin, Angstrom, sharp S, theta/Ohm symbols, the two
+Greek dialytika/tonos–oxia pairs, and the two ST ligatures. Dotted I remains
+separate; Greek sigmas, Cherokee and Georgian follow the measured simple
+classes. [Exact component sets](tests/fixtures/ctype/fold-simple-comparison.json)
+are retained. No full case expansion or normalization is performed.
 
 ### Encoding errors stay bytes
 

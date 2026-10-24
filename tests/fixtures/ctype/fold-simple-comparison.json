@@ -1,0 +1,205 @@
+{
+  "ucd_version": "15.1.0",
+  "differing_components": 9,
+  "affected_codepoints": 24,
+  "components": [
+    {
+      "members": {
+        "U+0049": "LATIN CAPITAL LETTER I",
+        "U+0069": "LATIN SMALL LETTER I",
+        "U+0131": "LATIN SMALL LETTER DOTLESS I"
+      },
+      "scent_classes": [
+        [
+          "000049",
+          "000069",
+          "000131"
+        ]
+      ],
+      "ucd_simple_classes": [
+        [
+          "000049",
+          "000069"
+        ],
+        [
+          "000131"
+        ]
+      ]
+    },
+    {
+      "members": {
+        "U+004B": "LATIN CAPITAL LETTER K",
+        "U+006B": "LATIN SMALL LETTER K",
+        "U+212A": "KELVIN SIGN"
+      },
+      "scent_classes": [
+        [
+          "00004B",
+          "00006B"
+        ],
+        [
+          "00212A"
+        ]
+      ],
+      "ucd_simple_classes": [
+        [
+          "00004B",
+          "00006B",
+          "00212A"
+        ]
+      ]
+    },
+    {
+      "members": {
+        "U+00C5": "LATIN CAPITAL LETTER A WITH RING ABOVE",
+        "U+00E5": "LATIN SMALL LETTER A WITH RING ABOVE",
+        "U+212B": "ANGSTROM SIGN"
+      },
+      "scent_classes": [
+        [
+          "0000C5",
+          "0000E5"
+        ],
+        [
+          "00212B"
+        ]
+      ],
+      "ucd_simple_classes": [
+        [
+          "0000C5",
+          "0000E5",
+          "00212B"
+        ]
+      ]
+    },
+    {
+      "members": {
+        "U+00DF": "LATIN SMALL LETTER SHARP S",
+        "U+1E9E": "LATIN CAPITAL LETTER SHARP S"
+      },
+      "scent_classes": [
+        [
+          "0000DF"
+        ],
+        [
+          "001E9E"
+        ]
+      ],
+      "ucd_simple_classes": [
+        [
+          "0000DF",
+          "001E9E"
+        ]
+      ]
+    },
+    {
+      "members": {
+        "U+0390": "GREEK SMALL LETTER IOTA WITH DIALYTIKA AND TONOS",
+        "U+1FD3": "GREEK SMALL LETTER IOTA WITH DIALYTIKA AND OXIA"
+      },
+      "scent_classes": [
+        [
+          "000390"
+        ],
+        [
+          "001FD3"
+        ]
+      ],
+      "ucd_simple_classes": [
+        [
+          "000390",
+          "001FD3"
+        ]
+      ]
+    },
+    {
+      "members": {
+        "U+0398": "GREEK CAPITAL LETTER THETA",
+        "U+03B8": "GREEK SMALL LETTER THETA",
+        "U+03D1": "GREEK THETA SYMBOL",
+        "U+03F4": "GREEK CAPITAL THETA SYMBOL"
+      },
+      "scent_classes": [
+        [
+          "000398",
+          "0003B8",
+          "0003D1"
+        ],
+        [
+          "0003F4"
+        ]
+      ],
+      "ucd_simple_classes": [
+        [
+          "000398",
+          "0003B8",
+          "0003D1",
+          "0003F4"
+        ]
+      ]
+    },
+    {
+      "members": {
+        "U+03A9": "GREEK CAPITAL LETTER OMEGA",
+        "U+03C9": "GREEK SMALL LETTER OMEGA",
+        "U+2126": "OHM SIGN"
+      },
+      "scent_classes": [
+        [
+          "0003A9",
+          "0003C9"
+        ],
+        [
+          "002126"
+        ]
+      ],
+      "ucd_simple_classes": [
+        [
+          "0003A9",
+          "0003C9",
+          "002126"
+        ]
+      ]
+    },
+    {
+      "members": {
+        "U+03B0": "GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND TONOS",
+        "U+1FE3": "GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND OXIA"
+      },
+      "scent_classes": [
+        [
+          "0003B0"
+        ],
+        [
+          "001FE3"
+        ]
+      ],
+      "ucd_simple_classes": [
+        [
+          "0003B0",
+          "001FE3"
+        ]
+      ]
+    },
+    {
+      "members": {
+        "U+FB05": "LATIN SMALL LIGATURE LONG S T",
+        "U+FB06": "LATIN SMALL LIGATURE ST"
+      },
+      "scent_classes": [
+        [
+          "00FB05"
+        ],
+        [
+          "00FB06"
+        ]
+      ],
+      "ucd_simple_classes": [
+        [
+          "00FB05",
+          "00FB06"
+        ]
+      ]
+    }
+  ]
+}
