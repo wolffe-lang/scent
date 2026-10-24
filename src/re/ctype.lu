@@ -84,3 +84,21 @@ fn rune_class_member(cl: RuneClass, cp: int, icase: bool) -> bool {
     }
     if cl.negate then !found else found
 }
+
+// Folded C.UTF-8 ranges compare uppercase representatives, not the union
+// of every source point between their endpoints. Measured witness: an
+// invalid-byte endpoint B5 in -i [a-B5] excludes U+00B5 (uppercase U+039C).
+fn range_upper(cp: int) -> int {
+    var result = cp
+    var found = character_mask(cp) & 8 != 0
+    var at = fold_start(cp)
+    while at < FOLD_COUNT && packed(FOLD_DATA, at * 6, 3) == cp {
+        let target = packed(FOLD_DATA, at * 6 + 3, 3)
+        if character_mask(target) & 8 != 0 && (!found || target < result) {
+            result = target
+            found = true
+        }
+        at += 1
+    }
+    result
+}

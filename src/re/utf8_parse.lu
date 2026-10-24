@@ -35,11 +35,12 @@ fn rune_item(mut p: Parser, pat: List[byte], id: int, mut d: Diagnostics, patter
             return -1
         }
         p.verify = true
-        if end != begin + 1 || pat[begin] as int >= 128 {
+        if end != begin + 1 {
             fail(mut p, mut d, pattern, "Invalid collation character")
             return -1
         }
-        return pat[begin] as int
+        let (cp, _) = locale_next(pat, begin, end)
+        return cp
     }
     let (cp, n) = locale_next(pat, p.at, pat.len)
     p.at += n
@@ -78,17 +79,25 @@ fn rune_bracket(
             p.at += 1
             var right = rune_item(mut p, pat, id, mut d, pattern)
             if p.failed { break }
-            if left >= 128 || right >= 128 {
+            // A rejected single byte is a byte-valued range endpoint in
+            // the oracle; a valid non-ASCII character is a collation error.
+            if left >= 128 && left < 2147483648 || right >= 128 && right < 2147483648 {
                 fail(mut p, mut d, pattern, "Invalid collation character")
                 break
             }
+            if left >= 2147483648 { left -= 2147483648 }
+            if right >= 2147483648 { right -= 2147483648 }
             if options.icase {
                 if left >= 97 && left <= 122 { left -= 32 }
                 if right >= 97 && right <= 122 { right -= 32 }
             }
             if left < 0 || right < left { fail(mut p, mut d, pattern, "Invalid range end"); break }
             var cp = left
-            while cp <= right { (mut p.rune_classes[id].members).push(cp); cp += 1 }
+            while cp <= right {
+                let key = if options.icase then range_upper(cp) else cp
+                if key >= left && key <= right { (mut p.rune_classes[id].members).push(cp) }
+                cp += 1
+            }
             if p.at + 1 < pat.len && pat[p.at] == 45 as byte && pat[p.at + 1] != 93 as byte {
                 fail(mut p, mut d, pattern, "Invalid range end")
             }

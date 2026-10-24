@@ -4,7 +4,7 @@ import collections,hashlib,json,pathlib,subprocess,sys
 root=pathlib.Path(__file__).resolve().parent.parent
 subprocess.run([sys.executable,'-I',str(root/'tools/m3-cases')],check=True)
 rows=[json.loads(x) for x in (root/'tests/cases/m3.jsonl').read_text().splitlines()]
-assert len(rows)==34026,len(rows)
+assert len(rows)==38706,len(rows)
 cases={c['name']:c for c in rows};assert len(cases)==len(rows)
 inherited={c['name']:c for p in (root/'tests/cases').glob('*.jsonl') if p.name!='m3.jsonl' for c in map(json.loads,p.read_text().splitlines())}
 assert len(inherited)==9599 and sum(c['name'].startswith('utf8-') for c in rows)==9598
@@ -25,4 +25,4 @@ for name in ['m3-ci-test','check-ctype-regen']:
  assert 'tools/'+name in workflow and 'tools/'+name in gate
 assert '--capture-reference target/pax-reference.json.gz' in workflow and '--capture-reference target/pax-reference.json.gz' in gate
 assert '--replay-reference target/pax-reference.json.gz' in (root/'tools/pax-posture').read_text()
-print('PASS M3 floors: 34,026 rows; 550 inconsistent, 120 inherited, one environment; all identities exact')
+print('PASS M3 floors: 38,706 rows; 550 inconsistent, 120 inherited, one environment; all identities exact')

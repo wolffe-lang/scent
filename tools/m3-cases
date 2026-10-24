@@ -41,6 +41,14 @@ for i,(source,target) in enumerate(added):
   data=chr(target)+(chr(source) if combined else '')+'\n'
   add('fold-%02d-%s-%s-%d'%(i,syntax[1:],''.join(flags) or 'plain',combined),[syntax,'-a','-i',*flags],chr(source).encode(),data.encode())
 rows.append({'name':'m3-environment-absent-locale','argv':['-a','-o','^.$'], 'stdin':'é\n','env':{'LC_ALL':'','LANG':'en_US.UTF-8'}})
+# Every rejected single-byte bracket atom/end point, plus multi-byte
+# surrogate/extended controls, in both syntaxes and case modes. No snapshots.
+for raw in [bytes([n]) for n in range(128,256)]+[bytes.fromhex('eda080'),bytes.fromhex('f4908080')]:
+ patterns=[b'['+raw+b']',b'[^'+raw+b']',b'[a-'+raw+b']',b'['+raw+b'-a]',b'[[.'+raw+b'.]]',b'[[='+raw+b'=]]',b'[a'+raw+b']',b'[a-'+raw+b'b]',b'[[.'+raw+b'.]b]']
+ data=b''.join(chr(cp).encode()+b'\n' for cp in range(256))+raw+b'\n'
+ for index,pattern in enumerate(patterns):
+  for syntax,icase in itertools.product(['-G','-E'],[False,True]):
+   add('malformed-bracket-'+raw.hex()+'-'+str(index)+'-'+syntax[1:]+'-'+str(int(icase)),[syntax,'-a','-o']+(['-i'] if icase else []),pattern,data)
 path=ROOT/'tests/cases/m3.jsonl'
 path.write_text(''.join(json.dumps(r,separators=(',',':'))+'\n' for r in rows))
 print('M3 cases',len(rows),'including',len(added),'closure-only directed edges')
