@@ -4,7 +4,7 @@ import collections,hashlib,json,pathlib,subprocess,sys
 root=pathlib.Path(__file__).resolve().parent.parent
 subprocess.run([sys.executable,'-I',str(root/'tools/m2-cases')],check=True)
 rows=[json.loads(x) for x in (root/'tests/cases/m2.jsonl').read_text().splitlines()]
-assert len(rows)>=3384,(len(rows),3384)
+assert len(rows)>=3392,(len(rows),3392)
 names={r['name']:r for r in rows};assert len(names)==len(rows)
 assert sum(r['name'].startswith('m2-walk-') for r in rows)>=2000
 assert sum(r['name'].startswith('m2-colour-') for r in rows)>=1164

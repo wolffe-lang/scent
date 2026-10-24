@@ -3382,3 +3382,11 @@
 {"name":"m2-glob-118","argv":["--exclude=[[:lower:][:digit:]]*","x","tree/a","tree/b","tree/c","tree/ab","tree/1","tree/A","tree/.dot","tree/a-b","tree/a.txt","tree/star*","tree/sub/a"],"files":{"tree/a":{"text":"x\n"},"tree/b":{"text":"x\n"},"tree/c":{"text":"x\n"},"tree/ab":{"text":"x\n"},"tree/1":{"text":"x\n"},"tree/A":{"text":"x\n"},"tree/.dot":{"text":"x\n"},"tree/a-b":{"text":"x\n"},"tree/a.txt":{"text":"x\n"},"tree/star*":{"text":"x\n"},"tree/sub/a":{"text":"x\n"}},"shared_fixture":true}
 {"name":"m2-glob-119","argv":["-r","--exclude=[[:lower:][:digit:]]*","x","tree"],"files":{"tree/a":{"text":"x\n"},"tree/b":{"text":"x\n"},"tree/c":{"text":"x\n"},"tree/ab":{"text":"x\n"},"tree/1":{"text":"x\n"},"tree/A":{"text":"x\n"},"tree/.dot":{"text":"x\n"},"tree/a-b":{"text":"x\n"},"tree/a.txt":{"text":"x\n"},"tree/star*":{"text":"x\n"},"tree/sub/a":{"text":"x\n"}},"shared_fixture":true}
 {"name":"m2-m3-locale-refusal","argv":["x"],"stdin":"x\n","env":{"LC_ALL":"C.UTF-8"},"not_yet":"M3 UTF-8 locale semantics","refusal":"grep: not yet implemented: UTF-8 locale semantics (M3)"}
+{"name":"m2-limit-directory-00","argv":["-Lm0","x","d"],"files":{"d/f":{"text":"x\n"},"file":{"text":"x\n"}},"shared_fixture":true}
+{"name":"m2-limit-directory-01","argv":["-dread","-Lm0","x","d"],"files":{"d/f":{"text":"x\n"},"file":{"text":"x\n"}},"shared_fixture":true}
+{"name":"m2-limit-directory-02","argv":["-dskip","-Lm0","x","d"],"files":{"d/f":{"text":"x\n"},"file":{"text":"x\n"}},"shared_fixture":true}
+{"name":"m2-limit-directory-03","argv":["-Lm0","x","absent"],"files":{"d/f":{"text":"x\n"},"file":{"text":"x\n"}},"shared_fixture":true}
+{"name":"m2-limit-directory-04","argv":["-Lm0","x","file"],"files":{"d/f":{"text":"x\n"},"file":{"text":"x\n"}},"shared_fixture":true}
+{"name":"m2-limit-directory-05","argv":["-Lrm0","x","d"],"files":{"d/f":{"text":"x\n"},"file":{"text":"x\n"}},"shared_fixture":true}
+{"name":"m2-limit-directory-06","argv":["-cm0","x","d"],"files":{"d/f":{"text":"x\n"},"file":{"text":"x\n"}},"shared_fixture":true}
+{"name":"m2-limit-directory-07","argv":["-m0","x","absent"],"files":{"d/f":{"text":"x\n"},"file":{"text":"x\n"}},"shared_fixture":true}

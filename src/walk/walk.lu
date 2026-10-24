@@ -29,7 +29,8 @@ fn scan(o: opts.Options, re: matcher.Matcher, path: str, mut state: State) {
         state.error = true
         return
     }
-    if o.limit == 0 {
+    let info = fs_fstat(fd) else [2, 0, 0]
+    if o.limit == 0 && info[0] != 1 {
         var writer = out.create()
         if o.count && o.listing == 0 && !o.quiet { out.count(mut writer, o, name, 0) }
         if o.listing == 2 && !o.quiet { out.filename(mut writer, o, name) }
