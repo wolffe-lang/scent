@@ -86,6 +86,8 @@ fn spans(
             out.line(
                 mut writer,
                 flags,
+                re,
+                mut ws,
                 name,
                 buf,
                 span.lo,
@@ -147,6 +149,8 @@ fn emit(
                     out.line(
                         mut writer,
                         flags,
+                        re,
+                        mut ws,
                         name,
                         h.rows[idx].bytes,
                         0,
@@ -160,7 +164,7 @@ fn emit(
                 }
                 at += 1
             }
-            out.line(mut writer, flags, name, buf, lo, hi, st.number, off, true, width)
+            out.line(mut writer, flags, re, mut ws, name, buf, lo, hi, st.number, off, true, width)
         } else if flags.invert {
             var at: int = 0
             while at < h.rows.len {
@@ -192,6 +196,8 @@ fn emit(
                     out.line(
                         mut writer,
                         flags,
+                        re,
+                        mut ws,
                         name,
                         buf,
                         span.lo,
@@ -211,7 +217,7 @@ fn emit(
         st.trailing = flags.after
     } else if st.trailing > 0 {
         if !flags.only {
-            out.line(mut writer, flags, name, buf, lo, hi, st.number, off, false, width)
+            out.line(mut writer, flags, re, mut ws, name, buf, lo, hi, st.number, off, false, width)
         } else if flags.invert {
             spans(flags, re, mut ws, buf, lo, hi, name, st.number, off, false, width, mut writer)
         }

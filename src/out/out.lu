@@ -3,6 +3,7 @@
 // Clean-room: GNU grep 3.12 output probes; design reference ferp 7d332b5
 // src/ferp_output.f90:49-242, 263-321. Fixed storage avoids per-line growth.
 use opts
+use matcher
 
 /// Fixed-capacity stdout staging and write-failure state.
 pub struct Output {
@@ -59,6 +60,34 @@ fn decimal(mut o: Output, n: int, width: int) {
     text(mut o, s)
 }
 
+fn start(mut o: Output, flags: opts.Options, cap: str) {
+    if !flags.colors.enabled || cap == "" { return }
+    byte_put(mut o, 27 as byte)
+    text(mut o, "[{cap}m")
+    if !flags.colors.no_erase { byte_put(mut o, 27 as byte); text(mut o, "[K") }
+}
+
+fn end(mut o: Output, flags: opts.Options, cap: str) {
+    if !flags.colors.enabled || cap == "" { return }
+    byte_put(mut o, 27 as byte)
+    text(mut o, "[m")
+    if !flags.colors.no_erase { byte_put(mut o, 27 as byte); text(mut o, "[K") }
+}
+
+fn field(mut o: Output, flags: opts.Options, value: str, cap: str) {
+    if value == "" { return }
+    start(mut o, flags, cap)
+    text(mut o, value)
+    end(mut o, flags, cap)
+}
+
+fn separator(mut o: Output, flags: opts.Options, b: byte) {
+    if b == 0 as byte { byte_put(mut o, b); return }
+    start(mut o, flags, flags.colors.separator)
+    byte_put(mut o, b)
+    end(mut o, flags, flags.colors.separator)
+}
+
 /// Emit filename, line and byte fields with measured separators.
 pub fn prefix(
     mut o: Output,
@@ -71,18 +100,30 @@ pub fn prefix(
 ) {
     let sep = if selected then 58 as byte else 45 as byte
     if flags.filename == 1 {
-        text(mut o, name)
-        byte_put(mut o, if flags.null_name then 0 as byte else sep)
+        field(mut o, flags, name, flags.colors.filename)
+        separator(mut o, flags, if flags.null_name then 0 as byte else sep)
     }
     let pad = if flags.tab then width else 0
-    if flags.number { decimal(mut o, number, pad); byte_put(mut o, sep) }
-    if flags.offset { decimal(mut o, offset, pad); byte_put(mut o, sep) }
+    if flags.number {
+        start(mut o, flags, flags.colors.line)
+        decimal(mut o, number, pad)
+        end(mut o, flags, flags.colors.line)
+        separator(mut o, flags, sep)
+    }
+    if flags.offset {
+        start(mut o, flags, flags.colors.offset)
+        decimal(mut o, offset, pad)
+        end(mut o, flags, flags.colors.offset)
+        separator(mut o, flags, sep)
+    }
 }
 
 /// Emit one selected or context line and its terminator.
 pub fn line(
     mut o: Output,
     flags: opts.Options,
+    re: matcher.Matcher,
+    mut ws: matcher.Workspace,
     name: str,
     b: List[byte],
     lo: int,
@@ -96,22 +137,56 @@ pub fn line(
     if hi > lo && flags.tab && (flags.filename == 1 || flags.number || flags.offset) {
         byte_put(mut o, 9 as byte)
     }
-    window(mut o, b, lo, hi)
+    let base_selected = selected != (flags.colors.reverse && flags.invert)
+    let base = if flags.only then "" else if base_selected then flags.colors.sl else flags.colors.cx
+    let hit = if selected then flags.colors.ms else flags.colors.mc
+    var active = false
+    if hi > lo {
+        start(mut o, flags, base)
+        active = base != ""
+    }
+    if flags.colors.enabled && flags.only {
+        start(mut o, flags, hit)
+        window(mut o, b, lo, hi)
+        end(mut o, flags, hit)
+        active = false
+    } else if flags.colors.enabled && hit != "" && matcher.line_matches(re, mut ws, b, lo, hi) {
+        var from = lo
+        while from < hi {
+            let span = matcher.next_span(re, mut ws, b, lo, hi, from) else |_| { break }
+            if span.lo > from {
+                if !active { start(mut o, flags, base) }
+                window(mut o, b, from, span.lo)
+            }
+            start(mut o, flags, hit)
+            window(mut o, b, span.lo, span.hi)
+            end(mut o, flags, hit)
+            active = false
+            from = span.hi
+        }
+        if from < hi {
+            if !active { start(mut o, flags, base); active = base != "" }
+            window(mut o, b, from, hi)
+        }
+    } else {
+        window(mut o, b, lo, hi)
+    }
+    if active { end(mut o, flags, base) }
     byte_put(mut o, if flags.zero then 0 as byte else 10 as byte)
     if flags.line_buffered { flush(mut o) }
 }
 
 /// Emit a listing-mode filename, honoring -Z.
 pub fn filename(mut o: Output, flags: opts.Options, name: str) {
-    text(mut o, name)
+    field(mut o, flags, name, flags.colors.filename)
     byte_put(mut o, if flags.null_name then 0 as byte else 10 as byte)
 }
 
 /// Emit a per-file count; -z does not change its newline.
 pub fn count(mut o: Output, flags: opts.Options, name: str, n: int) {
     if flags.filename == 1 {
-        text(mut o, name)
-        byte_put(mut o, if flags.null_name then 0 as byte else 58 as byte)
+        field(mut o, flags, name, flags.colors.filename)
+        separator(mut o, flags, if flags.null_name then 0 as byte else 58 as byte)
     }
     text(mut o, "{n}\n")
 }
@@ -119,7 +194,7 @@ pub fn count(mut o: Output, flags: opts.Options, name: str, n: int) {
 /// Start a disjoint context group with the configured separator.
 pub fn group(mut o: Output, flags: opts.Options) {
     if o.any_group && flags.context && flags.groups {
-        text(mut o, flags.separator)
+        field(mut o, flags, flags.separator, flags.colors.separator)
         byte_put(mut o, 10 as byte)
     }
     o.any_group = true

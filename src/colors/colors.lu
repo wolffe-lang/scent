@@ -1,0 +1,89 @@
+//! member: true
+
+// Clean-room: GNU 3.12 Environment Variables manual and byte probes.
+use std.env
+
+/// Validated SGR capabilities; empty values disable that highlighting.
+pub struct Config {
+    enabled: bool,
+    sl: str,
+    cx: str,
+    ms: str,
+    mc: str,
+    filename: str,
+    line: str,
+    offset: str,
+    separator: str,
+    reverse: bool,
+    no_erase: bool,
+}
+
+/// GNU's C-locale default palette, initially disabled.
+pub fn defaults() -> Config {
+    Config {
+        enabled: false,
+        sl: "",
+        cx: "",
+        ms: "01;31",
+        mc: "01;31",
+        filename: "35",
+        line: "32",
+        offset: "32",
+        separator: "36",
+        reverse: false,
+        no_erase: false,
+    }
+}
+
+fn sgr(value: str) -> bool {
+    for b in value.bytes() {
+        if b != 59 as byte && (b < 48 as byte || b > 57 as byte) { return false }
+    }
+    true
+}
+
+/// Resolve --color's terminal policy, then GREP_COLOR/GREP_COLORS in order.
+/// Deprecated valid GREP_COLOR warns only when enabled and no mt overrides it.
+pub fn configure(mode: str, program: str) -> Config {
+    var c = defaults()
+    let term = env.get("TERM") else ""
+    c.enabled = mode == "always" || mode == "auto" && term != "dumb" && (os_isatty(1) else false)
+    if !c.enabled { return c }
+    let old = env.get("GREP_COLOR") else ""
+    var warning = old != "" && sgr(old)
+    if warning { c.ms = old; c.mc = old }
+    let settings = env.get("GREP_COLORS") else ""
+    for item in settings.split(":") {
+        let eq = item.find("=") else item.len
+        let key = item[0..eq]
+        if eq == item.len {
+            if key == "rv" { c.reverse = true }
+            if key == "ne" { c.no_erase = true }
+            continue
+        }
+        let value = item[eq + 1..]
+        if !sgr(value) { break }
+        match key {
+            "rv" => { c.reverse = true },
+            "ne" => { c.no_erase = true },
+            "sl" => { c.sl = value },
+            "cx" => { c.cx = value },
+            "mt" => {
+                c.ms = value
+                c.mc = value
+                warning = false
+            },
+            "ms" => { c.ms = value },
+            "mc" => { c.mc = value },
+            "fn" => { c.filename = value },
+            "ln" => { c.line = value },
+            "bn" => { c.offset = value },
+            "se" => { c.separator = value },
+            _ => {},
+        }
+    }
+    if warning {
+        eprint("{program}: warning: GREP_COLOR='{old}' is deprecated; use GREP_COLORS='mt={old}'")
+    }
+    c
+}

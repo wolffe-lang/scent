@@ -23,18 +23,19 @@ fn input(path: str) -> int ! {not_found, denied, io} {
 
 fn scan(o: opts.Options, re: matcher.Matcher, path: str, mut state: State) {
     let name = if path == "-" then o.label else path
+    let fd = input(path) else |_| {
+        let code = os_error()
+        if !o.silent { eprint("{opts.program()}: {path}: {os_error_text(code)}") }
+        state.error = true
+        return
+    }
     if o.limit == 0 {
         var writer = out.create()
         if o.count && o.listing == 0 && !o.quiet { out.count(mut writer, o, name, 0) }
         if o.listing == 2 && !o.quiet { out.filename(mut writer, o, name) }
         out.flush(mut writer)
         if writer.failed { state.error = true }
-        return
-    }
-    let fd = input(path) else |_| {
-        let code = os_error()
-        if !o.silent { eprint("{opts.program()}: {path}: {os_error_text(code)}") }
-        state.error = true
+        if fd != 0 { fs_close(fd) else |_| {} }
         return
     }
     if !o.quiet && !o.count && o.listing == 0 {
@@ -63,7 +64,8 @@ fn scan(o: opts.Options, re: matcher.Matcher, path: str, mut state: State) {
 fn excluded(o: opts.Options, path: str, basename: str, root: bool, directory: bool) -> bool {
     if directory {
         for pattern in o.exclude_dirs {
-            if root && glob.operand(pattern, path) || !root && glob.matches(pattern, basename) {
+            if root && glob.operand(pattern, path.bytes()) ||
+                !root && glob.matches(pattern, basename.bytes()) {
                 return true
             }
         }
@@ -72,7 +74,8 @@ fn excluded(o: opts.Options, path: str, basename: str, root: bool, directory: bo
     if o.filters.len == 0 { return false }
     var include = !o.filters[0].include
     for f in o.filters {
-        if root && glob.operand(f.pattern, path) || !root && glob.matches(f.pattern, basename) {
+        if root && glob.operand(f.pattern, path.bytes()) ||
+            !root && glob.matches(f.pattern, basename.bytes()) {
             include = f.include
         }
     }
@@ -151,6 +154,7 @@ fn visit(
 /// Stream depth-first over raw directory entries, retaining ancestor
 /// identities only for loop detection. Never sort directory results.
 pub fn run(o: opts.Options, re: matcher.Matcher) -> int {
+    if o.limit == 0 && o.listing != 2 { return 1 }
     var state = State { matched: false, error: false, grouped: false }
     let ancestors = List[Identity]()
     for path in o.files {

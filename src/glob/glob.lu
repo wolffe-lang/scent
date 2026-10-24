@@ -24,35 +24,53 @@ fn member(b: int, name: str) -> bool {
     }
 }
 
+fn atom(p: List[byte], start: int) -> (int, int) {
+    let c = p[start] as int
+    if c == 92 && start + 1 < p.len { return (p[start + 1] as int, start + 2) }
+    if c == 91 && start + 1 < p.len && (p[start + 1] == 46 as byte || p[start + 1] == 61 as byte) {
+        let marker = p[start + 1]
+        var end = start + 2
+        while end + 1 < p.len {
+            if p[end] == marker && p[end + 1] == 93 as byte {
+                return (if end == start + 3 then p[start + 2] as int else -256, end + 2)
+            }
+            end += 1
+        }
+    }
+    (c, start + 1)
+}
+
 // Return the position after a valid bracket, negative when it does not
 // match, zero for an unclosed bracket (which is an ordinary '[').
-fn bracket(p: str, start: int, b: int) -> int {
+fn bracket(p: List[byte], start: int, b: int) -> int {
     var at = start + 1
     var negate = false
-    if at < p.len && (p.bytes()[at] == 33 as byte || p.bytes()[at] == 94 as byte) {
+    if at < p.len && (p[at] == 33 as byte || p[at] == 94 as byte) {
         negate = true
         at += 1
     }
     var hit = false
     let first = at
     while at < p.len {
-        let c = p.bytes()[at] as int
+        let c = p[at] as int
         if c == 93 && at > first { return if hit != negate then at + 1 else -(at + 1) }
-        if c == 91 && at + 1 < p.len && p.bytes()[at + 1] == 58 as byte {
-            let rest = p[at + 2..]
-            let end = rest.find(":]") else { return 0 }
-            if member(b, rest[0..end]) { hit = true }
-            at += end + 4
+        if c == 91 && at + 1 < p.len && p[at + 1] == 58 as byte {
+            var end = at + 2
+            while end + 1 < p.len && !(p[end] == 58 as byte && p[end + 1] == 93 as byte) {
+                end += 1
+            }
+            if end + 1 == p.len { return 0 }
+            let name = str_from_utf8(p[at + 2..end]) else ""
+            if member(b, name) { hit = true }
+            at = end + 2
             continue
         }
-        var lo = c
-        if c == 92 && at + 1 < p.len { at += 1; lo = p.bytes()[at] as int }
-        at += 1
-        if at + 1 < p.len && p.bytes()[at] == 45 as byte && p.bytes()[at + 1] != 93 as byte {
+        let (lo, next) = atom(p, at)
+        at = next
+        if at + 1 < p.len && p[at] == 45 as byte && p[at + 1] != 93 as byte {
             at += 1
-            var hi = p.bytes()[at] as int
-            if hi == 92 && at + 1 < p.len { at += 1; hi = p.bytes()[at] as int }
-            at += 1
+            let (hi, next) = atom(p, at)
+            at = next
             if b >= lo && b <= hi { hit = true }
         } else if b == lo {
             hit = true
@@ -62,13 +80,13 @@ fn bracket(p: str, start: int, b: int) -> int {
 }
 
 /// Match a complete name; slash and leading dot are ordinary bytes.
-pub fn matches(p: str, text: str) -> bool {
+pub fn matches(p: List[byte], text: List[byte]) -> bool {
     var at = 0
     var pos = 0
     var star = -1
     var retry = 0
     while pos < text.len {
-        if at < p.len && p.bytes()[at] == 42 as byte {
+        if at < p.len && p[at] == 42 as byte {
             star = at
             retry = pos
             at += 1
@@ -77,8 +95,8 @@ pub fn matches(p: str, text: str) -> bool {
         var next = at + 1
         var hit = false
         if at < p.len {
-            let c = p.bytes()[at] as int
-            let b = text.bytes()[pos] as int
+            let c = p[at] as int
+            let b = text[pos] as int
             if c == 63 {
                 hit = true
             } else if c == 91 {
@@ -90,7 +108,7 @@ pub fn matches(p: str, text: str) -> bool {
                     next = if end > 0 then end else -end
                 }
             } else if c == 92 {
-                if next < p.len { hit = p.bytes()[next] as int == b; next += 1 }
+                if next < p.len { hit = p[next] as int == b; next += 1 }
             } else {
                 hit = c == b
             }
@@ -108,16 +126,16 @@ pub fn matches(p: str, text: str) -> bool {
         }
         return false
     }
-    while at < p.len && p.bytes()[at] == 42 as byte { at += 1 }
+    while at < p.len && p[at] == 42 as byte { at += 1 }
     at == p.len
 }
 
 /// Explicit operands also try suffixes beginning after a slash.
-pub fn operand(pattern: str, path: str) -> bool {
+pub fn operand(pattern: List[byte], path: List[byte]) -> bool {
     if matches(pattern, path) { return true }
     var at = 0
     while at < path.len {
-        if path.bytes()[at] == 47 as byte && matches(pattern, path[at + 1..]) { return true }
+        if path[at] == 47 as byte && matches(pattern, path[at + 1..]) { return true }
         at += 1
     }
     false

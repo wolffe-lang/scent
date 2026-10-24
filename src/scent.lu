@@ -3,6 +3,7 @@
 // Clean-room: POSIX.1-2024 grep, GNU grep 3.12 manual/help and black-box.
 // ferp 7d332b5 src/ferp_cli.f90:23-147 is design reference, not a port.
 use std.env
+use colors
 use fixed
 use matcher
 use opts
@@ -28,7 +29,7 @@ fn add_patterns(mut patterns: List[List[byte]], bytes: List[byte], explicit: boo
 }
 
 fn help() {
-    print("Usage: scent [OPTION]... PATTERNS [FILE]...")
+    print("Usage: {opts.program()} [OPTION]... PATTERNS [FILE]...")
     print("Find selected byte lines in files or standard input.")
     print("  -F                 use literal patterns (C locale)")
     print("  -e PATTERN -f FILE  add patterns, or read one per newline")
@@ -38,8 +39,11 @@ fn help() {
     print("  -A N -B N -C N     surrounding lines and configurable groups")
     print("  -m N -z -a -I      match limit, NUL lines, binary policy")
     print("  --label=NAME       standard-input label; --line-buffered flushes lines")
+    print("  -r -R -d -D        recursive, directory and device handling")
+    print("  --include --exclude --exclude-dir --exclude-from   file selection")
+    print("  --color[=WHEN]     always, never or automatic terminal highlighting")
     print("  --help --version   show this summary or scent's version")
-    print("Basic/extended syntax joins in ct02; recursion and colour in M2.")
+    print("C-locale basic, extended and fixed patterns; recursive search and colour.")
     print("Exit: 0 when a line is selected, 1 otherwise, 2 on error.")
 }
 
@@ -54,7 +58,8 @@ fn emit_diagnostics(d: re.Diagnostics, names: List[str], lines: List[int]) {
     }
 }
 
-fn run(o: opts.Options) -> int {
+fn run(initial: opts.Options) -> int {
+    var o = initial
     if o.status >= 0 { return o.status }
     if o.action == "help" { help(); return 0 }
     if o.action == "version" {
@@ -62,7 +67,14 @@ fn run(o: opts.Options) -> int {
         print("GPL-3.0-or-later with the wolf Training Data Permission.")
         return 0
     }
-    if o.not_yet != "" { eprint("scent: not yet implemented: {o.not_yet}"); return 2 }
+    var locale = env.get("LC_ALL") else ""
+    if locale == "" { locale = env.get("LC_CTYPE") else "" }
+    if locale == "" { locale = env.get("LANG") else "" }
+    if locale.contains("UTF-8") || locale.contains("utf8") || locale.contains("utf-8") {
+        o.not_yet = "UTF-8 locale semantics (M3)"
+    }
+    if o.not_yet != "" { eprint("{opts.program()}: not yet implemented: {o.not_yet}"); return 2 }
+    o.colors = colors.configure(o.color_when, opts.program())
     var patterns = List[List[byte]]()
     var source_names = List[str]()
     var source_lines = List[int]()

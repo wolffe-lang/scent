@@ -1,0 +1,21 @@
+//! member: false
+
+use glob
+
+fn main() {
+    assert(glob.matches("*.txt".bytes(), ".a.txt".bytes()))
+    assert(glob.matches("tree/*".bytes(), "tree/sub/a".bytes()))
+    assert(glob.operand("a".bytes(), "tree/sub/a".bytes()))
+    assert(!glob.matches("a".bytes(), "tree/sub/a".bytes()))
+    assert(glob.matches("[[:alpha:]][[:digit:]]".bytes(), "a1".bytes()))
+    assert(glob.matches("[[.a.]-[.c.]]".bytes(), "b".bytes()))
+    assert(glob.matches("[[=a=]]".bytes(), "a".bytes()))
+    assert(!glob.matches("[!a]".bytes(), "a".bytes()))
+    assert(glob.matches("[]a]".bytes(), "]".bytes()))
+    assert(glob.matches("[".bytes(), "[".bytes()))
+    assert(glob.matches("\\*".bytes(), "*".bytes()))
+    assert(glob.matches([255 as byte], [255 as byte]))
+    assert(glob.matches([91 as byte, 255 as byte, 93 as byte], [255 as byte]))
+    assert(!glob.matches("[z-a]".bytes(), "x".bytes()))
+    print("glob: 14 cases, 0 SKIP")
+}

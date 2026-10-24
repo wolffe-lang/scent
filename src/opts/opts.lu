@@ -4,6 +4,8 @@
 // Design reference: ferp 7d332b5 src/ferp_cli.f90:23-147, 149-691.
 // GNU wins where ferp differs (permutation, empty patterns, CR, errors).
 
+use colors
+
 /// A literal pattern list or a pattern-file operand.
 pub struct Source {
     file: bool,
@@ -13,16 +15,18 @@ pub struct Source {
 /// An ordered file-selection pattern. First rule determines the fallback.
 pub struct Filter {
     include: bool,
-    pattern: str,
+    pattern: List[byte],
 }
 
 /// Parsed CLI controls, sources, operands and terminal actions.
 pub struct Options {
+    color_when: str,
+    colors: colors.Config,
     directories: int,
     dereference: bool,
     devices: int,
     filters: List[Filter],
-    exclude_dirs: List[str],
+    exclude_dirs: List[List[byte]],
     implicit_tree: bool,
     filename_auto: bool,
     syntax: str,
@@ -61,11 +65,13 @@ pub struct Options {
 /// The GNU 3.12 C-locale defaults.
 pub fn defaults() -> Options {
     Options {
+        color_when: "never",
+        colors: colors.defaults(),
         directories: 0,
         dereference: false,
         devices: -1,
         filters: List[Filter](),
-        exclude_dirs: List[str](),
+        exclude_dirs: List[List[byte]](),
         implicit_tree: false,
         filename_auto: true,
         syntax: "G",
@@ -216,6 +222,18 @@ fn number(text: str, negative: bool) -> int ! {invalid} {
     value
 }
 
+fn add_exclusion(mut o: Options, buf: List[byte], lo: int, hi: int) {
+    var end = hi
+    while end > lo {
+        let b = buf[end - 1] as int
+        if b != 32 && (b < 9 || b > 13) { break }
+        end -= 1
+    }
+    var at = lo
+    while at < end && buf[at] != 0 as byte { at += 1 }
+    (mut o.filters).push(Filter { include: false, pattern: buf[lo..at] })
+}
+
 fn apply(mut o: Options, key: str, value: str) -> bool {
     match key {
         "P" => {
@@ -285,9 +303,9 @@ fn apply(mut o: Options, key: str, value: str) -> bool {
         "no-group-separator" => { o.groups = false },
         "line-buffered" => { o.line_buffered = true },
         "color" => {
-            if value == "always" {
-                o.not_yet = "--color=always (M2)"
-            } else if value != "" && value != "auto" && value != "never" {
+            if value == "" || value == "auto" || value == "always" || value == "never" {
+                o.color_when = if value == "" then "auto" else value
+            } else {
                 o.action = "help"
             }
         },
@@ -324,12 +342,12 @@ fn apply(mut o: Options, key: str, value: str) -> bool {
         },
         "r" | "R" => { o.directories = 1; o.dereference = key == "R" },
         "include" | "exclude" => {
-            (mut o.filters).push(Filter { include: key == "include", pattern: value })
+            (mut o.filters).push(Filter { include: key == "include", pattern: value.bytes() })
         },
         "exclude-dir" => {
             var end = value.len
             while end > 0 && value.bytes()[end - 1] == 47 as byte { end -= 1 }
-            (mut o.exclude_dirs).push(value[0..end])
+            (mut o.exclude_dirs).push(value[0..end].bytes())
         },
         "exclude-from" => {
             var fd = 0
@@ -347,16 +365,16 @@ fn apply(mut o: Options, key: str, value: str) -> bool {
                 for b in chunk { (mut all).push(b) }
             }
             if fd != 0 { fs_close(fd) else |_| {} }
-            let text = str_from_utf8(all) else |_| {
-                return problem(
-                    mut o,
-                    "{value}: Invalid or incomplete multibyte or wide character",
-                    false,
-                )
+            var lo = 0
+            var at = 0
+            while at < all.len {
+                if all[at] == 10 as byte {
+                    add_exclusion(mut o, all, lo, at)
+                    lo = at + 1
+                }
+                at += 1
             }
-            for line in text.split("\n") {
-                (mut o.filters).push(Filter { include: false, pattern: line })
-            }
+            if lo < all.len { add_exclusion(mut o, all, lo, all.len) }
         },
         "help" => { o.action = "help" },
         "V" => { o.action = "version" },
