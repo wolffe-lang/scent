@@ -1,0 +1,61 @@
+//! UTF-8 scalar view over byte windows. Unicode Standard UTF-8 well-formed
+//! sequence constraints; design reference yew src/unicode/utf8.lu:263-305
+//! (buffer/offset interface and one-byte recovery). No libc data used.
+//! A rejected byte is represented above the scalar range, preserving its
+//! identity for literal byte patterns; dot/classes never accept it.
+
+/// Decode one character, or one rejected byte, without allocating.
+/// Empty windows return (0,0); callers pass 0 <= at <= end <= bytes.len.
+pub fn next(bytes: List[byte], at: int, end: int) -> (int, int) {
+    if at == end { return (0, 0) }
+    let lead = bytes[at] as int
+    if lead < 128 { return (lead, 1) }
+    var width = 0
+    var cp = 0
+    if lead >= 194 && lead <= 223 { width = 2; cp = lead & 31 }
+    if lead >= 224 && lead <= 239 { width = 3; cp = lead & 15 }
+    if lead >= 240 && lead <= 244 { width = 4; cp = lead & 7 }
+    if width == 0 || end - at < width { return (1114112 + lead, 1) }
+    var i = 1
+    while i < width {
+        let b = bytes[at + i] as int
+        if b < 128 || b > 191 { return (1114112 + lead, 1) }
+        cp = cp * 64 + b - 128
+        i += 1
+    }
+    if width == 2 && cp < 128 ||
+        width == 3 && cp < 2048 ||
+        width == 4 && cp < 65536 ||
+        cp >= 55296 && cp <= 57343 ||
+        cp > 1114111 {
+        return (1114112 + lead, 1)
+    }
+    (cp, width)
+}
+
+/// Character ending at a known boundary; no scan beyond four bytes.
+pub fn previous(bytes: List[byte], lo: int, at: int) -> int {
+    if at <= lo { return -1 }
+    var start = at - 1
+    while start > lo && at - start < 4 && bytes[start] as int >= 128 && bytes[start] as int <= 191 {
+        start -= 1
+    }
+    var cp = -1
+    while start < at {
+        let (value, width) = next(bytes, start, at)
+        cp = value
+        start += width
+    }
+    cp
+}
+
+/// Whether this complete record window contains a rejected byte.
+pub fn invalid(bytes: List[byte], lo: int, hi: int) -> bool {
+    var at = lo
+    while at < hi {
+        let (cp, width) = next(bytes, at, hi)
+        if cp > 1114111 { return true }
+        at += width
+    }
+    false
+}

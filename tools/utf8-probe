@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+"""Black-box UTF-8 error and span witnesses; no implementation data read."""
+import hashlib, itertools, json, os, pathlib, subprocess, tempfile, tomllib
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+pin = tomllib.loads((ROOT / 'scent-oracle.toml').read_text())['oracle']
+assert os.environ.get('SCENT_IN_CONTAINER') == '1'
+binary = ROOT / '.oracle/grep'
+assert hashlib.sha256(binary.read_bytes()).hexdigest() == pin['binary_sha256']
+assert subprocess.check_output(['ldd', '--version']).splitlines()[0].decode() == pin['glibc_line']
+errors = {'tail': b'\x80', 'tail-end': b'\xbf', 'illegal-c0': b'\xc0',
+          'illegal-c1': b'\xc1', 'overlong-2': b'\xc0\xaf', 'overlong-3': b'\xe0\x80\xaf',
+          'overlong-4': b'\xf0\x80\x80\xaf', 'surrogate-low': b'\xed\xa0\x80',
+          'surrogate-high': b'\xed\xbf\xbf', 'above-max': b'\xf4\x90\x80\x80',
+          'five-byte': b'\xf8\x88\x80\x80\x80', 'six-byte': b'\xfc\x84\x80\x80\x80\x80',
+          'fe': b'\xfe', 'ff': b'\xff', 'short-2': b'\xc2', 'short-3': b'\xe1\x80',
+          'short-4': b'\xf1\x80\x80', 'bad-tail': b'\xe1A\x80',
+          'nul': b'\0', 'valid': 'é'.encode()}
+flags = [[], ['-a'], ['-I'], ['--binary-files=binary'], ['--binary-files=text'],
+         ['--binary-files=without-match'], ['-U'], ['--line-buffered'],
+         ['-U', '--line-buffered'], ['-o'], ['-a', '-o'], ['-c'], ['-l'], ['-L'], ['-q'],
+         ['-z'], ['-z', '-a', '-o']]
+patterns = [b'x', b'.', b'^.$', b'[^x]', br'\W', br'\w', b'x.*x']
+rows = []
+with tempfile.TemporaryDirectory(dir=ROOT / 'target', prefix='utf8-probe-') as tmp:
+    work = pathlib.Path(tmp)
+    def run(name, argv, pattern, data):
+        (work / 'patterns').write_bytes(pattern + b'\n')
+        r = subprocess.run(['grep', *argv, '-f', 'patterns'], executable=str(binary),
+                           cwd=work, input=data, capture_output=True,
+                           env={'PATH': os.defpath, 'LC_ALL': 'C.UTF-8'})
+        rows.append({'name': name, 'argv': [*argv, '-f', 'patterns'],
+                     'pattern_hex': (pattern + b'\n').hex(), 'stdin_hex': data.hex(),
+                     'stdout_hex': r.stdout.hex(), 'stderr_hex': r.stderr.hex(), 'status': r.returncode})
+    for name, error in errors.items():
+        for position, data in [('only', error+b'\n'), ('inside', b'x'+error+b'x\n'),
+                               ('before', error+b' x\n'), ('after', b'x '+error+b'\n'),
+                               ('other-line', b'x\n'+error+b'\n'), ('eof', b'x '+error)]:
+            for fi, opts in enumerate(flags):
+                for pi, pattern in enumerate(patterns):
+                    run(f'error-{name}-{position}-{fi}-{pi}', opts, pattern, data)
+        print('measured', name, len(rows), flush=True)
+    for name, pattern in errors.items():
+        for syntax in ['-G', '-E', '-F']:
+            for suffix in [b'', b'[', b'\\']:
+                run('pattern-'+name+'-'+syntax+'-'+suffix.hex(), [syntax, '-a', '-o'], pattern+suffix, b'x'+pattern+b'x\n')
+    for pattern in ['[a-z]', '[A-z]', '[α-ω]', '[[=é=]]', '[[.é.]]', '[[=a=]]', '[[.ch.]]']:
+        run('range-'+pattern, ['-a', '-o'], pattern.encode(), 'aAzZ[_`éαβσωΣ\n'.encode())
+output = ROOT / 'notes/ct04-evidence/utf8-probes.json'
+output.write_text(json.dumps({'oracle': pin['binary_sha256'], 'rows': rows}, indent=2)+'\n')
+print('utf8-probe:', len(rows), 'rows', output, flush=True)
