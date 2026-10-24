@@ -55,6 +55,7 @@ with tempfile.TemporaryDirectory(dir=ROOT/'target') as tmp:
     check=original(str(ROOT/'tools/oracle-review.py'))['exact_review']
     for name,review in reviews['darwin'].items():
         assert review['class']=='upstream-blocked' and review['platform']=='darwin'
+        assert not library['needs_non_utf8_name'](cases[name]),'raw argv is not a filename fixture'
         g=review['gnu'];s=review['scent']
         g=(bytes.fromhex(g[0]),bytes.fromhex(g[1]),g[2],bytes.fromhex(g[3]))
         s=(bytes.fromhex(s[0]),bytes.fromhex(s[1]).replace(b'{pid}',b'123'),s[2],bytes.fromhex(s[3]))
