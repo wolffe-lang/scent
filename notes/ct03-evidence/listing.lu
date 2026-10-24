@@ -1,0 +1,11 @@
+use std.fs
+
+fn main() -> int {
+    let args = env_args()
+    let rows = fs.entries(args[0]) else |_| { return 2 }
+    for row in rows {
+        fs_write_chunk(1, row.name) else |_| { return 2 }
+        fs_write_chunk(1, [10 as byte]) else |_| { return 2 }
+    }
+    0
+}

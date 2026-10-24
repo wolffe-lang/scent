@@ -1,0 +1,129 @@
+[
+  {
+    "name": "socket-default",
+    "argv": [
+      "x",
+      "socket"
+    ],
+    "gnu": {
+      "stdout_hex": "",
+      "stderr_hex": "677265703a20736f636b65743a204e6f207375636820646576696365206f7220616464726573730a",
+      "status": 2
+    },
+    "scent": {
+      "stdout_hex": "",
+      "stderr_hex": "677265703a20736f636b65743a204e6f207375636820646576696365206f7220616464726573730a",
+      "status": 2
+    }
+  },
+  {
+    "name": "socket-skip",
+    "argv": [
+      "-Dskip",
+      "x",
+      "socket"
+    ],
+    "gnu": {
+      "stdout_hex": "",
+      "stderr_hex": "677265703a20736f636b65743a204e6f207375636820646576696365206f7220616464726573730a",
+      "status": 2
+    },
+    "scent": {
+      "stdout_hex": "",
+      "stderr_hex": "",
+      "status": 1
+    }
+  },
+  {
+    "name": "socket-read",
+    "argv": [
+      "-Dread",
+      "x",
+      "socket"
+    ],
+    "gnu": {
+      "stdout_hex": "",
+      "stderr_hex": "677265703a20736f636b65743a204e6f207375636820646576696365206f7220616464726573730a",
+      "status": 2
+    },
+    "scent": {
+      "stdout_hex": "",
+      "stderr_hex": "677265703a20736f636b65743a204e6f207375636820646576696365206f7220616464726573730a",
+      "status": 2
+    }
+  },
+  {
+    "name": "socket-recursive-explicit",
+    "argv": [
+      "-r",
+      "-Dskip",
+      "x",
+      "socket"
+    ],
+    "gnu": {
+      "stdout_hex": "",
+      "stderr_hex": "677265703a20736f636b65743a204e6f207375636820646576696365206f7220616464726573730a",
+      "status": 2
+    },
+    "scent": {
+      "stdout_hex": "",
+      "stderr_hex": "",
+      "status": 1
+    }
+  },
+  {
+    "name": "socket-recursive-walked",
+    "argv": [
+      "-r",
+      "-Dskip",
+      "x",
+      "normal"
+    ],
+    "gnu": {
+      "stdout_hex": "",
+      "stderr_hex": "",
+      "status": 1
+    },
+    "scent": {
+      "stdout_hex": "",
+      "stderr_hex": "",
+      "status": 1
+    }
+  },
+  {
+    "name": "fifo-skip",
+    "argv": [
+      "-Dskip",
+      "x",
+      "fifo"
+    ],
+    "gnu": {
+      "stdout_hex": "",
+      "stderr_hex": "",
+      "status": 1
+    },
+    "scent": {
+      "stdout_hex": "",
+      "stderr_hex": "",
+      "status": 1
+    }
+  },
+  {
+    "name": "raw-path",
+    "argv": [
+      "-r",
+      "x",
+      "tree"
+    ],
+    "gnu": {
+      "stdout_hex": "747265652fff3a780a",
+      "stderr_hex": "",
+      "status": 0
+    },
+    "scent": {
+      "stdout_hex": "",
+      "stderr_hex": "677265703a206469726563746f727920656e747279206973206e6f74205554462d380a",
+      "status": 2
+    }
+  }
+]

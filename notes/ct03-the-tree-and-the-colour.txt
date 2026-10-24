@@ -1,0 +1,104 @@
+ct03 — STOP, not M2 complete
+
+Forbidden
+---------
+No GNU/gnulib/libc implementation source read, no host tests or Mac builds,
+no package installs, labels, merges, releases, issues filed or closed.
+All builds, oracle probes and tests ran inside the lane-owned
+localhost/ct03-scent container under flock scent-cores-12-15.lock,
+taskset 12-15 and ulimit -c 0. No attribution trailers.
+
+Inputs verified
+---------------
+Planning contract ct03, scent index/R114 and RULES, ct00's contract,
+scent docs/MAP.md and docs/RE.md, ct00-ct02 notes. wolf 0.2.35,
+lupin 0.1.56 and bundled std 2386522eb059cca5a84108562c2c0a0e72345d34
+are unchanged. std/fs/fs.lu:1393-1412 exposes raw-order byte-name entries;
+its stat/lstat/open interfaces still require str paths. GNU's installed
+File and Directory Selection manual documents skipping sockets under
+-Dskip and last-matching-rule filters with suffix matching for operands.
+
+An initial order/probe pass accidentally used ct02/oracle/bin/grep, whose
+SHA256 dbafee... is NOT the record pin. None of those early probes count
+as record evidence. The oracle harness refused its digest, as intended.
+The record binary was then copied from ct02/scent/.oracle/grep and verified
+as 92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea;
+all reported matrix, STOP and final order evidence uses that binary and
+ldd (Ubuntu GLIBC 2.39-0ubuntu8.9) 2.39.
+
+Prediction
+----------
+Committed d648739 before implementation/measurements. Predicted std
+sorting (wrong: entries is unsorted), about 3,000 new cases (generator:
+3,175), slash-bearing filtering first (correct), initial colour reset
+mismatches and 8x recursive perf (both unmeasured at STOP).
+
+Evidence index
+--------------
+notes/ct03-evidence/order-pinned.log: three 400-file fixture trees, three
+creation orders; raw entries and GNU -rl output compare with cmp on the
+SAME directory; all 1,200 entries agree, none of the three lists is sorted.
+order-probe.py and listing.lu reproduce the measurement.
+
+The generated M2 family has 3,175 rows: 2,000 walk/filter, 18 edge,
+5 self-output, 1,104 colour, 48 legacy-colour environment rows. Only the
+first three families were run. Native walk: first pass 1,879 agree/121
+differ; after suffix/glob and filtered-dangling-link corrections,
+2,000 agree/0 differ. Edge: 14 agree/4 differ. Self-output: 5 agree/0 differ.
+The edge harness shell continued to self-output after the edge command
+failed; its final shell success is NOT a green edge verdict. The red log
+is retained verbatim. No release/static/full acceptance or CI was run.
+
+R-ct03-1 (pending recommendation): option A, publish fixed invocation
+naming until env_arg0 ships; never derive it from os_exe. README was read
+but not refreshed because this is an incomplete STOP, not a final head.
+
+R-ct03-2 (ruling requested, NOT decided): GNU contradicts -Dskip's manual
+for an explicit Unix-domain socket. With socket created using Python's
+AF_UNIX bind, argv ['-Dskip','x','socket'] gives no stdout,
+stderr 'grep: socket: No such device or address\n', status 2.
+The candidate skips it: empty stdout/stderr, status 1. GNU skips the
+same kind of socket encountered under ['-r','-Dskip','x','normal'] and
+skips an explicit FIFO under -Dskip; both controls give empty streams,
+status 1. Adding -r to the explicit socket does not fix GNU.
+Recommendation: keep the documented skip rule for all sockets, publish
+this precise divergence only if approved, and draft a bug-grep report.
+No expected-difference manifest entry or waiver was added.
+
+R-ct03-3 (upstream blocker, NOT a GNU bug): create tree/<byte FF> with
+contents x\n; argv ['-r','x','tree'] has GNU stdout hex
+747265652fff3a780a, no stderr, status 0. Candidate stdout is empty,
+stderr 'grep: directory entry is not UTF-8\n', status 2. No raw argv is
+involved: ASCII tree operand reaches the byte name through fs.entries.
+The pinned fs.stat/lstat/open/read_dir_entries path parameters are str,
+and str_from_utf8 rejects FF; env_arg0/env_args_bytes alone cannot solve
+this. Recommendation: prerequisite byte-path (or equivalent fd-relative)
+filesystem APIs in wolf-lang/wolf-std, then resume with a release pin.
+Do not count this as an approved difference or postpone it to UTF-8 locale
+semantics: byte names are valid in the C-locale M2 walk.
+
+stop-probe.py, witnesses.json and stops-final.log contain both STOPs and
+controls, with record digest/libc/affinity assertions. Final candidate
+native digest c1f101db673b6d423bf87700dc7fa7cbfc37a38c1947f741f6c2f632f895fd00.
+The candidate builds after formatting; this does not imply M2 acceptance.
+
+Done-when (NOT MET)
+------------------
+Partial walk/filter implementation retained on ct03. No PR, CI run, plant,
+lane audit, package bump, deterministic static build, perf row or px draft.
+Colour stays refused, not silently enabled. Ordinary remaining edge bugs:
+-m0 should short-circuit the walk for normal/count output, but -L still
+must open files and report permissions; three red rows show this.
+The existing 12 M2 not-yet baseline rows and CI generation wiring have not
+been migrated. Arbitrary byte patterns in --exclude-from also remain
+unimplemented by the current str glob scaffold. No M2-complete claim.
+
+On resume: settle R-ct03-2 and R-ct03-3, cover byte names end-to-end, fix
+-m0 edges, implement colour/tty/legacy warnings, wire generator/gate,
+finish README/drafts, full gates/static/PAX/perf/px draft and both CI plants.
+Existing scent#7 remains open. Propose an upstream byte-path issue after
+checking duplicates; a GNU report follows the socket ruling. None filed.
+
+Lane storage was 766 MiB before final evidence, below 15 GiB. No jobs left
+running and no global prune. Retain lane image, toolchain and oracle for
+resume; generated fixtures and target binaries may be pruned after audit.

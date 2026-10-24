@@ -1,0 +1,23 @@
+[
+  {
+    "seed": 0,
+    "entries": 400,
+    "equal": true,
+    "raw_is_sorted": false,
+    "sha256": "a82ae7b9c9b1d53516f3e70fe331184bf9cd1b8b6db3b7fcb6ec884a5ff5587a"
+  },
+  {
+    "seed": 1,
+    "entries": 400,
+    "equal": true,
+    "raw_is_sorted": false,
+    "sha256": "9c74318d06506319952cdeff7aa822b1cb3a8bbef063f52e70e06f45657e4c5d"
+  },
+  {
+    "seed": 2,
+    "entries": 400,
+    "equal": true,
+    "raw_is_sorted": false,
+    "sha256": "0efe6e61628b57ff9e40e2395635d7fb79af2c5e8c8781a42afd164c686d2292"
+  }
+]

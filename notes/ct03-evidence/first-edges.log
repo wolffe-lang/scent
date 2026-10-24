@@ -1,0 +1,12 @@
+oracle: RECORD /work/scent/.oracle/grep
+DIFFER m2-edges-11 GNU (b'', b'grep: tree/socket: No such device or address\n', 2, b'') scent (b'', b'', 1, b'')
+DIFFER m2-edges-14 GNU (b'', b'', 1, b'') scent (b'', b'grep: tree/noaccess: Permission denied\n', 2, b'')
+DIFFER m2-edges-15 GNU (b'', b'', 1, b'') scent (b'tree/z.txt:0\ntree/a.dat:0\ntree/.hidden:0\ntree/sub/c.txt:0\ntree/sub/empty:0\ntree/denied:0\n', b'grep: tree/noaccess: Permission denied\n', 2, b'')
+DIFFER m2-edges-16 GNU (b'tree/z.txt\ntree/a.dat\ntree/.hidden\ntree/sub/c.txt\ntree/sub/empty\n', b'grep: tree/denied: Permission denied\ngrep: tree/noaccess: Permission denied\n', 2, b'') scent (b'tree/z.txt\ntree/a.dat\ntree/.hidden\ntree/sub/c.txt\ntree/sub/empty\ntree/denied\n', b'grep: tree/noaccess: Permission denied\n', 2, b'')
+14 agree / 4 differ / 0 not-yet
+0 reviewed divergences (including 0 upstream-blocked)
+not-yet columns: argv0-diagnostic=0 argv0-usage=0 argv-bytes=0 terminator-pattern=0
+oracle: RECORD /work/scent/.oracle/grep
+5 agree / 0 differ / 0 not-yet
+0 reviewed divergences (including 0 upstream-blocked)
+not-yet columns: argv0-diagnostic=0 argv0-usage=0 argv-bytes=0 terminator-pattern=0

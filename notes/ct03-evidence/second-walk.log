@@ -1,0 +1,44 @@
+oracle: RECORD /work/scent/.oracle/grep
+progress 50 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 50, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 100 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 100, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 150 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 150, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 200 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 200, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 250 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 250, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 300 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 300, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 350 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 350, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 400 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 400, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 450 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 450, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 500 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 500, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 550 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 550, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 600 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 600, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 650 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 650, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 700 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 700, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 750 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 750, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 800 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 800, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 850 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 850, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 900 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 900, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 950 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 950, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1000 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1000, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1050 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1050, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1100 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1100, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1150 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1150, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1200 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1200, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1250 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1250, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1300 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1300, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1350 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1350, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1400 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1400, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1450 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1450, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1500 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1500, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1550 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1550, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1600 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1600, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1650 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1650, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1700 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1700, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1750 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1750, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1800 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1800, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1850 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1850, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1900 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1900, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 1950 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 1950, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+progress 2000 {'upstream-blocked': 0, 'reviewed': 0, 'agree': 2000, 'differ': 0, 'not-yet': 0, 'argv0-diagnostic': 0, 'argv0-usage': 0, 'argv-bytes': 0, 'field-unavailable': 0, 'terminator-pattern': 0}
+2000 agree / 0 differ / 0 not-yet
+0 reviewed divergences (including 0 upstream-blocked)
+not-yet columns: argv0-diagnostic=0 argv0-usage=0 argv-bytes=0 terminator-pattern=0
