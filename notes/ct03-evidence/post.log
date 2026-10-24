@@ -1,0 +1,6 @@
+PASS colour byte witnesses 5
+scent 0.2.0
+GPL-3.0-or-later with the wolf Training Data Permission.
+PASS draft PKGBUILD checks, staged payload and compatibility PATH; no host install
+debconf: delaying package configuration, since apt-utils is not installed
+Syntax OK

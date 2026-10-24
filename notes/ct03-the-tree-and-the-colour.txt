@@ -1,104 +1,195 @@
-ct03 — STOP, not M2 complete
+ct03 — the tree and the colour (scent 0.2.0)
 
 Forbidden
 ---------
-No GNU/gnulib/libc implementation source read, no host tests or Mac builds,
-no package installs, labels, merges, releases, issues filed or closed.
-All builds, oracle probes and tests ran inside the lane-owned
-localhost/ct03-scent container under flock scent-cores-12-15.lock,
-taskset 12-15 and ulimit -c 0. No attribution trailers.
+No GNU grep/gnulib/libc implementation source read. The installed GNU
+manual, --help and black-box record binary were the behavioral inputs.
+No host packages or Mac builds/tests, no labels, merges, tags, releases,
+issues filed/closed or GNU report sent. All runtime work ran on kasumi in
+lane-owned containers under flock ~/lanes/scent-cores-12-15.lock,
+taskset 12-15 and ulimit -c 0. No attribution trailers or ~/.claude edits.
 
 Inputs verified
 ---------------
-Planning contract ct03, scent index/R114 and RULES, ct00's contract,
-scent docs/MAP.md and docs/RE.md, ct00-ct02 notes. wolf 0.2.35,
-lupin 0.1.56 and bundled std 2386522eb059cca5a84108562c2c0a0e72345d34
-are unchanged. std/fs/fs.lu:1393-1412 exposes raw-order byte-name entries;
-its stat/lstat/open interfaces still require str paths. GNU's installed
-File and Directory Selection manual documents skipping sockets under
--Dskip and last-matching-rule filters with suffix matching for operands.
+Read ct03's contract, scent index/R114, RULES, ct00's clean-room/map,
+docs/MAP.md, docs/RE.md and ct00-ct02 notes. Toolchain pin unchanged:
+wolf 0.2.35 / cf0c13d38479f444b69bb8356ad5709d07eff323,
+paired lupin 0.1.56 / 28547b4324524d5477a6e54e4f6888462461a21f,
+bundled std 2386522eb059cca5a84108562c2c0a0e72345d34. Full compiler/runtime
+pairs copied from ct02's digest-verified cache; each build asserts the
+version pairing and STD-REV. No independently downloaded archives or
+new toolchain-pin verification is claimed by this pass.
 
-An initial order/probe pass accidentally used ct02/oracle/bin/grep, whose
-SHA256 dbafee... is NOT the record pin. None of those early probes count
-as record evidence. The oracle harness refused its digest, as intended.
-The record binary was then copied from ct02/scent/.oracle/grep and verified
-as 92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea;
-all reported matrix, STOP and final order evidence uses that binary and
-ldd (Ubuntu GLIBC 2.39-0ubuntu8.9) 2.39.
+Record oracle: GNU grep 3.12 --disable-perl-regexp, SHA256
+92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea,
+ldd (Ubuntu GLIBC 2.39-0ubuntu8.9) 2.39. The Ubuntu image pin is
+sha256:534baea6a22c03a63003dbc8dbe78fe34bc0d7e595d9a9dc9834884ff530eb55.
+Initial exploratory probes accidentally used stale ct02/oracle/bin/grep
+(dbafee...), and the harness rejected its digest. None count as record
+evidence. All reported matrices, STOPs and final order probes use the
+record digest. The initial copied container lacked /usr/bin/time; the
+first gate therefore failed at memory measurement (not a skipped gate).
+Rebuilding the exact ci/oracle.Containerfile supplied declared dependencies;
+the complete gate was rerun green. No host package was installed.
+
+- d648739: prediction before implementation/measurement.
+- abcda64 / f2f4a76: generated fixtures, shared-tree oracle, walk/filter seam.
+- ea4e263: zero-limit handling, byte globs and terminal colour.
+- 38703e9: M2 CI floor, exact approved reviews and measurements.
+- a1f4eff: 0.2.0 drafts and full PAX follow-on contract.
+- 7a67dd3: direct-directory -L -m0 diagnostics, eight additional witnesses.
+- README commits refresh supported features, counts and exact differences.
 
 Prediction
 ----------
-Committed d648739 before implementation/measurements. Predicted std
-sorting (wrong: entries is unsorted), about 3,000 new cases (generator:
-3,175), slash-bearing filtering first (correct), initial colour reset
-mismatches and 8x recursive perf (both unmeasured at STOP).
+Predicted sorted std listing: wrong. fs.entries is explicitly raw-order
+byte names. Three 400-file trees, each with a different creation order,
+compare with cmp against GNU on the SAME directory: all 1,200 entries
+agree; none of the three outputs is sorted. Predicted around 3,000 new
+cases: actual generator has 3,392. Predicted first filter disagreement
+around slash patterns: correct. Command-line glob stars can cross slashes,
+and name suffixes are tried; walked matching sees only basenames. Leading
+dots are ordinary bytes, not shell-style dot protection. The contract's
+slash assumption is corrected by these direct measurements and manual
+suffix rules. Predicted initial colour-reset differences: wrong; the
+first 1,104 colour rows had 1,055 agreements and 49 boolean-capability
+value differences (rv=0:ne=0 still enables the booleans). They now all
+agree. Predicted recursive ratio 8x: actual is 19.02x, recorded for M4.
 
 Evidence index
 --------------
-notes/ct03-evidence/order-pinned.log: three 400-file fixture trees, three
-creation orders; raw entries and GNU -rl output compare with cmp on the
-SAME directory; all 1,200 entries agree, none of the three lists is sorted.
-order-probe.py and listing.lu reproduce the measurement.
+Final executable-changing source is 7a67dd3 (includes 0.2.0 from a1f4eff).
+The final durable job ran 2026-10-24T19:48:43Z to 19:56:44Z and exited 0;
+final.log and final.exit retain the complete result. Subsequent changes
+are README/notes and package-check locale handling, the latter exercised
+in post.log. No runtime source changed after that acceptance started.
 
-The generated M2 family has 3,175 rows: 2,000 walk/filter, 18 edge,
-5 self-output, 1,104 colour, 48 legacy-colour environment rows. Only the
-first three families were run. Native walk: first pass 1,879 agree/121
-differ; after suffix/glob and filtered-dangling-link corrections,
-2,000 agree/0 differ. Edge: 14 agree/4 differ. Self-output: 5 agree/0 differ.
-The edge harness shell continued to self-output after the edge command
-failed; its final shell success is NOT a green edge verdict. The red log
-is retained verbatim. No release/static/full acceptance or CI was run.
+Matrix: original 6,207 CLI cases plus 3,392 M2-generated cases = 9,599.
+Each native, release, twice-built static and plain-Ubuntu/no-LANG leg:
+  9,478 agree / 0 unapproved differ / 1 explicit M3 not-yet
+  120 exact reviewed differences = 111 published + 9 upstream-blocked.
+M2 family breakdown: 2,000 shared-tree walk/filter; 18 edges; five
+self-output; 1,104 colour; 48 legacy-colour; eight byte-pattern; one raw
+name; one minimal socket; 18 tty; 60 colour-edge; 120 glob syntax; one
+M3 refusal; eight direct-directory zero-limit rows. The original 12 M2
+not-yet rows now execute as ordinary comparisons. M1's 5,072-case floor
+and all exact review identities remain protected. M3's one refusal is
+not an unexecuted M2 option.
 
-R-ct03-1 (pending recommendation): option A, publish fixed invocation
-naming until env_arg0 ships; never derive it from os_exe. README was read
-but not refreshed because this is an incomplete STOP, not a final head.
+The complete gate also passes planner/wiring/selector/review regressions,
+20 wolf-test programs (0 not-passed), native/lupin root tests, checked
+fallback checks, regex units/malformed corpus, 20,000 generated pairs per
+syntax, projection and regular/backreference cost gates. Every SKIP is
+loud; final whole gate reports SKIP=0. See final.log for the engine's own
+pair/group counters rather than conflating those with CLI case counts.
 
-R-ct03-2 (ruling requested, NOT decided): GNU contradicts -Dskip's manual
-for an explicit Unix-domain socket. With socket created using Python's
-AF_UNIX bind, argv ['-Dskip','x','socket'] gives no stdout,
-stderr 'grep: socket: No such device or address\n', status 2.
-The candidate skips it: empty stdout/stderr, status 1. GNU skips the
-same kind of socket encountered under ['-r','-Dskip','x','normal'] and
-skips an explicit FIFO under -Dskip; both controls give empty streams,
-status 1. Adding -r to the explicit socket does not fix GNU.
-Recommendation: keep the documented skip rule for all sockets, publish
-this precise divergence only if approved, and draft a bug-grep report.
-No expected-difference manifest entry or waiver was added.
+Order: order-pinned.log, order-probe.py, listing.lu. Filter rows use a
+shared fixture for both binaries; directory order is never normalized.
+FIFO writers are bounded/nonblocking and stopped even when -Dskip avoids
+the pipe. Fixtures include symlink loops, dangling links, sockets, FIFOs,
+unreadable files/directories, hidden files and a directory named '-'.
 
-R-ct03-3 (upstream blocker, NOT a GNU bug): create tree/<byte FF> with
-contents x\n; argv ['-r','x','tree'] has GNU stdout hex
-747265652fff3a780a, no stderr, status 0. Candidate stdout is empty,
-stderr 'grep: directory entry is not UTF-8\n', status 2. No raw argv is
-involved: ASCII tree operand reaches the byte name through fs.entries.
-The pinned fs.stat/lstat/open/read_dir_entries path parameters are str,
-and str_from_utf8 rejects FF; env_arg0/env_args_bytes alone cannot solve
-this. Recommendation: prerequisite byte-path (or equivalent fd-relative)
-filesystem APIs in wolf-lang/wolf-std, then resume with a release pin.
-Do not count this as an approved difference or postpone it to UTF-8 locale
-semantics: byte names are valid in the C-locale M2 walk.
+Colour: colour-witnesses.json retains five exact passing stdout/stderr
+hex tuples. Default `--color=always x`, input x\n, is
+1b5b30313b33316d1b5b4b781b5b6d1b5b4b0a, i.e.
+ESC[01;31m ESC[K x ESC[m ESC[K LF (without the explanatory spaces).
+The full matrix crosses every capability, rv inversion, ne, empty
+patterns/lines, -o/-c/-l/-n/-b/-T/-Z, context and separators. Tty rows
+cover always/never/auto and TERM=xterm/dumb/empty. PTY output processing
+is disabled; no output bytes are normalized. Valid GREP_COLOR warns on
+stderr only when colour is active and mt does not override it.
 
-stop-probe.py, witnesses.json and stops-final.log contain both STOPs and
-controls, with record digest/libc/affinity assertions. Final candidate
-native digest c1f101db673b6d423bf87700dc7fa7cbfc37a38c1947f741f6c2f632f895fd00.
-The candidate builds after formatting; this does not imply M2 acceptance.
+R-ct03-1: option A, settled by the coordinator. Help, ordinary diagnostics
+and the M3 refusal use fixed grep; README publishes alternate-invocation
+and full-path differences until env_arg0 ships. No os_exe substitution.
+scent#7 can close after merge under this declared fixed-name behavior.
 
-Done-when (NOT MET)
-------------------
-Partial walk/filter implementation retained on ct03. No PR, CI run, plant,
-lane audit, package bump, deterministic static build, perf row or px draft.
-Colour stays refused, not silently enabled. Ordinary remaining edge bugs:
--m0 should short-circuit the walk for normal/count output, but -L still
-must open files and report permissions; three red rows show this.
-The existing 12 M2 not-yet baseline rows and CI generation wiring have not
-been migrated. Arbitrary byte patterns in --exclude-from also remain
-unimplemented by the current str glob scaffold. No M2-complete claim.
+R-ct03-2: maintainer ruling #120, documented skip. Explicit sockets obey
+-Dskip (empty streams/status 1); GNU emits ENXIO/status 2. Exact rows
+m2-socket-skip and m2-edges-11 are manifest-pinned, not blanket exceptions.
+README names the command, GNU stderr/status and witness path. The draft
+notes/ct03-evidence/gnu-report-Dskip-socket.txt is for the maintainer to
+send; it has not been sent. Walked-socket/FIFO controls agree with GNU.
 
-On resume: settle R-ct03-2 and R-ct03-3, cover byte names end-to-end, fix
--m0 edges, implement colour/tty/legacy warnings, wire generator/gate,
-finish README/drafts, full gates/static/PAX/perf/px draft and both CI plants.
-Existing scent#7 remains open. Propose an upstream byte-path issue after
-checking duplicates; a GNU report follows the socket ruling. None filed.
+R-ct03-3: upstream wolf-lang#687/#912, no duplicate issue. Raw FF-name
+stdout hex is 747265652fff3a780a in GNU, status 0. Candidate has empty
+stdout, stderr `grep: directory entry is not UTF-8\n`, status 2. This
+is one exact named upstream-blocked row, not M3 or a general waiver.
+--exclude-from itself handles arbitrary byte patterns, C-locale trailing
+whitespace and NUL behavior measured against the record oracle.
 
-Lane storage was 766 MiB before final evidence, below 15 GiB. No jobs left
-running and no global prune. Retain lane image, toolchain and oracle for
-resume; generated fixtures and target binaries may be pruned after audit.
+CI plants, fixes committed before planting, both explicitly red:
+- Filter: ct03-plant-filter a08f627; run 40126548310, linux job
+  120969148118. m2-walk-0016: GNU selected two .txt paths; planted
+  candidate selected nothing. 0 agree / 1 differ. plant-filter-ci.log.
+- se capability: ct03-plant-se 3c75d86; run 40126549897, linux job
+  120969161468. m2-colour-0495 lost all configured separator SGR bytes.
+  0 agree / 1 differ. plant-se-ci.log. Each dispatch selected linux only
+  with a native build and the smallest exact oracle witness. No label,
+  merge or plant PR was needed. Plant worktrees pruned after logs read;
+  remote branches retained for audit.
+
+Static builder: tools/mkscent built twice identically, 14,888,128 bytes,
+SHA256 0f4c034f66f8a35f552504e96c3298d98a1c0e3a257c1608e9440a4b7858b965.
+Stripped: 1,398,456 bytes, SHA256
+63e71a30dfb8215a7f35d7335d307b04136e096a4e316c9b2f248fab4fc58729.
+ET_EXEC, no PT_INTERP. The full matrix ran in plain pinned Ubuntu with
+LANG unset and locale data removed. tools/pax-posture's stale old image
+digest was corrected to the behavioral pin and its command is taskset-
+bounded. This is binary readiness, not a PAX deployment claim.
+
+Memory: 2 GiB text, drained pipe, scent peak RSS 2,536 KiB for -F -c
+and 2,736 KiB for -F -n in the full measurement; both below 32 MiB.
+measure.json/perf-table.txt give all 16 M1 rows and the new recursive row.
+Recursive: 10,000 files / 40,960,000 bytes, -r -F -c needle, three-run
+medians scent 0.603694 s / GNU 0.031748 s = 19.02x. Speed is not an M2
+gate; M4 owns the within-2x target. Literal -F is 7.02x; full table follows.
+
+kasumi, pinned Ubuntu/glibc, flock scent-cores-12-15.lock; taskset 12-15.
+256 MiB per flat workload; recursive row: 10,000 files / 40,960,000 bytes.
+Three runs, medians; stdout drained through a pipe, never /dev/null.
+argv | scent seconds | GNU seconds | ratio
+-F needle | 0.961433 | 0.136952 | 7.02x
+-F -i NEEDLE | 0.974436 | 0.142301 | 6.85x
+-F -c needle | 0.742451 | 0.095153 | 7.80x
+-F -v -c needle | 0.731038 | 0.096366 | 7.59x
+-G needle | 2.944098 | 0.132447 | 22.23x
+-G n[e]edle | 3.022770 | 0.132650 | 22.79x
+-G needle\|absent | 4.008871 | 0.124901 | 32.10x
+-G n\(e\)\1dle | 3.411983 | 1.903677 | 1.79x
+-G -i NEEDLE | 3.023695 | 0.138374 | 21.85x
+-G -v -c needle | 2.645652 | 0.100909 | 26.22x
+-E needle | 3.040423 | 0.137788 | 22.07x
+-E n[e]edle | 2.998369 | 0.141156 | 21.24x
+-E needle|absent | 4.185299 | 0.126907 | 32.98x
+-E n(e)\1dle | 3.476418 | 1.835764 | 1.89x
+-E -i NEEDLE | 2.982370 | 0.145125 | 20.55x
+-E -v -c needle | 2.655941 | 0.101673 | 26.12x
+-r -F -c needle | 0.603694 | 0.031748 | 19.02x
+
+Packaging: source drafts bumped to future v0.2.0; no publication. post.log
+passes the PKGBUILD check/package functions in an isolated staged payload,
+compatibility PATH execution and Ruby syntax for the formula. Package
+tests explicitly select LC_ALL=C. No actual Homebrew/AUR publication or
+claim of an installed host package. px-m2-contract.txt is the full draft
+for re-pinning and typed /usr/share recursive/colour sessions on PAX.
+
+Done-when
+---------
+Local contract work complete with the explicitly approved socket and
+upstream byte-path rows. README read and refreshed in README-only commits;
+format, all local gates, plain posture, deterministic binary, memory/perf,
+package smoke, both plants and px draft complete. Final PR/CI first-read
+and lane-audit status are handed back separately; no CI-green or merge
+claim is made by this pre-PR note. Orchestrator labels and watches full CI.
+
+Close after merge: scent#7. File: none (GNU report is drafted, not sent;
+#687/#912 already exist). M3/M4 are future milestones, not new issues.
+No running ct03 containers remain after the final probes. Lane storage
+944 MiB after acceptance, under 15 GiB. Retain source, image, toolchain,
+oracle and evidence for audit. Both clean Mac plant worktrees were removed;
+after audit, generated fixture directories, target outputs and the two
+remote plant branches can be pruned. No global prune or other lane data
+was touched.
+
+Footprint: cross-cutting

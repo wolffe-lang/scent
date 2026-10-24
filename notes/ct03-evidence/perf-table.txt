@@ -1,0 +1,21 @@
+kasumi, pinned Ubuntu/glibc, flock scent-cores-12-15.lock; taskset 12-15.
+256 MiB per flat workload; recursive row: 10,000 files / 40,960,000 bytes.
+Three runs, medians; stdout drained through a pipe, never /dev/null.
+argv | scent seconds | GNU seconds | ratio
+-F needle | 0.961433 | 0.136952 | 7.02x
+-F -i NEEDLE | 0.974436 | 0.142301 | 6.85x
+-F -c needle | 0.742451 | 0.095153 | 7.80x
+-F -v -c needle | 0.731038 | 0.096366 | 7.59x
+-G needle | 2.944098 | 0.132447 | 22.23x
+-G n[e]edle | 3.022770 | 0.132650 | 22.79x
+-G needle\|absent | 4.008871 | 0.124901 | 32.10x
+-G n\(e\)\1dle | 3.411983 | 1.903677 | 1.79x
+-G -i NEEDLE | 3.023695 | 0.138374 | 21.85x
+-G -v -c needle | 2.645652 | 0.100909 | 26.22x
+-E needle | 3.040423 | 0.137788 | 22.07x
+-E n[e]edle | 2.998369 | 0.141156 | 21.24x
+-E needle|absent | 4.185299 | 0.126907 | 32.98x
+-E n(e)\1dle | 3.476418 | 1.835764 | 1.89x
+-E -i NEEDLE | 2.982370 | 0.145125 | 20.55x
+-E -v -c needle | 2.655941 | 0.101673 | 26.12x
+-r -F -c needle | 0.603694 | 0.031748 | 19.02x

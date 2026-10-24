@@ -1,0 +1,49 @@
+{
+  "output": "pipe drained in 64 KiB blocks; never /dev/null",
+  "host": "582b4dd88088",
+  "affinity": [
+    12,
+    13,
+    14,
+    15
+  ],
+  "memory": [
+    {
+      "argv": [
+        "-F",
+        "-c",
+        "needle"
+      ],
+      "bytes": 2147483648,
+      "scent": {
+        "peak_rss_kib": 2464.0,
+        "seconds": 5.98,
+        "output_bytes": 9
+      },
+      "gnu": {
+        "peak_rss_kib": 1892.0,
+        "seconds": 0.77,
+        "output_bytes": 9
+      }
+    },
+    {
+      "argv": [
+        "-F",
+        "-n",
+        "needle"
+      ],
+      "bytes": 2147483648,
+      "scent": {
+        "peak_rss_kib": 2744.0,
+        "seconds": 8.93,
+        "output_bytes": 1219181213
+      },
+      "gnu": {
+        "peak_rss_kib": 2056.0,
+        "seconds": 1.8,
+        "output_bytes": 1219181213
+      }
+    }
+  ],
+  "performance": []
+}
