@@ -1,0 +1,30 @@
+To: bug-grep@gnu.org
+Subject: grep 3.12 -D skip reports ENXIO on explicit Unix-domain socket
+
+GNU grep 3.12 configured --disable-perl-regexp on Ubuntu 24.04, glibc
+2.39, reports an error for an explicitly named Unix-domain socket even
+when -D skip was requested. The manual says devices, FIFOs and sockets
+are silently skipped. The same socket is skipped when encountered during
+recursion, and an explicit FIFO is skipped.
+
+Reproducer (Python is only creating the socket; no server is required):
+
+  mkdir witness && cd witness
+  python3 -c 'import socket; s=socket.socket(socket.AF_UNIX); s.bind("socket")'
+  LC_ALL=C grep -D skip x socket
+  echo $?
+
+Actual stderr: grep: socket: No such device or address
+Actual exit status: 2
+Expected: no stdout/stderr, exit 1 (no input matched).
+Adding -r does not change the explicit-operand result. Controls:
+
+  mkdir tree && mv socket tree/socket
+  LC_ALL=C grep -r -D skip x tree   # empty streams, exit 1
+  mkfifo fifo
+  LC_ALL=C grep -D skip x fifo     # empty streams, exit 1
+
+The reference is a signature-verified GNU release-tarball build with
+binary SHA256 92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea.
+This report is based solely on the published manual and black-box tests.
+Draft only; not sent.

@@ -54,6 +54,21 @@ with tempfile.TemporaryDirectory(prefix='measure-',dir=target) as tmp:
     values.append(elapsed);print('perf-run',name,flags,i+1,elapsed,flush=True)
    row[name]={'runs_seconds':values,'median_seconds':statistics.median(values),'output_bytes':output_bytes}
   row['ratio']=row['scent']['median_seconds']/row['gnu']['median_seconds'];result['performance'].append(row);print('performance',json.dumps(row),flush=True)
+ if not args.memory_only:
+  tree=tmp/'tree';tree.mkdir()
+  payload=block[:4096]
+  for i in range(10000):(tree/f'entry-{i:05d}').write_bytes(payload)
+  row={'argv':['-r','-F','-c','needle'],'files':10000,'bytes':40960000}
+  for name,binary in [('scent',ours),('gnu',gnu)]:
+   values=[]
+   for i in range(3):
+    start=time.perf_counter();output_bytes,head=drain([str(binary),'-r','-F','-c','needle',str(tree)]);elapsed=time.perf_counter()-start
+    expected=sum(len(str(tree/f'entry-{j:05d}').encode())+4 for j in range(10000))
+    assert output_bytes==expected,(name,output_bytes,expected)
+    assert b':32\n' in head,(name,head)
+    values.append(elapsed);print('perf-tree-run',name,i+1,elapsed,flush=True)
+   row[name]={'runs_seconds':values,'median_seconds':statistics.median(values),'output_bytes':output_bytes}
+  row['ratio']=row['scent']['median_seconds']/row['gnu']['median_seconds'];result['performance'].append(row);print('performance-tree',json.dumps(row),flush=True)
 (root/('target/memory.json' if args.memory_only else 'target/measure.json')).write_text(json.dumps(result,indent=2)+'\n')
 assert all(row['scent']['peak_rss_kib']<32768 for row in result['memory']),'memory gate: scent must peak below 32 MiB'
 print('memory gate: PASS; performance recorded, not gated',flush=True)

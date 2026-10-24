@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Byte oracle: no expected-output snapshots to edit around a disagreement."""
-import argparse, base64, fnmatch, hashlib, json, os, pathlib, shutil, subprocess, tempfile, threading, time, tomllib, sys, select, runpy, socket, errno
+import argparse, base64, fnmatch, hashlib, json, os, pathlib, shutil, subprocess, tempfile, threading, time, tomllib, sys, select, runpy, socket, errno, pty, termios
 ROOT=pathlib.Path(__file__).resolve().parent.parent
 p=argparse.ArgumentParser();p.add_argument('--only');p.add_argument('--field',action='store_true');p.add_argument('--bin',default='target/native/scent');p.add_argument('--cases',default='tests/cases');a=p.parse_args()
 pin=tomllib.loads((ROOT/'scent-oracle.toml').read_text())['oracle']
@@ -23,7 +23,9 @@ def data(spec):
     if 'base64' in spec:return base64.b64decode(spec['base64'])
     return spec.get('text','').encode()*spec.get('repeat',1)
 def prepare(work, c):
-    for name,spec in c.get('files',{}).items():
+    fixtures=list(c.get('files',{}).items())
+    fixtures += [(os.fsdecode(base64.b64decode(r['name_base64'])),r) for r in c.get('raw_names',[])]
+    for name,spec in fixtures:
         dest=work/name;dest.parent.mkdir(parents=True,exist_ok=True)
         if spec.get('kind')=='missing':continue
         if spec.get('kind')=='directory':dest.mkdir(exist_ok=True)
@@ -49,6 +51,10 @@ def launch(binary, c, work, bindir):
         source=open(work/c['stdin_file'],'rb');source.seek(c.get('stdin_seek',0));input_arg=None
     else:input_arg=stdin
     output=None;pre=None
+    terminal=None
+    if c.get('stdout_tty'):
+        master,slave=pty.openpty();settings=termios.tcgetattr(slave);settings[1]=0;termios.tcsetattr(slave,termios.TCSANOW,settings)
+        output=os.fdopen(slave,'wb',buffering=0);terminal=master
     if c.get('stdout')=='full':output=open('/dev/full','wb')
     if c.get('stdout')=='input':output=open(work/c['stdout_file'],'ab')
     if c.get('stdout')=='closed':
@@ -85,11 +91,23 @@ def launch(binary, c, work, bindir):
             return first+rest,err,child.returncode,b'live-before-EOF' if first==b'x\n' else b'bad-first-line'
         r=subprocess.run(args,executable=executable,input=input_arg,stdin=source,stdout=output or subprocess.PIPE,stderr=subprocess.PIPE,cwd=work,env=env,preexec_fn=pre,timeout=c.get('timeout',10))
         rest=source.read() if source else b''
-        return r.stdout or b'',r.stderr,r.returncode,rest
+        stdout=r.stdout or b''
+        if terminal is not None:
+            output.close();output=None
+            while True:
+                try:
+                    chunk=os.read(terminal,65536)
+                    if not chunk:break
+                    stdout+=chunk
+                except OSError as error:
+                    if error.errno!=errno.EIO:raise
+                    break
+        return stdout,r.stderr,r.returncode,rest
     except subprocess.TimeoutExpired:return b'',b'HARNESS TIMEOUT',124,b''
     finally:
         if source:source.close()
         if output:output.close()
+        if terminal is not None:os.close(terminal)
         stop_writers.set()
         for t in writers:t.join(timeout=0.1)
 exact_review=runpy.run_path(str(ROOT/'tools/oracle-review.py'))['exact_review']
@@ -143,12 +161,12 @@ for file in sorted((ROOT/a.cases).glob('*.jsonl')):
         g,s=results
         shape=c.get('shape')
         # The prose exception follows the action, including unique prefixes.
-        if g[0].startswith(b'Usage: grep ') and s[0].startswith(b'Usage: scent '):shape='help'
+        if g[0].startswith(b'Usage: grep ') and s[0].startswith(b'Usage: grep '):shape='help'
         if g[0].startswith(b'grep (GNU grep) ') and s[0].startswith(b'scent '):shape='version'
         if shape:
             same=g[2]==s[2] and bool(g[0])==bool(s[0]) and g[1]==s[1]
             if shape=='version':same= same and s[0].startswith(b'scent ')
-            if shape=='help':same= same and s[0].startswith(b'Usage: scent ')
+            if shape=='help':same= same and s[0].startswith(b'Usage: grep ')
         else:
             same=True
             for i,field in enumerate(['stdout','stderr','status','stdin-rest']):

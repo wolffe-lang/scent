@@ -591,15 +591,15 @@
 {"name":"stdin-position-3","argv":["-F","-m1","-v","x"],"stdin":"","section":"read","files":{"input":{"text":"a\nx\nx\na\nx\nz\n"}},"stdin_file":"input"}
 {"name":"not-yet-ct02-0","argv":["-G","x"],"stdin":"","section":"output"}
 {"name":"not-yet-ct02-1","argv":["-E","x"],"stdin":"","section":"output"}
-{"name":"not-yet-m2-0","argv":["-F","-r","x"],"stdin":"","section":"output","not_yet":"M2 recursion/colour","refusal":"scent: not yet implemented:"}
-{"name":"not-yet-m2-1","argv":["-F","-R","x"],"stdin":"","section":"output","not_yet":"M2 recursion/colour","refusal":"scent: not yet implemented:"}
-{"name":"not-yet-m2-2","argv":["-F","-d","read","x"],"stdin":"","section":"output","not_yet":"M2 recursion/colour","refusal":"scent: not yet implemented:"}
-{"name":"not-yet-m2-3","argv":["-F","-D","read","x"],"stdin":"","section":"output","not_yet":"M2 recursion/colour","refusal":"scent: not yet implemented:"}
-{"name":"not-yet-m2-4","argv":["-F","--include=*","x"],"stdin":"","section":"output","not_yet":"M2 recursion/colour","refusal":"scent: not yet implemented:"}
-{"name":"not-yet-m2-5","argv":["-F","--exclude=*","x"],"stdin":"","section":"output","not_yet":"M2 recursion/colour","refusal":"scent: not yet implemented:"}
-{"name":"not-yet-m2-6","argv":["-F","--exclude-from=p","x"],"stdin":"","section":"output","not_yet":"M2 recursion/colour","refusal":"scent: not yet implemented:"}
-{"name":"not-yet-m2-7","argv":["-F","--exclude-dir=d","x"],"stdin":"","section":"output","not_yet":"M2 recursion/colour","refusal":"scent: not yet implemented:"}
-{"name":"not-yet-m2-8","argv":["-F","--color=always","x"],"stdin":"","section":"output","not_yet":"M2 recursion/colour","refusal":"scent: not yet implemented:"}
+{"name":"not-yet-m2-0","argv":["-F","-r","x"],"stdin":"","section":"output"}
+{"name":"not-yet-m2-1","argv":["-F","-R","x"],"stdin":"","section":"output"}
+{"name":"not-yet-m2-2","argv":["-F","-d","read","x"],"stdin":"","section":"output"}
+{"name":"not-yet-m2-3","argv":["-F","-D","read","x"],"stdin":"","section":"output"}
+{"name":"not-yet-m2-4","argv":["-F","--include=*","x"],"stdin":"","section":"output"}
+{"name":"not-yet-m2-5","argv":["-F","--exclude=*","x"],"stdin":"","section":"output"}
+{"name":"not-yet-m2-6","argv":["-F","--exclude-from=p","x"],"stdin":"","section":"output"}
+{"name":"not-yet-m2-7","argv":["-F","--exclude-dir=d","x"],"stdin":"","section":"output"}
+{"name":"not-yet-m2-8","argv":["-F","--color=always","x"],"stdin":"","section":"output"}
 {"name":"not-yet-argv0-diagnostic-0","argv":["--bad"],"stdin":"","section":"output","invocation":"/abs/path/grep"}
 {"name":"not-yet-argv0-diagnostic-1","argv":["--bad"],"stdin":"","section":"output","invocation":"./grep"}
 {"name":"not-yet-argv0-diagnostic-2","argv":["--bad"],"stdin":"","section":"output","invocation":"hound"}

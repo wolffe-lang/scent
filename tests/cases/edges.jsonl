@@ -94,6 +94,6 @@
 {"name":"late-nul-2-1","argv":["-F","-c","x","input"],"stdin":"","files":{"input":{"parts":[{"text":"x","repeat":1},{"text":"\n","repeat":1},{"text":"z","repeat":196605},{"text":"\u0000","repeat":1},{"text":"\n","repeat":1}]}},"section":"binary"}
 {"name":"late-nul-2-2","argv":["-F","-I","x","input"],"stdin":"","files":{"input":{"parts":[{"text":"x","repeat":1},{"text":"\n","repeat":1},{"text":"z","repeat":196605},{"text":"\u0000","repeat":1},{"text":"\n","repeat":1}]}},"section":"binary"}
 {"name":"late-nul-2-3","argv":["-F","-a","x","input"],"stdin":"","files":{"input":{"parts":[{"text":"x","repeat":1},{"text":"\n","repeat":1},{"text":"z","repeat":196605},{"text":"\u0000","repeat":1},{"text":"\n","repeat":1}]}},"section":"binary"}
-{"name":"not-yet-directory-prefix-0","argv":["-F","-d","rea","x"],"stdin":"x\nx\na\nb\nx\n","section":"cli","not_yet":"M2 directory action","refusal":"scent: not yet implemented:"}
-{"name":"not-yet-directory-prefix-1","argv":["-F","-d","rec","x"],"stdin":"x\nx\na\nb\nx\n","section":"cli","not_yet":"M2 directory action","refusal":"scent: not yet implemented:"}
-{"name":"not-yet-directory-prefix-2","argv":["-F","-d","s","x"],"stdin":"x\nx\na\nb\nx\n","section":"cli","not_yet":"M2 directory action","refusal":"scent: not yet implemented:"}
+{"name":"not-yet-directory-prefix-0","argv":["-F","-d","rea","x"],"stdin":"x\nx\na\nb\nx\n","section":"cli"}
+{"name":"not-yet-directory-prefix-1","argv":["-F","-d","rec","x"],"stdin":"x\nx\na\nb\nx\n","section":"cli"}
+{"name":"not-yet-directory-prefix-2","argv":["-F","-d","s","x"],"stdin":"x\nx\na\nb\nx\n","section":"cli"}

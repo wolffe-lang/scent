@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Generate M2 black-box cases; no stored expected GNU answers."""
-import itertools,json,pathlib
+import itertools,json,pathlib,base64
 root=pathlib.Path(__file__).resolve().parent.parent
 rows=[]
 def add(name,argv,**kw): rows.append(dict(name='m2-'+name,argv=argv,**kw))
@@ -21,5 +21,22 @@ for i,(when,color,colors) in enumerate(itertools.product(['always','never','auto
  env={'GREP_COLOR':color}
  if colors is not None:env['GREP_COLORS']=colors
  add('legacy-%03d'%i,['--color='+when,'x'],stdin='x\n',env=env)
+# Byte patterns need no UTF-8 decoding; raw filesystem names remain an exact upstream gap.
+for i,pattern in enumerate([b'\xff\n',b'[\xff]\n',b'*\n',b'\n',b'*.txt\r\n',b'.hidden\n*.dat',b'*.dat\x00ignored\n',b'*.dat\n']):
+ add('exclude-bytes-%02d'%i,['-r','--exclude-from=rules','x','tree'],files={'tree/a.dat':{'text':'x\n'},'tree/b.txt':{'text':'x\n'},'rules':{'base64':base64.b64encode(pattern).decode()}},shared_fixture=True)
+add('upstream-byte-name',['-r','x','tree'],files={'tree':{'kind':'directory'}},raw_names=[{'name_base64':base64.b64encode(b'tree/\xff').decode(),'text':'x\n'}],shared_fixture=True)
+add('socket-skip',['-Dskip','x','socket'],files={'socket':{'kind':'socket'}},shared_fixture=True)
+for i,(mode,term,tty) in enumerate(itertools.product(['always','never','auto'],['xterm','dumb',''],[False,True])):
+ add('tty-%02d'%i,['--color='+mode,'-n','x'],stdin='x\n',stdout_tty=tty,env={'TERM':term})
+for i,(cap,output,pattern) in enumerate(itertools.product(['sl=41:cx=42:mt=33','ne','ms=','ms=32:bad=oops:fn=31'],[[],['-vC1'],['-o'],['-TnbH'],['-zC1']],['x','x*','^'])):
+ add('colour-edge-%03d'%i,['--color=always',*output,pattern],stdin='\nx\nx x x\ntail\n\n',env={'GREP_COLORS':cap})
+glob_patterns=['*','?','a*','*.txt','tree/*','tree/sub/*','[[:alpha:]]*','[[:digit:]]*','[[:punct:]]*','[[:space:]]*','[[:xdigit:]]*','[[.a.]]*','[[=a=]]*','[[.a.]-[.c.]]*','[!a]*','[^a]*','[-ab]*','[a-]*','[]a]*','[a\\-c]*','[','[a','[a-','a\\','\\*','**a**','a?*','[z-a]*','[[:unknown:]]*','[[:lower:][:digit:]]*']
+for i,(pattern,include,walk) in enumerate(itertools.product(glob_patterns,[True,False],[False,True])):
+ files={('tree/'+name):{'text':'x\n'} for name in ['a','b','c','ab','1','A','.dot','a-b','a.txt','star*','sub/a']}
+ argv=['-r'] if walk else []
+ argv += [('--include=' if include else '--exclude=')+pattern,'x']
+ argv += ['tree'] if walk else list(files)
+ add('glob-%03d'%i,argv,files=files,shared_fixture=True)
+add('m3-locale-refusal',['x'],stdin='x\n',env={'LC_ALL':'C.UTF-8'},not_yet='M3 UTF-8 locale semantics',refusal='grep: not yet implemented: UTF-8 locale semantics (M3)')
 path=root/'tests/cases/m2.jsonl';path.write_text(''.join(json.dumps(r,separators=(',',':'))+'\n' for r in rows))
 print('M2 cases',len(rows))

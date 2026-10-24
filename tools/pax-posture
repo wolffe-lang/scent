@@ -4,9 +4,10 @@
 set -eu
 root=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
 engine=${SCENT_ENGINE:-podman}
-image=ubuntu:24.04@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b
-"$engine" run --rm ${SCENT_CONTAINER_ARGS:-} -v "$root:/work/scent:Z" -w /work/scent "$image" bash -c '
+image=docker.io/library/ubuntu:24.04@sha256:534baea6a22c03a63003dbc8dbe78fe34bc0d7e595d9a9dc9834884ff530eb55
+"$engine" run --rm ${SCENT_CONTAINER_ARGS:-} -v "$root:/work/scent:Z" -w /work/scent "$image" taskset -c "${SCENT_CPUS:-0-3}" bash -c '
 set -euo pipefail
+ulimit -c 0
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq
 apt-get install -y --no-install-recommends python3 >/dev/null

@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+"""M2 corpus floor, exact reviews and CI wiring are part of the gate."""
+import collections,hashlib,json,pathlib,subprocess,sys
+root=pathlib.Path(__file__).resolve().parent.parent
+subprocess.run([sys.executable,'-I',str(root/'tools/m2-cases')],check=True)
+rows=[json.loads(x) for x in (root/'tests/cases/m2.jsonl').read_text().splitlines()]
+assert len(rows)>=3384,(len(rows),3384)
+names={r['name']:r for r in rows};assert len(names)==len(rows)
+assert sum(r['name'].startswith('m2-walk-') for r in rows)>=2000
+assert sum(r['name'].startswith('m2-colour-') for r in rows)>=1164
+assert sum(r['name'].startswith('m2-legacy-') for r in rows)>=48
+assert sum(r.get('stdout_tty',False) for r in rows)>=9
+assert all(r.get('shared_fixture') for r in rows if r['name'].startswith(('m2-walk-','m2-glob-')))
+reviews=json.loads((root/'tests/divergences.json').read_text())
+for name in ['m2-edges-11','m2-socket-skip','m2-upstream-byte-name']:
+ c=names[name];review=reviews[name]
+ assert not c.get('not_yet') and review['gnu']!=review['scent']
+ assert review['case_sha256']==hashlib.sha256(json.dumps(c,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+ assert review['ruling']==('R-ct03-3' if name=='m2-upstream-byte-name' else 120)
+workflow=(root/'.github/workflows/ci.yml').read_text()
+assert 'run: python3 -I tools/m2-ci-test' in workflow
+assert 'python3 -I tools/m2-ci-test' in (root/'tools/gate').read_text()
+# Published help is fixed grep, never derived from os_exe; runtime gaps remain exact.
+assert 'os_exe(' not in (root/'src/scent.lu').read_text()
+print(f'PASS M2 CI wiring: {len(rows)} rows, raw-order shared fixtures, tty, byte globs and three exact reviews')

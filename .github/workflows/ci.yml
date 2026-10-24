@@ -45,6 +45,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: python3 -I ci/tiers-test.py
       - run: python3 -I tools/re-ci-test
+      - run: python3 -I tools/m2-ci-test
       - run: python3 -I tools/m1-ci-test
       - run: python3 -I tools/oracle-review-test
   linux:
@@ -67,6 +68,8 @@ jobs:
         run: docker build -t localhost/scent-oracle -f ci/oracle.Containerfile ci
       - name: Stage digest-pinned toolchain and oracle
         run: tools/in-container bash -c 'tools/fetch-toolchain && tools/fetch-oracle'
+      - name: Generate and guard M2 corpus
+        run: python3 -I tools/m2-ci-test
       - name: Format and both compiler tiers
         run: tools/in-container bash -c 'tools/check-fmt && tools/build --all'
       - name: Checked tests with explicit native-fallback reruns, native and lupin
@@ -117,6 +120,7 @@ jobs:
       - run: tools/fetch-toolchain
       - run: tools/build --all
       - run: tools/check-test
+      - run: python3 -I tools/m2-ci-test
       - name: Distribution field leg (never the behavioral gate)
         run: |
           brew install grep
