@@ -1,0 +1,324 @@
+{
+  "oracle": "92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea",
+  "installed": [
+    "C",
+    "C.utf8",
+    "POSIX"
+  ],
+  "argv": [
+    "-a",
+    "-o",
+    "^.$"
+  ],
+  "stdin_hex": "c3a90a",
+  "rows": [
+    {
+      "name": "LC_ALL",
+      "env": {
+        "LC_ALL": "C.UTF-8"
+      },
+      "gnu": {
+        "stdout_hex": "c3a90a",
+        "stderr_hex": "",
+        "status": 0
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "677265703a206e6f742079657420696d706c656d656e7465643a205554462d38206c6f63616c652073656d616e7469637320284d33290a",
+        "status": 2
+      }
+    },
+    {
+      "name": "LC_CTYPE",
+      "env": {
+        "LC_CTYPE": "C.UTF-8"
+      },
+      "gnu": {
+        "stdout_hex": "c3a90a",
+        "stderr_hex": "",
+        "status": 0
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "677265703a206e6f742079657420696d706c656d656e7465643a205554462d38206c6f63616c652073656d616e7469637320284d33290a",
+        "status": 2
+      }
+    },
+    {
+      "name": "LANG",
+      "env": {
+        "LANG": "C.UTF-8"
+      },
+      "gnu": {
+        "stdout_hex": "c3a90a",
+        "stderr_hex": "",
+        "status": 0
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "677265703a206e6f742079657420696d706c656d656e7465643a205554462d38206c6f63616c652073656d616e7469637320284d33290a",
+        "status": 2
+      }
+    },
+    {
+      "name": "C-over-LANG",
+      "env": {
+        "LC_ALL": "C",
+        "LANG": "C.UTF-8"
+      },
+      "gnu": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      }
+    },
+    {
+      "name": "empty-ALL",
+      "env": {
+        "LC_ALL": "",
+        "LC_CTYPE": "C.UTF-8",
+        "LANG": "C"
+      },
+      "gnu": {
+        "stdout_hex": "c3a90a",
+        "stderr_hex": "",
+        "status": 0
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "677265703a206e6f742079657420696d706c656d656e7465643a205554462d38206c6f63616c652073656d616e7469637320284d33290a",
+        "status": 2
+      }
+    },
+    {
+      "name": "empty-CTYPE",
+      "env": {
+        "LC_ALL": "",
+        "LC_CTYPE": "",
+        "LANG": "C.UTF-8"
+      },
+      "gnu": {
+        "stdout_hex": "c3a90a",
+        "stderr_hex": "",
+        "status": 0
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "677265703a206e6f742079657420696d706c656d656e7465643a205554462d38206c6f63616c652073656d616e7469637320284d33290a",
+        "status": 2
+      }
+    },
+    {
+      "name": "absent-LANG",
+      "env": {
+        "LANG": "en_US.UTF-8"
+      },
+      "gnu": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "677265703a206e6f742079657420696d706c656d656e7465643a205554462d38206c6f63616c652073656d616e7469637320284d33290a",
+        "status": 2
+      }
+    },
+    {
+      "name": "invalid-ALL",
+      "env": {
+        "LC_ALL": "absent",
+        "LC_CTYPE": "C.UTF-8"
+      },
+      "gnu": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      }
+    },
+    {
+      "name": "unset",
+      "env": {},
+      "gnu": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      }
+    },
+    {
+      "name": "alias-C.UTF-8",
+      "env": {
+        "LC_ALL": "C.UTF-8"
+      },
+      "gnu": {
+        "stdout_hex": "c3a90a",
+        "stderr_hex": "",
+        "status": 0
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "677265703a206e6f742079657420696d706c656d656e7465643a205554462d38206c6f63616c652073656d616e7469637320284d33290a",
+        "status": 2
+      }
+    },
+    {
+      "name": "alias-C.utf8",
+      "env": {
+        "LC_ALL": "C.utf8"
+      },
+      "gnu": {
+        "stdout_hex": "c3a90a",
+        "stderr_hex": "",
+        "status": 0
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "677265703a206e6f742079657420696d706c656d656e7465643a205554462d38206c6f63616c652073656d616e7469637320284d33290a",
+        "status": 2
+      }
+    },
+    {
+      "name": "alias-c.utf8",
+      "env": {
+        "LC_ALL": "c.utf8"
+      },
+      "gnu": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "677265703a206e6f742079657420696d706c656d656e7465643a205554462d38206c6f63616c652073656d616e7469637320284d33290a",
+        "status": 2
+      }
+    },
+    {
+      "name": "alias-en_US.UTF-8",
+      "env": {
+        "LC_ALL": "en_US.UTF-8"
+      },
+      "gnu": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "677265703a206e6f742079657420696d706c656d656e7465643a205554462d38206c6f63616c652073656d616e7469637320284d33290a",
+        "status": 2
+      }
+    },
+    {
+      "name": "alias-en_US.utf8",
+      "env": {
+        "LC_ALL": "en_US.utf8"
+      },
+      "gnu": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "677265703a206e6f742079657420696d706c656d656e7465643a205554462d38206c6f63616c652073656d616e7469637320284d33290a",
+        "status": 2
+      }
+    },
+    {
+      "name": "alias-UTF-8",
+      "env": {
+        "LC_ALL": "UTF-8"
+      },
+      "gnu": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "677265703a206e6f742079657420696d706c656d656e7465643a205554462d38206c6f63616c652073656d616e7469637320284d33290a",
+        "status": 2
+      }
+    },
+    {
+      "name": "alias-.UTF-8@euro",
+      "env": {
+        "LC_ALL": ".UTF-8@euro"
+      },
+      "gnu": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "677265703a206e6f742079657420696d706c656d656e7465643a205554462d38206c6f63616c652073656d616e7469637320284d33290a",
+        "status": 2
+      }
+    },
+    {
+      "name": "alias-POSIX",
+      "env": {
+        "LC_ALL": "POSIX"
+      },
+      "gnu": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      }
+    },
+    {
+      "name": "alias-C",
+      "env": {
+        "LC_ALL": "C"
+      },
+      "gnu": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      }
+    },
+    {
+      "name": "alias-",
+      "env": {
+        "LC_ALL": ""
+      },
+      "gnu": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      },
+      "scent": {
+        "stdout_hex": "",
+        "stderr_hex": "",
+        "status": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+//! Locale selection from measured environment precedence (tools/locale-probe).
+//! R-ct04-1: scent supplies its own tables, so codesets do not depend on
+//! installed locale files. Unknown names without a UTF-8 codeset use C.
+
+/// First nonempty LC_ALL, LC_CTYPE, LANG; no installed-locale lookup.
+pub fn choose(all: str, ctype: str, lang: str) -> str {
+    if all != "" { return all }
+    if ctype != "" { return ctype }
+    lang
+}
+
+/// A dot-delimited UTF-8 or utf8 codeset, ignoring case and a modifier.
+pub fn utf8(name: str) -> bool {
+    let dot = name.find(".") else { return false }
+    let tail = name[dot + 1..]
+    let at = tail.find("@") else tail.len
+    let code = tail[0..at].lower()
+    code == "utf-8" || code == "utf8"
+}

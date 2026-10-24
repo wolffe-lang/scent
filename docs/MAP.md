@@ -100,3 +100,33 @@ comparison family; walked sockets and FIFOs still agree with GNU.
 `tools/m2-ci-test` guards the generated 3,392-case floor, shared-fixture
 order posture, terminal rows and exact reviews. The M1 floor remains
 5,072; neither generation step silently shrinks the other's cases.
+
+## Locale
+
+Selection uses the first nonempty `LC_ALL`, `LC_CTYPE`, then `LANG`.
+A nonempty invalid `LC_ALL` does not fall through. With no value, use C.
+`src/locale/` recognizes a dot-delimited `UTF-8` or `utf8` codeset,
+case-insensitively, before an optional `@modifier`. The remaining name
+is not looked up: scent carries its own tables and needs no locale files.
+A bare `UTF-8` is not a dot-delimited codeset and uses C.
+
+The pinned image lists `C`, `C.utf8`, `POSIX` (`locale -a`). The oracle's
+`-a -o '^.$'` on bytes `c3 a9 0a` prints those bytes/status 0 in UTF-8
+mode, or nothing/status 1 in C mode; stderr is empty in both. Measured
+with `tools/locale-probe`; the initial full tuples (including scent's
+still-active M3 refusal) are in `notes/ct04-evidence/locale-before.json`.
+
+| Selected value | GNU mode in pinned image | scent mode decision |
+| --- | --- | --- |
+| `C.UTF-8`, `C.utf8` | UTF-8 | UTF-8 |
+| `c.utf8`, `en_US.UTF-8`, `en_US.utf8` | C (name absent) | UTF-8 |
+| `.UTF-8@euro` | C (name absent) | UTF-8 |
+| `UTF-8`, `C`, `POSIX` | C | C |
+| empty or unset (all three variables) | C | C |
+
+`LC_CTYPE=C.UTF-8` and `LANG=C.UTF-8` each work when the higher-precedence
+variables are unset or empty. `LC_ALL=C` overrides a UTF-8 `LANG`.
+`LANG=en_US.UTF-8` falls back to C in this image. R-ct04-1 classifies
+that as an environment difference: the oracle image installs only C,
+C.UTF-8 and POSIX. The normal matrices use explicit `LC_ALL=C` and
+`LC_ALL=C.UTF-8`, never an installation-dependent locale name.

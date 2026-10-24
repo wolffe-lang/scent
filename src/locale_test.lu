@@ -1,0 +1,25 @@
+//! member: false
+
+use locale
+
+fn main() {
+    assert(locale.choose("C", "C.UTF-8", "en_US.UTF-8") == "C")
+    assert(locale.choose("", "C.UTF-8", "C") == "C.UTF-8")
+    assert(locale.choose("", "", "C.utf8") == "C.utf8")
+    assert(locale.choose("absent", "C.UTF-8", "C") == "absent")
+    assert(locale.choose("", "", "") == "")
+    for name in [
+        "C.UTF-8",
+        "C.utf8",
+        "c.utf8",
+        "en_US.UTF-8",
+        "en_US.utf8",
+        ".UTF-8@euro",
+        "x.UtF-8",
+    ] {
+        assert(locale.utf8(name), "UTF-8 codeset {name}")
+    }
+    for name in ["C", "POSIX", "", "UTF-8", "C.UTF-8-extra", "C.ascii@UTF-8"] {
+        assert(!locale.utf8(name), "C fallback {name}")
+    }
+}

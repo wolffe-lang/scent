@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+"""Measure locale choice through grep, not libc source or locale data."""
+import hashlib, json, os, pathlib, subprocess, tomllib
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+pin = tomllib.loads((ROOT / 'scent-oracle.toml').read_text())['oracle']
+assert os.environ.get('SCENT_IN_CONTAINER') == '1'
+assert hashlib.sha256((ROOT / '.oracle/grep').read_bytes()).hexdigest() == pin['binary_sha256']
+assert subprocess.check_output(['ldd', '--version']).splitlines()[0].decode() == pin['glibc_line']
+rows = [('LC_ALL', {'LC_ALL': 'C.UTF-8'}),
+        ('LC_CTYPE', {'LC_CTYPE': 'C.UTF-8'}),
+        ('LANG', {'LANG': 'C.UTF-8'}),
+        ('C-over-LANG', {'LC_ALL': 'C', 'LANG': 'C.UTF-8'}),
+        ('empty-ALL', {'LC_ALL': '', 'LC_CTYPE': 'C.UTF-8', 'LANG': 'C'}),
+        ('empty-CTYPE', {'LC_ALL': '', 'LC_CTYPE': '', 'LANG': 'C.UTF-8'}),
+        ('absent-LANG', {'LANG': 'en_US.UTF-8'}),
+        ('invalid-ALL', {'LC_ALL': 'absent', 'LC_CTYPE': 'C.UTF-8'}),
+        ('unset', {})]
+for name in ['C.UTF-8', 'C.utf8', 'c.utf8', 'en_US.UTF-8', 'en_US.utf8',
+             'UTF-8', '.UTF-8@euro', 'POSIX', 'C', '']:
+    rows.append(('alias-' + name, {'LC_ALL': name}))
+result = {'oracle': pin['binary_sha256'],
+          'installed': subprocess.check_output(['locale', '-a']).decode().splitlines(),
+          'argv': ['-a', '-o', '^.$'], 'stdin_hex': 'c3a90a', 'rows': []}
+for name, settings in rows:
+    row = {'name': name, 'env': settings}
+    for tag, binary in [('gnu', ROOT / '.oracle/grep'), ('scent', ROOT / 'target/native/scent')]:
+        r = subprocess.run(['grep', '-a', '-o', '^.$'], executable=str(binary),
+                           input=bytes.fromhex('c3a90a'), capture_output=True,
+                           env={'PATH': os.defpath, **settings})
+        row[tag] = {'stdout_hex': r.stdout.hex(), 'stderr_hex': r.stderr.hex(), 'status': r.returncode}
+    result['rows'].append(row)
+print(json.dumps(result, indent=2))

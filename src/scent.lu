@@ -6,6 +6,7 @@ use std.env
 use colors
 use fixed
 use matcher
+use locale
 use opts
 use walk
 use re
@@ -67,10 +68,12 @@ fn run(initial: opts.Options) -> int {
         print("GPL-3.0-or-later with the wolf Training Data Permission.")
         return 0
     }
-    var locale = env.get("LC_ALL") else ""
-    if locale == "" { locale = env.get("LC_CTYPE") else "" }
-    if locale == "" { locale = env.get("LANG") else "" }
-    if locale.contains("UTF-8") || locale.contains("utf8") || locale.contains("utf-8") {
+    let locale_name = locale.choose(
+        env.get("LC_ALL") else "",
+        env.get("LC_CTYPE") else "",
+        env.get("LANG") else "",
+    )
+    if locale.utf8(locale_name) {
         o.not_yet = "UTF-8 locale semantics (M3)"
     }
     if o.not_yet != "" { eprint("{opts.program()}: not yet implemented: {o.not_yet}"); return 2 }
