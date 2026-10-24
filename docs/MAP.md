@@ -9,6 +9,16 @@ feeds each operand through `reader.scan` to the byte writer in `out`.
 - `src/opts/`: getopt_long-shaped parsing, permutation, diagnostics and
   the sole `program()` prefix seam. R-ct00-3 fixes it to `grep` until
   wolf-lang#899/#904 provides argv[0]. No `os_exe` substitution.
+- `src/walk/`: depth-first raw `std.fs.entries` order (never sorted),
+  command-line versus walked symlink policy, ancestor dev+ino loop checks,
+  directory/device filtering and per-file descriptor identity checks.
+- `src/glob/`: C-locale byte glob matcher, including POSIX classes,
+  one-byte collating/equivalence atoms and command-line suffix matching.
+  Include/exclude rules retain order; the first rule determines fallback.
+- `src/colors/`: terminal policy and validated GREP_COLORS/GREP_COLOR
+  capabilities. `out` emits exact SGR/reset/erase bytes around fields,
+  selected/context lines, matcher spans and group separators. `ne` omits
+  erase commands and `rv` swaps selected/context backgrounds under -v.
 - `src/fixed/`: immutable literal bytes with KMP failure links. Search
   is linear in the line length per pattern, not a naive quadratic retry.
   ASCII folding and word/whole-line constraints are C-locale byte tests.
@@ -57,7 +67,9 @@ R-ct00-4 corrects the initial contract: different explicit matcher
 syntaxes conflict; the same syntax may be repeated. Other-name/path
 invocations and non-UTF-8 arguments are exact upstream-blocked reviews
 under #899/#406/#904, not not-yet. The two abort messages type only the
-PID as digits; every other byte and both statuses are exact. M2 owns recursion/colour.
+PID as digits; every other byte and both statuses are exact. M2's walk, filters and colour are joined. M3's UTF-8 locale semantics
+are refused by name. Help/diagnostics currently use fixed `grep` until
+the pinned toolchain exposes argv[0].
 
 ## Terminator-bearing patterns
 
@@ -68,10 +80,23 @@ crosses records within a read, but loses the same match across reads or
 under -w. The 216 cross-* cases now count as164 agreement and52 exact
 published divergences; the two original NUL cases add one agreement
 and one exact reviewed difference. The README gives
-all three consistency decisions and the separate eight runtime gaps.
+the consistency decisions and separately tracked runtime gaps.
 
 `tests/divergences.json` pins complete case identities and both answers;
 reviewed rows that become agreement also fail until reviewed explicitly.
 `tools/m1-ci-test` protects the generated5072-case floor, review counts and
 CI wiring. `tools/gate` is the whole local acceptance, and
 `tools/pax-posture` repeats the static suite without LANG or locale data.
+
+## Recursive byte paths
+
+`fs.entries` lists names as bytes in raw order, verified against GNU on
+three 400-file trees with varied creation orders. The pin's open/stat
+interfaces still require UTF-8 paths. The exact FF-name witness is an
+upstream-blocked row (#687/#912), not M3 and not a blanket tree waiver.
+Ruling #120's explicit socket skip is likewise one exact published
+comparison family; walked sockets and FIFOs still agree with GNU.
+
+`tools/m2-ci-test` guards the generated 3,384-case floor, shared-fixture
+order posture, terminal rows and exact reviews. The M1 floor remains
+5,072; neither generation step silently shrinks the other's cases.
