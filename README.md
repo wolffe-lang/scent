@@ -78,7 +78,8 @@ NAME` selects exactly one witness; explicit glob selectors are supported.
 `--field` reports distribution differences without gating. It probes raw-name
 support once on the corpus filesystem; APFS's rejected byte-FF name is
 `field-unavailable` with a recorded reason, not a harness crash. Two exact
-Darwin argv-decoding aborts are reviewed as `upstream-blocked`, with their
+Darwin argv-decoding aborts are [reviewed](tests/field-divergences.json) as
+`upstream-blocked`, with their
 full witnesses retained; only the numeric panic PID varies. Stale reviews
 remain fatal. [Runtime issue draft](notes/ct03-evidence/wolf-lang-macos-argv-issue.txt).
 `cmp` compares
