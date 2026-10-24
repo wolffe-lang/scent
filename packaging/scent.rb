@@ -37,10 +37,11 @@ class Scent < Formula
   end
 
   def caveats
-    "Optional grep/egrep/fgrep names are in #{libexec}/gnubin. They do not replace the system grep."
+    "Optional grep/egrep/fgrep names are in #{libexec}/gnubin. They do not replace the system grep. Use LC_ALL=C until UTF-8 locale support arrives."
   end
 
   test do
+    ENV["LC_ALL"] = "C"
     assert_equal "ab\n", pipe_output("#{bin}/scent -E '^a[ab]$'", "ab\nno\n", 0)
     assert_equal "aa\n", pipe_output("#{bin}/scent -G '\\(a\\)\\1'", "aa\nno\n", 0)
     (testpath/"tree").mkpath

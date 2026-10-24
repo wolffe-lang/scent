@@ -22,6 +22,7 @@ build() {
     WOLF_STD="$tc/std" "$tc/wolf" build --release --deny-warnings src/scent.lu -o scent
 }
 check() {
+    export LC_ALL=C
     cd "$pkgname-$pkgver"
     ./scent --version
     test "$(printf 'ab\nno\n' | ./scent -E '^a[ab]$')" = ab
