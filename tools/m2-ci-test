@@ -20,6 +20,13 @@ for name in ['m2-edges-11','m2-socket-skip','m2-upstream-byte-name']:
 workflow=(root/'.github/workflows/ci.yml').read_text()
 assert 'run: python3 -I tools/m2-ci-test' in workflow
 assert 'python3 -I tools/m2-ci-test' in (root/'tools/gate').read_text()
+assert 'run: tools/in-container python3 -I tools/oracle-field-test' in workflow
+assert 'python3 -I tools/oracle-field-test' in (root/'tools/gate').read_text()
+assert 'name: macos-field-evidence' in workflow
+field_reviews=json.loads((root/'tests/field-divergences.json').read_text())
+assert set(field_reviews)=={'darwin'}
+assert set(field_reviews['darwin'])=={'not-yet-argv-bytes-0','not-yet-argv-bytes-1'}
+assert all(r['class']=='upstream-blocked' and r['platform']=='darwin' and r['scent_pid_field'] for r in field_reviews['darwin'].values())
 # Published help is fixed grep, never derived from os_exe; runtime gaps remain exact.
 assert 'os_exe(' not in (root/'src/scent.lu').read_text()
 print(f'PASS M2 CI wiring: {len(rows)} rows, raw-order shared fixtures, tty, byte globs and three exact reviews')

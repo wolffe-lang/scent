@@ -29,7 +29,8 @@ with tempfile.TemporaryDirectory(dir=ROOT/'target') as tmp:
     for name in ['oracle.py','oracle-field.py','oracle-review.py']:shutil.copyfile(ROOT/'tools'/name,root/'tools'/name)
     shutil.copyfile(ROOT/'scent-oracle.toml',root/'scent-oracle.toml')
     (root/'tests/divergences.json').write_text('{}\n')
-    (root/'tests/cases/raw.jsonl').write_text(json.dumps(raw)+'\n'+json.dumps({**raw,'name':'raw2'})+'\n')
+    shutil.copyfile(ROOT/'tests/field-divergences.json',root/'tests/field-divergences.json')
+    (root/'tests/cases/raw.jsonl').write_text(json.dumps({'name':'control','argv':['x'],'stdin':'x\n'})+'\n'+json.dumps(raw)+'\n'+json.dumps({**raw,'name':'raw2'})+'\n')
     original=runpy.run_path;probe_calls=[]
     def nested(path,*args,**kwargs):
         values=original(path,*args,**kwargs)
@@ -42,8 +43,42 @@ with tempfile.TemporaryDirectory(dir=ROOT/'target') as tmp:
         try:original(str(root/'tools/oracle.py'),run_name='__main__')
         except SystemExit as exit:assert exit.code==0,stdout.getvalue()
     summary=json.loads((root/'target/oracle/summary.json').read_text())
-    assert len(probe_calls)==1 and summary['field-unavailable']==2 and summary['differ']==0
+    assert len(probe_calls)==1 and summary['field-unavailable']==2 and summary['differ']==0 and summary['agree']==1
     records=json.loads((root/'target/oracle/field-unavailable.json').read_text())
     assert {r['case'] for r in records}=={'raw','raw2'}
     assert all('Illegal byte sequence' in r['reason'] for r in records)
+    # Darwin tuples came from real CI. Running Linux's equivalent aborts
+    # exercises classification and exact-evidence plumbing, not Mac behavior.
+    cases={json.loads(line)['name']:json.loads(line) for file in (ROOT/'tests/cases').glob('*.jsonl') for line in file.read_text().splitlines()}
+    reviews=json.loads((ROOT/'tests/field-divergences.json').read_text())
+    assert set(reviews)=={'darwin'} and set(reviews['darwin'])=={'not-yet-argv-bytes-0','not-yet-argv-bytes-1'}
+    check=original(str(ROOT/'tools/oracle-review.py'))['exact_review']
+    for name,review in reviews['darwin'].items():
+        assert review['class']=='upstream-blocked' and review['platform']=='darwin'
+        g=review['gnu'];s=review['scent']
+        g=(bytes.fromhex(g[0]),bytes.fromhex(g[1]),g[2],bytes.fromhex(g[3]))
+        s=(bytes.fromhex(s[0]),bytes.fromhex(s[1]).replace(b'{pid}',b'123'),s[2],bytes.fromhex(s[3]))
+        assert check(review,cases[name],g,s)
+        assert not check(review,{**cases[name],'argv':['changed']},g,s)
+        for mutation in [(s[0],s[1],2,s[3]),(s[0],s[1]+b'x',s[2],s[3]),(b'x',s[1],s[2],s[3])]:assert not check(review,cases[name],g,mutation)
+    argv_rows=[cases[name] for name in reviews['darwin']]
+    (root/'tests/cases/raw.jsonl').write_text(''.join(json.dumps(c)+'\n' for c in argv_rows))
+    def execute_field():
+        stdout=io.StringIO()
+        with patch.object(sys,'argv',[str(root/'tools/oracle.py'),'--field','--bin',str(ROOT/'target/native/scent')]),patch.object(sys,'platform','darwin'),patch.object(shutil,'which',return_value=str(ROOT/'.oracle/grep')),contextlib.redirect_stdout(stdout):
+            try:original(str(root/'tools/oracle.py'),run_name='__main__')
+            except SystemExit as exit:return exit.code,stdout.getvalue()
+        raise AssertionError('harness did not finish')
+    code,output=execute_field();assert code==0,output
+    summary=json.loads((root/'target/oracle/summary.json').read_text())
+    assert summary['upstream-blocked']==2 and summary['reviewed']==2 and summary['differ']==0,summary
+    for c in argv_rows:
+        record=root/'target/oracle'/c['name']
+        assert json.loads((record/'classification.json').read_text())['class']=='upstream-blocked'
+        assert (record/'scent.status').read_bytes()==b'-6'
+        assert b'Result::unwrap()' in (record/'scent.stderr').read_bytes()
+    changed=json.loads(json.dumps(reviews));changed['darwin'][argv_rows[0]['name']]['gnu'][2]=42
+    (root/'tests/field-divergences.json').write_text(json.dumps(changed))
+    code,output=execute_field();assert code==1 and 'STALE REVIEW' in output,output
+print('PASS field upstream reviews: real CI tuples, digits-only PID, scoped Darwin rows, retained witnesses, stale review fatal')
 print('PASS field filesystem probe: once per corpus, two impossible fixtures classified, real I/O failures fatal')

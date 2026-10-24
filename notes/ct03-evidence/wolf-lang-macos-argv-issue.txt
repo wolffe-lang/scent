@@ -1,0 +1,48 @@
+Title: env_args aborts on a non-UTF-8 argv on macOS (Rust std unwrap in the runtime)
+
+Observed on macOS arm64 in scent's labelled tier-full CI run 40128081248,
+head 6dc3c111f872f93498190639288387c1175b413c. wolf 0.2.35, compiler
+cf0c13d38479f444b69bb8356ad5709d07eff323, paired lupin 0.1.56, bundled
+std 2386522eb059cca5a84108562c2c0a0e72345d34. The release/native process
+aborts before scent can parse or reject an arbitrary-byte argument.
+
+Linux-side filesystem siblings: wolffe-lang/wolf-lang#687 and #912.
+The existing Linux argv gaps are also tracked by #406/#904. This report
+records the separately observed Darwin runtime abort, not an APFS filename
+fixture: the missing filename need not exist on disk.
+
+Reproducer against the built scent binary:
+
+  python3 -I - /absolute/path/to/scent <<'PY'
+  import os, subprocess, sys
+  for args in [[b'grep', b'-F', b'\xff'], [b'grep', b'-F', b'x', b'\xff']]:
+      r = subprocess.run(args, executable=os.fsencode(sys.argv[1]),
+                         input=b'', capture_output=True,
+                         env={b'LC_ALL': b'C', b'PATH': b'/usr/bin:/bin'})
+      print(args, r.returncode, repr(r.stdout), repr(r.stderr))
+  PY
+
+Both scent executions have empty stdout and exit -6 (SIGABRT). Example
+stderr from the first real macOS CI witness (PID is the only variable):
+
+thread '<unnamed>' (99376) panicked at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/env.rs:876:51:
+called `Result::unwrap()` on an `Err` value: "\xFF"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+fatal runtime error: failed to initiate panic, error 5, aborting
+
+GNU grep 3.12 on that macOS runner returns no output/status 1 for the
+byte-FF pattern on empty input. For the byte-FF missing filename it returns
+stderr bytes b'grep: \xff: No such file or directory\n', empty stdout,
+status 2. The two roles must not be conflated.
+
+Expected runtime behavior: preserve raw argv through a byte API, or return
+a declared decoding error from a string API; never unwrap-and-abort on a
+valid POSIX argv byte sequence. No scent workaround is proposed.
+
+Evidence in wolffe-lang/scent:
+- notes/ct03-evidence/macos-field-red.txt (original CI lines)
+- tests/field-divergences.json (Darwin-scoped exact tuples; typed PID only)
+- tools/oracle's retained field witness directories for the two named rows
+  not-yet-argv-bytes-0 and not-yet-argv-bytes-1
+
+Draft only, for the orchestrator to file; no issue was filed by ct03.

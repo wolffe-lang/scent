@@ -112,20 +112,21 @@ def launch(binary, c, work, bindir):
         for t in writers:t.join(timeout=0.1)
 exact_review=runpy.run_path(str(ROOT/'tools/oracle-review.py'))['exact_review']
 reviews=json.loads((ROOT/'tests/divergences.json').read_text())
-field=runpy.run_path(str(ROOT/'tools/oracle-field.py'))
+field_reviews=json.loads((ROOT/'tests/field-divergences.json').read_text()) if a.field else {}
+field_support=runpy.run_path(str(ROOT/'tools/oracle-field.py'))
 cases=[json.loads(raw) for file in sorted((ROOT/a.cases).glob('*.jsonl')) for raw in file.read_text().splitlines()]
 selected=[c for c in cases if not a.only or fnmatch.fnmatchcase(c['name'],a.only)]
 capabilities={}
-if a.field and any(field['needs_non_utf8_name'](case) for case in selected):
-    capabilities['non-utf8-filename']=field['probe_non_utf8_name'](stage)
+if a.field and any(field_support['needs_non_utf8_name'](case) for case in selected):
+    capabilities['non-utf8-filename']=field_support['probe_non_utf8_name'](stage)
     print('FIELD capability',json.dumps(capabilities,sort_keys=True),flush=True)
 if a.field:(stage/'field-capabilities.json').write_text(json.dumps(capabilities,indent=2)+'\n')
-counts={'upstream-blocked':0,'reviewed':0,'agree':0,'differ':0,'not-yet':0,'argv0-diagnostic':0,'argv0-usage':0,'argv-bytes':0,'field-unavailable':0,'terminator-pattern':0};seen=0
+counts={'upstream-blocked':0,'reviewed':0,'agree':0,'differ':0,'not-yet':0,'argv0-diagnostic':0,'argv0-usage':0,'argv-bytes':0,'field-unavailable':0,'terminator-pattern':0,'stale-review':0};seen=0
 unavailable=[]
 for c in selected:
     name=c['name']
     seen+=1
-    reason=field['unavailable_reason'](c,capabilities) if a.field else None
+    reason=field_support['unavailable_reason'](c,capabilities) if a.field else None
     if reason:
         counts['field-unavailable']+=1;unavailable.append({'case':name,'reason':reason});print('FIELD unavailable',name,reason,flush=True);continue
     if a.field and c.get('wrapper') and not (reference.parent/c['wrapper']).is_file():
@@ -187,15 +188,25 @@ for c in selected:
                 compared=subprocess.run(['cmp','-s']+paths).returncode
                 require(compared in (0,1),'cmp could not compare '+name+' '+field)
                 same= same and compared==0
-        review=reviews.get(name)
-        if review and not a.field:
+        review=field_reviews.get(sys.platform,{}).get(name) if a.field else reviews.get(name)
+        if review:
+            if a.field:require(review.get('class')=='upstream-blocked' and review.get('platform')==sys.platform,name+' field review scope')
             if not same and exact_review(review,c,g,s):
                 counts['reviewed']+=1
                 if review.get('kind')=='upstream':counts['upstream-blocked']+=1
-                print('REVIEWED',name,'ruling',review['ruling'],flush=True)
+                if a.field:
+                    record=stage/name;record.mkdir(exist_ok=True)
+                    for tag,result in [('gnu',g),('scent',s)]:
+                        for suffix,value in zip(['stdout','stderr','status','stdin-rest'],result):
+                            (record/(tag+'.'+suffix)).write_bytes(str(value).encode() if isinstance(value,int) else value)
+                    (record/'case.json').write_text(json.dumps(c,indent=2)+'\n')
+                    (record/'classification.json').write_text(json.dumps({'class':review['class'],'platform':sys.platform,'source_run':review['source_run']},indent=2)+'\n')
+                    print('UPSTREAM-BLOCKED',name,'reviewed',sys.platform,'source-run',review['source_run'],flush=True)
+                else:print('REVIEWED',name,'ruling',review['ruling'],flush=True)
                 continue
             same=False
-            print('STALE REVIEW',name,'ruling',review['ruling'],flush=True)
+            counts['stale-review']+=1
+            print('STALE REVIEW',name,'classification',review.get('ruling',review.get('class')),flush=True)
         if same:counts['agree']+=1
         else:
             counts['differ']+=1
@@ -211,7 +222,7 @@ print('{agree} agree / {differ} differ / {not-yet} not-yet'.format(**counts),flu
 print('{reviewed} reviewed divergences (including {upstream-blocked} upstream-blocked)'.format(**counts),flush=True)
 print('not-yet columns: argv0-diagnostic={argv0-diagnostic} argv0-usage={argv0-usage} argv-bytes={argv-bytes} terminator-pattern={terminator-pattern}'.format(**counts),flush=True)
 if a.field:
-    print('field-unavailable:',counts['field-unavailable'],flush=True)
+    print('FIELD summary:',json.dumps({k:counts[k] for k in ['agree','differ','reviewed','upstream-blocked','not-yet','field-unavailable','stale-review']},sort_keys=True),flush=True)
     (stage/'field-unavailable.json').write_text(json.dumps(unavailable,indent=2)+'\n')
 (stage/'summary.json').write_text(json.dumps(counts,sort_keys=True)+'\n')
-raise SystemExit(0 if a.field or counts['differ']==0 else 1)
+raise SystemExit(0 if counts['stale-review']==0 and (a.field or counts['differ']==0) else 1)

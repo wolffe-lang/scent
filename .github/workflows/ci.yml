@@ -72,6 +72,8 @@ jobs:
         run: python3 -I tools/m2-ci-test
       - name: Format and both compiler tiers
         run: tools/in-container bash -c 'tools/check-fmt && tools/build --all'
+      - name: Field filesystem and exact upstream review regressions
+        run: tools/in-container python3 -I tools/oracle-field-test
       - name: Checked tests with explicit native-fallback reruns, native and lupin
         if: ${{ !cancelled() }}
         run: tools/in-container tools/check-test
@@ -126,6 +128,12 @@ jobs:
           brew install grep
           ggrep --version
           tools/oracle --field --bin target/release/scent
+      - name: Retain macOS field classifications and witnesses
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-field-evidence
+          path: target/oracle
   tier:
     name: tier ${{ needs.plan.outputs.tier || 'unplanned' }}
     if: ${{ !cancelled() }}

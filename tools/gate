@@ -16,6 +16,7 @@ python3 -I tools/m1-ci-test
 python3 -I tools/oracle-review-test
 tools/check-fmt
 tools/build --all
+python3 -I tools/oracle-field-test
 tools/check-test
 tools/oracle-select-test
 tools/oracle --bin target/native/scent
