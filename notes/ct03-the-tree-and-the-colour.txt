@@ -193,3 +193,54 @@ remote plant branches can be pruned. No global prune or other lane data
 was touched.
 
 Footprint: cross-cutting
+
+macOS send-back and prediction (before the next field run)
+--------------------------------------------------------
+The labelled tier-full run 40128081248 at 6dc3c111 had Linux green but
+macOS red. The earlier note/PR omitted a macOS prediction; that was a gap.
+APFS rejected the FF filename fixture with errno 92 (Illegal byte
+sequence), so the Python harness crashed before producing final counts.
+Two argv-byte rows also exposed runtime aborts. The original observed
+CI lines are in macos-field-red.txt. No local Mac test or build was run.
+
+The harness now probes the corpus filesystem once, before case setup.
+A rejection of a non-UTF-8 name makes only fixtures needing such a name
+field-unavailable, with the actual errno/reason saved. Permission, storage
+and unrelated I/O failures are still errors. The Linux raw-name row stays
+an executed exact upstream-blocked comparison, never skipped by OS name.
+
+Darwin field reviews are a separate manifest, tests/field-divergences.json,
+scoped to exactly not-yet-argv-bytes-0/1, with class upstream-blocked.
+Their GNU and scent tuples are pinned to the real failed-run witnesses;
+the only typed field is the numeric panic PID. Changed tuples/case identity
+or a vanished divergence fail as a stale review. Raw stdout/stderr/status,
+case identity and classification are retained in the macOS field artifact.
+The first role is an FF pattern: GNU empty streams/status 1. The second
+is an FF missing filename: GNU stderr `grep: <FF>: No such file or
+directory\n`/status 2. Scent has empty stdout, Rust std env.rs:876 unwrap
+panic and status -6 in both. No scent workaround was added. Issue draft:
+notes/ct03-evidence/wolf-lang-macos-argv-issue.txt, for the orchestrator
+to file; it cites #687/#912 and the existing Linux argv issues.
+
+Prediction for the next complete macOS/Homebrew field run: 7,304 agree,
+244 ordinary field differences, two reviewed upstream-blocked rows,
+one M3 refusal and 2,048 field-unavailable; total 9,599. The unavailable
+prediction consists of 2,029 existing Linux-only fixture rows, one
+filesystem-rejected raw-name row and 18 absent compatibility wrappers
+beside /opt/homebrew/bin/ggrep. The difference prediction consists of 109
+published consistency rows, one minimal explicit socket row, 128
+PCRE-configuration rows and six invocation-name rows. This is a prediction,
+not an unperformed Mac measurement. A changed Homebrew wrapper layout or
+new platform behavior must be reported, not normalized into these counts.
+Linux record counts are predicted unchanged (9,478 agree / 120 reviewed
+including nine upstream-blocked / one M3 refusal / zero unapproved).
+
+Local follow-up validation uses kasumi CPUs 4-7 under
+~/lanes/kasumi-cores-4-7.lock (12-15 now belongs to vc00). Harness regressions
+exercise actual Linux byte-name capability, simulated EILSEQ rejection,
+ordinary cases before rejected fixtures, one probe across two raw cases,
+non-capability I/O failures, both exact Darwin CI tuples, retained abort
+witnesses and stale-review failure. Darwin scope is simulated for harness
+plumbing only, not represented as a local macOS runtime measurement.
+The full local follow-up gate and final CI first-read are reported in the
+hand-back. No label was changed and no issue was filed.
