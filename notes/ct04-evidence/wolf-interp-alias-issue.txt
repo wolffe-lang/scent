@@ -23,3 +23,7 @@ wolf-std2386522eb059cca5a84108562c2c0a0e72345d34. Complete output is
 final-controls.log. This also occurred with `use re as utf8` in scent's
 Unicode unit test; importing re directly works. No package or pin changed.
 Expected: the explicitly imported alias resolves identically on all tiers.
+
+Direct-import control: `use math; math.value()` in a separate program
+directory prints42 and exits0 under the same lupin. This is the first line
+of acceptance.log; only the alias spelling changes.
