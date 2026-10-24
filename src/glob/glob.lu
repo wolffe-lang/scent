@@ -1,0 +1,124 @@
+//! member: true
+
+// Clean-room: POSIX fnmatch pattern notation and pinned GNU 3.12 probes.
+
+fn member(b: int, name: str) -> bool {
+    let lower = b >= 97 && b <= 122
+    let upper = b >= 65 && b <= 90
+    let digit = b >= 48 && b <= 57
+    let space = b == 32 || b >= 9 && b <= 13
+    match name {
+        "alnum" => lower || upper || digit,
+        "alpha" => lower || upper,
+        "blank" => b == 32 || b == 9,
+        "cntrl" => b < 32 || b == 127,
+        "digit" => digit,
+        "graph" => b >= 33 && b <= 126,
+        "lower" => lower,
+        "print" => b >= 32 && b <= 126,
+        "punct" => b >= 33 && b <= 126 && !lower && !upper && !digit,
+        "space" => space,
+        "upper" => upper,
+        "xdigit" => digit || b >= 65 && b <= 70 || b >= 97 && b <= 102,
+        _ => false,
+    }
+}
+
+// Return the position after a valid bracket, negative when it does not
+// match, zero for an unclosed bracket (which is an ordinary '[').
+fn bracket(p: str, start: int, b: int) -> int {
+    var at = start + 1
+    var negate = false
+    if at < p.len && (p.bytes()[at] == 33 as byte || p.bytes()[at] == 94 as byte) {
+        negate = true
+        at += 1
+    }
+    var hit = false
+    let first = at
+    while at < p.len {
+        let c = p.bytes()[at] as int
+        if c == 93 && at > first { return if hit != negate then at + 1 else -(at + 1) }
+        if c == 91 && at + 1 < p.len && p.bytes()[at + 1] == 58 as byte {
+            let rest = p[at + 2..]
+            let end = rest.find(":]") else { return 0 }
+            if member(b, rest[0..end]) { hit = true }
+            at += end + 4
+            continue
+        }
+        var lo = c
+        if c == 92 && at + 1 < p.len { at += 1; lo = p.bytes()[at] as int }
+        at += 1
+        if at + 1 < p.len && p.bytes()[at] == 45 as byte && p.bytes()[at + 1] != 93 as byte {
+            at += 1
+            var hi = p.bytes()[at] as int
+            if hi == 92 && at + 1 < p.len { at += 1; hi = p.bytes()[at] as int }
+            at += 1
+            if b >= lo && b <= hi { hit = true }
+        } else if b == lo {
+            hit = true
+        }
+    }
+    0
+}
+
+/// Match a complete name; slash and leading dot are ordinary bytes.
+pub fn matches(p: str, text: str) -> bool {
+    var at = 0
+    var pos = 0
+    var star = -1
+    var retry = 0
+    while pos < text.len {
+        if at < p.len && p.bytes()[at] == 42 as byte {
+            star = at
+            retry = pos
+            at += 1
+            continue
+        }
+        var next = at + 1
+        var hit = false
+        if at < p.len {
+            let c = p.bytes()[at] as int
+            let b = text.bytes()[pos] as int
+            if c == 63 {
+                hit = true
+            } else if c == 91 {
+                let end = bracket(p, at, b)
+                if end == 0 {
+                    hit = b == 91
+                } else {
+                    hit = end > 0
+                    next = if end > 0 then end else -end
+                }
+            } else if c == 92 {
+                if next < p.len { hit = p.bytes()[next] as int == b; next += 1 }
+            } else {
+                hit = c == b
+            }
+        }
+        if hit {
+            at = next
+            pos += 1
+            continue
+        }
+        if star >= 0 && retry < text.len {
+            retry += 1
+            pos = retry
+            at = star + 1
+            continue
+        }
+        return false
+    }
+    while at < p.len && p.bytes()[at] == 42 as byte { at += 1 }
+    at == p.len
+}
+
+/// Explicit operands also try suffixes beginning after a slash.
+pub fn operand(pattern: str, path: str) -> bool {
+    if matches(pattern, path) { return true }
+    var at = 0
+    while at < path.len {
+        if path.bytes()[at] == 47 as byte && matches(pattern, path[at + 1..]) { return true }
+        at += 1
+    }
+    false
+}

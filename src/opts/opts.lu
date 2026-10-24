@@ -10,8 +10,21 @@ pub struct Source {
     text: str,
 }
 
+/// An ordered file-selection pattern. First rule determines the fallback.
+pub struct Filter {
+    include: bool,
+    pattern: str,
+}
+
 /// Parsed CLI controls, sources, operands and terminal actions.
 pub struct Options {
+    directories: int,
+    dereference: bool,
+    devices: int,
+    filters: List[Filter],
+    exclude_dirs: List[str],
+    implicit_tree: bool,
+    filename_auto: bool,
     syntax: str,
     syntax_set: bool,
     sources: List[Source],
@@ -48,6 +61,13 @@ pub struct Options {
 /// The GNU 3.12 C-locale defaults.
 pub fn defaults() -> Options {
     Options {
+        directories: 0,
+        dereference: false,
+        devices: -1,
+        filters: List[Filter](),
+        exclude_dirs: List[str](),
+        implicit_tree: false,
+        filename_auto: true,
         syntax: "G",
         syntax_set: false,
         sources: List[Source](),
@@ -226,8 +246,8 @@ fn apply(mut o: Options, key: str, value: str) -> bool {
         "s" => { o.silent = true },
         "n" => { o.number = true },
         "b" => { o.offset = true },
-        "H" => { o.filename = 1 },
-        "h" => { o.filename = 0 },
+        "H" => { o.filename = 1; o.filename_auto = false },
+        "h" => { o.filename = 0; o.filename_auto = false },
         "label" => { o.label = value },
         "T" => { o.tab = true },
         "Z" => { o.null_name = true },
@@ -284,16 +304,59 @@ fn apply(mut o: Options, key: str, value: str) -> bool {
                 o.status = 1
                 return false
             }
-            o.not_yet = "--directories (M2)"
+            for choice in ["read", "recurse", "skip"] {
+                if choice.starts_with(value) {
+                    o.directories = if choice == "read" {
+                        0
+                    } else if choice == "recurse" {
+                        1
+                    } else {
+                        2
+                    }
+                }
+            }
         },
         "D" => {
             if value != "read" && value != "skip" {
                 return problem(mut o, "unknown devices method", false)
             }
-            o.not_yet = "--devices (M2)"
+            o.devices = if value == "read" then 0 else 1
         },
-        "r" | "R" | "include" | "exclude" | "exclude-from" | "exclude-dir" => {
-            o.not_yet = "{key} (M2)"
+        "r" | "R" => { o.directories = 1; o.dereference = key == "R" },
+        "include" | "exclude" => {
+            (mut o.filters).push(Filter { include: key == "include", pattern: value })
+        },
+        "exclude-dir" => {
+            var end = value.len
+            while end > 0 && value.bytes()[end - 1] == 47 as byte { end -= 1 }
+            (mut o.exclude_dirs).push(value[0..end])
+        },
+        "exclude-from" => {
+            var fd = 0
+            if value != "-" {
+                fd = fs_open(value) else |_| {
+                    return problem(mut o, "{value}: {os_error_text(os_error())}", false)
+                }
+            }
+            var all = List[byte]()
+            loop {
+                let chunk = fs_read_chunk(fd, 65536) else |e| match e {
+                    eof => { break },
+                    io => { return problem(mut o, "{value}: {os_error_text(os_error())}", false) },
+                }
+                for b in chunk { (mut all).push(b) }
+            }
+            if fd != 0 { fs_close(fd) else |_| {} }
+            let text = str_from_utf8(all) else |_| {
+                return problem(
+                    mut o,
+                    "{value}: Invalid or incomplete multibyte or wide character",
+                    false,
+                )
+            }
+            for line in text.split("\n") {
+                (mut o.filters).push(Filter { include: false, pattern: line })
+            }
         },
         "help" => { o.action = "help" },
         "V" => { o.action = "version" },
@@ -434,7 +497,10 @@ pub fn parse(args: List[str], posix: bool) -> Options {
         (mut o.files).push(operands[first])
         first += 1
     }
-    if o.files.len == 0 { (mut o.files).push("-") }
+    if o.files.len == 0 {
+        o.implicit_tree = o.directories == 1
+        (mut o.files).push(if o.implicit_tree then "." else "-")
+    }
     if o.filename < 0 { o.filename = if o.files.len > 1 then 1 else 0 }
     o
 }

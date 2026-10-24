@@ -6,8 +6,7 @@ use std.env
 use fixed
 use matcher
 use opts
-use out
-use reader
+use walk
 use re
 
 fn input(path: str) -> int ! {not_found, denied, io} {
@@ -141,53 +140,7 @@ fn run(o: opts.Options) -> int {
         return 2
     }
     emit_diagnostics(diagnostics, names, lines)
-    var matched = false
-    var error = false
-    var grouped = false
-    for path in o.files {
-        region file {
-            let name = if path == "-" then o.label else path
-            if o.limit == 0 {
-                var writer = out.create()
-                if o.count && o.listing == 0 && !o.quiet { out.count(mut writer, o, name, 0) }
-                if o.listing == 2 && !o.quiet { out.filename(mut writer, o, name) }
-                out.flush(mut writer)
-                if writer.failed { error = true }
-                continue
-            }
-            let fd = input(path) else |_| {
-                let code = os_error()
-                if !o.silent { eprint("{opts.program()}: {path}: {os_error_text(code)}") }
-                error = true
-                continue
-            }
-            if !o.quiet && !o.count && o.listing == 0 {
-                let input_info = fs_fstat_record(fd) else List[int]()
-                let output_info = fs_fstat_record(1) else List[int]()
-                if input_info.len > 10 &&
-                    output_info.len > 10 &&
-                    input_info[0] == 0 &&
-                    output_info[0] == 0 &&
-                    input_info[9] == output_info[9] &&
-                    input_info[10] == output_info[10] {
-                    if !o.silent {
-                        eprint("{opts.program()}: {name}: input file is also the output")
-                    }
-                    error = true
-                    if fd != 0 { fs_close(fd) else |_| {} }
-                    continue
-                }
-            }
-            let result = reader.scan(o, re, fd, name, path == "-", mut grouped)
-            if fd != 0 { fs_close(fd) else |_| {} }
-            if result.matched { matched = true }
-            if result.error { error = true }
-            if o.quiet && matched { return 0 }
-        }
-    }
-    if error { return 2 }
-    if matched { return 0 }
-    1
+    walk.run(o, re)
 }
 
 fn main() -> int {
