@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+"""Check generated tables against every measured member and directed edge.
+No oracle calls: CI consumes the committed black-box fixtures.
+"""
+import array, hashlib, json, pathlib, re, subprocess, tempfile, gzip
+ROOT=pathlib.Path(__file__).resolve().parent.parent
+FIX=ROOT/'tests/fixtures/ctype'
+for line in (ROOT/'ucd/MANIFEST').read_text().splitlines():
+    digest,name=line.split()
+    assert hashlib.sha256((ROOT/'ucd'/name).read_bytes()).hexdigest()==digest
+source=(ROOT/'src/re/ctype_tables.lu').read_text()
+def packed(name):
+    text=re.search(r'let '+name+r': str = "([^"]*)"',source)[1]
+    assert re.fullmatch(r'(?:\\x[0-7][0-9a-f])*',text)
+    return bytes(int(text[i+2:i+4],16) for i in range(0,len(text),4))
+def number(data):
+    n=0
+    for b in data:n=n*128+b
+    return n
+expected=array.array('H',[0])*0x110000
+names='alpha alnum digit upper lower space blank punct cntrl graph print xdigit word'.split()
+for i,name in enumerate(names):
+    for row in gzip.decompress((FIX/(name+'.members.gz')).read_bytes()).decode().splitlines():expected[int(row,16)]|=1<<i
+actual=array.array('H',[0])*0x110000
+data=packed('CTYPE_DATA');assert len(data)%8==0
+previous=-1
+for pos in range(0,len(data),8):
+    lo,hi,mask=number(data[pos:pos+3]),number(data[pos+3:pos+6]),number(data[pos+6:pos+8])
+    assert previous<lo<=hi<0x110000 and mask
+    actual[lo:hi+1]=array.array('H',[mask])*(hi-lo+1);previous=hi
+assert actual==expected,'ctype differs from measured fixtures'
+data=packed('FOLD_DATA');assert len(data)%6==0
+pairs=[(number(data[p:p+3]),number(data[p+3:p+6])) for p in range(0,len(data),6)]
+want=[tuple(int(x,16) for x in row.split()) for row in (FIX/'folds.tsv').read_text().splitlines()]
+assert pairs==want,'directed fold differs from measured fixtures'
+queries=[json.loads(x) for x in (FIX/'fold-queries.partial.jsonl').read_text().splitlines()]
+query_pairs=sorted((int(r['cp'],16),int(v,16)) for r in queries for v in r['matches'] if v!=r['cp'])
+assert pairs==query_pairs,'fold fixture differs from raw query evidence'
+assert len(expected)==1114112 and len(queries)==3668 and len(pairs)==2938
+print('check-ctype: all 1,112,064 scalars / 13 classes; 3,668 queries / 2,938 directed edges agree')

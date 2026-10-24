@@ -1,0 +1,298 @@
+//! UCD-derived ctype records, with separately measured oracle overrides.
+//! Design reference: yew tools/gen-unicode-tables/main.lu:1321-1397
+//! (UnicodeData First/Last and DerivedCoreProperties parsers),
+//! src/unicode/category.lu:38-100 (packed 7-bit string data). Own code.
+//! No libc implementation or locale tables are inputs.
+//!
+//! Usage: gen-ctype-tables UCD_DIR [OVERRIDES_TSV FOLD_OVERRIDES_TSV]
+//! Without overrides, emit lo<TAB>hi<TAB>mask for the UCD baseline.
+//! With overrides, emit wolf constants for final ctype and fold tables.
+//! Bits: alpha alnum digit upper lower space blank punct cntrl graph
+//! print xdigit word (in that order). Every derivation is version-neutral:
+//! alpha/upper/lower are DCP; digit/xdigit ASCII; space White_Space;
+//! blank Zs or TAB; cntrl Cc; print assigned except Cc/Cs; graph print
+//! minus space; alnum alpha or digit; punct graph minus alnum; word
+//! alnum or underscore. Oracle overrides are explicit, never heuristics.
+
+use std.fs
+
+fn die(text: str) {
+    eprint("gen-ctype-tables: {text}")
+    os_exit(1)
+}
+
+fn hex(text: str) -> int {
+    var n: int = 0
+    for b in text.trim().bytes() {
+        let c = b as int
+        let d = if c >= 48 && c <= 57 then c - 48 else (if c >= 65 && c <= 70 then c - 55 else -1)
+        if d < 0 { die("bad hexadecimal field") }
+        n = n * 16 + d
+    }
+    if n > 1114111 { die("code point out of range") }
+    n
+}
+
+fn read(path: str) -> str {
+    fs.read_text(path) else { die("cannot read {path}"); return "" }
+}
+
+fn set(mut records: List[int], lo: int, hi: int, bits: int) {
+    var cp = lo
+    while cp <= hi { records[cp] |= bits; cp += 1 }
+}
+
+fn category_bits(cat: str) -> int {
+    if cat == "Cc" { return 256 }
+    if cat == "Cs" || cat == "Cn" { return 0 }
+    1024 | (if cat == "Zs" then 64 else 0)
+}
+
+fn unicode_data(mut records: List[int], dir: str) {
+    let text = read("{dir}/UnicodeData.txt")
+    var first = -1
+    var bits = 0
+    for raw in text.lines() {
+        region row {
+            let f = raw.split(";")
+            if f.len != 15 { die("UnicodeData field count") }
+            let cp = hex(f[0])
+            if f[1].contains(", First>") {
+                if first >= 0 { die("nested First") }
+                first = cp
+                bits = category_bits(f[2])
+            } else if f[1].contains(", Last>") {
+                if first < 0 || cp < first || bits != category_bits(f[2]) { die("unpaired Last") }
+                set(mut records, first, cp, bits)
+                first = -1
+            } else {
+                if first >= 0 { die("missing Last") }
+                records[cp] |= category_bits(f[2])
+            }
+        }
+    }
+    if first >= 0 { die("unclosed First") }
+}
+
+fn properties(mut records: List[int], path: str) {
+    let text = read(path)
+    for raw in text.lines() {
+        region row {
+            let hash = raw.find("#") else raw.len
+            let text = raw[0..hash].trim()
+            if text.len == 0 { continue }
+            let fields = text.split(";")
+            if fields.len < 2 { die("property field count") }
+            let name = fields[1].trim()
+            var bits = 0
+            if name == "Alphabetic" { bits = 1 }
+            if name == "Uppercase" { bits = 8 }
+            if name == "Lowercase" { bits = 16 }
+            if name == "White_Space" { bits = 32 }
+            if bits == 0 { continue }
+            let ends = fields[0].trim().split("..")
+            let lo = hex(ends[0])
+            let hi = if ends.len == 2 then hex(ends[1]) else lo
+            set(mut records, lo, hi, bits)
+        }
+    }
+}
+
+fn derive(dir: str) -> List[int] {
+    var records = List[int]()
+    var cp = 0
+    while cp < 1114112 { (mut records).push(0); cp += 1 }
+    unicode_data(mut records, dir)
+    properties(mut records, "{dir}/DerivedCoreProperties.txt")
+    properties(mut records, "{dir}/PropList.txt")
+    cp = 0
+    while cp < records.len {
+        var r = records[cp]
+        if cp >= 48 && cp <= 57 { r |= 4 }
+        if cp == 9 { r |= 64 }
+        if r & 5 != 0 { r |= 2 }
+        if r & 1024 != 0 && r & 32 == 0 { r |= 512 }
+        if r & 512 != 0 && r & 2 == 0 { r |= 128 }
+        if r & 4 != 0 || cp >= 65 && cp <= 70 || cp >= 97 && cp <= 102 { r |= 2048 }
+        if r & 2 != 0 || cp == 95 { r |= 4096 }
+        records[cp] = r
+        cp += 1
+    }
+    records
+}
+
+fn overrides(mut records: List[int], path: str) {
+    let text = read(path)
+    var previous = -1
+    for line in text.lines() {
+        region row {
+            if line.starts_with("#") || line == "" { continue }
+            let f = line.words()
+            if f.len != 3 { die("override needs codepoint old-mask new-mask") }
+            let cp = hex(f[0])
+            let old = f[1].to_int() else { die("bad old mask"); return }
+            let new = f[2].to_int() else { die("bad new mask"); return }
+            if cp <= previous || records[cp] != old || old == new {
+                die("stale or unordered override")
+            }
+            records[cp] = new
+            previous = cp
+        }
+    }
+}
+
+fn escaped(mut out: List[byte], value: int, width: int) {
+    let digits = "0123456789abcdef"
+    var shift = (width - 1) * 7
+    while shift >= 0 {
+        let b = value >> shift & 127
+        for c in "\\x".bytes() { (mut out).push(c) }
+        (mut out).push(digits.bytes()[b / 16])
+        (mut out).push(digits.bytes()[b % 16])
+        shift -= 7
+    }
+}
+
+struct FoldPair { source: int, target: int }
+
+fn sorted_unique(values: List[int]) -> List[int] {
+    var result = List[int]()
+    for value in values {
+        var found = false
+        for prior in result { if prior == value { found = true } }
+        if !found { (mut result).push(value) }
+    }
+    var i = 1
+    while i < result.len {
+        var j = i
+        while j > 0 && result[j] < result[j - 1] {
+            let old = result[j - 1]
+            result[j - 1] = result[j]
+            result[j] = old
+            j -= 1
+        }
+        i += 1
+    }
+    result
+}
+
+fn cp_list(text: str) -> List[int] {
+    var result = List[int]()
+    for field in text.split(",") { (mut result).push(hex(field)) }
+    result
+}
+
+fn same(a: List[int], b: List[int]) -> bool {
+    if a.len != b.len { return false }
+    var i = 0
+    while i < a.len { if a[i] != b[i] { return false }; i += 1 }
+    true
+}
+
+fn fold_pairs(dir: str, override_path: str) -> List[FoldPair] {
+    var upper = List[int]()
+    var lower = List[int]()
+    var cp = 0
+    while cp < 1114112 {
+        (mut upper).push(cp)
+        (mut lower).push(cp)
+        cp += 1
+    }
+    for raw in read("{dir}/UnicodeData.txt").lines() {
+        region row {
+            let f = raw.split(";")
+            let c = hex(f[0])
+            if f[12] != "" { upper[c] = hex(f[12]) }
+            if f[13] != "" { lower[c] = hex(f[13]) }
+        }
+    }
+    var old = Map[int, str]()
+    var replacement = Map[int, str]()
+    let text = read(override_path)
+    for line in text.lines() {
+        let f = line.words()
+        if f.len != 3 { die("fold override needs source, derived set, measured set") }
+        let c = hex(f[0])
+        old[c] = f[1]
+        replacement[c] = f[2]
+    }
+    var result = List[FoldPair]()
+    cp = 0
+    while cp < 1114112 {
+        region row {
+            let prior = old[cp] else ""
+            if upper[cp] != cp || lower[cp] != cp || prior != "" {
+                var values = sorted_unique(
+                    [cp, upper[cp], lower[cp], lower[upper[cp]], upper[lower[cp]]],
+                )
+                if prior != "" {
+                    if !same(values, cp_list(prior)) { die("stale fold override") }
+                    values = cp_list(replacement[cp] else "")
+                }
+                for target in values {
+                    if target != cp { (mut result).push(FoldPair { source: cp, target: target }) }
+                }
+            }
+        }
+        cp += 1
+    }
+    result
+}
+
+fn emit(records: List[int], dir: str, folds_path: str) {
+    print("//! Generated by tools/gen-ctype-tables; UCD plus measured oracle overrides.")
+    print("//! Do not edit: fixtures and ucd/MANIFEST are the inputs.")
+    var packed = List[byte]()
+    var start = 0
+    var cp = 1
+    var count = 0
+    while cp <= records.len {
+        if cp == records.len || records[cp] != records[start] {
+            if records[start] != 0 {
+                escaped(mut packed, start, 3)
+                escaped(mut packed, cp - 1, 3)
+                escaped(mut packed, records[start], 2)
+                count += 1
+            }
+            start = cp
+        }
+        cp += 1
+    }
+    let ctype = str_from_utf8(packed) else { die("encoding ctype"); return }
+    print("const CTYPE_COUNT: int = {count}")
+    print("let CTYPE_DATA: str = \"{ctype}\"")
+    packed = List[byte]()
+    count = 0
+    for pair in fold_pairs(dir, folds_path) {
+        escaped(mut packed, pair.source, 3)
+        escaped(mut packed, pair.target, 3)
+        count += 1
+    }
+    let folds = str_from_utf8(packed) else { die("encoding folds"); return }
+    print("const FOLD_COUNT: int = {count}")
+    print("let FOLD_DATA: str = \"{folds}\"")
+}
+
+fn main() -> int {
+    let args = env_args()
+    if args.len != 1 && args.len != 3 {
+        eprint("usage: gen-ctype-tables UCD_DIR [OVERRIDES_TSV FOLD_OVERRIDES_TSV]")
+        return 2
+    }
+    var records = derive(args[0])
+    if args.len == 3 {
+        overrides(mut records, args[1])
+        emit(records, args[0], args[2])
+    } else {
+        var start = 0
+        var cp = 1
+        while cp <= records.len {
+            if cp == records.len || records[cp] != records[start] {
+                if records[start] != 0 { print("{start}\t{cp - 1}\t{records[start]}") }
+                start = cp
+            }
+            cp += 1
+        }
+    }
+    0
+}

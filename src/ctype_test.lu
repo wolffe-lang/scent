@@ -1,0 +1,19 @@
+//! member: false
+
+use re
+
+fn main() {
+    assert(re.character_mask(65) & 9 == 9)
+    assert(re.character_mask(48) & 4 == 4)
+    assert(re.character_mask(1632) & 4 == 0)
+    assert(re.character_mask(1632) & 1 == 1)
+    assert(re.character_mask(10) & 32 != 0)
+    assert(re.character_mask(55296) == 0)
+    assert(re.character_mask(1114112) == 0)
+    assert(re.case_matches(73, 305) && re.case_matches(305, 73))
+    assert(!re.case_matches(304, 73))
+    assert(re.case_matches(7296, 1042))
+    assert(!re.case_matches(1042, 7296))
+    assert(re.case_matches(931, 962) && re.case_matches(931, 963))
+    assert(!re.case_matches(8490, 75))
+}

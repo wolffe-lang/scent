@@ -1,0 +1,9 @@
+{
+  "queries": 3668,
+  "directed_edges": 2938,
+  "asymmetric_edges": 18,
+  "cross_engine_controls": 108,
+  "derivation": "{c,upper(c),lower(c),lower(upper(c)),upper(lower(c))}",
+  "override_patterns": 42,
+  "override_memberships": 49
+}

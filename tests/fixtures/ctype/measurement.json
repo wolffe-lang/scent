@@ -1,0 +1,164 @@
+{
+  "oracle": {
+    "version": "3.12",
+    "version_line": "grep (GNU grep) 3.12",
+    "url": "https://ftp.gnu.org/gnu/grep/grep-3.12.tar.xz",
+    "sha256": "2649b27c0e90e632eadcd757be06c6e9a4f48d941de51e7c0f83ff76408a07b9",
+    "sig_url": "https://ftp.gnu.org/gnu/grep/grep-3.12.tar.xz.sig",
+    "keyring_url": "https://ftp.gnu.org/gnu/gnu-keyring.gpg",
+    "keyring_sha256": "0fe55175b96a8ea1c4b670cc3fe11d56b341e4eff81b161ea49958ae550be6ca",
+    "signing_fingerprint": "155D3FC500C834486D1EEA677FD9FCCB000BEEEE",
+    "configure_args": "--disable-perl-regexp",
+    "image": "docker.io/library/ubuntu:24.04@sha256:534baea6a22c03a63003dbc8dbe78fe34bc0d7e595d9a9dc9834884ff530eb55",
+    "glibc_line": "ldd (Ubuntu GLIBC 2.39-0ubuntu8.9) 2.39",
+    "binary_sha256": "92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea",
+    "perl_refusal": "grep: Perl matching not supported in a --disable-perl-regexp build",
+    "perl_status": 2,
+    "env": {
+      "LC_ALL": "C"
+    }
+  },
+  "scalar_count": 1112064,
+  "scalar_file_sha256": "84f5dad2d163e2e7cd868e7e18bf47d148db807e6c6acab9088f5d0d8f7265a4",
+  "lf_supplement": "LF+NUL under -z; -a on bulk input permits U+0000",
+  "classes": {
+    "alpha": {
+      "bulk_count": 139057,
+      "members": 139057,
+      "lf": false,
+      "bulk_stdout_sha256": "7c999c3d9c030ef48cb511f7bf6e21c23fa9b3608af72c200d623f96abd70d36"
+    },
+    "alnum": {
+      "bulk_count": 139067,
+      "members": 139067,
+      "lf": false,
+      "bulk_stdout_sha256": "9376c34ba0e42ecaa3f178640c7ccbf2c41f684d91eca0a09433178235e11a43"
+    },
+    "digit": {
+      "bulk_count": 10,
+      "members": 10,
+      "lf": false,
+      "bulk_stdout_sha256": "7427877c40fb0361401248f9c96abe6117396bc6ab16811b5b1706274c02443e"
+    },
+    "upper": {
+      "bulk_count": 1982,
+      "members": 1982,
+      "lf": false,
+      "bulk_stdout_sha256": "e5fcb998a58d68162dc9b424967ef79db26dc601e778e5bad6d2656f55f44413"
+    },
+    "lower": {
+      "bulk_count": 2548,
+      "members": 2548,
+      "lf": false,
+      "bulk_stdout_sha256": "818c1317544551a0f92bbf4e5ab0627e80adb9fdfb9c7ec7cfc7f50d4ace5626"
+    },
+    "space": {
+      "bulk_count": 20,
+      "members": 21,
+      "lf": true,
+      "bulk_stdout_sha256": "bb34f8db45243393c5972957662bf1d846ed8c1933f1560e6aee85d286ca14d2"
+    },
+    "blank": {
+      "bulk_count": 15,
+      "members": 15,
+      "lf": false,
+      "bulk_stdout_sha256": "287981457b948da07c690251f4d91e60ebed0c315ba553493cc12208e739d293"
+    },
+    "punct": {
+      "bulk_count": 148198,
+      "members": 148198,
+      "lf": false,
+      "bulk_stdout_sha256": "fa329837b524b45bf1a407aa34a66266e2d31bf8b7094ff4ca07aa102b5ea69d"
+    },
+    "cntrl": {
+      "bulk_count": 66,
+      "members": 67,
+      "lf": true,
+      "bulk_stdout_sha256": "dfeb3bccdd36d7a0514d320ce6930b76faf47fba86b94784f0d141764d939a66"
+    },
+    "graph": {
+      "bulk_count": 287265,
+      "members": 287265,
+      "lf": false,
+      "bulk_stdout_sha256": "4acc4940af1a9d2fb8158a4110c90e72493e87c28bc333fc3e5c274d7ab12807"
+    },
+    "print": {
+      "bulk_count": 287279,
+      "members": 287279,
+      "lf": false,
+      "bulk_stdout_sha256": "12212e7e7989cf5a83faa98c758108209bc3d253b389d6208c328e9e2a9022bb"
+    },
+    "xdigit": {
+      "bulk_count": 22,
+      "members": 22,
+      "lf": false,
+      "bulk_stdout_sha256": "ea96dad96725e7bb4ae73e48d941113af5fc79dd78eb97296becc076c2b9f8f9"
+    },
+    "word": {
+      "bulk_count": 139068,
+      "members": 139068,
+      "lf": false,
+      "bulk_stdout_sha256": "6c981695fe43d5ed9dec5be6ba0e75b2a6bc55da785ce37f4eb2d3b4849d38ba"
+    }
+  },
+  "versions": {
+    "15.0.0": {
+      "overrides": {
+        "alpha": 1292,
+        "alnum": 1292,
+        "digit": 0,
+        "upper": 31,
+        "lower": 4,
+        "space": 4,
+        "blank": 3,
+        "punct": 678,
+        "cntrl": 2,
+        "graph": 630,
+        "print": 629,
+        "xdigit": 0,
+        "word": 1292
+      },
+      "total_class_memberships": 5857,
+      "distinct_codepoints": 1334
+    },
+    "15.1.0": {
+      "overrides": {
+        "alpha": 670,
+        "alnum": 670,
+        "digit": 0,
+        "upper": 31,
+        "lower": 4,
+        "space": 4,
+        "blank": 3,
+        "punct": 673,
+        "cntrl": 2,
+        "graph": 3,
+        "print": 2,
+        "xdigit": 0,
+        "word": 670
+      },
+      "total_class_memberships": 2732,
+      "distinct_codepoints": 707
+    },
+    "16.0.0": {
+      "overrides": {
+        "alpha": 5042,
+        "alnum": 5042,
+        "digit": 0,
+        "upper": 58,
+        "lower": 29,
+        "space": 4,
+        "blank": 3,
+        "punct": 1552,
+        "cntrl": 2,
+        "graph": 5188,
+        "print": 5187,
+        "xdigit": 0,
+        "word": 5042
+      },
+      "total_class_memberships": 27149,
+      "distinct_codepoints": 5925
+    }
+  },
+  "winner": "15.1.0"
+}

@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+"""Reduce the Cyrillic non-equivalence found by measure-ctype."""
+import hashlib, json, os, pathlib, subprocess, tomllib
+ROOT=pathlib.Path(__file__).resolve().parent.parent
+pin=tomllib.loads((ROOT/'scent-oracle.toml').read_text())['oracle']
+assert os.environ.get('SCENT_IN_CONTAINER')=='1'
+binary=ROOT/'.oracle/grep'
+assert hashlib.sha256(binary.read_bytes()).hexdigest()==pin['binary_sha256']
+assert subprocess.check_output(['ldd','--version']).splitlines()[0].decode()==pin['glibc_line']
+rows=[]
+for cp in [0x412,0x432,0x1c80]:
+    c=chr(cp)
+    for syntax in ['-G','-E','-F']:
+        patterns=[c] if syntax=='-F' else [c,'^'+c+'$','['+c+']','^['+c+']$',c+'.*','('+c+')' if syntax=='-E' else r'\('+c+r'\)']
+        for pattern in patterns:
+            for data in [chr(0x1c80)+'\n',chr(0x412)+'\n','Ввᲀ\n','В\nв\nᲀ\n']:
+                argv=[syntax,'-a','-i','-o',pattern]
+                r=subprocess.run(['grep',*argv],executable=str(binary),input=data.encode(),capture_output=True,env={'PATH':os.defpath,'LC_ALL':'C.UTF-8'})
+                rows.append({'argv':argv,'stdin_hex':data.encode().hex(),'stdout_hex':r.stdout.hex(),'stderr_hex':r.stderr.hex(),'status':r.returncode})
+(ROOT/'notes/ct04-evidence/fold-non-equivalence.json').write_text(json.dumps(rows,indent=2)+'\n')
+for r in rows:
+    if r['stdin_hex']=='e1b2800a':print(r['argv'],bytes.fromhex(r['stdout_hex']),r['status'])

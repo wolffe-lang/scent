@@ -1,0 +1,2030 @@
+[
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0412$"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0412$"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0412$"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0412$"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0412]"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0412]"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0412]"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0412]"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0412]$"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0412]$"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0412]$"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0412]$"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412.*"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412.*"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412.*"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d092d0b2e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412.*"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\\(\u0412\\)"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\\(\u0412\\)"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\\(\u0412\\)"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\\(\u0412\\)"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0412$"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0412$"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0412$"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0412$"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0412]"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0412]"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0412]"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0412]"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0412]$"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0412]$"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0412]$"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0412]$"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412.*"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412.*"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412.*"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d092d0b2e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412.*"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "(\u0412)"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "(\u0412)"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "(\u0412)"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "(\u0412)"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-o",
+      "\u0412"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0432$"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0432$"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0432$"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0432$"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0432]"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0432]"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0432]"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0432]"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0432]$"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0432]$"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0432]$"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0432]$"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432.*"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432.*"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432.*"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d092d0b2e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432.*"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\\(\u0432\\)"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\\(\u0432\\)"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\\(\u0432\\)"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\\(\u0432\\)"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0432$"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0432$"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0432$"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^\u0432$"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0432]"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0432]"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0432]"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "[\u0432]"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0432]$"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0432]$"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0432]$"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u0432]$"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432.*"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432.*"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432.*"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d092d0b2e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432.*"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "(\u0432)"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "(\u0432)"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "(\u0432)"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "(\u0432)"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-o",
+      "\u0432"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^\u1c80$"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^\u1c80$"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^\u1c80$"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^\u1c80$"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "[\u1c80]"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "[\u1c80]"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "[\u1c80]"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "[\u1c80]"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u1c80]$"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u1c80]$"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u1c80]$"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u1c80]$"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80.*"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80.*"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80.*"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d092d0b2e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80.*"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\\(\u1c80\\)"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\\(\u1c80\\)"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\\(\u1c80\\)"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-o",
+      "\\(\u1c80\\)"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^\u1c80$"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^\u1c80$"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^\u1c80$"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^\u1c80$"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "[\u1c80]"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "[\u1c80]"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "[\u1c80]"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "[\u1c80]"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u1c80]$"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u1c80]$"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u1c80]$"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "^[\u1c80]$"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80.*"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80.*"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80.*"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d092d0b2e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80.*"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "(\u1c80)"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "(\u1c80)"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "(\u1c80)"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-o",
+      "(\u1c80)"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "e1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80"
+    ],
+    "stdin_hex": "d0920a",
+    "stdout_hex": "d0920a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-o",
+      "\u1c80"
+    ],
+    "stdin_hex": "d0920ad0b20ae1b2800a",
+    "stdout_hex": "d0920ad0b20ae1b2800a",
+    "stderr_hex": "",
+    "status": 0
+  }
+]

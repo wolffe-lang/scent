@@ -1,0 +1,177 @@
+#!/usr/bin/env python3
+"""Measure pinned grep over all scalars; consume UCD, never libc source.
+
+Each scalar is encoded followed by LF. U+000A necessarily makes two empty
+records, not a single-character LF record; its membership is measured with
+-z on LF+NUL separately. -a prevents U+0000 from hiding the remaining data.
+Counts and -o member streams are both checked; exact stdout is retained.
+"""
+import array, gzip, hashlib, json, os, pathlib, subprocess, time, tomllib
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+PIN = tomllib.loads((ROOT / 'scent-oracle.toml').read_text())['oracle']
+NAMES = 'alpha alnum digit upper lower space blank punct cntrl graph print xdigit word'.split()
+VERSIONS = ['15.0.0', '15.1.0', '16.0.0']
+assert os.environ.get('SCENT_IN_CONTAINER') == '1', 'pinned container required'
+BINARY = ROOT / '.oracle/grep'
+assert hashlib.sha256(BINARY.read_bytes()).hexdigest() == PIN['binary_sha256']
+assert subprocess.check_output(['ldd', '--version']).splitlines()[0].decode() == PIN['glibc_line']
+for line in (ROOT / 'ucd/MANIFEST').read_text().splitlines():
+    digest, name = line.split()
+    assert hashlib.sha256((ROOT / 'ucd' / name).read_bytes()).hexdigest() == digest
+OUT = ROOT / 'tests/fixtures/ctype'
+OUT.mkdir(parents=True, exist_ok=True)
+WORK = ROOT / 'target/ctype'
+WORK.mkdir(parents=True, exist_ok=True)
+START = time.monotonic()
+ENV = {'PATH': os.defpath, 'LC_ALL': 'C.UTF-8'}
+
+def compress(path, data):
+    path.write_bytes(gzip.compress(data, mtime=0))
+
+def grep(args, data=None):
+    r = subprocess.run(['grep', *args], executable=str(BINARY), env=ENV,
+                       input=data, capture_output=True)
+    assert r.returncode in (0, 1) and not r.stderr, (args, r.returncode, r.stderr)
+    return r
+
+def points(data, delimiter=b'\n'):
+    if not data:
+        return set()
+    assert data.endswith(delimiter)
+    fields = data[:-len(delimiter)].split(delimiter)
+    chars = [field.decode('utf-8') for field in fields]
+    assert all(len(c) == 1 for c in chars), chars[:20]
+    result = {ord(c) for c in chars}
+    assert len(result) == len(chars)
+    return result
+
+scalars = WORK / 'all-scalars.utf8'
+with scalars.open('wb') as f:
+    for cp in range(0x110000):
+        if not 0xD800 <= cp <= 0xDFFF:
+            f.write(chr(cp).encode() + b'\n')
+assert scalars.read_bytes().count(b'\n') == 1112065  # 1,112,064 scalars; LF contributes one extra.
+identity = {'oracle': PIN, 'scalar_count': 1112064,
+            'scalar_file_sha256': hashlib.sha256(scalars.read_bytes()).hexdigest(),
+            'lf_supplement': 'LF+NUL under -z; -a on bulk input permits U+0000',
+            'classes': {}, 'versions': {}}
+measured = array.array('H', [0]) * 0x110000
+for index, name in enumerate(NAMES):
+    pattern = r'^\w$' if name == 'word' else '^[[:' + name + ':]]$'
+    count = grep(['-a', '-c', pattern, str(scalars)])
+    output = grep(['-a', '-o', pattern, str(scalars)])
+    members = points(output.stdout)
+    assert int(count.stdout) == len(members)
+    assert output.returncode == (0 if members else 1)
+    lf = grep(['-a', '-z', '-o', pattern], b'\n\0')
+    lf_member = lf.stdout == b'\n\0'
+    assert lf.stdout in (b'', b'\n\0')
+    if lf_member:
+        members.add(10)
+    for cp in members:
+        measured[cp] |= 1 << index
+    compress(OUT / (name + '.stdout.gz'), output.stdout)
+    compress(OUT / (name + '.members.gz'), ''.join(f'{cp:06X}\n' for cp in sorted(members)).encode())
+    identity['classes'][name] = {'bulk_count': int(count.stdout), 'members': len(members),
+                                 'lf': lf_member, 'bulk_stdout_sha256': hashlib.sha256(output.stdout).hexdigest()}
+    print('class', name, len(members), f'{time.monotonic()-START:.1f}s', flush=True)
+
+candidates = set()
+baselines = {}
+for version in VERSIONS:
+    candidate = array.array('H', [0]) * 0x110000
+    p = subprocess.run([str(ROOT / 'target/gen-ctype-tables'), str(ROOT / 'ucd' / version)],
+                       capture_output=True, check=True)
+    assert not p.stderr
+    (OUT / (version + '.derived.tsv')).write_bytes(p.stdout)
+    for line in p.stdout.splitlines():
+        lo, hi, mask = map(int, line.split())
+        candidate[lo:hi+1] = array.array('H', [mask]) * (hi-lo+1)
+    counts = {name: 0 for name in NAMES}
+    overrides = []
+    by_class = {name: [] for name in NAMES}
+    for cp in range(0x110000):
+        if candidate[cp] != measured[cp]:
+            overrides.append(f'{cp:06X}\t{candidate[cp]}\t{measured[cp]}\n')
+            for index, name in enumerate(NAMES):
+                if (candidate[cp] ^ measured[cp]) & (1 << index):
+                    counts[name] += 1
+                    by_class[name].append(('+' if measured[cp] & (1 << index) else '-') + f'{cp:06X}')
+    (OUT / (version + '.overrides.tsv')).write_text(''.join(overrides))
+    (OUT / (version + '.overrides.json')).write_text(json.dumps(by_class, indent=2)+'\n')
+    identity['versions'][version] = {'overrides': counts, 'total_class_memberships': sum(counts.values()),
+                                     'distinct_codepoints': len(overrides)}
+    baselines[version] = candidate
+    # Include mapping sources AND targets, independent of Python's UCD version.
+    for line in (ROOT / 'ucd' / version / 'UnicodeData.txt').read_text().splitlines():
+        fields = line.split(';')
+        mapped = [int(x, 16) for x in fields[12:15] if x]
+        if mapped:
+            candidates.add(int(fields[0], 16)); candidates.update(mapped)
+    for raw in (ROOT / 'ucd' / version / 'CaseFolding.txt').read_text().splitlines():
+        line = raw.split('#')[0].strip()
+        if line:
+            fields = line.split(';')
+            candidates.add(int(fields[0], 16))
+            candidates.update(int(x, 16) for x in fields[2].split())
+    print('version', version, identity['versions'][version], flush=True)
+WINNER = min(VERSIONS, key=lambda v: identity['versions'][v]['total_class_memberships'])
+identity['winner'] = WINNER
+candidates.update(cp for cp in range(0x110000) if baselines[WINNER][cp] != measured[cp])
+(OUT / 'measurement.json').write_text(json.dumps(identity, indent=2)+'\n')
+print('fold queries', len(candidates), 'winner', WINNER, flush=True)
+folds = {}
+progress = OUT / 'fold-queries.partial.jsonl'
+assert not progress.exists(), 'measurement already started; preserve evidence, do not silently repeat'
+# Each query scans the entire all-scalars file. Extra outputs are queued to
+# prove symmetry/transitivity, not assumed equivalent from one direction.
+with progress.open('w') as log:
+    pending = sorted(candidates)
+    while pending:
+        cp = pending.pop(0)
+        literal = chr(cp)
+        if literal in '.^$*[]\\':
+            literal = '\\' + literal
+        pattern = '^' + literal + '$'
+        # NUL/LF cannot occur in argv/this record. Override candidates may
+        # include LF: its fold identity is measured separately under -z.
+        if cp in (0, 10):
+            sep = b'\0' if cp == 10 else b'\n'
+            pat = WORK / 'pattern'
+            pat.write_bytes(chr(cp).encode() + b'\n')
+            args = ['-a', '-i', '-o', '-x', '-f', str(pat)]
+            if cp == 10:
+                # A literal LF in a pattern file is two empty patterns;
+                # use the documented bracket spelling for the LF control.
+                # LF has no case mapping; measure identity using a class
+                # singleton under -z, with LF supplied as argv in brackets.
+                args = ['-a', '-z', '-i', '-o', '-x', '[\n]']
+            r = grep(args, chr(cp).encode()+sep)
+            members = points(r.stdout, sep)
+        else:
+            r = grep(['-a', '-i', '-o', pattern, str(scalars)])
+            members = points(r.stdout)
+        assert cp in members, (cp, members)
+        folds[cp] = members
+        log.write(json.dumps({'cp': f'{cp:06X}', 'matches': [f'{x:06X}' for x in sorted(members)],
+                              'stdout_hex': r.stdout.hex(), 'stderr_hex': r.stderr.hex(), 'status': r.returncode})+'\n')
+        log.flush()
+        for x in members:
+            if x not in folds and x not in candidates:
+                candidates.add(x); pending.append(x)
+        if len(folds) % 25 == 0:
+            print('fold', len(folds), '/', len(candidates), f'{time.monotonic()-START:.1f}s', flush=True)
+# R-ct04-2: retain the directed relation, not a symmetric closure.
+# The nine historical Cyrillic sources are deliberately asymmetric.
+edges = sorted((cp, other) for cp, members in folds.items() for other in members if cp != other)
+non_equivalence = [(f"{cp:06X}", f"{other:06X}") for cp, members in folds.items()
+                   for other in sorted(members) if folds[other] != members]
+(OUT / 'non-equivalence.json').write_text(json.dumps(non_equivalence, indent=2)+'\n')
+(OUT / 'folds.tsv').write_text(''.join(f'{cp:06X}\t{other:06X}\n' for cp,other in edges))
+# Keep the complete original query stream, including all identity answers.
+identity['fold_queries'] = len(folds)
+identity['directed_edges'] = len(edges)
+identity['asymmetric_edges'] = len(non_equivalence)
+identity['seconds'] = time.monotonic()-START
+(OUT / 'measurement.json').write_text(json.dumps(identity, indent=2)+'\n')
+print('measure-ctype complete', json.dumps(identity), flush=True)

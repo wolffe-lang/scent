@@ -1,0 +1,52 @@
+#!/usr/bin/env python3
+"""Validate R-ct04-2's simple-mapping derivation and cross-engine controls."""
+import hashlib, json, os, pathlib, subprocess, tomllib
+ROOT=pathlib.Path(__file__).resolve().parent.parent
+pin=tomllib.loads((ROOT/'scent-oracle.toml').read_text())['oracle']
+assert os.environ.get('SCENT_IN_CONTAINER')=='1'
+binary=ROOT/'.oracle/grep'
+assert hashlib.sha256(binary.read_bytes()).hexdigest()==pin['binary_sha256']
+assert subprocess.check_output(['ldd','--version']).splitlines()[0].decode()==pin['glibc_line']
+fixture=ROOT/'tests/fixtures/ctype'
+queries=[json.loads(x) for x in (fixture/'fold-queries.partial.jsonl').read_text().splitlines()]
+measured={int(r['cp'],16):{int(x,16) for x in r['matches']} for r in queries}
+upper={};lower={}
+for row in (ROOT/'ucd/15.1.0/UnicodeData.txt').read_text().splitlines():
+    f=row.split(';');cp=int(f[0],16)
+    if f[12]:upper[cp]=int(f[12],16)
+    if f[13]:lower[cp]=int(f[13],16)
+U=lambda c:upper.get(c,c)
+L=lambda c:lower.get(c,c)
+derived=lambda c:{c,U(c),L(c),L(U(c)),U(L(c))}
+overrides=[]
+for cp,m in sorted(measured.items()):
+    base=derived(cp)
+    if m!=base:
+        overrides.append({'cp':f'{cp:06X}','derived':[f'{x:06X}' for x in sorted(base)],
+                          'measured':[f'{x:06X}' for x in sorted(m)]})
+(fixture/'fold-overrides.json').write_text(json.dumps(overrides,indent=2)+'\n')
+(fixture/'fold-overrides.tsv').write_text(''.join(r['cp']+'\t'+','.join(r['derived'])+'\t'+','.join(r['measured'])+'\n' for r in overrides))
+(fixture/'folds.tsv').write_text(''.join(f'{cp:06X}\t{other:06X}\n' for cp,m in sorted(measured.items()) for other in sorted(m-{cp})))
+edges=[(cp,other) for cp,m in measured.items() for other in sorted(m) if measured[other]!=m]
+controls=[]
+for cp,other in edges:
+    for source,target in [(cp,other),(other,cp)]:
+        answers=[]
+        for syntax in ['-F','-G','-E']:
+            pattern='['+chr(source)+']' if syntax=='-G' else chr(source)
+            argv=[syntax,'-a','-i','-o',pattern]
+            r=subprocess.run(['grep',*argv],executable=str(binary),env={'PATH':os.defpath,'LC_ALL':'C.UTF-8'},input=(chr(target)+'\n').encode(),capture_output=True)
+            controls.append({'source':f'{source:06X}','target':f'{target:06X}', 'argv':argv,
+                             'stdin_hex':(chr(target)+'\n').encode().hex(),
+                             'stdout_hex':r.stdout.hex(),'stderr_hex':r.stderr.hex(),'status':r.returncode})
+            answers.append((r.stdout,r.stderr,r.returncode))
+        assert answers[0]==answers[1]==answers[2],('STOP R-ct04-3',source,target,answers)
+(fixture/'fold-engine-controls.json').write_text(json.dumps(controls,indent=2)+'\n')
+summary={'queries':len(queries),'directed_edges':sum(len(m)-1 for m in measured.values()),
+         'asymmetric_edges':len(edges),'cross_engine_controls':len(controls),
+         'derivation':'{c,upper(c),lower(c),lower(upper(c)),upper(lower(c))}',
+         'override_patterns':len(overrides),
+         'override_memberships':sum(len(set(r['derived'])^set(r['measured'])) for r in overrides)}
+(fixture/'fold-derivation.json').write_text(json.dumps(summary,indent=2)+'\n')
+print(json.dumps(summary,indent=2))
+print('overrides',json.dumps(overrides))
