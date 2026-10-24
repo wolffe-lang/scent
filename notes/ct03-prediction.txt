@@ -1,0 +1,12 @@
+ct03 prediction, before implementation or measurements
+
+The pinned std directory-listing surface will sort its results, making
+GNU's unsorted directory walk impossible through that surface: a STOP,
+not a compensating sort. If raw listing is available, expect 3,000 new
+matrix cases. The first filter mismatch will be slash-bearing include /
+exclude patterns combined with last-matching-rule precedence. First-run
+colour bytes will differ on reset/erase sequences. Recursive scanning a
+10,000-file tree will take roughly 8x GNU's median time.
+
+R-ct03-1 recommendation: publish fixed argv[0] naming as a difference
+until env_arg0 ships in the pinned toolchain; do not use os_exe basename.
