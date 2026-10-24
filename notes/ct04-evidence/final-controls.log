@@ -1,0 +1,27 @@
+warning[W0314]: `math` holds exactly one item
+ --> target/alias-witness/math/math.lu:2:8
+  |
+2 | pub fn value() -> int { 42 }
+  |        ^^^^^ a directory of ceremony around it
+  |
+  = note: fold the item into the module that uses it, or grow the module into the family its name
+    promises; a deliberate seam says so with `#[allow(w0314)]` and a reason.
+
+42
+warning[W0314]: `math` holds exactly one item
+ --> target/alias-witness/math/math.lu:2:8
+  |
+2 | pub fn value() -> int { 42 }
+  |        ^^^^^ a directory of ceremony around it
+  |
+  = note: fold the item into the module that uses it, or grow the module into the family its name
+    promises; a deliberate seam says so with `#[allow(w0314)]` and a reason.
+
+{"commit":"cf0c13d","diagnostics":[{"code":"W0314","file":1,"severity":"warning","span":[37,42]}],"file":"target/alias-witness/main.lu","files":["main.lu","math/math.lu"],"impl":"wolfgang","impl_version":"0.2.35","phase_reached":"run","protocol":1,"seeded":false,"stdout_inline":"42\n","stdout_sha256":"084c799cd551dd1d8d5c5f9a5d593b2e931f5e36122ee5c793c1d08a19839cc0","verdict":"exit(0)","warnings":[{"code":"W0314","span":[37,42]}]}
+target/alias-witness/main.lu: unsupported: `renamed.value` does not resolve
+lupin alias exit=4
+PASS replay rejects pin
+PASS replay rejects case
+PASS replay rejects missing
+PASS replay rejects bytes
+PASS unchanged live capture replays exactly

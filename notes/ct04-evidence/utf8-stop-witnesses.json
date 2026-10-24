@@ -60,6 +60,20 @@
       "-F",
       "-a",
       "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
       "\u0412"
     ],
     "stdin_hex": "e1b280d0920a",
@@ -106,6 +120,20 @@
     ],
     "stdin_hex": "e1b280d0920a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b280d0920a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -170,6 +198,20 @@
       "-F",
       "-a",
       "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "d092e1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
       "\u0412"
     ],
     "stdin_hex": "e1b280d0b20a",
@@ -216,6 +258,20 @@
     ],
     "stdin_hex": "e1b280d0b20a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b280d0b20a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -280,6 +336,20 @@
       "-F",
       "-a",
       "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "d0b2e1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
       "\u0412"
     ],
     "stdin_hex": "e1b280d092d0b20a",
@@ -326,6 +396,20 @@
     ],
     "stdin_hex": "e1b280d092d0b20a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b280d092d0b20a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -390,6 +474,20 @@
       "-F",
       "-a",
       "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
       "\u0412"
     ],
     "stdin_hex": "e1b2800ad0920a",
@@ -445,6 +543,20 @@
       "-F",
       "-a",
       "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b2800ad0920a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
       "\u0412"
     ],
     "stdin_hex": "d0920ae1b2800a",
@@ -491,6 +603,20 @@
     ],
     "stdin_hex": "d0920ae1b2800a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-F",
+      "-a",
+      "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "d0920ae1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -555,6 +681,20 @@
       "-G",
       "-a",
       "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
       "\u0412"
     ],
     "stdin_hex": "e1b280d0920a",
@@ -601,6 +741,20 @@
     ],
     "stdin_hex": "e1b280d0920a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b280d0920a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -665,6 +819,20 @@
       "-G",
       "-a",
       "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "d092e1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
       "\u0412"
     ],
     "stdin_hex": "e1b280d0b20a",
@@ -711,6 +879,20 @@
     ],
     "stdin_hex": "e1b280d0b20a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b280d0b20a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -775,6 +957,20 @@
       "-G",
       "-a",
       "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "d0b2e1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
       "\u0412"
     ],
     "stdin_hex": "e1b280d092d0b20a",
@@ -821,6 +1017,20 @@
     ],
     "stdin_hex": "e1b280d092d0b20a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b280d092d0b20a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -885,6 +1095,20 @@
       "-G",
       "-a",
       "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
       "\u0412"
     ],
     "stdin_hex": "e1b2800ad0920a",
@@ -940,6 +1164,20 @@
       "-G",
       "-a",
       "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b2800ad0920a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
       "\u0412"
     ],
     "stdin_hex": "d0920ae1b2800a",
@@ -986,6 +1224,20 @@
     ],
     "stdin_hex": "d0920ae1b2800a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "d0920ae1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -1050,6 +1302,20 @@
       "-G",
       "-a",
       "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
       "[\u0412]"
     ],
     "stdin_hex": "e1b280d0920a",
@@ -1096,6 +1362,20 @@
     ],
     "stdin_hex": "e1b280d0920a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "e1b280d0920a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -1160,6 +1440,20 @@
       "-G",
       "-a",
       "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "d092e1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
       "[\u0412]"
     ],
     "stdin_hex": "e1b280d0b20a",
@@ -1206,6 +1500,20 @@
     ],
     "stdin_hex": "e1b280d0b20a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "e1b280d0b20a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -1270,6 +1578,20 @@
       "-G",
       "-a",
       "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "d0b2e1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
       "[\u0412]"
     ],
     "stdin_hex": "e1b280d092d0b20a",
@@ -1316,6 +1638,20 @@
     ],
     "stdin_hex": "e1b280d092d0b20a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "e1b280d092d0b20a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -1380,6 +1716,20 @@
       "-G",
       "-a",
       "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
       "[\u0412]"
     ],
     "stdin_hex": "e1b2800ad0920a",
@@ -1435,6 +1785,20 @@
       "-G",
       "-a",
       "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "e1b2800ad0920a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
       "[\u0412]"
     ],
     "stdin_hex": "d0920ae1b2800a",
@@ -1481,6 +1845,20 @@
     ],
     "stdin_hex": "d0920ae1b2800a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-G",
+      "-a",
+      "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "d0920ae1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -1545,6 +1923,20 @@
       "-E",
       "-a",
       "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
       "\u0412"
     ],
     "stdin_hex": "e1b280d0920a",
@@ -1591,6 +1983,20 @@
     ],
     "stdin_hex": "e1b280d0920a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b280d0920a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -1655,6 +2061,20 @@
       "-E",
       "-a",
       "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "d092e1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
       "\u0412"
     ],
     "stdin_hex": "e1b280d0b20a",
@@ -1701,6 +2121,20 @@
     ],
     "stdin_hex": "e1b280d0b20a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b280d0b20a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -1765,6 +2199,20 @@
       "-E",
       "-a",
       "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "d0b2e1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
       "\u0412"
     ],
     "stdin_hex": "e1b280d092d0b20a",
@@ -1811,6 +2259,20 @@
     ],
     "stdin_hex": "e1b280d092d0b20a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b280d092d0b20a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -1875,6 +2337,20 @@
       "-E",
       "-a",
       "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
       "\u0412"
     ],
     "stdin_hex": "e1b2800ad0920a",
@@ -1930,6 +2406,20 @@
       "-E",
       "-a",
       "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "e1b2800ad0920a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
       "\u0412"
     ],
     "stdin_hex": "d0920ae1b2800a",
@@ -1976,6 +2466,20 @@
     ],
     "stdin_hex": "d0920ae1b2800a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-l",
+      "\u0412"
+    ],
+    "stdin_hex": "d0920ae1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -2040,6 +2544,20 @@
       "-E",
       "-a",
       "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "e1b2800a",
+    "stdout_hex": "",
+    "stderr_hex": "",
+    "status": 1
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
       "[\u0412]"
     ],
     "stdin_hex": "e1b280d0920a",
@@ -2086,6 +2604,20 @@
     ],
     "stdin_hex": "e1b280d0920a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "e1b280d0920a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -2150,6 +2682,20 @@
       "-E",
       "-a",
       "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "d092e1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
       "[\u0412]"
     ],
     "stdin_hex": "e1b280d0b20a",
@@ -2196,6 +2742,20 @@
     ],
     "stdin_hex": "e1b280d0b20a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "e1b280d0b20a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -2260,6 +2820,20 @@
       "-E",
       "-a",
       "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "d0b2e1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
       "[\u0412]"
     ],
     "stdin_hex": "e1b280d092d0b20a",
@@ -2306,6 +2880,20 @@
     ],
     "stdin_hex": "e1b280d092d0b20a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "e1b280d092d0b20a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },
@@ -2370,6 +2958,20 @@
       "-E",
       "-a",
       "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "d092d0b2e1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
       "[\u0412]"
     ],
     "stdin_hex": "e1b2800ad0920a",
@@ -2425,6 +3027,20 @@
       "-E",
       "-a",
       "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "e1b2800ad0920a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
       "[\u0412]"
     ],
     "stdin_hex": "d0920ae1b2800a",
@@ -2471,6 +3087,20 @@
     ],
     "stdin_hex": "d0920ae1b2800a",
     "stdout_hex": "310a",
+    "stderr_hex": "",
+    "status": 0
+  },
+  {
+    "name": "fold-context",
+    "argv": [
+      "-E",
+      "-a",
+      "-i",
+      "-l",
+      "[\u0412]"
+    ],
+    "stdin_hex": "d0920ae1b2800a",
+    "stdout_hex": "287374616e6461726420696e707574290a",
     "stderr_hex": "",
     "status": 0
   },

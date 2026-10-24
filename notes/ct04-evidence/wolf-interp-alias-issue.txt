@@ -1,0 +1,25 @@
+Issue draft for wolffe-lang/wolf-interp; not filed.
+Title: Local module alias calls are unresolved by lupin 0.1.56
+
+Two-file reproducer (the files are retained under alias-witness/):
+  main.lu:
+    use math as renamed
+    fn main() {
+        print("{renamed.value()}")
+    }
+  math/math.lu:
+    /// Return the witness value.
+    pub fn value() -> int { 42 }
+
+wolf 0.2.35 (cf0c13d), native build: stdout 42 LF, exit 0.
+wolf conform-run --checked --json: exit(0), stdout_inline "42\n".
+The compiler's W0314 single-item-module warning is unrelated to resolution.
+lupin 0.1.56 (version-line pin294d626, release28547b4):
+  unsupported: `renamed.value` does not resolve
+  exit 4.
+
+Executed inside the pinned Ubuntu container on kasumi CPUs4-7, with
+wolf-std2386522eb059cca5a84108562c2c0a0e72345d34. Complete output is
+final-controls.log. This also occurred with `use re as utf8` in scent's
+Unicode unit test; importing re directly works. No package or pin changed.
+Expected: the explicitly imported alias resolves identically on all tiers.

@@ -21,6 +21,7 @@ tools/build --all
 python3 -I tools/oracle-field-test
 tools/check-test
 tools/oracle-select-test
+tools/oracle-replay-test
 tools/oracle --bin target/native/scent
 tools/oracle --bin target/release/scent
 tools/re-ci

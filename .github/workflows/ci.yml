@@ -85,6 +85,9 @@ jobs:
       - name: Exact-name and explicit-glob oracle selection
         if: ${{ !cancelled() }}
         run: tools/in-container tools/oracle-select-test
+      - name: Reference replay rejects stale pins cases and changed bytes
+        if: ${{ !cancelled() }}
+        run: tools/in-container tools/oracle-replay-test
       - name: GNU oracle, native
         if: ${{ !cancelled() }}
         run: tools/in-container tools/oracle --bin target/native/scent

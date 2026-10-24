@@ -1,0 +1,82 @@
+linux	Regenerate Unicode tables and compare exhaustive fixtures	﻿2026-10-24T21:50:33.5912684Z ##[group]Run tools/in-container tools/check-ctype-regen
+linux	Regenerate Unicode tables and compare exhaustive fixtures	2026-10-24T21:50:33.5913153Z ^[[36;1mtools/in-container tools/check-ctype-regen^[[0m
+linux	Regenerate Unicode tables and compare exhaustive fixtures	2026-10-24T21:50:33.5974828Z shell: /usr/bin/bash -e {0}
+linux	Regenerate Unicode tables and compare exhaustive fixtures	2026-10-24T21:50:33.5975099Z env:
+linux	Regenerate Unicode tables and compare exhaustive fixtures	2026-10-24T21:50:33.5975333Z   SCENT_ENGINE: docker
+linux	Regenerate Unicode tables and compare exhaustive fixtures	2026-10-24T21:50:33.5975557Z ##[endgroup]
+linux	Regenerate Unicode tables and compare exhaustive fixtures	2026-10-24T21:50:34.8605900Z src/re/ctype_tables.lu target/ctype-regen/ctype_tables.lu differ: char 195, line 6
+linux	Regenerate Unicode tables and compare exhaustive fixtures	2026-10-24T21:50:34.9322014Z ##[error]Process completed with exit code 1.
+linux	Exact-name and explicit-glob oracle selection	﻿2026-10-24T21:50:50.6162440Z ##[group]Run tools/in-container tools/oracle-select-test
+linux	Exact-name and explicit-glob oracle selection	2026-10-24T21:50:50.6162914Z ^[[36;1mtools/in-container tools/oracle-select-test^[[0m
+linux	Exact-name and explicit-glob oracle selection	2026-10-24T21:50:50.6225024Z shell: /usr/bin/bash -e {0}
+linux	Exact-name and explicit-glob oracle selection	2026-10-24T21:50:50.6225275Z env:
+linux	Exact-name and explicit-glob oracle selection	2026-10-24T21:50:50.6225495Z   SCENT_ENGINE: docker
+linux	Exact-name and explicit-glob oracle selection	2026-10-24T21:50:50.6225747Z ##[endgroup]
+linux	Exact-name and explicit-glob oracle selection	2026-10-24T21:50:50.8568066Z Traceback (most recent call last):
+linux	Exact-name and explicit-glob oracle selection	2026-10-24T21:50:50.8568876Z   File "/work/scent/tools/oracle-select-test", line 8, in <module>
+linux	Exact-name and explicit-glob oracle selection	2026-10-24T21:50:50.8569833Z     assert r.returncode==0,(selector,r.returncode,r.stdout,r.stderr)
+linux	Exact-name and explicit-glob oracle selection	2026-10-24T21:50:50.8570569Z            ^^^^^^^^^^^^^^^
+linux	Exact-name and explicit-glob oracle selection	2026-10-24T21:50:50.8571443Z AssertionError: ('chunk-00', 1, '', 'oracle: REFUSED: scent binary absent: /work/scent/target/native/scent\n')
+linux	Exact-name and explicit-glob oracle selection	2026-10-24T21:50:50.9216503Z ##[error]Process completed with exit code 1.
+linux	GNU oracle, native	﻿2026-10-24T21:50:50.9247941Z ##[group]Run tools/in-container tools/oracle --bin target/native/scent
+linux	GNU oracle, native	2026-10-24T21:50:50.9248507Z ^[[36;1mtools/in-container tools/oracle --bin target/native/scent^[[0m
+linux	GNU oracle, native	2026-10-24T21:50:50.9309885Z shell: /usr/bin/bash -e {0}
+linux	GNU oracle, native	2026-10-24T21:50:50.9310149Z env:
+linux	GNU oracle, native	2026-10-24T21:50:50.9310343Z   SCENT_ENGINE: docker
+linux	GNU oracle, native	2026-10-24T21:50:50.9310575Z ##[endgroup]
+linux	GNU oracle, native	2026-10-24T21:50:51.1156528Z oracle: REFUSED: scent binary absent: /work/scent/target/native/scent
+linux	GNU oracle, native	2026-10-24T21:50:51.1852745Z ##[error]Process completed with exit code 1.
+linux	GNU oracle, release	﻿2026-10-24T21:50:51.1884917Z ##[group]Run tools/in-container tools/oracle --bin target/release/scent
+linux	GNU oracle, release	2026-10-24T21:50:51.1885457Z ^[[36;1mtools/in-container tools/oracle --bin target/release/scent^[[0m
+linux	GNU oracle, release	2026-10-24T21:50:51.1947708Z shell: /usr/bin/bash -e {0}
+linux	GNU oracle, release	2026-10-24T21:50:51.1947976Z env:
+linux	GNU oracle, release	2026-10-24T21:50:51.1948174Z   SCENT_ENGINE: docker
+linux	GNU oracle, release	2026-10-24T21:50:51.1948398Z ##[endgroup]
+linux	GNU oracle, release	2026-10-24T21:50:51.3798251Z oracle: REFUSED: scent binary absent: /work/scent/target/release/scent
+linux	GNU oracle, release	2026-10-24T21:50:51.4543119Z ##[error]Process completed with exit code 1.
+linux	Streaming memory gate and recorded performance	﻿2026-10-24T22:02:58.5973978Z ##[group]Run tools/in-container tools/measure
+linux	Streaming memory gate and recorded performance	2026-10-24T22:02:58.5974365Z ^[[36;1mtools/in-container tools/measure^[[0m
+linux	Streaming memory gate and recorded performance	2026-10-24T22:02:58.6037628Z shell: /usr/bin/bash -e {0}
+linux	Streaming memory gate and recorded performance	2026-10-24T22:02:58.6037893Z env:
+linux	Streaming memory gate and recorded performance	2026-10-24T22:02:58.6038090Z   SCENT_ENGINE: docker
+linux	Streaming memory gate and recorded performance	2026-10-24T22:02:58.6038322Z ##[endgroup]
+linux	Streaming memory gate and recorded performance	2026-10-24T22:03:00.1679078Z Traceback (most recent call last):
+linux	Streaming memory gate and recorded performance	2026-10-24T22:03:00.1680101Z   File "/work/scent/tools/measure.py", line 37, in <module>
+linux	Streaming memory gate and recorded performance	2026-10-24T22:03:00.1681303Z     output_bytes,head=drain(['/usr/bin/time','-f','%M %e','-o',str(log),str(binary)]+flags+['needle',str(big)])
+linux	Streaming memory gate and recorded performance	2026-10-24T22:03:00.1682376Z                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+linux	Streaming memory gate and recorded performance	2026-10-24T22:03:00.1683256Z   File "/work/scent/tools/measure.py", line 23, in drain
+linux	Streaming memory gate and recorded performance	2026-10-24T22:03:00.1684021Z     assert rc==0,(argv,rc,error)
+linux	Streaming memory gate and recorded performance	2026-10-24T22:03:00.1684640Z            ^^^^^
+linux	Streaming memory gate and recorded performance	2026-10-24T22:03:00.1686378Z AssertionError: (['/usr/bin/time', '-f', '%M %e', '-o', '/work/scent/target/measure-1el26o4t/scent-time', '/work/scent/target/release/scent', '-F', '-c', 'needle', '/work/scent/target/measure-1el26o4t/2g'], 127, b'/usr/bin/time: cannot run /work/scent/target/release/scent: No such file or directory\n')
+linux	Streaming memory gate and recorded performance	2026-10-24T22:03:00.2438865Z ##[error]Process completed with exit code 1.
+tier full	Run python3 -I ci/tiers.py verdict	﻿2026-10-24T22:08:52.9961127Z ##[group]Run python3 -I ci/tiers.py verdict
+tier full	Run python3 -I ci/tiers.py verdict	2026-10-24T22:08:52.9962127Z ^[[36;1mpython3 -I ci/tiers.py verdict^[[0m
+tier full	Run python3 -I ci/tiers.py verdict	2026-10-24T22:08:53.0201726Z shell: /usr/bin/bash -e {0}
+tier full	Run python3 -I ci/tiers.py verdict	2026-10-24T22:08:53.0202549Z env:
+tier full	Run python3 -I ci/tiers.py verdict	2026-10-24T22:08:53.0204749Z   NEEDS: {
+tier full	Run python3 -I ci/tiers.py verdict	  "plan": {
+tier full	Run python3 -I ci/tiers.py verdict	    "result": "success",
+tier full	Run python3 -I ci/tiers.py verdict	    "outputs": {
+tier full	Run python3 -I ci/tiers.py verdict	      "tier": "full",
+tier full	Run python3 -I ci/tiers.py verdict	      "jobs": "[\"plan-test\", \"linux\", \"macos\"]"
+tier full	Run python3 -I ci/tiers.py verdict	    }
+tier full	Run python3 -I ci/tiers.py verdict	  },
+tier full	Run python3 -I ci/tiers.py verdict	  "plan-test": {
+tier full	Run python3 -I ci/tiers.py verdict	    "result": "success",
+tier full	Run python3 -I ci/tiers.py verdict	    "outputs": {}
+tier full	Run python3 -I ci/tiers.py verdict	  },
+tier full	Run python3 -I ci/tiers.py verdict	  "linux": {
+tier full	Run python3 -I ci/tiers.py verdict	    "result": "failure",
+tier full	Run python3 -I ci/tiers.py verdict	    "outputs": {}
+tier full	Run python3 -I ci/tiers.py verdict	  },
+tier full	Run python3 -I ci/tiers.py verdict	  "macos": {
+tier full	Run python3 -I ci/tiers.py verdict	    "result": "success",
+tier full	Run python3 -I ci/tiers.py verdict	    "outputs": {}
+tier full	Run python3 -I ci/tiers.py verdict	  }
+tier full	Run python3 -I ci/tiers.py verdict	}
+tier full	Run python3 -I ci/tiers.py verdict	2026-10-24T22:08:53.0207403Z ##[endgroup]
+tier full	Run python3 -I ci/tiers.py verdict	2026-10-24T22:08:53.0599182Z tier full: 3 of 3 job(s) chosen
+tier full	Run python3 -I ci/tiers.py verdict	2026-10-24T22:08:53.0600624Z   plan-test          success   ok
+tier full	Run python3 -I ci/tiers.py verdict	2026-10-24T22:08:53.0601783Z   linux              failure   WANTED success
+tier full	Run python3 -I ci/tiers.py verdict	2026-10-24T22:08:53.0603055Z   macos              success   ok
+tier full	Run python3 -I ci/tiers.py verdict	2026-10-24T22:08:53.0659436Z ##[error]Process completed with exit code 1.

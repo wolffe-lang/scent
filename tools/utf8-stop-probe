@@ -16,7 +16,7 @@ def query(name,argv,data):
 for syntax,bracket,text in itertools.product(['-F','-G','-E'],[False,True],['ᲀ\n','ᲀВ\n','Вᲀ\n','ᲀв\n','вᲀ\n','ᲀВв\n','Ввᲀ\n','ᲀ\nВ\n','В\nᲀ\n']):
  if syntax=='-F' and bracket:continue
  p='[В]' if bracket else 'В'
- for flags in [[],['-o'],['-x'],['-c']]:
+ for flags in [[],['-o'],['-x'],['-c'],['-l']]:
   row=query('fold-context',[syntax,'-a','-i',*flags,p],text.encode())
   if flags==['-o']:print(syntax,p,repr(text),bytes.fromhex(row['stdout_hex']),row['status'],flush=True)
 for data in [bytes.fromhex(x) for x in ['eda0800a','78eda0800a','eda080780a','f49080800a','f8888080800a','fc84808080800a','ff0a']]:

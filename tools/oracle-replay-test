@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+"""Capture/replay must reject stale identity and changed reference bytes."""
+import copy,gzip,json,os,pathlib,subprocess
+root=pathlib.Path(__file__).resolve().parent.parent
+assert os.environ.get('SCENT_IN_CONTAINER')=='1'
+path=root/'target/replay-guard.json.gz'
+selector='m3-scalar-00000'
+def run(args):return subprocess.run([str(root/'tools/oracle'),'--only',selector,*args],cwd=root,capture_output=True,text=True)
+r=run(['--capture-reference',str(path)]);assert r.returncode==0,(r.stdout,r.stderr)
+original=json.loads(gzip.decompress(path.read_bytes()))
+for what in ['pin','case','missing','bytes']:
+ value=copy.deepcopy(original)
+ if what=='pin':value['oracle']['version']='wrong'
+ elif what=='case':value['cases'][selector]['case_sha256']='0'*64
+ elif what=='missing':value['cases'].pop(selector)
+ else:value['cases'][selector]['result'][0]='00'
+ path.write_bytes(gzip.compress(json.dumps(value).encode(),mtime=0))
+ r=run(['--replay-reference',str(path)])
+ assert r.returncode!=0,(what,r.stdout,r.stderr)
+ expected='DIFFER' if what=='bytes' else 'REFUSED'
+ assert expected in r.stdout+r.stderr,(what,r.stdout,r.stderr)
+ print('PASS replay rejects',what,flush=True)
+path.write_bytes(gzip.compress(json.dumps(original).encode(),mtime=0))
+r=run(['--replay-reference',str(path)]);assert r.returncode==0,(r.stdout,r.stderr)
+print('PASS unchanged live capture replays exactly')
+path.unlink()
