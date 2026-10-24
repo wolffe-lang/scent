@@ -36,7 +36,7 @@ feeds each operand through `reader.scan` to the byte writer in `out`.
   flags, mut diagnostics) -> Matcher ! {invalid}` compiles F through KMP
   and G/E through `re`. Diagnostics retain pattern-file line provenance;
   duplicate pattern bytes compile once.
-- `src/re/`: the independent C-locale BRE/ERE engine for ct02's syntax
+- `src/re/`: the independent C/UTF-8 BRE/ERE engine for ct02's syntax
   dispatch. [RE.md](RE.md) specifies immutable compilation, a separate
   workspace, selection before nonempty span stepping, and the reviewed
   compatibility differences. Context span output establishes selection
@@ -67,8 +67,7 @@ R-ct00-4 corrects the initial contract: different explicit matcher
 syntaxes conflict; the same syntax may be repeated. Other-name/path
 invocations and non-UTF-8 arguments are exact upstream-blocked reviews
 under #899/#406/#904, not not-yet. The two abort messages type only the
-PID as digits; every other byte and both statuses are exact. M2's walk, filters and colour are joined. M3's UTF-8 locale semantics
-are refused by name. Help/diagnostics currently use fixed `grep` until
+PID as digits; every other byte and both statuses are exact. M2's walk, filters and colour are joined. M3 selects a scalar or measured extended-multibyte view without changing byte offsets. Help/diagnostics currently use fixed `grep` until
 the pinned toolchain exposes argv[0].
 
 ## Terminator-bearing patterns
@@ -114,7 +113,9 @@ The pinned image lists `C`, `C.utf8`, `POSIX` (`locale -a`). The oracle's
 `-a -o '^.$'` on bytes `c3 a9 0a` prints those bytes/status 0 in UTF-8
 mode, or nothing/status 1 in C mode; stderr is empty in both. Measured
 with `tools/locale-probe`; the initial full tuples (including scent's
-still-active M3 refusal) are in `notes/ct04-evidence/locale-before.json`.
+initial M3 refusal) are in `notes/ct04-evidence/locale-before.json`;
+`locale-after.json` contains the completed scent results, including the
+measured environment differences.
 
 | Selected value | GNU mode in pinned image | scent mode decision |
 | --- | --- | --- |
@@ -130,3 +131,37 @@ variables are unset or empty. `LC_ALL=C` overrides a UTF-8 `LANG`.
 that as an environment difference: the oracle image installs only C,
 C.UTF-8 and POSIX. The normal matrices use explicit `LC_ALL=C` and
 `LC_ALL=C.UTF-8`, never an installation-dependent locale name.
+
+## UTF-8 matcher view
+
+`src/re/utf8.lu` provides a strict scalar decoder and a separate measured
+C.UTF-8 compatibility view for non-overlong legacy multibyte values above
+U+10FFFF. Only the UTF-8 path decodes; the C path retains byte instructions
+and its 256-entry class bitmaps. Regex positions and capture boundaries
+remain byte offsets. State-set simulation advances one decoded character
+at a time without per-record scalar allocation. Backreferences compare
+characters when case folding, allowing equal characters of different byte
+lengths. Byte literals retain rejected-byte identity. UTF-8 fixed patterns
+compile to escaped literal Thompson programs; C fixed patterns keep KMP.
+
+Unicode bracket classes store explicit members and named-property bits;
+non-ASCII range/collation endpoints are rejected exactly as measured.
+`ctype_tables.lu` stores compact sorted scalar ranges and fold pairs in
+7-bit byte strings. `tools/gen-ctype-tables` derives UCD records and applies
+the committed override lists, then computes ruling #122's consistent fold
+closure. Every class member and directed measurement remains separately
+checked; no library's locale table is imported. Dot excludes every nonscalar.
+
+The reader validates only emitted line/span windows for encoding-error
+binary suppression; matching, `-c`, `-q` and file lists do not incorrectly
+inherit whole-file invalidity. NUL's existing chunk-based binary behavior
+is unchanged. `src/locale/` isolates environment precedence/codeset parsing;
+`opts.parse_locale` receives that choice before locale-dependent quoting.
+
+`tools/m3-ci-test` protects 34,026 UTF-8 rows and exact review identities.
+`tools/check-ctype-regen` checks all scalar classes and every measured fold
+edge against committed fixtures after regeneration. `tests/m3-divergences.json`
+keeps 550 `gnu-inconsistent` rows separate from 120 inherited reviews and
+one `environment` row. The C review manifest and 5,072-case M1 floor do not
+change. PAX posture replays a hash-bound reference capture from a green
+live static matrix because GNU loses C.UTF-8 when locale files are removed.
