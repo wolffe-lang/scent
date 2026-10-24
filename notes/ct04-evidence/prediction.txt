@@ -1,0 +1,29 @@
+ct04 Prediction — before implementation and measurement
+
+Prediction, not evidence: UCD 15.0.0 wins the three-version comparison.
+Predicted override member counts: alpha 0, alnum 0, digit 0, upper 0,
+lower 0, space 3, blank 3, punct 0, cntrl 0, graph 0, print 0,
+xdigit 0, word 0. These are explicitly uncertain: the derivation policy
+and the pinned oracle, not this prediction, decide every membership.
+I predict two non-UCD-simple fold equivalence classes (I/i-related), with
+Greek sigma, Cherokee and Georgian otherwise agreeing with simple folding.
+LANG=en_US.UTF-8 with that locale absent falls back to C in the pinned
+container. Empty LC_ALL falls through LC_CTYPE and LANG. Nonempty LC_ALL
+wins. Dot does not consume an encoding error under C.UTF-8, even with -a.
+I predict a UTF-8 family of 10,500 cases, including the inherited 9,599
+rows minus the retired refusal. C baseline remains 9,478 agree, 111
+published differences, nine upstream-blocked, one M3 refusal; 9,599 total.
+After retirement, that one explicit UTF-8 refusal becomes an ordinary
+UTF-8 row rather than changing the identities of the C cases.
+
+R-ct04-1 (requested, not decided): the contract's recommend-any-UTF-8-name
+policy conflicts with its absent-en_US fallback parity requirement.
+Options: A recognize only pinned-installed C.UTF-8/C.utf8, treating absent
+locale names as C; B accept every UTF-8 suffix on every host and publish
+the absent-name divergence. Recommend A for byte parity to the record
+oracle; defer hosts with additional locale data to an explicit later
+portability policy. Measure aliases and failures before implementing.
+
+The wrapper disallows Markdown report files; use the granted PR-body
+five-section report plus notes/ct04-evidence/ fallback. No .md report is
+created. This file is the immutable initial prediction, not the report.
