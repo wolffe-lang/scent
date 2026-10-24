@@ -34,7 +34,7 @@ exhaustive short malformed patterns, and bounded regular/backreference costs.
 The M2 generator adds **3,392 cases**: 2,000 shared-tree walk/filter rows,
 18 edge and five self-output rows, 1,152 original colour/environment rows,
 120 glob-syntax rows, and 97 additional byte-pattern, tty, colour-edge,
-reviewed-gap and M3-refusal rows. The complete CLI matrix reports
+reviewed-gap and UTF-8 locale rows. The complete CLI matrix reports
 **9,478 C-locale agreements + 111 published differences + 9 upstream-blocked**.
 The former explicit UTF-8 refusal is now an agreement. A further **38,706
 UTF-8 cases** include every inherited case and generated scalar, encoding-error
@@ -157,7 +157,8 @@ stderr (including wrapper warnings).
 Every reviewed difference in [`tests/divergences.json`](tests/divergences.json) and
 [`tests/m3-divergences.json`](tests/m3-divergences.json) locks the complete case identity and both result tuples. A new input,
 changed output, or vanished difference fails the gate. The only dynamic
-field is the numeric runtime PID in the two upstream-blocked panic rows.
+field is the numeric runtime PID in the two byte-argument witnesses, repeated in each
+locale.
 `tools/oracle-review-test` rejects nondigits there and changes to every
 other byte. No other output is normalized.
 
@@ -168,7 +169,10 @@ files also makes GNU fall back to C, so this leg replays the exact GNU tuples
 captured by a green live static matrix, rather than calling a C-locale oracle
 under a UTF-8 name. Captures bind the full oracle pin and every case hash;
 stale or missing captures fail. The static live run regenerates the capture
-at the same pin before each posture run. The Linux PR gate includes both compiler tiers, units,
+at the same pin before each posture run. The ct04 reference capture
+SHA256 is `d635cc1dde428cdb7437e7680d1d8c457901ad2a85de801684daac25062daeae`;
+[the retained capture](notes/ct04-evidence/pax-reference.json.gz) and
+[run/source manifest](notes/ct04-evidence/final-run.json) record its provenance. The Linux PR gate includes both compiler tiers, units,
 all CLI cases, engine costs, deterministic static builds, locale-free
 acceptance and the 2 GiB streaming-memory gate (below 32 MiB peak RSS).
 `tools/measure` records three-run medians on 256 MiB for `-F`, `-G` and `-E`;
@@ -206,7 +210,8 @@ it has not been sent. The socket report is also drafted, not sent, at
 
 ### Blocked upstream: invocation names, byte argv and byte paths
 
-These nine are scent/runtime gaps, not GNU quirks. Each row is executed
+These nine C-locale witnesses, also repeated under UTF-8, are scent/runtime
+gaps, not GNU quirks. Each row is executed
 and checked as an exact expected difference. Let `D(name)` be
 `name: unrecognized option '--bad'\n`, and `U(name)` be
 `Usage: name [OPTION]... PATTERNS [FILE]...\nTry 'name --help' for more information.\n`.
