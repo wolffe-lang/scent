@@ -1,4 +1,4 @@
-use utf8
+use re as utf8
 //! member: true
 
 // Clean-room: pinned GNU 3.12 streaming probes and POSIX grep.

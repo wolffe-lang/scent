@@ -1,17 +1,17 @@
 //! member: false
 
-use utf8
+use re
 
 fn main() {
     let text = "aéα中𐀀\u{10ffff}"
     var at = 0
     for cp in [97, 233, 945, 20013, 65536, 1114111] {
-        let (got, n) = utf8.next(text.bytes(), at, text.len)
+        let (got, n) = re.next(text.bytes(), at, text.len)
         assert(got == cp)
         at += n
-        assert(utf8.previous(text.bytes(), 0, at) == cp)
+        assert(re.previous(text.bytes(), 0, at) == cp)
     }
-    assert(at == text.len && !utf8.invalid(text.bytes(), 0, text.len))
+    assert(at == text.len && !re.strict_invalid(text.bytes(), 0, text.len))
     for bytes in [
         [128 as byte],
         [192 as byte, 175 as byte],
@@ -21,14 +21,14 @@ fn main() {
         [241 as byte, 128 as byte, 128 as byte],
         [225 as byte, 65 as byte, 128 as byte],
     ] {
-        assert(utf8.invalid(bytes, 0, bytes.len))
-        let (cp, n) = utf8.next(bytes, 0, bytes.len)
+        assert(re.strict_invalid(bytes, 0, bytes.len))
+        let (cp, n) = re.next(bytes, 0, bytes.len)
         assert(cp == 2147483648 + bytes[0] as int && n == 1)
     }
     let raw = [195 as byte, 169 as byte]
-    assert(utf8.invalid(raw, 0, 1))
-    assert(utf8.previous(raw, 0, 1) == 2147483843)
-    assert(utf8.previous(raw, 1, 2) == 2147483817)
-    let (empty, n) = utf8.next(raw, 1, 1)
+    assert(re.strict_invalid(raw, 0, 1))
+    assert(re.previous(raw, 0, 1) == 2147483843)
+    assert(re.previous(raw, 1, 2) == 2147483817)
+    let (empty, n) = re.next(raw, 1, 1)
     assert(empty == 0 && n == 0)
 }

@@ -1,5 +1,3 @@
-use utf8
-
 //! C-locale overall-span regex representation, clean-room from POSIX XBD 9,
 //! GNU grep 3.12's manual and measured probes. Design inputs: yew at
 //! 83020234 src/search/regex.lu:20-51 (flat pools and separate workspace),
@@ -191,21 +189,21 @@ fn program_start(re: Regex, index: int, spans: bool) -> int {
 }
 
 fn character(re: Regex, bytes: List[byte], pos: int, hi: int) -> (int, int) {
-    if re.options.utf8 { return utf8.locale_next(bytes, pos, hi) }
+    if re.options.utf8 { return locale_next(bytes, pos, hi) }
     if pos == hi { return (0, 0) }
     (bytes[pos] as int, 1)
 }
 
 fn word_before(re: Regex, bytes: List[byte], lo: int, pos: int) -> bool {
     if pos <= lo { return false }
-    if re.options.utf8 { return character_mask(utf8.previous(bytes, lo, pos)) & 4096 != 0 }
+    if re.options.utf8 { return character_mask(previous(bytes, lo, pos)) & 4096 != 0 }
     is_word(bytes[pos - 1] as int)
 }
 
 fn word_at(re: Regex, bytes: List[byte], pos: int, hi: int) -> bool {
     if pos >= hi { return false }
     if re.options.utf8 {
-        let (cp, _) = utf8.locale_next(bytes, pos, hi)
+        let (cp, _) = locale_next(bytes, pos, hi)
         return character_mask(cp) & 4096 != 0
     }
     is_word(bytes[pos] as int)

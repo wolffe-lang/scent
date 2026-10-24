@@ -50,7 +50,7 @@ pub fn previous(bytes: List[byte], lo: int, at: int) -> int {
 }
 
 /// Whether this complete record window contains a rejected byte.
-pub fn invalid(bytes: List[byte], lo: int, hi: int) -> bool {
+pub fn strict_invalid(bytes: List[byte], lo: int, hi: int) -> bool {
     var at = lo
     while at < hi {
         let (cp, width) = next(bytes, at, hi)

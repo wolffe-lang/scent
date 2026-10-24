@@ -1,5 +1,3 @@
-use utf8
-
 //! Backreference-only depth-first execution. POSIX XBD 9.3.6 and GNU
 //! info 3.5 define participation and last-capture semantics. No other
 //! implementation consulted. R-ct01-2: this path has a separate high-water
@@ -158,8 +156,8 @@ fn reference_end(
         var b = pos
         while a < end {
             if b == hi { return -1 }
-            let (x, nx) = utf8.locale_next(bytes, a, end)
-            let (y, ny) = utf8.locale_next(bytes, b, hi)
+            let (x, nx) = locale_next(bytes, a, end)
+            let (y, ny) = locale_next(bytes, b, hi)
             if !case_matches(x, y) { return -1 }
             a += nx
             b += ny

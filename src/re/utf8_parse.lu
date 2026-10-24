@@ -1,5 +1,3 @@
-use utf8
-
 //! UTF-8 bracket syntax measured by tools/utf8-probe. C.UTF-8 in the
 //! pinned build rejects non-ASCII range endpoints/collation elements;
 //! ordinary multibyte members remain characters. C parsing is separate.
@@ -43,7 +41,7 @@ fn rune_item(mut p: Parser, pat: List[byte], id: int, mut d: Diagnostics, patter
         }
         return pat[begin] as int
     }
-    let (cp, n) = utf8.locale_next(pat, p.at, pat.len)
+    let (cp, n) = locale_next(pat, p.at, pat.len)
     p.at += n
     cp
 }
