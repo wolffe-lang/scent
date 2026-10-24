@@ -37,7 +37,7 @@ for i,(pattern,include,walk) in enumerate(itertools.product(glob_patterns,[True,
  argv += [('--include=' if include else '--exclude=')+pattern,'x']
  argv += ['tree'] if walk else list(files)
  add('glob-%03d'%i,argv,files=files,shared_fixture=True)
-add('m3-locale-refusal',['x'],stdin='x\n',env={'LC_ALL':'C.UTF-8'},not_yet='M3 UTF-8 locale semantics',refusal='grep: not yet implemented: UTF-8 locale semantics (M3)')
+add('m3-locale-refusal',['x'],stdin='x\n',env={'LC_ALL':'C.UTF-8'})
 for i,argv in enumerate([['-Lm0','x','d'],['-dread','-Lm0','x','d'],['-dskip','-Lm0','x','d'],['-Lm0','x','absent'],['-Lm0','x','file'],['-Lrm0','x','d'],['-cm0','x','d'],['-m0','x','absent']]):
  add('limit-directory-%02d'%i,argv,files={'d/f':{'text':'x\n'},'file':{'text':'x\n'}},shared_fixture=True)
 path=root/'tests/cases/m2.jsonl';path.write_text(''.join(json.dumps(r,separators=(',',':'))+'\n' for r in rows))

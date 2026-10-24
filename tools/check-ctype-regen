@@ -1,0 +1,17 @@
+#!/bin/sh
+# Deterministic wolf generation plus exhaustive committed-fixture check.
+set -eu
+SCENT_ROOT=$(cd "$(dirname "$0")/.." && pwd)
+export SCENT_ROOT
+cd "$SCENT_ROOT"
+. tools/lib-toolchain.sh
+mkdir -p target/ctype-regen
+"$WOLF" build --release --deny-warnings tools/gen-ctype-tables/main.lu -o target/ctype-regen/gen
+for version in 15.0.0 15.1.0 16.0.0; do
+    target/ctype-regen/gen "ucd/$version" > "target/ctype-regen/$version.tsv"
+    cmp "tests/fixtures/ctype/$version.derived.tsv" "target/ctype-regen/$version.tsv"
+done
+target/ctype-regen/gen ucd/15.1.0 tests/fixtures/ctype/15.1.0.overrides.tsv tests/fixtures/ctype/fold-overrides.tsv > target/ctype-regen/ctype_tables.lu
+"$WOLF" fmt target/ctype-regen/ctype_tables.lu
+cmp src/re/ctype_tables.lu target/ctype-regen/ctype_tables.lu
+tools/check-ctype

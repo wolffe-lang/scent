@@ -1,6 +1,6 @@
 """Exact case/result reviews; only two blocked runtime rows have a typed PID."""
 import hashlib,json,re
-PID_CASES={'not-yet-argv-bytes-0','not-yet-argv-bytes-1'}
+PID_CASES={'not-yet-argv-bytes-0','not-yet-argv-bytes-1','utf8-not-yet-argv-bytes-0','utf8-not-yet-argv-bytes-1'}
 PID_HEADER=re.compile(br"\A\nthread '<unnamed>' \(([0-9]+)\) panicked at ")
 def result_tuple(result,typed_pid=False):
     out,err,status,rest=result

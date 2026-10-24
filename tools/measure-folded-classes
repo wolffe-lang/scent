@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+"""Measure -i POSIX classes and range endpoints independently of the engine."""
+import hashlib,json,os,pathlib,subprocess,tomllib,gzip
+ROOT=pathlib.Path(__file__).resolve().parent.parent
+pin=tomllib.loads((ROOT/'scent-oracle.toml').read_text())['oracle']
+binary=ROOT/'.oracle/grep'
+assert os.environ.get('SCENT_IN_CONTAINER')=='1'
+assert hashlib.sha256(binary.read_bytes()).hexdigest()==pin['binary_sha256']
+assert subprocess.check_output(['ldd','--version']).splitlines()[0].decode()==pin['glibc_line']
+fixture=ROOT/'tests/fixtures/ctype'
+def query(args,data=None):
+ return subprocess.run(['grep',*args],executable=str(binary),input=data,capture_output=True,env={'LC_ALL':'C.UTF-8','PATH':os.defpath})
+def pts(raw):return {ord(x.decode()) for x in raw.split(b'\n') if x}
+def members(name):
+ p=fixture/(name+'.members.gz')
+ text=gzip.decompress(p.read_bytes()).decode() if p.exists() else (fixture/(name+'.members')).read_text()
+ return {int(x,16) for x in text.splitlines()}
+alpha=members('alpha'); union=members('upper')|members('lower')
+summary={}
+for name in 'alpha alnum digit upper lower space blank punct cntrl graph print xdigit'.split():
+ r=query(['-a','-i','-o','^[[:'+name+':]]$',str(ROOT/'target/ctype/all-scalars.utf8')])
+ assert r.returncode==0 and not r.stderr
+ m=pts(r.stdout)
+ lf=query(['-a','-i','-z','-o','^[[:'+name+':]]$'],b'\n\0')
+ if lf.stdout==b'\n\0':m.add(10)
+ raw=''.join(f'{cp:06X}\n' for cp in sorted(m)).encode()
+ (fixture/(name+'.icase.members.gz')).write_bytes(gzip.compress(raw,mtime=0))
+ summary[name]={'count':len(m),'plain_delta':len(m^members(name)), 'alpha_delta':len(m^alpha),'upper_lower_union_delta':len(m^union)}
+rows=[]
+for pattern in ['[A-z]','[Z-a]','[A-_]','[[-z]','[Z-`]','[@-a]','[a-z]']:
+ for flags in [[],['-i']]:
+  r=query(['-a','-o',*flags,pattern],bytes(range(1,128))+b'\n')
+  rows.append({'argv':['-a','-o',*flags,pattern], 'stdin_hex':(bytes(range(1,128))+b'\n').hex(),
+               'stdout_hex':r.stdout.hex(),'stderr_hex':r.stderr.hex(),'status':r.returncode})
+(fixture/'folded-class-summary.json').write_text(json.dumps(summary,indent=2)+'\n')
+(ROOT/'notes/ct04-evidence/folded-ranges.json').write_text(json.dumps(rows,indent=2)+'\n')
+print(json.dumps(summary,indent=2))
+for r in rows:print(r['argv'],bytes.fromhex(r['stdout_hex']),bytes.fromhex(r['stderr_hex']),r['status'])

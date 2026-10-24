@@ -47,6 +47,7 @@ jobs:
       - run: python3 -I tools/re-ci-test
       - run: python3 -I tools/m2-ci-test
       - run: python3 -I tools/m1-ci-test
+      - run: python3 -I tools/m3-ci-test
       - run: python3 -I tools/oracle-review-test
   linux:
     needs: plan
@@ -70,6 +71,10 @@ jobs:
         run: tools/in-container bash -c 'tools/fetch-toolchain && tools/fetch-oracle'
       - name: Generate and guard M2 corpus
         run: python3 -I tools/m2-ci-test
+      - name: Generate and guard UTF-8 corpus
+        run: python3 -I tools/m3-ci-test
+      - name: Regenerate Unicode tables and compare exhaustive fixtures
+        run: tools/in-container tools/check-ctype-regen
       - name: Format and both compiler tiers
         run: tools/in-container bash -c 'tools/check-fmt && tools/build --all'
       - name: Field filesystem and exact upstream review regressions
@@ -94,7 +99,7 @@ jobs:
         run: tools/in-container tools/mkscent target/mkscent
       - name: GNU oracle, static
         if: ${{ !cancelled() }}
-        run: tools/in-container tools/oracle --bin target/mkscent/scent
+        run: tools/in-container tools/oracle --bin target/mkscent/scent --capture-reference target/pax-reference.json.gz
       - name: Plain Ubuntu without locale data (PAX posture)
         if: ${{ !cancelled() }}
         run: tools/pax-posture
@@ -123,6 +128,7 @@ jobs:
       - run: tools/build --all
       - run: tools/check-test
       - run: python3 -I tools/m2-ci-test
+      - run: python3 -I tools/m3-ci-test
       - name: Distribution field leg (never the behavioral gate)
         run: |
           brew install grep

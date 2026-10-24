@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+"""UTF-8 cases; outputs remain a live black-box comparison, never edited goldens."""
+import base64,gzip,itertools,json,pathlib
+ROOT=pathlib.Path(__file__).resolve().parent.parent
+rows=[]
+def b(data):return {'base64':base64.b64encode(data).decode()}
+def add(name,argv,pattern,data):
+ rows.append({'name':'m3-'+name,'argv':argv+['-f','patterns'],'files':{'patterns':b(pattern+b'\n')},'stdin':b(data),'env':{'LC_ALL':'C.UTF-8'}})
+patterns=['é','É','α','中','𐀀','.','^.$','[^x]','[éα]','[a-z]','[A-z]','[α-ω]','[[=a=]]','[[=é=]]','[[.é.]]',r'\w',r'\W',r'\s',r'\S',r'\b',r'\B',r'\<é\>',r'\(é\)\1','é*','é\\|α','é\\{1,2\\}','[[:alpha:]]','[[:digit:]]','[[:upper:]]','[[:lower:]]','[[:space:]]','[[:punct:]]','I','İ','ı','ᲀ','В','Σ','σ','ς','K','K','ß','ẞ','Ꭰ','ꭰ','ა','Ა']
+texts=['éÉé\n','xé α\n','éé\n','中𐀀\n','aAzZ[_`éαβσωΣ\n','IİıiſsS\n','ᲀВв\n','ßẞKKk\n','ᎠꭰაᲐ\n','\n','é\0α\0','٠1 \u0085 \n']
+for i,(pattern,text,flags) in enumerate(itertools.product(patterns,texts,[[],['-i'],['-o'],['-i','-o'],['-w','-o'],['-x'],['-bno'],['--color=always','-o'],['-z','-o'],['-c'],['-l'],['-L'],['-q']])):
+ add('scalar-%05d'%i,['-G','-a']+flags,pattern.encode(),text.encode())
+probes=json.loads(gzip.decompress((ROOT/'notes/ct04-evidence/utf8-probes.json.gz').read_bytes()))['rows']
+for r in probes:
+ pattern=bytes.fromhex(r['pattern_hex'])[:-1]
+ add(r['name'],r['argv'][:-2],pattern,bytes.fromhex(r['stdin_hex']))
+for i,(syntax,pattern,text,flags) in enumerate(itertools.product(['-F','-E'],['é','É','é.','(é)\\1','[éα]','é|α','é{1,2}','ᲀ','В'],texts,[[],['-i'],['-o'],['-io'],['-wo'],['-x'],['--color=always','-bno']])):
+ add('syntax-%05d'%i,[syntax,'-a']+flags,pattern.encode(),text.encode())
+# Every inherited M1/M2 case beside its C-locale run. The retired M3
+# refusal was already explicitly UTF-8; retain it once as an ordinary row.
+for path in sorted((ROOT/'tests/cases').glob('*.jsonl')):
+ if path.name=='m3.jsonl':continue
+ for line in path.read_text().splitlines():
+  c=json.loads(line)
+  if c['name']=='m2-m3-locale-refusal':continue
+  c['name']='utf8-'+c['name']
+  c['env']={**c.get('env',{}),'LC_ALL':'C.UTF-8'}
+  rows.append(c)
+# Every extra edge introduced by ruling #122, both an isolated witness and
+# a combined-line control, under selection/span/count/list/word/whole modes.
+pairs=[tuple(int(x,16) for x in line.split()) for line in (ROOT/'tests/fixtures/ctype/folds.tsv').read_text().splitlines()]
+parent={x:x for pair in pairs for x in pair}
+def leader(x):
+ while parent[x]!=x:x=parent[x]
+ return x
+for x,y in pairs:
+ x,y=leader(x),leader(y);parent[max(x,y)]=min(x,y)
+added=sorted({(x,y) for x in parent for y in parent if x!=y and leader(x)==leader(y)}-set(pairs))
+for i,(source,target) in enumerate(added):
+ for syntax,flags,combined in itertools.product(['-G','-E','-F'],[[],['-o'],['-c'],['-l'],['-L'],['-q'],['-w'],['-x']],[False,True]):
+  data=chr(target)+(chr(source) if combined else '')+'\n'
+  add('fold-%02d-%s-%s-%d'%(i,syntax[1:],''.join(flags) or 'plain',combined),[syntax,'-a','-i',*flags],chr(source).encode(),data.encode())
+rows.append({'name':'m3-environment-absent-locale','argv':['-a','-o','^.$'], 'stdin':'é\n','env':{'LC_ALL':'','LANG':'en_US.UTF-8'}})
+path=ROOT/'tests/cases/m3.jsonl'
+path.write_text(''.join(json.dumps(r,separators=(',',':'))+'\n' for r in rows))
+print('M3 cases',len(rows),'including',len(added),'closure-only directed edges')

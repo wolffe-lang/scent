@@ -1,5 +1,7 @@
 #!/bin/sh
 # Run the whole byte suite in plain baseline Ubuntu, with no locale data.
+# GNU reference tuples come from the green live static run; without locale
+# files GNU itself falls back to C, so replay the byte-exact measured tuples.
 # Python is the test coordinator only; scent is the twice-built static ELF.
 set -eu
 root=$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)
@@ -16,5 +18,5 @@ unset LANG LANGUAGE LC_ALL LC_CTYPE
 export SCENT_IN_CONTAINER=1 SCENT_NO_LOCALE=1
 printf "PAX posture: LANG=%s; no locale data; static scent; baseline glibc\n" "${LANG-unset}"
 test ! -e /usr/lib/locale/locale-archive
-python3 -I tools/oracle.py --bin target/mkscent/scent
+python3 -I tools/oracle.py --bin target/mkscent/scent --replay-reference target/pax-reference.json.gz
 '

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Byte oracle: no expected-output snapshots to edit around a disagreement."""
+import gzip
 import argparse, base64, fnmatch, hashlib, json, os, pathlib, shutil, subprocess, tempfile, threading, time, tomllib, sys, select, runpy, socket, errno, pty, termios
 ROOT=pathlib.Path(__file__).resolve().parent.parent
-p=argparse.ArgumentParser();p.add_argument('--only');p.add_argument('--field',action='store_true');p.add_argument('--bin',default='target/native/scent');p.add_argument('--cases',default='tests/cases');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--only');p.add_argument('--field',action='store_true');p.add_argument('--bin',default='target/native/scent');p.add_argument('--cases',default='tests/cases');p.add_argument('--capture-reference');p.add_argument('--replay-reference');a=p.parse_args()
 pin=tomllib.loads((ROOT/'scent-oracle.toml').read_text())['oracle']
 ours=(ROOT/a.bin).resolve()
 reference=pathlib.Path(shutil.which('ggrep') or shutil.which('grep') or '') if a.field else ROOT/'.oracle/grep'
@@ -15,7 +16,12 @@ if not a.field:
     require(hashlib.file_digest(open(reference,'rb'),'sha256').hexdigest()==pin['binary_sha256'],'oracle binary digest')
     require(subprocess.check_output(['ldd','--version']).splitlines()[0].decode()==pin['glibc_line'],'libc identity')
     require(subprocess.check_output([str(reference),'--version']).splitlines()[0].decode()==pin['version_line'],'version identity')
-print('oracle:', 'FIELD (non-gating)' if a.field else 'RECORD', str(reference),flush=True)
+require(not (a.field and (a.capture_reference or a.replay_reference)), 'field results cannot be record snapshots')
+require(not (a.capture_reference and a.replay_reference), 'capture and replay are exclusive')
+replay=json.loads(gzip.decompress((ROOT/a.replay_reference).read_bytes())) if a.replay_reference else None
+if replay:require(replay['oracle']==pin, 'reference capture pin drift')
+captured={'oracle':pin,'cases':{}}
+print('oracle:', 'FIELD (non-gating)' if a.field else ('RECORD REPLAY' if replay else 'RECORD'), str(reference),flush=True)
 stage=ROOT/'target/oracle';stage.mkdir(parents=True,exist_ok=True)
 def data(spec):
     if isinstance(spec,str):return spec.encode()
@@ -112,7 +118,11 @@ def launch(binary, c, work, bindir):
         for t in writers:t.join(timeout=0.1)
 exact_review=runpy.run_path(str(ROOT/'tools/oracle-review.py'))['exact_review']
 reviews=json.loads((ROOT/'tests/divergences.json').read_text())
+reviews.update(json.loads((ROOT/'tests/m3-divergences.json').read_text()) if (ROOT/'tests/m3-divergences.json').exists() else {})
 field_reviews=json.loads((ROOT/'tests/field-divergences.json').read_text()) if a.field else {}
+if a.field and (ROOT/'tests/m3-field-divergences.json').exists():
+    for platform, entries in json.loads((ROOT/'tests/m3-field-divergences.json').read_text()).items():
+        field_reviews.setdefault(platform,{}).update(entries)
 field_support=runpy.run_path(str(ROOT/'tools/oracle-field.py'))
 cases=[json.loads(raw) for file in sorted((ROOT/a.cases).glob('*.jsonl')) for raw in file.read_text().splitlines()]
 selected=[c for c in cases if not a.only or fnmatch.fnmatchcase(c['name'],a.only)]
@@ -121,7 +131,7 @@ if a.field and any(field_support['needs_non_utf8_name'](case) for case in select
     capabilities['non-utf8-filename']=field_support['probe_non_utf8_name'](stage)
     print('FIELD capability',json.dumps(capabilities,sort_keys=True),flush=True)
 if a.field:(stage/'field-capabilities.json').write_text(json.dumps(capabilities,indent=2)+'\n')
-counts={'upstream-blocked':0,'reviewed':0,'agree':0,'differ':0,'not-yet':0,'argv0-diagnostic':0,'argv0-usage':0,'argv-bytes':0,'field-unavailable':0,'terminator-pattern':0,'stale-review':0};seen=0
+counts={'environment':0,'gnu-inconsistent':0,'upstream-blocked':0,'reviewed':0,'agree':0,'differ':0,'not-yet':0,'argv0-diagnostic':0,'argv0-usage':0,'argv-bytes':0,'field-unavailable':0,'terminator-pattern':0,'stale-review':0};seen=0
 unavailable=[]
 for c in selected:
     name=c['name']
@@ -156,6 +166,13 @@ for c in selected:
         top=pathlib.Path(tmp);top.chmod(0o755)
         results=[]
         for tag,binary in [('gnu',reference),('scent',ours)]:
+            if tag=='gnu' and replay:
+                saved=replay['cases'].get(name)
+                identity=hashlib.sha256(json.dumps(c,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+                require(saved is not None and saved['case_sha256']==identity, name+' reference capture missing or stale')
+                out,err,rc,rest=saved['result']
+                results.append((bytes.fromhex(out),bytes.fromhex(err),rc,bytes.fromhex(rest)))
+                continue
             work=top/('shared' if c.get('shared_fixture') else tag)
             fresh=not work.exists()
             if fresh:work.mkdir(mode=0o755)
@@ -170,6 +187,8 @@ for c in selected:
             if c.get('stdout')=='input':(work/c['stdout_file']).write_bytes(data(c['files'][c['stdout_file']]))
             results.append(launch(binary,c,work,bindir))
         g,s=results
+        if a.capture_reference:
+            captured['cases'][name]={'case_sha256':hashlib.sha256(json.dumps(c,sort_keys=True,separators=(',',':')).encode()).hexdigest(), 'result':[g[0].hex(),g[1].hex(),g[2],g[3].hex()]}
         shape=c.get('shape')
         # The prose exception follows the action, including unique prefixes.
         if g[0].startswith(b'Usage: grep ') and s[0].startswith(b'Usage: grep '):shape='help'
@@ -192,7 +211,9 @@ for c in selected:
         if review:
             if a.field:require(review.get('class')=='upstream-blocked' and review.get('platform')==sys.platform,name+' field review scope')
             if not same and exact_review(review,c,g,s):
-                counts['reviewed']+=1
+                if review.get('class')=='environment':counts['environment']+=1
+                else:counts['reviewed']+=1
+                if review.get('class')=='gnu-inconsistent':counts['gnu-inconsistent']+=1
                 if review.get('kind')=='upstream':counts['upstream-blocked']+=1
                 if a.field:
                     record=stage/name;record.mkdir(exist_ok=True)
@@ -220,9 +241,13 @@ for c in selected:
 require(seen>0,'no cases selected')
 print('{agree} agree / {differ} differ / {not-yet} not-yet'.format(**counts),flush=True)
 print('{reviewed} reviewed divergences (including {upstream-blocked} upstream-blocked)'.format(**counts),flush=True)
+print('{environment} environment differences / {gnu-inconsistent} gnu-inconsistent reviews'.format(**counts),flush=True)
 print('not-yet columns: argv0-diagnostic={argv0-diagnostic} argv0-usage={argv0-usage} argv-bytes={argv-bytes} terminator-pattern={terminator-pattern}'.format(**counts),flush=True)
 if a.field:
     print('FIELD summary:',json.dumps({k:counts[k] for k in ['agree','differ','reviewed','upstream-blocked','not-yet','field-unavailable','stale-review']},sort_keys=True),flush=True)
     (stage/'field-unavailable.json').write_text(json.dumps(unavailable,indent=2)+'\n')
 (stage/'summary.json').write_text(json.dumps(counts,sort_keys=True)+'\n')
+if a.capture_reference:
+    require(counts['differ']==0 and counts['stale-review']==0 and counts['not-yet']==0, 'only a complete green live run may capture reference results')
+    (ROOT/a.capture_reference).write_bytes(gzip.compress(json.dumps(captured,separators=(',',':')).encode(),mtime=0))
 raise SystemExit(0 if counts['stale-review']==0 and (a.field or counts['differ']==0) else 1)

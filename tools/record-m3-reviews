@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+"""One-time recording of already-ruled differences, never run by CI.
+Every unknown family is refused; CI uses exact tuples/identity, not these
+family selectors. Ruling #122 is selection/span consistency, #115-117 and
+#120 are inherited, and R-ct04-1 is the installed-locale environment.
+"""
+import hashlib,json,pathlib,re
+ROOT=pathlib.Path(__file__).resolve().parent.parent
+cases={c['name']:c for p in (ROOT/'tests/cases').glob('*.jsonl') for c in map(json.loads,p.read_text().splitlines())}
+base=json.loads((ROOT/'tests/divergences.json').read_text())
+reviews={}
+log=(ROOT/'notes/ct04-evidence/full-first.log').read_text()
+for line in log.splitlines():
+ if not line.startswith('DIFFER '):continue
+ name=line.split()[1];c=cases[name];p=ROOT/'target/oracle'/name
+ if name in ['utf8-cli-22','utf8-edge-cli-03']:continue # implementation corrections, NOT reviews
+ review={}
+ if name.startswith('m3-fold-'):
+  review={'ruling':122,'class':'gnu-inconsistent','reason':'consistent fold closure, isolated vs combined line', 'witness':'notes/ct04-evidence/utf8-stop-witnesses.json'}
+ elif name.startswith(('m3-error-surrogate-','m3-error-above-max-','m3-error-five-byte-','m3-error-six-byte-')):
+  assert c['files']['patterns']['base64']=='Lgo=' # dot alone; no broad invalid-byte waiver
+  review={'ruling':122,'class':'gnu-inconsistent','reason':'strict dot, isolated vs combined encoding', 'witness':'notes/ct04-evidence/utf8-stop-witnesses.json'}
+ elif name=='m3-environment-absent-locale':
+  review={'ruling':'R-ct04-1','class':'environment','reason':'the oracle image installs only C, C.UTF-8 and POSIX'}
+ elif name.startswith('utf8-'):
+  source=name[5:]
+  if source in base:review={k:v for k,v in base[source].items() if k not in ['gnu','scent','case_sha256']}
+  elif source.startswith('cross-F-'):review={'ruling':117}
+  elif source.startswith('ruled-star-'):review={'ruling':116}
+  elif source.startswith('ruled-word-'):review={'ruling':115}
+  else:raise SystemExit('STOP unclassified inherited difference '+name)
+  review['source_case']=source
+ else:raise SystemExit('STOP unclassified difference '+name)
+ def answer(tag):
+  out=(p/(tag+'.stdout')).read_bytes();err=(p/(tag+'.stderr')).read_bytes();status=int((p/(tag+'.status')).read_text());rest=(p/(tag+'.stdin-rest')).read_bytes()
+  if tag=='scent' and review.get('scent_pid_field'):
+   err=re.sub(br"\A\nthread '<unnamed>' \([0-9]+\) panicked at ",b"\nthread '<unnamed>' ({pid}) panicked at ",err)
+  return [out.hex(),err.hex(),status,rest.hex()]
+ review.update(case_sha256=hashlib.sha256(json.dumps(c,sort_keys=True,separators=(',',':')).encode()).hexdigest(),gnu=answer('gnu'),scent=answer('scent'))
+ assert review['gnu']!=review['scent']
+ reviews[name]=review
+(ROOT/'tests/m3-divergences.json').write_text(json.dumps(reviews,indent=2)+'\n')
+field=json.loads((ROOT/'tests/field-divergences.json').read_text())['darwin']
+clones={}
+for name,review in field.items():
+ c=cases['utf8-'+name];r=dict(review)
+ r['case_sha256']=hashlib.sha256(json.dumps(c,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+ clones[c['name']]=r
+(ROOT/'tests/m3-field-divergences.json').write_text(json.dumps({'darwin':clones},indent=2)+'\n')
+print('recorded',len(reviews),'exact M3 reviews')

@@ -13,6 +13,8 @@ python3 -I ci/tiers-test.py
 python3 -I tools/re-ci-test
 python3 -I tools/m2-ci-test
 python3 -I tools/m1-ci-test
+python3 -I tools/m3-ci-test
+tools/check-ctype-regen
 python3 -I tools/oracle-review-test
 tools/check-fmt
 tools/build --all
@@ -23,6 +25,6 @@ tools/oracle --bin target/native/scent
 tools/oracle --bin target/release/scent
 tools/re-ci
 tools/mkscent target/mkscent
-tools/oracle --bin target/mkscent/scent
+tools/oracle --bin target/mkscent/scent --capture-reference target/pax-reference.json.gz
 python3 -I tools/measure.py --memory-only
-printf 'PASS ct03 whole joined gate; SKIP=0\n'
+printf 'PASS ct04 whole joined gate; SKIP=0\n'

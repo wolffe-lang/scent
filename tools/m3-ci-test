@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+"""M3 floors, exact review scope, inheritance and CI wiring."""
+import collections,hashlib,json,pathlib,subprocess,sys
+root=pathlib.Path(__file__).resolve().parent.parent
+subprocess.run([sys.executable,'-I',str(root/'tools/m3-cases')],check=True)
+rows=[json.loads(x) for x in (root/'tests/cases/m3.jsonl').read_text().splitlines()]
+assert len(rows)==34026,len(rows)
+cases={c['name']:c for c in rows};assert len(cases)==len(rows)
+inherited={c['name']:c for p in (root/'tests/cases').glob('*.jsonl') if p.name!='m3.jsonl' for c in map(json.loads,p.read_text().splitlines())}
+assert len(inherited)==9599 and sum(c['name'].startswith('utf8-') for c in rows)==9598
+for name,c in inherited.items():
+ if name=='m2-m3-locale-refusal':assert not c.get('not_yet');continue
+ clone=dict(c,name='utf8-'+name,env={**c.get('env',{}),'LC_ALL':'C.UTF-8'})
+ assert cases[clone['name']]==clone
+reviews=json.loads((root/'tests/m3-divergences.json').read_text())
+counts=collections.Counter(r.get('class','inherited') for r in reviews.values())
+assert counts=={'gnu-inconsistent':550,'environment':1,'inherited':120},counts
+for name,r in reviews.items():
+ assert r['case_sha256']==hashlib.sha256(json.dumps(cases[name],sort_keys=True,separators=(',',':')).encode()).hexdigest(),name
+ assert r['gnu']!=r['scent']
+ if r.get('class')=='gnu-inconsistent':assert r['ruling']==122 and (root/r['witness']).is_file()
+ if r.get('class')=='environment':assert name=='m3-environment-absent-locale' and r['ruling']=='R-ct04-1'
+workflow=(root/'.github/workflows/ci.yml').read_text();gate=(root/'tools/gate').read_text()
+for name in ['m3-ci-test','check-ctype-regen']:
+ assert 'tools/'+name in workflow and 'tools/'+name in gate
+assert '--capture-reference target/pax-reference.json.gz' in workflow and '--capture-reference target/pax-reference.json.gz' in gate
+assert '--replay-reference target/pax-reference.json.gz' in (root/'tools/pax-posture').read_text()
+print('PASS M3 floors: 34,026 rows; 550 inconsistent, 120 inherited, one environment; all identities exact')
