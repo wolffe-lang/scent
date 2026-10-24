@@ -33,7 +33,7 @@ feeds each operand through `reader.scan` to the byte writer in `out`.
   `next_span(re, mut ws, buf, lo, hi, from) -> Span ! {none}`. Spans
   are leftmost-longest, in buffer coordinates. Empty patterns are tested by `line_matches`; `next_span` returns
   nonempty spans only, avoiding quadratic rescans with empty alternatives. `compile(patterns: List[List[byte]], syntax,
-  flags, mut diagnostics) -> Matcher ! {invalid}` compiles F through KMP
+  flags, utf8, mut diagnostics) -> Matcher ! {invalid}` compiles F through KMP
   and G/E through `re`. Diagnostics retain pattern-file line provenance;
   duplicate pattern bytes compile once.
 - `src/re/`: the independent C/UTF-8 BRE/ERE engine for ct02's syntax
@@ -136,7 +136,8 @@ C.UTF-8 and POSIX. The normal matrices use explicit `LC_ALL=C` and
 
 `src/re/utf8.lu` provides a strict scalar decoder and a separate measured
 C.UTF-8 compatibility view for non-overlong legacy multibyte values above
-U+10FFFF. Only the UTF-8 path decodes; the C path retains byte instructions
+U+10FFFF. Only the UTF-8 path decodes; `byte_vm.lu` retains the original C search/closure
+and backreference loops behind one outer dispatch. The C path retains byte instructions
 and its 256-entry class bitmaps. Regex positions and capture boundaries
 remain byte offsets. State-set simulation advances one decoded character
 at a time without per-record scalar allocation. Backreferences compare
@@ -158,7 +159,7 @@ inherit whole-file invalidity. NUL's existing chunk-based binary behavior
 is unchanged. `src/locale/` isolates environment precedence/codeset parsing;
 `opts.parse_locale` receives that choice before locale-dependent quoting.
 
-`tools/m3-ci-test` protects 34,026 UTF-8 rows and exact review identities.
+`tools/m3-ci-test` protects 38,706 UTF-8 rows and exact review identities.
 `tools/check-ctype-regen` checks all scalar classes and every measured fold
 edge against committed fixtures after regeneration. `tests/m3-divergences.json`
 keeps 550 `gnu-inconsistent` rows separate from 120 inherited reviews and

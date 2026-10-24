@@ -1,0 +1,36 @@
+{
+  "affinity": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "locale": "C",
+  "baseline_commit": "143bf55",
+  "warmups_per_binary": 1,
+  "pairs": 3,
+  "rows": [
+    {
+      "argv": [
+        "-F",
+        "-v",
+        "-c",
+        "needle"
+      ],
+      "seconds": {
+        "baseline": [
+          0.8462554949946934,
+          0.8339604670036351,
+          0.8383506539976224
+        ],
+        "candidate": [
+          0.856852623008308,
+          0.8308770319999894,
+          0.8523111849935958
+        ]
+      },
+      "change_percent": 1.6652376817986037,
+      "ranges_overlap": true
+    }
+  ]
+}

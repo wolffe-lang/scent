@@ -1,0 +1,29 @@
+kasumi CPUs4-7, pinned Ubuntu, LC_ALL=C; exact trunk143bf55 baseline.
+256MiB flat rows; recursive10,000files/40,960,000bytes.
+One warmup per binary, then3 interleaved pairs; medians below.
+The F-v-c row uses the final fixed-layout control; other rows use paired isolation.
+argv | baseline seconds | candidate seconds | change percent | ranges overlap
+-F needle | 0.961893 | 0.944320 | -1.83 | True
+-F -i NEEDLE | 1.010556 | 0.951839 | -5.81 | False
+-F -c needle | 0.747291 | 0.754054 | +0.91 | True
+-F -v -c needle | 0.838351 | 0.852311 | +1.67 | True
+-G needle | 3.001681 | 3.011277 | +0.32 | True
+-G n[e]edle | 3.003032 | 3.092271 | +2.97 | True
+-G needle\|absent | 4.254485 | 4.220836 | -0.79 | True
+-G n\(e\)\1dle | 3.551873 | 3.494409 | -1.62 | True
+-G -i NEEDLE | 2.995846 | 3.027392 | +1.05 | True
+-G -v -c needle | 2.703800 | 2.714722 | +0.40 | True
+-E needle | 3.002345 | 2.986507 | -0.53 | True
+-E n[e]edle | 2.963883 | 2.981349 | +0.59 | True
+-E needle|absent | 4.336115 | 4.258922 | -1.78 | True
+-E n(e)\1dle | 3.471382 | 3.619724 | +4.27 | True
+-E -i NEEDLE | 2.961041 | 3.096315 | +4.57 | True
+-E -v -c needle | 2.653252 | 2.704233 | +1.92 | True
+-r -F -c needle | 0.596844 | 0.597879 | +0.17 | True
+
+The first unisolated implementation regressed C regex7–22%; measure-ct04.json
+retains that failed result. Restoring byte_vm.lu and original fixed.Flags layout
+removed the regression. The only non-overlapping paired row is a5.81% speedup.
+
+UTF-8 first workload: -F -i -c É,67,061,760bytes; three runs.
+scent 0.219441s / GNU 0.031021s = 7.07x; recorded, not gated until M4.

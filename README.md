@@ -36,10 +36,10 @@ The M2 generator adds **3,392 cases**: 2,000 shared-tree walk/filter rows,
 120 glob-syntax rows, and 97 additional byte-pattern, tty, colour-edge,
 reviewed-gap and M3-refusal rows. The complete CLI matrix reports
 **9,478 C-locale agreements + 111 published differences + 9 upstream-blocked**.
-The former explicit UTF-8 refusal is now an agreement. A further **34,026
+The former explicit UTF-8 refusal is now an agreement. A further **38,706
 UTF-8 cases** include every inherited case and generated scalar, encoding-error
-and consistency witnesses. The complete matrix has **43,625 cases**:
-**42,834 agree, 772 published differences, 18 upstream-blocked, one environment
+and consistency witnesses. The complete matrix has **48,305 cases**:
+**47,514 agree, 772 published differences, 18 upstream-blocked, one environment
 difference, zero unapproved differences and zero not-yet rows**. Of the published
 differences, 550 cover the two UTF-8 consistency rules below: 480 case-fold
 rows and 70 dot-span rows.
@@ -71,8 +71,10 @@ CI never silently substitutes its host's Unicode version.
 Under `-i`, `[[:upper:]]` and `[[:lower:]]` each become `[[:alpha:]]`,
 including uncased letters and the oracle's non-ASCII digit members. Numeric
 `[[:digit:]]` remains ASCII. Ordinary multibyte bracket members work; the
-pinned build rejects non-ASCII range endpoints and collating/equivalence
-atoms with `Invalid collation character`, and scent does too.
+pinned build rejects valid non-ASCII character range endpoints and
+collating/equivalence atoms with `Invalid collation character`, and scent does too. Rejected single bytes remain byte-valued range
+endpoints; 4,680 additional malformed-bracket comparisons check every
+byte from0x80 through0xff under both syntaxes and case modes.
 
 ### Case matching stays consistent
 

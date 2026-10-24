@@ -1,0 +1,40 @@
+M4 contract sketch — ct05, speed (proposed follow-on, not launched)
+
+Baseline: ct04's final accepted head, same GNU3.12/container/toolchain pins.
+C byte VM and UTF-8 view remain separate; byte offsets and original output
+bytes never become scalar indices. No performance waiver changes semantics.
+
+1. Profile the exact C/UTF-8 workloads on the assigned four locked cores.
+   ct04's paired C timings retain trunk behavior without the first draft's
+   7–22% regression. UTF-8 -F -i -c over67,061,760bytes is the new first row.
+   Record allocation/read/syscall costs separately from matcher transitions.
+2. Add a bounded lazy DFA for regular line selection. Cache keys include
+   scalar/class predicate partitions, word assertions, locale mode and the
+   symmetric/transitive fold closure. Eviction falls back to the existing
+   linear state-set engine, never to general backtracking. Backreferences
+   keep the projected regular superset plus their existing verified path.
+3. Add literal prefilters: byte memchr/skip search for C; scalar-aware folded
+   and many-pattern fixed search for UTF-8. A prefilter must be a SUPERSET of
+   the consistent matcher, with no mid-character candidate and no rejection
+   of a historic Cyrillic equivalent. Preserve malformed-byte and measured
+   legacy multibyte values separately. Never copy GNU's two-matcher leakage.
+4. Use the released wolf-std read-into-buffer/memchr APIs when available;
+   retain bounded carried records, chunk-local workspace and byte spans.
+   A dependency gap is a named std lane/issue, not an ad-hoc libc binding.
+5. Gate unchanged C/UTF-8 matrices, exact inconsistency/environment reviews,
+   exhaustive tables, strict dot, backreferences, read-boundary UTF-8,
+   deterministic static build and locale-free reference replay. Plant the
+   DFA and prefilter gates before claiming unattended protection.
+6. Performance gate: within2x GNU on agreed workloads under taskset, with
+   interleaved repeats, warmups, drained output and reported variance.
+   Keep2GiB streaming RSS below32MiB and bound the new cache explicitly.
+
+PAX follow-on — px scent-M3 pin (numeric px lane assigned by orchestrator)
+
+Pin the final deterministic static artifact in user/scent.pin, rebuild the
+PAX image through its existing tools/mkscent, retain /bin/scent plus grep,
+egrep and fgrep names. Typed OS sessions must prove LC_ALL=C.UTF-8 with no
+locale files, é/alpha patterns, byte offsets and colour, -w/-x, historic
+Cyrillic consistency, strict-dot rejection and published extended-byte
+behavior. Compare with ct04's reviewed tuples, not a live GNU that lost its
+locale database. No deployment or image bump is claimed by ct04 itself.
