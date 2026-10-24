@@ -30,12 +30,12 @@ diagnostic cases. Separate CLI rows cover the original 958-case corpus,
 The engine also gates 20,000 generated pattern–line pairs per syntax,
 exhaustive short malformed patterns, and bounded regular/backreference costs.
 
-The M2 generator adds **3,384 cases**: 2,000 shared-tree walk/filter rows,
+The M2 generator adds **3,392 cases**: 2,000 shared-tree walk/filter rows,
 18 edge and five self-output rows, 1,152 original colour/environment rows,
-120 glob-syntax rows, and 89 additional byte-pattern, tty, colour-edge,
+120 glob-syntax rows, and 97 additional byte-pattern, tty, colour-edge,
 reviewed-gap and M3-refusal rows. The complete CLI matrix reports
-**9,470 agree + 111 published differences + 9 upstream-blocked + one M3
-not-yet**, with zero unapproved differences (9,591 cases total).
+**9,478 agree + 111 published differences + 9 upstream-blocked + one M3
+not-yet**, with zero unapproved differences (9,599 cases total).
 The reviewed cases are not counted as agreement. Input and pattern-file
 bytes remain arbitrary bytes; non-UTF-8 filesystem names have the exact
 upstream-blocked witness below, not a locale exception.
@@ -107,7 +107,6 @@ The complete individual cases and exact answers are in the manifest above.
 | #115: whole-word, leftmost-longest | `-E -a -o -b -w '.{1,2}'`, four spaces then `ab` | `0:  \n4:ab\n` | `0:  \n2: \n4:ab\n` | Keep the valid shorter whole-word span GNU's retry omits. BRE is equivalent. |
 | #116: `**` means `*` | `-E` with the double-star pattern below, on `a` | No output, status 1 | `a\n`, status 0 | Replacing either `**` with `*` restores GNU's empty-capture path; POSIX leaves adjacent duplication undefined. |
 | #117: never cross records | Pattern-file bytes `x\0y\n`, `-F -z`, input `x\0y\0` | `x\0y\0`, status 0 when in one read | No output, status 1 | GNU `-G`/`-E`, `-F -w` and cross-read `-F` already reject it. Input record boundaries must not depend on read placement. |
-
 | #120: explicitly named sockets obey `-Dskip` | Create a Unix-domain socket named `socket`; `grep -Dskip x socket` | stderr `grep: socket: No such device or address\n`, status 2 | Empty streams, status 1 | Follow the documented silent skip, as GNU already does for a walked socket and an explicit FIFO. Exact cases: `m2-socket-skip`, `m2-edges-11`; [witness](notes/ct03-evidence/witnesses.json). |
 
 The double-star command is literal (the alternation bar is not escaped):
@@ -126,7 +125,7 @@ A short double-star bug report is drafted in
 it has not been sent. The socket report is also drafted, not sent, at
 [`gnu-report-Dskip-socket.txt`](notes/ct03-evidence/gnu-report-Dskip-socket.txt).
 
-### Blocked upstream, retires at the pin that ships `env_arg0` / `env_args_bytes`
+### Blocked upstream: invocation names, byte argv and byte paths
 
 These nine are scent/runtime gaps, not GNU quirks. Each row is executed
 and checked as an exact expected difference. Let `D(name)` be
@@ -144,7 +143,6 @@ The invocation rows all use `--bad`, empty stdin, no stdout and status 2.
 | `not-yet-argv0-usage-2` | `D(hound) + U(hound)` | `D(grep) + U(grep)` | wolf-lang#899, #904 |
 | `not-yet-argv-bytes-0`: `-F`, byte FF pattern, empty stdin | No output/status 1 | Runtime panic below, abort | wolf-lang#406, #904 |
 | `not-yet-argv-bytes-1`: `-F x`, byte FF filename | `grep: <FF>: No such file or directory\n`, status 2 | Runtime panic below, abort | wolf-lang#406, #904 |
-
 | `m2-upstream-byte-name`: ASCII argv `-r x tree`, file `tree/<FF>` contains `x\n` | stdout hex `747265652fff3a780a`, empty stderr, status 0 | Empty stdout; stderr `grep: directory entry is not UTF-8\n`, status 2 | wolf-lang#687, #912: listing exposes byte names, but open/stat paths require UTF-8. [Exact witness](notes/ct03-evidence/witnesses.json). |
 
 The two byte-argument rows have no stdout. Their full stderr is fixed in
@@ -162,8 +160,8 @@ fatal runtime error: failed to initiate panic, error 5, aborting
 Until those builtins ship, diagnostics, `--help`'s usage line and the M3
 refusal use the fixed invocation name `grep`; full-path invalid-option
 prefixes and alternate invocation names differ. No `os_exe` basename is
-substituted: it would be wrong under symlinks. `/bin/grep` can be a symlink to scent without a private
-name-override option. Raw invalid-UTF-8 argv can abort; use pattern files
+substituted: it would be wrong under symlinks. `/bin/grep` can be a symlink
+to scent without a private name-override option. Raw invalid-UTF-8 argv can abort; use pattern files
 for arbitrary pattern bytes. Retirement requires replaying these witnesses
 at the new pin, not deleting them without a check. The byte-filename gap
 requires filesystem byte-path APIs (#687/#912), not merely byte argv or

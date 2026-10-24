@@ -97,6 +97,6 @@ upstream-blocked row (#687/#912), not M3 and not a blanket tree waiver.
 Ruling #120's explicit socket skip is likewise one exact published
 comparison family; walked sockets and FIFOs still agree with GNU.
 
-`tools/m2-ci-test` guards the generated 3,384-case floor, shared-fixture
+`tools/m2-ci-test` guards the generated 3,392-case floor, shared-fixture
 order posture, terminal rows and exact reviews. The M1 floor remains
 5,072; neither generation step silently shrinks the other's cases.
