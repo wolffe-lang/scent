@@ -4,7 +4,7 @@ import argparse,json,os,pathlib,statistics,subprocess,tempfile,time
 root=pathlib.Path(__file__).resolve().parent.parent
 assert os.environ.get('SCENT_IN_CONTAINER')=='1','measurements require own container'
 ours=root/'target/release/scent';gnu=root/'.oracle/grep'
-parser=argparse.ArgumentParser();parser.add_argument('--memory-only',action='store_true');args=parser.parse_args()
+parser=argparse.ArgumentParser();parser.add_argument('--memory-only',action='store_true');parser.add_argument('--bin',default='target/release/scent');parser.add_argument('--output');parser.add_argument('--no-utf8',action='store_true');args=parser.parse_args();ours=root/args.bin
 result={'output':'pipe drained in 64 KiB blocks; never /dev/null','host':os.uname().nodename,'affinity':sorted(os.sched_getaffinity(0)),'memory':[],'performance':[]}
 assert len(result['affinity'])<=4,'run under the assigned four cores'
 target=root/'target';target.mkdir(exist_ok=True)
@@ -54,6 +54,25 @@ with tempfile.TemporaryDirectory(prefix='measure-',dir=target) as tmp:
     values.append(elapsed);print('perf-run',name,flags,i+1,elapsed,flush=True)
    row[name]={'runs_seconds':values,'median_seconds':statistics.median(values),'output_bytes':output_bytes}
   row['ratio']=row['scent']['median_seconds']/row['gnu']['median_seconds'];result['performance'].append(row);print('performance',json.dumps(row),flush=True)
+ if not args.memory_only and not args.no_utf8:
+  utf8=tmp/'utf8-64m'
+  payload=('é needle α '+ '中'*15+'\n').encode()
+  data=payload*(65536//len(payload))
+  with utf8.open('wb') as f:
+   for _ in range(1024):f.write(data)
+  row={'argv':['-F','-i','-c','É'],'bytes':utf8.stat().st_size,'locale':'C.UTF-8'}
+  old_locale=os.environ.get('LC_ALL')
+  os.environ['LC_ALL']='C.UTF-8'
+  for name,binary in [('scent',ours),('gnu',gnu)]:
+   values=[]
+   for i in range(3):
+    start=time.perf_counter();output_bytes,head=drain([str(binary),'-F','-i','-c','É',str(utf8)]);elapsed=time.perf_counter()-start
+    assert int(head)==(65536//len(payload))*1024,(name,head)
+    values.append(elapsed);print('utf8-perf-run',name,i+1,elapsed,flush=True)
+   row[name]={'runs_seconds':values,'median_seconds':statistics.median(values),'output_bytes':output_bytes}
+  if old_locale is None:os.environ.pop('LC_ALL',None)
+  else:os.environ['LC_ALL']=old_locale
+  row['ratio']=row['scent']['median_seconds']/row['gnu']['median_seconds'];result['performance'].append(row);print('performance',json.dumps(row),flush=True)
  if not args.memory_only:
   tree=tmp/'tree';tree.mkdir()
   payload=block[:4096]
@@ -69,6 +88,6 @@ with tempfile.TemporaryDirectory(prefix='measure-',dir=target) as tmp:
     values.append(elapsed);print('perf-tree-run',name,i+1,elapsed,flush=True)
    row[name]={'runs_seconds':values,'median_seconds':statistics.median(values),'output_bytes':output_bytes}
   row['ratio']=row['scent']['median_seconds']/row['gnu']['median_seconds'];result['performance'].append(row);print('performance-tree',json.dumps(row),flush=True)
-(root/('target/memory.json' if args.memory_only else 'target/measure.json')).write_text(json.dumps(result,indent=2)+'\n')
+(root/(args.output or ('target/memory.json' if args.memory_only else 'target/measure.json'))).write_text(json.dumps(result,indent=2)+'\n')
 assert all(row['scent']['peak_rss_kib']<32768 for row in result['memory']),'memory gate: scent must peak below 32 MiB'
 print('memory gate: PASS; performance recorded, not gated',flush=True)

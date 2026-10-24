@@ -139,9 +139,9 @@ fn run(initial: opts.Options) -> int {
             ignore_case: o.ignore_case,
             word: o.word,
             whole: o.whole,
-            utf8: o.utf8,
             terminator: if o.zero then 0 as byte else 10 as byte,
         },
+        o.utf8,
         mut diagnostics,
     ) else |_| {
         emit_diagnostics(diagnostics, names, lines)

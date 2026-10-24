@@ -16,7 +16,6 @@ pub struct Flags {
     word: bool,
     whole: bool,
     terminator: byte,
-    utf8: bool,
 }
 
 /// Immutable compiled pattern list.

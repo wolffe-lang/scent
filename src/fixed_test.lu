@@ -8,7 +8,7 @@ fn check(patterns: str, data: str, icase: bool, word: bool, whole: bool, lo: int
         (mut ps).push(p.bytes())
     }
     let re = fixed.compile(ps, fixed.
-        Flags { ignore_case: icase, word: word, whole: whole, utf8: false, terminator: 10 as byte })
+        Flags { ignore_case: icase, word: word, whole: whole, terminator: 10 as byte })
     var ws = fixed.workspace_new(re)
     let b = data.bytes()
     let span = fixed.next_span(re, mut ws, b, 0, b.len, 0) else |_| {
@@ -30,7 +30,6 @@ fn main() {
         ignore_case: false,
         word: false,
         whole: false,
-        utf8: false,
         terminator: 10 as byte,
     })
     var scratch = fixed.workspace_new(empty)
@@ -47,7 +46,6 @@ fn main() {
         ignore_case: false,
         word: false,
         whole: false,
-        utf8: false,
         terminator: 10 as byte,
     })
     var cursor = fixed.workspace_new(multi)

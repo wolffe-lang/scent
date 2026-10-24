@@ -1,0 +1,260 @@
+//! C-locale hot path retained from scent 143bf55, own code. Dispatch occurs
+//! once per search, never per byte/state. The scalar VM remains separate so
+//! UTF-8 decoding, property lookup and folded-width logic cannot tax C.
+//! Existing regular/projection/backreference gates exercise both frontiers.
+
+fn byte_assertion(op: int, bytes: List[byte], lo: int, hi: int, pos: int) -> bool {
+    if op == BOL { return pos == lo }
+    if op == EOL { return pos == hi }
+    let left = pos > lo && is_word(bytes[pos - 1] as int)
+    let right = pos < hi && is_word(bytes[pos] as int)
+    if op == BOUND { return left != right }
+    if op == NOT_BOUND { return left == right }
+    if op == WORD_START { return !left && right }
+    if op == WORD_END { return left && !right }
+    false
+}
+
+fn byte_consumes(re: Regex, inst: Inst, b: byte) -> bool {
+    if b == re.options.terminator { return false }
+    let c = b as int
+    if inst.op == ANY { return true }
+    if inst.op == CLASS { return re.classes[inst.arg * 256 + c] }
+    if inst.op == CHAR {
+        return if re.options.icase then ascii_fold(c) == ascii_fold(inst.arg) else c == inst.arg
+    }
+    false
+}
+
+fn byte_closure(
+    re: Regex,
+    mut ws: Workspace,
+    pc: int,
+    origin: int,
+    bytes: List[byte],
+    lo: int,
+    hi: int,
+    pos: int,
+    projected: bool,
+) {
+    var top = 1
+    ws.stack[0] = pc
+    while top > 0 {
+        top -= 1
+        let at = ws.stack[top]
+        if ws.marks[at] == ws.generation { continue }
+        ws.marks[at] = ws.generation
+        ws.visits += 1
+        let inst = copy re.prog[at]
+        if inst.op == SPLIT {
+            ws.stack[top] = inst.y
+            ws.stack[top + 1] = inst.x
+            top += 2
+        } else if inst.op == JUMP || inst.op == SAVE {
+            ws.stack[top] = inst.x
+            top += 1
+        } else if inst.op >= BOL && inst.op <= WORD_END {
+            if byte_assertion(inst.op, bytes, lo, hi, pos) {
+                ws.stack[top] = inst.x
+                top += 1
+            }
+        } else {
+            // A backreference's regular projection is any byte string:
+            // retain this pc as a consuming self-loop, and allow epsilon exit.
+            if projected && inst.op == REF {
+                ws.stack[top] = inst.x
+                top += 1
+            }
+            ws.next_pcs[ws.next_count] = at
+            ws.next_origins[ws.next_count] = origin
+            ws.next_count += 1
+        }
+    }
+}
+
+fn byte_search(
+    re: Regex,
+    mut ws: Workspace,
+    bytes: List[byte],
+    lo: int,
+    hi: int,
+    from: int,
+    nonempty: bool,
+    any_match: bool,
+    projected_pattern: int,
+) -> Span ! {none} {
+    ws.count = 0
+    ws.visits = 0
+    var pos = if from < lo then lo else from
+    var best_lo = -1
+    var best_hi = -1
+    if pos > hi { return none }
+    new_generation(mut ws)
+    while pos <= hi {
+        if best_lo < 0 &&
+            (!re.options.whole || pos == lo) &&
+            (!re.options.word || re.options.whole || pos == lo || !is_word(bytes[pos - 1] as int)) {
+            var k = if projected_pattern >= 0 then projected_pattern else 0
+            while k < re.starts.len && (projected_pattern < 0 || k == projected_pattern) {
+                if projected_pattern >= 0 || !re.backrefs[k] {
+                    byte_closure(
+                        re,
+                        mut ws,
+                        program_start(re, k, nonempty),
+                        pos,
+                        bytes,
+                        lo,
+                        hi,
+                        pos,
+                        projected_pattern >= 0,
+                    )
+                }
+                k += 1
+            }
+        }
+        ws.count = ws.next_count
+        var i = 0
+        while i < ws.count {
+            ws.pcs[i] = ws.next_pcs[i]
+            ws.origins[i] = ws.next_origins[i]
+            let pc = ws.pcs[i]
+            let start = ws.origins[i]
+            if re.prog[pc].op == ACCEPT &&
+                (!nonempty || start < pos) &&
+                (!re.options.whole || pos == hi) &&
+                (!re.options.word || re.options.whole || pos == hi || !is_word(bytes[pos] as int)) {
+                if any_match { return Span { lo: start, hi: pos } }
+                if best_lo < 0 || start < best_lo || start == best_lo && pos > best_hi {
+                    best_lo = start
+                    best_hi = pos
+                }
+            }
+            i += 1
+        }
+        if pos == hi { break }
+        new_generation(mut ws)
+        i = 0
+        while i < ws.count {
+            let inst = copy re.prog[ws.pcs[i]]
+            let start = ws.origins[i]
+            let ref_loop = projected_pattern >= 0 &&
+                inst.op == REF &&
+                bytes[pos] != re.options.terminator
+            if (best_lo < 0 || start <= best_lo) &&
+                (ref_loop || byte_consumes(re, inst, bytes[pos])) {
+                let next = if ref_loop then ws.pcs[i] else inst.x
+                byte_closure(
+                    re,
+                    mut ws,
+                    next,
+                    start,
+                    bytes,
+                    lo,
+                    hi,
+                    pos + 1,
+                    projected_pattern >= 0,
+                )
+            }
+            i += 1
+        }
+        if best_lo >= 0 && ws.next_count == 0 { break }
+        pos += 1
+    }
+    if best_lo < 0 { return none }
+    Span { lo: best_lo, hi: best_hi }
+}
+
+fn byte_reference_end(
+    re: Regex,
+    inst: Inst,
+    caps: Captures,
+    bytes: List[byte],
+    pos: int,
+    hi: int,
+) -> int {
+    let start = capture_get(caps, 2 * inst.arg)
+    let end = capture_get(caps, 2 * inst.arg + 1)
+    if start < 0 || end < start || end - start > hi - pos { return -1 }
+    var i = 0
+    while i < end - start {
+        let a = bytes[start + i] as int
+        let b = bytes[pos + i] as int
+        if re.options.icase {
+            if ascii_fold(a) != ascii_fold(b) { return -1 }
+        } else if a != b {
+            return -1
+        }
+        i += 1
+    }
+    pos + end - start
+}
+
+fn byte_backref_at(
+    re: Regex,
+    mut ws: Workspace,
+    root: int,
+    bytes: List[byte],
+    lo: int,
+    hi: int,
+    origin: int,
+    nonempty: bool,
+    any_match: bool,
+) -> int {
+    ws.depth = 0
+    branch_push(mut ws, root, origin, captures_new())
+    var best = -1
+    while ws.depth > 0 {
+        let top = ws.depth - 1
+        let pc = ws.branches[top].pc
+        let pos = ws.branches[top].pos
+        let inst = copy re.prog[pc]
+        let stage = ws.branches[top].stage
+        if stage > 0 {
+            if inst.op == SPLIT && stage == 1 {
+                ws.branches[top].stage = 2
+                let caps = copy ws.branches[top].caps
+                branch_push(mut ws, inst.y, pos, caps)
+            } else {
+                ws.depth -= 1
+            }
+            continue
+        }
+        var ancestor = top
+        var cycle = false
+        while ancestor > 0 {
+            ancestor -= 1
+            if ws.branches[ancestor].pos != pos { break }
+            if ws.branches[ancestor].pc == pc &&
+                captures_equal(ws.branches[ancestor].caps, ws.branches[top].caps) {
+                cycle = true
+                break
+            }
+        }
+        if cycle { ws.depth -= 1; continue }
+        ws.branches[top].stage = 1
+        var caps = copy ws.branches[top].caps
+        if inst.op == ACCEPT {
+            if (!nonempty || pos > origin) &&
+                (!re.options.whole || pos == hi) &&
+                (!re.options.word || re.options.whole || pos == hi || !is_word(bytes[pos] as int)) {
+                if any_match || pos == hi { return pos }
+                if pos > best { best = pos }
+            }
+        } else if inst.op == SPLIT || inst.op == JUMP {
+            branch_push(mut ws, inst.x, pos, caps)
+        } else if inst.op == SAVE {
+            capture_set(mut caps, inst.arg, pos)
+            branch_push(mut ws, inst.x, pos, caps)
+        } else if inst.op == REF {
+            let end = byte_reference_end(re, inst, caps, bytes, pos, hi)
+            if end >= 0 { branch_push(mut ws, inst.x, end, caps) }
+        } else if inst.op >= BOL && inst.op <= WORD_END {
+            if byte_assertion(inst.op, bytes, lo, hi, pos) {
+                branch_push(mut ws, inst.x, pos, caps)
+            }
+        } else if pos < hi && byte_consumes(re, inst, bytes[pos]) {
+            branch_push(mut ws, inst.x, pos + 1, caps)
+        }
+    }
+    best
+}

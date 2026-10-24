@@ -14,8 +14,8 @@ fn check(pattern: str, text: str, syntax: str, icase: bool, want_lo: int, want_h
             word: false,
             whole: false,
             terminator: 10 as byte,
-            utf8: true,
         },
+        true,
         mut d,
     ) else {
         assert(false, "must compile {pattern}")

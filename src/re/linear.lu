@@ -73,6 +73,9 @@ fn linear_search(
     any_match: bool,
     projected_pattern: int,
 ) -> Span ! {none} {
+    if !re.options.utf8 {
+        return byte_search(re, mut ws, bytes, lo, hi, from, nonempty, any_match, projected_pattern)
+    }
     ws.count = 0
     ws.visits = 0
     var pos = if from < lo then lo else from

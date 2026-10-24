@@ -28,10 +28,11 @@ pub fn compile(
     patterns: List[List[byte]],
     syntax: str,
     flags: fixed.Flags,
+    utf8: bool,
     mut diagnostics: re.Diagnostics,
 ) -> Matcher ! {invalid} {
     var regular_patterns = List[List[byte]]()
-    if syntax == "F" && flags.utf8 {
+    if syntax == "F" && utf8 {
         for pattern in patterns {
             var escaped = List[byte]()
             for b in pattern {
@@ -57,10 +58,7 @@ pub fn compile(
         regular_patterns = copy patterns
     }
     let empty = List[List[byte]]()
-    let literal = fixed.compile(
-        if syntax == "F" && !flags.utf8 then copy patterns else copy empty,
-        flags,
-    )
+    let literal = fixed.compile(if syntax == "F" && !utf8 then copy patterns else copy empty, flags)
     let regular = re.compile(
         regular_patterns,
         re.Options {
@@ -68,13 +66,13 @@ pub fn compile(
             icase: flags.ignore_case,
             word: flags.word,
             whole: flags.whole,
-            utf8: flags.utf8,
+            utf8: utf8,
             terminator: flags.terminator,
         },
         mut diagnostics,
     )?
     Matcher {
-        syntax: if syntax == "F" && flags.utf8 then "U" else syntax,
+        syntax: if syntax == "F" && utf8 then "U" else syntax,
         literal: literal,
         regular: regular,
     }

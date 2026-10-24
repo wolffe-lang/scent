@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+"""Interleave unchanged-trunk and candidate C rows on the same four CPUs."""
+import argparse
+import json,os,pathlib,statistics,subprocess,tempfile,time
+ROOT=pathlib.Path(__file__).resolve().parent.parent
+assert os.environ.get('SCENT_IN_CONTAINER')=='1' and len(os.sched_getaffinity(0))<=4
+parser=argparse.ArgumentParser();parser.add_argument('--only');parser.add_argument('--output',default='target/perf-paired.json');args=parser.parse_args()
+rows=json.loads((ROOT/'target/measure-baseline.json').read_text())['performance']
+result={'affinity':sorted(os.sched_getaffinity(0)),'locale':'C','baseline_commit':'143bf55','warmups_per_binary':1,'pairs':3,'rows':[]}
+def run(binary,argv,path):
+ start=time.perf_counter();p=subprocess.Popen([str(binary),*argv,str(path)],stdout=subprocess.PIPE,stderr=subprocess.PIPE,env={'LC_ALL':'C','PATH':os.defpath})
+ size=0
+ while chunk:=p.stdout.read(65536):size+=len(chunk)
+ err=p.stderr.read();rc=p.wait()
+ assert rc==0 and not err,(rc,err)
+ return time.perf_counter()-start,size
+with tempfile.TemporaryDirectory(dir=ROOT/'target',prefix='paired-perf-') as tmp:
+ tmp=pathlib.Path(tmp);flat=tmp/'256m';tree=tmp/'tree';tree.mkdir()
+ block=(b'needle '+b'x'*56+b'\n'+b'other  '+b'z'*56+b'\n')*8192
+ with flat.open('wb') as f:
+  for _ in range(256):f.write(block)
+ for i in range(10000):(tree/f'entry-{i:05d}').write_bytes(block[:4096])
+ binaries={'baseline':ROOT/'target/baseline-scent','candidate':ROOT/'target/release/scent'}
+ for original in rows:
+  argv=original['argv']
+  if args.only and ' '.join(argv)!=args.only:continue
+  path=tree if '-r' in argv else flat
+  values={name:[] for name in binaries};sizes=set()
+  for turn in range(4):
+   for name in (['baseline','candidate'] if turn%2==0 else ['candidate','baseline']):
+    elapsed,size=run(binaries[name],argv,path);sizes.add(size)
+    if turn:values[name].append(elapsed)
+  assert len(sizes)==1
+  row={'argv':argv,'seconds':values,'change_percent':100*(statistics.median(values['candidate'])/statistics.median(values['baseline'])-1),'ranges_overlap':max(min(values['baseline']),min(values['candidate']))<=min(max(values['baseline']),max(values['candidate']))}
+  result['rows'].append(row);print(json.dumps(row),flush=True)
+(ROOT/args.output).write_text(json.dumps(result,indent=2)+'\n')

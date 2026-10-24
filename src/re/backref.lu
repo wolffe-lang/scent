@@ -190,6 +190,9 @@ fn backref_at(
     nonempty: bool,
     any_match: bool,
 ) -> int {
+    if !re.options.utf8 {
+        return byte_backref_at(re, mut ws, root, bytes, lo, hi, origin, nonempty, any_match)
+    }
     ws.depth = 0
     branch_push(mut ws, root, origin, captures_new())
     var best = -1
