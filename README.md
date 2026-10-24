@@ -20,9 +20,9 @@ prefixes, spans, counts, file lists, binary policies and bounded streaming.
 command-line versus walked symlink rules, directory/device policies and
 ordered include/exclude globs. `--color=always|never|auto`, `GREP_COLORS`
 and the deprecated `GREP_COLOR` warning are supported. `-P` gives the
-configured GNU build's refusal. UTF-8 locale semantics are explicitly
-refused until M3; use `LC_ALL=C` on hosts whose default locale is UTF-8.
-C-locale `-i` folds ASCII only.
+configured GNU build's refusal. C and UTF-8 matching are supported, including
+multibyte patterns, classes, word boundaries, backreferences and byte-exact
+spans. C-locale `-i` folds ASCII only; UTF-8 uses generated, measured tables.
 
 The generated CLI matrix has **5,072 cases**: 40 option rows × three
 syntaxes × seven pattern families × six input forms, plus 32 source and
@@ -35,11 +35,71 @@ The M2 generator adds **3,392 cases**: 2,000 shared-tree walk/filter rows,
 18 edge and five self-output rows, 1,152 original colour/environment rows,
 120 glob-syntax rows, and 97 additional byte-pattern, tty, colour-edge,
 reviewed-gap and M3-refusal rows. The complete CLI matrix reports
-**9,478 agree + 111 published differences + 9 upstream-blocked + one M3
-not-yet**, with zero unapproved differences (9,599 cases total).
+**9,478 C-locale agreements + 111 published differences + 9 upstream-blocked**.
+The former explicit UTF-8 refusal is now an agreement. A further **34,026
+UTF-8 cases** include every inherited case and generated scalar, encoding-error
+and consistency witnesses. The complete matrix has **43,625 cases**:
+**42,834 agree, 772 published differences, 18 upstream-blocked, one environment
+difference, zero unapproved differences and zero not-yet rows**. Of the published
+differences, 550 cover the two UTF-8 consistency rules below: 480 case-fold
+rows and 70 dot-span rows.
 The reviewed cases are not counted as agreement. Input and pattern-file
 bytes remain arbitrary bytes; non-UTF-8 filesystem names have the exact
 upstream-blocked witness below, not a locale exception.
+
+
+## Locale and Unicode
+
+The first nonempty `LC_ALL`, `LC_CTYPE`, then `LANG` selects the locale.
+A dot-delimited `UTF-8` or `utf8` codeset (case-insensitive, optionally followed
+by `@modifier`) selects UTF-8 mode; everything else selects C. No locale files
+are consulted. Thus `en_US.UTF-8` works even when that name is not installed.
+The oracle image installs only C, C.UTF-8 and POSIX: its fallback to C for
+`en_US.UTF-8` is one separately counted **environment** difference, not a
+matching exception. The normal matrices explicitly select C or C.UTF-8.
+[The measured alias and precedence table](docs/MAP.md#locale) gives details.
+
+Unicode 15.1.0 is the closest of 15.0.0, 15.1.0 and 16.0.0 to the pinned
+oracle. The wolf generator derives classes from checked-in UCD files and
+applies 2,732 explicitly listed class-membership overrides across 707 code
+points. Every scalar was measured for all twelve POSIX classes and `\w`.
+The original per-class counts, version comparisons, overrides and 3,668
+case-fold queries are retained in [`tests/fixtures/ctype/`](tests/fixtures/ctype/).
+`tools/check-ctype-regen` regenerates the tables and checks the fixtures;
+CI never silently substitutes its host's Unicode version.
+
+Under `-i`, `[[:upper:]]` and `[[:lower:]]` each become `[[:alpha:]]`,
+including uncased letters and the oracle's non-ASCII digit members. Numeric
+`[[:digit:]]` remains ASCII. Ordinary multibyte bracket members work; the
+pinned build rejects non-ASCII range endpoints and collating/equivalence
+atoms with `Invalid collation character`, and scent does too.
+
+### Case matching stays consistent
+
+The pinned GNU build's case relation is not symmetric for nine historic
+Cyrillic letters: `ᲀ` matches `В` and `в`, but `В` does not select an isolated
+`ᲀ`. Adding `В` elsewhere on the same line makes GNU `-o` print both letters.
+Scent uses the symmetric, transitive closure of the measured relation for
+selection and spans alike, so all three match in either direction. Twenty
+additional directed edges are covered by exact, published consistency rows.
+The generator starts from UCD simple upper/lower compositions, applies 42
+source-pattern overrides (49 membership edits), then computes that closure.
+No full case expansion or normalization is performed.
+
+### Encoding errors stay bytes
+
+Offsets, `-o`, colour and output always use original byte boundaries. Dot
+never matches a surrogate encoding, an overlong form or a value above
+U+10FFFF. GNU sometimes emits such a dot span only beside another valid
+match; scent rejects it consistently. These 70 exact differences are
+published, not silently counted as agreement. Where GNU is consistent,
+scent follows it: non-overlong legacy four-, five- and six-byte values up
+to 0x7fffffff can match a negated class or a literal and are not binary-output
+errors, but they are not Unicode scalars and never match dot. Other rejected
+bytes remain available to literal byte patterns. Binary suppression follows
+the bytes actually being printed, so `-o` can print valid spans from an
+otherwise invalid record. The [draft bug report](notes/ct04-evidence/gnu-report-utf8-context.txt)
+contains the minimal examples; it has not been sent.
 
 ## Install and build
 
@@ -87,17 +147,21 @@ stdout, stderr, exit status and remaining stdin. Help/version are scent's
 own prose; those two actions compare stream shape and status, with exact
 stderr (including wrapper warnings).
 
-Every reviewed difference in [`tests/divergences.json`](tests/divergences.json)
-locks the complete case identity and both result tuples. A new input,
+Every reviewed difference in [`tests/divergences.json`](tests/divergences.json) and
+[`tests/m3-divergences.json`](tests/m3-divergences.json) locks the complete case identity and both result tuples. A new input,
 changed output, or vanished difference fails the gate. The only dynamic
 field is the numeric runtime PID in the two upstream-blocked panic rows.
 `tools/oracle-review-test` rejects nondigits there and changes to every
 other byte. No other output is normalized.
 
 `tools/mkscent OUTDIR` builds the static ELF twice and prints equal digests,
-size and stripped size. `tools/pax-posture` runs the whole byte suite in a
-plain Ubuntu container without locale data or `LANG`; Python is only the
-test coordinator. The Linux PR gate includes both compiler tiers, units,
+size and stripped size. `tools/pax-posture` runs the whole suite in a plain Ubuntu container without
+locale data or `LANG`; Python is only the test coordinator. Removing locale
+files also makes GNU fall back to C, so this leg replays the exact GNU tuples
+captured by a green live static matrix, rather than calling a C-locale oracle
+under a UTF-8 name. Captures bind the full oracle pin and every case hash;
+stale or missing captures fail. The static live run regenerates the capture
+at the same pin before each posture run. The Linux PR gate includes both compiler tiers, units,
 all CLI cases, engine costs, deterministic static builds, locale-free
 acceptance and the 2 GiB streaming-memory gate (below 32 MiB peak RSS).
 `tools/measure` records three-run medians on 256 MiB for `-F`, `-G` and `-E`;
@@ -108,7 +172,7 @@ recorded, not gated, until M4. Full CI adds the macOS field leg.
 
 These deliberate differences keep matching and file-selection rules consistent.
 The witness bytes use `\0` for NUL; ordinary output ends in newline.
-The complete individual cases and exact answers are in the manifest above.
+The complete individual cases and exact answers are in the two manifests above.
 
 | Rule | Minimal witness | GNU 3.12 | scent | Why |
 | --- | --- | --- | --- | --- |
@@ -165,8 +229,8 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 fatal runtime error: failed to initiate panic, error 5, aborting
 ```
 
-Until those builtins ship, diagnostics, `--help`'s usage line and the M3
-refusal use the fixed invocation name `grep`; full-path invalid-option
+Until those builtins ship, diagnostics and `--help`'s usage line
+use the fixed invocation name `grep`; full-path invalid-option
 prefixes and alternate invocation names differ. No `os_exe` basename is
 substituted: it would be wrong under symlinks. `/bin/grep` can be a symlink
 to scent without a private name-override option. Raw invalid-UTF-8 argv can abort; use pattern files
