@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+"""Generate M2 black-box cases; no stored expected GNU answers."""
+import itertools,json,pathlib
+root=pathlib.Path(__file__).resolve().parent.parent
+rows=[]
+def add(name,argv,**kw): rows.append(dict(name='m2-'+name,argv=argv,**kw))
+tree={'tree/z.txt':{'text':'before\nx x\nafter\n'},'tree/a.dat':{'text':'x\n'},'tree/.hidden':{'text':'x\n'},'tree/sub/c.txt':{'text':'x\n'},'tree/sub/empty':{'text':''},'tree/link':{'kind':'symlink','target':'sub'},'tree/file-link':{'kind':'symlink','target':'a.dat'},'tree/dangling':{'kind':'symlink','target':'absent'},'tree/sub/loop':{'kind':'symlink','target':'..'},'tree/pipe':{'kind':'fifo','text':'x\n'},'tree/socket':{'kind':'socket'},'tree/denied':{'text':'x\n','mode':0},'tree/noaccess':{'kind':'directory','mode':0},'-/dash.txt':{'text':'x\n'}}
+filters=[[],['--include=*.txt'],['--exclude=*.txt'],['--include=*','--exclude=*.txt'],['--exclude=*','--include=*.txt'],['--include=*.txt','--exclude=*'],['--exclude=*.txt','--include=*'],['--include=sub/*.txt'],['--exclude-dir=sub'],['--exclude-dir=sub/'],['--exclude-dir=tree'],['--exclude-dir=tr*'],['--exclude-dir=tree/sub'],['--exclude=.*'],['--include=.*'],['--exclude-dir=*'],['--exclude-dir=.'],['--include=tree/*.txt'],['--exclude=tree/*.txt'],['--include=tree/z.txt'],['--exclude=tree/z.txt'],['--include=[ac-z]*'],['--exclude=[!a]*'],['--exclude=\\.hidden'],['--exclude-from=rules']]
+for i,(walk,filt,operands,mode) in enumerate(itertools.product([['-r'],['-R'],['-d','recurse'],['-dskip'],['-dread']],filters,[['tree'],['tree/z.txt'],['tree/link'],['tree/sub','tree/a.dat']], [[],['-c'],['-l'],['-s']])):
+ files=dict(tree);files['rules']={'text':'*.txt\n.hidden\n'}
+ add('walk-%04d'%i,walk+['-Dskip']+filt+mode+['x']+operands,files=files,nonroot=True,shared_fixture=True)
+for i,args in enumerate([['-r','x'],['-r','x','.'],['-r','x','-'],['-r','x','./-'],['-r','-dread','x','tree'],['-R','-dskip','x','tree'],['-r','-Dread','x','tree/pipe'],['-r','-Dread','x','tree/socket'],['-r','x','tree/dangling'],['-R','x','tree/dangling'],['-r','-Dskip','x','tree/pipe'],['-r','-Dskip','x','tree/socket'],['-r','-q','x','tree'],['-r','-s','x','tree'],['-r','-m0','x','tree'],['-r','-c','-m0','x','tree'],['-r','-L','-m0','x','tree'],['-r','--exclude-from=absent','x','tree']]):
+ add('edges-%02d'%i,args,files=tree,stdin='x\n',nonroot=True,shared_fixture=True)
+for i,mode in enumerate([[],['-c'],['-l'],['-q'],['-s']]):
+ add('self-%d'%i,['-r',*mode,'x','tree'],files={'tree/input':{'text':'x\n'},'tree/output':{'text':'x\n'}},stdout='input',stdout_file='tree/output',shared_fixture=True)
+caps=['','sl=41','cx=42','rv','sl=41:cx=42:rv','mt=32','ms=33:mc=34','fn=31:ln=33:bn=34:se=35','ne','sl=41:cx=42:ms=32:mc=33:fn=34:ln=35:bn=36:se=37:ne:rv','ms=:mc=:fn=:ln=:bn=:se=','ms=32:mt=33:mc=34','fn=32:ms=bad:se=31','ms=01;32','unknown=33:se=31','rv=0:ne=0']
+outputs=[[],['-n'],['-b'],['-H'],['-Hnb'],['-Tn'],['-HZnbT'],['-o'],['-onbH'],['-v'],['-voC1'],['-C1'],['-C0'],['-B1'],['-A1'],['-C1','--group-separator=GROUP'],['-cH'],['-l'],['-L'],['-lZ'],['-cHZ'],['-zC1'],['-q']]
+for i,(cap,output,pattern) in enumerate(itertools.product(caps,outputs,['x','x*',''])):
+ add('colour-%04d'%i,['--color=always',*output,pattern,'f'],files={'f':{'text':'before\nx x\nafter\nnone\nnone\nx tail\n'}},env={'GREP_COLORS':cap})
+for i,(when,color,colors) in enumerate(itertools.product(['always','never','auto'],['','32','bad','01;32'],[None,'','mt=33','fn=32'])):
+ env={'GREP_COLOR':color}
+ if colors is not None:env['GREP_COLORS']=colors
+ add('legacy-%03d'%i,['--color='+when,'x'],stdin='x\n',env=env)
+path=root/'tests/cases/m2.jsonl';path.write_text(''.join(json.dumps(r,separators=(',',':'))+'\n' for r in rows))
+print('M2 cases',len(rows))

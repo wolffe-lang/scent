@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Byte oracle: no expected-output snapshots to edit around a disagreement."""
-import argparse, base64, fnmatch, hashlib, json, os, pathlib, shutil, subprocess, tempfile, threading, time, tomllib, sys, select, runpy
+import argparse, base64, fnmatch, hashlib, json, os, pathlib, shutil, subprocess, tempfile, threading, time, tomllib, sys, select, runpy, socket, errno
 ROOT=pathlib.Path(__file__).resolve().parent.parent
 p=argparse.ArgumentParser();p.add_argument('--only');p.add_argument('--field',action='store_true');p.add_argument('--bin',default='target/native/scent');p.add_argument('--cases',default='tests/cases');a=p.parse_args()
 pin=tomllib.loads((ROOT/'scent-oracle.toml').read_text())['oracle']
@@ -28,6 +28,9 @@ def prepare(work, c):
         if spec.get('kind')=='missing':continue
         if spec.get('kind')=='directory':dest.mkdir(exist_ok=True)
         elif spec.get('kind')=='fifo':os.mkfifo(dest)
+        elif spec.get('kind')=='symlink':dest.symlink_to(spec['target']);continue
+        elif spec.get('kind')=='socket':
+            sock=socket.socket(socket.AF_UNIX);sock.bind(str(dest));sock.close()
         else:dest.write_bytes(data(spec))
         dest.chmod(spec.get('mode',0o644) if spec.get('kind')!='directory' else spec.get('mode',0o755))
 def launch(binary, c, work, bindir):
@@ -55,13 +58,19 @@ def launch(binary, c, work, bindir):
         def pre():
             if previous:previous()
             os.setgid(65534);os.setuid(65534)
-    writers=[]
+    writers=[];stop_writers=threading.Event()
     for name,spec in c.get('files',{}).items():
         if spec.get('kind')=='fifo':
             def write_fifo(dest=work/name,payload=data(spec)):
-                try:
-                    with open(dest,'wb',buffering=0) as f:f.write(payload)
-                except (BrokenPipeError,OSError):pass
+                while not stop_writers.is_set():
+                    try:
+                        fd=os.open(dest,os.O_WRONLY|os.O_NONBLOCK)
+                        try:os.write(fd,payload)
+                        finally:os.close(fd)
+                        return
+                    except OSError as error:
+                        if error.errno!=errno.ENXIO:return
+                        stop_writers.wait(.01)
             t=threading.Thread(target=write_fifo,daemon=True);t.start();writers.append(t)
     try:
         if c.get('stream'):
@@ -81,6 +90,7 @@ def launch(binary, c, work, bindir):
     finally:
         if source:source.close()
         if output:output.close()
+        stop_writers.set()
         for t in writers:t.join(timeout=0.1)
 exact_review=runpy.run_path(str(ROOT/'tools/oracle-review.py'))['exact_review']
 reviews=json.loads((ROOT/'tests/divergences.json').read_text())
@@ -117,12 +127,18 @@ for file in sorted((ROOT/a.cases).glob('*.jsonl')):
         top=pathlib.Path(tmp);top.chmod(0o755)
         results=[]
         for tag,binary in [('gnu',reference),('scent',ours)]:
-            work=top/tag;work.mkdir(mode=0o755)
-            bindir=work/'bin';bindir.mkdir();(bindir/'grep').symlink_to(binary)
+            work=top/('shared' if c.get('shared_fixture') else tag)
+            fresh=not work.exists()
+            if fresh:work.mkdir(mode=0o755)
+            bindir=work/'bin'
+            if fresh:bindir.mkdir()
+            else:(bindir/'grep').unlink()
+            (bindir/'grep').symlink_to(binary)
             if c.get('wrapper'):
                 wrapper=ROOT/'wrappers'/c['wrapper'] if tag=='scent' else reference.parent/c['wrapper']
                 (bindir/c['wrapper']).symlink_to(wrapper)
-            prepare(work,c)
+            if fresh:prepare(work,c)
+            if c.get('stdout')=='input':(work/c['stdout_file']).write_bytes(data(c['files'][c['stdout_file']]))
             results.append(launch(binary,c,work,bindir))
         g,s=results
         shape=c.get('shape')
