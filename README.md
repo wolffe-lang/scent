@@ -21,7 +21,8 @@ command-line versus walked symlink rules, directory/device policies and
 ordered include/exclude globs. `--color=always|never|auto`, `GREP_COLORS`
 and the deprecated `GREP_COLOR` warning are supported. `-P` gives the
 configured GNU build's refusal. UTF-8 locale semantics are explicitly
-refused until M3; C-locale `-i` folds ASCII only.
+refused until M3; use `LC_ALL=C` on hosts whose default locale is UTF-8.
+C-locale `-i` folds ASCII only.
 
 The generated CLI matrix has **5,072 cases**: 40 option rows × three
 syntaxes × seven pattern families × six input forms, plus 32 source and
