@@ -99,16 +99,16 @@ recorded, not gated, until M4. Full CI adds the macOS field leg.
 
 ## Published differences
 
-These are deliberate consistency choices, approved as rulings #115–#117 and #120.
+These deliberate differences keep matching and file-selection rules consistent.
 The witness bytes use `\0` for NUL; ordinary output ends in newline.
 The complete individual cases and exact answers are in the manifest above.
 
 | Rule | Minimal witness | GNU 3.12 | scent | Why |
 | --- | --- | --- | --- | --- |
-| #115: whole-word, leftmost-longest | `-E -a -o -b -w '.{1,2}'`, four spaces then `ab` | `0:  \n4:ab\n` | `0:  \n2: \n4:ab\n` | Keep the valid shorter whole-word span GNU's retry omits. BRE is equivalent. |
-| #116: `**` means `*` | `-E` with the double-star pattern below, on `a` | No output, status 1 | `a\n`, status 0 | Replacing either `**` with `*` restores GNU's empty-capture path; POSIX leaves adjacent duplication undefined. |
-| #117: never cross records | Pattern-file bytes `x\0y\n`, `-F -z`, input `x\0y\0` | `x\0y\0`, status 0 when in one read | No output, status 1 | GNU `-G`/`-E`, `-F -w` and cross-read `-F` already reject it. Input record boundaries must not depend on read placement. |
-| #120: explicitly named sockets obey `-Dskip` | Create a Unix-domain socket named `socket`; `grep -Dskip x socket` | stderr `grep: socket: No such device or address\n`, status 2 | Empty streams, status 1 | Follow the documented silent skip, as GNU already does for a walked socket and an explicit FIFO. Exact cases: `m2-socket-skip`, `m2-edges-11`; [witness](notes/ct03-evidence/witnesses.json). |
+| Whole-word, leftmost-longest | `-E -a -o -b -w '.{1,2}'`, four spaces then `ab` | `0:  \n4:ab\n` | `0:  \n2: \n4:ab\n` | Keep the valid shorter whole-word span GNU's retry omits. BRE is equivalent. |
+| `**` means `*` | `-E` with the double-star pattern below, on `a` | No output, status 1 | `a\n`, status 0 | Replacing either `**` with `*` restores GNU's empty-capture path; POSIX leaves adjacent duplication undefined. |
+| Never cross records | Pattern-file bytes `x\0y\n`, `-F -z`, input `x\0y\0` | `x\0y\0`, status 0 when in one read | No output, status 1 | GNU `-G`/`-E`, `-F -w` and cross-read `-F` already reject it. Input record boundaries must not depend on read placement. |
+| Explicitly named sockets obey `-Dskip` | Create a Unix-domain socket named `socket`; `grep -Dskip x socket` | stderr `grep: socket: No such device or address\n`, status 2 | Empty streams, status 1 | Follow the documented silent skip, as GNU already does for a walked socket and an explicit FIFO. Exact cases: `m2-socket-skip`, `m2-edges-11`; [witness](notes/ct03-evidence/witnesses.json). |
 
 The double-star command is literal (the alternation bar is not escaped):
 
