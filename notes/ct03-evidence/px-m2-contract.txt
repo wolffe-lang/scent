@@ -1,0 +1,55 @@
+px next — scent M2 on PAX
+
+Goal
+Re-pin the deterministic static scent 0.2.0 in PAX and demonstrate grep -r
+across /usr/share, including filters and byte-exact colour. This is the
+PAX lane's work, not a deployment claim by ct03. Use an isolated branch
+and the lane's assigned container/core lock; follow wolf/sprints/RULES.md.
+Never build PAX binaries against kasumi's host glibc.
+
+Inputs to re-derive
+- scent ct03's final merged commit and tools/mkscent digest in its note;
+  rebuild from that commit with the pinned complete wolf archive pair.
+- PAX user/scent.pin, tools/mkscent and the M1 grep session/tests introduced
+  by px64. Read their current paths instead of assuming an old layout.
+- GNU oracle 3.12 --disable-perl-regexp, pinned Ubuntu/glibc/digest from
+  scent-oracle.toml. Never use host grep as the behavioral reference.
+- Ruling #120: explicit sockets obey documented -Dskip, one exact difference.
+- wolf-lang#687/#912: raw byte names remain upstream-blocked, not M3.
+
+Implementation
+1. Run scent/tools/mkscent twice on baseline Ubuntu and verify equal
+   digests against the merged ct03 note. Re-pin user/scent.pin by commit
+   and digest, retaining /bin/scent plus grep/egrep/fgrep compatibility
+   names and the measured wrapper warnings. Keep /bin/sh available.
+2. Add a typed PAX session that uses /bin/grep -r over /usr/share; preserve
+   native directory order rather than sorting. Assert content and names
+   for nested regular files, hidden names, a directory named '-', a
+   command-line directory symlink and a walked symlink (-r versus -R).
+3. Exercise --include/--exclude order, --exclude-from bytes and
+   --exclude-dir, -d skip and -D skip. Include binary-in-tree and the
+   output-file-in-tree identity guard when the OS surface supports them.
+4. Compare --color=always SGR bytes with the record GNU fixture: default,
+   custom se/ms/mt, ne, prefixes, -o and a context separator. Auto colour
+   needs a terminal test and TERM=dumb control; no terminal-output
+   normalization. C locale is the target; keep M3 refusal visible.
+5. Rebuild the dev ISO and run the typed session through its existing
+   e2e gate. Add strict checks: compile exit 2 is a failure, every SKIP
+   printed and counted, no success from an unexecuted grep.
+
+Acceptance
+- New pin/binary digest and whole archive pairing verified.
+- Existing grep session and M2 typed session green in the PAX e2e gate.
+- grep -r /usr/share witness and colour hex bytes retained.
+- Local relevant gauntlet green; a planted recursive-filter fault seen
+  red under the applicable footprint rules before the final green.
+- Footprint declared honestly (pin + OS integration is cross-cutting),
+  final head pushed, PR with five sections/test checklist, CI first
+  status read once, lane-audit last line handed to the orchestrator.
+- No label by the lane, no merge/tag/release/issue closure or deployment.
+  Orchestrator applies the label and watches the full run.
+
+Hand-back
+PR/head/run id, audit last line, digest, fixture counts and e2e commands,
+remaining upstream gaps, issues proposed for closure, ISO path and prune
+list. Do not claim PAX integration complete from scent's Ubuntu test alone.

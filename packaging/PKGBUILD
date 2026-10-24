@@ -1,9 +1,9 @@
 # PREPARED, NOT PUBLISHED. Shape: lope bc388673 packaging/PKGBUILD.
-# v0.1.0 does not exist yet. Release lane supplies its archive digest.
+# v0.2.0 does not exist yet. Release lane supplies its archive digest.
 pkgname=scent
-pkgver=0.1.0
+pkgver=0.2.0
 pkgrel=1
-pkgdesc='Byte-oriented grep in wolf, with C-locale basic, extended and fixed patterns'
+pkgdesc='Recursive C-locale grep in wolf, with terminal colour'
 arch=('x86_64')
 url='https://github.com/wolffe-lang/scent'
 license=('GPL-3.0-or-later')
@@ -27,6 +27,11 @@ check() {
     test "$(printf 'ab\nno\n' | ./scent -E '^a[ab]$')" = ab
     test "$(printf 'aa\nno\n' | ./scent -G '\(a\)\1')" = aa
     test "$(printf 'a.b\naxb\n' | ./scent -F 'a.b')" = a.b
+    mkdir -p .package-tree
+    printf 'hit\n' > .package-tree/a.txt
+    printf 'miss\n' > .package-tree/b.dat
+    test "$(./scent -rh --include='*.txt' hit .package-tree)" = hit
+    test "$(printf 'hit\n' | ./scent --color=always hit | od -An -tx1 | tr -d ' \n')" = 1b5b30313b33316d1b5b4b6869741b5b6d1b5b4b0a
 }
 package() {
     cd "$pkgname-$pkgver"

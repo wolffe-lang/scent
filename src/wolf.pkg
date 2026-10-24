@@ -1,7 +1,7 @@
 // No dependency but wolf-std. Input bytes, environment, no subprocesses.
 pkg {
     name: "scent",
-    version: "0.1.0",
+    version: "0.2.0",
     edition: "1",
     capabilities: [env, fs],
 }

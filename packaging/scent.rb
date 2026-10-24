@@ -1,9 +1,9 @@
 # PREPARED, NOT PUBLISHED. Shape: lope bc388673 packaging/lope.rb.
 # Source build from a future tag; no dependency on a moving wolf formula.
 class Scent < Formula
-  desc "Byte-oriented grep in wolf with basic, extended and fixed patterns"
+  desc "Recursive byte-oriented grep in wolf with terminal colour"
   homepage "https://github.com/wolffe-lang/scent"
-  url "https://github.com/wolffe-lang/scent/archive/refs/tags/v0.1.0.tar.gz"
+  url "https://github.com/wolffe-lang/scent/archive/refs/tags/v0.2.0.tar.gz"
   sha256 "RELEASE-LANE-FILLS-THIS"
   license "GPL-3.0-or-later"
   depends_on "llvm" => :build
@@ -43,6 +43,11 @@ class Scent < Formula
   test do
     assert_equal "ab\n", pipe_output("#{bin}/scent -E '^a[ab]$'", "ab\nno\n", 0)
     assert_equal "aa\n", pipe_output("#{bin}/scent -G '\\(a\\)\\1'", "aa\nno\n", 0)
+    (testpath/"tree").mkpath
+    (testpath/"tree/a.txt").write "hit\n"
+    (testpath/"tree/b.dat").write "miss\n"
+    assert_equal "hit\n", shell_output("#{bin}/scent -rh --include='*.txt' hit tree")
+    assert_equal "\e[01;31m\e[Khit\e[m\e[K\n", pipe_output("#{bin}/scent --color=always hit", "hit\n", 0)
     assert_match "scent #{version}", shell_output("#{bin}/scent --version")
   end
 end

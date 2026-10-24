@@ -63,7 +63,7 @@ fn run(initial: opts.Options) -> int {
     if o.status >= 0 { return o.status }
     if o.action == "help" { help(); return 0 }
     if o.action == "version" {
-        print("scent 0.1.0")
+        print("scent 0.2.0")
         print("GPL-3.0-or-later with the wolf Training Data Permission.")
         return 0
     }
