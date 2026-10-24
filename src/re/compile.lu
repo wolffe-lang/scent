@@ -136,6 +136,7 @@ pub fn compile(
         options: copy options,
         prog: List[Inst](),
         classes: List[bool](),
+        rune_classes: List[RuneClass](),
         starts: List[int](),
         span_starts: List[int](),
         backrefs: List[bool](),
@@ -145,8 +146,9 @@ pub fn compile(
     while index < patterns.len {
         let p = parse(patterns[index], options, mut diagnostics, index)
         if p.failed { suppress_warnings(mut diagnostics); return invalid }
-        let class_offset = re.classes.len / 256
+        let class_offset = if options.utf8 then re.rune_classes.len else re.classes.len / 256
         for b in p.classes { (mut re.classes).push(b) }
+        for cl in p.rune_classes { (mut re.rune_classes).push(copy cl) }
         let end = emit(mut re.prog, ACCEPT, 0, 0, 0)
         let start = compile_tree(mut re.prog, p, class_offset, end)
         (mut re.starts).push(start)
@@ -159,8 +161,9 @@ pub fn compile(
             suppress_warnings(mut diagnostics)
             return invalid
         }
-        let span_class_offset = re.classes.len / 256
+        let span_class_offset = if options.utf8 then re.rune_classes.len else re.classes.len / 256
         for b in span.classes { (mut re.classes).push(b) }
+        for cl in span.rune_classes { (mut re.rune_classes).push(copy cl) }
         let span_end = emit(mut re.prog, ACCEPT, 0, 0, 0)
         let span_start = compile_tree(mut re.prog, span, span_class_offset, span_end)
         (mut re.span_starts).push(span_start)

@@ -13,7 +13,7 @@ fn main() {
     assert(re.case_matches(73, 305) && re.case_matches(305, 73))
     assert(!re.case_matches(304, 73))
     assert(re.case_matches(7296, 1042))
-    assert(!re.case_matches(1042, 7296))
+    assert(re.case_matches(1042, 7296))
     assert(re.case_matches(931, 962) && re.case_matches(931, 963))
     assert(!re.case_matches(8490, 75))
 }

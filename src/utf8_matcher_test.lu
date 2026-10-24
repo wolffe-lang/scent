@@ -1,0 +1,48 @@
+//! member: false
+
+use fixed
+use matcher
+use re
+
+fn check(pattern: str, text: str, syntax: str, icase: bool, want_lo: int, want_hi: int) {
+    var d = re.diagnostics_new()
+    let m = matcher.compile(
+        [pattern.bytes()],
+        syntax,
+        fixed.Flags {
+            ignore_case: icase,
+            word: false,
+            whole: false,
+            terminator: 10 as byte,
+            utf8: true,
+        },
+        mut d,
+    ) else {
+        assert(false, "must compile {pattern}")
+        return
+    }
+    var ws = matcher.workspace_new(m)
+    let chosen = matcher.line_matches(m, mut ws, text.bytes(), 0, text.len)
+    var span = matcher.Span { lo: -1, hi: -1 }
+    if chosen {
+        span = matcher.next_span(m, mut ws, text.bytes(), 0, text.len, 0) else matcher.Span {
+            lo: -1,
+            hi: -1,
+        }
+    }
+    assert(span.lo == want_lo && span.hi == want_hi, "UTF-8 span {pattern}: {span.lo}..{span.hi}")
+}
+
+fn main() {
+    check("é+", "xéé", "E", false, 1, 5)
+    check(".", "中", "G", false, 0, 3)
+    check("[éα]", "xα", "E", false, 1, 3)
+    check("В", "ᲀ", "F", true, 0, 3)
+    check("В", "ᲀ", "G", true, 0, 3)
+    check("[[:upper:]]", "中", "G", true, 0, 3)
+    check("[A-z]", "[", "G", true, -1, -1)
+    check(r"(é)\1", "éé", "E", false, 0, 4)
+    check(r"(é)\1", "éÉ", "E", true, 0, 4)
+    check(r"\bé\b", " é ", "G", false, 1, 3)
+    check("é.", "é.", "F", false, 0, 3)
+}

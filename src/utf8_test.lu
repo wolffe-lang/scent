@@ -23,12 +23,12 @@ fn main() {
     ] {
         assert(utf8.invalid(bytes, 0, bytes.len))
         let (cp, n) = utf8.next(bytes, 0, bytes.len)
-        assert(cp == 1114112 + bytes[0] as int && n == 1)
+        assert(cp == 2147483648 + bytes[0] as int && n == 1)
     }
     let raw = [195 as byte, 169 as byte]
     assert(utf8.invalid(raw, 0, 1))
-    assert(utf8.previous(raw, 0, 1) == 1114307)
-    assert(utf8.previous(raw, 1, 2) == 1114281)
+    assert(utf8.previous(raw, 0, 1) == 2147483843)
+    assert(utf8.previous(raw, 1, 2) == 2147483817)
     let (empty, n) = utf8.next(raw, 1, 1)
     assert(empty == 0 && n == 0)
 }

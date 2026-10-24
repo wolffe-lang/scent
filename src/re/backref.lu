@@ -1,3 +1,5 @@
+use utf8
+
 //! Backreference-only depth-first execution. POSIX XBD 9.3.6 and GNU
 //! info 3.5 define participation and last-capture semantics. No other
 //! implementation consulted. R-ct01-2: this path has a separate high-water
@@ -150,7 +152,21 @@ fn reference_end(
 ) -> int {
     let start = capture_get(caps, 2 * inst.arg)
     let end = capture_get(caps, 2 * inst.arg + 1)
-    if start < 0 || end < start || end - start > hi - pos { return -1 }
+    if start < 0 || end < start { return -1 }
+    if re.options.utf8 && re.options.icase {
+        var a = start
+        var b = pos
+        while a < end {
+            if b == hi { return -1 }
+            let (x, nx) = utf8.locale_next(bytes, a, end)
+            let (y, ny) = utf8.locale_next(bytes, b, hi)
+            if !case_matches(x, y) { return -1 }
+            a += nx
+            b += ny
+        }
+        return b
+    }
+    if end - start > hi - pos { return -1 }
     var i = 0
     while i < end - start {
         let a = bytes[start + i] as int
@@ -212,7 +228,12 @@ fn backref_at(
         if inst.op == ACCEPT {
             if (!nonempty || pos > origin) &&
                 (!re.options.whole || pos == hi) &&
-                (!re.options.word || re.options.whole || pos == hi || !is_word(bytes[pos] as int)) {
+                (
+                    !re.options.word ||
+                        re.options.whole ||
+                        pos == hi ||
+                        !word_at(re, bytes, pos, hi)
+                ) {
                 if any_match || pos == hi { return pos }
                 if pos > best { best = pos }
             }
@@ -225,9 +246,10 @@ fn backref_at(
             let end = reference_end(re, inst, caps, bytes, pos, hi)
             if end >= 0 { branch_push(mut ws, inst.x, end, caps) }
         } else if inst.op >= BOL && inst.op <= WORD_END {
-            if assertion(inst.op, bytes, lo, hi, pos) { branch_push(mut ws, inst.x, pos, caps) }
-        } else if pos < hi && consumes(re, inst, bytes[pos]) {
-            branch_push(mut ws, inst.x, pos + 1, caps)
+            if assertion(re, inst.op, bytes, lo, hi, pos) { branch_push(mut ws, inst.x, pos, caps) }
+        } else if pos < hi {
+            let (cp, width) = character(re, bytes, pos, hi)
+            if consumes(re, inst, cp) { branch_push(mut ws, inst.x, pos + width, caps) }
         }
     }
     best
@@ -266,7 +288,7 @@ fn find_span(
                 if !re.options.word ||
                     re.options.whole ||
                     start == lo ||
-                    !is_word(bytes[start - 1] as int) {
+                    !word_before(re, bytes, lo, start) {
                     let end = backref_at(
                         re,
                         mut ws,
@@ -288,7 +310,9 @@ fn find_span(
                         break
                     }
                 }
-                start += 1
+                if start == hi { break }
+                let (_, width) = character(re, bytes, start, hi)
+                start += width
             }
         }
         index += 1

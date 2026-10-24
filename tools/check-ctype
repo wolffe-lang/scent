@@ -32,9 +32,17 @@ assert actual==expected,'ctype differs from measured fixtures'
 data=packed('FOLD_DATA');assert len(data)%6==0
 pairs=[(number(data[p:p+3]),number(data[p+3:p+6])) for p in range(0,len(data),6)]
 want=[tuple(int(x,16) for x in row.split()) for row in (FIX/'folds.tsv').read_text().splitlines()]
-assert pairs==want,'directed fold differs from measured fixtures'
+parent={x:x for pair in want for x in pair}
+def leader(x):
+    while parent[x]!=x:x=parent[x]
+    return x
+for a,b in want:
+    a,b=leader(a),leader(b)
+    parent[max(a,b)]=min(a,b)
+closure=sorted((a,b) for a in parent for b in parent if a!=b and leader(a)==leader(b))
+assert pairs==closure,'fold differs from consistent closure of measured relation' 
 queries=[json.loads(x) for x in (FIX/'fold-queries.partial.jsonl').read_text().splitlines()]
 query_pairs=sorted((int(r['cp'],16),int(v,16)) for r in queries for v in r['matches'] if v!=r['cp'])
-assert pairs==query_pairs,'fold fixture differs from raw query evidence'
-assert len(expected)==1114112 and len(queries)==3668 and len(pairs)==2938
-print('check-ctype: all 1,112,064 scalars / 13 classes; 3,668 queries / 2,938 directed edges agree')
+assert want==query_pairs,'fold fixture differs from raw query evidence'
+assert len(expected)==1114112 and len(queries)==3668 and len(want)==2938
+print('check-ctype: all 1,112,064 scalars / 13 classes; 3,668 queries / 2,938 directed edges; consistent closure agrees')

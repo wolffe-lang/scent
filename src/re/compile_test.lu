@@ -11,6 +11,7 @@ fn compiled_fixture(pattern: str, options: Options) -> Regex {
             options: copy options,
             prog: List[Inst](),
             classes: List[bool](),
+            rune_classes: List[RuneClass](),
             starts: List[int](),
             span_starts: List[int](),
             backrefs: List[bool](),
@@ -92,7 +93,14 @@ fn test_parser_diagnostics_and_refs() {
 }
 
 fn options_fixture() -> Options {
-    Options { extended: true, icase: false, word: false, whole: false, terminator: 10 as byte }
+    Options {
+        extended: true,
+        icase: false,
+        word: false,
+        whole: false,
+        utf8: false,
+        terminator: 10 as byte,
+    }
 }
 
 fn parse_fixture(pat: str, options: Options, mut d: Diagnostics, index: int) -> Parser {

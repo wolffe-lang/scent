@@ -2,7 +2,14 @@
 //! remeasured with GNU: yew's a|ab preference is deliberately NOT copied.
 
 fn options_fixture() -> Options {
-    Options { extended: true, icase: false, word: false, whole: false, terminator: 10 as byte }
+    Options {
+        extended: true,
+        icase: false,
+        word: false,
+        whole: false,
+        utf8: false,
+        terminator: 10 as byte,
+    }
 }
 
 fn alternation_fixture(options: Options) -> Regex {
@@ -21,6 +28,7 @@ fn alternation_fixture(options: Options) -> Regex {
         options: options,
         prog: prog,
         classes: List[bool](),
+        rune_classes: List[RuneClass](),
         starts: copy starts,
         span_starts: starts,
         backrefs: copy refs,

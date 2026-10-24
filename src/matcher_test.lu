@@ -13,6 +13,7 @@ fn check(syntax: str, pattern: str, line: str, expected: bool, zero: bool) {
             ignore_case: false,
             word: false,
             whole: false,
+            utf8: false,
             terminator: if zero then 0 as byte else 10 as byte,
         },
         mut diagnostics,

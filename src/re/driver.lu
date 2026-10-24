@@ -42,6 +42,7 @@ fn driver_row(row: str, cost_only: bool, use_projection: bool) {
         icase: flags & 1 != 0,
         word: flags & 2 != 0,
         whole: flags & 4 != 0,
+        utf8: flags & 8 != 0,
         terminator: term as byte,
     }
     var patterns = List[List[byte]]()

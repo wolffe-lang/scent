@@ -33,7 +33,7 @@ fn closure(
             ws.stack[top] = inst.x
             top += 1
         } else if inst.op >= BOL && inst.op <= WORD_END {
-            if assertion(inst.op, bytes, lo, hi, pos) {
+            if assertion(re, inst.op, bytes, lo, hi, pos) {
                 ws.stack[top] = inst.x
                 top += 1
             }
@@ -83,7 +83,12 @@ fn linear_search(
     while pos <= hi {
         if best_lo < 0 &&
             (!re.options.whole || pos == lo) &&
-            (!re.options.word || re.options.whole || pos == lo || !is_word(bytes[pos - 1] as int)) {
+            (
+                !re.options.word ||
+                    re.options.whole ||
+                    pos == lo ||
+                    !word_before(re, bytes, lo, pos)
+            ) {
             var k = if projected_pattern >= 0 then projected_pattern else 0
             while k < re.starts.len && (projected_pattern < 0 || k == projected_pattern) {
                 if projected_pattern >= 0 || !re.backrefs[k] {
@@ -112,7 +117,12 @@ fn linear_search(
             if re.prog[pc].op == ACCEPT &&
                 (!nonempty || start < pos) &&
                 (!re.options.whole || pos == hi) &&
-                (!re.options.word || re.options.whole || pos == hi || !is_word(bytes[pos] as int)) {
+                (
+                    !re.options.word ||
+                        re.options.whole ||
+                        pos == hi ||
+                        !word_at(re, bytes, pos, hi)
+                ) {
                 if any_match { return Span { lo: start, hi: pos } }
                 if best_lo < 0 || start < best_lo || start == best_lo && pos > best_hi {
                     best_lo = start
@@ -122,6 +132,7 @@ fn linear_search(
             i += 1
         }
         if pos == hi { break }
+        let (cp, width) = character(re, bytes, pos, hi)
         new_generation(mut ws)
         i = 0
         while i < ws.count {
@@ -130,14 +141,14 @@ fn linear_search(
             let ref_loop = projected_pattern >= 0 &&
                 inst.op == REF &&
                 bytes[pos] != re.options.terminator
-            if (best_lo < 0 || start <= best_lo) && (ref_loop || consumes(re, inst, bytes[pos])) {
+            if (best_lo < 0 || start <= best_lo) && (ref_loop || consumes(re, inst, cp)) {
                 let next = if ref_loop then ws.pcs[i] else inst.x
-                closure(re, mut ws, next, start, bytes, lo, hi, pos + 1, projected_pattern >= 0)
+                closure(re, mut ws, next, start, bytes, lo, hi, pos + width, projected_pattern >= 0)
             }
             i += 1
         }
         if best_lo >= 0 && ws.next_count == 0 { break }
-        pos += 1
+        pos += width
     }
     if best_lo < 0 { return none }
     Span { lo: best_lo, hi: best_hi }

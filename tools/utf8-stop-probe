@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+"""Exact context-dependence witnesses found by the first M3 matrix."""
+import hashlib,itertools,json,os,pathlib,subprocess,tomllib
+ROOT=pathlib.Path(__file__).resolve().parent.parent
+pin=tomllib.loads((ROOT/'scent-oracle.toml').read_text())['oracle']
+binary=ROOT/'.oracle/grep'
+assert os.environ.get('SCENT_IN_CONTAINER')=='1'
+assert hashlib.sha256(binary.read_bytes()).hexdigest()==pin['binary_sha256']
+assert subprocess.check_output(['ldd','--version']).splitlines()[0].decode()==pin['glibc_line']
+rows=[]
+def query(name,argv,data):
+ r=subprocess.run(['grep',*argv],executable=str(binary),input=data,capture_output=True,env={'PATH':os.defpath,'LC_ALL':'C.UTF-8'})
+ row={'name':name,'argv':argv,'stdin_hex':data.hex(),'stdout_hex':r.stdout.hex(),'stderr_hex':r.stderr.hex(),'status':r.returncode}
+ rows.append(row)
+ return row
+for syntax,bracket,text in itertools.product(['-F','-G','-E'],[False,True],['ᲀ\n','ᲀВ\n','Вᲀ\n','ᲀв\n','вᲀ\n','ᲀВв\n','Ввᲀ\n','ᲀ\nВ\n','В\nᲀ\n']):
+ if syntax=='-F' and bracket:continue
+ p='[В]' if bracket else 'В'
+ for flags in [[],['-o'],['-x'],['-c']]:
+  row=query('fold-context',[syntax,'-a','-i',*flags,p],text.encode())
+  if flags==['-o']:print(syntax,p,repr(text),bytes.fromhex(row['stdout_hex']),row['status'],flush=True)
+for data in [bytes.fromhex(x) for x in ['eda0800a','78eda0800a','eda080780a','f49080800a','f8888080800a','fc84808080800a','ff0a']]:
+ for syntax,p,flags in itertools.product(['-G','-E'],['.','^.$','..','[^x]',r'\W'],[[],['-o'],['-a'],['-a','-o'],['-z','-a','-o']]):
+  query('invalid-context',[syntax,*flags,p],data)
+for p in ['[A-z]','[[:upper:]]','[[:lower:]]']:
+ for flags,data in itertools.product([['-a','-o'],['-a','-i','-o']],[b'[\n',b'A[\n','中\n'.encode(),'٠\n'.encode()]):
+  query('class-fold',flags+[p],data)
+(ROOT/'notes/ct04-evidence/utf8-stop-witnesses.json').write_text(json.dumps(rows,indent=2)+'\n')
+print('witnesses',len(rows),flush=True)

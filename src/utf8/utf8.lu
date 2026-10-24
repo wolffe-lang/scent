@@ -15,11 +15,11 @@ pub fn next(bytes: List[byte], at: int, end: int) -> (int, int) {
     if lead >= 194 && lead <= 223 { width = 2; cp = lead & 31 }
     if lead >= 224 && lead <= 239 { width = 3; cp = lead & 15 }
     if lead >= 240 && lead <= 244 { width = 4; cp = lead & 7 }
-    if width == 0 || end - at < width { return (1114112 + lead, 1) }
+    if width == 0 || end - at < width { return (2147483648 + lead, 1) }
     var i = 1
     while i < width {
         let b = bytes[at + i] as int
-        if b < 128 || b > 191 { return (1114112 + lead, 1) }
+        if b < 128 || b > 191 { return (2147483648 + lead, 1) }
         cp = cp * 64 + b - 128
         i += 1
     }
@@ -28,7 +28,7 @@ pub fn next(bytes: List[byte], at: int, end: int) -> (int, int) {
         width == 4 && cp < 65536 ||
         cp >= 55296 && cp <= 57343 ||
         cp > 1114111 {
-        return (1114112 + lead, 1)
+        return (2147483648 + lead, 1)
     }
     (cp, width)
 }
@@ -56,6 +56,56 @@ pub fn invalid(bytes: List[byte], lo: int, hi: int) -> bool {
         let (cp, width) = next(bytes, at, hi)
         if cp > 1114111 { return true }
         at += width
+    }
+    false
+}
+
+/// The oracle's C.UTF-8 multibyte view also admits non-overlong legacy
+/// 4/5/6-byte values through 0x7fffffff. These are NOT Unicode scalars;
+/// dot never selects them, but negated classes and literal bytes do.
+/// Keep this measured compatibility view separate from strict next().
+pub fn locale_next(bytes: List[byte], at: int, end: int) -> (int, int) {
+    let (scalar, width) = next(bytes, at, end)
+    if width != 1 || scalar < 2147483648 { return (scalar, width) }
+    let lead = bytes[at] as int
+    var count = 0
+    var value: int = 0
+    var minimum: int = 0
+    if lead >= 244 && lead <= 247 {
+        count = 4
+        value = lead & 7
+        minimum = 65536
+    }
+    if lead >= 248 && lead <= 251 {
+        count = 5
+        value = lead & 3
+        minimum = 2097152
+    }
+    if lead >= 252 && lead <= 253 {
+        count = 6
+        value = lead & 1
+        minimum = 67108864
+    }
+    if count == 0 || end - at < count { return (scalar, width) }
+    var i = 1
+    while i < count {
+        let b = bytes[at + i] as int
+        if b < 128 || b > 191 { return (scalar, width) }
+        value = value * 64 + b - 128
+        i += 1
+    }
+    if value < minimum { return (scalar, width) }
+    (value, count)
+}
+
+/// Binary-output validity uses the oracle's multibyte view, not Unicode
+/// scalar validity. Surrogates, overlong and truncated forms stay invalid.
+pub fn locale_invalid(bytes: List[byte], lo: int, hi: int) -> bool {
+    var at = lo
+    while at < hi {
+        let (cp, n) = locale_next(bytes, at, hi)
+        if cp >= 2147483648 { return true }
+        at += n
     }
     false
 }

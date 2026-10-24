@@ -30,20 +30,54 @@ pub fn compile(
     flags: fixed.Flags,
     mut diagnostics: re.Diagnostics,
 ) -> Matcher ! {invalid} {
+    var regular_patterns = List[List[byte]]()
+    if syntax == "F" && flags.utf8 {
+        for pattern in patterns {
+            var escaped = List[byte]()
+            for b in pattern {
+                if b == 92 as byte ||
+                    b == 46 as byte ||
+                    b == 91 as byte ||
+                    b == 94 as byte ||
+                    b == 36 as byte ||
+                    b == 42 as byte ||
+                    b == 43 as byte ||
+                    b == 63 as byte ||
+                    b == 40 as byte ||
+                    b == 41 as byte ||
+                    b == 123 as byte ||
+                    b == 124 as byte {
+                    (mut escaped).push(92 as byte)
+                }
+                (mut escaped).push(b)
+            }
+            (mut regular_patterns).push(escaped)
+        }
+    } else if syntax != "F" {
+        regular_patterns = copy patterns
+    }
     let empty = List[List[byte]]()
-    let literal = fixed.compile(if syntax == "F" then copy patterns else copy empty, flags)
+    let literal = fixed.compile(
+        if syntax == "F" && !flags.utf8 then copy patterns else copy empty,
+        flags,
+    )
     let regular = re.compile(
-        if syntax == "F" then empty else patterns,
+        regular_patterns,
         re.Options {
-            extended: syntax == "E",
+            extended: syntax == "E" || syntax == "F",
             icase: flags.ignore_case,
             word: flags.word,
             whole: flags.whole,
+            utf8: flags.utf8,
             terminator: flags.terminator,
         },
         mut diagnostics,
     )?
-    Matcher { syntax: syntax, literal: literal, regular: regular }
+    Matcher {
+        syntax: if syntax == "F" && flags.utf8 then "U" else syntax,
+        literal: literal,
+        regular: regular,
+    }
 }
 
 /// Allocate both execution workspaces once per chunk.

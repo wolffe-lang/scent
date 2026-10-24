@@ -1,0 +1,35 @@
+Draft bug-grep report; not sent.
+
+Subject: grep 3.12 UTF-8 -o admits spans only beside another match
+
+GNU grep 3.12, configured --disable-perl-regexp, on Ubuntu glibc
+2.39-0ubuntu8.9, LC_ALL=C.UTF-8. Two reproducible cases appear to use
+different matching criteria for line selection and only-matching spans.
+
+Case folding (all of -G, -E and -F, also -G/-E with pattern [В]):
+  printf '\341\262\200\n' | LC_ALL=C.UTF-8 grep -G -a -i -o 'В'
+  # No output; exit 1. Input is U+1C80 CYRILLIC SMALL LETTER ROUNDED VE.
+  printf '\341\262\200\320\222\n' | LC_ALL=C.UTF-8 grep -G -a -i -o 'В'
+  # Output hex e1b2800ad0920a; exit 0: both U+1C80 and U+0412 printed.
+With the same two characters on separate input lines, only U+0412 prints.
+Plain matching and -c agree on line selection: the isolated historic letter
+is not selected/count 0; the combined line is selected/count 1. It is -o
+that exposes the extra historic-letter span inside the selected line.
+
+Dot and surrogate encoding (-G and -E):
+  printf '\355\240\200\n' | LC_ALL=C.UTF-8 grep -a -o '.'
+  # No output; exit 1. ED A0 80 is a surrogate encoding, not valid UTF-8.
+  printf 'x\355\240\200\n' | LC_ALL=C.UTF-8 grep -a -o '.'
+  # Output hex 780aeda0800a; exit 0: the invalid encoding prints as a span.
+-a is present in both commands, so this is not binary-output suppression.
+Replacing dot with [^x] rejects the surrogate in both contexts.
+
+Expected: the character-level matching rule should not change when an
+unrelated valid match is added elsewhere in the same record. Case matching
+should have a consistent equivalence relation; dot should not acquire a
+surrogate span just because x also matched. The same context leakage occurs
+with non-Unicode values above U+10FFFF in 4-, 5- and 6-byte encodings.
+
+The release tarball SHA256 is
+2649b27c0e90e632eadcd757be06c6e9a4f48d941de51e7c0f83ff76408a07b9.
+No implementation source was consulted; all observations are black-box.

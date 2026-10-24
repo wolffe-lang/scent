@@ -73,9 +73,7 @@ fn run(initial: opts.Options) -> int {
         env.get("LC_CTYPE") else "",
         env.get("LANG") else "",
     )
-    if locale.utf8(locale_name) {
-        o.not_yet = "UTF-8 locale semantics (M3)"
-    }
+    o.utf8 = locale.utf8(locale_name)
     if o.not_yet != "" { eprint("{opts.program()}: not yet implemented: {o.not_yet}"); return 2 }
     o.colors = colors.configure(o.color_when, opts.program())
     var patterns = List[List[byte]]()
@@ -147,6 +145,7 @@ fn run(initial: opts.Options) -> int {
             ignore_case: o.ignore_case,
             word: o.word,
             whole: o.whole,
+            utf8: o.utf8,
             terminator: if o.zero then 0 as byte else 10 as byte,
         },
         mut diagnostics,

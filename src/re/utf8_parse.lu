@@ -1,0 +1,103 @@
+use utf8
+
+//! UTF-8 bracket syntax measured by tools/utf8-probe. C.UTF-8 in the
+//! pinned build rejects non-ASCII range endpoints/collation elements;
+//! ordinary multibyte members remain characters. C parsing is separate.
+
+fn rune_class_new(mut p: Parser) -> int {
+    let id = p.rune_classes.len
+    (mut p.rune_classes).push(RuneClass { members: List[int](), properties: 0, negate: false })
+    id
+}
+
+fn rune_item(mut p: Parser, pat: List[byte], id: int, mut d: Diagnostics, pattern: int) -> int {
+    if pat[p.at] == 91 as byte &&
+        p.at + 1 < pat.len &&
+        (
+            pat[p.at + 1] == 58 as byte ||
+                pat[p.at + 1] == 46 as byte ||
+                pat[p.at + 1] == 61 as byte
+        ) {
+        let mark = pat[p.at + 1]
+        let begin = p.at + 2
+        var end = begin
+        while end + 1 < pat.len && !(pat[end] == mark && pat[end + 1] == 93 as byte) { end += 1 }
+        if end + 1 >= pat.len {
+            fail(mut p, mut d, pattern, "Unmatched [, [^, [:, [., or [=")
+            return -1
+        }
+        p.at = end + 2
+        if mark == 58 as byte {
+            let name = str_from_utf8(pat[begin..end]) else ""
+            if !class_known(name) {
+                fail(mut p, mut d, pattern, "Invalid character class name")
+                return -1
+            }
+            p.rune_classes[id].properties |= property_bit(name)
+            return -1
+        }
+        p.verify = true
+        if end != begin + 1 || pat[begin] as int >= 128 {
+            fail(mut p, mut d, pattern, "Invalid collation character")
+            return -1
+        }
+        return pat[begin] as int
+    }
+    let (cp, n) = utf8.locale_next(pat, p.at, pat.len)
+    p.at += n
+    cp
+}
+
+fn rune_bracket(
+    mut p: Parser,
+    pat: List[byte],
+    options: Options,
+    mut d: Diagnostics,
+    pattern: int,
+) -> int {
+    var closing = p.at + 2
+    if p.at + 1 < pat.len && pat[p.at + 1] == 58 as byte {
+        while closing < pat.len && pat[closing] != 93 as byte { closing += 1 }
+        if closing < pat.len && closing > p.at + 3 && pat[closing - 1] == 58 as byte {
+            fail(mut p, mut d, pattern, "character class syntax is [[:space:]], not [:space:]")
+            return 0
+        }
+    }
+    p.at += 1
+    let id = rune_class_new(mut p)
+    if p.at < pat.len && pat[p.at] == 94 as byte { p.rune_classes[id].negate = true; p.at += 1 }
+    if p.at == pat.len { fail(mut p, mut d, pattern, "Invalid regular expression"); return 0 }
+    var first = true
+    while p.at < pat.len && !p.failed {
+        if pat[p.at] == 93 as byte && !first {
+            p.at += 1
+            return node(mut p, CLASS, -1, -1, id, 0, 0)
+        }
+        first = false
+        var left = rune_item(mut p, pat, id, mut d, pattern)
+        if p.failed { break }
+        if p.at + 1 < pat.len && pat[p.at] == 45 as byte && pat[p.at + 1] != 93 as byte {
+            p.at += 1
+            var right = rune_item(mut p, pat, id, mut d, pattern)
+            if p.failed { break }
+            if left >= 128 || right >= 128 {
+                fail(mut p, mut d, pattern, "Invalid collation character")
+                break
+            }
+            if options.icase {
+                if left >= 97 && left <= 122 { left -= 32 }
+                if right >= 97 && right <= 122 { right -= 32 }
+            }
+            if left < 0 || right < left { fail(mut p, mut d, pattern, "Invalid range end"); break }
+            var cp = left
+            while cp <= right { (mut p.rune_classes[id].members).push(cp); cp += 1 }
+            if p.at + 1 < pat.len && pat[p.at] == 45 as byte && pat[p.at + 1] != 93 as byte {
+                fail(mut p, mut d, pattern, "Invalid range end")
+            }
+        } else if left >= 0 {
+            (mut p.rune_classes[id].members).push(left)
+        }
+    }
+    fail(mut p, mut d, pattern, "Unmatched [, [^, [:, [., or [=")
+    0
+}

@@ -1,3 +1,5 @@
+use utf8
+
 //! C-locale overall-span regex representation, clean-room from POSIX XBD 9,
 //! GNU grep 3.12's manual and measured probes. Design inputs: yew at
 //! 83020234 src/search/regex.lu:20-51 (flat pools and separate workspace),
@@ -12,6 +14,7 @@ pub struct Options {
     word: bool,
     whole: bool,
     terminator: byte,
+    utf8: bool,
 }
 
 /// Half-open absolute offsets in the caller's byte buffer.
@@ -83,6 +86,7 @@ pub struct Regex {
     options: Options,
     prog: List[Inst],
     classes: List[bool],
+    rune_classes: List[RuneClass],
     starts: List[int],
     span_starts: List[int],
     backrefs: List[bool],
@@ -150,11 +154,11 @@ fn is_space(c: int) -> bool {
     c == 32 || c >= 9 && c <= 13
 }
 
-fn assertion(op: int, bytes: List[byte], lo: int, hi: int, pos: int) -> bool {
+fn assertion(re: Regex, op: int, bytes: List[byte], lo: int, hi: int, pos: int) -> bool {
     if op == BOL { return pos == lo }
     if op == EOL { return pos == hi }
-    let left = pos > lo && is_word(bytes[pos - 1] as int)
-    let right = pos < hi && is_word(bytes[pos] as int)
+    let left = word_before(re, bytes, lo, pos)
+    let right = word_at(re, bytes, pos, hi)
     if op == BOUND { return left != right }
     if op == NOT_BOUND { return left == right }
     if op == WORD_START { return !left && right }
@@ -162,9 +166,18 @@ fn assertion(op: int, bytes: List[byte], lo: int, hi: int, pos: int) -> bool {
     false
 }
 
-fn consumes(re: Regex, inst: Inst, b: byte) -> bool {
-    if b == re.options.terminator { return false }
-    let c = b as int
+fn consumes(re: Regex, inst: Inst, c: int) -> bool {
+    if c == re.options.terminator as int { return false }
+    if re.options.utf8 {
+        if inst.op == ANY { return c <= 1114111 }
+        if inst.op == CLASS {
+            return rune_class_member(re.rune_classes[inst.arg], c, re.options.icase)
+        }
+        if inst.op == CHAR {
+            return if re.options.icase then case_matches(inst.arg, c) else inst.arg == c
+        }
+        return false
+    }
     if inst.op == ANY { return true }
     if inst.op == CLASS { return re.classes[inst.arg * 256 + c] }
     if inst.op == CHAR {
@@ -175,4 +188,25 @@ fn consumes(re: Regex, inst: Inst, b: byte) -> bool {
 
 fn program_start(re: Regex, index: int, spans: bool) -> int {
     if spans || re.verify[index] then re.span_starts[index] else re.starts[index]
+}
+
+fn character(re: Regex, bytes: List[byte], pos: int, hi: int) -> (int, int) {
+    if re.options.utf8 { return utf8.locale_next(bytes, pos, hi) }
+    if pos == hi { return (0, 0) }
+    (bytes[pos] as int, 1)
+}
+
+fn word_before(re: Regex, bytes: List[byte], lo: int, pos: int) -> bool {
+    if pos <= lo { return false }
+    if re.options.utf8 { return character_mask(utf8.previous(bytes, lo, pos)) & 4096 != 0 }
+    is_word(bytes[pos - 1] as int)
+}
+
+fn word_at(re: Regex, bytes: List[byte], pos: int, hi: int) -> bool {
+    if pos >= hi { return false }
+    if re.options.utf8 {
+        let (cp, _) = utf8.locale_next(bytes, pos, hi)
+        return character_mask(cp) & 4096 != 0
+    }
+    is_word(bytes[pos] as int)
 }

@@ -1,3 +1,4 @@
+use utf8
 //! member: true
 
 // Clean-room: pinned GNU 3.12 streaming probes and POSIX grep.
@@ -104,6 +105,20 @@ fn spans(
     }
 }
 
+fn invalid_output(
+    flags: opts.Options,
+    buf: List[byte],
+    lo: int,
+    hi: int,
+    name: str,
+    mut writer: out.Output,
+) -> bool {
+    if !flags.utf8 || flags.binary == 1 || !utf8.locale_invalid(buf, lo, hi) { return false }
+    out.flush(mut writer)
+    if flags.binary == 0 { eprint("{opts.program()}: {name}: binary file matches") }
+    true
+}
+
 fn emit(
     flags: opts.Options,
     re: matcher.Matcher,
@@ -139,6 +154,10 @@ fn emit(
         return
     }
     if selected {
+        if !flags.only && invalid_output(flags, buf, lo, hi, name, mut writer) {
+            st.stop = true
+            return
+        }
         let first = if st.number > flags.before then st.number - flags.before else 1
         if st.last == 0 || first > st.last + 1 { out.group(mut writer, flags) }
         if !flags.only {
@@ -146,6 +165,17 @@ fn emit(
             while at < h.rows.len {
                 let idx = if h.rows.len == flags.before then (h.next + at) % h.rows.len else at
                 if h.rows[idx].number > st.last {
+                    if invalid_output(
+                        flags,
+                        h.rows[idx].bytes,
+                        0,
+                        h.rows[idx].used,
+                        name,
+                        mut writer,
+                    ) {
+                        st.stop = true
+                        return
+                    }
                     out.line(
                         mut writer,
                         flags,
@@ -193,6 +223,10 @@ fn emit(
             while from <= hi {
                 let span = matcher.next_span(re, mut ws, buf, lo, hi, from) else |_| { break }
                 if span.hi > span.lo {
+                    if invalid_output(flags, buf, span.lo, span.hi, name, mut writer) {
+                        st.stop = true
+                        return
+                    }
                     out.line(
                         mut writer,
                         flags,
@@ -217,6 +251,7 @@ fn emit(
         st.trailing = flags.after
     } else if st.trailing > 0 {
         if !flags.only {
+            if invalid_output(flags, buf, lo, hi, name, mut writer) { st.stop = true; return }
             out.line(mut writer, flags, re, mut ws, name, buf, lo, hi, st.number, off, false, width)
         } else if flags.invert {
             spans(flags, re, mut ws, buf, lo, hi, name, st.number, off, false, width, mut writer)
