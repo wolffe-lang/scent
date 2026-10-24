@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+"""Probe refusal once, skip only impossible fixtures, and keep real errors fatal."""
+import contextlib,errno,io,json,os,pathlib,runpy,shutil,subprocess,sys,tempfile
+from unittest.mock import patch
+ROOT=pathlib.Path(__file__).resolve().parent.parent
+assert os.environ.get('SCENT_IN_CONTAINER')=='1','field regression belongs in the owned container'
+library=runpy.run_path(str(ROOT/'tools/oracle-field.py'))
+raw={'name':'raw','argv':['x','tree'],'raw_names':[{'name_base64':'dHJlZS//','text':'x\n'}]}
+assert library['needs_non_utf8_name'](raw)
+assert not library['needs_non_utf8_name']({'files':{'tree/é':{'text':'x'}}})
+assert not library['needs_non_utf8_name']({'raw_names':[{'name_base64':'dHJlZS9h','text':'x'}]})
+with tempfile.TemporaryDirectory(dir=ROOT/'target') as tmp:
+    stage=pathlib.Path(tmp)
+    assert library['probe_non_utf8_name'](stage)['available']
+    calls=[]
+    def reject(*args):calls.append(args);raise OSError(errno.EILSEQ,'Illegal byte sequence')
+    result=library['probe_non_utf8_name'](stage,reject)
+    assert len(calls)==1 and not result['available'] and 'Illegal byte sequence' in result['reason']
+    assert library['unavailable_reason'](raw,{'non-utf8-filename':result})==result['reason']
+    assert library['unavailable_reason']({'files':{'a':{}}},{'non-utf8-filename':result}) is None
+    for code in [errno.EACCES,errno.ENOSPC,errno.EIO]:
+        def bad(*args):raise OSError(code,'unexpected failure')
+        try:library['probe_non_utf8_name'](stage,bad)
+        except OSError as error:assert error.errno==code
+        else:raise AssertionError('real harness failure was swallowed')
+    # Execute the actual harness over two raw fixtures. Its one corpus probe
+    # rejects names; neither fixture reaches prepare, and both get reasons.
+    root=stage/'fixture-repo';(root/'tools').mkdir(parents=True);(root/'tests/cases').mkdir(parents=True)
+    for name in ['oracle.py','oracle-field.py','oracle-review.py']:shutil.copyfile(ROOT/'tools'/name,root/'tools'/name)
+    shutil.copyfile(ROOT/'scent-oracle.toml',root/'scent-oracle.toml')
+    (root/'tests/divergences.json').write_text('{}\n')
+    (root/'tests/cases/raw.jsonl').write_text(json.dumps(raw)+'\n'+json.dumps({**raw,'name':'raw2'})+'\n')
+    original=runpy.run_path;probe_calls=[]
+    def nested(path,*args,**kwargs):
+        values=original(path,*args,**kwargs)
+        if pathlib.Path(path).name=='oracle-field.py':
+            def probe(stage):probe_calls.append(stage);return library['probe_non_utf8_name'](stage,reject)
+            values['probe_non_utf8_name']=probe
+        return values
+    stdout=io.StringIO()
+    with patch.object(sys,'argv',[str(root/'tools/oracle.py'),'--field','--bin',str(ROOT/'target/native/scent')]),patch.object(shutil,'which',return_value=str(ROOT/'.oracle/grep')),patch.object(runpy,'run_path',side_effect=nested),contextlib.redirect_stdout(stdout):
+        try:original(str(root/'tools/oracle.py'),run_name='__main__')
+        except SystemExit as exit:assert exit.code==0,stdout.getvalue()
+    summary=json.loads((root/'target/oracle/summary.json').read_text())
+    assert len(probe_calls)==1 and summary['field-unavailable']==2 and summary['differ']==0
+    records=json.loads((root/'target/oracle/field-unavailable.json').read_text())
+    assert {r['case'] for r in records}=={'raw','raw2'}
+    assert all('Illegal byte sequence' in r['reason'] for r in records)
+print('PASS field filesystem probe: once per corpus, two impossible fixtures classified, real I/O failures fatal')

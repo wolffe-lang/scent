@@ -112,16 +112,26 @@ def launch(binary, c, work, bindir):
         for t in writers:t.join(timeout=0.1)
 exact_review=runpy.run_path(str(ROOT/'tools/oracle-review.py'))['exact_review']
 reviews=json.loads((ROOT/'tests/divergences.json').read_text())
+field=runpy.run_path(str(ROOT/'tools/oracle-field.py'))
+cases=[json.loads(raw) for file in sorted((ROOT/a.cases).glob('*.jsonl')) for raw in file.read_text().splitlines()]
+selected=[c for c in cases if not a.only or fnmatch.fnmatchcase(c['name'],a.only)]
+capabilities={}
+if a.field and any(field['needs_non_utf8_name'](case) for case in selected):
+    capabilities['non-utf8-filename']=field['probe_non_utf8_name'](stage)
+    print('FIELD capability',json.dumps(capabilities,sort_keys=True),flush=True)
+if a.field:(stage/'field-capabilities.json').write_text(json.dumps(capabilities,indent=2)+'\n')
 counts={'upstream-blocked':0,'reviewed':0,'agree':0,'differ':0,'not-yet':0,'argv0-diagnostic':0,'argv0-usage':0,'argv-bytes':0,'field-unavailable':0,'terminator-pattern':0};seen=0
-for file in sorted((ROOT/a.cases).glob('*.jsonl')):
- for raw in file.read_text().splitlines():
-    c=json.loads(raw);name=c['name']
-    if a.only and not fnmatch.fnmatchcase(name,a.only):continue
+unavailable=[]
+for c in selected:
+    name=c['name']
     seen+=1
+    reason=field['unavailable_reason'](c,capabilities) if a.field else None
+    if reason:
+        counts['field-unavailable']+=1;unavailable.append({'case':name,'reason':reason});print('FIELD unavailable',name,reason,flush=True);continue
     if a.field and c.get('wrapper') and not (reference.parent/c['wrapper']).is_file():
-        counts['field-unavailable']+=1;print('FIELD unavailable',name,'distribution wrapper absent',flush=True);continue
+        counts['field-unavailable']+=1;unavailable.append({'case':name,'reason':'distribution wrapper absent'});print('FIELD unavailable',name,'distribution wrapper absent',flush=True);continue
     if a.field and sys.platform != 'linux' and (c.get('nonroot') or c.get('stdout')=='full' or any(f.get('kind')=='fifo' for f in c.get('files',{}).values())):
-        counts['field-unavailable']+=1;print('FIELD unavailable',name,'Linux fixture only',flush=True);continue
+        counts['field-unavailable']+=1;unavailable.append({'case':name,'reason':'Linux fixture only'});print('FIELD unavailable',name,'Linux fixture only',flush=True);continue
     if c.get('not_yet'):
         why=c['not_yet'];category=c.get('column','not-yet')
         if 'refusal' in c:
@@ -200,5 +210,8 @@ require(seen>0,'no cases selected')
 print('{agree} agree / {differ} differ / {not-yet} not-yet'.format(**counts),flush=True)
 print('{reviewed} reviewed divergences (including {upstream-blocked} upstream-blocked)'.format(**counts),flush=True)
 print('not-yet columns: argv0-diagnostic={argv0-diagnostic} argv0-usage={argv0-usage} argv-bytes={argv-bytes} terminator-pattern={terminator-pattern}'.format(**counts),flush=True)
+if a.field:
+    print('field-unavailable:',counts['field-unavailable'],flush=True)
+    (stage/'field-unavailable.json').write_text(json.dumps(unavailable,indent=2)+'\n')
 (stage/'summary.json').write_text(json.dumps(counts,sort_keys=True)+'\n')
 raise SystemExit(0 if a.field or counts['differ']==0 else 1)
