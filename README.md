@@ -75,7 +75,13 @@ tools/pax-posture
 The oracle is a signature-verified release-tarball build in pinned Ubuntu
 24.04/glibc 2.39, never the host's distribution grep. `tools/oracle --only
 NAME` selects exactly one witness; explicit glob selectors are supported.
-`--field` reports distribution differences without gating. `cmp` compares
+`--field` reports distribution differences without gating. It probes raw-name
+support once on the corpus filesystem; APFS's rejected byte-FF name is
+`field-unavailable` with a recorded reason, not a harness crash. Two exact
+Darwin argv-decoding aborts are reviewed as `upstream-blocked`, with their
+full witnesses retained; only the numeric panic PID varies. Stale reviews
+remain fatal. [Runtime issue draft](notes/ct03-evidence/wolf-lang-macos-argv-issue.txt).
+`cmp` compares
 stdout, stderr, exit status and remaining stdin. Help/version are scent's
 own prose; those two actions compare stream shape and status, with exact
 stderr (including wrapper warnings).
