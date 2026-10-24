@@ -1,0 +1,4 @@
+PASS field upstream reviews: real CI tuples, digits-only PID, scoped Darwin rows, retained witnesses, stale review fatal
+PASS field filesystem probe: once per corpus, two impossible fixtures classified, real I/O failures fatal
+M2 cases 3392
+PASS M2 CI wiring: 3392 rows, raw-order shared fixtures, tty, byte globs and three exact reviews

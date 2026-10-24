@@ -183,8 +183,9 @@ package smoke, both plants and px draft complete. Final PR/CI first-read
 and lane-audit status are handed back separately; no CI-green or merge
 claim is made by this pre-PR note. Orchestrator labels and watches full CI.
 
-Close after merge: scent#7. File: none (GNU report is drafted, not sent;
-#687/#912 already exist). M3/M4 are future milestones, not new issues.
+Close after merge: scent#7. At the initial hand-back, no issue was proposed (GNU report drafted, not
+sent; #687/#912 already exist). The macOS send-back below adds a runtime
+issue draft for the orchestrator to file. M3/M4 are future milestones, not new issues.
 No running ct03 containers remain after the final probes. Lane storage
 944 MiB after acceptance, under 15 GiB. Retain source, image, toolchain,
 oracle and evidence for audit. Both clean Mac plant worktrees were removed;
@@ -244,3 +245,14 @@ witnesses and stale-review failure. Darwin scope is simulated for harness
 plumbing only, not represented as a local macOS runtime measurement.
 The full local follow-up gate and final CI first-read are reported in the
 hand-back. No label was changed and no issue was filed.
+
+Follow-up local result: tools/gate exited 0 on CPUs 4-7 after all harness,
+manifest, workflow and artifact changes. Native/release/static each stay
+9,478 agree / 120 reviewed (nine upstream-blocked) / one M3 refusal;
+zero unapproved differences. The final extra argv-is-not-a-fixture assert
+was then exercised in the focused regression run. Plain pinned Ubuntu
+without LANG/locale data also repeats those exact counts. The static
+binary digest remains 0f4c034f66f8a35f552504e96c3298d98a1c0e3a257c1608e9440a4b7858b965;
+no scent source or runtime workaround changed. Follow-up logs:
+macos-followup-gate.log, macos-followup-focused.log, macos-followup-pax.log.
+The macOS prediction above remains unmeasured until the next CI field run.

@@ -1,0 +1,31 @@
+{
+  "kind": "prediction-not-measurement",
+  "source_run": 40128081248,
+  "total": 9599,
+  "expected": {
+    "agree": 7304,
+    "differ": 244,
+    "reviewed": 2,
+    "upstream-blocked": 2,
+    "not-yet": 1,
+    "field-unavailable": 2048,
+    "stale-review": 0
+  },
+  "unavailable_components": {
+    "Linux-only": 2029,
+    "raw-filename-filesystem-rejection": 1,
+    "Homebrew-wrapper-layout": 18
+  },
+  "difference_components": {
+    "published-consistency": 109,
+    "explicit-socket": 1,
+    "PCRE-configuration": 128,
+    "invocation-name": 6
+  },
+  "observed_before_raw_fixture": {
+    "agree": 7000,
+    "differ": 189,
+    "field-unavailable": 2029
+  },
+  "assumption": "same Homebrew wrapper layout and no newly encountered platform differences"
+}
