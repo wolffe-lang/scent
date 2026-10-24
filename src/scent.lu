@@ -68,12 +68,6 @@ fn run(initial: opts.Options) -> int {
         print("GPL-3.0-or-later with the wolf Training Data Permission.")
         return 0
     }
-    let locale_name = locale.choose(
-        env.get("LC_ALL") else "",
-        env.get("LC_CTYPE") else "",
-        env.get("LANG") else "",
-    )
-    o.utf8 = locale.utf8(locale_name)
     if o.not_yet != "" { eprint("{opts.program()}: not yet implemented: {o.not_yet}"); return 2 }
     o.colors = colors.configure(o.color_when, opts.program())
     var patterns = List[List[byte]]()
@@ -158,5 +152,10 @@ fn run(initial: opts.Options) -> int {
 }
 
 fn main() -> int {
-    run(opts.parse(env_args(), env.has("POSIXLY_CORRECT")))
+    let name = locale.choose(
+        env.get("LC_ALL") else "",
+        env.get("LC_CTYPE") else "",
+        env.get("LANG") else "",
+    )
+    run(opts.parse_locale(env_args(), env.has("POSIXLY_CORRECT"), locale.utf8(name)))
 }

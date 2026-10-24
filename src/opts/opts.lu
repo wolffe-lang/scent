@@ -318,8 +318,14 @@ fn apply(mut o: Options, key: str, value: str) -> bool {
             }
             if value != "read" && value != "recurse" && value != "skip" && choices != 1 {
                 let why = if choices > 1 then "ambiguous" else "invalid"
-                eprint("{program()}: {why} argument '{value}' for '--directories'")
-                eprint("Valid arguments are:\n  - 'read'\n  - 'recurse'\n  - 'skip'")
+                let left = if o.utf8 then "‘" else "'"
+                let right = if o.utf8 then "’" else "'"
+                eprint(
+                    "{program()}: {why} argument {left}{value}{right} for {left}--directories{right}",
+                )
+                eprint(
+                    "Valid arguments are:\n  - {left}read{right}\n  - {left}recurse{right}\n  - {left}skip{right}",
+                )
                 usage()
                 o.status = 1
                 return false
@@ -386,8 +392,9 @@ fn apply(mut o: Options, key: str, value: str) -> bool {
 }
 
 /// Parse GNU getopt_long-style arguments, recording failures in status.
-pub fn parse(args: List[str], posix: bool) -> Options {
+pub fn parse_locale(args: List[str], posix: bool, utf8: bool) -> Options {
     var o = defaults()
+    o.utf8 = utf8
     var operands = List[str]()
     var stop = false
     var i: int = 0
@@ -523,4 +530,9 @@ pub fn parse(args: List[str], posix: bool) -> Options {
     }
     if o.filename < 0 { o.filename = if o.files.len > 1 then 1 else 0 }
     o
+}
+
+/// C-locale parser entry for byte-only consumers and unit fixtures.
+pub fn parse(args: List[str], posix: bool) -> Options {
+    parse_locale(args, posix, false)
 }
