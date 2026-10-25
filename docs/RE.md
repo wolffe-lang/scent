@@ -182,8 +182,35 @@ positions. Assertions must use the same decoded character predicates.
 Invalid encoding policy belongs at the cursor/CLI boundary; capture slots
 remain byte offsets for backreferences.
 
-A later bounded lazy-DFA cache and literal prefilters belong in `Workspace`,
-not `Regex`. State-set simulation remains the fallback. Compiled-size bounds
+The bounded lazy-DFA cache lives in `Workspace`, while immutable mandatory-literal
+proofs live in `Regex`. State-set simulation remains the fallback. Boolean
+selection caches sorted raw successor sets with exact decoded units plus
+start/end/word context. Assertion-free C programs use dense byte edges;
+UTF-8 and context-sensitive programs use bounded keyed edges. The program
+identity fixes class predicates, locale and fold closure. A full cache reruns
+the unchanged record through the original VM, never answers "no match".
+There are at most 128 states, 4,096 edges and 65,536 stored counters. Programs
+above 2,048 instructions and any list containing a backreference stay on the
+original VM. All caches die with their chunk.
+
+Literal analysis follows AST dependencies explicitly (parser nodes can have
+forward children), preserving separate selection/span roots. Concatenation
+joins runs; alternation takes a common run; optional repetitions contribute no
+requirement. The longest proved run is capped at 256 units and analysis at
+4,096 AST nodes; beyond those bounds the proof admits rather than rejects.
+This is a conservative necessary condition, not a claim of globally optimal
+literal inference. Exact runs can select directly only after word/whole-line
+checks. UTF-8 candidates stay on decoded boundaries, with distinct malformed
+byte and legacy-value identities and the same canonical fold closure as the VM.
+C scans use a last-byte skip table; `SCENT_PREFILTER=scan` is the measured
+unit-step control. `SCENT_MATCH_ENGINE=vm` disables selection accelerators for
+differential tests; `SCENT_DFA_LIMIT=1` exercises bounded fallback.
+
+The existing VM still computes spans. Fixed `-F` selection uses original
+prefix/failure/output-link construction for multiple C patterns and scalar
+UTF-8 patterns; C single-pattern and span paths retain KMP. UTF-8 word/whole
+selection stays on the regex path. No external engine source informed these
+additions. Compiled-size bounds
 include interval expansion; source-pattern length alone does not bound the
 program linearly. Large accepted intervals and the 32767 limit are measured
 explicitly in the cost gate.
