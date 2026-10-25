@@ -64,6 +64,7 @@ fn trie_compile(patterns: List[List[byte]], flags: Flags, utf8: bool) -> Trie {
                 var node = trie_node(unit, trie.nodes[state].depth + 1)
                 node.sibling = trie.nodes[state].first
                 (mut trie.nodes).push(node)
+                trie.nodes[state].terminal = false
                 trie.nodes[state].first = next
                 trie.edges[key] = next
             }
