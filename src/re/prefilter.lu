@@ -268,7 +268,7 @@ fn prefilter_result(re: Regex, ws: Workspace, bytes: List[byte], lo: int, hi: in
     for filter in re.filters {
         if literal_contains(re, filter, bytes, lo, hi, ws.literal_scan) {
             possible = true
-            if filter.exact { return 1 }
+            if filter.exact { return -1 }
         }
     }
     if possible then 0 else -1
