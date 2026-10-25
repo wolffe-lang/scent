@@ -33,7 +33,8 @@ fn trie_node(unit: int, depth: int) -> TrieNode {
 }
 
 fn trie_key(state: int, unit: int) -> int {
-    state * 4294967296 + unit
+    let radix: int = 4294967296
+    state * radix + unit
 }
 
 fn trie_unit(cp: int, utf8: bool, icase: bool) -> int {
