@@ -176,8 +176,14 @@ SHA256 is `d635cc1dde428cdb7437e7680d1d8c457901ad2a85de801684daac25062daeae`;
 all CLI cases, engine costs, deterministic static builds, locale-free
 acceptance and the 2 GiB streaming-memory gate (below 32 MiB peak RSS).
 `tools/measure` records three-run medians on 256 MiB for `-F`, `-G` and `-E`;
-the same measurement includes `-r -F -c` over 10,000 files. Speed is
-recorded, not gated, until M4. Full CI adds the macOS field leg.
+the same measurement includes `-r -F -c` over 10,000 files. The added `tools/speed-ci` gate compares all CLI cases through the original
+VM as well, runs named cache-overflow/literal/prefix witnesses, and checks
+sixteen workloads against explicit regression ceilings. Each workload uses
+one warmup and eleven interleaved GNU/scent pairs on four CPUs, with output
+drained through a pipe. Every row also reports the separate 2× GNU target:
+rows above 2× are misses, even when the regression ceiling passes. The
+measurements and before/after table are in `notes/ct05-evidence/`.
+Full CI adds the macOS field leg.
 
 ## Published differences
 
@@ -258,6 +264,22 @@ patterns, trims trailing C-locale whitespace and preserves rule order.
 [docs/RE.md](docs/RE.md) describes the immutable regex and reusable workspace.
 Input is never a whole-file string. Per-chunk regions release temporary
 reads/output; only unfinished lines and requested context survive.
+
+Regular line selection uses a lazy deterministic cache, with the original
+state-set VM on cache exhaustion and for backreferences. Bounds are 128
+states, 4,096 transitions and 65,536 stored program counters per chunk;
+programs over 2,048 instructions stay on the VM. Exact decoded units and
+word/anchor context distinguish transitions. Spans still use the original
+leftmost-longest engine. Mandatory-literal proofs and byte skip searches
+reject impossible records; fixed-string selection shares prefixes and suffix
+links, including scalar-aware UTF-8 folding. Optional or unproved literals
+never reject a record. No optimization changes the published differences.
+
+The current std pin still allocates each read chunk. The newer `read_into`
+wrapper is measured separately rather than silently changing the dependency:
+it also allocates a chunk and copies it into the retained buffer. A vectorized
+delimiter search and a genuinely allocation-free read remain separate work.
+
 
 Sources are POSIX.1-2024, GNU grep documentation and black-box runs, plus
 cited design references from the project's own ferp and yew engines.
