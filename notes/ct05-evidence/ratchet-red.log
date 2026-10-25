@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/mfwolffe/lanes/ct05/scent/tools/speed-check", line 22, in <module>
+    n=check(json.loads(pathlib.Path(a.report).read_text()),json.loads(pathlib.Path(a.ceilings).read_text()))
+  File "/home/mfwolffe/lanes/ct05/scent/tools/speed-check", line 18, in check
+    assert not misses,'RED speed-regression: '+'; '.join(misses)
+           ^^^^^^^^^^
+AssertionError: RED speed-regression: literal 98.963 > 15.185; class 95.910 > 15.347; alternation 159.524 > 43.699; ignore-case 24.654 > 5.095; word 6.771 > 3.504; only-matching 10.333 > 6.700; utf8-fold 7.036 > 6.526; fixed-10 9.596 > 6.845; fixed-1000 1013.177 > 8.239
