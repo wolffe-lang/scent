@@ -1,0 +1,42 @@
+//! Cache controls exercise result-preserving fallback and context identity.
+
+fn test_dfa_cache_overflow() {
+    var d = diagnostics_new()
+    let re = compile(["ab*c".bytes()], dfa_options(), mut d) else { assert(false); return }
+    var ws = workspace_new(re)
+    ws.dfa.limit = 1
+    let bytes = "abbbbc".bytes()
+    assert(line_matches(re, mut ws, bytes, 0, bytes.len), "dfa-cache-overflow must retain match")
+    assert(!ws.dfa.enabled, "dfa-cache-overflow must exercise fallback")
+}
+
+fn test_dfa_context_and_units() {
+    for pattern in ["a|ab", "^a$", "\\ba\\b", "(a*)*b", "[[:alpha:]]+", "", "a?"] {
+        for text in ["", "a", "xab a", "bbb", "ab", "a a", "aa"] {
+            var d = diagnostics_new()
+            let re = compile([pattern.bytes()], dfa_options(), mut d) else {
+                assert(false)
+                return
+            }
+            var fast = workspace_new(re)
+            var slow = workspace_new(re)
+            slow.dfa.enabled = false
+            let b = text.bytes()
+            assert(
+                line_matches(re, mut fast, b, 0, b.len) == line_matches(re, mut slow, b, 0, b.len),
+                "dfa-context identity",
+            )
+        }
+    }
+}
+
+fn dfa_options() -> Options {
+    Options {
+        extended: true,
+        icase: false,
+        word: false,
+        whole: false,
+        utf8: false,
+        terminator: 10 as byte,
+    }
+}

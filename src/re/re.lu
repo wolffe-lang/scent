@@ -93,6 +93,7 @@ pub struct Regex {
 
 /// Reusable state sets sized to one compiled program; no per-line allocation.
 pub struct Workspace {
+    dfa: Dfa,
     pcs: List[int],
     origins: List[int],
     next_pcs: List[int],
@@ -123,6 +124,7 @@ fn zeros(n: int) -> List[int] {
 pub fn workspace_new(re: Regex) -> Workspace {
     let n = re.prog.len
     Workspace {
+        dfa: dfa_new(re),
         pcs: zeros(n),
         origins: zeros(n),
         next_pcs: zeros(n),

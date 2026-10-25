@@ -1,0 +1,144 @@
+//! Clean-room lazy subset construction for boolean selection. No matcher
+//! implementation consulted. A state is the sorted set of raw successor pcs;
+//! transitions include start/end/word context and the exact decoded unit.
+//! The program owns locale, class predicates and fold closure, so caches cannot
+//! alias those identities. Spans and backreferences retain the original VM.
+
+struct Dfa {
+    states: List[List[int]],
+    edges: Map[int, int],
+    entries: int,
+    cells: int,
+    limit: int,
+    enabled: bool,
+    words: bool,
+}
+
+fn dfa_new(re: Regex) -> Dfa {
+    var enabled = re.prog.len <= 2048 && (env_get("SCENT_MATCH_ENGINE") else "") != "vm"
+    for refs in re.backrefs { if refs { enabled = false } }
+    var words = re.options.word
+    for inst in re.prog {
+        if inst.op >= BOUND && inst.op <= WORD_END { words = true }
+    }
+    let requested = (env_get("SCENT_DFA_LIMIT") else "128").to_int() else 128
+    let limit = if requested >= 1 && requested <= 128 then requested else 128
+    var states = List[List[int]]()
+    (mut states).push(List[int]())
+    Dfa {
+        states: states,
+        edges: Map[int, int](),
+        entries: 0,
+        cells: 0,
+        limit: limit,
+        enabled: enabled,
+        words: words,
+    }
+}
+
+fn dfa_intern(mut ws: Workspace, count: int) -> int ! {fallback} {
+    var state = 0
+    while state < ws.dfa.states.len {
+        if ws.dfa.states[state].len == count {
+            var i = 0
+            while i < count && ws.dfa.states[state][i] == ws.next_origins[i] { i += 1 }
+            if i == count { return state }
+        }
+        state += 1
+    }
+    if ws.dfa.states.len >= ws.dfa.limit || ws.dfa.cells + count > 65536 {
+        ws.dfa.enabled = false
+        return fallback
+    }
+    var pcs = List[int]()
+    var i = 0
+    while i < count { (mut pcs).push(ws.next_origins[i]); i += 1 }
+    ws.dfa.cells += count
+    (mut ws.dfa.states).push(pcs)
+    ws.dfa.states.len - 1
+}
+
+fn dfa_step(
+    re: Regex,
+    mut ws: Workspace,
+    state: int,
+    bytes: List[byte],
+    lo: int,
+    hi: int,
+    pos: int,
+    cp: int,
+    left: bool,
+    right: bool,
+) -> int ! {fallback} {
+    new_generation(mut ws)
+    var i = 0
+    while i < ws.dfa.states[state].len {
+        let pc = ws.dfa.states[state][i]
+        closure(re, mut ws, pc, 0, bytes, lo, hi, pos, false)
+        i += 1
+    }
+    if (!re.options.whole || pos == lo) && (!re.options.word || re.options.whole || !left) {
+        i = 0
+        while i < re.starts.len {
+            closure(re, mut ws, program_start(re, i, false), 0, bytes, lo, hi, pos, false)
+            i += 1
+        }
+    }
+    i = 0
+    while i < re.prog.len { ws.pcs[i] = 0; i += 1 }
+    i = 0
+    while i < ws.next_count {
+        let inst = copy re.prog[ws.next_pcs[i]]
+        if inst.op == ACCEPT &&
+            (!re.options.whole || pos == hi) &&
+            (!re.options.word || re.options.whole || !right) {
+            return -2
+        }
+        if pos < hi && consumes(re, inst, cp) { ws.pcs[inst.x] = 1 }
+        i += 1
+    }
+    var count = 0
+    i = 0
+    while i < re.prog.len {
+        if ws.pcs[i] != 0 { ws.next_origins[count] = i; count += 1 }
+        i += 1
+    }
+    dfa_intern(mut ws, count)?
+}
+
+fn dfa_matches(re: Regex, mut ws: Workspace, bytes: List[byte], lo: int, hi: int) -> bool ! {
+    fallback,
+} {
+    if !ws.dfa.enabled { return fallback }
+    var state = 0
+    var pos = lo
+    while pos <= hi {
+        var cp = -1
+        var width = 1
+        if pos < hi {
+            let unit = character(re, bytes, pos, hi)
+            cp = unit.0
+            width = unit.1
+        }
+        let left = ws.dfa.words && word_before(re, bytes, lo, pos)
+        let right = ws.dfa.words && word_at(re, bytes, pos, hi)
+        let context = (if pos == lo then 1 else 0) +
+            (if pos == hi then 2 else 0) +
+            (if left then 4 else 0) +
+            (if right then 8 else 0)
+        // Decoder sentinels extend through 2^31+255; use a 2^32 radix.
+        let key: int = (state * 16 + context) * 4294967296 + cp + 1
+        var next = ws.dfa.edges[key] else -1
+        if next == -1 {
+            if ws.dfa.entries >= 4096 { ws.dfa.enabled = false; return fallback }
+            next = dfa_step(re, mut ws, state, bytes, lo, hi, pos, cp, left, right)?
+            ws.dfa.edges[key] = next
+            ws.dfa.entries += 1
+        }
+        if next == -2 { return true }
+        if pos == hi { return false }
+        state = next
+        pos += width
+    }
+    false
+}

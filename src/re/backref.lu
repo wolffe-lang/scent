@@ -361,7 +361,10 @@ fn next_span_mode(
 /// Whether any pattern selects this line window, including an empty match.
 /// Traps only for an invalid buffer window; reuse a workspace for this Regex.
 pub fn line_matches(re: Regex, mut ws: Workspace, bytes: List[byte], lo: int, hi: int) -> bool {
-    line_matches_mode(re, mut ws, bytes, lo, hi, true)
+    assert(lo >= 0 && hi >= lo && hi <= bytes.len, "regex window out of bounds")
+    dfa_matches(re, mut ws, bytes, lo, hi) else {
+        return line_matches_mode(re, mut ws, bytes, lo, hi, true)
+    }
 }
 
 /// Precondition: line_matches selected this unchanged line with this workspace.
