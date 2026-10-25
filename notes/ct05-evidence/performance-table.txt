@@ -4,24 +4,25 @@ Each ratio uses GNU measured in that phase, not a shared denominator.
 The dfa column retains the first map-backed DFA draft, including its regressions.
 The prefilter-local column includes dense byte DFA edges, local trie edges and byte-indexed skip tables.
 Final additionally isolates scalar delimiter search from reader controls.
+Final columns are the fresh accept-speed.json measurements at the accepted source bytes; final.json retains the earlier post-reader run used to set the fixed ceilings.
 
 Workload | baseline scent/GNU | DFA draft | prefilters | final GNU s | final scent s | final ratio | M4 <=2x
-literal | 98.96 | 85.05 | 16.68 | 0.010657 | 0.107883 | 10.12 | MISS
-class | 95.91 | 84.37 | 16.67 | 0.010509 | 0.107522 | 10.23 | MISS
-alternation | 159.52 | 94.25 | 36.92 | 0.010205 | 0.297297 | 29.13 | MISS
-backreference | 2.89 | 2.83 | 2.25 | 0.037144 | 0.079790 | 2.15 | MISS
-ignore-case | 24.65 | 44.49 | 5.00 | 0.002643 | 0.008979 | 3.40 | MISS
-word | 6.77 | 34.82 | 3.05 | 0.004084 | 0.009540 | 2.34 | MISS
-count | 5.53 | 5.84 | 5.75 | 0.002464 | 0.012438 | 5.05 | MISS
-list | 1.29 | 1.52 | 1.40 | 0.000310 | 0.000469 | 1.51 | PASS
-only-matching | 10.33 | 16.30 | 4.89 | 0.009661 | 0.043152 | 4.47 | MISS
-invert | 5.48 | 5.55 | 5.79 | 0.002508 | 0.012275 | 4.89 | MISS
-binary | 4.72 | 5.04 | 5.33 | 0.004146 | 0.020123 | 4.85 | MISS
-recursive | 11.13 | 11.22 | 12.01 | 0.005793 | 0.067585 | 11.67 | MISS
-utf8-fold | 7.04 | 5.68 | 6.39 | 0.031067 | 0.135155 | 4.35 | MISS
-fixed-1 | 5.15 | 5.57 | 5.69 | 0.000932 | 0.004109 | 4.41 | MISS
-fixed-10 | 9.60 | 14.78 | 6.12 | 0.001293 | 0.005902 | 4.56 | MISS
-fixed-1000 | 1013.18 | 1008.22 | 6.78 | 0.001440 | 0.007909 | 5.49 | MISS
+literal | 98.96 | 85.05 | 16.68 | 0.010789 | 0.108299 | 10.04 | MISS
+class | 95.91 | 84.37 | 16.67 | 0.010688 | 0.107947 | 10.10 | MISS
+alternation | 159.52 | 94.25 | 36.92 | 0.010089 | 0.296340 | 29.37 | MISS
+backreference | 2.89 | 2.83 | 2.25 | 0.037954 | 0.080997 | 2.13 | MISS
+ignore-case | 24.65 | 44.49 | 5.00 | 0.002661 | 0.009169 | 3.45 | MISS
+word | 6.77 | 34.82 | 3.05 | 0.004149 | 0.009426 | 2.27 | MISS
+count | 5.53 | 5.84 | 5.75 | 0.002511 | 0.012540 | 4.99 | MISS
+list | 1.29 | 1.52 | 1.40 | 0.000333 | 0.000497 | 1.50 | PASS
+only-matching | 10.33 | 16.30 | 4.89 | 0.009897 | 0.044145 | 4.46 | MISS
+invert | 5.48 | 5.55 | 5.79 | 0.002521 | 0.012479 | 4.95 | MISS
+binary | 4.72 | 5.04 | 5.33 | 0.004235 | 0.020287 | 4.79 | MISS
+recursive | 11.13 | 11.22 | 12.01 | 0.005927 | 0.068399 | 11.54 | MISS
+utf8-fold | 7.04 | 5.68 | 6.39 | 0.031318 | 0.137111 | 4.38 | MISS
+fixed-1 | 5.15 | 5.57 | 5.69 | 0.000937 | 0.004124 | 4.40 | MISS
+fixed-10 | 9.60 | 14.78 | 6.12 | 0.001301 | 0.005796 | 4.46 | MISS
+fixed-1000 | 1013.18 | 1008.22 | 6.78 | 0.001459 | 0.007941 | 5.44 | MISS
 
 The regression ceiling is max(2, 1.5 * the final measured ratio), pinned per workload.
 It is not an M4 waiver: the independent m4_2x field stays false for every miss.

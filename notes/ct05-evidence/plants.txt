@@ -1,0 +1,42 @@
+Draft PRs remain open, deliberately broken; never merge.
+Base for plants: 257902a (all three named witness gates already committed).
+PR 11: https://github.com/wolffe-lang/scent/pull/11
+  initial final-form head 715b1b3f1e75589b7b9643b41e39d00032d00ec5
+  initial run 40237353120, queued on first ID read; later log request said in_progress.
+  expected red: dfa-cache-overflow / test_dfa_cache_overflow.
+PR 12: https://github.com/wolffe-lang/scent/pull/12
+  initial head 01ca2223c2569373759f4bece068b5611c1362eb
+  initial run 40237295090, queued on first ID read; later log request said in_progress.
+  expected red: prefilter-retains-match / test_prefilter_retains_match.
+PR 13: https://github.com/wolffe-lang/scent/pull/13
+  initial head 7ad1f1c240f45dbabbbc3b78f49f2db0e0004c47
+  initial run 40237296423, queued on first ID read; later log request said in_progress.
+  expected red: fixed-prefix-pattern.
+The cache branch's first formatting-only head 1389ead772ac3c39feb3bb7cb81475f1c2452b2d
+ran as 40237292316 and was superseded/cancelled by its formatted push.
+No timing or semantic red is claimed from that formatting head.
+
+Remove the unrelated implicit-i32 overflow from every plant before trusting its run.
+Main fix f5a1dee was cherry-picked, not the planted semantic defect changed:
+PR 11 final head 1e0ea584304ccc478aef8557649b0f82239d1ce4; run 40239245913.
+PR 12 final head e888dbba0588d022c3cf4dbad77c5b3e06f0d50d; run 40239247539.
+PR 13 final head 42e6f06638a1210ab03816412a1bfe14e3ccf342; run 40239250754.
+Each run ID was read once immediately after the follow-up work; all were in_progress.
+No CI wait or label was used. Red verdicts still require their actual logs.
+
+Final historical-trie key-width control (the production trie no longer uses a global key):
+PR 11 head 4b4d35b18411348e39af5e2df2879547ef3209a2; run 40240397992.
+PR 12 head 28e4df9f950e10a25c7e28cb1ccac67241321c89; run 40240397576.
+PR 13 head ff8f15f6c8e04212c889361546c7f42630058ce7; run 40240400153.
+The first ID read was pending/in_progress. One later log request for each still
+said in_progress; no completed CI red is claimed and no further CI wait is owed
+by this lane. The orchestrator watches these three runs.
+
+At these exact final heads, local pinned-container controls all passed under
+SCENT_MATCH_ENGINE=vm, then the accelerated run failed by its intended name:
+plant-cache-local.log: ORIGINAL_VM_CONTROL_PASS; RED dfa-cache-overflow.
+plant-prefilter-local.log: ORIGINAL_VM_CONTROL_PASS; RED prefilter-retains-match.
+plant-prefix-local.log: ORIGINAL_VM_CONTROL_PASS; RED fixed-prefix-pattern.
+Each failure was exit 1 with differing accelerated/original tuples, not a build
+failure or a shared broken oracle. Local controller status was 0 (all expected
+reds observed). The CI checks are the same tools/speed-test witnesses.

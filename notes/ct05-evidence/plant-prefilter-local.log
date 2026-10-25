@@ -1,0 +1,15 @@
+build: target/release/scent
+PASS dfa-cache-overflow
+PASS prefilter-retains-match
+PASS fixed-prefix-pattern
+PASS fixed-prefix-word
+PASS dfa-word-context
+PASS utf8-historic-fold
+PASS speed witnesses; SKIP=0
+ORIGINAL_VM_CONTROL_PASS
+PASS dfa-cache-overflow
+Traceback (most recent call last):
+  File "/work/scent/tools/speed-test", line 12, in <module>
+    assert (fast.stdout,fast.stderr,fast.returncode)==(old.stdout,old.stderr,old.returncode),f'RED {name}: accelerated/original tuple differs'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RED prefilter-retains-match: accelerated/original tuple differs

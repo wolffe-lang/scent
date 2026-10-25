@@ -1,0 +1,17 @@
+Removed only lane-owned, verified paths after evidence was copied:
+/home/mfwolffe/lanes/ct05/plant-cache (clean ct05-plant-cache worktree, explicit git worktree remove)
+/home/mfwolffe/lanes/ct05/plant-prefilter (clean ct05-plant-prefilter worktree, explicit git worktree remove)
+/home/mfwolffe/lanes/ct05/plant-prefix (clean ct05-plant-prefix worktree, explicit git worktree remove)
+/home/mfwolffe/lanes/ct05/downloads (independently double-hashed archives)
+/home/mfwolffe/lanes/ct05/read-std (isolated sc72 measurement checkout)
+/home/mfwolffe/lanes/ct05/scent/target/ct05-corpus (reproducible generated speed corpus)
+/home/mfwolffe/lanes/ct05/scent/target/ct05-std (isolated sc72 measurement tree)
+/home/mfwolffe/lanes/ct05/scent/target/re (regenerable engine build/soak trees; logs retained)
+/home/mfwolffe/lanes/ct05/baseline-scent (baseline binary, digest and source head retained)
+
+Existing harness cleanup also removed the unseen oracle source/build trees,
+archive extraction scratch and each temporary 2 GiB input in its own container.
+No shared/global prune, no unchecked worktree, no --force, no other lane touched.
+Kept: main ct05 checkout, .wolf-bin pair, verified .oracle, native/release/static
+binaries, logs/PID/status files and all committed evidence. All acceptance,
+posture and local-plant controller status markers are 0; their children were waited.

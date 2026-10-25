@@ -68,16 +68,16 @@ rules rather than relying only on diagnostic examples.
 
 ## Matching and memory
 
-The regular matcher is a state-set simulation, not backtracking. Seeds enter
+The reference/span regular matcher is a state-set simulation, not backtracking. Seeds enter
 in increasing start order; the first visit to a program counter dominates
 later starts. Acceptance retains the longest endpoint at the earliest
 start. Epsilon closure uses generation marks and an explicit stack,
 including for empty cycles. The word test filters candidate endpoints
 before choosing the longest accepted span.
 
-For `m` compiled instructions and `n` input bytes, one search takes O(m*n)
+For `m` compiled instructions and `n` input bytes, one reference/span search takes O(m*n)
 time and O(m) scratch. There is no string conversion, per-byte allocation,
-or `Map` on this path. Workspace scalar arrays hold `5*m + (2*m+1)` integers plus one
+or `Map` on this path. The base workspace scalar arrays hold `5*m + (2*m+1)` integers plus one
 projection-cache integer per pattern;
 compiled instructions hold four integers each, and each class holds 256
 booleans. List capacity overhead does not change the bound. An empty-only
