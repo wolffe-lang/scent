@@ -183,6 +183,11 @@ one warmup and eleven interleaved GNU/scent pairs on four CPUs, with output
 drained through a pipe. Every row also reports the separate 2× GNU target:
 rows above 2× are misses, even when the regression ceiling passes. The
 measurements and before/after table are in `notes/ct05-evidence/`.
+The recorder uses `GITHUB_SHA` when supplied, otherwise resolves `HEAD` from
+its own checkout, independently of the caller's working directory. Missing or
+malformed provenance stops the measurement before any workloads run. The
+container launcher forwards the CI identity without changing Git's safety
+configuration; tests cover non-repository callers and unavailable metadata.
 Full CI adds the macOS field leg.
 
 ## Published differences
