@@ -1,0 +1,108 @@
+START 2026-10-25T22:09:48Z
+tiers-test: PASS T1 push is full
+tiers-test: PASS T1 schedule is full
+tiers-test: PASS T1 workflow_dispatch is full
+tiers-test: PASS T1 the full-matrix label is full
+tiers-test: PASS T1 another label is a noop
+tiers-test: PASS T1 a dispatch naming linux is partial
+tiers-test: PASS T1 a dispatch naming no job of the workflow is refused
+tiers-test: PASS T2 code is pr
+tiers-test: PASS T2 prose alone is a noop
+tiers-test: PASS T2 prose beside code is pr
+tiers-test: PASS T3 a path no rule names is full
+tiers-test: PASS T3 unreadable paths are full
+tiers-test: PASS T4 the jobs, in order: ['plan', 'plan-test', 'linux', 'macos', 'tier', 'nightly-red']
+tiers-test: PASS T4 plan-test needs the plan and runs only when it is named
+tiers-test: PASS T4 linux needs the plan and runs only when it is named
+tiers-test: PASS T4 macos needs the plan and runs only when it is named
+tiers-test: PASS T4 tier needs every job, runs unless cancelled, checks the verdict
+tiers-test: PASS T4 cancel-in-progress for pull requests only
+tiers-test: PASS T4 the trunk push, the nightly, the label and the dispatch input
+tiers-test: PASS T6 a green full
+tiers-test: PASS T6 a green pr
+tiers-test: PASS T6 a green noop
+tiers-test: PASS T6 a green partial
+tiers-test: PASS T6 a chosen job failed
+tiers-test: PASS T6 a chosen job skipped
+tiers-test: PASS T6 a job that ran unasked
+tiers-test: PASS T6 a full that chose less
+tiers-test: PASS T6 a failed plan
+tiers-test: PASS T6 a plan with no tier
+tiers-test: PASS T8 no open issue: one is opened, labelled nightly-red, titled 'nightly red: ci on trunk'
+tiers-test: PASS T8 an open issue: a comment on it, no new issue
+tiers-test: PASS T8 a label that already exists is no failure
+tiers-test: PASS T8 the script refuses to run without REPO, WORKFLOW and RUN_URL
+tiers-test: PASS T8 the workflow's name is ci, the title's
+tiers-test: PASS T8 nightly-red runs after the verdict, on a red schedule only, may write issues
+tiers-test: every check passes
+PASS regex CI wiring: 20000 generated pairs per syntax plus diagnostics, units and costs
+M2 cases 3392
+PASS M2 CI wiring: 3392 rows, raw-order shared fixtures, tty, byte globs and three exact reviews
+m1-cases: 5072 cases; 40 option rows x3 syntaxes x7 families x6 input forms plus32 sources/diagnostics
+PASS M1 CI wiring: 5072 generated cases; 120 exact reviewed divergences
+M3 cases 38706 including 20 closure-only directed edges
+PASS M3 floors: 38,706 rows; 550 inconsistent, 120 inherited, one environment; all identities exact
+check-ctype: all 1,112,064 scalars / 13 classes; 3,668 queries / 2,938 directed edges; consistent closure agrees
+PASS exact review: digits-only scoped PID; every other stderr byte, stdout, status, stdin and GNU tuple guarded
+build: target/native/scent
+build: target/release/scent
+PASS field upstream reviews: real CI tuples, digits-only PID, scoped Darwin rows, retained witnesses, stale review fatal
+PASS field filesystem probe: once per corpus, two impossible fixtures classified, real I/O failures fatal
+check-test: src/bytefind_test.lu [checked] pass (exit(0))
+check-test: src/ctype_test.lu [checked] pass (exit(0))
+check-test: src/fixed_test.lu [checked] pass (exit(0))
+check-test: src/glob_test.lu [checked] pass (exit(0))
+check-test: src/locale_test.lu [checked] pass (exit(0))
+check-test: src/matcher_test.lu [checked] pass (exit(0))
+check-test: src/opts_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/compile_test.lu [checked] pass (exit(0))
+check-test: src/re/dfa_test.lu [checked] pass (exit(0))
+check-test: src/re/dfa_test.lu [checked] pass (exit(0))
+check-test: src/re/linear_test.lu [checked] pass (exit(0))
+check-test: src/re/linear_test.lu [checked] pass (exit(0))
+check-test: src/re/linear_test.lu [checked] pass (exit(0))
+check-test: src/re/prefilter_test.lu [checked] pass (exit(0))
+check-test: src/re/prefilter_test.lu [checked] pass (exit(0))
+check-test: src/region_test.lu [checked] pass (exit(0))
+check-test: src/utf8_matcher_test.lu [checked] pass (exit(0))
+check-test: src/utf8_test.lu [checked] pass (exit(0))
+check-test: wolf test: 29 passed, 0 not passed (exit 0)
+check-test: src/bytefind_test.lu [native] ok
+check-test: src/bytefind_test.lu [lupin] ok
+check-test: src/ctype_test.lu [native] ok
+check-test: src/ctype_test.lu [lupin] ok
+fixed: 10 cases, 0 SKIP
+check-test: src/fixed_test.lu [native] ok
+check-test: src/fixed_test.lu [lupin] ok
+glob: 14 cases, 0 SKIP
+check-test: src/glob_test.lu [native] ok
+check-test: src/glob_test.lu [lupin] ok
+check-test: src/locale_test.lu [native] ok
+check-test: src/locale_test.lu [lupin] ok
+matcher: 6 cases, 0 SKIP
+check-test: src/matcher_test.lu [native] ok
+check-test: src/matcher_test.lu [lupin] FAILED: src/matcher_test.lu: trap(overflow): `*` produced 4294967296, outside `i32` — checked arithmetic traps in every profile (X3); spell intended overflow `wrapping[i32]` [arith.checked] at 43:1
+opts: 6 cases, 0 SKIP
+grep: Perl matching not supported in a --disable-perl-regexp build
+check-test: src/opts_test.lu [native] ok
+check-test: src/opts_test.lu [lupin] ok
+region: 2 cases, 0 SKIP
+check-test: src/region_test.lu [native] ok
+check-test: src/region_test.lu [lupin] ok
+check-test: src/utf8_matcher_test.lu [native] ok
+check-test: src/utf8_matcher_test.lu [lupin] FAILED: src/utf8_matcher_test.lu: trap(overflow): `*` produced 4294967296, outside `i32` — checked arithmetic traps in every profile (X3); spell intended overflow `wrapping[i32]` [arith.checked] at 49:1
+check-test: src/utf8_test.lu [native] ok
+check-test: src/utf8_test.lu [lupin] ok
+END 2026-10-25T22:10:05Z
+EXIT 1
