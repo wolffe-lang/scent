@@ -1,0 +1,8 @@
+#!/bin/sh
+# Added to the existing measurement job; no workflow or tier shape changes.
+set -eu
+cd "$(dirname "$0")/.."
+[ "${SCENT_IN_CONTAINER:-}" = 1 ] || { echo 'STOP speed-ci requires pinned container' >&2; exit 2; }
+python3 -I tools/speed-test
+tools/oracle --bin target/release/scent --match-engine vm
+taskset -c 0-3 python3 -I tools/speed --output target/speed.json --ceilings tests/speed-ceilings.json

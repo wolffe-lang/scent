@@ -28,4 +28,5 @@ tools/re-ci
 tools/mkscent target/mkscent
 tools/oracle --bin target/mkscent/scent --capture-reference target/pax-reference.json.gz
 python3 -I tools/measure.py --memory-only
-printf 'PASS ct04 whole joined gate; SKIP=0\n'
+tools/speed-ci
+printf 'PASS ct05 whole joined gate; SKIP=0\n'

@@ -2,8 +2,9 @@
 """Pinned, interleaved median-of-eleven workload measurement; original ct05 rig."""
 import argparse, hashlib, json, os, pathlib, statistics, subprocess, time
 ROOT=pathlib.Path(__file__).resolve().parent.parent
-p=argparse.ArgumentParser(); p.add_argument('--output',required=True); p.add_argument('--bin',default='target/release/scent'); a=p.parse_args()
+p=argparse.ArgumentParser(); p.add_argument('--output',required=True); p.add_argument('--ceilings'); p.add_argument('--bin',default='target/release/scent'); a=p.parse_args()
 assert os.environ.get('SCENT_IN_CONTAINER')=='1'
+subprocess.run([str(ROOT/'tools/fetch-oracle')],check=True)
 assert sorted(os.sched_getaffinity(0))==[0,1,2,3]
 corpus=ROOT/'target/ct05-corpus'; corpus.mkdir(parents=True,exist_ok=True)
 def make(name,block,size):
@@ -43,3 +44,10 @@ for name,path,argv in rows:
  row={'name':name,'argv':argv,'locale':locale,'bytes':sum(x.stat().st_size for x in path.iterdir()) if path.is_dir() else path.stat().st_size,'seconds':times,'median':medians,'ratio':ratio,'m4_2x':ratio<=2,'range':{k:[min(v),max(v)] for k,v in times.items()}}
  result['rows'].append(row);print(json.dumps(row),flush=True)
  (ROOT/a.output).write_text(json.dumps(result,indent=2)+'\n')
+
+if a.ceilings:
+ ceilings=json.loads((ROOT/a.ceilings).read_text())
+ assert set(ceilings)=={r['name'] for r in result['rows']},'speed ratchet workload identity'
+ misses=[f"{r['name']} {r['ratio']:.3f} > {ceilings[r['name']]:.3f}" for r in result['rows'] if r['ratio']>ceilings[r['name']]]
+ assert not misses,'RED speed-regression: '+ '; '.join(misses)
+ print('PASS speed-regression; M4 misses remain named in every row',flush=True)

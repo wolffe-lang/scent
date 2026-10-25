@@ -4,4 +4,5 @@ set -eu
 SCENT_ROOT=$(cd "$(dirname "$0")/.." && pwd)
 cd "$SCENT_ROOT"
 if [ "${SCENT_IN_CONTAINER:-}" != 1 ]; then exec tools/in-container tools/measure "$@"; fi
+tools/speed-ci
 exec python3 -I tools/measure.py "$@"

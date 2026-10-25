@@ -1,0 +1,18 @@
+{
+  "literal": 148.445,
+  "class": 143.866,
+  "alternation": 239.286,
+  "backreference": 4.329,
+  "ignore-case": 36.981,
+  "word": 10.156,
+  "count": 8.302,
+  "list": 2,
+  "only-matching": 15.499,
+  "invert": 8.214,
+  "binary": 7.073,
+  "recursive": 16.695,
+  "utf8-fold": 10.554,
+  "fixed-1": 7.721,
+  "fixed-10": 14.394,
+  "fixed-1000": 1519.765
+}
