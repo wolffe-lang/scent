@@ -5,6 +5,9 @@ ROOT=pathlib.Path(__file__).resolve().parent.parent
 base_env={k:v for k,v in os.environ.items() if not k.startswith('GIT_') and k!='GITHUB_SHA'}
 with tempfile.TemporaryDirectory(prefix='speed-head-',dir=ROOT/'target') as directory:
  tmp=pathlib.Path(directory);repo=tmp/'checkout';outside=tmp/'outside';repo.mkdir();outside.mkdir();(repo/'tools').mkdir()
+ # Do not let the sibling caller discover the real checkout above target/.
+ base_env['GIT_CEILING_DIRECTORIES']=str(tmp)
+ assert subprocess.run(['git','rev-parse','--show-toplevel'],cwd=outside,env=base_env,capture_output=True).returncode!=0
  shutil.copy2(ROOT/'tools/speed',repo/'tools/speed')
  env=dict(base_env,GIT_AUTHOR_NAME='Recorder Test',GIT_AUTHOR_EMAIL='test@example.invalid',GIT_COMMITTER_NAME='Recorder Test',GIT_COMMITTER_EMAIL='test@example.invalid')
  subprocess.run(['git','init',str(repo)],env=env,check=True,capture_output=True)
