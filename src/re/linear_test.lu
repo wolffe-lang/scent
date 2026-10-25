@@ -33,6 +33,7 @@ fn alternation_fixture(options: Options) -> Regex {
         span_starts: starts,
         backrefs: copy refs,
         verify: refs,
+        filters: List[Prefilter](),
     }
 }
 

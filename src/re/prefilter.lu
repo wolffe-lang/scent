@@ -1,0 +1,275 @@
+//! Original mandatory-literal analysis over the parsed AST. Concatenation
+//! joins exact runs, alternation intersects runs, optional repetitions erase
+//! requirements. Unknowns admit, never reject. No external engine source.
+//! Proofs are capped at 256 units and 4096 AST nodes; larger expressions
+//! simply use the VM/DFA. The bound limits compile-time proof storage.
+
+struct LiteralProof {
+    required: List[int],
+    prefix: List[int],
+    suffix: List[int],
+    full: List[int],
+    exact: bool,
+}
+
+struct Prefilter {
+    units: List[int],
+    shifts: Map[int, int],
+    exact: bool,
+}
+
+fn proof_empty(exact: bool) -> LiteralProof {
+    LiteralProof {
+        required: List[int](),
+        prefix: List[int](),
+        suffix: List[int](),
+        full: List[int](),
+        exact: exact,
+    }
+}
+
+fn literal_key(options: Options, cp: int) -> int {
+    if !options.icase { return cp }
+    if !options.utf8 { return ascii_fold(cp) }
+    fold_key(cp)
+}
+
+/// Canonical representative of the generated symmetric/transitive closure.
+pub fn fold_key(cp: int) -> int {
+    if cp > 1114111 { return cp }
+    var result = cp
+    var at = fold_start(cp)
+    while at < FOLD_COUNT && packed(FOLD_DATA, at * 6, 3) == cp {
+        let other = packed(FOLD_DATA, at * 6 + 3, 3)
+        if other < result { result = other }
+        at += 1
+    }
+    result
+}
+
+fn literal_join(a: List[int], b: List[int], tail: bool) -> List[int] {
+    var result = List[int]()
+    let size = a.len + b.len
+    var i = if tail && size > 256 then size - 256 else 0
+    while i < size && result.len < 256 {
+        (mut result).push(if i < a.len then a[i] else b[i - a.len])
+        i += 1
+    }
+    result
+}
+
+fn literal_common(a: List[int], b: List[int], mode: int) -> List[int] {
+    var best = 0
+    var start = 0
+    if mode == 1 {
+        while best < a.len && best < b.len && a[best] == b[best] { best += 1 }
+    } else if mode == 2 {
+        while best < a.len && best < b.len && a[a.len - best - 1] == b[b.len - best - 1] {
+            best += 1
+        }
+        start = a.len - best
+    } else {
+        // Longest common contiguous substring, two rolling rows: O(a*b).
+        var previous = zeros(b.len + 1)
+        var current = zeros(b.len + 1)
+        var i = 0
+        while i < a.len {
+            var j = 0
+            while j < b.len {
+                current[j + 1] = if a[i] == b[j] then previous[j] + 1 else 0
+                if current[j + 1] > best { best = current[j + 1]; start = i + 1 - best }
+                j += 1
+            }
+            j = 0
+            while j <= b.len { previous[j] = current[j]; j += 1 }
+            i += 1
+        }
+    }
+    a[start..start + best]
+}
+
+fn proof_atom(cp: int) -> LiteralProof {
+    LiteralProof { required: [cp], prefix: [cp], suffix: [cp], full: [cp], exact: true }
+}
+
+fn literal_proof(p: Parser, options: Options) -> LiteralProof {
+    if p.nodes.len > 4096 { return proof_empty(false) }
+    var proofs = List[LiteralProof]()
+    for _ in p.nodes { (mut proofs).push(proof_empty(false)) }
+    var done = zeros(p.nodes.len)
+    var pending = [p.frames[0].alt]
+    while pending.len > 0 {
+        let index = pending[pending.len - 1]
+        let n = copy p.nodes[index]
+        if (n.op == GROUP_NODE || n.op == REPEAT_NODE || n.op == CAT_NODE || n.op == ALT_NODE) &&
+            done[n.a] == 0 {
+            (mut pending).push(n.a)
+            continue
+        }
+        if (n.op == CAT_NODE || n.op == ALT_NODE) && done[n.b] == 0 {
+            (mut pending).push(n.b)
+            continue
+        }
+        var proof = proof_empty(false)
+        if n.op == EMPTY_NODE { proof.exact = true }
+        if n.op == CHAR { proof = proof_atom(literal_key(options, n.arg)) }
+        if n.op == CLASS && !options.utf8 {
+            var only = -1
+            var multiple = false
+            var b = 0
+            while b < 256 {
+                if p.classes[n.arg * 256 + b] {
+                    let key = literal_key(options, b)
+                    if only >= 0 && only != key { multiple = true }
+                    only = key
+                }
+                b += 1
+            }
+            if only >= 0 && !multiple { proof = proof_atom(only) }
+        }
+        if n.op == GROUP_NODE { proof = copy proofs[n.a] }
+        if n.op == CAT_NODE {
+            let a = copy proofs[n.a]
+            let b = copy proofs[n.b]
+            proof.required = if a.required.len >= b.required.len {
+                copy a.required
+            } else {
+                copy b.required
+            }
+            let bridge = literal_join(a.suffix, b.prefix, false)
+            if bridge.len > proof.required.len { proof.required = copy bridge }
+            proof.prefix = if a.exact then literal_join(a.full, b.prefix, false) else copy a.prefix
+            proof.suffix = if b.exact then literal_join(a.suffix, b.full, true) else copy b.suffix
+            proof.exact = a.exact && b.exact && a.full.len + b.full.len <= 256
+            if proof.exact { proof.full = literal_join(a.full, b.full, false) }
+        }
+        if n.op == ALT_NODE {
+            let a = copy proofs[n.a]
+            let b = copy proofs[n.b]
+            proof.required = literal_common(a.required, b.required, 0)
+            proof.prefix = literal_common(a.prefix, b.prefix, 1)
+            proof.suffix = literal_common(a.suffix, b.suffix, 2)
+            proof.exact = a.exact &&
+                b.exact &&
+                a.full.len == b.full.len &&
+                proof.prefix.len == a.full.len
+            if proof.exact { proof.full = copy a.full }
+        }
+        if n.op == REPEAT_NODE {
+            let a = copy proofs[n.a]
+            if n.upper == 0 || a.exact && a.full.len == 0 {
+                proof = proof_empty(true)
+            } else if n.lower > 0 {
+                proof = copy a
+                proof.exact = a.exact && n.upper == n.lower && a.full.len * n.lower <= 256
+                if a.exact && a.full.len * n.lower <= 256 {
+                    var run = List[int]()
+                    var i = 0
+                    while i < n.lower && run.len < 256 {
+                        run = literal_join(run, a.full, false)
+                        i += 1
+                    }
+                    proof.required = copy run
+                    proof.prefix = copy run
+                    proof.suffix = copy run
+                    if proof.exact { proof.full = copy run }
+                }
+            }
+        }
+        proofs[index] = proof
+        done[index] = 1
+        let ignored = (mut pending).pop() else 0
+    }
+    copy proofs[p.frames[0].alt]
+}
+
+fn prefilter_new(proof: LiteralProof) -> Prefilter {
+    let units = if proof.exact then copy proof.full else copy proof.required
+    var shifts = Map[int, int]()
+    var i = 0
+    while i + 1 < units.len { shifts[units[i]] = units.len - i - 1; i += 1 }
+    Prefilter { units: units, shifts: shifts, exact: proof.exact }
+}
+
+fn literal_candidate(
+    re: Regex,
+    filter: Prefilter,
+    bytes: List[byte],
+    lo: int,
+    hi: int,
+    a: int,
+    b: int,
+) -> bool {
+    if !filter.exact { return true }
+    if re.options.whole { return a == lo && b == hi }
+    !re.options.word || !word_before(re, bytes, lo, a) && !word_at(re, bytes, b, hi)
+}
+
+fn literal_contains(
+    re: Regex,
+    filter: Prefilter,
+    bytes: List[byte],
+    lo: int,
+    hi: int,
+    scan: bool,
+) -> bool {
+    let size = filter.units.len
+    if size == 0 {
+        if !filter.exact { return true }
+        var pos = lo
+        loop {
+            if literal_candidate(re, filter, bytes, lo, hi, pos, pos) { return true }
+            if pos == hi { return false }
+            let (_, width) = character(re, bytes, pos, hi)
+            pos += width
+        }
+    }
+    // The byte path never allocates a line view. A one-unit needle is the
+    // byte-search loop; longer needles use a last-unit skip table.
+    if !re.options.utf8 {
+        var at = lo
+        while at + size <= hi {
+            let last = literal_key(re.options, bytes[at + size - 1] as int)
+            if last == filter.units[size - 1] {
+                var i = 0
+                while i < size && literal_key(re.options, bytes[at + i] as int) == filter.units[i] {
+                    i += 1
+                }
+                if i == size && literal_candidate(re, filter, bytes, lo, hi, at, at + size) {
+                    return true
+                }
+            }
+            at += if scan then 1 else (filter.shifts[last] else size)
+        }
+        return false
+    }
+    // Scalar-aligned candidates, including the decoder's separate invalid
+    // byte sentinels and legacy values. Fold keys include historic closure.
+    var at = lo
+    while at < hi {
+        var cursor = at
+        var i = 0
+        while i < size && cursor < hi {
+            let (cp, width) = character(re, bytes, cursor, hi)
+            if literal_key(re.options, cp) != filter.units[i] { break }
+            i += 1
+            cursor += width
+        }
+        if i == size && literal_candidate(re, filter, bytes, lo, hi, at, cursor) { return true }
+        let (_, width) = character(re, bytes, at, hi)
+        at += width
+    }
+    false
+}
+
+fn prefilter_result(re: Regex, ws: Workspace, bytes: List[byte], lo: int, hi: int) -> int {
+    if !ws.prefilters || re.filters.len == 0 { return 0 }
+    var possible = false
+    for filter in re.filters {
+        if literal_contains(re, filter, bytes, lo, hi, ws.literal_scan) {
+            possible = true
+            if filter.exact { return 1 }
+        }
+    }
+    if possible then 0 else -1
+}

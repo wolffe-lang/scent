@@ -65,7 +65,11 @@ fn driver_row(row: str, cost_only: bool, use_projection: bool) {
         {
             let bytes = unhex(s)
             let begin = os_clock_ns()
-            let selected = line_matches_mode(re, mut ws, bytes, 0, bytes.len, use_projection)
+            let selected = if use_projection {
+                line_matches(re, mut ws, bytes, 0, bytes.len)
+            } else {
+                line_matches_mode(re, mut ws, bytes, 0, bytes.len, false)
+            }
             var from = 0
             var spans = ""
             while selected && from <= bytes.len {

@@ -1,0 +1,62 @@
+//! The filter is a necessary condition, never an approximation of acceptance.
+
+fn filter_options() -> Options {
+    Options {
+        extended: true,
+        icase: false,
+        word: false,
+        whole: false,
+        utf8: false,
+        terminator: 10 as byte,
+    }
+}
+
+fn test_prefilter_retains_match() {
+    var d = diagnostics_new()
+    let re = compile(["n[e]edle".bytes()], filter_options(), mut d) else { assert(false); return }
+    var ws = workspace_new(re)
+    let b = "prefix needle suffix".bytes()
+    assert(line_matches(re, mut ws, b, 0, b.len), "prefilter-retains-match")
+    assert(re.filters[0].units.len == 6, "singleton class joins required literal")
+}
+
+fn test_prefilter_superset() {
+    for pattern in [
+        "ab|abc",
+        "(ab)?c",
+        r"(ab){2,3}",
+        "a*",
+        "(needle|hayneedle)",
+        "ab.cd",
+        "^ab$",
+        "a\\bb",
+        "((a|)b)*c",
+        r"a{300}",
+        r"(abc){100}",
+    ] {
+        var d = diagnostics_new()
+        let re = compile([pattern.bytes()], filter_options(), mut d) else { assert(false); return }
+        var fast = workspace_new(re)
+        var slow = workspace_new(re)
+        slow.prefilters = false
+        slow.dfa.enabled = false
+        for text in [
+            "",
+            "abc",
+            "ab",
+            "abab",
+            "abababc",
+            "abcabc",
+            "hayneedle",
+            "ab.cd",
+            "aaaa",
+            "a b",
+        ] {
+            let b = text.bytes()
+            assert(
+                line_matches(re, mut fast, b, 0, b.len) == line_matches(re, mut slow, b, 0, b.len),
+                "prefilter superset",
+            )
+        }
+    }
+}

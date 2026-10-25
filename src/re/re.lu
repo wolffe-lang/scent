@@ -89,11 +89,14 @@ pub struct Regex {
     span_starts: List[int],
     backrefs: List[bool],
     verify: List[bool],
+    filters: List[Prefilter],
 }
 
 /// Reusable state sets sized to one compiled program; no per-line allocation.
 pub struct Workspace {
     dfa: Dfa,
+    prefilters: bool,
+    literal_scan: bool,
     pcs: List[int],
     origins: List[int],
     next_pcs: List[int],
@@ -125,6 +128,8 @@ pub fn workspace_new(re: Regex) -> Workspace {
     let n = re.prog.len
     Workspace {
         dfa: dfa_new(re),
+        prefilters: (env_get("SCENT_MATCH_ENGINE") else "") != "vm",
+        literal_scan: (env_get("SCENT_PREFILTER") else "") == "scan",
         pcs: zeros(n),
         origins: zeros(n),
         next_pcs: zeros(n),

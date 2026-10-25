@@ -362,6 +362,11 @@ fn next_span_mode(
 /// Traps only for an invalid buffer window; reuse a workspace for this Regex.
 pub fn line_matches(re: Regex, mut ws: Workspace, bytes: List[byte], lo: int, hi: int) -> bool {
     assert(lo >= 0 && hi >= lo && hi <= bytes.len, "regex window out of bounds")
+    var i = 0
+    while i < ws.feasible.len { ws.feasible[i] = 0; i += 1 }
+    let filtered = prefilter_result(re, ws, bytes, lo, hi)
+    if filtered < 0 { return false }
+    if filtered > 0 { return true }
     dfa_matches(re, mut ws, bytes, lo, hi) else {
         return line_matches_mode(re, mut ws, bytes, lo, hi, true)
     }
