@@ -6,18 +6,22 @@ fn main() -> int {
     defer fs_close(fd) else |_| {}
     var bytes: int = 0
     var lines: int = 0
+    var reads: int = 0
+    var allocated: int = 0
     loop {
         region chunk {
+            reads += 1
             let buf = fs_read_chunk(fd, 98304) else |e| match e {
                 eof => { break },
                 io => { return 2 },
             }
             bytes += buf.len
+            if args[0] == "calls" { allocated += region_bytes(chunk) }
             if args[0] == "scan" {
                 for b in buf { if b == 10 as byte { lines += 1 } }
             }
         }
     }
-    print("{bytes} {lines}")
+    if args[0] == "calls" { print("{bytes} {reads} {allocated}") } else { print("{bytes} {lines}") }
     0
 }
