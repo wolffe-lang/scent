@@ -112,7 +112,9 @@ fn literal_proof(p: Parser, options: Options) -> LiteralProof {
         }
         var proof = proof_empty(false)
         if n.op == EMPTY_NODE { proof.exact = true }
-        if n.op == CHAR { proof = proof_atom(literal_key(options, n.arg)) }
+        if n.op == CHAR && n.arg != options.terminator as int {
+            proof = proof_atom(literal_key(options, n.arg))
+        }
         if n.op == CLASS && !options.utf8 {
             var only = -1
             var multiple = false
@@ -125,7 +127,9 @@ fn literal_proof(p: Parser, options: Options) -> LiteralProof {
                 }
                 b += 1
             }
-            if only >= 0 && !multiple { proof = proof_atom(only) }
+            if only >= 0 && !multiple && only != options.terminator as int {
+                proof = proof_atom(only)
+            }
         }
         if n.op == GROUP_NODE { proof = copy proofs[n.a] }
         if n.op == CAT_NODE {
