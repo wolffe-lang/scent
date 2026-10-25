@@ -1,0 +1,23 @@
+//! Diagnostic only: retained read/scan work, no matcher and no output per line.
+
+fn main() -> int {
+    let args = env_args()
+    let fd = fs_open(args[1]) else { return 2 }
+    defer fs_close(fd) else |_| {}
+    var bytes: int = 0
+    var lines: int = 0
+    loop {
+        region chunk {
+            let buf = fs_read_chunk(fd, 98304) else |e| match e {
+                eof => { break },
+                io => { return 2 },
+            }
+            bytes += buf.len
+            if args[0] == "scan" {
+                for b in buf { if b == 10 as byte { lines += 1 } }
+            }
+        }
+    }
+    print("{bytes} {lines}")
+    0
+}

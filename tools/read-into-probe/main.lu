@@ -1,0 +1,24 @@
+//! Measurement only, against unchanged wolf-std sc72 at 78b9d3c.
+
+use std.fs
+
+fn main() -> int {
+    let args = env_args()
+    var file = fs.open(args[1]) else { return 2 }
+    defer fs.close(take file) else |_| {}
+    var buf = List[byte]()
+    var bytes: int = 0
+    var lines: int = 0
+    loop {
+        let n = fs.read_into(mut file, mut buf, 98304) else |e| match e {
+            eof => { break },
+            io => { return 2 },
+        }
+        bytes += n
+        if args[0] == "scan" {
+            for b in buf { if b == 10 as byte { lines += 1 } }
+        }
+    }
+    print("{bytes} {lines}")
+    0
+}
