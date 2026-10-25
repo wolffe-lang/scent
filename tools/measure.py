@@ -30,15 +30,20 @@ with tempfile.TemporaryDirectory(prefix='measure-',dir=target) as tmp:
  for path,mib in [(big,2048),(perf,256)]:
   with open(path,'wb') as f:
    for i in range(mib):f.write(block)
- for flags in [['-F','-c'],['-F','-n']]:
-  row={'argv':flags+['needle'],'bytes':big.stat().st_size}
+ memory_cases=[(['-F','-c','needle'],'C'),(['-F','-n','needle'],'C'),(['-E','-c','needle|absent'],'C'),(['-F','-c','-e','needle']+sum((['-e',f'absent{i:04d}'] for i in range(999)),[]),'C'),(['-F','-i','-c','NEEDLE'],'C.UTF-8')]
+ for argv,locale in memory_cases:
+  flags=argv
+  row={'argv':argv,'bytes':big.stat().st_size,'locale':locale}
+  prior_locale=os.environ.get('LC_ALL');os.environ['LC_ALL']=locale
   for name,binary in [('scent',ours),('gnu',gnu)]:
    log=tmp/(name+'-time')
-   output_bytes,head=drain(['/usr/bin/time','-f','%M %e','-o',str(log),str(binary)]+flags+['needle',str(big)])
+   output_bytes,head=drain(['/usr/bin/time','-f','%M %e','-o',str(log),str(binary)]+argv+[str(big)])
    if '-c' in flags:assert head==b'16777216\n',(name,head)
    else:assert output_bytes>1073741824,(name,output_bytes)
    rss,elapsed=map(float,log.read_text().split());row[name]={'peak_rss_kib':rss,'seconds':elapsed,'output_bytes':output_bytes}
   assert row['scent']['output_bytes']==row['gnu']['output_bytes'],row
+  if prior_locale is None:os.environ.pop('LC_ALL',None)
+  else:os.environ['LC_ALL']=prior_locale
   result['memory'].append(row);print('memory',json.dumps(row),flush=True)
  rows=[(['-F'],'needle'),(['-F','-i'],'NEEDLE'),(['-F','-c'],'needle'),(['-F','-v','-c'],'needle')]
  for syntax in ['G','E']:
