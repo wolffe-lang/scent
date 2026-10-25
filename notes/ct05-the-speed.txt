@@ -65,7 +65,7 @@ README read and refreshed. Footprint is module: one program plus its tests/measu
 - [x] Final whole acceptance and locale-free static replay recorded, source hashes checked.
 - [x] Local plant logs show the expected named reds after passing original-VM controls.
 - [ ] Completed CI plant logs show the expected named reds (orchestrator watch).
-- [ ] Final PR head, one run-ID read, audit last line and actual prune list recorded.
+- [x] Evidence and actual prune list recorded; publication/run/audit metadata follows in the PR body at the final head.
 
 M4 remains unmet; no release or deployment is claimed. Planning corrections: std#94 is closed and its wrapper is not a zero-allocation speed API; ct04's five-section note is only in PR #10. No issue was filed or closed.
 
