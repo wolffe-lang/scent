@@ -1,0 +1,158 @@
+//! Original Aho-Corasick construction: shared prefixes, breadth-first suffix
+//! links and terminal-output links. No external implementation consulted.
+//! Selection only: existing KMP/regex span engines retain leftmost-longest.
+
+use re
+
+struct TrieNode {
+    failure: int,
+    output: int,
+    first: int,
+    sibling: int,
+    unit: int,
+    depth: int,
+    terminal: bool,
+}
+
+struct Trie {
+    nodes: List[TrieNode],
+    edges: Map[int, int],
+    utf8: bool,
+}
+
+fn trie_node(unit: int, depth: int) -> TrieNode {
+    TrieNode {
+        failure: 0,
+        output: -1,
+        first: -1,
+        sibling: -1,
+        unit: unit,
+        depth: depth,
+        terminal: false,
+    }
+}
+
+fn trie_key(state: int, unit: int) -> int {
+    state * 4294967296 + unit
+}
+
+fn trie_unit(cp: int, utf8: bool, icase: bool) -> int {
+    if !icase { return cp }
+    if utf8 { return re.fold_key(cp) }
+    folded(cp as byte, true) as int
+}
+
+fn trie_compile(patterns: List[List[byte]], flags: Flags, utf8: bool) -> Trie {
+    var trie = Trie { nodes: [trie_node(0, 0)], edges: Map[int, int](), utf8: utf8 }
+    for pattern in patterns {
+        var forbidden = false
+        for b in pattern { if b == flags.terminator { forbidden = true } }
+        if forbidden { continue }
+        var at = 0
+        var state = 0
+        while at < pattern.len {
+            let (cp, width) = if utf8 {
+                re.locale_next(pattern, at, pattern.len)
+            } else {
+                (pattern[at] as int, 1)
+            }
+            let unit = trie_unit(cp, utf8, flags.ignore_case)
+            let key = trie_key(state, unit)
+            var next = trie.edges[key] else -1
+            if next < 0 {
+                next = trie.nodes.len
+                var node = trie_node(unit, trie.nodes[state].depth + 1)
+                node.sibling = trie.nodes[state].first
+                (mut trie.nodes).push(node)
+                trie.nodes[state].first = next
+                trie.edges[key] = next
+            }
+            state = next
+            at += width
+        }
+        trie.nodes[state].terminal = true
+    }
+    var queue = List[int]()
+    var child = trie.nodes[0].first
+    while child >= 0 { (mut queue).push(child); child = trie.nodes[child].sibling }
+    var head = 0
+    while head < queue.len {
+        let parent = queue[head]
+        child = trie.nodes[parent].first
+        while child >= 0 {
+            let unit = trie.nodes[child].unit
+            var fallback = trie.nodes[parent].failure
+            var edge = trie.edges[trie_key(fallback, unit)] else -1
+            while fallback != 0 && edge < 0 {
+                fallback = trie.nodes[fallback].failure
+                edge = trie.edges[trie_key(fallback, unit)] else -1
+            }
+            let next = if edge >= 0 then edge else 0
+            trie.nodes[child].failure = next
+            trie.nodes[child].output = if trie.nodes[next].terminal {
+                next
+            } else {
+                trie.nodes[next].output
+            }
+            (mut queue).push(child)
+            child = trie.nodes[child].sibling
+        }
+        head += 1
+    }
+    trie
+}
+
+fn trie_matches(compiled: Matcher, buf: List[byte], lo: int, hi: int) -> bool {
+    if compiled.trie.nodes[0].terminal { return true }
+    var state = 0
+    var at = lo
+    while at < hi {
+        let (cp, width) = if compiled.trie.utf8 {
+            re.locale_next(buf, at, hi)
+        } else {
+            (buf[at] as int, 1)
+        }
+        let unit = trie_unit(cp, compiled.trie.utf8, compiled.flags.ignore_case)
+        var next = compiled.trie.edges[trie_key(state, unit)] else -1
+        while next < 0 && state != 0 {
+            state = compiled.trie.nodes[state].failure
+            next = compiled.trie.edges[trie_key(state, unit)] else -1
+        }
+        state = if next >= 0 then next else 0
+        at += width
+        var terminal = if compiled.trie.nodes[state].terminal {
+            state
+        } else {
+            compiled.trie.nodes[state].output
+        }
+        while terminal >= 0 {
+            // UTF-8 word/whole modes dispatch to the scalar regex verifier;
+            // C terminal depths are byte widths and can use candidate().
+            if !compiled.flags.word && !compiled.flags.whole ||
+                candidate(compiled, buf, lo, hi, at - compiled.trie.nodes[terminal].depth, at) {
+                return true
+            }
+            terminal = compiled.trie.nodes[terminal].output
+        }
+    }
+    false
+}
+
+/// Scalar-aware fixed selection; the caller retains regex spans/word modes.
+pub fn compile_utf8(patterns: List[List[byte]], flags: Flags) -> Matcher {
+    var result = compile(List[List[byte]](), flags)
+    result.trie = trie_compile(patterns, flags, true)
+    result
+}
+
+/// True when this UTF-8 fixed matcher can answer boolean selection directly.
+pub fn scalar_selection(
+    compiled: Matcher,
+    ws: Workspace,
+    buf: List[byte],
+    lo: int,
+    hi: int,
+) -> bool ! {fallback} {
+    if !ws.accelerated || compiled.flags.word || compiled.flags.whole { return fallback }
+    trie_matches(compiled, buf, lo, hi)
+}

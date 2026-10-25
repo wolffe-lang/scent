@@ -58,7 +58,11 @@ pub fn compile(
         regular_patterns = copy patterns
     }
     let empty = List[List[byte]]()
-    let literal = fixed.compile(if syntax == "F" && !utf8 then copy patterns else copy empty, flags)
+    let literal = if syntax == "F" && utf8 {
+        fixed.compile_utf8(patterns, flags)
+    } else {
+        fixed.compile(if syntax == "F" then copy patterns else copy empty, flags)
+    }
     let regular = re.compile(
         regular_patterns,
         re.Options {
@@ -96,6 +100,11 @@ pub fn line_matches(
 ) -> bool {
     if compiled.syntax == "F" {
         return fixed.line_matches(compiled.literal, mut ws.literal, buf, lo, hi)
+    }
+    if compiled.syntax == "U" {
+        return fixed.scalar_selection(compiled.literal, ws.literal, buf, lo, hi) else {
+            return re.line_matches(compiled.regular, mut ws.regular, buf, lo, hi)
+        }
     }
     re.line_matches(compiled.regular, mut ws.regular, buf, lo, hi)
 }

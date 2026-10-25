@@ -1,0 +1,28 @@
+build: target/release/scent
+test src/re/compile_test.lu::test_compile_syntax_and_intervals ... ok
+test src/re/compile_test.lu::test_compile_brackets_and_assertions ... ok
+test src/re/compile_test.lu::test_parser_diagnostics_and_refs ... ok
+test src/re/compile_test.lu::test_backreference_path ... ok
+test src/re/compile_test.lu::test_empty_pattern_mebibyte ... ok
+test src/re/compile_test.lu::test_leading_interval_span ... ok
+test src/re/compile_test.lu::test_generated_diagnostic_regressions ... ok
+test src/re/compile_test.lu::test_literal_and_interval_validation_paths ... ok
+test src/re/compile_test.lu::test_interval_needs_content_after_operand ... ok
+test src/re/compile_test.lu::test_capture_in_nonfinal_alternative ... ok
+test src/re/compile_test.lu::test_backreference_projection_is_a_superset ... ok
+test src/re/compile_test.lu::test_adjacent_repeat_compatibility_policy ... ok
+test src/re/dfa_test.lu::test_dfa_cache_overflow ... ok
+test src/re/dfa_test.lu::test_dfa_context_and_units ... ok
+test src/re/linear_test.lu::test_leftmost_longest ... ok
+test src/re/linear_test.lu::test_word_and_whole ... ok
+test src/re/linear_test.lu::test_empty_cycle_linear ... ok
+test src/re/prefilter_test.lu::test_prefilter_retains_match ... ok
+test src/re/prefilter_test.lu::test_prefilter_superset ... ok
+wolf test: 19 passed; 0 failed; 0 rejected; 0 unsupported; 0 filtered out
+PASS dfa-cache-overflow
+PASS prefilter-retains-match
+PASS fixed-prefix-pattern
+PASS fixed-prefix-word
+PASS dfa-word-context
+PASS utf8-historic-fold
+PASS speed witnesses; SKIP=0

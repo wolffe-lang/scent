@@ -22,6 +22,7 @@ pub struct Flags {
 pub struct Matcher {
     patterns: List[Pattern],
     flags: Flags,
+    trie: Trie,
 }
 
 /// Monotonic KMP cursor and cached next candidate for one literal.
@@ -42,6 +43,7 @@ pub struct Workspace {
     hi: int,
     last_from: int,
     initialized: bool,
+    accelerated: bool,
 }
 
 /// A half-open byte span in the original input window.
@@ -90,23 +92,19 @@ pub fn compile(patterns: List[List[byte]], flags: Flags) -> Matcher {
         }
         (mut compiled).push(Pattern { bytes: bytes, fail: fail })
     }
-    Matcher { patterns: compiled, flags: flags }
+    Matcher { patterns: compiled, flags: copy flags, trie: trie_compile(patterns, flags, false) }
 }
 
 /// Create reusable scratch for a compiled matcher.
 pub fn workspace_new(re: Matcher) -> Workspace {
-    var searches = List[Search]()
-    for pat in re.patterns {
-        (mut searches).push(Search {
-            cursor: 0,
-            matched: 0,
-            found_lo: pat.bytes.len,
-            found_hi: 0,
-            ready: false,
-            done: false,
-        })
+    Workspace {
+        searches: List[Search](),
+        lo: 0,
+        hi: 0,
+        last_from: 0,
+        initialized: false,
+        accelerated: (env_get("SCENT_MATCH_ENGINE") else "") != "vm",
     }
-    Workspace { searches: searches, lo: 0, hi: 0, last_from: 0, initialized: false }
 }
 
 fn candidate(re: Matcher, buf: List[byte], lo: int, hi: int, a: int, b: int) -> bool {
@@ -168,6 +166,18 @@ pub fn next_span(
     hi: int,
     from: int,
 ) -> Span ! {none} {
+    if ws.searches.len == 0 {
+        for _ in re.patterns {
+            (mut ws.searches).push(Search {
+                cursor: 0,
+                matched: 0,
+                found_lo: 0,
+                found_hi: 0,
+                ready: false,
+                done: false,
+            })
+        }
+    }
     let start = if from < lo then lo else from
     if start > hi { return none }
     if !ws.initialized || lo != ws.lo || hi != ws.hi || start <= lo || start < ws.last_from {
@@ -209,6 +219,9 @@ pub fn next_span(
 /// Whether the half-open line window has an admissible match.
 pub fn line_matches(re: Matcher, mut ws: Workspace, buf: List[byte], lo: int, hi: int) -> bool {
     ws.initialized = false
+    if ws.accelerated && re.patterns.len > 1 && !re.trie.nodes[0].terminal {
+        return trie_matches(re, buf, lo, hi)
+    }
     for pat in re.patterns {
         if pat.bytes.len == 0 {
             var at = lo

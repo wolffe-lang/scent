@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+"""Named counterfactual witnesses for bounded acceleration (no timing waiver)."""
+import os,pathlib,subprocess,tempfile
+root=pathlib.Path(__file__).resolve().parent.parent
+binary=root/'target/release/scent'
+rows=[('dfa-cache-overflow',['-E','-c','(a|b)*c'],b'abababc\nmiss\n',{'SCENT_DFA_LIMIT':'1'}),('prefilter-retains-match',['-E','-c','n[e]edle'],b'prefix needle suffix\nmissing\n',{}),('fixed-prefix-pattern',['-F','-c','-e','ab','-e','abc'],b'ab\nabc\nx\n',{}),('fixed-prefix-word',['-F','-w','-o','-e','ab','-e','abc'],b'ab abc abcd\n',{}),('dfa-word-context',['-E','-w','-c','a|ab'],b'xab\nab\na\n',{}),('utf8-historic-fold',['-F','-i','-o','В'], 'ᲀВв\n'.encode(),{'LC_ALL':'C.UTF-8'})]
+for name,argv,data,env in rows:
+ e=dict(os.environ,LC_ALL='C',**{k:v for k,v in env.items() if k!='LC_ALL'})
+ if 'LC_ALL' in env:e['LC_ALL']=env['LC_ALL']
+ fast=subprocess.run([str(binary),*argv],input=data,capture_output=True,env=e)
+ old=subprocess.run([str(binary),*argv],input=data,capture_output=True,env=dict(e,SCENT_MATCH_ENGINE='vm'))
+ assert (fast.stdout,fast.stderr,fast.returncode)==(old.stdout,old.stderr,old.returncode),f'RED {name}: accelerated/original tuple differs'
+ assert fast.returncode==0 and not fast.stderr,f'RED {name}: expected selection missing'
+ expected={'dfa-cache-overflow':b'1\n','prefilter-retains-match':b'1\n','fixed-prefix-pattern':b'2\n','fixed-prefix-word':b'ab\nabc\n','dfa-word-context':b'2\n','utf8-historic-fold':'ᲀ\nВ\nв\n'.encode()}[name]
+ assert fast.stdout==expected,f'RED {name}: {fast.stdout!r} != {expected!r}'
+ print('PASS',name,flush=True)
+print('PASS speed witnesses; SKIP=0')
