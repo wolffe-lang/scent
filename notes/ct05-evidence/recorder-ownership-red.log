@@ -1,0 +1,4 @@
+speed: REFUSED: cannot record checkout head at /work/scent; GITHUB_SHA is unset; git: fatal: detected dubious ownership in repository at '/work/scent'
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory /work/scent

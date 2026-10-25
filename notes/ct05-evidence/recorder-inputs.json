@@ -1,0 +1,11 @@
+{
+  "prior_acceptance": "accept-inputs.json",
+  "all_production_source_unchanged": true,
+  "tested_recorder_changes": {
+    "tools/in-container": "b4fea081bca8564697e2b054d0fb870a5c93028524bf7955ad53ec8ec331ce9f",
+    "tools/speed": "62a1c4d60d5f44c10d81b811713822d609a2c046c64055e543dc5e4de0b707b8",
+    "tools/speed-ci": "469b0408b1e8fbab2f1ebca777038c7674f8f189500aadd29e6924b8b36e105e",
+    "tools/speed-head-test": "507db7e0c9d8f54e3ca681793c4951f21192d271940f48f91ee07c46cd7a671d"
+  },
+  "head_test_evidence": "recorder-head-tests.log (rerun after verifying the caller is outside Git discovery)"
+}

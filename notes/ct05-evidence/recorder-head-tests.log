@@ -1,0 +1,8 @@
+PASS recorder-non-repo-cwd
+PASS recorder-ignores-foreign-git-dir
+PASS recorder-github-sha
+PASS recorder-invalid-github-sha
+PASS recorder-github-sha-without-git
+PASS recorder-no-head-refuses
+PASS recorder-container-env-wiring
+PASS recorder head guards; SKIP=0

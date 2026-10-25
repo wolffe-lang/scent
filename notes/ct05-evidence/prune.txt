@@ -15,3 +15,5 @@ No shared/global prune, no unchecked worktree, no --force, no other lane touched
 Kept: main ct05 checkout, .wolf-bin pair, verified .oracle, native/release/static
 binaries, logs/PID/status files and all committed evidence. All acceptance,
 posture and local-plant controller status markers are 0; their children were waited.
+
+Recorder correction: regenerated ct05-corpus removed again after recorder-speed.json and recorder-check.log were secured.
