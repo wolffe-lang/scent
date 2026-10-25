@@ -6,6 +6,8 @@
 
 struct Dfa {
     states: List[List[int]],
+    dense: List[List[int]],
+    simple: bool,
     edges: Map[int, int],
     entries: int,
     cells: int,
@@ -18,7 +20,9 @@ fn dfa_new(re: Regex) -> Dfa {
     var enabled = re.prog.len <= 2048 && (env_get("SCENT_MATCH_ENGINE") else "") != "vm"
     for refs in re.backrefs { if refs { enabled = false } }
     var words = re.options.word
+    var simple = !re.options.utf8 && !re.options.word && !re.options.whole
     for inst in re.prog {
+        if inst.op >= BOL && inst.op <= WORD_END { simple = false }
         if inst.op >= BOUND && inst.op <= WORD_END { words = true }
     }
     let requested = (env_get("SCENT_DFA_LIMIT") else "128").to_int() else 128
@@ -26,6 +30,8 @@ fn dfa_new(re: Regex) -> Dfa {
     var states = List[List[int]]()
     (mut states).push(List[int]())
     Dfa {
+        dense: if simple then [zeros(257)] else List[List[int]](),
+        simple: simple,
         states: states,
         edges: Map[int, int](),
         entries: 0,
@@ -55,6 +61,7 @@ fn dfa_intern(mut ws: Workspace, count: int) -> int ! {fallback} {
     while i < count { (mut pcs).push(ws.next_origins[i]); i += 1 }
     ws.dfa.cells += count
     (mut ws.dfa.states).push(pcs)
+    if ws.dfa.simple { (mut ws.dfa.dense).push(zeros(257)) }
     ws.dfa.states.len - 1
 }
 
@@ -128,11 +135,21 @@ fn dfa_matches(re: Regex, mut ws: Workspace, bytes: List[byte], lo: int, hi: int
             (if right then 8 else 0)
         // Decoder sentinels extend through 2^31+255; use a 2^32 radix.
         let key: int = (state * 16 + context) * 4294967296 + cp + 1
-        var next = ws.dfa.edges[key] else -1
+        var next = -1
+        if ws.dfa.simple {
+            let slot = ws.dfa.dense[state][cp + 1]
+            if slot > 0 { next = slot - 3 }
+        } else {
+            next = ws.dfa.edges[key] else -1
+        }
         if next == -1 {
             if ws.dfa.entries >= 4096 { ws.dfa.enabled = false; return fallback }
             next = dfa_step(re, mut ws, state, bytes, lo, hi, pos, cp, left, right)?
-            ws.dfa.edges[key] = next
+            if ws.dfa.simple {
+                ws.dfa.dense[state][cp + 1] = next + 3
+            } else {
+                ws.dfa.edges[key] = next
+            }
             ws.dfa.entries += 1
         }
         if next == -2 { return true }
