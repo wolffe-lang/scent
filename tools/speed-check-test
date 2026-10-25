@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+import copy,pathlib,runpy
+root=pathlib.Path(__file__).resolve().parent.parent
+module=runpy.run_path(str(root/'tools/speed-check'));check=module['check'];names=module['NAMES']
+valid={'repeats':11,'warmups':1,'affinity':[0,1,2,3],'rows':[{'name':n,'seconds':{'gnu':[1.0]*11,'scent':[1.5]*11},'median':{'gnu':1.0,'scent':1.5},'ratio':1.5,'m4_2x':True} for n in sorted(names)]}
+ceilings={n:2.0 for n in names};assert check(valid,ceilings)==16
+for mutation in ['missing','duplicate','samples','median','ratio','m4','threshold']:
+ bad=copy.deepcopy(valid);limits=copy.deepcopy(ceilings)
+ if mutation=='missing':bad['rows'].pop()
+ if mutation=='duplicate':bad['rows'][0]['name']=bad['rows'][1]['name']
+ if mutation=='samples':bad['rows'][0]['seconds']['scent'].pop()
+ if mutation=='median':bad['rows'][0]['median']['scent']=1.0
+ if mutation=='ratio':bad['rows'][0]['ratio']=1.0
+ if mutation=='m4':bad['rows'][0]['m4_2x']=False
+ if mutation=='threshold':limits[bad['rows'][0]['name']]=1.0
+ try:check(bad,limits)
+ except AssertionError as e:print('PASS rejected',mutation,str(e))
+ else:raise AssertionError('guard did not fail: '+mutation)
+print('PASS speed-check guards; SKIP=0')

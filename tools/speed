@@ -46,8 +46,4 @@ for name,path,argv in rows:
  (ROOT/a.output).write_text(json.dumps(result,indent=2)+'\n')
 
 if a.ceilings:
- ceilings=json.loads((ROOT/a.ceilings).read_text())
- assert set(ceilings)=={r['name'] for r in result['rows']},'speed ratchet workload identity'
- misses=[f"{r['name']} {r['ratio']:.3f} > {ceilings[r['name']]:.3f}" for r in result['rows'] if r['ratio']>ceilings[r['name']]]
- assert not misses,'RED speed-regression: '+ '; '.join(misses)
- print('PASS speed-regression; M4 misses remain named in every row',flush=True)
+ subprocess.run(['python3','-I',str(ROOT/'tools/speed-check'),str(ROOT/a.output),str(ROOT/a.ceilings)],check=True)

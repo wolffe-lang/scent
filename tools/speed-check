@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+"""Fail closed on missing workloads, malformed timing evidence or regressions."""
+import argparse,json,pathlib,statistics
+NAMES={'literal','class','alternation','backreference','ignore-case','word','count','list','only-matching','invert','binary','recursive','utf8-fold','fixed-1','fixed-10','fixed-1000'}
+def check(report,ceilings):
+ assert report['repeats']==11 and report['warmups']==1 and report['affinity']==[0,1,2,3], 'measurement protocol drift'
+ assert set(ceilings)==NAMES and len(report['rows'])==len(NAMES), 'speed ratchet workload count'
+ assert {r['name'] for r in report['rows']}==NAMES, 'speed ratchet workload identity'
+ misses=[]
+ for r in report['rows']:
+  for engine in ['gnu','scent']:
+   samples=r['seconds'][engine]
+   assert len(samples)==11 and all(x>0 for x in samples),'incomplete timing samples'
+   assert r['median'][engine]==statistics.median(samples),'median does not match evidence'
+  ratio=r['median']['scent']/r['median']['gnu']
+  assert r['ratio']==ratio and r['m4_2x']==(ratio<=2),'M4 row drift'
+  if ratio>ceilings[r['name']]:misses.append(f"{r['name']} {ratio:.3f} > {ceilings[r['name']]:.3f}")
+ assert not misses,'RED speed-regression: '+'; '.join(misses)
+ return len(report['rows'])
+if __name__=='__main__':
+ p=argparse.ArgumentParser();p.add_argument('report');p.add_argument('ceilings');a=p.parse_args()
+ n=check(json.loads(pathlib.Path(a.report).read_text()),json.loads(pathlib.Path(a.ceilings).read_text()))
+ print(f'PASS speed-regression: {n} workloads; M4 misses remain named, not waived')
