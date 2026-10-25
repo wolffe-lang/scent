@@ -4,6 +4,7 @@ use re as utf8
 // Clean-room: pinned GNU 3.12 streaming probes and POSIX grep.
 // Reference: ferp 7d332b5 src/ferp_io.f90:142-281 for line state only;
 // GNU decides CR preservation, binary mode and unterminated lines.
+use bytefind
 use opts
 use matcher
 use out
@@ -321,9 +322,7 @@ pub fn scan(
                 },
             }
             if !flags.zero && flags.binary != 1 {
-                for b in buf {
-                    if b == 0 as byte { current.binary = true; break }
-                }
+                if bytefind.find(buf, 0, 0 as byte) < buf.len { current.binary = true }
             }
             if current.binary && flags.binary == 2 {
                 current.matches = 0
@@ -333,6 +332,8 @@ pub fn scan(
                 var at: int = 0
                 while at < buf.len && !current.stop {
                     let term = if flags.zero then 0 as byte else 10 as byte
+                    at = bytefind.next_end(buf, at, term, current.binary && flags.binary == 0)
+                    if at == buf.len { break }
                     let end = buf[at] == term ||
                         current.binary && flags.binary == 0 && buf[at] == 0 as byte
                     if end {

@@ -1,0 +1,17 @@
+//! member: false
+
+use bytefind
+
+//! Search boundaries must preserve LF, NUL and the no-terminator carry.
+
+fn main() {
+    let bytes = "abc\x00d\nef".bytes()
+    assert(bytefind.find(bytes, 0, 0 as byte) == 3)
+    assert(bytefind.find(bytes, 0, 120 as byte) == bytes.len)
+    assert(bytefind.next_end(bytes, 0, 10 as byte, false) == 5)
+    assert(bytefind.next_end(bytes, 0, 10 as byte, true) == 3)
+    assert(bytefind.next_end(bytes, 4, 10 as byte, true) == 5)
+    assert(bytefind.next_end(bytes, 0, 0 as byte, false) == 3)
+    assert(bytefind.next_end(bytes, 6, 10 as byte, false) == bytes.len)
+    assert(bytefind.next_end(bytes, bytes.len, 10 as byte, true) == bytes.len)
+}

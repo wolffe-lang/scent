@@ -1,0 +1,22 @@
+//! member: true
+
+// Keep matcher/output/control branches out of the byte-search loop. This
+// is scent's own scalar memchr-shaped loop until std#89 provides a measured
+// replacement. Binary default mode additionally treats NUL as a separator.
+/// Return the next matching byte or the buffer length, without allocation.
+pub fn find(buf: List[byte], from: int, needle: byte) -> int {
+    var at = from
+    while at < buf.len && buf[at] != needle { at += 1 }
+    at
+}
+
+/// Return the next LF/NUL delimiter or the buffer length, without allocation.
+pub fn next_end(buf: List[byte], from: int, term: byte, nul: bool) -> int {
+    var at = from
+    if nul {
+        while at < buf.len && buf[at] != term && buf[at] != 0 as byte { at += 1 }
+    } else {
+        return find(buf, from, term)
+    }
+    at
+}
