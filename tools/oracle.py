@@ -3,7 +3,7 @@
 import gzip
 import argparse, base64, fnmatch, hashlib, json, os, pathlib, shutil, subprocess, tempfile, threading, time, tomllib, sys, select, runpy, socket, errno, pty, termios
 ROOT=pathlib.Path(__file__).resolve().parent.parent
-p=argparse.ArgumentParser();p.add_argument('--only');p.add_argument('--field',action='store_true');p.add_argument('--bin',default='target/native/scent');p.add_argument('--cases',default='tests/cases');p.add_argument('--capture-reference');p.add_argument('--replay-reference');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--match-engine',choices=['auto','vm'],default='auto');p.add_argument('--only');p.add_argument('--field',action='store_true');p.add_argument('--bin',default='target/native/scent');p.add_argument('--cases',default='tests/cases');p.add_argument('--capture-reference');p.add_argument('--replay-reference');a=p.parse_args()
 pin=tomllib.loads((ROOT/'scent-oracle.toml').read_text())['oracle']
 ours=(ROOT/a.bin).resolve()
 reference=pathlib.Path(shutil.which('ggrep') or shutil.which('grep') or '') if a.field else ROOT/'.oracle/grep'
@@ -45,6 +45,7 @@ def launch(binary, c, work, bindir):
     env={'PATH':str(bindir)+':'+os.defpath,'HOME':str(work),'TERM':'dumb'}
     if os.environ.get('SCENT_NO_LOCALE')!='1':env['LC_ALL']='C'
     env.update(c.get('env',{}))
+    if binary==ours:env['SCENT_MATCH_ENGINE']=a.match_engine
     stdin=data(c.get('stdin',''))
     args=[c.get('invocation',c.get('wrapper','grep'))]+c['argv']
     executable=str(binary) if c.get('invocation') else None
