@@ -14,7 +14,7 @@ struct LiteralProof {
 
 struct Prefilter {
     units: List[int],
-    shifts: Map[int, int],
+    shifts: List[int],
     exact: bool,
 }
 
@@ -189,9 +189,14 @@ fn literal_proof(p: Parser, options: Options) -> LiteralProof {
 
 fn prefilter_new(proof: LiteralProof) -> Prefilter {
     let units = if proof.exact then copy proof.full else copy proof.required
-    var shifts = Map[int, int]()
+    var shifts = List[int]()
+    var byte_value = 0
+    while byte_value < 256 { (mut shifts).push(units.len); byte_value += 1 }
     var i = 0
-    while i + 1 < units.len { shifts[units[i]] = units.len - i - 1; i += 1 }
+    while i + 1 < units.len {
+        if units[i] >= 0 && units[i] < 256 { shifts[units[i]] = units.len - i - 1 }
+        i += 1
+    }
     Prefilter { units: units, shifts: shifts, exact: proof.exact }
 }
 
@@ -243,7 +248,7 @@ fn literal_contains(
                     return true
                 }
             }
-            at += if scan then 1 else (filter.shifts[last] else size)
+            at += if scan then 1 else filter.shifts[last]
         }
         return false
     }

@@ -7,8 +7,7 @@ use re
 struct TrieNode {
     failure: int,
     output: int,
-    first: int,
-    sibling: int,
+    children: List[int],
     unit: int,
     depth: int,
     terminal: bool,
@@ -16,7 +15,6 @@ struct TrieNode {
 
 struct Trie {
     nodes: List[TrieNode],
-    edges: Map[int, int],
     utf8: bool,
 }
 
@@ -24,16 +22,28 @@ fn trie_node(unit: int, depth: int) -> TrieNode {
     TrieNode {
         failure: 0,
         output: -1,
-        first: -1,
-        sibling: -1,
+        children: List[int](),
         unit: unit,
         depth: depth,
         terminal: false,
     }
 }
 
-fn trie_key(state: int, unit: int) -> int {
-    state * 4294967296 + unit
+fn trie_edge(trie: Trie, state: int, unit: int) -> int {
+    var lo = 0
+    var hi = trie.nodes[state].children.len
+    while lo < hi {
+        let mid = lo + (hi - lo) / 2
+        let child = trie.nodes[state].children[mid]
+        if trie.nodes[child].unit < unit {
+            lo = mid + 1
+        } else if trie.nodes[child].unit > unit {
+            hi = mid
+        } else {
+            return child
+        }
+    }
+    -1
 }
 
 fn trie_unit(cp: int, utf8: bool, icase: bool) -> int {
@@ -43,7 +53,7 @@ fn trie_unit(cp: int, utf8: bool, icase: bool) -> int {
 }
 
 fn trie_compile(patterns: List[List[byte]], flags: Flags, utf8: bool) -> Trie {
-    var trie = Trie { nodes: [trie_node(0, 0)], edges: Map[int, int](), utf8: utf8 }
+    var trie = Trie { nodes: [trie_node(0, 0)], utf8: utf8 }
     for pattern in patterns {
         var forbidden = false
         for b in pattern { if b == flags.terminator { forbidden = true } }
@@ -57,35 +67,37 @@ fn trie_compile(patterns: List[List[byte]], flags: Flags, utf8: bool) -> Trie {
                 (pattern[at] as int, 1)
             }
             let unit = trie_unit(cp, utf8, flags.ignore_case)
-            let key = trie_key(state, unit)
-            var next = trie.edges[key] else -1
+            var next = trie_edge(trie, state, unit)
             if next < 0 {
                 next = trie.nodes.len
-                var node = trie_node(unit, trie.nodes[state].depth + 1)
-                node.sibling = trie.nodes[state].first
+                let node = trie_node(unit, trie.nodes[state].depth + 1)
                 (mut trie.nodes).push(node)
-                trie.nodes[state].first = next
-                trie.edges[key] = next
+                (mut trie.nodes[state].children).push(next)
+                var slot = trie.nodes[state].children.len - 1
+                while slot > 0 && trie.nodes[trie.nodes[state].children[slot - 1]].unit > unit {
+                    trie.nodes[state].children[slot] = trie.nodes[state].children[slot - 1]
+                    slot -= 1
+                }
+                trie.nodes[state].children[slot] = next
             }
             state = next
             at += width
         }
         trie.nodes[state].terminal = true
     }
-    var queue = List[int]()
-    var child = trie.nodes[0].first
-    while child >= 0 { (mut queue).push(child); child = trie.nodes[child].sibling }
+    var queue = copy trie.nodes[0].children
     var head = 0
     while head < queue.len {
         let parent = queue[head]
-        child = trie.nodes[parent].first
-        while child >= 0 {
+        var i = 0
+        while i < trie.nodes[parent].children.len {
+            let child = trie.nodes[parent].children[i]
             let unit = trie.nodes[child].unit
             var fallback = trie.nodes[parent].failure
-            var edge = trie.edges[trie_key(fallback, unit)] else -1
+            var edge = trie_edge(trie, fallback, unit)
             while fallback != 0 && edge < 0 {
                 fallback = trie.nodes[fallback].failure
-                edge = trie.edges[trie_key(fallback, unit)] else -1
+                edge = trie_edge(trie, fallback, unit)
             }
             let next = if edge >= 0 then edge else 0
             trie.nodes[child].failure = next
@@ -95,7 +107,7 @@ fn trie_compile(patterns: List[List[byte]], flags: Flags, utf8: bool) -> Trie {
                 trie.nodes[next].output
             }
             (mut queue).push(child)
-            child = trie.nodes[child].sibling
+            i += 1
         }
         head += 1
     }
@@ -113,10 +125,10 @@ fn trie_matches(compiled: Matcher, buf: List[byte], lo: int, hi: int) -> bool {
             (buf[at] as int, 1)
         }
         let unit = trie_unit(cp, compiled.trie.utf8, compiled.flags.ignore_case)
-        var next = compiled.trie.edges[trie_key(state, unit)] else -1
+        var next = trie_edge(compiled.trie, state, unit)
         while next < 0 && state != 0 {
             state = compiled.trie.nodes[state].failure
-            next = compiled.trie.edges[trie_key(state, unit)] else -1
+            next = trie_edge(compiled.trie, state, unit)
         }
         state = if next >= 0 then next else 0
         at += width
