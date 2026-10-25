@@ -43,7 +43,7 @@ fn dfa_new(re: Regex) -> Dfa {
 }
 
 fn dfa_intern(mut ws: Workspace, count: int) -> int ! {fallback} {
-    var state = 0
+    var state: int = 0
     while state < ws.dfa.states.len {
         if ws.dfa.states[state].len == count {
             var i = 0
@@ -117,7 +117,7 @@ fn dfa_matches(re: Regex, mut ws: Workspace, bytes: List[byte], lo: int, hi: int
     fallback,
 } {
     if !ws.dfa.enabled { return fallback }
-    var state = 0
+    var state: int = 0
     var pos = lo
     while pos <= hi {
         var cp = -1
@@ -129,12 +129,13 @@ fn dfa_matches(re: Regex, mut ws: Workspace, bytes: List[byte], lo: int, hi: int
         }
         let left = ws.dfa.words && word_before(re, bytes, lo, pos)
         let right = ws.dfa.words && word_at(re, bytes, pos, hi)
-        let context = (if pos == lo then 1 else 0) +
+        let context: int = (if pos == lo then 1 else 0) +
             (if pos == hi then 2 else 0) +
             (if left then 4 else 0) +
             (if right then 8 else 0)
         // Decoder sentinels extend through 2^31+255; use a 2^32 radix.
-        let key: int = (state * 16 + context) * 4294967296 + cp + 1
+        let radix: int = 4294967296
+        let key: int = (state * 16 + context) * radix + cp + 1
         var next = -1
         if ws.dfa.simple {
             let slot = ws.dfa.dense[state][cp + 1]
