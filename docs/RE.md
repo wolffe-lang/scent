@@ -176,10 +176,9 @@ The complete per-pair records retain every subject and both span sequences.
 
 ## Character and speed extensions
 
-The UTF-8 phase can replace the byte cursor and class table with decoded
-codepoints, glibc-2.39 C.UTF-8 class/fold tables, and byte-offset preserving
-positions. Assertions must use the same decoded character predicates.
-Invalid encoding policy belongs at the cursor/CLI boundary; capture slots
+UTF-8 execution uses decoded units, generated C.UTF-8 class/fold tables and
+byte-offset-preserving positions. Assertions use the same decoded predicates.
+Malformed bytes and legacy values retain separate identities; capture slots
 remain byte offsets for backreferences.
 
 The bounded lazy-DFA cache lives in `Workspace`, while immutable mandatory-literal

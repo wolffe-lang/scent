@@ -1,0 +1,47 @@
+kasumi, locked CPUs 0-3, pinned Ubuntu/GNU 3.12; one warmup and 11 interleaved pairs per row.
+Output drained through pipes, complete SHA256/status checked on every timing.
+Each ratio uses GNU measured in that phase, not a shared denominator.
+The dfa column retains the first map-backed DFA draft, including its regressions.
+The prefilter-local column includes dense byte DFA edges, local trie edges and byte-indexed skip tables.
+Final additionally isolates scalar delimiter search from reader controls.
+
+Workload | baseline scent/GNU | DFA draft | prefilters | final GNU s | final scent s | final ratio | M4 <=2x
+literal | 98.96 | 85.05 | 16.68 | 0.010657 | 0.107883 | 10.12 | MISS
+class | 95.91 | 84.37 | 16.67 | 0.010509 | 0.107522 | 10.23 | MISS
+alternation | 159.52 | 94.25 | 36.92 | 0.010205 | 0.297297 | 29.13 | MISS
+backreference | 2.89 | 2.83 | 2.25 | 0.037144 | 0.079790 | 2.15 | MISS
+ignore-case | 24.65 | 44.49 | 5.00 | 0.002643 | 0.008979 | 3.40 | MISS
+word | 6.77 | 34.82 | 3.05 | 0.004084 | 0.009540 | 2.34 | MISS
+count | 5.53 | 5.84 | 5.75 | 0.002464 | 0.012438 | 5.05 | MISS
+list | 1.29 | 1.52 | 1.40 | 0.000310 | 0.000469 | 1.51 | PASS
+only-matching | 10.33 | 16.30 | 4.89 | 0.009661 | 0.043152 | 4.47 | MISS
+invert | 5.48 | 5.55 | 5.79 | 0.002508 | 0.012275 | 4.89 | MISS
+binary | 4.72 | 5.04 | 5.33 | 0.004146 | 0.020123 | 4.85 | MISS
+recursive | 11.13 | 11.22 | 12.01 | 0.005793 | 0.067585 | 11.67 | MISS
+utf8-fold | 7.04 | 5.68 | 6.39 | 0.031067 | 0.135155 | 4.35 | MISS
+fixed-1 | 5.15 | 5.57 | 5.69 | 0.000932 | 0.004109 | 4.41 | MISS
+fixed-10 | 9.60 | 14.78 | 6.12 | 0.001293 | 0.005902 | 4.56 | MISS
+fixed-1000 | 1013.18 | 1008.22 | 6.78 | 0.001440 | 0.007909 | 5.49 | MISS
+
+The regression ceiling is max(2, 1.5 * the final measured ratio), pinned per workload.
+It is not an M4 waiver: the independent m4_2x field stays false for every miss.
+Baseline replay against the ratchet is RED on nine named rows (ratchet-red.log).
+
+Read-path attribution (64 MiB, 96 KiB chunks, medians of 11):
+chunk-read: 0.007484 s
+chunk-scan: 0.026411 s
+sc72-into-read: 0.043298 s
+sc72-into-scan: 0.062051 s
+reused-c-read: 0.006217 s
+reused-c-scan: 0.007373 s
+Read calls: 684 (683 nonempty + EOF); region-ledger allocations: 67141392 bytes for 67108608 input bytes, 48 ledger bytes overhead per nonempty read.
+These are builtin-call and region-ledger counts, not a host-syscall trace. strace is absent from the pinned container; no package was installed.
+Actual sc72 std#94 wrapper: +35.815 ms for reads alone (5.79x current read time). It buys retained-buffer reuse, not a speed gain on this workload.
+Reusable C read control: 1.266 ms below current reads. This bounds the observed read/allocation/runtime opportunity, not a promise for a builtin.
+Scalar delimiter increment: 18.927 ms; black-box memchr increment: 1.156 ms. std#89 opportunity here: 17.771 ms per 64 MiB.
+The C adapter is original measurement code calling published libc interfaces, not a binding or dependency in scent.
+std#94 is CLOSED at sc72/78b9d3c; pinned scent std 2386522 lacks the wrapper. std#89 is OPEN. No pin changed.
+
+R-ct05-1: recommend A, retain every miss and ratchet ct06; M4 is not met.
+R-ct05-2: recommend retaining the current read path rather than taking the allocating/copying std#94 wrapper as a speed fix. A true read-into builtin and vectorized search are separately measured follow-ons. No ruling decided.
+R-ct05-3: recommend conservative bounded proofs (256 units / 4096 AST nodes), admitting unknowns, rather than unbounded compile-time literal analysis. This is the implemented limit, not a globally optimal-literal claim.
