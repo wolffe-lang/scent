@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+"""Pinned, interleaved median-of-eleven workload measurement; original ct05 rig."""
+import argparse, hashlib, json, os, pathlib, statistics, subprocess, time
+ROOT=pathlib.Path(__file__).resolve().parent.parent
+p=argparse.ArgumentParser(); p.add_argument('--output',required=True); p.add_argument('--bin',default='target/release/scent'); a=p.parse_args()
+assert os.environ.get('SCENT_IN_CONTAINER')=='1'
+assert sorted(os.sched_getaffinity(0))==[0,1,2,3]
+corpus=ROOT/'target/ct05-corpus'; corpus.mkdir(parents=True,exist_ok=True)
+def make(name,block,size):
+ path=corpus/name
+ with path.open('wb') as f:
+  for _ in range(size//len(block)): f.write(block)
+ return path
+text=make('text',b'the quick brown fox searches for the needle in a quiet haystack.\n'+b'x'*960+b'\n',64*1024*1024)
+log=make('log',b'2026-10-25 INFO request=1042 endpoint=needle status=200\n2026-10-25 DEBUG request=1043 endpoint=other status=404\n',4*1024*1024)
+binary=make('binary',b'abc\0needle\xff\nxyz\0other\xfe\n',4*1024*1024)
+many=make('many',b'entry needle selected\nentry other rejected\n',1024*1024)
+utf8=make('utf8',('é needle α '+'中'*15+'\n').encode(),64*1024*1024)
+tree=corpus/'tree';tree.mkdir(exist_ok=True)
+for i in range(1000):(tree/f'f{i:04d}').write_bytes(b'needle one\nother two\n'*200)
+patterns={}
+for n in [1,10,1000]:
+ path=corpus/f'patterns-{n}';path.write_text('needle\n'+''.join(f'absent{i:04d}\n' for i in range(n-1)));patterns[n]=path
+rows=[('literal',text,['-E','-c','needle']),('class',text,['-E','-c','n[e]edle']),('alternation',text,['-E','-c','needle|zebra']),('backreference',log,['-E','-c',r'n(e)\1dle']),('ignore-case',log,['-E','-i','-c','NEEDLE']),('word',log,['-E','-w','-c','needle']),('count',log,['-F','-c','needle']),('list',text,['-F','-l','needle']),('only-matching',log,['-E','-o','needle']),('invert',log,['-F','-v','-c','needle']),('binary',binary,['-F','-a','-c','needle']),('recursive',tree,['-r','-F','-c','needle']),('utf8-fold',utf8,['-F','-i','-c','É'])]
+rows += [(f'fixed-{n}',many,['-F','-c','-f',str(patterns[n])]) for n in [1,10,1000]]
+bins={'scent':ROOT/a.bin,'gnu':ROOT/'.oracle/grep'}
+def run(name,argv,path,locale):
+ start=time.perf_counter();proc=subprocess.Popen([str(bins[name]),*argv,str(path)],stdout=subprocess.PIPE,stderr=subprocess.PIPE,env=dict(os.environ,LC_ALL=locale)); h=hashlib.sha256();size=0
+ while chunk:=proc.stdout.read(65536):h.update(chunk);size+=len(chunk)
+ err=proc.stderr.read();rc=proc.wait()
+ assert rc in (0,1) and not err,(name,argv,rc,err)
+ return time.perf_counter()-start,(rc,h.hexdigest(),size)
+result={'head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'affinity':[0,1,2,3],'repeats':11,'warmups':1,'output':'pipe drained; SHA256/stdout/status compared on every run','binaries':{k:hashlib.sha256(v.read_bytes()).hexdigest() for k,v in bins.items()},'rows':[]}
+for name,path,argv in rows:
+ locale='C.UTF-8' if name=='utf8-fold' else 'C';times={k:[] for k in bins};tuples=set()
+ for turn in range(12):
+  for engine in (['gnu','scent'] if turn%2==0 else ['scent','gnu']):
+   elapsed,answer=run(engine,argv,path,locale);tuples.add(answer)
+   if turn:times[engine].append(elapsed)
+  print(name,'pair',turn,'seconds',elapsed,flush=True)
+ assert len(tuples)==1,(name,tuples)
+ medians={k:statistics.median(v) for k,v in times.items()};ratio=medians['scent']/medians['gnu']
+ row={'name':name,'argv':argv,'locale':locale,'bytes':sum(x.stat().st_size for x in path.iterdir()) if path.is_dir() else path.stat().st_size,'seconds':times,'median':medians,'ratio':ratio,'m4_2x':ratio<=2,'range':{k:[min(v),max(v)] for k,v in times.items()}}
+ result['rows'].append(row);print(json.dumps(row),flush=True)
+ (ROOT/a.output).write_text(json.dumps(result,indent=2)+'\n')

@@ -1,0 +1,27 @@
+ct05 prediction, before implementation; baseline 7f6651d68468efd8b5e9ba2dff358a841107b98c.
+kasumi, pinned Ubuntu, flock kasumi-cores-0-3.lock + taskset 0-3; one warmup, 11 interleaved pairs.
+Every result checked by stdout digest, stderr and status; output drained through pipe.
+Workload | bytes | GNU seconds | scent seconds | scent/GNU | M4 <=2x
+literal | 67108608 | 0.010488 | 1.037926 | 98.96 | MISS
+class | 67108608 | 0.010727 | 1.028785 | 95.91 | MISS
+alternation | 67108608 | 0.009775 | 1.559272 | 159.52 | MISS
+backreference | 4194288 | 0.040840 | 0.117862 | 2.89 | MISS
+ignore-case | 4194288 | 0.002793 | 0.068869 | 24.65 | MISS
+word | 4194288 | 0.004304 | 0.029144 | 6.77 | MISS
+count | 4194288 | 0.002593 | 0.014350 | 5.53 | MISS
+list | 67108608 | 0.000399 | 0.000516 | 1.29 | PASS
+only-matching | 4194288 | 0.010014 | 0.103473 | 10.33 | MISS
+invert | 4194288 | 0.002637 | 0.014440 | 5.48 | MISS
+binary | 4194303 | 0.004351 | 0.020518 | 4.72 | MISS
+recursive | 4200000 | 0.006090 | 0.067785 | 11.13 | MISS
+utf8-fold | 67108842 | 0.030020 | 0.211225 | 7.04 | MISS
+fixed-1 | 1048555 | 0.000982 | 0.005052 | 5.15 | MISS
+fixed-10 | 1048555 | 0.002096 | 0.020111 | 9.60 | MISS
+fixed-1000 | 1048555 | 0.001598 | 1.619528 | 1013.18 | MISS
+
+Three worst measured ratios: fixed-1000 1013.18x, alternation 159.52x, literal 98.96x.
+Prediction: lazy cached subset transitions cut regular selection state-set work; literal rejection/skip scans cut negative scans; a shared trie removes the 1000-pattern multiplier. Backreferences retain verification; span output still uses the existing leftmost-longest VM. Reader delimiter scans and allocating chunk reads remain a floor, so some 2x rows will miss.
+R-ct05-1 recommendation A: name every miss, keep a regression ratchet, leave the 2x milestone unmet until follow-on work. This is a recommendation, not a ruling.
+Memory prediction: per-chunk bounded caches preserve the 32MiB / 2GiB streaming gate. UTF-8, malformed bytes, historic folds, assertions and prefix patterns must preserve every existing tuple.
+Source access: scent own code only; no third-party matcher implementation. GNU tarball built unseen by tools/fetch-oracle.
+std#94 is CLOSED (sc72, std#96); its API is absent from the pinned std 2386522. std#89 remains OPEN. No pin change in ct05.
