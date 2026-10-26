@@ -92,12 +92,12 @@ fn proof_atom(cp: int) -> LiteralProof {
     LiteralProof { required: [cp], prefix: [cp], suffix: [cp], full: [cp], exact: true }
 }
 
-fn literal_proof(p: Parser, options: Options) -> LiteralProof {
+fn literal_proof_at(p: Parser, options: Options, root: int) -> LiteralProof {
     if p.nodes.len > 4096 { return proof_empty(false) }
     var proofs = List[LiteralProof]()
     for _ in p.nodes { (mut proofs).push(proof_empty(false)) }
     var done = zeros(p.nodes.len)
-    var pending = [p.frames[0].alt]
+    var pending = [root]
     while pending.len > 0 {
         let index = pending[pending.len - 1]
         let n = copy p.nodes[index]
@@ -184,7 +184,33 @@ fn literal_proof(p: Parser, options: Options) -> LiteralProof {
         done[index] = 1
         let ignored = (mut pending).pop() else 0
     }
-    copy proofs[p.frames[0].alt]
+    copy proofs[root]
+}
+
+// Split only a bounded, entirely exact top-level union. A partial proof
+// falls back as a whole: a mandatory substring is not an accepting branch.
+fn literal_filters(p: Parser, options: Options) -> List[Prefilter] {
+    let root = p.frames[0].alt
+    var pending = [root]
+    var filters = List[Prefilter]()
+    if p.nodes.len <= 4096 {
+        while pending.len > 0 && pending.len + filters.len <= 32 {
+            let node = (mut pending).pop() else root
+            let n = copy p.nodes[node]
+            if n.op == ALT_NODE {
+                (mut pending).push(n.a)
+                (mut pending).push(n.b)
+            } else if n.op == GROUP_NODE {
+                (mut pending).push(n.a)
+            } else {
+                let proof = literal_proof_at(p, options, node)
+                if !proof.exact { break }
+                (mut filters).push(prefilter_new(proof))
+                if pending.len == 0 { return filters }
+            }
+        }
+    }
+    [prefilter_new(literal_proof_at(p, options, root))]
 }
 
 fn prefilter_new(proof: LiteralProof) -> Prefilter {

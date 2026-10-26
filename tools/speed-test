@@ -19,6 +19,10 @@ print('PASS speed witnesses; SKIP=0')
 # ct06: independently spelled expected tuples for root rejection and the
 # no-history fast path. All run through the real CLI and original-VM control.
 for name,argv,data,want,locale in [
+ ('exact-union-branches',['-E','-c','needle|ze[b]ra'],b'needle\nzebra\nneedless\nmiss\n',b'3\n','C'),
+ ('exact-union-unknown',['-E','-c','needle|[0-9]+'],b'needle\n123\nmiss\n',b'2\n','C'),
+ ('exact-union-empty',['-E','-c','needle|'],b'\nx\n',b'2\n','C'),
+ ('exact-union-bound',['-E','-c','|'.join('p'+str(i) for i in range(40))],b'p39\nmiss\n',b'1\n','C'),
  ('trie-root-byte',['-F','-c','-e','needle','-e','absent'],b'needle\nabsent\nmissing\n',b'2\n','C'),
  ('trie-root-high-byte',['-F','-c','-e','é','-e','à'],'é\nà\nx\n'.encode(),b'2\n','C.UTF-8'),
  ('trie-root-empty',['-F','-c','-e','','-e','ab'],b'\nab\nx\n',b'3\n','C'),

@@ -143,8 +143,8 @@ pub fn compile(
         verify: List[bool](),
         filters: List[Prefilter](),
     }
-    var selection_proofs = List[LiteralProof]()
-    var span_proofs = List[LiteralProof]()
+    var selection_proofs = List[List[Prefilter]]()
+    var span_proofs = List[List[Prefilter]]()
     var index = 0
     while index < patterns.len {
         let p = parse(patterns[index], options, mut diagnostics, index)
@@ -170,8 +170,8 @@ pub fn compile(
         let span_end = emit(mut re.prog, ACCEPT, 0, 0, 0)
         let span_start = compile_tree(mut re.prog, span, span_class_offset, span_end)
         (mut re.span_starts).push(span_start)
-        (mut selection_proofs).push(literal_proof(p, options))
-        (mut span_proofs).push(literal_proof(span, options))
+        (mut selection_proofs).push(literal_filters(p, options))
+        (mut span_proofs).push(literal_filters(span, options))
         // GNU's literal shortcut bypasses selection-parser anchor quirks.
         if byte_literal(patterns[index], span) { re.starts[index] = span_start }
         // Ruling #117: a terminator-bearing pattern never crosses records,
@@ -194,20 +194,20 @@ pub fn compile(
     }
     var i = 0
     while i < re.starts.len {
-        let proof = if re.verify[i] || re.starts[i] == re.span_starts[i] {
+        var filters = if re.verify[i] || re.starts[i] == re.span_starts[i] {
             copy span_proofs[i]
         } else {
             copy selection_proofs[i]
         }
-        var filter = prefilter_new(proof)
         for b in patterns[i] {
             if b == options.terminator {
-                filter = prefilter_new(proof_atom(options.terminator as int))
-                filter.exact = false
+                var impossible = prefilter_new(proof_atom(options.terminator as int))
+                impossible.exact = false
+                filters = [impossible]
                 break
             }
         }
-        (mut re.filters).push(filter)
+        for filter in filters { (mut re.filters).push(copy filter) }
         i += 1
     }
     re
