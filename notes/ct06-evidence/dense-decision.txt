@@ -1,0 +1,1 @@
+Rejected dense-context specialization: alternation target median 298.478 ms -> 301.179 ms on CPUs 4-7 (11 samples), +0.90%; no target improvement. Source patch retained, not applied. Other sample ranges overlap. baseline.json and dense.json contain all samples and GNU pairs.
