@@ -15,6 +15,7 @@ struct TrieNode {
 
 struct Trie {
     nodes: List[TrieNode],
+    roots: List[int],
     utf8: bool,
 }
 
@@ -30,6 +31,9 @@ fn trie_node(unit: int, depth: int) -> TrieNode {
 }
 
 fn trie_edge(trie: Trie, state: int, unit: int) -> int {
+    if state == 0 && unit >= 0 && unit < 256 && trie.roots[unit] >= 0 {
+        return trie.roots[unit]
+    }
     var lo = 0
     var hi = trie.nodes[state].children.len
     while lo < hi {
@@ -53,7 +57,10 @@ fn trie_unit(cp: int, utf8: bool, icase: bool) -> int {
 }
 
 fn trie_compile(patterns: List[List[byte]], flags: Flags, utf8: bool) -> Trie {
-    var trie = Trie { nodes: [trie_node(0, 0)], utf8: utf8 }
+    var roots = List[int]()
+    var b = 0
+    while b < 256 { (mut roots).push(-1); b += 1 }
+    var trie = Trie { nodes: [trie_node(0, 0)], roots: roots, utf8: utf8 }
     for pattern in patterns {
         var forbidden = false
         for b in pattern { if b == flags.terminator { forbidden = true } }
@@ -84,6 +91,10 @@ fn trie_compile(patterns: List[List[byte]], flags: Flags, utf8: bool) -> Trie {
             at += width
         }
         trie.nodes[state].terminal = true
+    }
+    for child in trie.nodes[0].children {
+        let unit = trie.nodes[child].unit
+        if unit >= 0 && unit < 256 { trie.roots[unit] = child }
     }
     var queue = copy trie.nodes[0].children
     var head = 0
@@ -125,7 +136,11 @@ fn trie_matches(compiled: Matcher, buf: List[byte], lo: int, hi: int) -> bool {
             (buf[at] as int, 1)
         }
         let unit = trie_unit(cp, compiled.trie.utf8, compiled.flags.ignore_case)
-        var next = trie_edge(compiled.trie, state, unit)
+        var next = if state == 0 && unit >= 0 && unit < 256 {
+            compiled.trie.roots[unit]
+        } else {
+            trie_edge(compiled.trie, state, unit)
+        }
         while next < 0 && state != 0 {
             state = compiled.trie.nodes[state].failure
             next = trie_edge(compiled.trie, state, unit)
