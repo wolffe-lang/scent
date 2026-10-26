@@ -6,6 +6,17 @@
 /// Return the next matching byte or the buffer length, without allocation.
 pub fn find(buf: List[byte], from: int, needle: byte) -> int {
     var at = from
+    while at <= buf.len - 8 {
+        if buf[at] == needle { return at }
+        if buf[at + 1] == needle { return at + 1 }
+        if buf[at + 2] == needle { return at + 2 }
+        if buf[at + 3] == needle { return at + 3 }
+        if buf[at + 4] == needle { return at + 4 }
+        if buf[at + 5] == needle { return at + 5 }
+        if buf[at + 6] == needle { return at + 6 }
+        if buf[at + 7] == needle { return at + 7 }
+        at += 8
+    }
     while at < buf.len && buf[at] != needle { at += 1 }
     at
 }

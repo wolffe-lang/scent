@@ -14,4 +14,26 @@ fn main() {
     assert(bytefind.next_end(bytes, 0, 0 as byte, false) == 3)
     assert(bytefind.next_end(bytes, 6, 10 as byte, false) == bytes.len)
     assert(bytefind.next_end(bytes, bytes.len, 10 as byte, true) == bytes.len)
+    // Every tail width and every start position, not just aligned blocks.
+    var size = 0
+    while size <= 20 {
+        var needle_at = 0
+        while needle_at <= size {
+            var sample = List[byte]()
+            var i = 0
+            while i < size {
+                (mut sample).push(if i == needle_at then 10 as byte else 120 as byte)
+                i += 1
+            }
+            var start = 0
+            while start <= size {
+                let want = if needle_at >= start then needle_at else size
+                assert(bytefind.find(sample, start, 10 as byte) == want)
+                start += 1
+            }
+            needle_at += 1
+        }
+        size += 1
+    }
+
 }
