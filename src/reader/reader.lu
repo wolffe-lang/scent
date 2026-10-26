@@ -305,8 +305,11 @@ pub fn scan(
     // Measured GNU first regular-file read is 96 KiB. Pipe delivery can
     // return less; the harness records delivery shape in binary witnesses.
     let chunk_size = 98304
-    let keep_history = flags.before > 0 && !flags.count && flags.listing == 0 &&
-        !flags.quiet && (!flags.only || flags.invert)
+    let keep_history = flags.before > 0 &&
+        !flags.count &&
+        flags.listing == 0 &&
+        !flags.quiet &&
+        (!flags.only || flags.invert)
     while !st.stop {
         st = copy region chunk {
             var current = copy st
@@ -358,17 +361,19 @@ pub fn scan(
                                 mut current,
                                 mut writer,
                             )
-                            if keep_history { in storage {
-                                save(
-                                    mut history,
-                                    flags,
-                                    carry,
-                                    0,
-                                    used,
-                                    current.number,
-                                    current.offset,
-                                )
-                            } }
+                            if keep_history {
+                                in storage {
+                                    save(
+                                        mut history,
+                                        flags,
+                                        carry,
+                                        0,
+                                        used,
+                                        current.number,
+                                        current.offset,
+                                    )
+                                }
+                            }
                             current.offset += used + 1
                             used = 0
                         } else {
@@ -388,17 +393,19 @@ pub fn scan(
                                 mut current,
                                 mut writer,
                             )
-                            if keep_history { in storage {
-                                save(
-                                    mut history,
-                                    flags,
-                                    buf,
-                                    lo,
-                                    at,
-                                    current.number,
-                                    current.offset,
-                                )
-                            } }
+                            if keep_history {
+                                in storage {
+                                    save(
+                                        mut history,
+                                        flags,
+                                        buf,
+                                        lo,
+                                        at,
+                                        current.number,
+                                        current.offset,
+                                    )
+                                }
+                            }
                             current.offset += at - lo + 1
                         }
                         lo = at + 1
