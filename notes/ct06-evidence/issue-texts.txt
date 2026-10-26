@@ -1,0 +1,24 @@
+Issue text A — append to wolf-std#89 (OPEN), or a linked implementation issue
+Title: Bounded allocation-free byte and candidate searches for scent M4
+
+scent ct06 retains scalar unrolled delimiter scans and scalar indexed literal searches. Its remaining literal/class/alternation, ignore-case, count/invert/binary, UTF-8-fold and fixed-pattern misses are named in the attached eleven-pair table. A bounded bytes.find_byte(buffer, start, end, byte) primitive, and a measured find-any/subslice companion, would let scent reject spans without copying a list window or scanning each byte through a generic loop. Preserve arbitrary bytes, exact offsets, no overread, and record-boundary rules. Do not replace the 98,304-byte read/binary semantics.
+
+A separate same-container, same-cores 64 MiB control measures current Wolf chunk-read at 7.630 ms and read+scalar-scan at 27.983 ms. The original C black-box API control measures reused reads at 6.094 ms and reads+memchr at 7.396 ms. Scan increments are 20.353 versus 1.302 ms (19.052 ms opportunity). These are measured opportunities, NOT a promise that one primitive closes every remaining 2x miss. Production scent remains pure wolf; the C adapter is diagnostic only. Acceptance: checked/native/lupin boundary and arbitrary-byte tests, 11-sample controls, and unchanged scent conformance/memory gate. See read-cost.json, tools/read-probe/reference.c and the final performance table.
+
+Issue text B — wolf-lang, with a wolf-std wrapper follow-up
+Title: True read-into-existing-buffer primitive, without allocating then copying a chunk
+
+wolf-std#94 is CLOSED, but sc72's wrapper at 78b9d3c allocates via read_chunk and copies into the retained list. In ct06's pinned Ubuntu/GNU container on locked CPUs 4-7, eleven-sample 64 MiB read-only medians are current chunk-read 7.630 ms, sc72 read_into 45.719 ms (5.99x), and the original reusable C read control 6.094 ms. 684 builtin calls including EOF allocate 67,141,392 region-ledger bytes for 67,108,608 input bytes. No syscall-trace claim is made.
+
+Request a native checked-safe operation reading into initialized caller-owned byte storage, returning a count without a fresh intermediate List or element-wise copying. Preserve partial-read, EOF/error and buffer-ownership semantics; expose it through std without changing scent's pin until measured. The read-only opportunity is 1.536 ms per 64 MiB in this control: it cannot honestly explain all M4 misses. This is a distinct zero-allocation requirement, not a claim that the closed wrapper issue was never implemented. Re-run allocation-ledger, eleven-sample timing, checked/native/lupin and bounded-stream tests before adoption.
+
+Issue text C — scent (not an invented compiler blocker)
+Title: Finish the per-record and per-file M4 misses with controlled follow-on levers
+
+The ct06 table still has M4 misses after measured wins. In particular, no evidence establishes that the backreference and recursive rows require a new language surface. Current source leaves opportunities for a count-only record path, per-file workspace reuse and conservative constant-capture backreference proofs. The single-pattern skip draft improved count/invert/binary/recursive/fixed-1 but was rejected because the interleaved word control regressed beyond its measured range (8.854 -> 9.373 ms). Skipping empty-program DFA allocation also failed its recursive target (68.885 -> 69.305 ms). Keep those failed drafts as counterfactuals, not production code.
+
+Use the same sixteen workloads, eleven samples, four-core lock, before/candidate/GNU interleaving and byte-identical tuples. Retain each lever only if its target improves and no other row regresses past the predeclared noise band. Keep the 32,768 KiB memory gate and every exact GNU review unchanged. Do not label an unoptimized scent path "impossible in wolf" without a separate isolating witness. The upstream APIs in A/B are enabling proposals, not certified blockers for every row. M4 remains open until each workload is within 2x, independent of the regression ceilings.
+
+R-ct06-1: recommend retaining the measured wins with M4 explicitly unmet and all remaining rows named; implemented, no waiver.
+R-ct06-2: recommend retaining the current std pin instead of adopting the slower sc72 wrapper as a speed fix, and requesting the true primitive separately; implemented.
+R-ct06-3: recommend keeping unproven surface limits as scent follow-on work rather than filing speculative compiler defects as established blockers; implemented by the split issue texts and explicit qualification. No ruling decided, no issue filed or closed.
