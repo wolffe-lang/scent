@@ -1,0 +1,16 @@
+Workload | named retained lever | before ms | after ms | evidence
+literal | unrolled byte scans | 105.197 | 89.636 | byte-final.json
+class | unrolled byte scans | 104.167 | 88.636 | byte-final.json
+alternation | bounded exact unions | 300.304 | 152.987 | exact-union.json
+backreference | history-region guard | 79.846 | 78.398 | history-paired.json
+ignore-case | history-region guard | 9.975 | 9.637 | history-paired.json
+word | unrolled byte scans | 9.864 | 8.114 | byte-final.json
+count | history-region guard | 12.767 | 12.233 | history-paired.json
+only-matching | exact span-parser skips | 42.174 | 10.818 | exact-span.json
+invert | history-region guard | 12.329 | 12.233 | history-paired.json
+binary | history-region guard | 20.352 | 19.066 | history-paired.json
+recursive | history-region guard | 66.678 | 65.230 | history-paired.json
+utf8-fold | unrolled byte scans | 123.405 | 100.045 | byte-final.json
+fixed-1 | history-region guard | 4.052 | 3.908 | history-paired.json
+fixed-10 | byte-indexed trie roots | 7.607 | 4.723 | trie-root.json
+fixed-1000 | byte-indexed trie roots | 9.524 | 6.771 | trie-root.json

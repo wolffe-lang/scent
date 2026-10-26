@@ -1,0 +1,1126 @@
+{
+  "head": "5300fef0427658615a92e939a2587b8c00c150c8",
+  "head_source": "git",
+  "affinity": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "repeats": 11,
+  "warmups": 1,
+  "output": "pipe drained; SHA256/stdout/status compared on every run",
+  "binaries": {
+    "scent": "96e05922907529ca6dd10be412efe17be935122fc8ac5f7a4f2b7e42333d5af3",
+    "gnu": "92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea"
+  },
+  "source_sha256": {
+    "src/.lu-cache/ifaces/bytefind.wolfi": "b99cda7369c66517ad2f389c270791821db59dec74fc3ed32aa8a86f3dd260c4",
+    "src/.lu-cache/ifaces/colors.wolfi": "b5411b103c63d5679c40e22b3eba352288517e8b69570d19d2f11a42e89ee516",
+    "src/.lu-cache/ifaces/fixed.wolfi": "da71c33f2140cba0b39db47adc894c2a559dca96ada4bb5aca63f1cf5b73ee7a",
+    "src/.lu-cache/ifaces/glob.wolfi": "72f6d7b86975c51e34873fe32119bc0a3f04a278d92f50c399c490910c466bfe",
+    "src/.lu-cache/ifaces/locale.wolfi": "2b9ec958c76b9b306ec00b1e2a6ad055e702183e528a570bcd4ee57341070994",
+    "src/.lu-cache/ifaces/matcher.wolfi": "bc9bfa88eb71d06016ecc76e81df442f06bd598a2c7a71956a2ee0784a9d7198",
+    "src/.lu-cache/ifaces/opts.wolfi": "c0bb3fc821775e67612831e11db4cfdf0fab41aa18ab4fcf08f4a5dbe10d78c0",
+    "src/.lu-cache/ifaces/out.wolfi": "2587f29c966720502d2981fb9a7d9cea09a2d6dc116e1f01b97d349f6f024448",
+    "src/.lu-cache/ifaces/re.wolfi": "402a40d7d9ff081759a9fac503542ec0a68ab42d376570fe6c37010c73985179",
+    "src/.lu-cache/ifaces/reader.wolfi": "7cceb5a529c2900f729ebf89dd60a38cb8a290ed8db1d95f505d991760153712",
+    "src/.lu-cache/ifaces/root.wolfi": "9125f95af35d18b10b98ef7ce1b88ad542a0aea5860be4033c356688a7490cb4",
+    "src/.lu-cache/ifaces/std.cmp.wolfi": "758214eced97d54e5a434becc0eed26fe5a06681e3c5641ba98677d97bd47f9d",
+    "src/.lu-cache/ifaces/std.env.wolfi": "ce85d488f472a9093a67a6f81963e81237ad921f8591a74bb34825da0dce50b6",
+    "src/.lu-cache/ifaces/std.fs.wolfi": "d71d8f6a17bda4b5eddad7638769fd7954123af97c7bd719b42031f06a123b7c",
+    "src/.lu-cache/ifaces/std.list.wolfi": "54f5de919580df6ad4e291b187e514ca86bb3e55fbb31f5ab0520ec08c8dbdc8",
+    "src/.lu-cache/ifaces/std.map.wolfi": "ef487f1ddc15195143fe77eee1ad5fd273f66c79fc5d5e09b1aefac076a7c8d1",
+    "src/.lu-cache/ifaces/std.range.wolfi": "15413ce332fddc9eca407a81af82bb0ed67b2d81bd23356ffcbac13088b9925c",
+    "src/.lu-cache/ifaces/std.str.wolfi": "dda34f190fc3841ad8c8b71742bab6eccd6645d5744f5f2f051888e1101bed4e",
+    "src/.lu-cache/ifaces/std.strbuf.wolfi": "68f2ae419cd1113e7ecf908f73ef4c9d4c4aa6bcb733dcf20e27cd87da79cbf3",
+    "src/.lu-cache/ifaces/walk.wolfi": "db487809d24b2a96c8d53b7c4a38dc815e3e8fcd914863d75438269d56f53f00",
+    "src/.lu-cache/modules/bytefind.json": "3f8d9a159769b1da962f5f1db88dfca657e66b4c5e8f74301fe7147e68abe270",
+    "src/.lu-cache/modules/c00.json": "76c8dad7b93bc620b1d0496b46f47f3f4f58990dfa82fb5209a9d786667df8d4",
+    "src/.lu-cache/modules/c01.json": "db9615e1474768ccdf095f8a7764ad056bb790071e56a4282f76e60622401e1b",
+    "src/.lu-cache/modules/c02.json": "4a25324c48b02b580915e4686b9e8719553f1a258a50f75c4609d4757ddacbc3",
+    "src/.lu-cache/modules/c03.json": "1a9fd8dab9ae8214d28ce013e2bff6ae9c226e910a4690e096cc0d1bbabacf37",
+    "src/.lu-cache/modules/c04.json": "5c746463b94b353dafa1b4bbb3b808ac8c87ddbff7fd470f0f42baeb468a7edd",
+    "src/.lu-cache/modules/c05.json": "d8c523ab4d8cbf7daa08b45437718bc72188ce03972443d80f4fdf73eb98a6ee",
+    "src/.lu-cache/modules/c06.json": "911e6abd12b800db69ea9c6d278e155679ceb8d67effc9a9ffac276f0b63547f",
+    "src/.lu-cache/modules/c07.json": "7ee2b832bece40e88d3d6aa1acec9461c99234a2d10a435b0a0baa5c0b6962f6",
+    "src/.lu-cache/modules/colors.json": "936afa6c411392277f12c177653b3aed2951c3b90b02b929f6435da33a160c8b",
+    "src/.lu-cache/modules/fixed.json": "27bb39b31185f5f9517ac7630136bfd278957e9a62481904f03944d9d945027b",
+    "src/.lu-cache/modules/glob.json": "6aa3de14383c137abc3d27ca21e9e83d5e7894807ba8863321da0e45bd5e16cf",
+    "src/.lu-cache/modules/locale.json": "0014e2f8e593fd41d474f522d6a12f03e89402776e660512ea4a80c228dad8f1",
+    "src/.lu-cache/modules/matcher.json": "0ba0ed76c0acbaefbfa921694599a0d3bab401cc68cd1ddd35a41188e68fd9b0",
+    "src/.lu-cache/modules/opts.json": "269459b10b94b53f65d79da4360f3ce5a5d07e33e84b8511e71e3fda93d539c6",
+    "src/.lu-cache/modules/out.json": "85afad3c174cac6383c8eaf4e11e933b6d0553ab26696a5afd23987b8f51a6e5",
+    "src/.lu-cache/modules/re.json": "a10cc60876dfd04ae183774fc61b1e86102837c93ba7bac8a556dc39c36bceb9",
+    "src/.lu-cache/modules/reader.json": "fd71029b453336d4b01c399d345510df5c95976d345e44e2232844bf2f0875f0",
+    "src/.lu-cache/modules/root.json": "0888ffc692b6aab787b67c0249b6d87e1586d6abeab96468886324d7403e945b",
+    "src/.lu-cache/modules/std.cmp.json": "c86a9811cda087fe1bb6e68416f0606bc4471d5b0c73a0adf861a791f7df8414",
+    "src/.lu-cache/modules/std.env.json": "653ec17e376a14b259d68404f3ccc713ba815d83119e599bc407c517c8414168",
+    "src/.lu-cache/modules/std.fs.json": "6c84c2d2d93ea7ba20cc6889741438843830922eea237db8bea775161be3d854",
+    "src/.lu-cache/modules/std.list.json": "df97ea3be18f776d8d24c0a596fa91aca74aa33a3f6eb105a35f3a587f3dafb1",
+    "src/.lu-cache/modules/std.range.json": "56a785c9ee168302d8be95f39f989ad5e7c7a3f3e5ddb097f7a015ad770678b8",
+    "src/.lu-cache/modules/std.str.json": "7c61c3e7d223d558dead0c6a6a5d104af8a015dd5fa8a2f51b2d404b98334d1f",
+    "src/.lu-cache/modules/std.strbuf.json": "9fa72ded4eb7013c4e751e80f491472bb6692ff211f22d2d2478b4fe77294663",
+    "src/.lu-cache/modules/walk.json": "b5f4ee40e8e56dda63dc912609774d390984444ab175777f285797cfdf6fc9d2",
+    "src/.lu-cache/obj/bytefind-d4cd1369de24403e.o": "47551e6f1aa90a0dfc612bb24df1e6a12642b19fb58b8b951abfc96932a406ec",
+    "src/.lu-cache/obj/c00-f5888952edd1952e.o": "d032e20a1a508d61ebc7d9a5900dd725e590b5273cd7a0b0aa52a2bbeed6d394",
+    "src/.lu-cache/obj/c01-2133e63fa235782f.o": "9ee2792b2cc9b88b07527a54d9795d6e91cf46139fb33ab893d4c95b9c5e914d",
+    "src/.lu-cache/obj/c02-88d81b20bc72aaad.o": "0fed589ee3b3da3eb3b35781b5cf8060ac5a317757b0516a1c8e60605fe4f65b",
+    "src/.lu-cache/obj/c03-f8b7f2c37c707037.o": "3576aeacaf1960a090c9b64f076c1612618d3d54a7b0868a0dfc1db724a6e05c",
+    "src/.lu-cache/obj/c04-796388ff3f53164c.o": "9ae4d7f008aa157beb941ebf0d5fd9f080880ca82722d3eb09c8bcf7638bb9af",
+    "src/.lu-cache/obj/c05-16db7e4119737688.o": "402ddada278b45dbf209007dcef07434d22576c47cf6642a2597612218f4a0a0",
+    "src/.lu-cache/obj/c06-6119bf5e87cd48ca.o": "08995259595514274c1f52f4a8eef0b70103918312dbf2e4e8a67fc6ac0c64a1",
+    "src/.lu-cache/obj/c07-7fced80abcf9201d.o": "523a15119aa9cf1a756b2553c2a69810e7e2a02c8dc36e509191755e02a8da4d",
+    "src/.lu-cache/obj/colors-f8c11bd95d4fc201.o": "a1fee52855928f9d56b137497c36d05667bef4b5fb8d3375f74bbd00029bc588",
+    "src/.lu-cache/obj/fixed-ec0dc2eae3503b7b.o": "9e99ff925ac3ff1967f02c9d8dadfdb5a5f76999a45a36baef94c0120e85b1a6",
+    "src/.lu-cache/obj/glob-f84caed8dd23ec55.o": "33956b3b76ccef780de4a1255f07ee554e8ecc27a644f471df7cb21ffe4ffc94",
+    "src/.lu-cache/obj/locale-f2de0669fb8c6dd8.o": "b286f553578776173b159647b46164159088a7e3fc740e0e8fbbb498bd4b8f78",
+    "src/.lu-cache/obj/matcher-178945f4ed6ef9e3.o": "657e3de40ec4f555e43bfdd5c3aea7be74eedb198de94ff5105428976071f70c",
+    "src/.lu-cache/obj/opts-fa7610befb2e076a.o": "0a941c96bdada201d02794ed88c81d87f5cd05dedd75aa69bc8d58183d938861",
+    "src/.lu-cache/obj/out-e26e5e58aeee1b1f.o": "c765dc82cca5a30b9f627d91122c62dc259fd5973ccd9c16d1826b0c7e2cab6c",
+    "src/.lu-cache/obj/re-1bb6cd14313871ef.o": "422104c5bf1f41f437302b9231ce67f235e177eb339156838825921122f68b9f",
+    "src/.lu-cache/obj/reader-e718b9f4daca8dd0.o": "9b2d574f71c7bdba3df5be331f82b8c4b35b7616f6f49477d67b95adb44115c2",
+    "src/.lu-cache/obj/root-9d65318c1ed02488.o": "a1c5199c16ae78cd34ee8c6cee5eb30ccc649591376275e2ac7be4da1856ce2a",
+    "src/.lu-cache/obj/std.cmp-de4be18a29b20b8f.o": "0fde2fec73eed5401644d0ebf6a983b08304eaadee870e25547a61ff89beac9a",
+    "src/.lu-cache/obj/std.env-12b443aafb3224ca.o": "4d7bd98553a09b0132e44623c1373412f46bb9a6de199216b7e75ca80e63a7e8",
+    "src/.lu-cache/obj/std.fs-ce0c6f7d32c44ec7.o": "bf976256ecf23ba9a636c1158ecefe3da7be227993e1f60ba92834a081cb0d87",
+    "src/.lu-cache/obj/std.list-668c6dbc935dfcc0.o": "dc9d0235ecb23dd5d5961c0794573f7e9a6dc49c2b58d42a4acd34600d6a465f",
+    "src/.lu-cache/obj/std.range-b60046b936d4c140.o": "95db86126a6c57cbb5ae2561eeff0101a35f7efbbcebfcdcdb8aca5af5f27ab8",
+    "src/.lu-cache/obj/std.str-26ef34e1c5ef7ebe.o": "f14e68c6ef81812fee687a9f71835c1239646f3349ea73726441eec8c948344e",
+    "src/.lu-cache/obj/std.strbuf-2a4b1e7f26f210b5.o": "92b7d8d4790bdf207f0d47b2b720fb6045cf77cfaf6eda81097c7c37ca4ef65f",
+    "src/.lu-cache/obj/walk-dc43bc611898be21.o": "8425be1c75f4dc8445564ffcae973dc400f6495726f38942e825be5a8e82421f",
+    "src/bytefind/bytefind.lu": "0ec9de3c97e0186fa2d5af0e3e4e203419afa3c1b00dd5d0adef10da51c05776",
+    "src/bytefind_test.lu": "a8e4318d82a1c263e706a3910e5f8c86d5a29018c447ca9e90ed733de99e5b55",
+    "src/colors/colors.lu": "38c2c74eda4046a0b8a6e3f6b2fe1e92c5ccd886d95d894e72ca7381a15523b0",
+    "src/ctype_test.lu": "3fc11ea0f402ba8ed83fa32d261819ab1575a1e62e8c01bf27fb09d18abb2483",
+    "src/fixed/fixed.lu": "a6ad157b9eaa750986330a58aa1e870ee0b51c83bffdca8084a673202ebfe360",
+    "src/fixed/trie.lu": "55abf7d432cfaaf62d6be44d9c5db927eeeaa137d66b5128df480b63e94ab201",
+    "src/fixed_test.lu": "50ea472e9c42b9ab01dfd3b789d36b856e22aae4976eecdb1d7251dab35d1c29",
+    "src/glob/glob.lu": "d244273c400db05879c035efb672e3e0013cbc139acc1c8f83a8ed009950d711",
+    "src/glob_test.lu": "9220e7bd4224323110e22374a19de53294fe2d3c013406e89ed03648b17ad6a8",
+    "src/locale/locale.lu": "b9d040148643953d405570a84d48b6574c47699172db5e7efb8a1f1bd62cc7c5",
+    "src/locale_test.lu": "4686bc87194a2b1a0267edbf394d2d1158363ce8527875aade31a1b109ada9fc",
+    "src/matcher/matcher.lu": "38f72503111b303bfafd930419905408bb8d51b0233a88d1dbeaf5d27c2daa72",
+    "src/matcher_test.lu": "cfb8a4e51534d48a16322be40067fa19022676b8ba930318a3445340e93e79b1",
+    "src/opts/opts.lu": "5af621eb07daf9f7fd1d28c89b328d83e27b2d633f7649fa9ceb47b5993b80d7",
+    "src/opts_test.lu": "0cc3f9e3d545f28ce35b03929b7a4e6155955ac6c2b10b996290db0616e0775c",
+    "src/out/out.lu": "8d2bdd6ba4d8306d0de2d228fcaf2fae372ea4ac4b6c7170aa34a6dc4f326caa",
+    "src/re/.lu-cache/ifaces/root.wolfi": "f2afd24d70927b1e52b30476769027c0256806385cf619b1b3dc24839d06e6f8",
+    "src/re/.lu-cache/ifaces/std.cmp.wolfi": "758214eced97d54e5a434becc0eed26fe5a06681e3c5641ba98677d97bd47f9d",
+    "src/re/.lu-cache/ifaces/std.fs.wolfi": "d71d8f6a17bda4b5eddad7638769fd7954123af97c7bd719b42031f06a123b7c",
+    "src/re/.lu-cache/ifaces/std.list.wolfi": "54f5de919580df6ad4e291b187e514ca86bb3e55fbb31f5ab0520ec08c8dbdc8",
+    "src/re/.lu-cache/ifaces/std.map.wolfi": "ef487f1ddc15195143fe77eee1ad5fd273f66c79fc5d5e09b1aefac076a7c8d1",
+    "src/re/.lu-cache/ifaces/std.range.wolfi": "15413ce332fddc9eca407a81af82bb0ed67b2d81bd23356ffcbac13088b9925c",
+    "src/re/.lu-cache/modules/c00.json": "961840fadfca26e5a66ff28dd8d2cac2567036565b37c2cfd14b5384f5353fbc",
+    "src/re/.lu-cache/modules/c01.json": "9635abfce53a297574f12c2b553c86f526060a54e0bdd84aa73e9302cbfc2c3a",
+    "src/re/.lu-cache/modules/c02.json": "c29436caaa4af1a61e5252f6c586661cbc6d2359aa0131e50af38f56511a3790",
+    "src/re/.lu-cache/modules/c03.json": "1018054ced21036f2d3fa1d18e951c1cb27a34579c9635d2a4999484e8f33db9",
+    "src/re/.lu-cache/modules/c04.json": "e04f4a1973b6d3871390beb7f97d992bf3843965017c41cb8988c9ceaabc225b",
+    "src/re/.lu-cache/modules/c05.json": "e73fbb36263ca9e95f1951052b478d54ffe4d5e6fb6b14a95dbcde832876a147",
+    "src/re/.lu-cache/modules/c06.json": "92ecc0d58ad95265bc69094b586f43d967100e6d2482da764aa814c646c201c9",
+    "src/re/.lu-cache/modules/c07.json": "bd063dde7a60e1beb1b4528df9a652f922deafd5637a4b5d0ed9bf8969eef804",
+    "src/re/.lu-cache/modules/root.json": "11c5402ef5bcd7cd3f87b220d6f94b2a4dda58b398a0285184d470c16545b0a3",
+    "src/re/.lu-cache/modules/std.cmp.json": "66569b11191f3aa0ee036b27175ce17809989105d7d197d90cace3f1afb484ae",
+    "src/re/.lu-cache/modules/std.fs.json": "3926cf2ead5f1c370178df35f77fac763632bbe34e55a80a7d11ed1b5cea3a6c",
+    "src/re/.lu-cache/modules/std.list.json": "b1d7f4f4b4151cb1f67659fed473108141901a5c1b36c3e213fd7883f18e623c",
+    "src/re/.lu-cache/modules/std.range.json": "e222113564f438d17e6b4e8a8cf166c2e52d74614e0bb69c1a3274ff2232d88a",
+    "src/re/.lu-cache/obj/c00-c7cf85b09aad8ed1.o": "f6b028abf59b2a63296d24d142ace17a34d64b6df6557f63fd409e8740af973e",
+    "src/re/.lu-cache/obj/c01-265655a365243826.o": "848411aed727044eed92f9cba5480abdf84693d730bea4d0071933fe7f8c0759",
+    "src/re/.lu-cache/obj/c02-55eb30ef97ddbb0a.o": "0dc8ead731d850fe2ddd83de88beb8a83da10cb90ee87f4913ba28d60d0a76df",
+    "src/re/.lu-cache/obj/c03-4a710fd6214d82d7.o": "2fa3cb7107038edfdc5905c18188dcd6807572e738ea3c68f7b1a7aa635e2924",
+    "src/re/.lu-cache/obj/c04-d51cf8cec0f7776e.o": "03214602a0e1ec0d00d9384fc8f64a646929bfcaa743f9e32c4c55c7d1528b2c",
+    "src/re/.lu-cache/obj/c05-d2eda8bc37276130.o": "27ff06b2947a393825f807b6b4f65a73cf87810b85d3ef650670e7433c8960ca",
+    "src/re/.lu-cache/obj/c06-fdc5dc167a3230f7.o": "15d83dd17941dbef4cffe5ae938d5a18ceadbe5f4e073875534ca8c43e931949",
+    "src/re/.lu-cache/obj/c07-3d30f50e78dd13b4.o": "0a6531a06e7886e9a5914963caa689d3de1c9e3ca4664a6b3e44f2b13489f82b",
+    "src/re/.lu-cache/obj/root-8d60e1a183d23e64.o": "ea7bf931db0029985aa9014e872a4cdc95764528ee5bf849c512f6ca4eee3586",
+    "src/re/.lu-cache/obj/std.cmp-11472eb18e1508b5.o": "0fde2fec73eed5401644d0ebf6a983b08304eaadee870e25547a61ff89beac9a",
+    "src/re/.lu-cache/obj/std.fs-f010a78b37ccd1ce.o": "50cccb9883815ef03fe882fdfbf3b392fdfdd55d70dbac5fa340062ec98cba7e",
+    "src/re/.lu-cache/obj/std.list-2cb11cc684869ab1.o": "907a2b7c7a1bac17bea3274111560195902e10afb194127aeac0a515ddd1c3c3",
+    "src/re/.lu-cache/obj/std.range-d7679fda125f0951.o": "3b8b8a88c398170568fec3925b6257f5a28ce53422323bca23f1e5272b1b31b1",
+    "src/re/backref.lu": "f90bab15254f460e1dd7ac36f5563f30a4a47d9b12d6bf7a55662f2e0fb812b7",
+    "src/re/byte_vm.lu": "6b6e89f9d96d54f9f18d5888b4e2deff5154db483d7eeccb561cf92e6ad338c4",
+    "src/re/compile.lu": "f997c36aeee2d32d22958a85cd81d30270baa40387eeb9f795606e1ff97c1b37",
+    "src/re/compile_test.lu": "6cac958819d2c2b2d282ed7613809cb476e4990ef544158ac67d69ad136c073c",
+    "src/re/ctype.lu": "a4cb601b7e0dc51c79c5e954e97425b23ea881ea6d6745f13ea2d85d0283ca01",
+    "src/re/ctype_tables.lu": "e32c4372502c4a536d352abda91b95cb6f25b187a1d617bc6241953ecada5c4a",
+    "src/re/dfa.lu": "ff64ab11f5cb3baedcca945681d9de4db565158ece36bf8799d700741784a322",
+    "src/re/dfa_test.lu": "8e93daa6c778e282a3e35e8730fc868286b21b36c3f55e7e1c4da313c706b1ad",
+    "src/re/driver.lu": "d929933a719a09871f2691075f5794c80d70964081490178ff363579fd505b7e",
+    "src/re/linear.lu": "fd995ce2861c609a53925a7f96018b38296b3d5a0080dd53a98b3a803779febb",
+    "src/re/linear_test.lu": "e52d1a62e8beff74da21525b24944c06c14c36f72a118da09a570abdb3c29c92",
+    "src/re/parse.lu": "84ae07d56cd38bbf5c84a3ab9598aeb7a683bc0569665d2f609f33746e04867b",
+    "src/re/prefilter.lu": "5e057df1905d82b51fad797307f643df7153a4fc8ab8c7bd00863dc6056cb241",
+    "src/re/prefilter_test.lu": "270069a24c7b409984e57126cdb4f3aec81389e1c072f0e118988991587b9601",
+    "src/re/re.lu": "ecfd476b08448bfbcb72e85b4c9e026222f89d13cb3d09003a83bd80479c093c",
+    "src/re/utf8.lu": "adccb95654694e733b756b1a59b14c2dfebcb84c1133cbb751fd53f9992f812f",
+    "src/re/utf8_parse.lu": "d33fa6fa849263b282c970ff660bbfad4bf7315d52ff9b40d722d498420eaa9b",
+    "src/reader/reader.lu": "f1318b64e27025eb56e52fbcc3bc9ce33c3204d5d84a3d2b24225d4d3dd37ecb",
+    "src/region_test.lu": "c3ca968e5d7d828667210beb77e23eb2172a88d6967d1c3c8cfe9baadad35f13",
+    "src/scent.lu": "ae6aaa556d36f765c3a53be210ea0f74d13b4653450792b182ac4fc9e9a2fbb6",
+    "src/utf8_matcher_test.lu": "8ed53e0326ab2898abd14e738fea111b86a5e3ddf64f8caf7ee9bde85c4ee2ab",
+    "src/utf8_test.lu": "e42f29171aa64436764abc474faa00bf6ec752ad902585f9188f71b4764d6380",
+    "src/walk/walk.lu": "212e1b1e253781dc40cd514f30dcdea6b3f87800e966592464a075bf7633b976",
+    "src/wolf.pkg": "9134b2c2c1cfddd28ebb3af16cbedff0437ee63aef1d505ece40b09f4bfc879b",
+    "tools/build": "b3c5036fdc979ee54320538386db8b6bfc66dfe67d67aeb54ae2a1dea650967f",
+    "tools/check-ctype": "79a4fb344ca166de02ab6323d8de47a573a948c0d6c6091a8858d24963369b3f",
+    "tools/check-ctype-regen": "f5bc8450d5e3b2d1e09f31ce1638d1a9e1e4855ef3c889af0a940f899551b66a",
+    "tools/check-fmt": "4089b242c08c0d2b403e442c46e41b450f3bd0d70ef07c75519275548ea54d2b",
+    "tools/check-test": "d0f67995fbd005d7fe863945fbf3170b56fe8db1205712afe3f4c3c645c0cc52",
+    "tools/fetch-oracle": "604f47879e2b5a085307621c17299a8c9964f75ce57b4ec941ab26209abc3b92",
+    "tools/fetch-oracle.py": "8df040db8ecf46a2c65ffbbede7aec4fa4727abc0bc4b2ae4576490877a40e0c",
+    "tools/fetch-toolchain": "4df5388b84a3845d366518a4387cce3309b91b4b1f0a3d3205cc37f854b74648",
+    "tools/fold-derive": "0332170af8ce32d2ebe29de9d8fcfdc31caecb473500ecdd394171e9d21d85b3",
+    "tools/fold-probe": "c70e682c800a79dae233d5f88a0f4c264c7d1e8548771fa46ff8cbe5c1c3c051",
+    "tools/gate": "128dafa2ffe1236fb3353e0fc385078c25855d12021b8bfbdca4edf65366b45b",
+    "tools/gen-ctype-tables/.lu-cache/ifaces/root.wolfi": "f7df0c23eca4b9fb6e1905f50d85c2fec5b5ee649131d44fb6f3008e210277d3",
+    "tools/gen-ctype-tables/.lu-cache/ifaces/std.cmp.wolfi": "758214eced97d54e5a434becc0eed26fe5a06681e3c5641ba98677d97bd47f9d",
+    "tools/gen-ctype-tables/.lu-cache/ifaces/std.fs.wolfi": "d71d8f6a17bda4b5eddad7638769fd7954123af97c7bd719b42031f06a123b7c",
+    "tools/gen-ctype-tables/.lu-cache/ifaces/std.list.wolfi": "54f5de919580df6ad4e291b187e514ca86bb3e55fbb31f5ab0520ec08c8dbdc8",
+    "tools/gen-ctype-tables/.lu-cache/ifaces/std.map.wolfi": "ef487f1ddc15195143fe77eee1ad5fd273f66c79fc5d5e09b1aefac076a7c8d1",
+    "tools/gen-ctype-tables/.lu-cache/ifaces/std.range.wolfi": "15413ce332fddc9eca407a81af82bb0ed67b2d81bd23356ffcbac13088b9925c",
+    "tools/gen-ctype-tables/.lu-cache/modules/c00.json": "babe4a5d8d00c6cc870beab5ebe92eb9810000711b6a49047f7b6593b610a27a",
+    "tools/gen-ctype-tables/.lu-cache/modules/c01.json": "395caa67c14c80952d06bb8c0a62d9f8e4392f0da0fa1961098f358a0beeec07",
+    "tools/gen-ctype-tables/.lu-cache/modules/c02.json": "1040d26f1f2cd4157f6d791cdca95a09a0de72db38f2a28cc0940670fc968213",
+    "tools/gen-ctype-tables/.lu-cache/modules/c03.json": "9d07d0c84b7a8909de86c00e30ff5d562c86a0bcf7507a418321fc034ae3879e",
+    "tools/gen-ctype-tables/.lu-cache/modules/c04.json": "3f263ffde2fc8116cea07cd3984d7c8cdb022cafcbec06845facd3250e0e72c3",
+    "tools/gen-ctype-tables/.lu-cache/modules/c05.json": "794dd4deec235dbdb93f21b23f5ca0efa3df3e2e63416d362cac948a08d2fc2c",
+    "tools/gen-ctype-tables/.lu-cache/modules/c07.json": "2b0d4b0afe5c36f63a94cbc4b5413e4d972e6e9e74399fcc654a80c63cbbe93e",
+    "tools/gen-ctype-tables/.lu-cache/obj/c00-d65a81f3b761b826.o": "6eba88d7f440a47935ad7d925fdc2f590f3f35a68f6010ce3bc6dbc654b89d7b",
+    "tools/gen-ctype-tables/.lu-cache/obj/c01-c1a3a10c010fa83d.o": "6233bb9028956d91f40c7498a48954c124a91c72af7b2ffda1baf4e99ca8ea55",
+    "tools/gen-ctype-tables/.lu-cache/obj/c02-16cbbf345549e5f0.o": "90829b25bb594474bb8fe9a30dbb67af9ab4c5667cf031f842875650ba701c5d",
+    "tools/gen-ctype-tables/.lu-cache/obj/c03-ffeda17263384a7d.o": "4c2fdb09ad4309ca098ab285466b94cf76d806e6061c52d2a366226b9988241a",
+    "tools/gen-ctype-tables/.lu-cache/obj/c04-e4aa7184fe1c4d50.o": "8e4f010541549371c8b15bb8db521ee02924fb59a6654984aebd9ee3f12753b2",
+    "tools/gen-ctype-tables/.lu-cache/obj/c05-7551adadda10bd81.o": "7c12d23ba8751ad33889cfb72c27e5c530f1bc13fb5900e5ce0f232b8e3572ad",
+    "tools/gen-ctype-tables/.lu-cache/obj/c07-3866dd8db2936d17.o": "091a87caeb0cd22abf3c35f53d24c10d1455382be39f19bc9ed7150c48825bf1",
+    "tools/gen-ctype-tables/main.lu": "40b9501905bf22e921d297b0a83843770679f6d826bf0d4656a2adc399e4a8d8",
+    "tools/in-container": "b4fea081bca8564697e2b054d0fb870a5c93028524bf7955ad53ec8ec331ce9f",
+    "tools/lib-toml.sh": "bc2bb2c1cecf3f928058b78ff97cc5f25eb5512925ecbefebb78391e45ecafbe",
+    "tools/lib-toolchain.sh": "d4896e5e2bdc6d1c2e2b139a97fe1dad86adffeb2e86b8ba8ab2ecb933aaef38",
+    "tools/locale-probe": "a553be88519e30e4490bfc619bb6a9941f8bc53190340427a9e7eceb979d1d10",
+    "tools/m1-cases": "517f2cce6b55cf5903b511ce969e2fb8f2432fef6f864216048d099ce043d774",
+    "tools/m1-ci-test": "336a9f79dcc79963f487e73c3076f3838a13d82a09b2f710bcbb9bfd2627d1f8",
+    "tools/m2-cases": "bc1e332e9d43b44302e8017e090c9de3603ff4eb0fce64c1f4fd86987ebf284a",
+    "tools/m2-ci-test": "f59f03608bca13d17e33a67d9936e8f65f00623ca9618e4963108448ec2e2b03",
+    "tools/m3-cases": "374d47d5ef235088ed7d3d1b4a884f1c2478dea8f7ad04bf79cc18daaccd67a9",
+    "tools/m3-ci-test": "413202df1fc333a84efbcfbaa7404188a8c0ec9757b11369176cd15fe76f5198",
+    "tools/measure": "20b0f43cfda664fe0decc93ab529b261fc01838f3b8de97d418303db60ebcd58",
+    "tools/measure-ctype": "19f6079463611bc5fba95d82b03c4ce1c628ce2a8d89dab6fbb0052f4aec0fa4",
+    "tools/measure-folded-classes": "cb7b4af4aa96a888a78aedace0be9072d99fb322a4705fd6819437db6c5970ab",
+    "tools/measure.py": "21960cdd09bb97f2a080cbb4c8c0a59e0bdb36ae44718b30266963fb0596a242",
+    "tools/mkscent": "10875b65b1061b3925f21110f65e1b39c175a452bc17e43d44f3386378411d78",
+    "tools/oracle": "8a0dc6a2e5f43b5f307a842539b45c587eaf1a5c95ca3d0b2be08f5b505158c5",
+    "tools/oracle-field-test": "5b2b7a91bd7fbf4344e420ada199c42f026e33234fe5e015594add45e184a05f",
+    "tools/oracle-field.py": "29473f3c3611d03c686d0fe83b819ad25e2a23eb1a38924aa6293ae1f0496536",
+    "tools/oracle-replay-test": "96c73612e2f000630262e1488b7e18ee5701214bd3d1c138f4a1a862c2456467",
+    "tools/oracle-review-test": "8f297c2c4a3f1f4836b2a7243f6298952561122243e7177d2990fad7666ce7f0",
+    "tools/oracle-review.py": "0c68ae71b327a597e5f2edef72827f9bfb72a605620586a8c066933c05f00d09",
+    "tools/oracle-select-test": "fdc665bbb7a9d4ae36eb9a78aca143f6dbb73cb67908d0d44278ae79f4937c24",
+    "tools/oracle.py": "3bbb1652e16eb284ea322cbbe033546498fd28cad2cbcd3c6189eb16f004ce55",
+    "tools/pax-posture": "853feed33f6408d2a3224b69e1af7d60dc36c8dd27bf14c74015cbf6339c1f29",
+    "tools/perf-compare": "8e1d3099caeb5ebee162c93701ccf16fe48522d8b67b83cbbc346da3ce2bc081",
+    "tools/re-assertion-probe": "c578cce24f6b565dac9ca4292111ef4a44c4365393e32505629cea68a3d38ca3",
+    "tools/re-backref-probe": "802d150628c0aaf98d6d94c69dcb659d6e97f59cd9f321936d8b923ad728561c",
+    "tools/re-ci": "c172870d1dfc94c5beec9be07a236142fdbf3f5615ea9d65100bce530916a160",
+    "tools/re-ci-test": "b367794765c923f96ec89c60f877b6ba92496643df3ddf19785343b1cefeb9fb",
+    "tools/re-cost": "57606902cb89a9cd6882986736f06588a84c53290817e1ecdf4a32faf38d139a",
+    "tools/re-diagnostics": "25f1f421b54f89571423576ed31bda6e16f663f50a0b2e87dda14f7561a94b68",
+    "tools/re-driver": "d221f2cd60ec6bb7ff5082edc187164f68669ce5a7e3b36919fe9ae315c30536",
+    "tools/re-oracle": "ca043612ef1626ffe0b61a986fe2fa4dfb60a7839ec617b2e417205ab008b82b",
+    "tools/re-oracle-build": "573011b297e1a6e196a8e090c19a0cda97d4c582bcc8e18fa975b6f31dcc0e38",
+    "tools/re-oracle-identity": "e16e52deac2ed9066f1e21a8445888431d3d97c69db4cdcc106877606bca7ea1",
+    "tools/re-plants": "381e801b7b052265405546afd1267ca5a698f8cae9586d2aeb42dbfe0b24de18",
+    "tools/re-probe": "8993606a0d23e8b1128fac4fba9b24f46b40d820503ae0f46b6855797fe7fba9",
+    "tools/re-projection-plant": "18d0d99f2f7f3bff74a431d094d04ee9859e2ba1c1c74f8f7f248ba413866773",
+    "tools/re-projection-soak": "1c62106e897daf73923a5f56dbb044cb434bcc0b1973ba4cd0c1370229d61580",
+    "tools/re-toolchain-stage": "9a664db2ebde62d9ea8effc47f5a8c0ee383614880d9479727996f747306cab0",
+    "tools/re-word-probe": "77c92d3924f996669c6d320f4413b960c384cfd193be6b7f1df9aa01179f6b04",
+    "tools/read-cost": "9a60579cb14bb86b7f8c70428fa96cc3362415a1ce612ad7bc09e0571c94f2b6",
+    "tools/read-into-probe/main.lu": "45fcfe20fa922218f4ff07a0571767095589d5be92a97f77473d7ac1dbe244cc",
+    "tools/read-probe/main.lu": "b4f29edc71146871faa5a930f20c82311058f38b8a81fe8324443366b0dbf868",
+    "tools/read-probe/reference.c": "9dc1c18bbdd20736e05177dff28bf679fbc928eeff7cf3aabb2c6bcfb5a2d4e4",
+    "tools/record-m3-reviews": "691af4e0780f02c600016998ed90aa3e8817bb2885012ca81bd5eae5bb0371b7",
+    "tools/speed": "084a3051d1a24b6b888e3634543cf827dc464c9d86d3ed9dd740e4183f361d28",
+    "tools/speed-check": "caae1dc542d7cd2377a73531ea758ff36c7227ff2a7d2b92531a699d973ee13d",
+    "tools/speed-check-test": "1a33e36332ece9cee6ad14f1db8554df9b044c2f2ca7f3777ad20396d91ebfdc",
+    "tools/speed-ci": "469b0408b1e8fbab2f1ebca777038c7674f8f189500aadd29e6924b8b36e105e",
+    "tools/speed-head-test": "507db7e0c9d8f54e3ca681793c4951f21192d271940f48f91ee07c46cd7a671d",
+    "tools/speed-test": "833fc2f4af06d7f3ea6ac86a877a79d7fd3d842af17cb181710a44546870c648",
+    "tools/utf8-probe": "f7eb46cfd24ded51e6f95987a04b726b3e665ddaf6348e1071ec28a0cc55dcbc",
+    "tools/utf8-stop-probe": "14ae314df0d307a8cbd0e18af9a158e8c5198492b129902183aaacfd0a4ce358"
+  },
+  "rows": [
+    {
+      "name": "literal",
+      "argv": [
+        "-E",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 67108608,
+      "seconds": {
+        "scent": [
+          0.09372557200549636,
+          0.09289709800214041,
+          0.09264652499405202,
+          0.09293907300161663,
+          0.09325902699492872,
+          0.09256155899493024,
+          0.0934779879898997,
+          0.09278161799011286,
+          0.09299110001302324,
+          0.09404671798984054,
+          0.09552826099388767
+        ],
+        "gnu": [
+          0.011401993993786164,
+          0.011206786992261186,
+          0.011115873989183456,
+          0.011646072001894936,
+          0.011301324993837625,
+          0.011292242008494213,
+          0.01132904899714049,
+          0.011308021988952532,
+          0.01129985399893485,
+          0.01311215000168886,
+          0.01334080399828963
+        ]
+      },
+      "median": {
+        "scent": 0.09299110001302324,
+        "gnu": 0.011308021988952532
+      },
+      "ratio": 8.223462963184161,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.09256155899493024,
+          0.09552826099388767
+        ],
+        "gnu": [
+          0.011115873989183456,
+          0.01334080399828963
+        ]
+      }
+    },
+    {
+      "name": "class",
+      "argv": [
+        "-E",
+        "-c",
+        "n[e]edle"
+      ],
+      "locale": "C",
+      "bytes": 67108608,
+      "seconds": {
+        "scent": [
+          0.09311852800601628,
+          0.09237359499093145,
+          0.0924890019960003,
+          0.09301255299942568,
+          0.0931452229997376,
+          0.09271221701055765,
+          0.0926110919972416,
+          0.0923963770037517,
+          0.09286233699822333,
+          0.09449612199387047,
+          0.09285039799578954
+        ],
+        "gnu": [
+          0.011100659001385793,
+          0.011065892002079636,
+          0.011085662990808487,
+          0.011281633007456549,
+          0.011422608004068024,
+          0.0110532120015705,
+          0.011244502995396033,
+          0.01103952300036326,
+          0.011047827996662818,
+          0.011936751994653605,
+          0.011722148992703296
+        ]
+      },
+      "median": {
+        "scent": 0.09285039799578954,
+        "gnu": 0.011100659001385793
+      },
+      "ratio": 8.364404129898793,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.09237359499093145,
+          0.09449612199387047
+        ],
+        "gnu": [
+          0.01103952300036326,
+          0.011936751994653605
+        ]
+      }
+    },
+    {
+      "name": "alternation",
+      "argv": [
+        "-E",
+        "-c",
+        "needle|zebra"
+      ],
+      "locale": "C",
+      "bytes": 67108608,
+      "seconds": {
+        "scent": [
+          0.1427672120044008,
+          0.1425004769989755,
+          0.14244859499740414,
+          0.14258776299539022,
+          0.14360215699707624,
+          0.14199009400908835,
+          0.14257499200175516,
+          0.14217665200703777,
+          0.14182252500904724,
+          0.14244879999023397,
+          0.1436750520078931
+        ],
+        "gnu": [
+          0.010207393992459401,
+          0.010292107006534934,
+          0.010169932007556781,
+          0.01071820899960585,
+          0.010579244000837207,
+          0.010442690996569581,
+          0.010393870004918426,
+          0.01028910900640767,
+          0.01027032799902372,
+          0.010308908007573336,
+          0.011000686994520947
+        ]
+      },
+      "median": {
+        "scent": 0.1425004769989755,
+        "gnu": 0.010308908007573336
+      },
+      "ratio": 13.823042837736931,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.14182252500904724,
+          0.1436750520078931
+        ],
+        "gnu": [
+          0.010169932007556781,
+          0.011000686994520947
+        ]
+      }
+    },
+    {
+      "name": "backreference",
+      "argv": [
+        "-E",
+        "-c",
+        "n(e)\\1dle"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.07816212500620168,
+          0.07849516499845777,
+          0.08065912598976865,
+          0.08222696100710891,
+          0.08072204199561384,
+          0.08223267798894085,
+          0.08063681099156383,
+          0.08211464100168087,
+          0.08073742499982473,
+          0.08088074800616596,
+          0.07996257000195328
+        ],
+        "gnu": [
+          0.038904449000256136,
+          0.03900520699971821,
+          0.03868221599259414,
+          0.0385757470066892,
+          0.03859096900851,
+          0.03860365800210275,
+          0.039165317997685634,
+          0.03920905801351182,
+          0.03882630499720108,
+          0.03857062199676875,
+          0.038553014004719444
+        ]
+      },
+      "median": {
+        "scent": 0.08072204199561384,
+        "gnu": 0.03868221599259414
+      },
+      "ratio": 2.0867998361590345,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.07816212500620168,
+          0.08223267798894085
+        ],
+        "gnu": [
+          0.038553014004719444,
+          0.03920905801351182
+        ]
+      }
+    },
+    {
+      "name": "ignore-case",
+      "argv": [
+        "-E",
+        "-i",
+        "-c",
+        "NEEDLE"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.008203328005038202,
+          0.008129743000608869,
+          0.008177002993761562,
+          0.008160312005202286,
+          0.008037748993956484,
+          0.008052739998674951,
+          0.008087416994385421,
+          0.007970645994646475,
+          0.008179210999514908,
+          0.008076872007222846,
+          0.008210523999878205
+        ],
+        "gnu": [
+          0.002803037001285702,
+          0.0028776919934898615,
+          0.002751966007053852,
+          0.0027828820020658895,
+          0.0027401690022088587,
+          0.0028073749999748543,
+          0.002668054003152065,
+          0.002875500009395182,
+          0.0027818390080938116,
+          0.002859503001673147,
+          0.002761154988547787
+        ]
+      },
+      "median": {
+        "scent": 0.008129743000608869,
+        "gnu": 0.0027828820020658895
+      },
+      "ratio": 2.9213394583649985,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.007970645994646475,
+          0.008210523999878205
+        ],
+        "gnu": [
+          0.002668054003152065,
+          0.0028776919934898615
+        ]
+      }
+    },
+    {
+      "name": "word",
+      "argv": [
+        "-E",
+        "-w",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.008113215997582301,
+          0.008190210995962843,
+          0.007869994005886838,
+          0.008075403005932458,
+          0.008081380001385696,
+          0.007952308995299973,
+          0.0080825460026972,
+          0.008122774001094513,
+          0.008141701997374184,
+          0.007964010001160204,
+          0.007968844001879916
+        ],
+        "gnu": [
+          0.004357466998044401,
+          0.004375678996439092,
+          0.004382202998385765,
+          0.004495489993132651,
+          0.004374158990685828,
+          0.004893402001471259,
+          0.004457610004465096,
+          0.004305652997572906,
+          0.004418019001604989,
+          0.004368692010757513,
+          0.004367018002085388
+        ]
+      },
+      "median": {
+        "scent": 0.008081380001385696,
+        "gnu": 0.004375678996439092
+      },
+      "ratio": 1.84688593655117,
+      "m4_2x": true,
+      "range": {
+        "scent": [
+          0.007869994005886838,
+          0.008190210995962843
+        ],
+        "gnu": [
+          0.004305652997572906,
+          0.004893402001471259
+        ]
+      }
+    },
+    {
+      "name": "count",
+      "argv": [
+        "-F",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.010973080003168434,
+          0.011066134989960119,
+          0.011234227000386454,
+          0.011179965993505903,
+          0.011014313000487164,
+          0.011156121006933972,
+          0.011168712007929571,
+          0.011091225009295158,
+          0.011014558011083864,
+          0.011210134995053522,
+          0.011560575003386475
+        ],
+        "gnu": [
+          0.0025736560055520386,
+          0.0026939340023091063,
+          0.002633191004861146,
+          0.002726851002080366,
+          0.002618070997414179,
+          0.0025931800046237186,
+          0.0026181449939031154,
+          0.002666173008037731,
+          0.0025425939966225997,
+          0.00267365098989103,
+          0.0027040850109187886
+        ]
+      },
+      "median": {
+        "scent": 0.011156121006933972,
+        "gnu": 0.002633191004861146
+      },
+      "ratio": 4.236730638354227,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.010973080003168434,
+          0.011560575003386475
+        ],
+        "gnu": [
+          0.0025425939966225997,
+          0.002726851002080366
+        ]
+      }
+    },
+    {
+      "name": "list",
+      "argv": [
+        "-F",
+        "-l",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 67108608,
+      "seconds": {
+        "scent": [
+          0.00048607100325170904,
+          0.00046261100214906037,
+          0.0004996530042262748,
+          0.00048184700426645577,
+          0.00046046500210650265,
+          0.0004560410015983507,
+          0.0004540719965007156,
+          0.0004606709990184754,
+          0.0004664470034185797,
+          0.000497571993037127,
+          0.00046909200318623334
+        ],
+        "gnu": [
+          0.0003622030053520575,
+          0.0003184420056641102,
+          0.00031232098990585655,
+          0.0003281899989815429,
+          0.00031856900022830814,
+          0.00032241300505120307,
+          0.0003089520032517612,
+          0.0003271629975643009,
+          0.00032637199910823256,
+          0.0003168459952576086,
+          0.0003257079952163622
+        ]
+      },
+      "median": {
+        "scent": 0.0004664470034185797,
+        "gnu": 0.00032241300505120307
+      },
+      "ratio": 1.4467375574521328,
+      "m4_2x": true,
+      "range": {
+        "scent": [
+          0.0004540719965007156,
+          0.0004996530042262748
+        ],
+        "gnu": [
+          0.0003089520032517612,
+          0.0003622030053520575
+        ]
+      }
+    },
+    {
+      "name": "only-matching",
+      "argv": [
+        "-E",
+        "-o",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.011387418999220245,
+          0.011261951993219554,
+          0.011153285988257267,
+          0.011370506006642245,
+          0.011333285990986042,
+          0.011153402010677382,
+          0.0113898790004896,
+          0.011411546991439536,
+          0.011440886999480426,
+          0.011255648991209455,
+          0.011029380009858869
+        ],
+        "gnu": [
+          0.010398672995506786,
+          0.010315731007722206,
+          0.01028036599745974,
+          0.010357790990383364,
+          0.010138373996596783,
+          0.010102043990627863,
+          0.01034156300011091,
+          0.010352350989705883,
+          0.01038519199937582,
+          0.010358857995015569,
+          0.010355685008107685
+        ]
+      },
+      "median": {
+        "scent": 0.011333285990986042,
+        "gnu": 0.010352350989705883
+      },
+      "ratio": 1.0947548051892344,
+      "m4_2x": true,
+      "range": {
+        "scent": [
+          0.011029380009858869,
+          0.011440886999480426
+        ],
+        "gnu": [
+          0.010102043990627863,
+          0.010398672995506786
+        ]
+      }
+    },
+    {
+      "name": "invert",
+      "argv": [
+        "-F",
+        "-v",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.011366627004463226,
+          0.01108022998960223,
+          0.01117287999659311,
+          0.011096567002823576,
+          0.011003259001881815,
+          0.011192963007488288,
+          0.011071936998632737,
+          0.011266688001342118,
+          0.01133133500115946,
+          0.011059269003453664,
+          0.011016272997949272
+        ],
+        "gnu": [
+          0.0026626550097716972,
+          0.0026998899993486702,
+          0.002716098999371752,
+          0.0026697450084611773,
+          0.0027668129914673045,
+          0.0026788240065798163,
+          0.0026814309967448935,
+          0.002717556999414228,
+          0.0026657669950509444,
+          0.002943034007330425,
+          0.0026704580086516216
+        ]
+      },
+      "median": {
+        "scent": 0.011096567002823576,
+        "gnu": 0.0026814309967448935
+      },
+      "ratio": 4.138300413582965,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.011003259001881815,
+          0.011366627004463226
+        ],
+        "gnu": [
+          0.0026626550097716972,
+          0.002943034007330425
+        ]
+      }
+    },
+    {
+      "name": "binary",
+      "argv": [
+        "-F",
+        "-a",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4194303,
+      "seconds": {
+        "scent": [
+          0.01879275900137145,
+          0.018789417008520104,
+          0.01891927000542637,
+          0.018930905003799126,
+          0.0187212409946369,
+          0.018671879995963536,
+          0.018619751004735008,
+          0.0189451390033355,
+          0.019494690001010895,
+          0.018836891002138145,
+          0.018708503994275816
+        ],
+        "gnu": [
+          0.00435326699516736,
+          0.004476683010580018,
+          0.004471119988011196,
+          0.004414216993609443,
+          0.004501560004428029,
+          0.0044766319915652275,
+          0.00442702099098824,
+          0.004346551009803079,
+          0.004392718998133205,
+          0.004315122991101816,
+          0.004510215003392659
+        ]
+      },
+      "median": {
+        "scent": 0.01879275900137145,
+        "gnu": 0.00442702099098824
+      },
+      "ratio": 4.245012399901985,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.018619751004735008,
+          0.019494690001010895
+        ],
+        "gnu": [
+          0.004315122991101816,
+          0.004510215003392659
+        ]
+      }
+    },
+    {
+      "name": "recursive",
+      "argv": [
+        "-r",
+        "-F",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4200000,
+      "seconds": {
+        "scent": [
+          0.0683269260043744,
+          0.06838576500013005,
+          0.0678095960029168,
+          0.06799938699987251,
+          0.06809696998971049,
+          0.06900054299330804,
+          0.06834733299911022,
+          0.06867842099745758,
+          0.0680904840119183,
+          0.07042030998854898,
+          0.07014723100292031
+        ],
+        "gnu": [
+          0.00614696899720002,
+          0.006273581995628774,
+          0.006457668001530692,
+          0.006177482006023638,
+          0.006197289010742679,
+          0.00660671699733939,
+          0.0062398299924097955,
+          0.006232596002519131,
+          0.006128886001533829,
+          0.006907260001753457,
+          0.006751087988959625
+        ]
+      },
+      "median": {
+        "scent": 0.06834733299911022,
+        "gnu": 0.0062398299924097955
+      },
+      "ratio": 10.953396660205286,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.0678095960029168,
+          0.07042030998854898
+        ],
+        "gnu": [
+          0.006128886001533829,
+          0.006907260001753457
+        ]
+      }
+    },
+    {
+      "name": "utf8-fold",
+      "argv": [
+        "-F",
+        "-i",
+        "-c",
+        "\u00c9"
+      ],
+      "locale": "C.UTF-8",
+      "bytes": 67108842,
+      "seconds": {
+        "scent": [
+          0.10728011999162845,
+          0.1066503120091511,
+          0.10669674999371637,
+          0.10565821001364384,
+          0.10570563899818808,
+          0.10542650800198317,
+          0.1053413079935126,
+          0.10597326399874873,
+          0.10775878799904604,
+          0.10676896900986321,
+          0.10665872000390664
+        ],
+        "gnu": [
+          0.03243389898852911,
+          0.032092307999846525,
+          0.03160107800795231,
+          0.03182217500580009,
+          0.03186992500559427,
+          0.03159414400579408,
+          0.03189986199140549,
+          0.03196924101212062,
+          0.0316606409905944,
+          0.03221846799715422,
+          0.03212632799113635
+        ]
+      },
+      "median": {
+        "scent": 0.1066503120091511,
+        "gnu": 0.03189986199140549
+      },
+      "ratio": 3.343284432950995,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.1053413079935126,
+          0.10775878799904604
+        ],
+        "gnu": [
+          0.03159414400579408,
+          0.03243389898852911
+        ]
+      }
+    },
+    {
+      "name": "fixed-1",
+      "argv": [
+        "-F",
+        "-c",
+        "-f",
+        "/work/scent/target/ct05-corpus/patterns-1"
+      ],
+      "locale": "C",
+      "bytes": 1048555,
+      "seconds": {
+        "scent": [
+          0.004120205994695425,
+          0.004080038997926749,
+          0.004010669013950974,
+          0.0040577299951110035,
+          0.0041146040020976216,
+          0.00402071799908299,
+          0.004085516993654892,
+          0.004062556006829254,
+          0.0039933720108820125,
+          0.00402578798821196,
+          0.004003930996987037
+        ],
+        "gnu": [
+          0.001025984005536884,
+          0.0009724280098453164,
+          0.0009445699979551136,
+          0.0009227590053342283,
+          0.0009299630037276074,
+          0.0010162599937757477,
+          0.000969199012615718,
+          0.0009427049953956157,
+          0.0009257750061806291,
+          0.0009793369972612709,
+          0.0009084399935090914
+        ]
+      },
+      "median": {
+        "scent": 0.0040577299951110035,
+        "gnu": 0.0009445699979551136
+      },
+      "ratio": 4.295848908916784,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.0039933720108820125,
+          0.004120205994695425
+        ],
+        "gnu": [
+          0.0009084399935090914,
+          0.001025984005536884
+        ]
+      }
+    },
+    {
+      "name": "fixed-10",
+      "argv": [
+        "-F",
+        "-c",
+        "-f",
+        "/work/scent/target/ct05-corpus/patterns-10"
+      ],
+      "locale": "C",
+      "bytes": 1048555,
+      "seconds": {
+        "scent": [
+          0.004494598004384898,
+          0.004455849004443735,
+          0.004426567989867181,
+          0.0044914460013387725,
+          0.004521595008554868,
+          0.004537679007626139,
+          0.0044385359942680225,
+          0.004500333001487888,
+          0.004381923994515091,
+          0.004448822990525514,
+          0.004399183002533391
+        ],
+        "gnu": [
+          0.0013512850127881393,
+          0.0013364359911065549,
+          0.0013553549943026155,
+          0.0014433579926844686,
+          0.0012775869981851429,
+          0.001373845007037744,
+          0.001299088995438069,
+          0.0012922200112370774,
+          0.0013254549994599074,
+          0.0013150739978300408,
+          0.001302267992286943
+        ]
+      },
+      "median": {
+        "scent": 0.004455849004443735,
+        "gnu": 0.0013254549994599074
+      },
+      "ratio": 3.3617504979493016,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.004381923994515091,
+          0.004537679007626139
+        ],
+        "gnu": [
+          0.0012775869981851429,
+          0.0014433579926844686
+        ]
+      }
+    },
+    {
+      "name": "fixed-1000",
+      "argv": [
+        "-F",
+        "-c",
+        "-f",
+        "/work/scent/target/ct05-corpus/patterns-1000"
+      ],
+      "locale": "C",
+      "bytes": 1048555,
+      "seconds": {
+        "scent": [
+          0.006574897997779772,
+          0.006676026008790359,
+          0.006729512999299914,
+          0.00671932399563957,
+          0.006643833010457456,
+          0.006797973997890949,
+          0.006563678995007649,
+          0.0065003589988918975,
+          0.006587907002540305,
+          0.006855957995867357,
+          0.0066593449882930145
+        ],
+        "gnu": [
+          0.0014494439965346828,
+          0.0015392350032925606,
+          0.0014962059940444306,
+          0.0014949339965824038,
+          0.00150537199806422,
+          0.0015607440000167117,
+          0.00144031600211747,
+          0.001528360997326672,
+          0.001447403003112413,
+          0.0015622450009686872,
+          0.0014428970025619492
+        ]
+      },
+      "median": {
+        "scent": 0.0066593449882930145,
+        "gnu": 0.0014962059940444306
+      },
+      "ratio": 4.45082095299724,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.0065003589988918975,
+          0.006855957995867357
+        ],
+        "gnu": [
+          0.00144031600211747,
+          0.0015622450009686872
+        ]
+      }
+    }
+  ]
+}

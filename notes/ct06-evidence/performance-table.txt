@@ -1,0 +1,26 @@
+kasumi; lock kasumi-cores-4-7.lock; physical CPUs 4-7; pinned Ubuntu/GNU 3.12.
+One warmup and eleven interleaved before/candidate/GNU samples per row; every stdout SHA256, stderr and exit status agree.
+Before is the saved trunk-production binary, after is final accepted production; all medians below are milliseconds.
+Ratio is after/GNU; M4 is independently <=2, not the regression ceiling. Raw samples and ranges: final-paired.json.
+
+| Workload | Before ms | After ms | GNU ms | Ratio | M4 |
+| --- | ---: | ---: | ---: | ---: | --- |
+| literal | 114.244 | 94.360 | 11.297 | 8.352 | false |
+| class | 113.337 | 94.736 | 11.549 | 8.203 | false |
+| alternation | 303.359 | 141.785 | 10.495 | 13.510 | false |
+| backreference | 81.432 | 80.518 | 38.563 | 2.088 | false |
+| ignore-case | 9.434 | 8.033 | 2.856 | 2.813 | false |
+| word | 9.798 | 7.915 | 4.334 | 1.826 | true |
+| count | 13.150 | 10.969 | 2.754 | 3.983 | false |
+| list | 0.478 | 0.482 | 0.316 | 1.528 | true |
+| only-matching | 46.818 | 11.112 | 10.349 | 1.074 | true |
+| invert | 13.195 | 11.056 | 2.795 | 3.955 | false |
+| binary | 21.340 | 19.246 | 5.815 | 3.309 | false |
+| recursive | 72.258 | 68.508 | 6.598 | 10.383 | false |
+| utf8-fold | 139.426 | 106.210 | 32.098 | 3.309 | false |
+| fixed-1 | 4.363 | 4.046 | 1.377 | 2.938 | false |
+| fixed-10 | 6.062 | 4.470 | 1.422 | 3.145 | false |
+| fixed-1000 | 8.170 | 6.673 | 1.648 | 4.048 | false |
+
+Three rows pass M4: word, list and only-matching. Thirteen misses remain. No final candidate range is wholly above its paired before range. Range overlap is the predeclared noise band, not a statistical-significance claim.
+See issue-texts.txt: vector byte/search and true read-into requests are measured opportunities; no claim that every remaining row is impossible at the current language surface.
