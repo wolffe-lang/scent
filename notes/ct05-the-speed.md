@@ -1,0 +1,124 @@
+## Note
+
+## Prediction
+
+Baseline 7f6651d68468efd8b5e9ba2dff358a841107b98c. The complete sixteen-workload table was committed before implementation at 5a4dcea. Every row has one warmup and eleven interleaved pairs, output drained through pipes and checked for exact stdout/status/stderr agreement. The three worst ratios were fixed-1000 1013.18x, alternation 159.52x and literal 98.96x GNU. Predicted wins from deterministic transitions, literal rejection and shared prefixes; predicted that read-path costs would leave named 2x misses.
+
+The first map-backed DFA and first global-edge trie drafts were not hidden: dfa.json and prefilter.json retain their regressions. Dense byte transitions, local sorted trie edges, byte-indexed skip tables and separated delimiter scans corrected them. performance-table.txt includes each phase. Fifteen of sixteen final pre-acceptance rows still missed 2x; the regression ratchet is separate from M4 and does not waive these misses.
+
+R-ct05-1: recommend A, keep every miss named and ratchet ct06. M4 is not met. R-ct05-2: recommend not adopting the newer allocating/copying std#94 wrapper as a speed fix; retain the current pin and measure a true read-into builtin separately. R-ct05-3: recommend conservative proofs bounded to 256 units and 4096 AST nodes, admitting unknowns rather than risking an unbounded analysis. All recommendations are implemented; no ruling is decided here.
+
+## Forbidden
+
+No GNU grep, gnulib, glibc implementation, busybox, PCRE2, RE2 or other matcher's source read. No ferp implementation read. New algorithms are original; existing scent code and its documented contracts are the code references. GNU was built unseen from the signature-verified tarball by tools/fetch-oracle. The original C read-cost adapter calls published libc interfaces only and is never linked into scent. No dependency or production pin changed. No host package installation, Mac build, merge, label, tag, release, issue action, planning-repo edit or personal-configuration edit. No attribution trailers. Jobs ran in lane-owned rootless Ubuntu containers on kasumi CPUs 0-3; every timing held the shared core lock and used taskset. Long acceptance/replay jobs have durable PID/status files under /home/mfwolffe/lanes/ct05. No process was killed.
+
+The wrapper prohibits Markdown report files. This text and the PR body's Note carry the five-section note; the orchestrator must materialize notes/ct05-the-speed.md at merge.
+
+## Inputs verified
+
+- scent trunk 7f6651d68468efd8b5e9ba2dff358a841107b98c, clean clone /home/mfwolffe/lanes/ct05/scent, branch ct05.
+- Unchanged wolf 0.2.35 / lupin 0.1.56 / bundled pinned std 2386522eb059cca5a84108562c2c0a0e72345d34. Independent archive hashes and tag-commit API reads, each twice, are in toolchain-digests.txt. Complete compiler/runtime archive pairs stayed together.
+- GNU grep 3.12, --disable-perl-regexp, pinned Ubuntu 24.04/glibc 2.39; exact binary digest checked by the existing oracle before conformance and every speed run.
+- ct04's note was read from PR #10; no tracked ct04 note file exists at the baseline. Its m4-contract.txt, complete scent index, RULES 1-10 and the Wolf guide were read. No planning files changed.
+- Own-code inputs at the baseline: src/re/re.lu, compile.lu, parse.lu, byte_vm.lu, linear.lu, backref.lu, utf8.lu and ctype.lu; src/fixed/fixed.lu; src/matcher/matcher.lu; src/reader/reader.lu; existing oracle, build, measurement and CI harnesses.
+- std#94 is already CLOSED by sc72/std#96. Its unchanged implementation at 78b9d3cbc41d51db44d18c40b6694403644d1c83 was staged only for the isolated read-into probe. std#89 remains OPEN. The sc72 wrapper still allocates a chunk and copies it once.
+
+## Evidence index
+
+Implementation chunks:
+- 5a4dcea: baseline and committed prediction.
+- 50a6f78: bounded context-aware lazy DFA and overflow test.
+- d1afb56: dense assertion-free byte transitions.
+- b167a6a: conservative required-literal proofs and exact word/whole-line checks.
+- 8302d9b: fixed prefix/failure/output links and scalar fold keys.
+- bae135a: local sorted trie edges and byte-indexed skip tables.
+- 04c93e6: scalar delimiter search outside per-record controls.
+- 257902a and 7754b96: CI regression hook, named witnesses and fail-closed measurement checks.
+- 7d501fc: 2 GiB memory coverage for fixed, DFA, many-pattern and UTF-8 paths.
+- f5a1dee: explicit wide transition-key arithmetic on lupin.
+- c6ef698: README refresh.
+
+The DFA has at most 128 states, 4096 cached transitions and 65536 stored counters per chunk, and refuses programs above 2048 instructions. Exact units refine scalar/class partitions; keys also distinguish word and anchor context. Backreferences, cache exhaustion and spans retain the original engine. Required-literal proofs preserve the chosen selection/span root and admit unknowns. UTF-8 candidates stay at decoded boundaries and use the existing symmetric/transitive fold closure, including historical Cyrillic equivalents and separate malformed-byte/legacy-value identities. Fixed C single-pattern/span paths retain KMP; many-pattern C selection and UTF-8 fixed selection share prefixes. UTF-8 word/whole selection uses the regex verifier.
+
+Conformance evidence before the final acceptance: dfa-conformance.log and vm-conformance.log each report all 48305 cases with 47514 agreements, 790 exact reviews, one environment row, zero unapproved/not-yet. prefilter-conformance.log also passes the complete CLI matrix and both generated engine gates, projection controls and cost gate. No expected GNU result or divergence manifest was edited.
+
+The first whole acceptance stopped honestly on two lupin arithmetic overflows. accept-first.log and accept-first-inputs.json retain that red. Explicit int operands fixed it; key-width.log then reports all 29 checked tests and every root native/lupin control passing. Final acceptance is now GREEN: acceptance.log, 2026-10-25T22:14 through 22:30:24Z, exit 0, SKIP=0. accept-inputs.json hashes every source/harness/test byte at that accepted head. The later recorder-only correction is separately hashed in recorder-inputs.json; every production source byte remains unchanged. Native, release, deterministic static and forced original-VM matrices each retain the same 48305-case totals. The checked suite has 29 passing tests, and every root native/lupin control passes. The engine gate has 19 passing units, malformed/generated/projection controls and its cost gate. Locale-free plain-Ubuntu static replay is GREEN too, posture.log, exit 0 at 22:32:53Z.
+
+The five 2 GiB memory peaks (KiB) are fixed count 2664, fixed numbered output 2924, regex alternation/DFA 2936, 1000-pattern fixed selection 4240, UTF-8 fixed fold 2832. The 32768 KiB gate is unchanged; this is bounded streaming, not a claim that every RSS byte equals ct04 (its first two peaks were 2676/2708 KiB). Static builds agreed twice at bf63198d3752fcaa0d92700dee899eb1b2b4399e08b8dae24707649635f58d01, 15024520 bytes. The oracle capture remains byte-identical to ct04: d635cc1dde428cdb7437e7680d1d8c457901ad2a85de801684daac25062daeae.
+
+accept-speed.json is the fresh eleven-pair final-source measurement, and performance-table.txt uses it in the final columns. The unchanged fixed ceilings pass on all sixteen rows. Only list passes M4's independent 2x test; the other fifteen are still misses.
+
+performance-table.txt and the raw baseline/dfa/prefilter/prefilter-local/byte-scan/byte-scan-local/final/accept-speed JSON files retain all eleven samples, medians, variance ranges and per-row M4 booleans. Ceilings are max(2, 1.5 times the post-reader measured ratio), not M4 waivers. ratchet-red.log proves the original baseline is rejected on nine named rows; speed-check-test rejects missing/duplicate rows, incomplete samples and altered medians/ratios/M4 flags.
+
+Read-cost controls: read-cost.json. On 67108608 bytes, 683 nonempty reads plus EOF allocated 67141392 region-ledger bytes (48 bytes overhead per nonempty read); these are builtin-call/ledger counts, not a host syscall trace. Current reads: 0.007484s; actual sc72 read_into: 0.043298s, 5.79x slower, adding 35.815ms. The reusable C read control is 1.266ms below current reads. Scalar delimiter increment: 18.927ms; black-box memchr increment: 1.156ms; observed single-pass std#89 opportunity: 17.771ms per 64 MiB. These controls are opportunities, not a promise that a future std implementation recovers them or clears every 2x miss. strace is not installed in the pinned container; no package was added for tracing.
+
+Plants: draft PRs #11, #12 and #13 remain open for the orchestrator. Final heads/run IDs and expected named reds are in plants.txt. At those exact heads, all original-VM controls passed locally, followed by exit-1 RED dfa-cache-overflow, prefilter-retains-match and fixed-prefix-pattern respectively. Their three retained local logs prove the intended defects, not shared baseline errors. Final CI runs 40240397992 / 40240397576 / 40240400153 were pending/in_progress on their sole ID reads; one later log request still found them in progress. No completed CI red is claimed. The orchestrator watches them; no lane CI wait or label was used.
+
+### Recorder CI correction
+
+The initial PR run 40241173648 failed in the measurement step after its original-VM matrix passed: Git reported dubious ownership of /work/scent. The old call already used cwd=ROOT; this was not a missing-cwd diagnosis. The failed log is retained in ci-recorder-40241173648.log.
+
+77a1a93 makes provenance explicit: the launcher forwards GITHUB_SHA, the recorder validates and records it when supplied, otherwise invokes Git from its own checkout root. Invalid CI identity or unavailable Git metadata with no CI identity is a clear REFUSED exit, before corpus generation. It records head_source and never installs a safe.directory override. a0b79b9 proves the regression caller really is outside Git discovery, rather than merely outside the fixture checkout. README provenance was refreshed separately in d71b3da.
+
+The actual mounted-checkout ownership condition was reproduced with a lane-owned container user: no CI identity yields the intended clear refusal; forwarded CI identity succeeds from /work. recorder-ownership-red.log and recorder-ownership-green.log retain both results. The real recorder CLI has seven passing guards, including non-repository cwd, foreign GIT_DIR, valid/invalid CI identity, missing linked-checkout metadata and container environment wiring; recorder-head-tests.log records the final test bytes.
+
+The entire edited speed-ci gate passed from /work under the core lock, with a forwarded CI identity: all 48305 original-VM comparisons unchanged, all named witnesses and evidence guards green, sixteen eleven-pair workload ratchets green. recorder-check.log and recorder-speed.json retain this run; recorder-inputs.json binds the four edited/new harness files and proves all production source unchanged. The original full acceptance remains the production evidence; this run covers the recorder correction. No plant branch was changed during this correction; the coordinator owns their remaining CI reads.
+
+README read and refreshed. Footprint is module: one program plus its tests/measurements; the added gate uses the existing tools/measure job, with no workflow, tier, pin, runtime or spec change.
+
+## Done-when
+
+- [x] Full eleven-pair baseline committed before implementation; three worst rows named.
+- [x] Bounded lazy DFA, sound literal filters, shared fixed prefixes and read-path measurements.
+- [x] Original-engine control; unchanged complete conformance and exact reviews on the intermediate code.
+- [x] Per-workload before/after table; every 2x miss named, not waived.
+- [x] Regression gate in existing CI hook, guard tests and local baseline red.
+- [x] Three deliberately broken draft PRs pushed and left open, without labels.
+- [x] Final whole acceptance and locale-free static replay recorded, source hashes checked.
+- [x] Local plant logs show the expected named reds after passing original-VM controls.
+- [ ] Completed CI plant logs show the expected named reds (orchestrator watch).
+- [x] Evidence and actual prune list recorded; publication/run/audit metadata follows in the PR body at the final head.
+
+M4 remains unmet; no release or deployment is claimed. Planning corrections: std#94 is closed and its wrapper is not a zero-allocation speed API; ct04's five-section note is only in PR #10. No issue was filed or closed.
+
+Final accepted before/after ratios (scent/GNU):
+
+| Workload | Baseline | Accepted | M4 <=2x |
+| --- | ---: | ---: | --- |
+| literal | 98.96 | 10.04 | MISS |
+| class | 95.91 | 10.10 | MISS |
+| alternation | 159.52 | 29.37 | MISS |
+| backreference | 2.89 | 2.13 | MISS |
+| ignore-case | 24.65 | 3.45 | MISS |
+| word | 6.77 | 2.27 | MISS |
+| count | 5.53 | 4.99 | MISS |
+| list | 1.29 | 1.50 | PASS |
+| only-matching | 10.33 | 4.46 | MISS |
+| invert | 5.48 | 4.95 | MISS |
+| binary | 4.72 | 4.79 | MISS |
+| recursive | 11.13 | 11.54 | MISS |
+| utf8-fold | 7.04 | 4.38 | MISS |
+| fixed-1 | 5.15 | 4.40 | MISS |
+| fixed-10 | 9.60 | 4.46 | MISS |
+| fixed-1000 | 1013.18 | 5.44 | MISS |
+
+Pruning is complete and itemized in notes/ct05-evidence/prune.txt. Only ct05's
+three clean plant worktrees, downloaded archives, isolated std measurement tree,
+generated corpora/engine build trees and baseline binary were removed. The main
+checkout, pinned compiler/runtime pair, verified oracle, final binaries and all
+evidence remain under /home/mfwolffe/lanes/ct05. No shared prune or process kill.
+
+### Corrected publication metadata
+
+Current head: `5a13eb09b2c74539d284e58dd05bbbc570718332`.
+The sole direct run-ID read after this push found **40244258230**, `queued`.
+The mandatory audit was rerun once at this corrected head. Its last line is:
+
+`AUDIT FAIL (footprint: module)`
+
+Only holds: unfinished PR CI and no completed green tier at the head. Footprint, ancestry, trailers, report sections, all fifteen cited commit references and process checks pass. No label was added; the orchestrator watches CI.
+
+Correction commits: `77a1a93` (validated CI identity, root-local Git fallback, forwarding and recorder guards), `d71b3da` (README), `a0b79b9` (prove the test caller is outside Git discovery), `5a13eb0` (failure/green evidence and updated note). No production source changed. The original full acceptance covers production; the full edited speed gate and final recorder guard rerun cover the correction.
+
+Plant branches were not changed during this correction. The coordinator has confirmed #11's intended red and owns the remaining #12/#13 CI reads.
+
