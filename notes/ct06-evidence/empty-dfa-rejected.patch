@@ -1,0 +1,17 @@
+diff --git a/src/re/dfa.lu b/src/re/dfa.lu
+index 003e2ed..3b30f27 100644
+--- a/src/re/dfa.lu
++++ b/src/re/dfa.lu
+@@ -17,10 +17,10 @@ struct Dfa {
+ }
+ 
+ fn dfa_new(re: Regex) -> Dfa {
+-    var enabled = re.prog.len <= 2048 && (env_get("SCENT_MATCH_ENGINE") else "") != "vm"
++    var enabled = re.prog.len > 0 && re.prog.len <= 2048 && (env_get("SCENT_MATCH_ENGINE") else "") != "vm"
+     for refs in re.backrefs { if refs { enabled = false } }
+     var words = re.options.word
+-    var simple = !re.options.utf8 && !re.options.word && !re.options.whole
++    var simple = enabled && !re.options.utf8 && !re.options.word && !re.options.whole
+     for inst in re.prog {
+         if inst.op >= BOL && inst.op <= WORD_END { simple = false }
+         if inst.op >= BOUND && inst.op <= WORD_END { words = true }

@@ -1,0 +1,1 @@
+Reject skipping empty-program dense allocation: recursive target 68.885 -> 69.305 ms, no improvement. Eleven-sample three-way measurement retained; patch not applied. Other rows cannot justify keeping a lever that failed its named target.
