@@ -182,12 +182,17 @@ sixteen workloads against explicit regression ceilings. Each workload uses
 one warmup and eleven interleaved GNU/scent pairs on four CPUs, with output
 drained through a pipe. Every row also reports the separate 2× GNU target:
 rows above 2× are misses, even when the regression ceiling passes. The
-measurements and before/after table are in `notes/ct05-evidence/`.
+measurements and before/after tables are in `notes/ct05-evidence/` and
+`notes/ct06-evidence/`. M4 remains unmet; passing a regression ceiling is
+not a waiver of the separate 2× target.
 The recorder uses `GITHUB_SHA` when supplied, otherwise resolves `HEAD` from
 its own checkout, independently of the caller's working directory. Missing or
 malformed provenance stops the measurement before any workloads run. The
 container launcher forwards the CI identity without changing Git's safety
 configuration; tests cover non-repository callers and unavailable metadata.
+Physical CPU IDs are recorded and must be four contiguous cores. Optional
+`--before-bin` measurements interleave the control binary with scent and GNU,
+checking all three result tuples. Source and binary hashes bind each new run.
 Full CI adds the macOS field leg.
 
 ## Published differences
@@ -274,11 +279,15 @@ Regular line selection uses a lazy deterministic cache, with the original
 state-set VM on cache exhaustion and for backreferences. Bounds are 128
 states, 4,096 transitions and 65,536 stored program counters per chunk;
 programs over 2,048 instructions stay on the VM. Exact decoded units and
-word/anchor context distinguish transitions. Spans still use the original
-leftmost-longest engine. Mandatory-literal proofs and byte skip searches
-reject impossible records; fixed-string selection shares prefixes and suffix
-links, including scalar-aware UTF-8 folding. Optional or unproved literals
-never reject a record. No optimization changes the published differences.
+word/anchor context distinguish transitions. Exact byte spans use independent
+span-parser proofs and a skip search; other spans retain the original
+leftmost-longest engine. Mandatory-literal proofs reject impossible records.
+A fully exact top-level union can retain up to 32 separate literal branches;
+an unproved branch or exhausted bound falls back as a whole. Fixed-string
+selection shares prefixes and suffix links, with byte-indexed roots and
+scalar-aware UTF-8 folding. Delimiter scans are scalar and unrolled; inactive
+context history does not enter its storage region. Optional or unproved
+literals never reject a record. No optimization changes the published differences.
 
 The current std pin still allocates each read chunk. The newer `read_into`
 wrapper is measured separately rather than silently changing the dependency:
