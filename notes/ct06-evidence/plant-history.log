@@ -1,0 +1,25 @@
+build: target/release/scent
+PASS dfa-cache-overflow
+PASS prefilter-retains-match
+PASS fixed-prefix-pattern
+PASS fixed-suffix-output
+PASS fixed-prefix-word
+PASS dfa-word-context
+PASS utf8-historic-fold
+PASS speed witnesses; SKIP=0
+PASS exact-span-longest
+PASS exact-span-word
+PASS exact-span-empty
+PASS exact-span-unknown
+PASS exact-union-branches
+PASS exact-union-unknown
+PASS exact-union-empty
+PASS exact-union-bound
+PASS trie-root-byte
+PASS trie-root-high-byte
+PASS trie-root-empty
+Traceback (most recent call last):
+  File "/work/scent/tools/speed-test", line 40, in <module>
+    assert (result.stdout,result.stderr,result.returncode)==(want,b'',0),f'RED {name} {engine}: {result.stdout!r} {result.stderr!r} {result.returncode}'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RED history-leading-context : b'needle\n' b'' 0

@@ -1,0 +1,8 @@
+build: target/release/scent
+PASS dfa-cache-overflow
+PASS prefilter-retains-match
+Traceback (most recent call last):
+  File "/work/scent/tools/speed-test", line 12, in <module>
+    assert (fast.stdout,fast.stderr,fast.returncode)==(old.stdout,old.stderr,old.returncode),f'RED {name}: accelerated/original tuple differs'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RED fixed-prefix-pattern: accelerated/original tuple differs

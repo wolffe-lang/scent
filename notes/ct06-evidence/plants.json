@@ -1,0 +1,38 @@
+[
+  {
+    "name": "root",
+    "path": "src/fixed/trie.lu",
+    "before_sha256": "55abf7d432cfaaf62d6be44d9c5db927eeeaa137d66b5128df480b63e94ab201",
+    "planted_sha256": "225d80956c629f9468c94b3ce3575e00a1e98bfd56d70a41e36f21bd060ffb25",
+    "replacement": [
+      "trie.roots[unit] = child",
+      "trie.roots[unit] = -1"
+    ],
+    "exit": 1,
+    "expected": "RED fixed-prefix-pattern"
+  },
+  {
+    "name": "history",
+    "path": "src/reader/reader.lu",
+    "before_sha256": "f1318b64e27025eb56e52fbcc3bc9ce33c3204d5d84a3d2b24225d4d3dd37ecb",
+    "planted_sha256": "39d2bb0693470f9164447c95b09861beacac65eb8769958fc2e3135156054a40",
+    "replacement": [
+      "let keep_history = flags.before > 0",
+      "let keep_history = flags.before < 0"
+    ],
+    "exit": 1,
+    "expected": "RED history-leading-context"
+  },
+  {
+    "name": "longest",
+    "path": "src/re/prefilter.lu",
+    "before_sha256": "5e057df1905d82b51fad797307f643df7153a4fc8ab8c7bd00863dc6056cb241",
+    "planted_sha256": "d0bcc67cea2af36dca67a6d7ede286239b91e0d2a08ff36298ebda39ea3639a9",
+    "replacement": [
+      "if at < best_lo || at + size > best_hi {",
+      "if at <= best_lo {"
+    ],
+    "exit": 1,
+    "expected": "RED exact-span-longest"
+  }
+]

@@ -1,0 +1,14 @@
+build: target/release/scent
+PASS dfa-cache-overflow
+PASS prefilter-retains-match
+PASS fixed-prefix-pattern
+PASS fixed-suffix-output
+PASS fixed-prefix-word
+PASS dfa-word-context
+PASS utf8-historic-fold
+PASS speed witnesses; SKIP=0
+Traceback (most recent call last):
+  File "/work/scent/tools/speed-test", line 40, in <module>
+    assert (result.stdout,result.stderr,result.returncode)==(want,b'',0),f'RED {name} {engine}: {result.stdout!r} {result.stderr!r} {result.returncode}'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RED exact-span-longest : b'ab\nab\n' b'' 0
