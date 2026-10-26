@@ -384,5 +384,11 @@ pub fn next_span(
     hi: int,
     from: int,
 ) -> Span ! {none} {
+    if ws.prefilters {
+        return literal_span(re, bytes, lo, hi, from) else |e| match e {
+            none => { return none },
+            fallback => { return next_span_mode(re, mut ws, bytes, lo, hi, from, true) },
+        }
+    }
     next_span_mode(re, mut ws, bytes, lo, hi, from, true)
 }

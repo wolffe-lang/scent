@@ -142,6 +142,7 @@ pub fn compile(
         backrefs: List[bool](),
         verify: List[bool](),
         filters: List[Prefilter](),
+        span_filters: List[Prefilter](),
     }
     var selection_proofs = List[List[Prefilter]]()
     var span_proofs = List[List[Prefilter]]()
@@ -194,6 +195,7 @@ pub fn compile(
     }
     var i = 0
     while i < re.starts.len {
+        var span_filters = copy span_proofs[i]
         var filters = if re.verify[i] || re.starts[i] == re.span_starts[i] {
             copy span_proofs[i]
         } else {
@@ -203,11 +205,13 @@ pub fn compile(
             if b == options.terminator {
                 var impossible = prefilter_new(proof_atom(options.terminator as int))
                 impossible.exact = false
-                filters = [impossible]
+                filters = [copy impossible]
+                span_filters = [impossible]
                 break
             }
         }
         for filter in filters { (mut re.filters).push(copy filter) }
+        for filter in span_filters { (mut re.span_filters).push(copy filter) }
         i += 1
     }
     re

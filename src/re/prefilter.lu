@@ -308,3 +308,39 @@ fn prefilter_result(re: Regex, ws: Workspace, bytes: List[byte], lo: int, hi: in
     }
     if possible then 0 else -1
 }
+
+// Exact span-parser proofs can answer nonempty leftmost-longest byte spans
+// directly. Selection-parser proofs are deliberately not reused here.
+fn literal_span(re: Regex, bytes: List[byte], lo: int, hi: int, from: int) -> Span ! {
+    none,
+    fallback,
+} {
+    if re.options.utf8 || re.span_filters.len == 0 { return fallback }
+    for filter in re.span_filters { if !filter.exact { return fallback } }
+    var best_lo = hi + 1
+    var best_hi = hi + 1
+    for filter in re.span_filters {
+        let size = filter.units.len
+        if size == 0 { continue }
+        var at = if from < lo then lo else from
+        while at + size <= hi && at <= best_lo {
+            let last = literal_key(re.options, bytes[at + size - 1] as int)
+            if last == filter.units[size - 1] {
+                var i = 0
+                while i < size && literal_key(re.options, bytes[at + i] as int) == filter.units[i] {
+                    i += 1
+                }
+                if i == size && literal_candidate(re, filter, bytes, lo, hi, at, at + size) {
+                    if at < best_lo || at + size > best_hi {
+                        best_lo = at
+                        best_hi = at + size
+                    }
+                    break
+                }
+            }
+            at += filter.shifts[last]
+        }
+    }
+    if best_lo > hi { return none }
+    Span { lo: best_lo, hi: best_hi }
+}

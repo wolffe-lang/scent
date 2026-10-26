@@ -90,6 +90,7 @@ pub struct Regex {
     backrefs: List[bool],
     verify: List[bool],
     filters: List[Prefilter],
+    span_filters: List[Prefilter],
 }
 
 /// Reusable state sets sized to one compiled program; no per-line allocation.
