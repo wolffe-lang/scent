@@ -34,6 +34,7 @@ fn alternation_fixture(options: Options) -> Regex {
         backrefs: copy refs,
         verify: refs,
         filters: List[Prefilter](),
+        span_filters: List[Prefilter](),
     }
 }
 

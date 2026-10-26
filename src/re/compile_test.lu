@@ -17,6 +17,7 @@ fn compiled_fixture(pattern: str, options: Options) -> Regex {
             backrefs: List[bool](),
             verify: List[bool](),
             filters: List[Prefilter](),
+            span_filters: List[Prefilter](),
         }
     }
 }
