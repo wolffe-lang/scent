@@ -15,3 +15,20 @@ for name,argv,data,env in rows:
  assert fast.stdout==expected,f'RED {name}: {fast.stdout!r} != {expected!r}'
  print('PASS',name,flush=True)
 print('PASS speed witnesses; SKIP=0')
+
+# ct06: independently spelled expected tuples for root rejection and the
+# no-history fast path. All run through the real CLI and original-VM control.
+for name,argv,data,want,locale in [
+ ('trie-root-byte',['-F','-c','-e','needle','-e','absent'],b'needle\nabsent\nmissing\n',b'2\n','C'),
+ ('trie-root-high-byte',['-F','-c','-e','é','-e','à'],'é\nà\nx\n'.encode(),b'2\n','C.UTF-8'),
+ ('trie-root-empty',['-F','-c','-e','','-e','ab'],b'\nab\nx\n',b'3\n','C'),
+ ('history-leading-context',['-F','-B','2','needle'],b'one\ntwo\nneedle\n',b'one\ntwo\nneedle\n','C'),
+ ('history-count-limit',['-F','-B','2','-c','-m','1','needle'],b'one\nneedle\nneedle\n',b'1\n','C'),
+ ('history-invert-only',['-F','-v','-o','-B','1','needle'],b'needle\nmiss\n',b'needle\n','C'),
+]:
+ env=dict(os.environ,LC_ALL=locale)
+ for engine in ['', 'vm']:
+  result=subprocess.run([str(binary),*argv],input=data,capture_output=True,env=dict(env,SCENT_MATCH_ENGINE=engine))
+  assert (result.stdout,result.stderr,result.returncode)==(want,b'',0),f'RED {name} {engine}: {result.stdout!r} {result.stderr!r} {result.returncode}'
+ print('PASS',name,flush=True)
+print('PASS ct06 reader/root witnesses; SKIP=0')
