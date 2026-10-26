@@ -1,0 +1,24 @@
+PASS recorder-non-repo-cwd
+PASS recorder-ignores-foreign-git-dir
+PASS recorder-github-sha
+PASS recorder-invalid-github-sha
+PASS recorder-github-sha-without-git
+PASS recorder-no-head-refuses
+PASS recorder-container-env-wiring
+PASS recorder head guards; SKIP=0
+PASS rejected missing speed ratchet workload count
+PASS rejected duplicate speed ratchet workload identity
+PASS rejected samples incomplete timing samples
+PASS rejected median median does not match evidence
+PASS rejected ratio M4 row drift
+PASS rejected m4 M4 row drift
+PASS rejected threshold RED speed-regression: alternation 1.500 > 1.000
+PASS speed-check guards; SKIP=0
+PASS rejected affinity []
+PASS rejected affinity [4, 5, 6]
+PASS rejected affinity [4, 5, 6, 8]
+PASS rejected affinity [7, 6, 5, 4]
+PASS rejected affinity [-1, 0, 1, 2]
+PASS rejected affinity [0, 1, 2, True]
+PASS rejected incomplete before control
+PASS physical-affinity and paired-control guards; SKIP=0

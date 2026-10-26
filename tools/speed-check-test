@@ -17,3 +17,21 @@ for mutation in ['missing','duplicate','samples','median','ratio','m4','threshol
  except AssertionError as e:print('PASS rejected',mutation,str(e))
  else:raise AssertionError('guard did not fail: '+mutation)
 print('PASS speed-check guards; SKIP=0')
+
+# Physical CPU numbers are recorded, not silently remapped to zero-based IDs.
+other=copy.deepcopy(valid);other['affinity']=[4,5,6,7]
+assert check(other,ceilings)==16
+for cpus in [[],[4,5,6],[4,5,6,8],[7,6,5,4],[-1,0,1,2],[0,1,2,True]]:
+ bad=copy.deepcopy(valid);bad['affinity']=cpus
+ try:check(bad,ceilings)
+ except AssertionError:print('PASS rejected affinity',cpus)
+ else:raise AssertionError('accepted invalid affinity')
+paired=copy.deepcopy(other)
+for row in paired['rows']:
+ row['seconds']['before']=[2.0]*11;row['median']['before']=2.0
+assert check(paired,ceilings)==16
+paired['rows'][0]['seconds']['before'].pop()
+try:check(paired,ceilings)
+except AssertionError:print('PASS rejected incomplete before control')
+else:raise AssertionError('accepted incomplete before control')
+print('PASS physical-affinity and paired-control guards; SKIP=0')

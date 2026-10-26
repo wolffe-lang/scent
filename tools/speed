@@ -20,14 +20,15 @@ def recorded_head(root):
   raise SystemExit(f'speed: REFUSED: cannot record checkout head at {root}; GITHUB_SHA is unset; git: {detail}')
  return {'head':sha.lower(),'head_source':'git'}
 
-p=argparse.ArgumentParser(); p.add_argument('--output'); p.add_argument('--record-head',action='store_true'); p.add_argument('--ceilings'); p.add_argument('--bin',default='target/release/scent'); a=p.parse_args()
+p=argparse.ArgumentParser(); p.add_argument('--output'); p.add_argument('--record-head',action='store_true'); p.add_argument('--ceilings'); p.add_argument('--bin',default='target/release/scent'); p.add_argument('--before-bin'); a=p.parse_args()
 if not a.record_head and not a.output:p.error('--output is required for a measurement')
 identity=recorded_head(ROOT)
 if a.record_head:
  print(json.dumps(identity));raise SystemExit(0)
 assert os.environ.get('SCENT_IN_CONTAINER')=='1'
 subprocess.run([str(ROOT/'tools/fetch-oracle')],check=True)
-assert sorted(os.sched_getaffinity(0))==[0,1,2,3]
+affinity=sorted(os.sched_getaffinity(0))
+assert len(affinity)==4 and affinity==list(range(affinity[0],affinity[0]+4)),affinity
 corpus=ROOT/'target/ct05-corpus'; corpus.mkdir(parents=True,exist_ok=True)
 def make(name,block,size):
  path=corpus/name
@@ -47,17 +48,18 @@ for n in [1,10,1000]:
 rows=[('literal',text,['-E','-c','needle']),('class',text,['-E','-c','n[e]edle']),('alternation',text,['-E','-c','needle|zebra']),('backreference',log,['-E','-c',r'n(e)\1dle']),('ignore-case',log,['-E','-i','-c','NEEDLE']),('word',log,['-E','-w','-c','needle']),('count',log,['-F','-c','needle']),('list',text,['-F','-l','needle']),('only-matching',log,['-E','-o','needle']),('invert',log,['-F','-v','-c','needle']),('binary',binary,['-F','-a','-c','needle']),('recursive',tree,['-r','-F','-c','needle']),('utf8-fold',utf8,['-F','-i','-c','É'])]
 rows += [(f'fixed-{n}',many,['-F','-c','-f',str(patterns[n])]) for n in [1,10,1000]]
 bins={'scent':ROOT/a.bin,'gnu':ROOT/'.oracle/grep'}
+if a.before_bin:bins['before']=ROOT/a.before_bin
 def run(name,argv,path,locale):
  start=time.perf_counter();proc=subprocess.Popen([str(bins[name]),*argv,str(path)],stdout=subprocess.PIPE,stderr=subprocess.PIPE,env=dict(os.environ,LC_ALL=locale)); h=hashlib.sha256();size=0
  while chunk:=proc.stdout.read(65536):h.update(chunk);size+=len(chunk)
  err=proc.stderr.read();rc=proc.wait()
  assert rc in (0,1) and not err,(name,argv,rc,err)
  return time.perf_counter()-start,(rc,h.hexdigest(),size)
-result={**identity,'affinity':[0,1,2,3],'repeats':11,'warmups':1,'output':'pipe drained; SHA256/stdout/status compared on every run','binaries':{k:hashlib.sha256(v.read_bytes()).hexdigest() for k,v in bins.items()},'rows':[]}
+result={**identity,'affinity':affinity,'repeats':11,'warmups':1,'output':'pipe drained; SHA256/stdout/status compared on every run','binaries':{k:hashlib.sha256(v.read_bytes()).hexdigest() for k,v in bins.items()},'source_sha256':{str(v.relative_to(ROOT)):hashlib.sha256(v.read_bytes()).hexdigest() for directory in ['src','tools'] for v in sorted((ROOT/directory).rglob('*')) if v.is_file()},'rows':[]}
 for name,path,argv in rows:
  locale='C.UTF-8' if name=='utf8-fold' else 'C';times={k:[] for k in bins};tuples=set()
  for turn in range(12):
-  for engine in (['gnu','scent'] if turn%2==0 else ['scent','gnu']):
+  for engine in (list(bins) if turn%2==0 else list(reversed(bins))):
    elapsed,answer=run(engine,argv,path,locale);tuples.add(answer)
    if turn:times[engine].append(elapsed)
   print(name,'pair',turn,'seconds',elapsed,flush=True)

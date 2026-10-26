@@ -3,12 +3,15 @@
 import argparse,json,pathlib,statistics
 NAMES={'literal','class','alternation','backreference','ignore-case','word','count','list','only-matching','invert','binary','recursive','utf8-fold','fixed-1','fixed-10','fixed-1000'}
 def check(report,ceilings):
- assert report['repeats']==11 and report['warmups']==1 and report['affinity']==[0,1,2,3], 'measurement protocol drift'
+ cpus=report['affinity']
+ assert len(cpus)==4 and all(type(c) is int and c>=0 for c in cpus) and cpus==list(range(cpus[0],cpus[0]+4)), 'measurement affinity drift'
+ assert report['repeats']==11 and report['warmups']==1, 'measurement protocol drift'
  assert set(ceilings)==NAMES and len(report['rows'])==len(NAMES), 'speed ratchet workload count'
  assert {r['name'] for r in report['rows']}==NAMES, 'speed ratchet workload identity'
  misses=[]
  for r in report['rows']:
-  for engine in ['gnu','scent']:
+  assert set(r['seconds']) in ({'gnu','scent'},{'gnu','scent','before'}),'measurement engine drift'
+  for engine in r['seconds']:
    samples=r['seconds'][engine]
    assert len(samples)==11 and all(x>0 for x in samples),'incomplete timing samples'
    assert r['median'][engine]==statistics.median(samples),'median does not match evidence'
