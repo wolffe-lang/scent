@@ -1,0 +1,83 @@
+{
+  "method": "Retrospective production-source map to local commits/retained patches. Early remote HEAD remained trunk while source was copied for experiments; do not mistake its HEAD field for a clean-source claim. Raw reports are unchanged and bind the tested binaries. Final acceptance is directly source-hashed at its committed remote head. Tests and recorder evolved independently and are captured by final accept-inputs.json.",
+  "phases": [
+    {
+      "measurement": "baseline.json",
+      "production_commit": "8f69f8f445c4622d8d4942f100dec11d77260eeb",
+      "difference": null,
+      "binary_sha256": "9554a3beaf3bd4ecb05f052ccdf14cb610bdc9ec88ed24d214374ff01434a471"
+    },
+    {
+      "measurement": "dense.json",
+      "production_commit": "8f69f8f445c4622d8d4942f100dec11d77260eeb",
+      "difference": "dense-rejected.patch",
+      "binary_sha256": "49f9bb2fa1488f719c3e81239841ef5bf38a5d0d81d769e0e0479b28762a8040"
+    },
+    {
+      "measurement": "trie-root.json",
+      "production_commit": "5247bec40274ee043400f54b3ed527ade5439611",
+      "difference": null,
+      "binary_sha256": "08cbfd1a539fa0b08a796fa7f7e33c2c17a95d31ffd1b639ed8c0bcedcd5fc07"
+    },
+    {
+      "measurement": "single-skip.json",
+      "production_commit": "5247bec40274ee043400f54b3ed527ade5439611",
+      "difference": "single-skip-first.patch",
+      "binary_sha256": "88c744a6c598ba9357cef527623c41c7895e99a5dee2b7cb69c4e9ff2e870913"
+    },
+    {
+      "measurement": "single-local.json",
+      "production_commit": "5247bec40274ee043400f54b3ed527ade5439611",
+      "difference": "single-local-rejected.patch",
+      "binary_sha256": "e2d9f17e71c31dee5f8d9d8eeb7708ca2ccd93dd634032dbca8f1776eb9840df"
+    },
+    {
+      "measurement": "single-paired.json",
+      "production_commit": "5247bec40274ee043400f54b3ed527ade5439611",
+      "difference": "single-local-rejected.patch",
+      "binary_sha256": "e2d9f17e71c31dee5f8d9d8eeb7708ca2ccd93dd634032dbca8f1776eb9840df"
+    },
+    {
+      "measurement": "history-guard.json",
+      "production_commit": "8532e61c49eb54d3dfd0904b6a3aa9d5bec5262f",
+      "difference": null,
+      "binary_sha256": "75c9ba31b9dae44e14a1ed22aaca9994bfadcba6bc661a4a8c5d5288dc11513e"
+    },
+    {
+      "measurement": "history-paired.json",
+      "production_commit": "8532e61c49eb54d3dfd0904b6a3aa9d5bec5262f",
+      "difference": null,
+      "binary_sha256": "75c9ba31b9dae44e14a1ed22aaca9994bfadcba6bc661a4a8c5d5288dc11513e"
+    },
+    {
+      "measurement": "exact-union.json",
+      "production_commit": "ee2a5f63452cd2845db34034a825c5f1b0fac272",
+      "difference": null,
+      "binary_sha256": "b4c3f7831db3ffa82ec5c8d91d182cb768bf641d7573f73db0d1f79197620ec0"
+    },
+    {
+      "measurement": "byte-unroll.json",
+      "production_commit": "3c56d9185a373c26f0aed77dbe7edd90ca571b68",
+      "difference": "condition was at + 8 <= buf.len; final condition is at <= buf.len - 8",
+      "binary_sha256": "49a362e08bcfbff530b68d27fde68ba6efd19a0ff36577c650911fa854a5f9e0"
+    },
+    {
+      "measurement": "byte-final.json",
+      "production_commit": "3c56d9185a373c26f0aed77dbe7edd90ca571b68",
+      "difference": null,
+      "binary_sha256": "1996ddcbd9b1aa874d8c589f93db317c1376cd1cb73a9219fa235d30e07828dc"
+    },
+    {
+      "measurement": "exact-span.json",
+      "production_commit": "41ca3a2507d4d8b52e6282345c176fe1024099d1",
+      "difference": null,
+      "binary_sha256": "6354b74c38c46a78485bd5d4f4cc9c9e8af9c4d936d2a87c4bc6c05106fd4afd"
+    },
+    {
+      "measurement": "empty-dfa.json",
+      "production_commit": "41ca3a2507d4d8b52e6282345c176fe1024099d1",
+      "difference": "empty-dfa-rejected.patch",
+      "binary_sha256": "b4cf3925273f3fb8cab6e665b7f2e9a3db1e073b1aa95fc384745cf0c0eb8f87"
+    }
+  ]
+}

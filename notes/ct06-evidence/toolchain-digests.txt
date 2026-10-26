@@ -1,0 +1,12 @@
+4cc4045bbbb605c07835bc4f32685953c784eeef4cd3139a48b457dfc90dad1a  /home/mfwolffe/lanes/ct06/downloads/wolf/archive.tar.gz
+ad703550ac4787e8e4bb26989d591a731410274d7332f2b4e8b9a64c878822cc  /home/mfwolffe/lanes/ct06/downloads/lupin/archive.tar.gz
+bad63142bf60230bcf147c864f57ce9b51d982a49bedd661456d1f9698734032
+4cc4045bbbb605c07835bc4f32685953c784eeef4cd3139a48b457dfc90dad1a  /home/mfwolffe/lanes/ct06/downloads/wolf/archive.tar.gz
+ad703550ac4787e8e4bb26989d591a731410274d7332f2b4e8b9a64c878822cc  /home/mfwolffe/lanes/ct06/downloads/lupin/archive.tar.gz
+bad63142bf60230bcf147c864f57ce9b51d982a49bedd661456d1f9698734032
+GitHub tag objects independently read twice, then dereferenced twice:
+wolf v0.2.35 tag 4bb355ca30977b1c6413c2195e82e4369778bd84 -> cf0c13d38479f444b69bb8356ad5709d07eff323
+lupin v0.1.56 tag e834a7966fda2d8d423728bd909b10990769a20a -> 28547b4324524d5477a6e54e4f6888462461a21f
+wolf v0.2.35 tag 4bb355ca30977b1c6413c2195e82e4369778bd84 -> cf0c13d38479f444b69bb8356ad5709d07eff323
+lupin v0.1.56 tag e834a7966fda2d8d423728bd909b10990769a20a -> 28547b4324524d5477a6e54e4f6888462461a21f
+Copied the complete ct05 compiler/runtime/std staging tree and verified GNU binary, not GNU source. Read-control binary SHA256s match ct05's recorded controls exactly. No archive/compiler/std pin changed.
