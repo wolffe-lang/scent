@@ -1,0 +1,9 @@
+Prediction (committed before the first implementation change)
+Baseline: scent origin/trunk 8f69f8f; ct05 production 5a13eb09.
+M4 is unmet: fifteen of sixteen ct05 rows exceed 2x. The ct05 evidence directory is notes/ct05-evidence (the contract's notes/ct05 spelling is stale).
+The wrapper prohibits Markdown report files; the five-section note will be in the PR body for materialisation by the orchestrator.
+Use pinned localhost/ct05-scent Ubuntu image, GNU 3.12, unchanged wolf/std, lock and taskset CPUs 4-7. Fresh baseline and each candidate: one warmup, eleven interleaved GNU/scent pairs with exact output/status checks. Retain candidates only on target-row median improvement without other-row regression beyond the measured before/after range; retain rejected evidence.
+Investigate ct05's already-landed dense byte DFA, sorted local trie edges and indexed skip table first: amortise DFA setup, reduce trie transitions for impossible roots, reduce skip-search dispatch. Do not adopt the allocating sc72 read_into wrapper as a speed fix; measure the true reusable-buffer control separately. Then investigate reader bookkeeping and delimiter scans.
+Named targets: literal/class/alternation (dense transitions and required-literal selection); fixed-10/fixed-1000/utf8-fold (local trie root rejection); ignore-case/word/backreference/only-matching (indexed literal filters); count/invert/binary/fixed-1 (reader/search overhead); recursive (per-file setup). list is the passing control, never a waiver.
+No guarantee of 2x: unexposed zero-copy read, vector byte search, or costly list access may remain upstream issues, supported by evidence rather than assumed.
+Conformance, original-VM control, native/release/static, checked tests, three named local red plants, unchanged 32768 KiB memory gate and complete final table are required. No CI wait, label, merge, tag, issue action, third-party implementation source, Mac build or planning/config edit.
