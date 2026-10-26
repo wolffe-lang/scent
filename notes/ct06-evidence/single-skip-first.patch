@@ -1,0 +1,67 @@
+diff --git a/src/fixed/fixed.lu b/src/fixed/fixed.lu
+index b51b6b4..6552f67 100644
+--- a/src/fixed/fixed.lu
++++ b/src/fixed/fixed.lu
+@@ -23,6 +23,7 @@ pub struct Matcher {
+     patterns: List[Pattern],
+     flags: Flags,
+     trie: Trie,
++    shifts: List[int],
+ }
+ 
+ /// Monotonic KMP cursor and cached next candidate for one literal.
+@@ -92,7 +93,23 @@ pub fn compile(patterns: List[List[byte]], flags: Flags) -> Matcher {
+         }
+         (mut compiled).push(Pattern { bytes: bytes, fail: fail })
+     }
+-    Matcher { patterns: compiled, flags: copy flags, trie: trie_compile(patterns, flags, false) }
++    var shifts = List[int]()
++    if compiled.len == 1 && compiled[0].bytes.len > 0 {
++        let size = compiled[0].bytes.len
++        var b = 0
++        while b < 256 { (mut shifts).push(size); b += 1 }
++        var i = 0
++        while i + 1 < size {
++            shifts[compiled[0].bytes[i] as int] = size - i - 1
++            i += 1
++        }
++    }
++    Matcher {
++        patterns: compiled,
++        flags: copy flags,
++        trie: trie_compile(patterns, flags, false),
++        shifts: shifts,
++    }
+ }
+ 
+ /// Create reusable scratch for a compiled matcher.
+@@ -216,9 +233,29 @@ pub fn next_span(
+     Span { lo: best_lo, hi: best_hi }
+ }
+ 
++// Boolean one-pattern selection does not need the span cursor or its
++// leftmost-longest bookkeeping. The last byte indexes a bounded skip table.
++fn single_matches(re: Matcher, buf: List[byte], lo: int, hi: int) -> bool {
++    let size = re.patterns[0].bytes.len
++    var at = lo
++    while at + size <= hi {
++        let last = folded(buf[at + size - 1], re.flags.ignore_case)
++        if last == re.patterns[0].bytes[size - 1] {
++            var i = 0
++            while i < size && folded(buf[at + i], re.flags.ignore_case) == re.patterns[0].bytes[i] {
++                i += 1
++            }
++            if i == size && candidate(re, buf, lo, hi, at, at + size) { return true }
++        }
++        at += re.shifts[last as int]
++    }
++    false
++}
++
+ /// Whether the half-open line window has an admissible match.
+ pub fn line_matches(re: Matcher, mut ws: Workspace, buf: List[byte], lo: int, hi: int) -> bool {
+     ws.initialized = false
++    if ws.accelerated && re.shifts.len > 0 { return single_matches(re, buf, lo, hi) }
+     if ws.accelerated && re.patterns.len > 1 && !re.trie.nodes[0].terminal {
+         return trie_matches(re, buf, lo, hi)
+     }
