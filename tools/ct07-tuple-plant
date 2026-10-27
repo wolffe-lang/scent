@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+"""Deliberate ct07 plant: omit a timed row's output tuple.
+
+The mutation is in memory, not fabricated measurement evidence.
+This draft branch must never merge.
+"""
+import json,pathlib,runpy
+root=pathlib.Path(__file__).resolve().parent.parent
+checker=runpy.run_path(str(root/'tools/speed-check'))
+report=json.loads((root/'notes/ct07-evidence/eof-workspace.json').read_text())
+ceilings=json.loads((root/'tests/speed-ceilings.json').read_text())
+row=next(row for row in report['rows'] if row['name']=='recursive')
+del row['tuples']
+checker['check'](report,ceilings)
+raise AssertionError('plant was not caught')
