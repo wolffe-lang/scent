@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/mfwolffe/lanes/ct07/plant-tuple/tools/ct07-tuple-plant", line 14, in <module>
+    checker['check'](report,ceilings)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/mfwolffe/lanes/ct07/plant-tuple/tools/speed-check", line 14, in check
+    assert set(r.get('tuples',{}))==set(r['seconds']), 'RED missing-row-tuple: '+r['name']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RED missing-row-tuple: recursive

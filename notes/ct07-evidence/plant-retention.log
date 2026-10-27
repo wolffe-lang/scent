@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/mfwolffe/lanes/ct07/plant-retention/tools/ct07-retention-plant", line 13, in <module>
+    checker['retain'](report,'backreference')
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mfwolffe/lanes/ct07/plant-retention/tools/speed-check", line 39, in retain
+    assert not regressions, 'RED retained-lever-regression: '+', '.join(regressions)
+           ^^^^^^^^^^^^^^^
+AssertionError: RED retained-lever-regression: fixed-1000

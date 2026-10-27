@@ -1,0 +1,10 @@
+Plants executed on kasumi at 2026-10-27T02:54:01Z using the committed checker, outside the production checkout.
+ct07-plant-retained-regression e33aa310878e9d40db348658ca332b27268444a2, draft https://github.com/wolffe-lang/scent/pull/17
+python3 -I tools/ct07-retention-plant -> exit 1; RED retained-lever-regression: fixed-1000
+The genuine constant-capture measurement remains unchanged; the defect is claiming retention despite its other-row regression.
+ct07-plant-missing-tuple ddd69e34421aeb02bcff4078a826bc71d4e698a4, draft https://github.com/wolffe-lang/scent/pull/18
+python3 -I tools/ct07-tuple-plant -> exit 1; RED missing-row-tuple: recursive
+Only the loaded recursive row's tuple field is deleted in memory; the real timing file is unchanged.
+Production restoration check: python3 -I tools/speed-check notes/ct07-evidence/eof-workspace.json tests/speed-ceilings.json --retained-target recursive -> PASS retained-lever: recursive; PASS speed-regression: 16 workloads.
+python3 -I tools/speed-check-test -> PASS exact-tuple and retained-lever guards; SKIP=0.
+No plant CI dispatched, no label, no merge.
