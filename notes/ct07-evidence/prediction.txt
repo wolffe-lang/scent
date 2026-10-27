@@ -1,0 +1,8 @@
+ct07 prediction, before implementation
+Base: 3711901 (bd451ba9 plus materialised ct06 note).
+Reuse tools/speed: sixteen unchanged workloads, one warmup, eleven interleaved before/candidate/GNU samples, exact stdout/status/stderr, kasumi CPUs 12-15 under the four-core lock, pinned ct05-scent image.
+Noise rule unchanged from ct06: retain a lever only when its named target median decreases and no other candidate range is wholly above its paired before range. M4 independently requires every candidate/GNU ratio <= 2. Memory ceiling stays 32768 KiB.
+Hypotheses: constant-capture proofs can remove backreference interpretation; a count-only record path can avoid general output-state overhead; workspace reuse can reduce recursive per-file allocation. These are hypotheses, not established language blockers. Measure one controlled lever at a time across all rows. Rejected patches and measurements remain evidence.
+Add fail-closed evidence validation: every table row must carry its exact tuple; every retained lever must satisfy target gain and the all-row noise rule. Plant each violation on a named draft branch/PR, show local red by name, never wait for CI.
+Plan only for -P: four syntax phases, same Ubuntu digest with a separate GNU 3.12 --enable-perl-regexp oracle, backtracking engine beside DFA, byte-exact corpus gates. Measure phase-one coverage of the M1 patterns; no -P implementation or pin change.
+No package install, third-party implementation source, workflow change, label, merge, tag, issue action, personal configuration or planning-repo write. Reports/design are in PR body because this wrapper forbids Markdown report files.
