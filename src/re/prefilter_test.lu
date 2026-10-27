@@ -1,36 +1,5 @@
 //! The filter is a necessary condition, never an approximation of acceptance.
 
-fn test_constant_capture_proof() {
-    var d = diagnostics_new()
-    let re = compile([r"n(e)\1dle".bytes()], filter_options(), mut d) else {
-        assert(false)
-        return
-    }
-    assert(re.filters[0].exact, "straight-line constant capture is exact")
-    assert(re.filters[0].units.len == 6, "constant capture contributes its literal")
-    for mode in [1, 2] {
-        var options = filter_options()
-        options.icase = mode == 1
-        options.utf8 = mode == 2
-        let fallback = compile([r"n(e)\1dle".bytes()], options, mut d) else {
-            assert(false)
-            return
-        }
-        for filter in fallback.filters {
-            assert(!filter.exact, "folded and scalar references retain the VM")
-        }
-    }
-    for pattern in [r"(a)?\1", r"(a|b)\1", r"(a*)\1", r"(a.)\1"] {
-        let unknown = compile([pattern.bytes()], filter_options(), mut d) else {
-            assert(false)
-            return
-        }
-        for filter in unknown.filters {
-            assert(!filter.exact, "conditional or nonconstant captures stay unknown")
-        }
-    }
-}
-
 fn filter_options() -> Options {
     Options {
         extended: true,
@@ -64,15 +33,6 @@ fn test_prefilter_superset() {
         "((a|)b)*c",
         r"a{300}",
         r"(abc){100}",
-        r"n(e)\1dle",
-        r"(a(b))\2\1",
-        r"()a\1",
-        r"(a)?b\1",
-        r"(a|b)\1",
-        r"((a)*)\2",
-        r"(a.)\1",
-        r"(a)\1|b",
-        r"^n(e)\1dle$",
     ] {
         var d = diagnostics_new()
         let re = compile([pattern.bytes()], filter_options(), mut d) else { assert(false); return }
@@ -91,13 +51,6 @@ fn test_prefilter_superset() {
             "ab.cd",
             "aaaa",
             "a b",
-            "needle",
-            "xneedley",
-            "abbab",
-            "a",
-            "aa",
-            "bb",
-            "aba",
         ] {
             let b = text.bytes()
             assert(

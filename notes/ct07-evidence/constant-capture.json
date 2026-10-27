@@ -1,0 +1,1695 @@
+{
+  "head": "e327725e13197be981c00b78c5a6dfa3f5385814",
+  "head_source": "git",
+  "affinity": [
+    12,
+    13,
+    14,
+    15
+  ],
+  "repeats": 11,
+  "warmups": 1,
+  "output": "pipe drained; SHA256/stdout/status compared on every run",
+  "binaries": {
+    "scent": "9f8dc6fa30669e6833cc9285aaeb7329c6f2825dc65272280694c353e31748f1",
+    "gnu": "92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea",
+    "before": "96e05922907529ca6dd10be412efe17be935122fc8ac5f7a4f2b7e42333d5af3"
+  },
+  "source_sha256": {
+    "src/.lu-cache/ifaces/bytefind.wolfi": "b99cda7369c66517ad2f389c270791821db59dec74fc3ed32aa8a86f3dd260c4",
+    "src/.lu-cache/ifaces/colors.wolfi": "b5411b103c63d5679c40e22b3eba352288517e8b69570d19d2f11a42e89ee516",
+    "src/.lu-cache/ifaces/fixed.wolfi": "da71c33f2140cba0b39db47adc894c2a559dca96ada4bb5aca63f1cf5b73ee7a",
+    "src/.lu-cache/ifaces/glob.wolfi": "72f6d7b86975c51e34873fe32119bc0a3f04a278d92f50c399c490910c466bfe",
+    "src/.lu-cache/ifaces/locale.wolfi": "2b9ec958c76b9b306ec00b1e2a6ad055e702183e528a570bcd4ee57341070994",
+    "src/.lu-cache/ifaces/matcher.wolfi": "bc9bfa88eb71d06016ecc76e81df442f06bd598a2c7a71956a2ee0784a9d7198",
+    "src/.lu-cache/ifaces/opts.wolfi": "c0bb3fc821775e67612831e11db4cfdf0fab41aa18ab4fcf08f4a5dbe10d78c0",
+    "src/.lu-cache/ifaces/out.wolfi": "2587f29c966720502d2981fb9a7d9cea09a2d6dc116e1f01b97d349f6f024448",
+    "src/.lu-cache/ifaces/re.wolfi": "402a40d7d9ff081759a9fac503542ec0a68ab42d376570fe6c37010c73985179",
+    "src/.lu-cache/ifaces/reader.wolfi": "7cceb5a529c2900f729ebf89dd60a38cb8a290ed8db1d95f505d991760153712",
+    "src/.lu-cache/ifaces/root.wolfi": "8423a58e9fb97ecde6450ef291a26d30cb0f4b2ec06456733722bc6426250821",
+    "src/.lu-cache/ifaces/std.cmp.wolfi": "758214eced97d54e5a434becc0eed26fe5a06681e3c5641ba98677d97bd47f9d",
+    "src/.lu-cache/ifaces/std.env.wolfi": "ce85d488f472a9093a67a6f81963e81237ad921f8591a74bb34825da0dce50b6",
+    "src/.lu-cache/ifaces/std.fs.wolfi": "d71d8f6a17bda4b5eddad7638769fd7954123af97c7bd719b42031f06a123b7c",
+    "src/.lu-cache/ifaces/std.list.wolfi": "54f5de919580df6ad4e291b187e514ca86bb3e55fbb31f5ab0520ec08c8dbdc8",
+    "src/.lu-cache/ifaces/std.map.wolfi": "ef487f1ddc15195143fe77eee1ad5fd273f66c79fc5d5e09b1aefac076a7c8d1",
+    "src/.lu-cache/ifaces/std.range.wolfi": "15413ce332fddc9eca407a81af82bb0ed67b2d81bd23356ffcbac13088b9925c",
+    "src/.lu-cache/ifaces/std.str.wolfi": "dda34f190fc3841ad8c8b71742bab6eccd6645d5744f5f2f051888e1101bed4e",
+    "src/.lu-cache/ifaces/std.strbuf.wolfi": "68f2ae419cd1113e7ecf908f73ef4c9d4c4aa6bcb733dcf20e27cd87da79cbf3",
+    "src/.lu-cache/ifaces/walk.wolfi": "db487809d24b2a96c8d53b7c4a38dc815e3e8fcd914863d75438269d56f53f00",
+    "src/.lu-cache/modules/c00.json": "5c579474ca18c668f3e6b22f1f883c7541355c5ba0eae6b6853fac6e0e9c970b",
+    "src/.lu-cache/modules/c01.json": "5ce760550e2f45e2d499f1076e8c2ebc79ba25d7dcdc5f5d4f50e18f17c2a4dc",
+    "src/.lu-cache/modules/c02.json": "114283b64f0556d9b93fe4e406eb333b7e12e68ef812bdad17aaffa98ea85490",
+    "src/.lu-cache/modules/c03.json": "5cb2810870943bd2e848b3b8a66d6f76901a0b6ee1156844c3317a103143ca9b",
+    "src/.lu-cache/modules/c04.json": "026985f171916c25b4104ccb811f061126ee3336f6591fe0db825bba67e018e7",
+    "src/.lu-cache/modules/c05.json": "eb468a630030a028f87e119d61df6266c28e28976269288768f8583374fd2334",
+    "src/.lu-cache/modules/c06.json": "911e6abd12b800db69ea9c6d278e155679ceb8d67effc9a9ffac276f0b63547f",
+    "src/.lu-cache/modules/c07.json": "41daaf89d98dbd19c059419e2ee7333747e1d8a63279dd501a1e1c47712b7263",
+    "src/.lu-cache/obj/c00-19604a5c46fd4d02.o": "8086fff4d702f4d97054f6b5c6210da62b511b3513a2c7de7631dfb96ebe8c28",
+    "src/.lu-cache/obj/c01-33711c23aa7eb08b.o": "4b2fabf7ba9f849bd769fee1792031b35a3580aaea2b98a94ab95c4ff4bd75ea",
+    "src/.lu-cache/obj/c02-c8328eb1e366d369.o": "650855378efad5a5d821271cc738cb901be042916a7846a646151f181b714039",
+    "src/.lu-cache/obj/c03-bed6b174c1d0fcff.o": "3576aeacaf1960a090c9b64f076c1612618d3d54a7b0868a0dfc1db724a6e05c",
+    "src/.lu-cache/obj/c04-f6dc67a5e9c1d02b.o": "1703e11728917fe58eb45f9fd3e3f92b9e9bb015544e3ad2d1152d8b344e0c11",
+    "src/.lu-cache/obj/c05-0733474ea694d0cb.o": "c8b4d50fb620eb865b136c701456f9091f48b79b55a0e9ed4f5042ec05ab5a4b",
+    "src/.lu-cache/obj/c06-6119bf5e87cd48ca.o": "08995259595514274c1f52f4a8eef0b70103918312dbf2e4e8a67fc6ac0c64a1",
+    "src/.lu-cache/obj/c07-748d141ed4a49e4c.o": "f3e2712ef5330ffaf790f4abf4ffbf5389ab7d8ae588e4ea647509c2cf8da6c4",
+    "src/bytefind/bytefind.lu": "0ec9de3c97e0186fa2d5af0e3e4e203419afa3c1b00dd5d0adef10da51c05776",
+    "src/bytefind_test.lu": "a8e4318d82a1c263e706a3910e5f8c86d5a29018c447ca9e90ed733de99e5b55",
+    "src/colors/colors.lu": "38c2c74eda4046a0b8a6e3f6b2fe1e92c5ccd886d95d894e72ca7381a15523b0",
+    "src/ctype_test.lu": "3fc11ea0f402ba8ed83fa32d261819ab1575a1e62e8c01bf27fb09d18abb2483",
+    "src/fixed/fixed.lu": "a6ad157b9eaa750986330a58aa1e870ee0b51c83bffdca8084a673202ebfe360",
+    "src/fixed/trie.lu": "55abf7d432cfaaf62d6be44d9c5db927eeeaa137d66b5128df480b63e94ab201",
+    "src/fixed_test.lu": "50ea472e9c42b9ab01dfd3b789d36b856e22aae4976eecdb1d7251dab35d1c29",
+    "src/glob/glob.lu": "d244273c400db05879c035efb672e3e0013cbc139acc1c8f83a8ed009950d711",
+    "src/glob_test.lu": "9220e7bd4224323110e22374a19de53294fe2d3c013406e89ed03648b17ad6a8",
+    "src/locale/locale.lu": "b9d040148643953d405570a84d48b6574c47699172db5e7efb8a1f1bd62cc7c5",
+    "src/locale_test.lu": "4686bc87194a2b1a0267edbf394d2d1158363ce8527875aade31a1b109ada9fc",
+    "src/matcher/matcher.lu": "38f72503111b303bfafd930419905408bb8d51b0233a88d1dbeaf5d27c2daa72",
+    "src/matcher_test.lu": "cfb8a4e51534d48a16322be40067fa19022676b8ba930318a3445340e93e79b1",
+    "src/opts/opts.lu": "5af621eb07daf9f7fd1d28c89b328d83e27b2d633f7649fa9ceb47b5993b80d7",
+    "src/opts_test.lu": "0cc3f9e3d545f28ce35b03929b7a4e6155955ac6c2b10b996290db0616e0775c",
+    "src/out/out.lu": "8d2bdd6ba4d8306d0de2d228fcaf2fae372ea4ac4b6c7170aa34a6dc4f326caa",
+    "src/re/backref.lu": "f90bab15254f460e1dd7ac36f5563f30a4a47d9b12d6bf7a55662f2e0fb812b7",
+    "src/re/byte_vm.lu": "6b6e89f9d96d54f9f18d5888b4e2deff5154db483d7eeccb561cf92e6ad338c4",
+    "src/re/compile.lu": "f997c36aeee2d32d22958a85cd81d30270baa40387eeb9f795606e1ff97c1b37",
+    "src/re/compile_test.lu": "6cac958819d2c2b2d282ed7613809cb476e4990ef544158ac67d69ad136c073c",
+    "src/re/ctype.lu": "a4cb601b7e0dc51c79c5e954e97425b23ea881ea6d6745f13ea2d85d0283ca01",
+    "src/re/ctype_tables.lu": "e32c4372502c4a536d352abda91b95cb6f25b187a1d617bc6241953ecada5c4a",
+    "src/re/dfa.lu": "ff64ab11f5cb3baedcca945681d9de4db565158ece36bf8799d700741784a322",
+    "src/re/dfa_test.lu": "8e93daa6c778e282a3e35e8730fc868286b21b36c3f55e7e1c4da313c706b1ad",
+    "src/re/driver.lu": "d929933a719a09871f2691075f5794c80d70964081490178ff363579fd505b7e",
+    "src/re/linear.lu": "fd995ce2861c609a53925a7f96018b38296b3d5a0080dd53a98b3a803779febb",
+    "src/re/linear_test.lu": "e52d1a62e8beff74da21525b24944c06c14c36f72a118da09a570abdb3c29c92",
+    "src/re/parse.lu": "84ae07d56cd38bbf5c84a3ab9598aeb7a683bc0569665d2f609f33746e04867b",
+    "src/re/prefilter.lu": "478bfc4bfa9e14655f05149800dbcfbe7578bf7a0042fd6e2c52b2e5c09f52d9",
+    "src/re/prefilter_test.lu": "18b541c132e960346214350a5873035b4472315fc79f22d5e229fa4f483b525b",
+    "src/re/re.lu": "ecfd476b08448bfbcb72e85b4c9e026222f89d13cb3d09003a83bd80479c093c",
+    "src/re/utf8.lu": "adccb95654694e733b756b1a59b14c2dfebcb84c1133cbb751fd53f9992f812f",
+    "src/re/utf8_parse.lu": "d33fa6fa849263b282c970ff660bbfad4bf7315d52ff9b40d722d498420eaa9b",
+    "src/reader/reader.lu": "f1318b64e27025eb56e52fbcc3bc9ce33c3204d5d84a3d2b24225d4d3dd37ecb",
+    "src/region_test.lu": "c3ca968e5d7d828667210beb77e23eb2172a88d6967d1c3c8cfe9baadad35f13",
+    "src/scent.lu": "ae6aaa556d36f765c3a53be210ea0f74d13b4653450792b182ac4fc9e9a2fbb6",
+    "src/utf8_matcher_test.lu": "8ed53e0326ab2898abd14e738fea111b86a5e3ddf64f8caf7ee9bde85c4ee2ab",
+    "src/utf8_test.lu": "e42f29171aa64436764abc474faa00bf6ec752ad902585f9188f71b4764d6380",
+    "src/walk/walk.lu": "212e1b1e253781dc40cd514f30dcdea6b3f87800e966592464a075bf7633b976",
+    "src/wolf.pkg": "9134b2c2c1cfddd28ebb3af16cbedff0437ee63aef1d505ece40b09f4bfc879b",
+    "tools/build": "b3c5036fdc979ee54320538386db8b6bfc66dfe67d67aeb54ae2a1dea650967f",
+    "tools/check-ctype": "79a4fb344ca166de02ab6323d8de47a573a948c0d6c6091a8858d24963369b3f",
+    "tools/check-ctype-regen": "f5bc8450d5e3b2d1e09f31ce1638d1a9e1e4855ef3c889af0a940f899551b66a",
+    "tools/check-fmt": "4089b242c08c0d2b403e442c46e41b450f3bd0d70ef07c75519275548ea54d2b",
+    "tools/check-test": "d0f67995fbd005d7fe863945fbf3170b56fe8db1205712afe3f4c3c645c0cc52",
+    "tools/fetch-oracle": "604f47879e2b5a085307621c17299a8c9964f75ce57b4ec941ab26209abc3b92",
+    "tools/fetch-oracle.py": "8df040db8ecf46a2c65ffbbede7aec4fa4727abc0bc4b2ae4576490877a40e0c",
+    "tools/fetch-toolchain": "4df5388b84a3845d366518a4387cce3309b91b4b1f0a3d3205cc37f854b74648",
+    "tools/fold-derive": "0332170af8ce32d2ebe29de9d8fcfdc31caecb473500ecdd394171e9d21d85b3",
+    "tools/fold-probe": "c70e682c800a79dae233d5f88a0f4c264c7d1e8548771fa46ff8cbe5c1c3c051",
+    "tools/gate": "128dafa2ffe1236fb3353e0fc385078c25855d12021b8bfbdca4edf65366b45b",
+    "tools/gen-ctype-tables/main.lu": "40b9501905bf22e921d297b0a83843770679f6d826bf0d4656a2adc399e4a8d8",
+    "tools/in-container": "b4fea081bca8564697e2b054d0fb870a5c93028524bf7955ad53ec8ec331ce9f",
+    "tools/lib-toml.sh": "bc2bb2c1cecf3f928058b78ff97cc5f25eb5512925ecbefebb78391e45ecafbe",
+    "tools/lib-toolchain.sh": "d4896e5e2bdc6d1c2e2b139a97fe1dad86adffeb2e86b8ba8ab2ecb933aaef38",
+    "tools/locale-probe": "a553be88519e30e4490bfc619bb6a9941f8bc53190340427a9e7eceb979d1d10",
+    "tools/m1-cases": "517f2cce6b55cf5903b511ce969e2fb8f2432fef6f864216048d099ce043d774",
+    "tools/m1-ci-test": "336a9f79dcc79963f487e73c3076f3838a13d82a09b2f710bcbb9bfd2627d1f8",
+    "tools/m2-cases": "bc1e332e9d43b44302e8017e090c9de3603ff4eb0fce64c1f4fd86987ebf284a",
+    "tools/m2-ci-test": "f59f03608bca13d17e33a67d9936e8f65f00623ca9618e4963108448ec2e2b03",
+    "tools/m3-cases": "374d47d5ef235088ed7d3d1b4a884f1c2478dea8f7ad04bf79cc18daaccd67a9",
+    "tools/m3-ci-test": "413202df1fc333a84efbcfbaa7404188a8c0ec9757b11369176cd15fe76f5198",
+    "tools/measure": "20b0f43cfda664fe0decc93ab529b261fc01838f3b8de97d418303db60ebcd58",
+    "tools/measure-ctype": "19f6079463611bc5fba95d82b03c4ce1c628ce2a8d89dab6fbb0052f4aec0fa4",
+    "tools/measure-folded-classes": "cb7b4af4aa96a888a78aedace0be9072d99fb322a4705fd6819437db6c5970ab",
+    "tools/measure.py": "21960cdd09bb97f2a080cbb4c8c0a59e0bdb36ae44718b30266963fb0596a242",
+    "tools/mkscent": "10875b65b1061b3925f21110f65e1b39c175a452bc17e43d44f3386378411d78",
+    "tools/oracle": "8a0dc6a2e5f43b5f307a842539b45c587eaf1a5c95ca3d0b2be08f5b505158c5",
+    "tools/oracle-field-test": "5b2b7a91bd7fbf4344e420ada199c42f026e33234fe5e015594add45e184a05f",
+    "tools/oracle-field.py": "29473f3c3611d03c686d0fe83b819ad25e2a23eb1a38924aa6293ae1f0496536",
+    "tools/oracle-replay-test": "96c73612e2f000630262e1488b7e18ee5701214bd3d1c138f4a1a862c2456467",
+    "tools/oracle-review-test": "8f297c2c4a3f1f4836b2a7243f6298952561122243e7177d2990fad7666ce7f0",
+    "tools/oracle-review.py": "0c68ae71b327a597e5f2edef72827f9bfb72a605620586a8c066933c05f00d09",
+    "tools/oracle-select-test": "fdc665bbb7a9d4ae36eb9a78aca143f6dbb73cb67908d0d44278ae79f4937c24",
+    "tools/oracle.py": "3bbb1652e16eb284ea322cbbe033546498fd28cad2cbcd3c6189eb16f004ce55",
+    "tools/p-plan-census": "21380fb392a60d7a4341905d0adef686d992259dcafac4e33d892da5522db499",
+    "tools/p-plan-census-test": "b90c61d04cb215a7cd8ea8770bd0948b906bd9b97bb1bc1044c039991afe7227",
+    "tools/pax-posture": "853feed33f6408d2a3224b69e1af7d60dc36c8dd27bf14c74015cbf6339c1f29",
+    "tools/perf-compare": "8e1d3099caeb5ebee162c93701ccf16fe48522d8b67b83cbbc346da3ce2bc081",
+    "tools/re-assertion-probe": "c578cce24f6b565dac9ca4292111ef4a44c4365393e32505629cea68a3d38ca3",
+    "tools/re-backref-probe": "802d150628c0aaf98d6d94c69dcb659d6e97f59cd9f321936d8b923ad728561c",
+    "tools/re-ci": "c172870d1dfc94c5beec9be07a236142fdbf3f5615ea9d65100bce530916a160",
+    "tools/re-ci-test": "b367794765c923f96ec89c60f877b6ba92496643df3ddf19785343b1cefeb9fb",
+    "tools/re-cost": "57606902cb89a9cd6882986736f06588a84c53290817e1ecdf4a32faf38d139a",
+    "tools/re-diagnostics": "25f1f421b54f89571423576ed31bda6e16f663f50a0b2e87dda14f7561a94b68",
+    "tools/re-driver": "d221f2cd60ec6bb7ff5082edc187164f68669ce5a7e3b36919fe9ae315c30536",
+    "tools/re-oracle": "ca043612ef1626ffe0b61a986fe2fa4dfb60a7839ec617b2e417205ab008b82b",
+    "tools/re-oracle-build": "573011b297e1a6e196a8e090c19a0cda97d4c582bcc8e18fa975b6f31dcc0e38",
+    "tools/re-oracle-identity": "e16e52deac2ed9066f1e21a8445888431d3d97c69db4cdcc106877606bca7ea1",
+    "tools/re-plants": "381e801b7b052265405546afd1267ca5a698f8cae9586d2aeb42dbfe0b24de18",
+    "tools/re-probe": "8993606a0d23e8b1128fac4fba9b24f46b40d820503ae0f46b6855797fe7fba9",
+    "tools/re-projection-plant": "18d0d99f2f7f3bff74a431d094d04ee9859e2ba1c1c74f8f7f248ba413866773",
+    "tools/re-projection-soak": "1c62106e897daf73923a5f56dbb044cb434bcc0b1973ba4cd0c1370229d61580",
+    "tools/re-toolchain-stage": "9a664db2ebde62d9ea8effc47f5a8c0ee383614880d9479727996f747306cab0",
+    "tools/re-word-probe": "77c92d3924f996669c6d320f4413b960c384cfd193be6b7f1df9aa01179f6b04",
+    "tools/read-cost": "9a60579cb14bb86b7f8c70428fa96cc3362415a1ce612ad7bc09e0571c94f2b6",
+    "tools/read-into-probe/main.lu": "45fcfe20fa922218f4ff07a0571767095589d5be92a97f77473d7ac1dbe244cc",
+    "tools/read-probe/main.lu": "b4f29edc71146871faa5a930f20c82311058f38b8a81fe8324443366b0dbf868",
+    "tools/read-probe/reference.c": "9dc1c18bbdd20736e05177dff28bf679fbc928eeff7cf3aabb2c6bcfb5a2d4e4",
+    "tools/record-m3-reviews": "691af4e0780f02c600016998ed90aa3e8817bb2885012ca81bd5eae5bb0371b7",
+    "tools/speed": "afe354a5edcec35ea6c1c559f6b3263fc3eac33b89bef4bc7c0dbc35c2a7fd53",
+    "tools/speed-check": "daa26fed44d04f0d111fbc8e99e61a2a29777f0742d0f9b3f5ac87317fb58320",
+    "tools/speed-check-test": "688a69ce3074459929f26ea5ad6fdcad27500a5505c5e633d967feb121127d93",
+    "tools/speed-ci": "469b0408b1e8fbab2f1ebca777038c7674f8f189500aadd29e6924b8b36e105e",
+    "tools/speed-head-test": "507db7e0c9d8f54e3ca681793c4951f21192d271940f48f91ee07c46cd7a671d",
+    "tools/speed-test": "833fc2f4af06d7f3ea6ac86a877a79d7fd3d842af17cb181710a44546870c648",
+    "tools/utf8-probe": "f7eb46cfd24ded51e6f95987a04b726b3e665ddaf6348e1071ec28a0cc55dcbc",
+    "tools/utf8-stop-probe": "14ae314df0d307a8cbd0e18af9a158e8c5198492b129902183aaacfd0a4ce358"
+  },
+  "rows": [
+    {
+      "name": "literal",
+      "argv": [
+        "-E",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 67108608,
+      "seconds": {
+        "scent": [
+          0.09081966200028546,
+          0.0864476429997012,
+          0.08647489199938718,
+          0.08687249300419353,
+          0.08679855900118127,
+          0.08984325200435705,
+          0.08666444099799264,
+          0.0870558489987161,
+          0.08673603400529828,
+          0.08954958799586166,
+          0.08700362899980973
+        ],
+        "gnu": [
+          0.010741800011601299,
+          0.010626026007230394,
+          0.010414832999231294,
+          0.010565757998847403,
+          0.010357834995375015,
+          0.01081962400348857,
+          0.010421063008834608,
+          0.01094035099959001,
+          0.010844578995602205,
+          0.010456516989506781,
+          0.010866405995329842
+        ],
+        "before": [
+          0.08688987899222411,
+          0.08721521400730126,
+          0.08982578100403771,
+          0.08710015400720295,
+          0.08687559400277678,
+          0.08683976798783988,
+          0.08663081499980763,
+          0.09288152700173669,
+          0.09014517600007821,
+          0.08683366699551698,
+          0.08774568399530835
+        ]
+      },
+      "median": {
+        "scent": 0.08687249300419353,
+        "gnu": 0.010626026007230394,
+        "before": 0.08710015400720295
+      },
+      "ratio": 8.175445170666988,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.0864476429997012,
+          0.09081966200028546
+        ],
+        "gnu": [
+          0.010357834995375015,
+          0.01094035099959001
+        ],
+        "before": [
+          0.08663081499980763,
+          0.09288152700173669
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "1bd1ebdf3be9fdab90a0677de4bd7305cc99d7271ac0f47c69da825cd3634658",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "1bd1ebdf3be9fdab90a0677de4bd7305cc99d7271ac0f47c69da825cd3634658",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "1bd1ebdf3be9fdab90a0677de4bd7305cc99d7271ac0f47c69da825cd3634658",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "class",
+      "argv": [
+        "-E",
+        "-c",
+        "n[e]edle"
+      ],
+      "locale": "C",
+      "bytes": 67108608,
+      "seconds": {
+        "scent": [
+          0.08686570600548293,
+          0.08666888999869116,
+          0.09068748899153434,
+          0.08930080900609028,
+          0.08603353500075173,
+          0.08672108099563047,
+          0.08678618600242771,
+          0.08921584200288635,
+          0.08688862899725791,
+          0.08951774801244028,
+          0.08893073699437082
+        ],
+        "gnu": [
+          0.01049705500190612,
+          0.010517442002310418,
+          0.010420994003652595,
+          0.010457313008373603,
+          0.010541912997723557,
+          0.010424948006402701,
+          0.010724010004196316,
+          0.010430740992887877,
+          0.010573931998806074,
+          0.010588138000457548,
+          0.010397325997473672
+        ],
+        "before": [
+          0.08708580599341076,
+          0.08708909699635115,
+          0.08710764200077392,
+          0.08984187198802829,
+          0.08686957399186213,
+          0.09168407799734268,
+          0.08997459600504953,
+          0.08689261799736414,
+          0.08672383200610057,
+          0.08700839499942958,
+          0.08976157500001136
+        ]
+      },
+      "median": {
+        "scent": 0.08688862899725791,
+        "gnu": 0.01049705500190612,
+        "before": 0.08708909699635115
+      },
+      "ratio": 8.277429143838928,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.08603353500075173,
+          0.09068748899153434
+        ],
+        "gnu": [
+          0.010397325997473672,
+          0.010724010004196316
+        ],
+        "before": [
+          0.08672383200610057,
+          0.09168407799734268
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "1bd1ebdf3be9fdab90a0677de4bd7305cc99d7271ac0f47c69da825cd3634658",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "1bd1ebdf3be9fdab90a0677de4bd7305cc99d7271ac0f47c69da825cd3634658",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "1bd1ebdf3be9fdab90a0677de4bd7305cc99d7271ac0f47c69da825cd3634658",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "alternation",
+      "argv": [
+        "-E",
+        "-c",
+        "needle|zebra"
+      ],
+      "locale": "C",
+      "bytes": 67108608,
+      "seconds": {
+        "scent": [
+          0.13627932000963483,
+          0.13664575600705575,
+          0.13244438600668218,
+          0.1366784770070808,
+          0.1363400330010336,
+          0.13192110700765625,
+          0.1361084639938781,
+          0.13221726199844852,
+          0.13618316700740252,
+          0.1364717840042431,
+          0.13315480000164825
+        ],
+        "gnu": [
+          0.00988708199292887,
+          0.009703862000606023,
+          0.009700729002361186,
+          0.009715790001791902,
+          0.009956396999768913,
+          0.00993376898986753,
+          0.009688974998425692,
+          0.009720203001052141,
+          0.00984379400324542,
+          0.009721182999783196,
+          0.009823174012126401
+        ],
+        "before": [
+          0.13804282199998852,
+          0.13753679698857013,
+          0.1379792680090759,
+          0.13387457799399272,
+          0.13861277600517496,
+          0.13299688400002196,
+          0.13801255999715067,
+          0.1330706949956948,
+          0.13729075199807994,
+          0.1392544689879287,
+          0.13395064500218723
+        ]
+      },
+      "median": {
+        "scent": 0.13618316700740252,
+        "gnu": 0.009721182999783196,
+        "before": 0.13753679698857013
+      },
+      "ratio": 14.008908896215585,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.13192110700765625,
+          0.1366784770070808
+        ],
+        "gnu": [
+          0.009688974998425692,
+          0.009956396999768913
+        ],
+        "before": [
+          0.13299688400002196,
+          0.1392544689879287
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "1bd1ebdf3be9fdab90a0677de4bd7305cc99d7271ac0f47c69da825cd3634658",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "1bd1ebdf3be9fdab90a0677de4bd7305cc99d7271ac0f47c69da825cd3634658",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "1bd1ebdf3be9fdab90a0677de4bd7305cc99d7271ac0f47c69da825cd3634658",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "backreference",
+      "argv": [
+        "-E",
+        "-c",
+        "n(e)\\1dle"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.0075735469872597605,
+          0.007567182008642703,
+          0.007500117993913591,
+          0.007631674990989268,
+          0.0076064480090280995,
+          0.007649075007066131,
+          0.007625309997820295,
+          0.0076627380040008575,
+          0.007625168000231497,
+          0.007599386008223519,
+          0.007447490992490202
+        ],
+        "gnu": [
+          0.036452579995966516,
+          0.03684277800493874,
+          0.03699686600884888,
+          0.0387398910097545,
+          0.036161319992970675,
+          0.03629690500383731,
+          0.0362186309939716,
+          0.037062882009195164,
+          0.03719690899015404,
+          0.03600406199984718,
+          0.03679868299514055
+        ],
+        "before": [
+          0.0756471039931057,
+          0.0778854969976237,
+          0.07793064600264188,
+          0.08115638799790759,
+          0.07597050299227703,
+          0.07503480000013951,
+          0.0755450459982967,
+          0.07853782399615739,
+          0.07596232699870598,
+          0.07797790100448765,
+          0.07533693300501909
+        ]
+      },
+      "median": {
+        "scent": 0.0076064480090280995,
+        "gnu": 0.03679868299514055,
+        "before": 0.07597050299227703
+      },
+      "ratio": 0.2067043543387835,
+      "m4_2x": true,
+      "range": {
+        "scent": [
+          0.007447490992490202,
+          0.0076627380040008575
+        ],
+        "gnu": [
+          0.03600406199984718,
+          0.0387398910097545
+        ],
+        "before": [
+          0.07503480000013951,
+          0.08115638799790759
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "ignore-case",
+      "argv": [
+        "-E",
+        "-i",
+        "-c",
+        "NEEDLE"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.007575784999062307,
+          0.007607268009451218,
+          0.00780256099824328,
+          0.007747052994091064,
+          0.007641874995897524,
+          0.0078556599910371,
+          0.007682224997552112,
+          0.007626228005392477,
+          0.007646175989066251,
+          0.007880741002736613,
+          0.007592251989990473
+        ],
+        "gnu": [
+          0.0025772880035219714,
+          0.0025945130037143826,
+          0.002539852008339949,
+          0.0026048930012620986,
+          0.002638047997606918,
+          0.0026505130081204697,
+          0.002621673993417062,
+          0.0026134829968214035,
+          0.0026049970038002357,
+          0.0027697729965439066,
+          0.0027301590016577393
+        ],
+        "before": [
+          0.007713918006629683,
+          0.00752191299397964,
+          0.007702164992224425,
+          0.0077299950062297285,
+          0.007618912000907585,
+          0.007708509001531638,
+          0.00764737899589818,
+          0.0075610679923556745,
+          0.007997925000381656,
+          0.00790025400056038,
+          0.007735453007626347
+        ]
+      },
+      "median": {
+        "scent": 0.007646175989066251,
+        "gnu": 0.0026134829968214035,
+        "before": 0.007708509001531638
+      },
+      "ratio": 2.925665098401543,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.007575784999062307,
+          0.007880741002736613
+        ],
+        "gnu": [
+          0.002539852008339949,
+          0.0027697729965439066
+        ],
+        "before": [
+          0.00752191299397964,
+          0.007997925000381656
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "word",
+      "argv": [
+        "-E",
+        "-w",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.007580763005535118,
+          0.007837932993425056,
+          0.007583038997836411,
+          0.007663586002308875,
+          0.00758150800538715,
+          0.007612310000695288,
+          0.007577696000225842,
+          0.007555531003163196,
+          0.007795304001774639,
+          0.007989560006535612,
+          0.007587340995087288
+        ],
+        "gnu": [
+          0.004119642995647155,
+          0.004401211001095362,
+          0.004308812000090256,
+          0.004131291003432125,
+          0.004066856999997981,
+          0.004230984995956533,
+          0.004071770992595702,
+          0.004875393002294004,
+          0.005122638991451822,
+          0.004127765991142951,
+          0.004051511001307517
+        ],
+        "before": [
+          0.009481571993092075,
+          0.007549635993200354,
+          0.007814459997462109,
+          0.007569291003164835,
+          0.007647852995432913,
+          0.007859295990783721,
+          0.008080820000031963,
+          0.010395173987490125,
+          0.008168227999703959,
+          0.00787635799497366,
+          0.0075953900086460635
+        ]
+      },
+      "median": {
+        "scent": 0.007587340995087288,
+        "gnu": 0.004131291003432125,
+        "before": 0.007859295990783721
+      },
+      "ratio": 1.8365544786808783,
+      "m4_2x": true,
+      "range": {
+        "scent": [
+          0.007555531003163196,
+          0.007989560006535612
+        ],
+        "gnu": [
+          0.004051511001307517,
+          0.005122638991451822
+        ],
+        "before": [
+          0.007549635993200354,
+          0.010395173987490125
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "count",
+      "argv": [
+        "-F",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.018194032003520988,
+          0.012871859013102949,
+          0.010352514000260271,
+          0.010425006999867037,
+          0.015093912996235304,
+          0.012116833007894456,
+          0.011111023995908909,
+          0.01065785699756816,
+          0.010429722999106161,
+          0.010428146008052863,
+          0.012443734987755306
+        ],
+        "gnu": [
+          0.0035582929995143786,
+          0.0024811079929349944,
+          0.002461730007780716,
+          0.002496859000530094,
+          0.0030423830030485988,
+          0.0024582030018791556,
+          0.0032151930063264444,
+          0.0024507000052835792,
+          0.0024698959896340966,
+          0.0029516619979403913,
+          0.0030205450020730495
+        ],
+        "before": [
+          0.011708663005265407,
+          0.010787623992655426,
+          0.01056967000477016,
+          0.010613071994157508,
+          0.011019694997230545,
+          0.010341054003220052,
+          0.010567175995674916,
+          0.013865725995856337,
+          0.013616558993817307,
+          0.011679443996399641,
+          0.011003389998222701
+        ]
+      },
+      "median": {
+        "scent": 0.011111023995908909,
+        "gnu": 0.002496859000530094,
+        "before": 0.011003389998222701
+      },
+      "ratio": 4.450000578146379,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.010352514000260271,
+          0.018194032003520988
+        ],
+        "gnu": [
+          0.0024507000052835792,
+          0.0035582929995143786
+        ],
+        "before": [
+          0.010341054003220052,
+          0.013865725995856337
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "list",
+      "argv": [
+        "-F",
+        "-l",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 67108608,
+      "seconds": {
+        "scent": [
+          0.0005155929975444451,
+          0.0005629579973174259,
+          0.0004696420073742047,
+          0.0004898650076938793,
+          0.0004610730102285743,
+          0.000534867009264417,
+          0.0004780380113516003,
+          0.0005144129972904921,
+          0.00044073098979424685,
+          0.0005044029967393726,
+          0.000524518996826373
+        ],
+        "gnu": [
+          0.00043819501297548413,
+          0.0003954209969379008,
+          0.0003791499912040308,
+          0.0003224860120099038,
+          0.0003804500011028722,
+          0.0003618969931267202,
+          0.0003774860088014975,
+          0.00031369199859909713,
+          0.00036379699304234236,
+          0.00030005499138496816,
+          0.00032215399551205337
+        ],
+        "before": [
+          0.0005698519962606952,
+          0.0005172320088604465,
+          0.000455111003248021,
+          0.00044100800005253404,
+          0.0004714719980256632,
+          0.0005899229872738943,
+          0.0005039149982621893,
+          0.0004620640102075413,
+          0.0005540900019695982,
+          0.00045256500015966594,
+          0.0004817469889530912
+        ]
+      },
+      "median": {
+        "scent": 0.0005044029967393726,
+        "gnu": 0.00036379699304234236,
+        "before": 0.0004817469889530912
+      },
+      "ratio": 1.3864957830497107,
+      "m4_2x": true,
+      "range": {
+        "scent": [
+          0.00044073098979424685,
+          0.0005629579973174259
+        ],
+        "gnu": [
+          0.00030005499138496816,
+          0.00043819501297548413
+        ],
+        "before": [
+          0.00044100800005253404,
+          0.0005899229872738943
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "01284c486657617bfa136e087a699701a2ba65fab9ac03e72e30cb90da13ca0f",
+          "stdout_bytes": 36,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "01284c486657617bfa136e087a699701a2ba65fab9ac03e72e30cb90da13ca0f",
+          "stdout_bytes": 36,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "01284c486657617bfa136e087a699701a2ba65fab9ac03e72e30cb90da13ca0f",
+          "stdout_bytes": 36,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "only-matching",
+      "argv": [
+        "-E",
+        "-o",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.010576859000138938,
+          0.01056366199918557,
+          0.0102496629988309,
+          0.01042022299952805,
+          0.010652903991285712,
+          0.010521995995077305,
+          0.010396409998065792,
+          0.010531961990636773,
+          0.010389046990894713,
+          0.010340048000216484,
+          0.010544791002757847
+        ],
+        "gnu": [
+          0.00978649899479933,
+          0.009670397994341329,
+          0.00956333099748008,
+          0.009447882999666035,
+          0.009594606992322952,
+          0.00955052899371367,
+          0.009654730994952843,
+          0.009642645003623329,
+          0.009648987994296476,
+          0.00969000899931416,
+          0.009618430005502887
+        ],
+        "before": [
+          0.01063772699853871,
+          0.010503110999707133,
+          0.010569190999376588,
+          0.01056152798992116,
+          0.01061608899908606,
+          0.010378992999903858,
+          0.010856594002689235,
+          0.010343375994125381,
+          0.010798308998346329,
+          0.010469334010849707,
+          0.01056524099840317
+        ]
+      },
+      "median": {
+        "scent": 0.010521995995077305,
+        "gnu": 0.009642645003623329,
+        "before": 0.01056524099840317
+      },
+      "ratio": 1.0911939609021746,
+      "m4_2x": true,
+      "range": {
+        "scent": [
+          0.0102496629988309,
+          0.010652903991285712
+        ],
+        "gnu": [
+          0.009447882999666035,
+          0.00978649899479933
+        ],
+        "before": [
+          0.010343375994125381,
+          0.010856594002689235
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "a24491d122ab2f2ad5e0457ac7fe60614a97bb43f4ae88a94d374b3a41c70afa",
+          "stdout_bytes": 262143,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "a24491d122ab2f2ad5e0457ac7fe60614a97bb43f4ae88a94d374b3a41c70afa",
+          "stdout_bytes": 262143,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "a24491d122ab2f2ad5e0457ac7fe60614a97bb43f4ae88a94d374b3a41c70afa",
+          "stdout_bytes": 262143,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "invert",
+      "argv": [
+        "-F",
+        "-v",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.010938074003206566,
+          0.010638733001542278,
+          0.0148803769989172,
+          0.010599840999930166,
+          0.012173263006843626,
+          0.01051557699975092,
+          0.012521500000730157,
+          0.01321460299368482,
+          0.01069856200774666,
+          0.010644781999872066,
+          0.01043860099161975
+        ],
+        "gnu": [
+          0.002563946007285267,
+          0.002586144008091651,
+          0.002923041000030935,
+          0.002500086004147306,
+          0.00253714200516697,
+          0.0025571499863872305,
+          0.0025570169964339584,
+          0.0027562390023376793,
+          0.002590395000879653,
+          0.0025090950075536966,
+          0.002533951002988033
+        ],
+        "before": [
+          0.012496284994995221,
+          0.010928228992270306,
+          0.014693037999677472,
+          0.011028708991943859,
+          0.012004666990833357,
+          0.010288010991644114,
+          0.010765449987957254,
+          0.01147508500434924,
+          0.010643344998243265,
+          0.0103316479944624,
+          0.010531893989536911
+        ]
+      },
+      "median": {
+        "scent": 0.01069856200774666,
+        "gnu": 0.0025571499863872305,
+        "before": 0.010928228992270306
+      },
+      "ratio": 4.183783534286038,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.01043860099161975,
+          0.0148803769989172
+        ],
+        "gnu": [
+          0.002500086004147306,
+          0.002923041000030935
+        ],
+        "before": [
+          0.010288010991644114,
+          0.014693037999677472
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "binary",
+      "argv": [
+        "-F",
+        "-a",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4194303,
+      "seconds": {
+        "scent": [
+          0.018449117997079156,
+          0.01972539399866946,
+          0.020191944000544026,
+          0.019956741001806222,
+          0.019360557998879813,
+          0.018533998998464085,
+          0.018092603000695817,
+          0.01799246399605181,
+          0.01813533499080222,
+          0.017939789991942234,
+          0.01863305900769774
+        ],
+        "gnu": [
+          0.004268083997885697,
+          0.004234658001223579,
+          0.00405921800120268,
+          0.004114511990337633,
+          0.004188537001027726,
+          0.004175349007709883,
+          0.00400432400056161,
+          0.004087724009878002,
+          0.0040753439971012995,
+          0.004245916992658749,
+          0.004113298011361621
+        ],
+        "before": [
+          0.01806279800075572,
+          0.017695005997666158,
+          0.0187524829962058,
+          0.017678426011116244,
+          0.0193046089989366,
+          0.017865631001768634,
+          0.017694879992632195,
+          0.017682171004707925,
+          0.01928522699745372,
+          0.01764569300576113,
+          0.01797340699704364
+        ]
+      },
+      "median": {
+        "scent": 0.018533998998464085,
+        "gnu": 0.004114511990337633,
+        "before": 0.017865631001768634
+      },
+      "ratio": 4.5045436839140685,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.017939789991942234,
+          0.020191944000544026
+        ],
+        "gnu": [
+          0.00400432400056161,
+          0.004268083997885697
+        ],
+        "before": [
+          0.01764569300576113,
+          0.0193046089989366
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "a3b142dd8ca9e5c25960ea22eee51f70e0fd850b72808a7fd1f3b13c51c9bea6",
+          "stdout_bytes": 7,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "a3b142dd8ca9e5c25960ea22eee51f70e0fd850b72808a7fd1f3b13c51c9bea6",
+          "stdout_bytes": 7,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "a3b142dd8ca9e5c25960ea22eee51f70e0fd850b72808a7fd1f3b13c51c9bea6",
+          "stdout_bytes": 7,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "recursive",
+      "argv": [
+        "-r",
+        "-F",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4200000,
+      "seconds": {
+        "scent": [
+          0.06436652998672798,
+          0.0650973899901146,
+          0.06426025999826379,
+          0.06445833199541084,
+          0.06609801801096182,
+          0.06586206900828984,
+          0.06553086600615643,
+          0.06501430799835362,
+          0.06513101799646392,
+          0.06506213299871888,
+          0.06512102599663194
+        ],
+        "gnu": [
+          0.0059445340011734515,
+          0.005777312006102875,
+          0.005793632008135319,
+          0.005825357002322562,
+          0.005739964995882474,
+          0.006124968989752233,
+          0.005936503002885729,
+          0.006276296000578441,
+          0.005754077996243723,
+          0.005862427002284676,
+          0.005980895002721809
+        ],
+        "before": [
+          0.06444123700202908,
+          0.06437481299508363,
+          0.06490376799774822,
+          0.06376164400717244,
+          0.06390145400655456,
+          0.06424609800160397,
+          0.06444338499568403,
+          0.06406474199320655,
+          0.06451333500444889,
+          0.0645351120037958,
+          0.06503124500159174
+        ]
+      },
+      "median": {
+        "scent": 0.0650973899901146,
+        "gnu": 0.005862427002284676,
+        "before": 0.06444123700202908
+      },
+      "ratio": 11.10417067278538,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.06426025999826379,
+          0.06609801801096182
+        ],
+        "gnu": [
+          0.005739964995882474,
+          0.006276296000578441
+        ],
+        "before": [
+          0.06376164400717244,
+          0.06503124500159174
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "f51961dda79345d92891fb43822dd1a60ef6c2aa97903018ca2fd0e13d83c104",
+          "stdout_bytes": 46000,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "f51961dda79345d92891fb43822dd1a60ef6c2aa97903018ca2fd0e13d83c104",
+          "stdout_bytes": 46000,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "f51961dda79345d92891fb43822dd1a60ef6c2aa97903018ca2fd0e13d83c104",
+          "stdout_bytes": 46000,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "utf8-fold",
+      "argv": [
+        "-F",
+        "-i",
+        "-c",
+        "\u00c9"
+      ],
+      "locale": "C.UTF-8",
+      "bytes": 67108842,
+      "seconds": {
+        "scent": [
+          0.09858108100888785,
+          0.10177346999989823,
+          0.10154850000981241,
+          0.10163877499871887,
+          0.10140688400133513,
+          0.10217825099243782,
+          0.10148598901287187,
+          0.1019619180005975,
+          0.09812734500155784,
+          0.0984880680043716,
+          0.10194486999535002
+        ],
+        "gnu": [
+          0.030660276010166854,
+          0.030112620996078476,
+          0.029549715007306077,
+          0.029811768006766215,
+          0.030294482014141977,
+          0.03024081900366582,
+          0.030351438996149227,
+          0.029806075006490573,
+          0.029671739001059905,
+          0.02976475699688308,
+          0.02967867899860721
+        ],
+        "before": [
+          0.09931473300093785,
+          0.0991650529904291,
+          0.09909308499481995,
+          0.09930915999575518,
+          0.10202707898861263,
+          0.10215392700047232,
+          0.1022327169921482,
+          0.09897106699645519,
+          0.1012141499959398,
+          0.10265207300835755,
+          0.09878018900053576
+        ]
+      },
+      "median": {
+        "scent": 0.10154850000981241,
+        "gnu": 0.029811768006766215,
+        "before": 0.09931473300093785
+      },
+      "ratio": 3.406322630270184,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.09812734500155784,
+          0.10217825099243782
+        ],
+        "gnu": [
+          0.029549715007306077,
+          0.030660276010166854
+        ],
+        "before": [
+          0.09878018900053576,
+          0.10265207300835755
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "624505f2fa9296044eba0230c85e9df736f367fd3fee315c1e2f50299a52a401",
+          "stdout_bytes": 8,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "624505f2fa9296044eba0230c85e9df736f367fd3fee315c1e2f50299a52a401",
+          "stdout_bytes": 8,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "624505f2fa9296044eba0230c85e9df736f367fd3fee315c1e2f50299a52a401",
+          "stdout_bytes": 8,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "fixed-1",
+      "argv": [
+        "-F",
+        "-c",
+        "-f",
+        "/work/scent/target/ct05-corpus/patterns-1"
+      ],
+      "locale": "C",
+      "bytes": 1048555,
+      "seconds": {
+        "scent": [
+          0.0043376749963499606,
+          0.005661745002726093,
+          0.0064467609918210655,
+          0.005218513004365377,
+          0.0037926350050838664,
+          0.004128286993363872,
+          0.0038599020044784993,
+          0.004241303002345376,
+          0.0038286079943645746,
+          0.004319296000176109,
+          0.006518958995002322
+        ],
+        "gnu": [
+          0.0008934610086726025,
+          0.0010348139912821352,
+          0.001593480003066361,
+          0.0013911519927205518,
+          0.0009529639937682077,
+          0.0009670029976405203,
+          0.0009158350003417581,
+          0.0009992279956350103,
+          0.0009172279969789088,
+          0.001362663009786047,
+          0.0015085380000527948
+        ],
+        "before": [
+          0.003921529991202988,
+          0.004183124998235144,
+          0.00598991199512966,
+          0.005337272988981567,
+          0.0041988779994426295,
+          0.0038285789923975244,
+          0.003958262997912243,
+          0.003805512998951599,
+          0.004010099000879563,
+          0.005530811991775408,
+          0.0050186019943794236
+        ]
+      },
+      "median": {
+        "scent": 0.004319296000176109,
+        "gnu": 0.0009992279956350103,
+        "before": 0.004183124998235144
+      },
+      "ratio": 4.3226330917912215,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.0037926350050838664,
+          0.006518958995002322
+        ],
+        "gnu": [
+          0.0008934610086726025,
+          0.001593480003066361
+        ],
+        "before": [
+          0.003805512998951599,
+          0.00598991199512966
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "ebb65aa17a39f4cd2fbd88efcce6817dba3e5a29568c96e2b294bf8228c942a4",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "ebb65aa17a39f4cd2fbd88efcce6817dba3e5a29568c96e2b294bf8228c942a4",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "ebb65aa17a39f4cd2fbd88efcce6817dba3e5a29568c96e2b294bf8228c942a4",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "fixed-10",
+      "argv": [
+        "-F",
+        "-c",
+        "-f",
+        "/work/scent/target/ct05-corpus/patterns-10"
+      ],
+      "locale": "C",
+      "bytes": 1048555,
+      "seconds": {
+        "scent": [
+          0.015176766013610177,
+          0.01108382899838034,
+          0.007746190996840596,
+          0.006294596998486668,
+          0.005019413001718931,
+          0.005842123995535076,
+          0.004522753995843232,
+          0.004567515003145672,
+          0.004381113001727499,
+          0.004637163001461886,
+          0.004563378999591805
+        ],
+        "gnu": [
+          0.0031996140023693442,
+          0.002854328995454125,
+          0.0024883519945433363,
+          0.0019233700004406273,
+          0.001468140006181784,
+          0.0013654350041178986,
+          0.0013417869922704995,
+          0.0014073159982217476,
+          0.0012185250088805333,
+          0.0012983310007257387,
+          0.0012877319968538359
+        ],
+        "before": [
+          0.007028296997305006,
+          0.009058919007657096,
+          0.005773512995801866,
+          0.005814468007883988,
+          0.005975687992759049,
+          0.004342683998402208,
+          0.004571936995489523,
+          0.0042365929984953254,
+          0.004296757993870415,
+          0.0041983529954450205,
+          0.0045792540040565655
+        ]
+      },
+      "median": {
+        "scent": 0.005019413001718931,
+        "gnu": 0.0014073159982217476,
+        "before": 0.0045792540040565655
+      },
+      "ratio": 3.5666566770088215,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.004381113001727499,
+          0.015176766013610177
+        ],
+        "gnu": [
+          0.0012185250088805333,
+          0.0031996140023693442
+        ],
+        "before": [
+          0.0041983529954450205,
+          0.009058919007657096
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "ebb65aa17a39f4cd2fbd88efcce6817dba3e5a29568c96e2b294bf8228c942a4",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "ebb65aa17a39f4cd2fbd88efcce6817dba3e5a29568c96e2b294bf8228c942a4",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "ebb65aa17a39f4cd2fbd88efcce6817dba3e5a29568c96e2b294bf8228c942a4",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "fixed-1000",
+      "argv": [
+        "-F",
+        "-c",
+        "-f",
+        "/work/scent/target/ct05-corpus/patterns-1000"
+      ],
+      "locale": "C",
+      "bytes": 1048555,
+      "seconds": {
+        "scent": [
+          0.0071056970045901835,
+          0.00667642499320209,
+          0.0068533840094460174,
+          0.006978445002459921,
+          0.006987209999351762,
+          0.007079077011439949,
+          0.006820060996687971,
+          0.00697727499937173,
+          0.0068949970009271055,
+          0.0069004480028524995,
+          0.006886977003887296
+        ],
+        "gnu": [
+          0.0014712090051034465,
+          0.001476924997405149,
+          0.0014663829933851957,
+          0.0015094179980223998,
+          0.0015835929953027517,
+          0.0014505979925161228,
+          0.0014434409968089312,
+          0.0014332959981402382,
+          0.0014206319901859388,
+          0.0014221210003597662,
+          0.0014708060043631122
+        ],
+        "before": [
+          0.006490826010121964,
+          0.006265513991820626,
+          0.006303353002294898,
+          0.006311958000878803,
+          0.006367291003698483,
+          0.006201110998517834,
+          0.006312654004432261,
+          0.00613112399878446,
+          0.006416559001081623,
+          0.006251564991544001,
+          0.006459337004343979
+        ]
+      },
+      "median": {
+        "scent": 0.0069004480028524995,
+        "gnu": 0.0014663829933851957,
+        "before": 0.006311958000878803
+      },
+      "ratio": 4.705761069229654,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.00667642499320209,
+          0.0071056970045901835
+        ],
+        "gnu": [
+          0.0014206319901859388,
+          0.0015835929953027517
+        ],
+        "before": [
+          0.00613112399878446,
+          0.006490826010121964
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "ebb65aa17a39f4cd2fbd88efcce6817dba3e5a29568c96e2b294bf8228c942a4",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "ebb65aa17a39f4cd2fbd88efcce6817dba3e5a29568c96e2b294bf8228c942a4",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "before": {
+          "status": 0,
+          "stdout_sha256": "ebb65aa17a39f4cd2fbd88efcce6817dba3e5a29568c96e2b294bf8228c942a4",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    }
+  ]
+}

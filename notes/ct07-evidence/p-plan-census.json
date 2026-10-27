@@ -1,0 +1,230 @@
+{
+  "scope": "all 5072 cases in the M1 generated option matrix; not the whole 48305-case M1/M2/M3 suite",
+  "source": "tests/cases/m1-generated.jsonl",
+  "source_sha256": "6cced61c4b4c46f2b6e1913b713df5460ba7e1670eaf6761b5e843f11221e38e",
+  "meaning": "potential syntax coverage after BRE translation / F literal escaping; no -P behavioral claim; option-conflict and diagnostic cases are not -P acceptance evidence",
+  "cases": {
+    "phase1": 4579,
+    "phase3-backreference": 480,
+    "empty-pattern-file": 3,
+    "diagnostic-not-semantic-coverage": 10
+  },
+  "pattern_instances": {
+    "phase1-regular": 2982,
+    "phase3-backreference": 492,
+    "phase1-literal": 1735,
+    "diagnostic-not-semantic-coverage": 12
+  },
+  "unique_syntax_patterns": {
+    "phase1-regular": 18,
+    "phase3-backreference": 2,
+    "phase1-literal": 10,
+    "diagnostic-not-semantic-coverage": 4
+  },
+  "patterns": [
+    {
+      "syntax": "E",
+      "pattern_hex": "",
+      "category": "phase1-regular",
+      "occurrences": 247
+    },
+    {
+      "syntax": "E",
+      "pattern_hex": "2861295c31",
+      "category": "phase3-backreference",
+      "occurrences": 246
+    },
+    {
+      "syntax": "E",
+      "pattern_hex": "5b",
+      "category": "diagnostic-not-semantic-coverage",
+      "occurrences": 3
+    },
+    {
+      "syntax": "E",
+      "pattern_hex": "5b61625d",
+      "category": "phase1-regular",
+      "occurrences": 246
+    },
+    {
+      "syntax": "E",
+      "pattern_hex": "5c71",
+      "category": "diagnostic-not-semantic-coverage",
+      "occurrences": 3
+    },
+    {
+      "syntax": "E",
+      "pattern_hex": "5e616224",
+      "category": "phase1-regular",
+      "occurrences": 246
+    },
+    {
+      "syntax": "E",
+      "pattern_hex": "6161",
+      "category": "phase1-regular",
+      "occurrences": 2
+    },
+    {
+      "syntax": "E",
+      "pattern_hex": "6162",
+      "category": "phase1-regular",
+      "occurrences": 254
+    },
+    {
+      "syntax": "E",
+      "pattern_hex": "617b312c327d62",
+      "category": "phase1-regular",
+      "occurrences": 246
+    },
+    {
+      "syntax": "E",
+      "pattern_hex": "617c6162",
+      "category": "phase1-regular",
+      "occurrences": 246
+    },
+    {
+      "syntax": "E",
+      "pattern_hex": "6f6b",
+      "category": "phase1-regular",
+      "occurrences": 3
+    },
+    {
+      "syntax": "E",
+      "pattern_hex": "780d",
+      "category": "phase1-regular",
+      "occurrences": 1
+    },
+    {
+      "syntax": "F",
+      "pattern_hex": "",
+      "category": "phase1-literal",
+      "occurrences": 247
+    },
+    {
+      "syntax": "F",
+      "pattern_hex": "2861295c31",
+      "category": "phase1-literal",
+      "occurrences": 246
+    },
+    {
+      "syntax": "F",
+      "pattern_hex": "5b",
+      "category": "phase1-literal",
+      "occurrences": 1
+    },
+    {
+      "syntax": "F",
+      "pattern_hex": "5b61625d",
+      "category": "phase1-literal",
+      "occurrences": 246
+    },
+    {
+      "syntax": "F",
+      "pattern_hex": "5e616224",
+      "category": "phase1-literal",
+      "occurrences": 246
+    },
+    {
+      "syntax": "F",
+      "pattern_hex": "6161",
+      "category": "phase1-literal",
+      "occurrences": 2
+    },
+    {
+      "syntax": "F",
+      "pattern_hex": "6162",
+      "category": "phase1-literal",
+      "occurrences": 254
+    },
+    {
+      "syntax": "F",
+      "pattern_hex": "617b312c327d62",
+      "category": "phase1-literal",
+      "occurrences": 246
+    },
+    {
+      "syntax": "F",
+      "pattern_hex": "617c6162",
+      "category": "phase1-literal",
+      "occurrences": 246
+    },
+    {
+      "syntax": "F",
+      "pattern_hex": "780d",
+      "category": "phase1-literal",
+      "occurrences": 1
+    },
+    {
+      "syntax": "G",
+      "pattern_hex": "",
+      "category": "phase1-regular",
+      "occurrences": 247
+    },
+    {
+      "syntax": "G",
+      "pattern_hex": "5b",
+      "category": "diagnostic-not-semantic-coverage",
+      "occurrences": 3
+    },
+    {
+      "syntax": "G",
+      "pattern_hex": "5b61625d",
+      "category": "phase1-regular",
+      "occurrences": 246
+    },
+    {
+      "syntax": "G",
+      "pattern_hex": "5c28615c295c31",
+      "category": "phase3-backreference",
+      "occurrences": 246
+    },
+    {
+      "syntax": "G",
+      "pattern_hex": "5c71",
+      "category": "diagnostic-not-semantic-coverage",
+      "occurrences": 3
+    },
+    {
+      "syntax": "G",
+      "pattern_hex": "5e616224",
+      "category": "phase1-regular",
+      "occurrences": 246
+    },
+    {
+      "syntax": "G",
+      "pattern_hex": "615c7b312c325c7d62",
+      "category": "phase1-regular",
+      "occurrences": 246
+    },
+    {
+      "syntax": "G",
+      "pattern_hex": "615c7c6162",
+      "category": "phase1-regular",
+      "occurrences": 246
+    },
+    {
+      "syntax": "G",
+      "pattern_hex": "6161",
+      "category": "phase1-regular",
+      "occurrences": 2
+    },
+    {
+      "syntax": "G",
+      "pattern_hex": "6162",
+      "category": "phase1-regular",
+      "occurrences": 254
+    },
+    {
+      "syntax": "G",
+      "pattern_hex": "6f6b",
+      "category": "phase1-regular",
+      "occurrences": 3
+    },
+    {
+      "syntax": "G",
+      "pattern_hex": "780d",
+      "category": "phase1-regular",
+      "occurrences": 1
+    }
+  ]
+}

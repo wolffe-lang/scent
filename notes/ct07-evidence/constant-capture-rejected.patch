@@ -1,0 +1,113 @@
+diff --git a/src/re/prefilter.lu b/src/re/prefilter.lu
+index 7fdaa25..8918356 100644
+--- a/src/re/prefilter.lu
++++ b/src/re/prefilter.lu
+@@ -96,6 +96,20 @@ fn literal_proof_at(p: Parser, options: Options, root: int) -> LiteralProof {
+     if p.nodes.len > 4096 { return proof_empty(false) }
+     var proofs = List[LiteralProof]()
+     for _ in p.nodes { (mut proofs).push(proof_empty(false)) }
++    // A straight-line, case-sensitive byte expression visits every capture
++    // exactly once before a reference can consume it. Do not infer capture
++    // participation through an alternative/repetition, or folded scalars.
++    var constant_refs = p.has_ref && !options.icase && !options.utf8
++    if constant_refs {
++        for n in p.nodes {
++            if n.op == ALT_NODE || n.op == REPEAT_NODE { constant_refs = false }
++        }
++    }
++    var captures = List[LiteralProof]()
++    if constant_refs {
++        var group = 0
++        while group < 10 { (mut captures).push(proof_empty(false)); group += 1 }
++    }
+     var done = zeros(p.nodes.len)
+     var pending = [root]
+     while pending.len > 0 {
+@@ -131,7 +145,15 @@ fn literal_proof_at(p: Parser, options: Options, root: int) -> LiteralProof {
+                 proof = proof_atom(only)
+             }
+         }
+-        if n.op == GROUP_NODE { proof = copy proofs[n.a] }
++        if n.op == GROUP_NODE {
++            proof = copy proofs[n.a]
++            if constant_refs && n.arg > 0 && n.arg < 10 {
++                captures[n.arg] = copy proof
++            }
++        }
++        if n.op == REF && constant_refs && n.arg > 0 && n.arg < 10 {
++            if captures[n.arg].exact { proof = copy captures[n.arg] }
++        }
+         if n.op == CAT_NODE {
+             let a = copy proofs[n.a]
+             let b = copy proofs[n.b]
+diff --git a/src/re/prefilter_test.lu b/src/re/prefilter_test.lu
+index 6f26a12..9dbfb2e 100644
+--- a/src/re/prefilter_test.lu
++++ b/src/re/prefilter_test.lu
+@@ -1,5 +1,36 @@
+ //! The filter is a necessary condition, never an approximation of acceptance.
+ 
++fn test_constant_capture_proof() {
++    var d = diagnostics_new()
++    let re = compile([r"n(e)\1dle".bytes()], filter_options(), mut d) else {
++        assert(false)
++        return
++    }
++    assert(re.filters[0].exact, "straight-line constant capture is exact")
++    assert(re.filters[0].units.len == 6, "constant capture contributes its literal")
++    for mode in [1, 2] {
++        var options = filter_options()
++        options.icase = mode == 1
++        options.utf8 = mode == 2
++        let fallback = compile([r"n(e)\1dle".bytes()], options, mut d) else {
++            assert(false)
++            return
++        }
++        for filter in fallback.filters {
++            assert(!filter.exact, "folded and scalar references retain the VM")
++        }
++    }
++    for pattern in [r"(a)?\1", r"(a|b)\1", r"(a*)\1", r"(a.)\1"] {
++        let unknown = compile([pattern.bytes()], filter_options(), mut d) else {
++            assert(false)
++            return
++        }
++        for filter in unknown.filters {
++            assert(!filter.exact, "conditional or nonconstant captures stay unknown")
++        }
++    }
++}
++
+ fn filter_options() -> Options {
+     Options {
+         extended: true,
+@@ -33,6 +64,15 @@ fn test_prefilter_superset() {
+         "((a|)b)*c",
+         r"a{300}",
+         r"(abc){100}",
++        r"n(e)\1dle",
++        r"(a(b))\2\1",
++        r"()a\1",
++        r"(a)?b\1",
++        r"(a|b)\1",
++        r"((a)*)\2",
++        r"(a.)\1",
++        r"(a)\1|b",
++        r"^n(e)\1dle$",
+     ] {
+         var d = diagnostics_new()
+         let re = compile([pattern.bytes()], filter_options(), mut d) else { assert(false); return }
+@@ -51,6 +91,13 @@ fn test_prefilter_superset() {
+             "ab.cd",
+             "aaaa",
+             "a b",
++            "needle",
++            "xneedley",
++            "abbab",
++            "a",
++            "aa",
++            "bb",
++            "aba",
+         ] {
+             let b = text.bytes()
+             assert(

@@ -1,0 +1,7 @@
+Constant-capture proof: REJECTED, source trial 1965bef; recorder/census head e327725.
+Target backreference: 75.971 ms before -> 7.606 ms candidate; GNU 36.799 ms.
+Counterexample fixed-1000: before median 6.312 ms, range [6.131,6.491]; candidate median 6.900 ms, range [6.676,7.106].
+RED retained-lever-regression: fixed-1000
+No rerun selected to erase this failed control. Raw eleven-sample interleaving and all per-engine output tuples: constant-capture.json; log: constant-capture.log.
+Proof and controls retained only as constant-capture-rejected.patch. Production source restored to ct06.
+Cores 12-15; flock kasumi-cores-12-15.lock; pinned image bad63142bf60230bcf147c864f57ce9b51d982a49bedd661456d1f9698734032.
