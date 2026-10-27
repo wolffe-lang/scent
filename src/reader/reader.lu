@@ -313,9 +313,6 @@ pub fn scan(
     while !st.stop {
         st = copy region chunk {
             var current = copy st
-            var ws = matcher.workspace_new(re)
-            var writer = out.create()
-            writer.any_group = grouped
             let buf = fs_read_chunk(fd, chunk_size) else |e| match e {
                 eof => { current.stop = true; List[byte]() },
                 io => {
@@ -326,6 +323,12 @@ pub fn scan(
                     List[byte]()
                 },
             }
+            // EOF without a carried record needs neither matcher nor output
+            // storage. Preserve partial final records and errors below.
+            if buf.len == 0 && used == 0 { break }
+            var ws = matcher.workspace_new(re)
+            var writer = out.create()
+            writer.any_group = grouped
             if !flags.zero && flags.binary != 1 {
                 if bytefind.find(buf, 0, 0 as byte) < buf.len { current.binary = true }
             }
