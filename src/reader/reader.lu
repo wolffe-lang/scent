@@ -262,14 +262,6 @@ fn emit(
     }
 }
 
-fn count_record(mut st: State, chosen: bool, length: int, limit: int) {
-    st.number += 1
-    if chosen && st.matches < limit {
-        st.matches += 1
-        st.resume = st.offset + length + 1
-    }
-}
-
 fn append(mut target: List[byte], used: int, buf: List[byte], lo: int, hi: int) {
     var i = lo
     while i < hi {
@@ -313,7 +305,6 @@ pub fn scan(
     // Measured GNU first regular-file read is 96 KiB. Pipe delivery can
     // return less; the harness records delivery shape in binary witnesses.
     let chunk_size = 98304
-    let count_only = flags.count && !flags.quiet && flags.listing == 0
     let keep_history = flags.before > 0 &&
         !flags.count &&
         flags.listing == 0 &&
@@ -359,24 +350,20 @@ pub fn scan(
                             used += at - lo
                             let hit = matcher.line_matches(re, mut ws, carry, 0, used)
                             let chosen = hit != flags.invert
-                            if count_only {
-                                count_record(mut current, chosen, used, flags.limit)
-                            } else {
-                                emit(
-                                    flags,
-                                    re,
-                                    mut ws,
-                                    carry,
-                                    0,
-                                    used,
-                                    chosen,
-                                    name,
-                                    width,
-                                    history,
-                                    mut current,
-                                    mut writer,
-                                )
-                            }
+                            emit(
+                                flags,
+                                re,
+                                mut ws,
+                                carry,
+                                0,
+                                used,
+                                chosen,
+                                name,
+                                width,
+                                history,
+                                mut current,
+                                mut writer,
+                            )
                             if keep_history {
                                 in storage {
                                     save(
@@ -395,24 +382,20 @@ pub fn scan(
                         } else {
                             let hit = matcher.line_matches(re, mut ws, buf, lo, at)
                             let chosen = hit != flags.invert
-                            if count_only {
-                                count_record(mut current, chosen, at - lo, flags.limit)
-                            } else {
-                                emit(
-                                    flags,
-                                    re,
-                                    mut ws,
-                                    buf,
-                                    lo,
-                                    at,
-                                    chosen,
-                                    name,
-                                    width,
-                                    history,
-                                    mut current,
-                                    mut writer,
-                                )
-                            }
+                            emit(
+                                flags,
+                                re,
+                                mut ws,
+                                buf,
+                                lo,
+                                at,
+                                chosen,
+                                name,
+                                width,
+                                history,
+                                mut current,
+                                mut writer,
+                            )
                             if keep_history {
                                 in storage {
                                     save(
@@ -442,24 +425,20 @@ pub fn scan(
                 }
                 if buf.len == 0 && used > 0 && !error {
                     let hit = matcher.line_matches(re, mut ws, carry, 0, used)
-                    if count_only {
-                        count_record(mut current, hit != flags.invert, used, flags.limit)
-                    } else {
-                        emit(
-                            flags,
-                            re,
-                            mut ws,
-                            carry,
-                            0,
-                            used,
-                            hit != flags.invert,
-                            name,
-                            width,
-                            history,
-                            mut current,
-                            mut writer,
-                        )
-                    }
+                    emit(
+                        flags,
+                        re,
+                        mut ws,
+                        carry,
+                        0,
+                        used,
+                        hit != flags.invert,
+                        name,
+                        width,
+                        history,
+                        mut current,
+                        mut writer,
+                    )
                     if hit != flags.invert { current.resume = current.offset + used }
                     used = 0
                 }

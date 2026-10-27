@@ -1,0 +1,8 @@
+Count-only record-state dispatch: REJECTED, source 21113dc; paired baseline is accepted EOF binary (9251f21), not the original ct06 binary.
+Target count: 10.685 ms before -> 10.369 ms candidate; GNU 2.591 ms.
+Counterexample only-matching: median 10.326 -> 11.177 ms; the entire candidate range is above the entire before range.
+RED retained-lever-regression: only-matching
+All 396 EOF/carry/option tuples and all sixteen timed-row tuples agree. Raw samples: count-only.json; log: count-only.log.
+No repeated run used to erase the counterexample. Restore only src/reader/reader.lu to the accepted EOF source; expanded EOF/count option controls remain.
+Remaining misses mapped to this controlled trial: literal, class, alternation, ignore-case, count, invert, binary, utf8-fold, fixed-1, fixed-10, fixed-1000. Backreference has its separate constant-capture trial; recursive has its retained EOF allocation trial.
+No missing language-surface requirement established. These experiments test scent levers and do not certify wolf-std#89, wolf-std#94 or wolf-lang#971 as blockers for every remaining row.
