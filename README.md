@@ -182,8 +182,8 @@ sixteen workloads against explicit regression ceilings. Each workload uses
 one warmup and eleven interleaved GNU/scent pairs on four CPUs, with output
 drained through a pipe. Every row also reports the separate 2× GNU target:
 rows above 2× are misses, even when the regression ceiling passes. The
-measurements and before/after tables are in `notes/ct05-evidence/` and
-`notes/ct06-evidence/`. M4 remains unmet; passing a regression ceiling is
+measurements and before/after tables are in `notes/ct05-evidence/`,
+`notes/ct06-evidence/` and `notes/ct07-evidence/`. M4 remains unmet; passing a regression ceiling is
 not a waiver of the separate 2× target.
 The recorder uses `GITHUB_SHA` when supplied, otherwise resolves `HEAD` from
 its own checkout, independently of the caller's working directory. Missing or
@@ -192,7 +192,12 @@ container launcher forwards the CI identity without changing Git's safety
 configuration; tests cover non-repository callers and unavailable metadata.
 Physical CPU IDs are recorded and must be four contiguous cores. Optional
 `--before-bin` measurements interleave the control binary with scent and GNU,
-checking all three result tuples. Source and binary hashes bind each new run.
+checking all three result tuples. Each engine's exact status, stdout digest and
+length, empty stderr and twelve checked runs are retained with the row.
+`tools/speed-check --retained-target NAME` additionally requires a target median
+improvement and rejects any other candidate range wholly slower than its before
+range. Source and binary hashes bind each new run. `SCENT_CPUS` selects the
+four-core block for `tools/speed-ci` (default `0-3`); no taskset shim is needed.
 Full CI adds the macOS field leg.
 
 ## Published differences
@@ -286,7 +291,9 @@ A fully exact top-level union can retain up to 32 separate literal branches;
 an unproved branch or exhausted bound falls back as a whole. Fixed-string
 selection shares prefixes and suffix links, with byte-indexed roots and
 scalar-aware UTF-8 folding. Delimiter scans are scalar and unrolled; inactive
-context history does not enter its storage region. Optional or unproved
+context history does not enter its storage region. EOF with no unfinished record
+skips matcher/output workspace allocation; unterminated records still take the
+normal matching path. Optional or unproved
 literals never reject a record. No optimization changes the published differences.
 
 The current std pin still allocates each read chunk. The newer `read_into`
