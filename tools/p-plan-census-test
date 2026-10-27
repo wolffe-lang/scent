@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+"""Finite census unit controls; the corpus is separately counted on the rig."""
+import pathlib,runpy
+root=pathlib.Path(__file__).resolve().parent.parent
+module=runpy.run_path(str(root/'tools/p-plan-census'))
+sources=module['sources'];category=module['category']
+assert sources({'argv':['-G','-e','ab\naa','-f','p','input'],'files':{'p':{'text':'x\r\n\n'}}})==('G',[b'ab',b'aa',b'x\r',b''])
+assert sources({'argv':['-F','-f','p'],'files':{'p':{'text':''}}})==('F',[])
+assert sources({'argv':['-E','-m','1','-C','1','-e','ab','input'],'files':{}})==('E',[b'ab'])
+assert sources({'argv':['-E','-E','ab'],'files':{}})==('E',[b'ab'])
+assert category('F',br'(a)\1')=='phase1-literal'
+assert category('E',br'(a)\1')=='phase3-backreference'
+assert category('G',br'\(a\)\1')=='phase3-backreference'
+assert category('E',b'[')=='diagnostic-not-semantic-coverage'
+try:category('E',b'new syntax')
+except AssertionError:pass
+else:raise AssertionError('unclassified syntax silently counted')
+print('PASS census extraction and fail-closed classification; SKIP=0')

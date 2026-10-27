@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+"""Inventory M1 generated pattern sources for the design-only -P phase plan.
+
+This is a finite corpus census, not a regex parser or a claim of -P parity.
+GNU/BRE spelling is classified by its original syntax, not reinterpreted as PCRE.
+Unknown additions stop the census instead of silently inflating coverage.
+"""
+import argparse,base64,collections,hashlib,json,pathlib
+ROOT=pathlib.Path(__file__).resolve().parent.parent
+SOURCE=ROOT/'tests/cases/m1-generated.jsonl'
+
+def payload(value):
+ if isinstance(value,str):return value.encode()
+ if 'text' in value:return value['text'].encode()
+ return base64.b64decode(value['base64'],validate=True)
+
+def sources(case):
+ argv=case['argv'];syntax=argv[0][1:];patterns=[];i=1;explicit=False
+ while i<len(argv):
+  arg=argv[i]
+  if arg in ('-e','-f'):
+   explicit=True;i+=1
+   data=argv[i].encode() if arg=='-e' else payload(case['files'][argv[i]])
+   if arg=='-e':patterns.extend(data.split(b'\n'))
+   elif data:patterns.extend(data.removesuffix(b'\n').split(b'\n'))
+  elif arg in ('-m','-A','-B','-C','--label'):i+=1
+  elif not arg.startswith('-') and not explicit:
+   patterns.extend(arg.encode().split(b'\n'));explicit=True
+  i+=1
+ return syntax,patterns
+
+def category(syntax,pattern):
+ if syntax=='F':return 'phase1-literal'
+ if pattern in (b'',b'ab',b'aa',b'x\r',b'[ab]',b'^ab$',b'ok'):return 'phase1-regular'
+ if (syntax,pattern) in [('G',br'a\{1,2\}b'),('E',b'a{1,2}b'),('G',br'a\|ab'),('E',b'a|ab')]:return 'phase1-regular'
+ if (syntax,pattern) in [('G',br'\(a\)\1'),('E',br'(a)\1')]:return 'phase3-backreference'
+ if pattern in (b'[',br'\q'):return 'diagnostic-not-semantic-coverage'
+ raise AssertionError(('unclassified M1 pattern',syntax,pattern))
+
+def census():
+ cases=[json.loads(line) for line in SOURCE.read_text().splitlines()]
+ assert len(cases)==5072
+ unique={};instances=collections.Counter();case_counts=collections.Counter()
+ for case in cases:
+  syntax,patterns=sources(case);categories=[]
+  for pattern in patterns:
+   cat=category(syntax,pattern);categories.append(cat);instances[cat]+=1
+   key=(syntax,pattern);unique.setdefault(key,{'syntax':syntax,'pattern_hex':pattern.hex(),'category':cat,'occurrences':0})['occurrences']+=1
+  cat='empty-pattern-file' if not categories else ('diagnostic-not-semantic-coverage' if 'diagnostic-not-semantic-coverage' in categories else ('phase3-backreference' if 'phase3-backreference' in categories else 'phase1'))
+  case_counts[cat]+=1
+ return {'scope':'all 5072 cases in the M1 generated option matrix; not the whole 48305-case M1/M2/M3 suite','source':'tests/cases/m1-generated.jsonl','source_sha256':hashlib.sha256(SOURCE.read_bytes()).hexdigest(),'meaning':'potential syntax coverage after BRE translation / F literal escaping; no -P behavioral claim; option-conflict and diagnostic cases are not -P acceptance evidence','cases':dict(case_counts),'pattern_instances':dict(instances),'unique_syntax_patterns':dict(collections.Counter(row['category'] for row in unique.values())),'patterns':sorted(unique.values(),key=lambda row:(row['syntax'],row['pattern_hex']))}
+if __name__=='__main__':
+ parser=argparse.ArgumentParser();parser.add_argument('--output',required=True);args=parser.parse_args()
+ result=census();(ROOT/args.output).write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:v for k,v in result.items() if k!='patterns'},indent=2))
