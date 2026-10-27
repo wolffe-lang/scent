@@ -7,7 +7,7 @@ bins=[root/'target/baseline',root/'target/release/scent',root/'.oracle/grep']
 with tempfile.TemporaryDirectory(prefix='reader-eof-',dir=root/'target') as directory:
  path=pathlib.Path(directory)/'input'
  cases=[b'',b'needle\n',b'needle',b'other\n',b'other',b'other\nneedle',b'x'*98300+b'needle',b'x'*98304+b'\nneedle\n',b'needle\0other\n',b'needle\0other',b'needle\nother\nneedle\n']
- options=[[],['-c'],['-L'],['-l'],['-q'],['-c','-m','1'],['-c','-v'],['-o'],['-C','1'],['-z','-c'],['-a','-c'],['-I','-c']]
+ options=[[],['-c'],['-L'],['-l'],['-q'],['-c','-m','1'],['-c','-v'],['-o'],['-C','1'],['-z','-c'],['-a','-c'],['-I','-c'],['-c','-C','1'],['-c','-q'],['-c','-l'],['-c','-L'],['-c','-m','0'],['-c','-o']]
  count=0
  for data in cases:
   path.write_bytes(data)
