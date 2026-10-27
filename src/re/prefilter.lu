@@ -96,6 +96,20 @@ fn literal_proof_at(p: Parser, options: Options, root: int) -> LiteralProof {
     if p.nodes.len > 4096 { return proof_empty(false) }
     var proofs = List[LiteralProof]()
     for _ in p.nodes { (mut proofs).push(proof_empty(false)) }
+    // A straight-line, case-sensitive byte expression visits every capture
+    // exactly once before a reference can consume it. Do not infer capture
+    // participation through an alternative/repetition, or folded scalars.
+    var constant_refs = p.has_ref && !options.icase && !options.utf8
+    if constant_refs {
+        for n in p.nodes {
+            if n.op == ALT_NODE || n.op == REPEAT_NODE { constant_refs = false }
+        }
+    }
+    var captures = List[LiteralProof]()
+    if constant_refs {
+        var group = 0
+        while group < 10 { (mut captures).push(proof_empty(false)); group += 1 }
+    }
     var done = zeros(p.nodes.len)
     var pending = [root]
     while pending.len > 0 {
@@ -131,7 +145,15 @@ fn literal_proof_at(p: Parser, options: Options, root: int) -> LiteralProof {
                 proof = proof_atom(only)
             }
         }
-        if n.op == GROUP_NODE { proof = copy proofs[n.a] }
+        if n.op == GROUP_NODE {
+            proof = copy proofs[n.a]
+            if constant_refs && n.arg > 0 && n.arg < 10 {
+                captures[n.arg] = copy proof
+            }
+        }
+        if n.op == REF && constant_refs && n.arg > 0 && n.arg < 10 {
+            if captures[n.arg].exact { proof = copy captures[n.arg] }
+        }
         if n.op == CAT_NODE {
             let a = copy proofs[n.a]
             let b = copy proofs[n.b]
