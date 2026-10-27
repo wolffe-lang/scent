@@ -1,0 +1,6 @@
+EOF workspace allocation: RETAINED, source f60f4e8; tested recorder head 9251f21.
+Target recursive: 64.412 ms before -> 50.532 ms candidate; GNU 5.836 ms; still 8.659x (M4 miss).
+All sixteen candidate ranges overlap their before range or are faster. This is ct06's declared range-overlap rule, not statistical significance.
+264 before/candidate/GNU EOF/carry tuples agree, including pipe stdin, empty files, unterminated records, 96 KiB boundaries, count/list/quiet/invert/context/binary/NUL modes.
+Raw eleven-sample interleaving and exact per-engine tuples: eof-workspace.json. PASS retained-lever: recursive in eof-workspace.log.
+First test harness red was argv[0] diagnostic spelling, not a production difference; preserved in eof-test-first-red.log and corrected in 9251f21 by executing each binary with argv[0]=grep.
