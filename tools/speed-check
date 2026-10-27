@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Fail closed on missing workloads, malformed timing evidence or regressions."""
-import argparse,json,pathlib,statistics
+import argparse,json,pathlib,statistics,math,re
 NAMES={'literal','class','alternation','backreference','ignore-case','word','count','list','only-matching','invert','binary','recursive','utf8-fold','fixed-1','fixed-10','fixed-1000'}
 def check(report,ceilings):
  cpus=report['affinity']
@@ -11,16 +11,36 @@ def check(report,ceilings):
  misses=[]
  for r in report['rows']:
   assert set(r['seconds']) in ({'gnu','scent'},{'gnu','scent','before'}),'measurement engine drift'
+  assert set(r.get('tuples',{}))==set(r['seconds']), 'RED missing-row-tuple: '+r['name']
+  agreed=[]
   for engine in r['seconds']:
+   answer=r['tuples'][engine]
+   assert set(answer)=={'status','stdout_sha256','stdout_bytes','stderr_hex','checked_runs'}, 'RED malformed-row-tuple'
+   assert type(answer['status']) is int and answer['status'] in (0,1), 'RED malformed-row-status'
+   assert type(answer['stdout_bytes']) is int and answer['stdout_bytes']>=0, 'RED malformed-row-length'
+   assert re.fullmatch('[0-9a-f]{64}',answer['stdout_sha256']), 'RED malformed-row-hash'
+   assert answer['stderr_hex']=='' and answer['checked_runs']==12, 'RED incomplete-row-tuple'
+   agreed.append(answer)
    samples=r['seconds'][engine]
-   assert len(samples)==11 and all(x>0 for x in samples),'incomplete timing samples'
+   assert len(samples)==11 and all(type(x) in (int,float) and math.isfinite(x) and x>0 for x in samples),'incomplete timing samples'
    assert r['median'][engine]==statistics.median(samples),'median does not match evidence'
+  assert all(answer==agreed[0] for answer in agreed), 'RED unequal-row-tuples'
   ratio=r['median']['scent']/r['median']['gnu']
   assert r['ratio']==ratio and r['m4_2x']==(ratio<=2),'M4 row drift'
   if ratio>ceilings[r['name']]:misses.append(f"{r['name']} {ratio:.3f} > {ceilings[r['name']]:.3f}")
  assert not misses,'RED speed-regression: '+'; '.join(misses)
  return len(report['rows'])
+def retain(report,target):
+ assert target in NAMES, 'unknown lever target'
+ assert all('before' in r['seconds'] for r in report['rows']), 'retention requires paired before samples'
+ rows={r['name']:r for r in report['rows']};row=rows[target]
+ assert row['median']['scent']<row['median']['before'], 'RED retained-lever-no-gain: '+target
+ regressions=[r['name'] for r in report['rows'] if min(r['seconds']['scent'])>max(r['seconds']['before'])]
+ assert not regressions, 'RED retained-lever-regression: '+', '.join(regressions)
+ return target
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('report');p.add_argument('ceilings');a=p.parse_args()
- n=check(json.loads(pathlib.Path(a.report).read_text()),json.loads(pathlib.Path(a.ceilings).read_text()))
+ p=argparse.ArgumentParser();p.add_argument('report');p.add_argument('ceilings');p.add_argument('--retained-target');a=p.parse_args()
+ report=json.loads(pathlib.Path(a.report).read_text())
+ n=check(report,json.loads(pathlib.Path(a.ceilings).read_text()))
+ if a.retained_target:print('PASS retained-lever:',retain(report,a.retained_target))
  print(f'PASS speed-regression: {n} workloads; M4 misses remain named, not waived')

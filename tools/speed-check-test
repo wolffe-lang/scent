@@ -3,6 +3,8 @@ import copy,pathlib,runpy
 root=pathlib.Path(__file__).resolve().parent.parent
 module=runpy.run_path(str(root/'tools/speed-check'));check=module['check'];names=module['NAMES']
 valid={'repeats':11,'warmups':1,'affinity':[0,1,2,3],'rows':[{'name':n,'seconds':{'gnu':[1.0]*11,'scent':[1.5]*11},'median':{'gnu':1.0,'scent':1.5},'ratio':1.5,'m4_2x':True} for n in sorted(names)]}
+answer={'status':0,'stdout_sha256':'0'*64,'stdout_bytes':2,'stderr_hex':'','checked_runs':12}
+for row in valid['rows']:row['tuples']={engine:copy.deepcopy(answer) for engine in row['seconds']}
 ceilings={n:2.0 for n in names};assert check(valid,ceilings)==16
 for mutation in ['missing','duplicate','samples','median','ratio','m4','threshold']:
  bad=copy.deepcopy(valid);limits=copy.deepcopy(ceilings)
@@ -29,9 +31,36 @@ for cpus in [[],[4,5,6],[4,5,6,8],[7,6,5,4],[-1,0,1,2],[0,1,2,True]]:
 paired=copy.deepcopy(other)
 for row in paired['rows']:
  row['seconds']['before']=[2.0]*11;row['median']['before']=2.0
+ row['tuples']['before']=copy.deepcopy(answer)
 assert check(paired,ceilings)==16
 paired['rows'][0]['seconds']['before'].pop()
 try:check(paired,ceilings)
 except AssertionError:print('PASS rejected incomplete before control')
 else:raise AssertionError('accepted incomplete before control')
 print('PASS physical-affinity and paired-control guards; SKIP=0')
+
+paired['rows'][0]['seconds']['before'].append(2.0)
+retain=module['retain'];assert retain(paired,'backreference')=='backreference'
+for mutation in ['tuple','tuple-engine','tuple-hash','tuple-mismatch','tuple-runs','tuple-stderr','nonfinite','no-gain','other-regression']:
+ bad=copy.deepcopy(paired)
+ row=bad['rows'][0]
+ if mutation=='tuple':del row['tuples']
+ if mutation=='tuple-engine':del row['tuples']['before']
+ if mutation=='tuple-hash':row['tuples']['scent']['stdout_sha256']='absent'
+ if mutation=='tuple-mismatch':row['tuples']['scent']['stdout_bytes']=99
+ if mutation=='tuple-runs':row['tuples']['scent']['checked_runs']=11
+ if mutation=='tuple-stderr':row['tuples']['scent']['stderr_hex']='ff'
+ if mutation=='nonfinite':row['seconds']['scent'][0]=float('inf')
+ if mutation in ('no-gain','other-regression'):
+  row=next(r for r in bad['rows'] if r['name']==('backreference' if mutation=='no-gain' else 'recursive'))
+  row['seconds']['before']=[1.0]*11;row['median']['before']=1.0
+ try:
+  check(bad,ceilings);retain(bad,'backreference')
+ except AssertionError as error:print('PASS rejected',mutation,str(error))
+ else:raise AssertionError('accepted '+mutation)
+# Equality at a range boundary is within the predeclared noise band.
+edge=copy.deepcopy(paired)
+row=next(r for r in edge['rows'] if r['name']=='recursive')
+row['seconds']['before']=[1.0]*10+[1.5];row['median']['before']=1.0
+check(edge,ceilings);retain(edge,'backreference')
+print('PASS exact-tuple and retained-lever guards; SKIP=0')

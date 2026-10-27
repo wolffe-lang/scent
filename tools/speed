@@ -66,6 +66,10 @@ for name,path,argv in rows:
  assert len(tuples)==1,(name,tuples)
  medians={k:statistics.median(v) for k,v in times.items()};ratio=medians['scent']/medians['gnu']
  row={'name':name,'argv':argv,'locale':locale,'bytes':sum(x.stat().st_size for x in path.iterdir()) if path.is_dir() else path.stat().st_size,'seconds':times,'median':medians,'ratio':ratio,'m4_2x':ratio<=2,'range':{k:[min(v),max(v)] for k,v in times.items()}}
+ # The assertion above covers every warmup/sample, including empty stderr.
+ # Preserve the agreed tuple with each engine, not merely a discarded set.
+ status,digest,size=next(iter(tuples))
+ row['tuples']={k:{'status':status,'stdout_sha256':digest,'stdout_bytes':size,'stderr_hex':'','checked_runs':12} for k in bins}
  result['rows'].append(row);print(json.dumps(row),flush=True)
  (ROOT/a.output).write_text(json.dumps(result,indent=2)+'\n')
 
