@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Black-box EOF/carry checks for the deferred-workspace experiment."""
-import hashlib,os,pathlib,subprocess,tempfile
+import argparse,os,pathlib,subprocess,tempfile
 root=pathlib.Path(__file__).resolve().parent.parent
 assert os.environ.get('SCENT_IN_CONTAINER')=='1'
-bins=[root/'target/baseline',root/'target/release/scent',root/'.oracle/grep']
+parser=argparse.ArgumentParser();parser.add_argument('--before-bin');args=parser.parse_args()
+bins=[root/'target/release/scent',root/'.oracle/grep']
+if args.before_bin:bins.insert(0,root/args.before_bin)
 with tempfile.TemporaryDirectory(prefix='reader-eof-',dir=root/'target') as directory:
  path=pathlib.Path(directory)/'input'
  cases=[b'',b'needle\n',b'needle',b'other\n',b'other',b'other\nneedle',b'x'*98300+b'needle',b'x'*98304+b'\nneedle\n',b'needle\0other\n',b'needle\0other',b'needle\nother\nneedle\n']
@@ -17,6 +19,6 @@ with tempfile.TemporaryDirectory(prefix='reader-eof-',dir=root/'target') as dire
     for binary in bins:
      p=subprocess.run(['grep','-F',*flags,'needle',*([] if stdin else [str(path)])],executable=str(binary),input=data if stdin else None,stdout=subprocess.PIPE,stderr=subprocess.PIPE,env=dict(os.environ,LC_ALL='C'))
      answers.append((p.returncode,p.stdout,p.stderr))
-    assert answers[0]==answers[1]==answers[2],(len(data),flags,stdin,answers)
+    assert all(answer==answers[0] for answer in answers),(len(data),flags,stdin,answers)
     count+=1
- print(f'PASS reader-eof: {count} byte-identical before/candidate/GNU tuples; SKIP=0')
+ print(f'PASS reader-eof: {count} byte-identical tuples across {len(bins)} engines; SKIP=0')

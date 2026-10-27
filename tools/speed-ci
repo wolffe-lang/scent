@@ -6,5 +6,7 @@ cd "$(dirname "$0")/.."
 python3 -I tools/speed-head-test
 python3 -I tools/speed-check-test
 python3 -I tools/speed-test
+python3 -I tools/reader-eof-test
+python3 -I tools/p-plan-census-test
 tools/oracle --bin target/release/scent --match-engine vm
-taskset -c 0-3 python3 -I tools/speed --output target/speed.json --ceilings tests/speed-ceilings.json
+taskset -c "${SCENT_CPUS:-0-3}" python3 -I tools/speed --output target/speed.json --ceilings tests/speed-ceilings.json
