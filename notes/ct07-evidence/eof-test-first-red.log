@@ -1,0 +1,6 @@
+build: target/release/scent
+Traceback (most recent call last):
+  File "/work/scent/tools/reader-eof-test", line 20, in <module>
+    assert answers[0]==answers[1]==answers[2],(len(data),flags,stdin,answers)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (13, [], False, [(0, b'', b'grep: /work/scent/target/reader-eof-uqijernv/input: binary file matches\n'), (0, b'', b'grep: /work/scent/target/reader-eof-uqijernv/input: binary file matches\n'), (0, b'', b'/work/scent/.oracle/grep: /work/scent/target/reader-eof-uqijernv/input: binary file matches\n')])

@@ -15,7 +15,7 @@ with tempfile.TemporaryDirectory(prefix='reader-eof-',dir=root/'target') as dire
    for stdin in [False,True]:
     answers=[]
     for binary in bins:
-     p=subprocess.run([str(binary),'-F',*flags,'needle',*([] if stdin else [str(path)])],input=data if stdin else None,stdout=subprocess.PIPE,stderr=subprocess.PIPE,env=dict(os.environ,LC_ALL='C'))
+     p=subprocess.run(['grep','-F',*flags,'needle',*([] if stdin else [str(path)])],executable=str(binary),input=data if stdin else None,stdout=subprocess.PIPE,stderr=subprocess.PIPE,env=dict(os.environ,LC_ALL='C'))
      answers.append((p.returncode,p.stdout,p.stderr))
     assert answers[0]==answers[1]==answers[2],(len(data),flags,stdin,answers)
     count+=1
