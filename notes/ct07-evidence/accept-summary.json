@@ -1,0 +1,18 @@
+{
+  "accepted_head": "de4b778d673563ae8a00d1bf0aff9f1a7513f8c3",
+  "matched_source_files": 193,
+  "memory_peak_kib": [
+    2604.0,
+    3084.0,
+    3052.0,
+    4248.0,
+    2776.0
+  ],
+  "m4_passes": 3,
+  "binary_sha256": {
+    "scent": "b2cce4feaaa9136e62a4b84b2b81e7db719e2bf57d38ec8fd71f2ad4867c5f96",
+    "gnu": "92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea",
+    "before": "96e05922907529ca6dd10be412efe17be935122fc8ac5f7a4f2b7e42333d5af3"
+  },
+  "pax_capture_sha256": "d635cc1dde428cdb7437e7680d1d8c457901ad2a85de801684daac25062daeae"
+}

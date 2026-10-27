@@ -1,0 +1,22 @@
+kasumi; CPUs 12-15; flock kasumi-cores-12-15.lock; pinned GNU 3.12 / Ubuntu image.
+One warmup and eleven interleaved before/candidate/GNU samples per row; exact twelve-run tuples in final-paired.json.
+All medians in milliseconds. Final production retains EOF deferral only; 2x is independent of regression ceilings.
+| Workload | Before ms | After ms | GNU ms | Ratio | M4 | Controlled lever |
+| --- | ---: | ---: | ---: | ---: | --- | --- |
+| literal | 94.518 | 93.832 | 12.058 | 7.782 | false | count-only: rejected |
+| class | 94.211 | 94.417 | 11.979 | 7.882 | false | count-only: rejected |
+| alternation | 144.186 | 143.733 | 11.256 | 12.769 | false | count-only: rejected |
+| backreference | 80.975 | 80.956 | 38.865 | 2.083 | false | constant capture: rejected |
+| ignore-case | 8.436 | 8.165 | 3.011 | 2.711 | false | count-only: rejected |
+| word | 8.367 | 8.135 | 4.588 | 1.773 | true | control (already passed) |
+| count | 11.172 | 11.408 | 2.933 | 3.889 | false | count-only: rejected |
+| list | 0.517 | 0.525 | 0.343 | 1.529 | true | control (already passed) |
+| only-matching | 11.585 | 11.224 | 10.343 | 1.085 | true | control (already passed) |
+| invert | 11.271 | 11.491 | 2.950 | 3.895 | false | count-only: rejected |
+| binary | 18.814 | 18.943 | 4.314 | 4.391 | false | count-only: rejected |
+| recursive | 67.538 | 52.936 | 6.342 | 8.347 | false | EOF allocation: retained |
+| utf8-fold | 106.831 | 106.704 | 31.981 | 3.336 | false | count-only: rejected |
+| fixed-1 | 4.048 | 3.947 | 1.010 | 3.909 | false | count-only: rejected |
+| fixed-10 | 4.414 | 4.557 | 1.349 | 3.377 | false | count-only: rejected |
+| fixed-1000 | 6.527 | 6.903 | 1.533 | 4.504 | false | count-only: rejected |
+M4 passes: 3/16; no waiver.

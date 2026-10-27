@@ -1,0 +1,1385 @@
+{
+  "head": "de4b778d673563ae8a00d1bf0aff9f1a7513f8c3",
+  "head_source": "git",
+  "affinity": [
+    12,
+    13,
+    14,
+    15
+  ],
+  "repeats": 11,
+  "warmups": 1,
+  "output": "pipe drained; SHA256/stdout/status compared on every run",
+  "binaries": {
+    "scent": "b2cce4feaaa9136e62a4b84b2b81e7db719e2bf57d38ec8fd71f2ad4867c5f96",
+    "gnu": "92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea"
+  },
+  "source_sha256": {
+    "src/.lu-cache/ifaces/bytefind.wolfi": "b99cda7369c66517ad2f389c270791821db59dec74fc3ed32aa8a86f3dd260c4",
+    "src/.lu-cache/ifaces/colors.wolfi": "b5411b103c63d5679c40e22b3eba352288517e8b69570d19d2f11a42e89ee516",
+    "src/.lu-cache/ifaces/fixed.wolfi": "da71c33f2140cba0b39db47adc894c2a559dca96ada4bb5aca63f1cf5b73ee7a",
+    "src/.lu-cache/ifaces/glob.wolfi": "72f6d7b86975c51e34873fe32119bc0a3f04a278d92f50c399c490910c466bfe",
+    "src/.lu-cache/ifaces/locale.wolfi": "2b9ec958c76b9b306ec00b1e2a6ad055e702183e528a570bcd4ee57341070994",
+    "src/.lu-cache/ifaces/matcher.wolfi": "bc9bfa88eb71d06016ecc76e81df442f06bd598a2c7a71956a2ee0784a9d7198",
+    "src/.lu-cache/ifaces/opts.wolfi": "c0bb3fc821775e67612831e11db4cfdf0fab41aa18ab4fcf08f4a5dbe10d78c0",
+    "src/.lu-cache/ifaces/out.wolfi": "2587f29c966720502d2981fb9a7d9cea09a2d6dc116e1f01b97d349f6f024448",
+    "src/.lu-cache/ifaces/re.wolfi": "402a40d7d9ff081759a9fac503542ec0a68ab42d376570fe6c37010c73985179",
+    "src/.lu-cache/ifaces/reader.wolfi": "7cceb5a529c2900f729ebf89dd60a38cb8a290ed8db1d95f505d991760153712",
+    "src/.lu-cache/ifaces/root.wolfi": "9125f95af35d18b10b98ef7ce1b88ad542a0aea5860be4033c356688a7490cb4",
+    "src/.lu-cache/ifaces/std.cmp.wolfi": "758214eced97d54e5a434becc0eed26fe5a06681e3c5641ba98677d97bd47f9d",
+    "src/.lu-cache/ifaces/std.env.wolfi": "ce85d488f472a9093a67a6f81963e81237ad921f8591a74bb34825da0dce50b6",
+    "src/.lu-cache/ifaces/std.fs.wolfi": "d71d8f6a17bda4b5eddad7638769fd7954123af97c7bd719b42031f06a123b7c",
+    "src/.lu-cache/ifaces/std.list.wolfi": "54f5de919580df6ad4e291b187e514ca86bb3e55fbb31f5ab0520ec08c8dbdc8",
+    "src/.lu-cache/ifaces/std.map.wolfi": "ef487f1ddc15195143fe77eee1ad5fd273f66c79fc5d5e09b1aefac076a7c8d1",
+    "src/.lu-cache/ifaces/std.range.wolfi": "15413ce332fddc9eca407a81af82bb0ed67b2d81bd23356ffcbac13088b9925c",
+    "src/.lu-cache/ifaces/std.str.wolfi": "dda34f190fc3841ad8c8b71742bab6eccd6645d5744f5f2f051888e1101bed4e",
+    "src/.lu-cache/ifaces/std.strbuf.wolfi": "68f2ae419cd1113e7ecf908f73ef4c9d4c4aa6bcb733dcf20e27cd87da79cbf3",
+    "src/.lu-cache/ifaces/walk.wolfi": "db487809d24b2a96c8d53b7c4a38dc815e3e8fcd914863d75438269d56f53f00",
+    "src/.lu-cache/modules/bytefind.json": "3f8d9a159769b1da962f5f1db88dfca657e66b4c5e8f74301fe7147e68abe270",
+    "src/.lu-cache/modules/c00.json": "0bcca8ac6dd49b01b191e9a20a96a1601a65c91333906a8d595330ad83482596",
+    "src/.lu-cache/modules/c01.json": "699d07d654eb0c4432e58231f7647d1d7e1ff1319f3091e171fe55a83b02a7ae",
+    "src/.lu-cache/modules/c02.json": "ba7c3670e640c8f27ef415f5da7b2e409f648f3820b161df2f0f00a088d4d784",
+    "src/.lu-cache/modules/c03.json": "e48a5b8208a7c8e3a301b6f0df9dbd42d630930f6859e14b591048c38b632fe0",
+    "src/.lu-cache/modules/c04.json": "49375b9512b6141f168360b5f234fd323d33245704592ec93f28be4afd999d1b",
+    "src/.lu-cache/modules/c05.json": "2911e6e6d1f2a0dfea9af34e9e4aac194617af2bba3163a8d95b6fbd460a4922",
+    "src/.lu-cache/modules/c06.json": "ce28c08b3799e81157fbba9a2bcd883bf4d58691d5fe14916e2d89b7c43af581",
+    "src/.lu-cache/modules/c07.json": "7ee2b832bece40e88d3d6aa1acec9461c99234a2d10a435b0a0baa5c0b6962f6",
+    "src/.lu-cache/modules/colors.json": "936afa6c411392277f12c177653b3aed2951c3b90b02b929f6435da33a160c8b",
+    "src/.lu-cache/modules/fixed.json": "27bb39b31185f5f9517ac7630136bfd278957e9a62481904f03944d9d945027b",
+    "src/.lu-cache/modules/glob.json": "6aa3de14383c137abc3d27ca21e9e83d5e7894807ba8863321da0e45bd5e16cf",
+    "src/.lu-cache/modules/locale.json": "0014e2f8e593fd41d474f522d6a12f03e89402776e660512ea4a80c228dad8f1",
+    "src/.lu-cache/modules/matcher.json": "0ba0ed76c0acbaefbfa921694599a0d3bab401cc68cd1ddd35a41188e68fd9b0",
+    "src/.lu-cache/modules/opts.json": "269459b10b94b53f65d79da4360f3ce5a5d07e33e84b8511e71e3fda93d539c6",
+    "src/.lu-cache/modules/out.json": "85afad3c174cac6383c8eaf4e11e933b6d0553ab26696a5afd23987b8f51a6e5",
+    "src/.lu-cache/modules/re.json": "a10cc60876dfd04ae183774fc61b1e86102837c93ba7bac8a556dc39c36bceb9",
+    "src/.lu-cache/modules/reader.json": "46f13f6dedb8c9468580c538fa9d26d6c6a1c49c13dd50b459c0a951fdf5094c",
+    "src/.lu-cache/modules/root.json": "0888ffc692b6aab787b67c0249b6d87e1586d6abeab96468886324d7403e945b",
+    "src/.lu-cache/modules/std.cmp.json": "c86a9811cda087fe1bb6e68416f0606bc4471d5b0c73a0adf861a791f7df8414",
+    "src/.lu-cache/modules/std.env.json": "653ec17e376a14b259d68404f3ccc713ba815d83119e599bc407c517c8414168",
+    "src/.lu-cache/modules/std.fs.json": "6c84c2d2d93ea7ba20cc6889741438843830922eea237db8bea775161be3d854",
+    "src/.lu-cache/modules/std.list.json": "df97ea3be18f776d8d24c0a596fa91aca74aa33a3f6eb105a35f3a587f3dafb1",
+    "src/.lu-cache/modules/std.range.json": "56a785c9ee168302d8be95f39f989ad5e7c7a3f3e5ddb097f7a015ad770678b8",
+    "src/.lu-cache/modules/std.str.json": "7c61c3e7d223d558dead0c6a6a5d104af8a015dd5fa8a2f51b2d404b98334d1f",
+    "src/.lu-cache/modules/std.strbuf.json": "9fa72ded4eb7013c4e751e80f491472bb6692ff211f22d2d2478b4fe77294663",
+    "src/.lu-cache/modules/walk.json": "b5f4ee40e8e56dda63dc912609774d390984444ab175777f285797cfdf6fc9d2",
+    "src/.lu-cache/obj/bytefind-d4cd1369de24403e.o": "47551e6f1aa90a0dfc612bb24df1e6a12642b19fb58b8b951abfc96932a406ec",
+    "src/.lu-cache/obj/c00-addb5d28a4153183.o": "2018afa67e93703b5f585f78d894a06991038cefe4496e803c5f403b11b1aaae",
+    "src/.lu-cache/obj/c01-8fe61cf1ad4f353d.o": "9ee2792b2cc9b88b07527a54d9795d6e91cf46139fb33ab893d4c95b9c5e914d",
+    "src/.lu-cache/obj/c02-04b47a94fbe005a8.o": "ac589557d33b3a51b1a8d2c05c09386545e2f46aff61070b0479280c55b5191d",
+    "src/.lu-cache/obj/c03-d36f96516dd398ad.o": "5ab5f9c842fb9301e19ce5909c14897191c092727c3dc35035b14b3480fe3148",
+    "src/.lu-cache/obj/c04-866e03b033c21513.o": "79afa26248ababb8796ab369a9b9cd27c76338bc259c56c320552bb0b17b5773",
+    "src/.lu-cache/obj/c05-33edb7a15d6ce5c3.o": "b44b55502783dace9b1fdddb218532af001d33d52134c45ea1e39cb707483a64",
+    "src/.lu-cache/obj/c06-e9bea0dcc33d8771.o": "d4c97461d83da410b055910d4b0508f15a92ecd0ff357093eac6f7f742bed823",
+    "src/.lu-cache/obj/c07-7fced80abcf9201d.o": "523a15119aa9cf1a756b2553c2a69810e7e2a02c8dc36e509191755e02a8da4d",
+    "src/.lu-cache/obj/colors-f8c11bd95d4fc201.o": "a1fee52855928f9d56b137497c36d05667bef4b5fb8d3375f74bbd00029bc588",
+    "src/.lu-cache/obj/fixed-ec0dc2eae3503b7b.o": "9e99ff925ac3ff1967f02c9d8dadfdb5a5f76999a45a36baef94c0120e85b1a6",
+    "src/.lu-cache/obj/glob-f84caed8dd23ec55.o": "33956b3b76ccef780de4a1255f07ee554e8ecc27a644f471df7cb21ffe4ffc94",
+    "src/.lu-cache/obj/locale-f2de0669fb8c6dd8.o": "b286f553578776173b159647b46164159088a7e3fc740e0e8fbbb498bd4b8f78",
+    "src/.lu-cache/obj/matcher-178945f4ed6ef9e3.o": "657e3de40ec4f555e43bfdd5c3aea7be74eedb198de94ff5105428976071f70c",
+    "src/.lu-cache/obj/opts-fa7610befb2e076a.o": "0a941c96bdada201d02794ed88c81d87f5cd05dedd75aa69bc8d58183d938861",
+    "src/.lu-cache/obj/out-e26e5e58aeee1b1f.o": "c765dc82cca5a30b9f627d91122c62dc259fd5973ccd9c16d1826b0c7e2cab6c",
+    "src/.lu-cache/obj/re-1bb6cd14313871ef.o": "422104c5bf1f41f437302b9231ce67f235e177eb339156838825921122f68b9f",
+    "src/.lu-cache/obj/reader-63d986c00df1c5f4.o": "bb5bdb485625ab916fd5ea18b11290cf4567072fa8f1d5daabfa2082c5364d1a",
+    "src/.lu-cache/obj/root-9d65318c1ed02488.o": "a1c5199c16ae78cd34ee8c6cee5eb30ccc649591376275e2ac7be4da1856ce2a",
+    "src/.lu-cache/obj/std.cmp-de4be18a29b20b8f.o": "0fde2fec73eed5401644d0ebf6a983b08304eaadee870e25547a61ff89beac9a",
+    "src/.lu-cache/obj/std.env-12b443aafb3224ca.o": "4d7bd98553a09b0132e44623c1373412f46bb9a6de199216b7e75ca80e63a7e8",
+    "src/.lu-cache/obj/std.fs-ce0c6f7d32c44ec7.o": "bf976256ecf23ba9a636c1158ecefe3da7be227993e1f60ba92834a081cb0d87",
+    "src/.lu-cache/obj/std.list-668c6dbc935dfcc0.o": "dc9d0235ecb23dd5d5961c0794573f7e9a6dc49c2b58d42a4acd34600d6a465f",
+    "src/.lu-cache/obj/std.range-b60046b936d4c140.o": "95db86126a6c57cbb5ae2561eeff0101a35f7efbbcebfcdcdb8aca5af5f27ab8",
+    "src/.lu-cache/obj/std.str-26ef34e1c5ef7ebe.o": "f14e68c6ef81812fee687a9f71835c1239646f3349ea73726441eec8c948344e",
+    "src/.lu-cache/obj/std.strbuf-2a4b1e7f26f210b5.o": "92b7d8d4790bdf207f0d47b2b720fb6045cf77cfaf6eda81097c7c37ca4ef65f",
+    "src/.lu-cache/obj/walk-dc43bc611898be21.o": "8425be1c75f4dc8445564ffcae973dc400f6495726f38942e825be5a8e82421f",
+    "src/bytefind/bytefind.lu": "0ec9de3c97e0186fa2d5af0e3e4e203419afa3c1b00dd5d0adef10da51c05776",
+    "src/bytefind_test.lu": "a8e4318d82a1c263e706a3910e5f8c86d5a29018c447ca9e90ed733de99e5b55",
+    "src/colors/colors.lu": "38c2c74eda4046a0b8a6e3f6b2fe1e92c5ccd886d95d894e72ca7381a15523b0",
+    "src/ctype_test.lu": "3fc11ea0f402ba8ed83fa32d261819ab1575a1e62e8c01bf27fb09d18abb2483",
+    "src/fixed/fixed.lu": "a6ad157b9eaa750986330a58aa1e870ee0b51c83bffdca8084a673202ebfe360",
+    "src/fixed/trie.lu": "55abf7d432cfaaf62d6be44d9c5db927eeeaa137d66b5128df480b63e94ab201",
+    "src/fixed_test.lu": "50ea472e9c42b9ab01dfd3b789d36b856e22aae4976eecdb1d7251dab35d1c29",
+    "src/glob/glob.lu": "d244273c400db05879c035efb672e3e0013cbc139acc1c8f83a8ed009950d711",
+    "src/glob_test.lu": "9220e7bd4224323110e22374a19de53294fe2d3c013406e89ed03648b17ad6a8",
+    "src/locale/locale.lu": "b9d040148643953d405570a84d48b6574c47699172db5e7efb8a1f1bd62cc7c5",
+    "src/locale_test.lu": "4686bc87194a2b1a0267edbf394d2d1158363ce8527875aade31a1b109ada9fc",
+    "src/matcher/matcher.lu": "38f72503111b303bfafd930419905408bb8d51b0233a88d1dbeaf5d27c2daa72",
+    "src/matcher_test.lu": "cfb8a4e51534d48a16322be40067fa19022676b8ba930318a3445340e93e79b1",
+    "src/opts/opts.lu": "5af621eb07daf9f7fd1d28c89b328d83e27b2d633f7649fa9ceb47b5993b80d7",
+    "src/opts_test.lu": "0cc3f9e3d545f28ce35b03929b7a4e6155955ac6c2b10b996290db0616e0775c",
+    "src/out/out.lu": "8d2bdd6ba4d8306d0de2d228fcaf2fae372ea4ac4b6c7170aa34a6dc4f326caa",
+    "src/re/.lu-cache/ifaces/root.wolfi": "f2afd24d70927b1e52b30476769027c0256806385cf619b1b3dc24839d06e6f8",
+    "src/re/.lu-cache/ifaces/std.cmp.wolfi": "758214eced97d54e5a434becc0eed26fe5a06681e3c5641ba98677d97bd47f9d",
+    "src/re/.lu-cache/ifaces/std.fs.wolfi": "d71d8f6a17bda4b5eddad7638769fd7954123af97c7bd719b42031f06a123b7c",
+    "src/re/.lu-cache/ifaces/std.list.wolfi": "54f5de919580df6ad4e291b187e514ca86bb3e55fbb31f5ab0520ec08c8dbdc8",
+    "src/re/.lu-cache/ifaces/std.map.wolfi": "ef487f1ddc15195143fe77eee1ad5fd273f66c79fc5d5e09b1aefac076a7c8d1",
+    "src/re/.lu-cache/ifaces/std.range.wolfi": "15413ce332fddc9eca407a81af82bb0ed67b2d81bd23356ffcbac13088b9925c",
+    "src/re/.lu-cache/modules/c00.json": "961840fadfca26e5a66ff28dd8d2cac2567036565b37c2cfd14b5384f5353fbc",
+    "src/re/.lu-cache/modules/c01.json": "9635abfce53a297574f12c2b553c86f526060a54e0bdd84aa73e9302cbfc2c3a",
+    "src/re/.lu-cache/modules/c02.json": "c29436caaa4af1a61e5252f6c586661cbc6d2359aa0131e50af38f56511a3790",
+    "src/re/.lu-cache/modules/c03.json": "1018054ced21036f2d3fa1d18e951c1cb27a34579c9635d2a4999484e8f33db9",
+    "src/re/.lu-cache/modules/c04.json": "e04f4a1973b6d3871390beb7f97d992bf3843965017c41cb8988c9ceaabc225b",
+    "src/re/.lu-cache/modules/c05.json": "e73fbb36263ca9e95f1951052b478d54ffe4d5e6fb6b14a95dbcde832876a147",
+    "src/re/.lu-cache/modules/c06.json": "92ecc0d58ad95265bc69094b586f43d967100e6d2482da764aa814c646c201c9",
+    "src/re/.lu-cache/modules/c07.json": "bd063dde7a60e1beb1b4528df9a652f922deafd5637a4b5d0ed9bf8969eef804",
+    "src/re/.lu-cache/modules/root.json": "11c5402ef5bcd7cd3f87b220d6f94b2a4dda58b398a0285184d470c16545b0a3",
+    "src/re/.lu-cache/modules/std.cmp.json": "66569b11191f3aa0ee036b27175ce17809989105d7d197d90cace3f1afb484ae",
+    "src/re/.lu-cache/modules/std.fs.json": "3926cf2ead5f1c370178df35f77fac763632bbe34e55a80a7d11ed1b5cea3a6c",
+    "src/re/.lu-cache/modules/std.list.json": "b1d7f4f4b4151cb1f67659fed473108141901a5c1b36c3e213fd7883f18e623c",
+    "src/re/.lu-cache/modules/std.range.json": "e222113564f438d17e6b4e8a8cf166c2e52d74614e0bb69c1a3274ff2232d88a",
+    "src/re/.lu-cache/obj/c00-c7cf85b09aad8ed1.o": "f6b028abf59b2a63296d24d142ace17a34d64b6df6557f63fd409e8740af973e",
+    "src/re/.lu-cache/obj/c01-265655a365243826.o": "848411aed727044eed92f9cba5480abdf84693d730bea4d0071933fe7f8c0759",
+    "src/re/.lu-cache/obj/c02-55eb30ef97ddbb0a.o": "0dc8ead731d850fe2ddd83de88beb8a83da10cb90ee87f4913ba28d60d0a76df",
+    "src/re/.lu-cache/obj/c03-4a710fd6214d82d7.o": "2fa3cb7107038edfdc5905c18188dcd6807572e738ea3c68f7b1a7aa635e2924",
+    "src/re/.lu-cache/obj/c04-d51cf8cec0f7776e.o": "03214602a0e1ec0d00d9384fc8f64a646929bfcaa743f9e32c4c55c7d1528b2c",
+    "src/re/.lu-cache/obj/c05-d2eda8bc37276130.o": "27ff06b2947a393825f807b6b4f65a73cf87810b85d3ef650670e7433c8960ca",
+    "src/re/.lu-cache/obj/c06-fdc5dc167a3230f7.o": "15d83dd17941dbef4cffe5ae938d5a18ceadbe5f4e073875534ca8c43e931949",
+    "src/re/.lu-cache/obj/c07-3d30f50e78dd13b4.o": "0a6531a06e7886e9a5914963caa689d3de1c9e3ca4664a6b3e44f2b13489f82b",
+    "src/re/.lu-cache/obj/root-8d60e1a183d23e64.o": "ea7bf931db0029985aa9014e872a4cdc95764528ee5bf849c512f6ca4eee3586",
+    "src/re/.lu-cache/obj/std.cmp-11472eb18e1508b5.o": "0fde2fec73eed5401644d0ebf6a983b08304eaadee870e25547a61ff89beac9a",
+    "src/re/.lu-cache/obj/std.fs-f010a78b37ccd1ce.o": "50cccb9883815ef03fe882fdfbf3b392fdfdd55d70dbac5fa340062ec98cba7e",
+    "src/re/.lu-cache/obj/std.list-2cb11cc684869ab1.o": "907a2b7c7a1bac17bea3274111560195902e10afb194127aeac0a515ddd1c3c3",
+    "src/re/.lu-cache/obj/std.range-d7679fda125f0951.o": "3b8b8a88c398170568fec3925b6257f5a28ce53422323bca23f1e5272b1b31b1",
+    "src/re/backref.lu": "f90bab15254f460e1dd7ac36f5563f30a4a47d9b12d6bf7a55662f2e0fb812b7",
+    "src/re/byte_vm.lu": "6b6e89f9d96d54f9f18d5888b4e2deff5154db483d7eeccb561cf92e6ad338c4",
+    "src/re/compile.lu": "f997c36aeee2d32d22958a85cd81d30270baa40387eeb9f795606e1ff97c1b37",
+    "src/re/compile_test.lu": "6cac958819d2c2b2d282ed7613809cb476e4990ef544158ac67d69ad136c073c",
+    "src/re/ctype.lu": "a4cb601b7e0dc51c79c5e954e97425b23ea881ea6d6745f13ea2d85d0283ca01",
+    "src/re/ctype_tables.lu": "e32c4372502c4a536d352abda91b95cb6f25b187a1d617bc6241953ecada5c4a",
+    "src/re/dfa.lu": "ff64ab11f5cb3baedcca945681d9de4db565158ece36bf8799d700741784a322",
+    "src/re/dfa_test.lu": "8e93daa6c778e282a3e35e8730fc868286b21b36c3f55e7e1c4da313c706b1ad",
+    "src/re/driver.lu": "d929933a719a09871f2691075f5794c80d70964081490178ff363579fd505b7e",
+    "src/re/linear.lu": "fd995ce2861c609a53925a7f96018b38296b3d5a0080dd53a98b3a803779febb",
+    "src/re/linear_test.lu": "e52d1a62e8beff74da21525b24944c06c14c36f72a118da09a570abdb3c29c92",
+    "src/re/parse.lu": "84ae07d56cd38bbf5c84a3ab9598aeb7a683bc0569665d2f609f33746e04867b",
+    "src/re/prefilter.lu": "5e057df1905d82b51fad797307f643df7153a4fc8ab8c7bd00863dc6056cb241",
+    "src/re/prefilter_test.lu": "270069a24c7b409984e57126cdb4f3aec81389e1c072f0e118988991587b9601",
+    "src/re/re.lu": "ecfd476b08448bfbcb72e85b4c9e026222f89d13cb3d09003a83bd80479c093c",
+    "src/re/utf8.lu": "adccb95654694e733b756b1a59b14c2dfebcb84c1133cbb751fd53f9992f812f",
+    "src/re/utf8_parse.lu": "d33fa6fa849263b282c970ff660bbfad4bf7315d52ff9b40d722d498420eaa9b",
+    "src/reader/reader.lu": "9f7ae2a26f19dce44a24ba698cc17796aa785479b53d02f686dfef135d4caf62",
+    "src/region_test.lu": "c3ca968e5d7d828667210beb77e23eb2172a88d6967d1c3c8cfe9baadad35f13",
+    "src/scent.lu": "ae6aaa556d36f765c3a53be210ea0f74d13b4653450792b182ac4fc9e9a2fbb6",
+    "src/utf8_matcher_test.lu": "8ed53e0326ab2898abd14e738fea111b86a5e3ddf64f8caf7ee9bde85c4ee2ab",
+    "src/utf8_test.lu": "e42f29171aa64436764abc474faa00bf6ec752ad902585f9188f71b4764d6380",
+    "src/walk/walk.lu": "212e1b1e253781dc40cd514f30dcdea6b3f87800e966592464a075bf7633b976",
+    "src/wolf.pkg": "9134b2c2c1cfddd28ebb3af16cbedff0437ee63aef1d505ece40b09f4bfc879b",
+    "tools/build": "b3c5036fdc979ee54320538386db8b6bfc66dfe67d67aeb54ae2a1dea650967f",
+    "tools/check-ctype": "79a4fb344ca166de02ab6323d8de47a573a948c0d6c6091a8858d24963369b3f",
+    "tools/check-ctype-regen": "f5bc8450d5e3b2d1e09f31ce1638d1a9e1e4855ef3c889af0a940f899551b66a",
+    "tools/check-fmt": "4089b242c08c0d2b403e442c46e41b450f3bd0d70ef07c75519275548ea54d2b",
+    "tools/check-test": "d0f67995fbd005d7fe863945fbf3170b56fe8db1205712afe3f4c3c645c0cc52",
+    "tools/fetch-oracle": "604f47879e2b5a085307621c17299a8c9964f75ce57b4ec941ab26209abc3b92",
+    "tools/fetch-oracle.py": "8df040db8ecf46a2c65ffbbede7aec4fa4727abc0bc4b2ae4576490877a40e0c",
+    "tools/fetch-toolchain": "4df5388b84a3845d366518a4387cce3309b91b4b1f0a3d3205cc37f854b74648",
+    "tools/fold-derive": "0332170af8ce32d2ebe29de9d8fcfdc31caecb473500ecdd394171e9d21d85b3",
+    "tools/fold-probe": "c70e682c800a79dae233d5f88a0f4c264c7d1e8548771fa46ff8cbe5c1c3c051",
+    "tools/gate": "128dafa2ffe1236fb3353e0fc385078c25855d12021b8bfbdca4edf65366b45b",
+    "tools/gen-ctype-tables/.lu-cache/ifaces/root.wolfi": "f7df0c23eca4b9fb6e1905f50d85c2fec5b5ee649131d44fb6f3008e210277d3",
+    "tools/gen-ctype-tables/.lu-cache/ifaces/std.cmp.wolfi": "758214eced97d54e5a434becc0eed26fe5a06681e3c5641ba98677d97bd47f9d",
+    "tools/gen-ctype-tables/.lu-cache/ifaces/std.fs.wolfi": "d71d8f6a17bda4b5eddad7638769fd7954123af97c7bd719b42031f06a123b7c",
+    "tools/gen-ctype-tables/.lu-cache/ifaces/std.list.wolfi": "54f5de919580df6ad4e291b187e514ca86bb3e55fbb31f5ab0520ec08c8dbdc8",
+    "tools/gen-ctype-tables/.lu-cache/ifaces/std.map.wolfi": "ef487f1ddc15195143fe77eee1ad5fd273f66c79fc5d5e09b1aefac076a7c8d1",
+    "tools/gen-ctype-tables/.lu-cache/ifaces/std.range.wolfi": "15413ce332fddc9eca407a81af82bb0ed67b2d81bd23356ffcbac13088b9925c",
+    "tools/gen-ctype-tables/.lu-cache/modules/c00.json": "babe4a5d8d00c6cc870beab5ebe92eb9810000711b6a49047f7b6593b610a27a",
+    "tools/gen-ctype-tables/.lu-cache/modules/c01.json": "395caa67c14c80952d06bb8c0a62d9f8e4392f0da0fa1961098f358a0beeec07",
+    "tools/gen-ctype-tables/.lu-cache/modules/c02.json": "1040d26f1f2cd4157f6d791cdca95a09a0de72db38f2a28cc0940670fc968213",
+    "tools/gen-ctype-tables/.lu-cache/modules/c03.json": "9d07d0c84b7a8909de86c00e30ff5d562c86a0bcf7507a418321fc034ae3879e",
+    "tools/gen-ctype-tables/.lu-cache/modules/c04.json": "3f263ffde2fc8116cea07cd3984d7c8cdb022cafcbec06845facd3250e0e72c3",
+    "tools/gen-ctype-tables/.lu-cache/modules/c05.json": "794dd4deec235dbdb93f21b23f5ca0efa3df3e2e63416d362cac948a08d2fc2c",
+    "tools/gen-ctype-tables/.lu-cache/modules/c07.json": "2b0d4b0afe5c36f63a94cbc4b5413e4d972e6e9e74399fcc654a80c63cbbe93e",
+    "tools/gen-ctype-tables/.lu-cache/obj/c00-d65a81f3b761b826.o": "6eba88d7f440a47935ad7d925fdc2f590f3f35a68f6010ce3bc6dbc654b89d7b",
+    "tools/gen-ctype-tables/.lu-cache/obj/c01-c1a3a10c010fa83d.o": "6233bb9028956d91f40c7498a48954c124a91c72af7b2ffda1baf4e99ca8ea55",
+    "tools/gen-ctype-tables/.lu-cache/obj/c02-16cbbf345549e5f0.o": "90829b25bb594474bb8fe9a30dbb67af9ab4c5667cf031f842875650ba701c5d",
+    "tools/gen-ctype-tables/.lu-cache/obj/c03-ffeda17263384a7d.o": "4c2fdb09ad4309ca098ab285466b94cf76d806e6061c52d2a366226b9988241a",
+    "tools/gen-ctype-tables/.lu-cache/obj/c04-e4aa7184fe1c4d50.o": "8e4f010541549371c8b15bb8db521ee02924fb59a6654984aebd9ee3f12753b2",
+    "tools/gen-ctype-tables/.lu-cache/obj/c05-7551adadda10bd81.o": "7c12d23ba8751ad33889cfb72c27e5c530f1bc13fb5900e5ce0f232b8e3572ad",
+    "tools/gen-ctype-tables/.lu-cache/obj/c07-3866dd8db2936d17.o": "091a87caeb0cd22abf3c35f53d24c10d1455382be39f19bc9ed7150c48825bf1",
+    "tools/gen-ctype-tables/main.lu": "40b9501905bf22e921d297b0a83843770679f6d826bf0d4656a2adc399e4a8d8",
+    "tools/in-container": "b4fea081bca8564697e2b054d0fb870a5c93028524bf7955ad53ec8ec331ce9f",
+    "tools/lib-toml.sh": "bc2bb2c1cecf3f928058b78ff97cc5f25eb5512925ecbefebb78391e45ecafbe",
+    "tools/lib-toolchain.sh": "d4896e5e2bdc6d1c2e2b139a97fe1dad86adffeb2e86b8ba8ab2ecb933aaef38",
+    "tools/locale-probe": "a553be88519e30e4490bfc619bb6a9941f8bc53190340427a9e7eceb979d1d10",
+    "tools/m1-cases": "517f2cce6b55cf5903b511ce969e2fb8f2432fef6f864216048d099ce043d774",
+    "tools/m1-ci-test": "336a9f79dcc79963f487e73c3076f3838a13d82a09b2f710bcbb9bfd2627d1f8",
+    "tools/m2-cases": "bc1e332e9d43b44302e8017e090c9de3603ff4eb0fce64c1f4fd86987ebf284a",
+    "tools/m2-ci-test": "f59f03608bca13d17e33a67d9936e8f65f00623ca9618e4963108448ec2e2b03",
+    "tools/m3-cases": "374d47d5ef235088ed7d3d1b4a884f1c2478dea8f7ad04bf79cc18daaccd67a9",
+    "tools/m3-ci-test": "413202df1fc333a84efbcfbaa7404188a8c0ec9757b11369176cd15fe76f5198",
+    "tools/measure": "20b0f43cfda664fe0decc93ab529b261fc01838f3b8de97d418303db60ebcd58",
+    "tools/measure-ctype": "19f6079463611bc5fba95d82b03c4ce1c628ce2a8d89dab6fbb0052f4aec0fa4",
+    "tools/measure-folded-classes": "cb7b4af4aa96a888a78aedace0be9072d99fb322a4705fd6819437db6c5970ab",
+    "tools/measure.py": "21960cdd09bb97f2a080cbb4c8c0a59e0bdb36ae44718b30266963fb0596a242",
+    "tools/mkscent": "10875b65b1061b3925f21110f65e1b39c175a452bc17e43d44f3386378411d78",
+    "tools/oracle": "8a0dc6a2e5f43b5f307a842539b45c587eaf1a5c95ca3d0b2be08f5b505158c5",
+    "tools/oracle-field-test": "5b2b7a91bd7fbf4344e420ada199c42f026e33234fe5e015594add45e184a05f",
+    "tools/oracle-field.py": "29473f3c3611d03c686d0fe83b819ad25e2a23eb1a38924aa6293ae1f0496536",
+    "tools/oracle-replay-test": "96c73612e2f000630262e1488b7e18ee5701214bd3d1c138f4a1a862c2456467",
+    "tools/oracle-review-test": "8f297c2c4a3f1f4836b2a7243f6298952561122243e7177d2990fad7666ce7f0",
+    "tools/oracle-review.py": "0c68ae71b327a597e5f2edef72827f9bfb72a605620586a8c066933c05f00d09",
+    "tools/oracle-select-test": "fdc665bbb7a9d4ae36eb9a78aca143f6dbb73cb67908d0d44278ae79f4937c24",
+    "tools/oracle.py": "3bbb1652e16eb284ea322cbbe033546498fd28cad2cbcd3c6189eb16f004ce55",
+    "tools/p-plan-census": "21380fb392a60d7a4341905d0adef686d992259dcafac4e33d892da5522db499",
+    "tools/p-plan-census-test": "b90c61d04cb215a7cd8ea8770bd0948b906bd9b97bb1bc1044c039991afe7227",
+    "tools/pax-posture": "853feed33f6408d2a3224b69e1af7d60dc36c8dd27bf14c74015cbf6339c1f29",
+    "tools/perf-compare": "8e1d3099caeb5ebee162c93701ccf16fe48522d8b67b83cbbc346da3ce2bc081",
+    "tools/re-assertion-probe": "c578cce24f6b565dac9ca4292111ef4a44c4365393e32505629cea68a3d38ca3",
+    "tools/re-backref-probe": "802d150628c0aaf98d6d94c69dcb659d6e97f59cd9f321936d8b923ad728561c",
+    "tools/re-ci": "c172870d1dfc94c5beec9be07a236142fdbf3f5615ea9d65100bce530916a160",
+    "tools/re-ci-test": "b367794765c923f96ec89c60f877b6ba92496643df3ddf19785343b1cefeb9fb",
+    "tools/re-cost": "57606902cb89a9cd6882986736f06588a84c53290817e1ecdf4a32faf38d139a",
+    "tools/re-diagnostics": "25f1f421b54f89571423576ed31bda6e16f663f50a0b2e87dda14f7561a94b68",
+    "tools/re-driver": "d221f2cd60ec6bb7ff5082edc187164f68669ce5a7e3b36919fe9ae315c30536",
+    "tools/re-oracle": "ca043612ef1626ffe0b61a986fe2fa4dfb60a7839ec617b2e417205ab008b82b",
+    "tools/re-oracle-build": "573011b297e1a6e196a8e090c19a0cda97d4c582bcc8e18fa975b6f31dcc0e38",
+    "tools/re-oracle-identity": "e16e52deac2ed9066f1e21a8445888431d3d97c69db4cdcc106877606bca7ea1",
+    "tools/re-plants": "381e801b7b052265405546afd1267ca5a698f8cae9586d2aeb42dbfe0b24de18",
+    "tools/re-probe": "8993606a0d23e8b1128fac4fba9b24f46b40d820503ae0f46b6855797fe7fba9",
+    "tools/re-projection-plant": "18d0d99f2f7f3bff74a431d094d04ee9859e2ba1c1c74f8f7f248ba413866773",
+    "tools/re-projection-soak": "1c62106e897daf73923a5f56dbb044cb434bcc0b1973ba4cd0c1370229d61580",
+    "tools/re-toolchain-stage": "9a664db2ebde62d9ea8effc47f5a8c0ee383614880d9479727996f747306cab0",
+    "tools/re-word-probe": "77c92d3924f996669c6d320f4413b960c384cfd193be6b7f1df9aa01179f6b04",
+    "tools/read-cost": "9a60579cb14bb86b7f8c70428fa96cc3362415a1ce612ad7bc09e0571c94f2b6",
+    "tools/read-into-probe/main.lu": "45fcfe20fa922218f4ff07a0571767095589d5be92a97f77473d7ac1dbe244cc",
+    "tools/read-probe/main.lu": "b4f29edc71146871faa5a930f20c82311058f38b8a81fe8324443366b0dbf868",
+    "tools/read-probe/reference.c": "9dc1c18bbdd20736e05177dff28bf679fbc928eeff7cf3aabb2c6bcfb5a2d4e4",
+    "tools/reader-eof-test": "0bc0c6d24b335c6069b0cac1f66e5a8edb5d4244ee9ed762b0a2321c45479542",
+    "tools/record-m3-reviews": "691af4e0780f02c600016998ed90aa3e8817bb2885012ca81bd5eae5bb0371b7",
+    "tools/speed": "afe354a5edcec35ea6c1c559f6b3263fc3eac33b89bef4bc7c0dbc35c2a7fd53",
+    "tools/speed-check": "daa26fed44d04f0d111fbc8e99e61a2a29777f0742d0f9b3f5ac87317fb58320",
+    "tools/speed-check-test": "688a69ce3074459929f26ea5ad6fdcad27500a5505c5e633d967feb121127d93",
+    "tools/speed-ci": "840673efa248a53f9459ce9a5f4adb59b1553fc440a6ad563ecce9acc6dfcb00",
+    "tools/speed-head-test": "507db7e0c9d8f54e3ca681793c4951f21192d271940f48f91ee07c46cd7a671d",
+    "tools/speed-test": "833fc2f4af06d7f3ea6ac86a877a79d7fd3d842af17cb181710a44546870c648",
+    "tools/utf8-probe": "f7eb46cfd24ded51e6f95987a04b726b3e665ddaf6348e1071ec28a0cc55dcbc",
+    "tools/utf8-stop-probe": "14ae314df0d307a8cbd0e18af9a158e8c5198492b129902183aaacfd0a4ce358"
+  },
+  "rows": [
+    {
+      "name": "literal",
+      "argv": [
+        "-E",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 67108608,
+      "seconds": {
+        "scent": [
+          0.09270614599518012,
+          0.0929985900002066,
+          0.09346432800521143,
+          0.09361262399761472,
+          0.09349400099017657,
+          0.09368112600350287,
+          0.09380328500992619,
+          0.09352319799654651,
+          0.0932597750070272,
+          0.0938760889985133,
+          0.09384417299588677
+        ],
+        "gnu": [
+          0.011681835007038899,
+          0.012548989005153999,
+          0.011767673990107141,
+          0.012526029007858597,
+          0.012032310012727976,
+          0.012741566999466158,
+          0.012128923001000658,
+          0.012010321996058337,
+          0.01187509999726899,
+          0.0117433299892582,
+          0.011953697001445107
+        ]
+      },
+      "median": {
+        "scent": 0.09352319799654651,
+        "gnu": 0.012010321996058337
+      },
+      "ratio": 7.7869018022364305,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.09270614599518012,
+          0.0938760889985133
+        ],
+        "gnu": [
+          0.011681835007038899,
+          0.012741566999466158
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "1bd1ebdf3be9fdab90a0677de4bd7305cc99d7271ac0f47c69da825cd3634658",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "1bd1ebdf3be9fdab90a0677de4bd7305cc99d7271ac0f47c69da825cd3634658",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "class",
+      "argv": [
+        "-E",
+        "-c",
+        "n[e]edle"
+      ],
+      "locale": "C",
+      "bytes": 67108608,
+      "seconds": {
+        "scent": [
+          0.09372803498990834,
+          0.09393233399896417,
+          0.0934571209945716,
+          0.0942050610028673,
+          0.09405308301211335,
+          0.09378655398904812,
+          0.09371060600096826,
+          0.09315108200826216,
+          0.09384633699664846,
+          0.09358215100655798,
+          0.09383537599933334
+        ],
+        "gnu": [
+          0.012297103996388614,
+          0.011861941995448433,
+          0.012413012998877093,
+          0.012012812003376894,
+          0.011990667000645772,
+          0.011883849001605995,
+          0.012328543001785874,
+          0.012030258993036114,
+          0.012133144002291374,
+          0.011926113002118655,
+          0.011723135990905575
+        ]
+      },
+      "median": {
+        "scent": 0.09378655398904812,
+        "gnu": 0.012012812003376894
+      },
+      "ratio": 7.807210664970366,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.09315108200826216,
+          0.0942050610028673
+        ],
+        "gnu": [
+          0.011723135990905575,
+          0.012413012998877093
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "1bd1ebdf3be9fdab90a0677de4bd7305cc99d7271ac0f47c69da825cd3634658",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "1bd1ebdf3be9fdab90a0677de4bd7305cc99d7271ac0f47c69da825cd3634658",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "alternation",
+      "argv": [
+        "-E",
+        "-c",
+        "needle|zebra"
+      ],
+      "locale": "C",
+      "bytes": 67108608,
+      "seconds": {
+        "scent": [
+          0.14432388500426896,
+          0.14398747100494802,
+          0.14346563500293996,
+          0.14486890500120353,
+          0.1436463549907785,
+          0.1443799809931079,
+          0.14379229000769556,
+          0.14462579299288336,
+          0.14227055199444294,
+          0.14567685400834307,
+          0.14345915999729186
+        ],
+        "gnu": [
+          0.011171100006322376,
+          0.011518594998051412,
+          0.010917876003077254,
+          0.011512876997585408,
+          0.01119026099331677,
+          0.011176793006598018,
+          0.011030636000214145,
+          0.011280479011475109,
+          0.011238042003242299,
+          0.011063586993259378,
+          0.01103367199539207
+        ]
+      },
+      "median": {
+        "scent": 0.14398747100494802,
+        "gnu": 0.011176793006598018
+      },
+      "ratio": 12.882717870855048,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.14227055199444294,
+          0.14567685400834307
+        ],
+        "gnu": [
+          0.010917876003077254,
+          0.011518594998051412
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "1bd1ebdf3be9fdab90a0677de4bd7305cc99d7271ac0f47c69da825cd3634658",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "1bd1ebdf3be9fdab90a0677de4bd7305cc99d7271ac0f47c69da825cd3634658",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "backreference",
+      "argv": [
+        "-E",
+        "-c",
+        "n(e)\\1dle"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.08029062500281725,
+          0.08037092800077517,
+          0.0797662679979112,
+          0.08150917800958268,
+          0.08115742600057274,
+          0.08202615899790544,
+          0.08043404700583778,
+          0.07890120400406886,
+          0.08071753800322767,
+          0.07912290800595656,
+          0.08259938599076122
+        ],
+        "gnu": [
+          0.03913650300819427,
+          0.03878120299486909,
+          0.04030337500444148,
+          0.039085666998289526,
+          0.03931981298956089,
+          0.03896834900660906,
+          0.04026927599625196,
+          0.03886970800522249,
+          0.03847749999840744,
+          0.039063936012098566,
+          0.03900501399766654
+        ]
+      },
+      "median": {
+        "scent": 0.08043404700583778,
+        "gnu": 0.039063936012098566
+      },
+      "ratio": 2.059035909257234,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.07890120400406886,
+          0.08259938599076122
+        ],
+        "gnu": [
+          0.03847749999840744,
+          0.04030337500444148
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "ignore-case",
+      "argv": [
+        "-E",
+        "-i",
+        "-c",
+        "NEEDLE"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.008175700990250334,
+          0.00798149399633985,
+          0.008321462999447249,
+          0.008270239995908923,
+          0.008214132991270162,
+          0.008153450005920604,
+          0.008288013996207155,
+          0.00847255099506583,
+          0.008085686989943497,
+          0.008114420998026617,
+          0.008575915999244899
+        ],
+        "gnu": [
+          0.003008250001585111,
+          0.0028817470010835677,
+          0.002892106000217609,
+          0.003093753010034561,
+          0.003061372000956908,
+          0.0029580650007119402,
+          0.0029198279953561723,
+          0.003087437988142483,
+          0.0028897049924125895,
+          0.0029253600077936426,
+          0.0028468210075516254
+        ]
+      },
+      "median": {
+        "scent": 0.008214132991270162,
+        "gnu": 0.0029253600077936426
+      },
+      "ratio": 2.807904999516762,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.00798149399633985,
+          0.008575915999244899
+        ],
+        "gnu": [
+          0.0028468210075516254,
+          0.003093753010034561
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "word",
+      "argv": [
+        "-E",
+        "-w",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.00803075400472153,
+          0.00799085600010585,
+          0.007903609002823941,
+          0.008164179002051242,
+          0.007806615001754835,
+          0.008237417001510039,
+          0.007738170999800786,
+          0.007906291997642256,
+          0.007835693992092274,
+          0.008157335993018933,
+          0.008153390008374117
+        ],
+        "gnu": [
+          0.004319954008678906,
+          0.004783109005074948,
+          0.0045341189979808405,
+          0.004386106011224911,
+          0.004551872989395633,
+          0.004414841008838266,
+          0.00427105299604591,
+          0.004145992992562242,
+          0.004212993997498415,
+          0.004616876001819037,
+          0.004640632992959581
+        ]
+      },
+      "median": {
+        "scent": 0.00799085600010585,
+        "gnu": 0.004414841008838266
+      },
+      "ratio": 1.8099985897812858,
+      "m4_2x": true,
+      "range": {
+        "scent": [
+          0.007738170999800786,
+          0.008237417001510039
+        ],
+        "gnu": [
+          0.004145992992562242,
+          0.004783109005074948
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "count",
+      "argv": [
+        "-F",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.01162627998564858,
+          0.011367989995051175,
+          0.011908318003406748,
+          0.011510532000102103,
+          0.010911079007200897,
+          0.011070597000070848,
+          0.011399898008676246,
+          0.0113647659891285,
+          0.011461243993835524,
+          0.011228930001379922,
+          0.01102110899228137
+        ],
+        "gnu": [
+          0.002890055999159813,
+          0.002824420007527806,
+          0.0028629529988393188,
+          0.0029469079890986905,
+          0.0028301809943513945,
+          0.003025162994163111,
+          0.003031383006600663,
+          0.0028782959998352453,
+          0.0027584939962252975,
+          0.00294231298903469,
+          0.002810589998262003
+        ]
+      },
+      "median": {
+        "scent": 0.011367989995051175,
+        "gnu": 0.0028782959998352453
+      },
+      "ratio": 3.949555568885856,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.010911079007200897,
+          0.011908318003406748
+        ],
+        "gnu": [
+          0.0027584939962252975,
+          0.003031383006600663
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "list",
+      "argv": [
+        "-F",
+        "-l",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 67108608,
+      "seconds": {
+        "scent": [
+          0.000563677996979095,
+          0.0005337749898899347,
+          0.0005481849948409945,
+          0.0005237629957264289,
+          0.000557830004254356,
+          0.0005105919990455732,
+          0.0004778239963343367,
+          0.0004933680029353127,
+          0.000491675004013814,
+          0.0004902410000795498,
+          0.0005251410038908944
+        ],
+        "gnu": [
+          0.0003897120041074231,
+          0.00033732700103428215,
+          0.0003590889973565936,
+          0.0003472800017334521,
+          0.0003450490039540455,
+          0.0003319370007375255,
+          0.0003552919952198863,
+          0.0003419290005695075,
+          0.0003556790034053847,
+          0.0003264219994889572,
+          0.0004242309951223433
+        ]
+      },
+      "median": {
+        "scent": 0.0005237629957264289,
+        "gnu": 0.0003472800017334521
+      },
+      "ratio": 1.5081864579361322,
+      "m4_2x": true,
+      "range": {
+        "scent": [
+          0.0004778239963343367,
+          0.000563677996979095
+        ],
+        "gnu": [
+          0.0003264219994889572,
+          0.0004242309951223433
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "01284c486657617bfa136e087a699701a2ba65fab9ac03e72e30cb90da13ca0f",
+          "stdout_bytes": 36,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "01284c486657617bfa136e087a699701a2ba65fab9ac03e72e30cb90da13ca0f",
+          "stdout_bytes": 36,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "only-matching",
+      "argv": [
+        "-E",
+        "-o",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.01156306300254073,
+          0.011052493995521218,
+          0.011497657993459143,
+          0.01107920600043144,
+          0.011315515002934262,
+          0.011146226010168903,
+          0.011337877993355505,
+          0.011339845004840754,
+          0.011865192005643621,
+          0.011506853988976218,
+          0.018723813991528004
+        ],
+        "gnu": [
+          0.010181371006183326,
+          0.009968929007300176,
+          0.01023331200121902,
+          0.010079333005705848,
+          0.010342121007852256,
+          0.01026903500314802,
+          0.010435741001856513,
+          0.010206564009422436,
+          0.010659464009222575,
+          0.010763543003122322,
+          0.010643968998920172
+        ]
+      },
+      "median": {
+        "scent": 0.011339845004840754,
+        "gnu": 0.01026903500314802
+      },
+      "ratio": 1.1042756209677416,
+      "m4_2x": true,
+      "range": {
+        "scent": [
+          0.011052493995521218,
+          0.018723813991528004
+        ],
+        "gnu": [
+          0.009968929007300176,
+          0.010763543003122322
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "a24491d122ab2f2ad5e0457ac7fe60614a97bb43f4ae88a94d374b3a41c70afa",
+          "stdout_bytes": 262143,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "a24491d122ab2f2ad5e0457ac7fe60614a97bb43f4ae88a94d374b3a41c70afa",
+          "stdout_bytes": 262143,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "invert",
+      "argv": [
+        "-F",
+        "-v",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4194288,
+      "seconds": {
+        "scent": [
+          0.01170454200473614,
+          0.011225218011531979,
+          0.011268778005614877,
+          0.011735523003153503,
+          0.011118567999801598,
+          0.01112648900016211,
+          0.011707884012139402,
+          0.011344343991368078,
+          0.011149469995871186,
+          0.012071297998772934,
+          0.011234388992306776
+        ],
+        "gnu": [
+          0.0034661819954635575,
+          0.003050747007364407,
+          0.0029000329959671944,
+          0.0029815919988323003,
+          0.002870247990358621,
+          0.0030694349989062175,
+          0.0028277730016270652,
+          0.0028764890012098476,
+          0.002849610013072379,
+          0.002997939009219408,
+          0.002926763001596555
+        ]
+      },
+      "median": {
+        "scent": 0.011268778005614877,
+        "gnu": 0.002926763001596555
+      },
+      "ratio": 3.850252992629651,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.011118567999801598,
+          0.012071297998772934
+        ],
+        "gnu": [
+          0.0028277730016270652,
+          0.0034661819954635575
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "9a7c4414ebb476f6c92dc44c6a0af4e601218ccc5c378498d284c4c35a405d76",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "binary",
+      "argv": [
+        "-F",
+        "-a",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4194303,
+      "seconds": {
+        "scent": [
+          0.018793446986819617,
+          0.019694602000527084,
+          0.020040417002746835,
+          0.019362712002475746,
+          0.019329557006130926,
+          0.020223902989528142,
+          0.01923131699732039,
+          0.019477442998322658,
+          0.019587224000133574,
+          0.019079642006545328,
+          0.02063300299050752
+        ],
+        "gnu": [
+          0.004627290996722877,
+          0.004750826003146358,
+          0.004705519997514784,
+          0.004702247999375686,
+          0.0046256470086518675,
+          0.004820722999284044,
+          0.004554668004857376,
+          0.0047902440128382295,
+          0.00455331000557635,
+          0.0045599190052598715,
+          0.004599569001584314
+        ]
+      },
+      "median": {
+        "scent": 0.019477442998322658,
+        "gnu": 0.004627290996722877
+      },
+      "ratio": 4.209253970004674,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.018793446986819617,
+          0.02063300299050752
+        ],
+        "gnu": [
+          0.00455331000557635,
+          0.004820722999284044
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "a3b142dd8ca9e5c25960ea22eee51f70e0fd850b72808a7fd1f3b13c51c9bea6",
+          "stdout_bytes": 7,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "a3b142dd8ca9e5c25960ea22eee51f70e0fd850b72808a7fd1f3b13c51c9bea6",
+          "stdout_bytes": 7,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "recursive",
+      "argv": [
+        "-r",
+        "-F",
+        "-c",
+        "needle"
+      ],
+      "locale": "C",
+      "bytes": 4200000,
+      "seconds": {
+        "scent": [
+          0.05465888800972607,
+          0.05288537300657481,
+          0.054228237000643276,
+          0.05421628800104372,
+          0.05503086499811616,
+          0.05402996198972687,
+          0.05272848599997815,
+          0.054130340009578504,
+          0.05626275800750591,
+          0.05314133000501897,
+          0.053412202003528364
+        ],
+        "gnu": [
+          0.0067561220057541505,
+          0.006615222999243997,
+          0.0065873419953277335,
+          0.006810259001213126,
+          0.009482472989475355,
+          0.009170712000923231,
+          0.006437295000068843,
+          0.009759071006556042,
+          0.00648351400741376,
+          0.006779743998777121,
+          0.006509387996629812
+        ]
+      },
+      "median": {
+        "scent": 0.054130340009578504,
+        "gnu": 0.0067561220057541505
+      },
+      "ratio": 8.01204299796185,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.05272848599997815,
+          0.05626275800750591
+        ],
+        "gnu": [
+          0.006437295000068843,
+          0.009759071006556042
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "f51961dda79345d92891fb43822dd1a60ef6c2aa97903018ca2fd0e13d83c104",
+          "stdout_bytes": 46000,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "f51961dda79345d92891fb43822dd1a60ef6c2aa97903018ca2fd0e13d83c104",
+          "stdout_bytes": 46000,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "utf8-fold",
+      "argv": [
+        "-F",
+        "-i",
+        "-c",
+        "\u00c9"
+      ],
+      "locale": "C.UTF-8",
+      "bytes": 67108842,
+      "seconds": {
+        "scent": [
+          0.10672474899911322,
+          0.1071750579867512,
+          0.10804284201003611,
+          0.10548276199551765,
+          0.10635647799063008,
+          0.10700076300418004,
+          0.10574932699091733,
+          0.10712257699924521,
+          0.1071071439946536,
+          0.10549924199585803,
+          0.1067944630049169
+        ],
+        "gnu": [
+          0.03273576599895023,
+          0.03348380699753761,
+          0.03263145699747838,
+          0.03283956898667384,
+          0.03242998100176919,
+          0.032340531004592776,
+          0.03267851201235317,
+          0.032369307009503245,
+          0.03242389300430659,
+          0.03300323300936725,
+          0.03288851100660395
+        ]
+      },
+      "median": {
+        "scent": 0.1067944630049169,
+        "gnu": 0.03267851201235317
+      },
+      "ratio": 3.2680332251525512,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.10548276199551765,
+          0.10804284201003611
+        ],
+        "gnu": [
+          0.032340531004592776,
+          0.03348380699753761
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "624505f2fa9296044eba0230c85e9df736f367fd3fee315c1e2f50299a52a401",
+          "stdout_bytes": 8,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "624505f2fa9296044eba0230c85e9df736f367fd3fee315c1e2f50299a52a401",
+          "stdout_bytes": 8,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "fixed-1",
+      "argv": [
+        "-F",
+        "-c",
+        "-f",
+        "/work/scent/target/ct05-corpus/patterns-1"
+      ],
+      "locale": "C",
+      "bytes": 1048555,
+      "seconds": {
+        "scent": [
+          0.004443368001375347,
+          0.004159238989814185,
+          0.0039804359985282645,
+          0.0039060370036168024,
+          0.0038267610070761293,
+          0.003966006988775916,
+          0.003879940995830111,
+          0.003965736992540769,
+          0.00432641600491479,
+          0.004194150009425357,
+          0.003951816994231194
+        ],
+        "gnu": [
+          0.001067120989318937,
+          0.0009741239919094369,
+          0.0009764440037542954,
+          0.0010616580111673102,
+          0.0009696170018287376,
+          0.000931797010707669,
+          0.0009540230093989521,
+          0.0009467389900237322,
+          0.0009948310034815222,
+          0.001085251002223231,
+          0.001042607007548213
+        ]
+      },
+      "median": {
+        "scent": 0.003966006988775916,
+        "gnu": 0.0009764440037542954
+      },
+      "ratio": 4.06168400187533,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.0038267610070761293,
+          0.004443368001375347
+        ],
+        "gnu": [
+          0.000931797010707669,
+          0.001085251002223231
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "ebb65aa17a39f4cd2fbd88efcce6817dba3e5a29568c96e2b294bf8228c942a4",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "ebb65aa17a39f4cd2fbd88efcce6817dba3e5a29568c96e2b294bf8228c942a4",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "fixed-10",
+      "argv": [
+        "-F",
+        "-c",
+        "-f",
+        "/work/scent/target/ct05-corpus/patterns-10"
+      ],
+      "locale": "C",
+      "bytes": 1048555,
+      "seconds": {
+        "scent": [
+          0.004506764002144337,
+          0.004470169995329343,
+          0.0069346219970611855,
+          0.005145966002601199,
+          0.004708961001597345,
+          0.004940715996781364,
+          0.007107571000233293,
+          0.0046021290036151186,
+          0.004599336010869592,
+          0.004904889006866142,
+          0.007268550994922407
+        ],
+        "gnu": [
+          0.0013421360054053366,
+          0.0019735770038096234,
+          0.0019546169933164492,
+          0.0020533070055535063,
+          0.00142421099008061,
+          0.0013447740057017654,
+          0.0020347340032458305,
+          0.0019603770051617175,
+          0.0013419470051303506,
+          0.001580520998686552,
+          0.0014505849976558238
+        ]
+      },
+      "median": {
+        "scent": 0.004904889006866142,
+        "gnu": 0.001580520998686552
+      },
+      "ratio": 3.1033368180126764,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.004470169995329343,
+          0.007268550994922407
+        ],
+        "gnu": [
+          0.0013419470051303506,
+          0.0020533070055535063
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "ebb65aa17a39f4cd2fbd88efcce6817dba3e5a29568c96e2b294bf8228c942a4",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "ebb65aa17a39f4cd2fbd88efcce6817dba3e5a29568c96e2b294bf8228c942a4",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    },
+    {
+      "name": "fixed-1000",
+      "argv": [
+        "-F",
+        "-c",
+        "-f",
+        "/work/scent/target/ct05-corpus/patterns-1000"
+      ],
+      "locale": "C",
+      "bytes": 1048555,
+      "seconds": {
+        "scent": [
+          0.00700971701007802,
+          0.0073047030018642545,
+          0.007160225999541581,
+          0.007140047004213557,
+          0.006916401005582884,
+          0.007022966994554736,
+          0.00948137600789778,
+          0.007136544998502359,
+          0.007105957003659569,
+          0.006949609000002965,
+          0.006750318003469147
+        ],
+        "gnu": [
+          0.001526932988781482,
+          0.002588261995697394,
+          0.0015998699964256957,
+          0.0016658730019116774,
+          0.0021875359961995855,
+          0.0022343020100379363,
+          0.0015559759922325611,
+          0.0015328919980674982,
+          0.001532328999019228,
+          0.001444399997126311,
+          0.001526549007394351
+        ]
+      },
+      "median": {
+        "scent": 0.007105957003659569,
+        "gnu": 0.0015559759922325611
+      },
+      "ratio": 4.566880876782506,
+      "m4_2x": false,
+      "range": {
+        "scent": [
+          0.006750318003469147,
+          0.00948137600789778
+        ],
+        "gnu": [
+          0.001444399997126311,
+          0.002588261995697394
+        ]
+      },
+      "tuples": {
+        "scent": {
+          "status": 0,
+          "stdout_sha256": "ebb65aa17a39f4cd2fbd88efcce6817dba3e5a29568c96e2b294bf8228c942a4",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        },
+        "gnu": {
+          "status": 0,
+          "stdout_sha256": "ebb65aa17a39f4cd2fbd88efcce6817dba3e5a29568c96e2b294bf8228c942a4",
+          "stdout_bytes": 6,
+          "stderr_hex": "",
+          "checked_runs": 12
+        }
+      }
+    }
+  ]
+}

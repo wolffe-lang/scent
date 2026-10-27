@@ -1,0 +1,61 @@
+All values milliseconds; every lever uses all sixteen workloads and exact tuples.
+
+constant-capture
+| Workload | Before ms | Candidate ms | GNU ms |
+| --- | ---: | ---: | ---: |
+| literal | 87.100 | 86.872 | 10.626 |
+| class | 87.089 | 86.889 | 10.497 |
+| alternation | 137.537 | 136.183 | 9.721 |
+| backreference | 75.971 | 7.606 | 36.799 |
+| ignore-case | 7.709 | 7.646 | 2.613 |
+| word | 7.859 | 7.587 | 4.131 |
+| count | 11.003 | 11.111 | 2.497 |
+| list | 0.482 | 0.504 | 0.364 |
+| only-matching | 10.565 | 10.522 | 9.643 |
+| invert | 10.928 | 10.699 | 2.557 |
+| binary | 17.866 | 18.534 | 4.115 |
+| recursive | 64.441 | 65.097 | 5.862 |
+| utf8-fold | 99.315 | 101.549 | 29.812 |
+| fixed-1 | 4.183 | 4.319 | 0.999 |
+| fixed-10 | 4.579 | 5.019 | 1.407 |
+| fixed-1000 | 6.312 | 6.900 | 1.466 |
+
+eof-workspace
+| Workload | Before ms | Candidate ms | GNU ms |
+| --- | ---: | ---: | ---: |
+| literal | 87.143 | 87.422 | 10.628 |
+| class | 89.646 | 89.197 | 10.524 |
+| alternation | 137.989 | 137.424 | 9.800 |
+| backreference | 77.006 | 76.398 | 36.925 |
+| ignore-case | 7.714 | 7.665 | 2.649 |
+| word | 7.558 | 7.599 | 4.158 |
+| count | 10.492 | 10.532 | 2.506 |
+| list | 0.518 | 0.475 | 0.325 |
+| only-matching | 10.586 | 10.480 | 9.699 |
+| invert | 10.974 | 11.531 | 2.658 |
+| binary | 17.759 | 18.400 | 4.180 |
+| recursive | 64.412 | 50.532 | 5.836 |
+| utf8-fold | 99.625 | 101.144 | 30.214 |
+| fixed-1 | 4.035 | 3.967 | 0.957 |
+| fixed-10 | 10.909 | 8.445 | 2.636 |
+| fixed-1000 | 6.302 | 6.708 | 1.468 |
+
+count-only
+| Workload | Before ms | Candidate ms | GNU ms |
+| --- | ---: | ---: | ---: |
+| literal | 89.031 | 87.674 | 10.575 |
+| class | 88.306 | 87.799 | 10.654 |
+| alternation | 137.852 | 138.019 | 10.152 |
+| backreference | 76.062 | 76.290 | 36.795 |
+| ignore-case | 7.693 | 7.432 | 2.621 |
+| word | 7.588 | 7.244 | 4.081 |
+| count | 10.685 | 10.369 | 2.591 |
+| list | 0.477 | 0.465 | 0.326 |
+| only-matching | 10.326 | 11.177 | 9.598 |
+| invert | 11.833 | 11.302 | 2.636 |
+| binary | 18.233 | 17.643 | 4.134 |
+| recursive | 50.739 | 50.207 | 5.852 |
+| utf8-fold | 98.651 | 98.412 | 29.886 |
+| fixed-1 | 3.849 | 3.694 | 0.943 |
+| fixed-10 | 4.407 | 4.388 | 1.307 |
+| fixed-1000 | 6.816 | 6.430 | 1.457 |
