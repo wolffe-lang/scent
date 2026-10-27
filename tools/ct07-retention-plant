@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+"""Deliberate ct07 plant: falsely retain the rejected capture lever.
+
+The timing record is genuine; the planted defect is the retention claim.
+This draft branch must never merge.
+"""
+import json,pathlib,runpy
+root=pathlib.Path(__file__).resolve().parent.parent
+checker=runpy.run_path(str(root/'tools/speed-check'))
+report=json.loads((root/'notes/ct07-evidence/constant-capture.json').read_text())
+ceilings=json.loads((root/'tests/speed-ceilings.json').read_text())
+checker['check'](report,ceilings)
+checker['retain'](report,'backreference')
+raise AssertionError('plant was not caught')
