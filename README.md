@@ -145,10 +145,12 @@ NAME` selects exactly one witness; explicit glob selectors are supported.
 `--field` reports distribution differences without gating. It probes raw-name
 support once on the corpus filesystem; APFS's rejected byte-FF name is
 `field-unavailable` with a recorded reason, not a harness crash. Two exact
-Darwin argv-decoding aborts are [reviewed](tests/field-divergences.json) as
+Darwin argv-decoding rows are [reviewed](tests/field-divergences.json) as
 `upstream-blocked`, with their
-full witnesses retained; only the numeric panic PID varies. Stale reviews
-remain fatal. [Runtime issue draft](notes/ct03-evidence/wolf-lang-macos-argv-issue.txt).
+full witnesses retained. Their GNU column is Darwin CI's; since wolf 0.2.36
+their scent column is the runtime's `argument-utf8` trap, platform-free text
+measured on Linux (`scent_source`) and checked by the macOS field leg. Stale
+reviews remain fatal. [Runtime issue draft](notes/ct03-evidence/wolf-lang-macos-argv-issue.txt) (0.2.35's abort).
 `cmp` compares
 stdout, stderr, exit status and remaining stdin. Help/version are scent's
 own prose; those two actions compare stream shape and status, with exact
