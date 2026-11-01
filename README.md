@@ -122,8 +122,8 @@ tools/build --all
 tools/check-test
 ```
 
-The pin is wolf **0.2.35**, paired lupin **0.1.56**, and bundled wolf-std
-`2386522eb059cca5a84108562c2c0a0e72345d34`. Archives are checked by digest;
+The pin is wolf **0.2.36**, paired lupin **0.1.58**, and bundled wolf-std
+`78b9d3cbc41d51db44d18c40b6694403644d1c83`. Archives are checked by digest;
 complete runtime/compiler pairs stay together. Build on a compatible host,
 not with an arbitrary compiler from PATH.
 
@@ -246,27 +246,27 @@ The invocation rows all use `--bad`, empty stdin, no stdout and status 2.
 | `not-yet-argv0-usage-0` | `D(/abs/path/grep) + U(grep)` | `D(grep) + U(grep)` | wolf-lang#899, #904 |
 | `not-yet-argv0-usage-1` | `D(./grep) + U(grep)` | `D(grep) + U(grep)` | wolf-lang#899, #904 |
 | `not-yet-argv0-usage-2` | `D(hound) + U(hound)` | `D(grep) + U(grep)` | wolf-lang#899, #904 |
-| `not-yet-argv-bytes-0`: `-F`, byte FF pattern, empty stdin | No output/status 1 | Runtime panic below, abort | wolf-lang#406, #904 |
-| `not-yet-argv-bytes-1`: `-F x`, byte FF filename | `grep: <FF>: No such file or directory\n`, status 2 | Runtime panic below, abort | wolf-lang#406, #904 |
+| `not-yet-argv-bytes-0`: `-F`, byte FF pattern, empty stdin | No output/status 1 | Runtime trap below (argument 2), status 134 | wolf-lang#406, #904 |
+| `not-yet-argv-bytes-1`: `-F x`, byte FF filename | `grep: <FF>: No such file or directory\n`, status 2 | Runtime trap below (argument 3), status 134 | wolf-lang#406, #904 |
 | `m2-upstream-byte-name`: ASCII argv `-r x tree`, file `tree/<FF>` contains `x\n` | stdout hex `747265652fff3a780a`, empty stderr, status 0 | Empty stdout; stderr `grep: directory entry is not UTF-8\n`, status 2 | wolf-lang#687, #912: listing exposes byte names, but open/stat paths require UTF-8. [Exact witness](notes/ct03-evidence/witnesses.json). |
 
 The two byte-argument rows have no stdout. Their full stderr is fixed in
-the manifest, with just `{pid}` typed as one or more ASCII digits; status
-is abort (`-6` in the subprocess harness):
+the manifest, byte for byte; status is 134. Since wolf 0.2.36 the runtime's
+text argv reader traps by argument index where 0.2.35 panicked and aborted
+(`-6`, with a process id typed in the manifest):
 
 ```text
-
-thread '<unnamed>' ({pid}) panicked at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/env.rs:876:51:
-called `Result::unwrap()` on an `Err` value: "\xFF"
-note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-fatal runtime error: failed to initiate panic, error 5, aborting
+wolf-trap: argument-utf8
+  argument N is not UTF-8; read it with env_args_bytes()
 ```
 
-Until those builtins ship, diagnostics and `--help`'s usage line
+`N` is 2 for the pattern row and 3 for the filename row. wolf 0.2.36 ships
+the builtins these rows wait on (`env_arg0`, `env_args_bytes`); until scent
+reads its arguments through them, diagnostics and `--help`'s usage line
 use the fixed invocation name `grep`; full-path invalid-option
 prefixes and alternate invocation names differ. No `os_exe` basename is
 substituted: it would be wrong under symlinks. `/bin/grep` can be a symlink
-to scent without a private name-override option. Raw invalid-UTF-8 argv can abort; use pattern files
+to scent without a private name-override option. Raw invalid-UTF-8 argv traps; use pattern files
 for arbitrary pattern bytes. Retirement requires replaying these witnesses
 at the new pin, not deleting them without a check. The byte-filename gap
 requires filesystem byte-path APIs (#687/#912), not merely byte argv or
