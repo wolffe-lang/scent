@@ -66,9 +66,11 @@ those two cases compare stream shape and status instead of FSF prose.
 R-ct00-4 corrects the initial contract: different explicit matcher
 syntaxes conflict; the same syntax may be repeated. Other-name/path
 invocations and non-UTF-8 arguments are exact upstream-blocked reviews
-under #899/#406/#904, not not-yet. The two abort messages type only the
-PID as digits; every other byte and both statuses are exact. M2's walk, filters and colour are joined. M3 selects a scalar or measured extended-multibyte view without changing byte offsets. Help/diagnostics currently use fixed `grep` until
-the pinned toolchain exposes argv[0].
+under #899/#406/#904, not not-yet. Since wolf 0.2.36 the two byte-argument
+rows record the runtime's `argument-utf8` trap (status 134) byte for byte; the
+0.2.35 abort typed only its PID. M2's walk, filters and colour are joined. M3 selects a scalar or measured extended-multibyte view without changing byte offsets. Help/diagnostics still use fixed `grep`:
+the pinned toolchain exposes argv[0] since 0.2.36 (`env_arg0`), and scent does
+not read it yet.
 
 ## Terminator-bearing patterns
 
