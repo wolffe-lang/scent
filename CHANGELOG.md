@@ -2,6 +2,8 @@
 
 ## Unreleased — 0.2.0
 
+- Pin wolf 0.2.36 / lupin 0.1.58; replay the byte-FF argv reviews at its argument-utf8 trap.
+
 - Add raw-order recursive walking, directory/device policies and ordered glob filters.
 - Add terminal colour, GREP_COLORS capabilities and deprecated GREP_COLOR warnings.
 - Gate M2 against the pinned GNU build; publish socket-skip and byte-path differences.
