@@ -47,8 +47,10 @@ with tempfile.TemporaryDirectory(dir=ROOT/'target') as tmp:
     records=json.loads((root/'target/oracle/field-unavailable.json').read_text())
     assert {r['case'] for r in records}=={'raw','raw2'}
     assert all('Illegal byte sequence' in r['reason'] for r in records)
-    # Darwin tuples came from real CI. Running Linux's equivalent aborts
-    # exercises classification and exact-evidence plumbing, not Mac behavior.
+    # Darwin GNU tuples came from real CI; since 0.2.36 the scent column is the
+    # runtime's platform-free argument-utf8 trap, measured on Linux (scent_source).
+    # Running Linux's equivalent traps exercises classification and exact-evidence
+    # plumbing, not Mac behavior; the macOS field leg checks the Mac.
     cases={json.loads(line)['name']:json.loads(line) for file in (ROOT/'tests/cases').glob('*.jsonl') for line in file.read_text().splitlines()}
     reviews=json.loads((ROOT/'tests/field-divergences.json').read_text())
     assert set(reviews)=={'darwin'} and set(reviews['darwin'])=={'not-yet-argv-bytes-0','not-yet-argv-bytes-1'}
@@ -76,10 +78,10 @@ with tempfile.TemporaryDirectory(dir=ROOT/'target') as tmp:
     for c in argv_rows:
         record=root/'target/oracle'/c['name']
         assert json.loads((record/'classification.json').read_text())['class']=='upstream-blocked'
-        assert (record/'scent.status').read_bytes()==b'-6'
-        assert b'Result::unwrap()' in (record/'scent.stderr').read_bytes()
+        assert (record/'scent.status').read_bytes()==b'134'
+        assert (record/'scent.stderr').read_bytes().startswith(b'wolf-trap: argument-utf8\n')
     changed=json.loads(json.dumps(reviews));changed['darwin'][argv_rows[0]['name']]['gnu'][2]=42
     (root/'tests/field-divergences.json').write_text(json.dumps(changed))
     code,output=execute_field();assert code==1 and 'STALE REVIEW' in output,output
-print('PASS field upstream reviews: real CI tuples, digits-only PID, scoped Darwin rows, retained witnesses, stale review fatal')
+print('PASS field upstream reviews: real CI GNU tuples, the 0.2.36 trap bytes, scoped Darwin rows, retained witnesses, stale review fatal')
 print('PASS field filesystem probe: once per corpus, two impossible fixtures classified, real I/O failures fatal')
