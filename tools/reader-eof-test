@@ -22,3 +22,6 @@ with tempfile.TemporaryDirectory(prefix='reader-eof-',dir=root/'target') as dire
     assert all(answer==answers[0] for answer in answers),(len(data),flags,stdin,answers)
     count+=1
  print(f'PASS reader-eof: {count} byte-identical tuples across {len(bins)} engines; SKIP=0')
+# Keep the named binary/context regression and expanded fresh-file controls
+# in the existing CI reader gate, without changing workflows or tiers.
+subprocess.run(['python3','-I',str(root/'tools/ct08-record-test')],check=True)
