@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+"""Pinned black-box final-record, capture, and fresh-file controls."""
+import argparse
+import os
+import pathlib
+import subprocess
+import tempfile
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+p = argparse.ArgumentParser()
+p.add_argument('--bin', default='target/release/scent')
+p.add_argument('--last-record-only', action='store_true')
+a = p.parse_args()
+assert os.environ.get('SCENT_IN_CONTAINER') == '1'
+count = 0
+with tempfile.TemporaryDirectory(prefix='ct08-record-', dir=ROOT/'target') as directory:
+    work = pathlib.Path(directory)
+    first, second = work/'first', work/'second'
+    # The first named row isolates the deliberate EOF plant, not a timing test.
+    first.write_bytes(b'other\nneedle')
+    second.write_bytes(b'')
+
+    def check(name, flags, stdin=None):
+        global count
+        answers = []
+        for binary in [ROOT/a.bin, ROOT/'.oracle/grep']:
+            result = subprocess.run(['grep', *flags], executable=str(binary),
+                                    input=stdin, capture_output=True,
+                                    env=dict(os.environ, LC_ALL='C'))
+            answers.append((result.returncode, result.stdout, result.stderr))
+        assert answers[0] == answers[1], f'RED {name}: {flags!r}: {answers!r}'
+        count += 1
+
+    check('reader-last-record', ['-F', '-c', 'needle', str(first)])
+    if not a.last_record_only:
+        for data in [b'', b'needle\n', b'needle', b'other\nneedle',
+                     b'x'*98300+b'needle', b'x'*98304+b'\nneedle',
+                     b'needle\0other\nneedle', b'needle\nother\nneedle']:
+            first.write_bytes(data)
+            second.write_bytes(b'other\nneedle')
+            for flags in [[], ['-c'], ['-c', '-m', '1'], ['-v', '-c'],
+                          ['-l'], ['-L'], ['-q'], ['-o'], ['-C', '1'],
+                          ['-z', '-c'], ['-a', '-c'], ['-I', '-c']]:
+                check('reader-record-files', ['-F', *flags, 'needle', str(first), str(second)])
+                check('reader-record-stdin', ['-F', *flags, 'needle'], data)
+        # Ordered, empty, nested, optional, repeated and nonconstant captures.
+        first.write_bytes(b'needle\nxneedley\nabbab\naa\na\naba\nabcabc\n')
+        for pattern in [r'n(e)\1dle', r'(a(b))\2\1', r'()a\1',
+                        r'(a)?b\1', r'(a|b)\1', r'((a)*)\2',
+                        r'(a.)\1', r'(a)\1|b', r'^n(e)\1dle$',
+                        r'(ab)(c)\1\2', r'(a)\1\1']:
+            for flags in [[], ['-c'], ['-o'], ['-w'], ['-x'], ['-i'], ['-v', '-c']]:
+                check('capture-proof', ['-E', *flags, pattern, str(first)])
+print(f'PASS ct08-record: {count} byte-identical tuples; SKIP=0')
