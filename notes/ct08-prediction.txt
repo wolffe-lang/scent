@@ -6,6 +6,8 @@ Keep the sixteen workload identities, four contiguous CPUs, one warmup and eleve
 
 Lever 1: retry ct07's straight-line constant-capture proof on the current pin and hasu. Predict a large backreference win; compile-only proof inference should not alter unrelated matching paths. Retain only after the paired sixteen-row record passes; otherwise preserve the rejected patch and cause. Red first: constant capture exactness unit with fallback checks; do not change production before its committed red.
 
+Pre-trial refinement: avoid ct07's extra capture list and GROUP-node bookkeeping in ordinary pattern proofs. Infer only at a REF node, reusing already completed exact GROUP proofs. Reject the entire inference if the parser contains ALT/REPEAT or the mode is folded/scalar; an unfinished/self/unknown capture stays on the VM. This is one constant-capture lever, not a second run selected after observing a rejection. Predict less unrelated compilation work than ct07's draft; the same all-row acceptance rule decides.
+
 Then, only if measured time permits, isolate per-record count work or per-file scratch reuse. No combined lever. Per-file scratch must not retain chunk-region pointers or make per-line allocations persistent. Unmeasured ideas are not blockers or wins.
 
 Plant ct08-plant-last-record: deliberately omit the unterminated carried EOF record, off-line. Expect named reader-last-record red, with terminated/empty controls green in production. Expand EOF test coverage before the lever; existing 396 EOF tuples and the full oracle remain required.
