@@ -1,0 +1,15 @@
+ct08 prediction — 2026-11-02
+
+Base 7734fb25, wolf 0.2.36 / lupin 0.1.58 / std 78b9d3cb.
+
+Keep the sixteen workload identities, four contiguous CPUs, one warmup and eleven interleaved before/candidate/GNU samples. Exact status/stdout/stderr tuples on every run. The existing range-overlap retention rule remains: target median improves and no candidate range is wholly slower than its before range. M4 remains separately <=2x on every row. Keep the 32768 KiB memory ceiling and every published exact review unchanged.
+
+Lever 1: retry ct07's straight-line constant-capture proof on the current pin and hasu. Predict a large backreference win; compile-only proof inference should not alter unrelated matching paths. Retain only after the paired sixteen-row record passes; otherwise preserve the rejected patch and cause. Red first: constant capture exactness unit with fallback checks; do not change production before its committed red.
+
+Then, only if measured time permits, isolate per-record count work or per-file scratch reuse. No combined lever. Per-file scratch must not retain chunk-region pointers or make per-line allocations persistent. Unmeasured ideas are not blockers or wins.
+
+Plant ct08-plant-last-record: deliberately omit the unterminated carried EOF record, off-line. Expect named reader-last-record red, with terminated/empty controls green in production. Expand EOF test coverage before the lever; existing 396 EOF tuples and the full oracle remain required.
+
+Expect remaining count/literal/recursive/fold/fixed misses after lever 1; name actual ratios and measured causes rather than claim M4. No -P unless all M4 rows pass. No GNU/PCRE source inspection, pin/workflow/CI edits, host package install, labels or merge.
+
+Tooling: smart-explore was requested; its smart_* MCP tools are unavailable in this session, so exact searches and file reads are used. Existing tools/speed supplies the required paired protocol and tuple checking. Check hyperfine availability on the chosen container; report plainly if unavailable rather than invent hyperfine evidence.
