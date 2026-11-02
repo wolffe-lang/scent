@@ -148,6 +148,9 @@ fn emit(
     if flags.count { return }
     if st.binary && flags.binary == 0 {
         if selected {
+            // A suppressed binary match is still an earlier output group.
+            // Do not emit here; separate the next text group, even in a new file.
+            writer.any_group = true
             out.flush(mut writer)
             eprint("{opts.program()}: {name}: binary file matches")
             st.stop = true
