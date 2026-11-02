@@ -1,0 +1,90 @@
+Cloning into 'scent'...
+Preparing worktree (detached HEAD 3172714)
+HEAD is now at 3172714 Predict REF-only proof inference before trial
+ct08 queued kasumi slot=4-7 head=317271411f5e0a597b71fb5b550f41c5a16aec74 Mon Nov  2 06:04:41 PM UTC 2026
+STEP 1/2: FROM localhost/ct05-scent:latest
+STEP 2/2: RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends hyperfine && rm -rf /var/lib/apt/lists/*
+Get:1 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+Get:2 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:6 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [2132 kB]
+Get:7 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1551 kB]
+Get:8 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1420 kB]
+Get:9 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+Get:10 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+Get:11 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [55.6 kB]
+Get:12 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1741 kB]
+Get:14 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2240 kB]
+Get:15 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2172 kB]
+Get:16 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [61.7 kB]
+Get:17 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.0 kB]
+Get:18 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+Get:19 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [669 B]
+Fetched 33.7 MB in 3s (12.7 MB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following NEW packages will be installed:
+  hyperfine
+0 upgraded, 1 newly installed, 0 to remove and 6 not upgraded.
+Need to get 527 kB of archives.
+After this operation, 1346 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble/universe amd64 hyperfine amd64 1.18.0-2build1 [527 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 527 kB in 1s (732 kB/s)
+Selecting previously unselected package hyperfine.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 14794 files and directories currently installed.)
+Preparing to unpack .../hyperfine_1.18.0-2build1_amd64.deb ...
+Unpacking hyperfine (1.18.0-2build1) ...
+Setting up hyperfine (1.18.0-2build1) ...
+COMMIT localhost/ct08-bench:1
+--> 113ff19c7ace
+Successfully tagged localhost/ct08-bench:1
+113ff19c7ace3180dc87d5e3b891eca8a9e295fa9b606a743500c38fefa01266
+113ff19c7ace3180dc87d5e3b891eca8a9e295fa9b606a743500c38fefa01266
+hyperfine 1.18.0
+fetch-toolchain: https://github.com/wolffe-lang/wolf-lang/releases/download/v0.2.36/wolf-0.2.36-x86_64-unknown-linux-gnu.tar.gz
+fetch-toolchain: sha256 d383c74c8cd123b9d9dfaa268271d4f004294f85c2b230237d0ef07027d9500d OK
+fetch-toolchain: https://github.com/wolffe-lang/wolf-interp/releases/download/v0.1.58/lupin-0.1.58-x86_64-unknown-linux-gnu.tar.gz
+fetch-toolchain: sha256 34f52792bb59bc7565e0edc1235cd47d9a6ad13d5e6528993627f2e699b62193 OK
+fetch-toolchain: the archive bundles std 78b9d3cbc41d51db44d18c40b6694403644d1c83; staging the pin instead
+fetch-toolchain: https://github.com/wolffe-lang/wolf-std at 78b9d3cbc41d51db44d18c40b6694403644d1c83
+fetch-toolchain: staged x86_64-unknown-linux-gnu into .wolf-bin/
+fetch-oracle: 92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea
+f7b73fba526e06116cc5eeda146cc80c8a42cd1f7a198d574e8a961f6c7a57ef  .wolf-bin/wolf
+47c646a61b9fd0dfe7d4565a74e22428a259eb54642f6d0d6ef3c1c0abe01ada  .wolf-bin/lupin
+47fb9ad0a3fd2e52d6394678bfbddcdb684286908222e8081aa16e7a22ca627f  .wolf-bin/libwolf_rt.a
+92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea  .oracle/grep
+x86_64-unknown-linux-gnu wolf=d383c74c8cd123b9d9dfaa268271d4f004294f85c2b230237d0ef07027d9500d lupin=34f52792bb59bc7565e0edc1235cd47d9a6ad13d5e6528993627f2e699b62193 std=78b9d3cbc41d51db44d18c40b6694403644d1c83
+78b9d3cbc41d51db44d18c40b6694403644d1c83
+{"binary_sha256": "92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea", "configure_args": "--disable-perl-regexp", "env": {"LC_ALL": "C"}, "glibc_line": "ldd (Ubuntu GLIBC 2.39-0ubuntu8.9) 2.39", "image": "docker.io/library/ubuntu:24.04@sha256:534baea6a22c03a63003dbc8dbe78fe34bc0d7e595d9a9dc9834884ff530eb55", "keyring_sha256": "8013de59880f7a59f53b6bd207f4d2a408d67b84a82fa9cba1dbbf443428e2db", "keyring_url": "https://ftp.gnu.org/gnu/gnu-keyring.gpg", "perl_refusal": "grep: Perl matching not supported in a --disable-perl-regexp build", "perl_status": 2, "sha256": "2649b27c0e90e632eadcd757be06c6e9a4f48d941de51e7c0f83ff76408a07b9", "sig_url": "https://ftp.gnu.org/gnu/grep/grep-3.12.tar.xz.sig", "signing_fingerprint": "155D3FC500C834486D1EEA677FD9FCCB000BEEEE", "url": "https://ftp.gnu.org/gnu/grep/grep-3.12.tar.xz", "version": "3.12", "version_line": "grep (GNU grep) 3.12"}
+f7b73fba526e06116cc5eeda146cc80c8a42cd1f7a198d574e8a961f6c7a57ef  .wolf-bin/wolf
+47c646a61b9fd0dfe7d4565a74e22428a259eb54642f6d0d6ef3c1c0abe01ada  .wolf-bin/lupin
+47fb9ad0a3fd2e52d6394678bfbddcdb684286908222e8081aa16e7a22ca627f  .wolf-bin/libwolf_rt.a
+92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea  .oracle/grep
+test src/re/compile_test.lu::test_compile_syntax_and_intervals ... ok
+test src/re/compile_test.lu::test_compile_brackets_and_assertions ... ok
+test src/re/compile_test.lu::test_parser_diagnostics_and_refs ... ok
+test src/re/compile_test.lu::test_backreference_path ... ok
+test src/re/compile_test.lu::test_empty_pattern_mebibyte ... ok
+test src/re/compile_test.lu::test_leading_interval_span ... ok
+test src/re/compile_test.lu::test_generated_diagnostic_regressions ... ok
+test src/re/compile_test.lu::test_literal_and_interval_validation_paths ... ok
+test src/re/compile_test.lu::test_interval_needs_content_after_operand ... ok
+test src/re/compile_test.lu::test_capture_in_nonfinal_alternative ... ok
+test src/re/compile_test.lu::test_backreference_projection_is_a_superset ... ok
+test src/re/compile_test.lu::test_adjacent_repeat_compatibility_policy ... ok
+test src/re/dfa_test.lu::test_dfa_cache_overflow ... ok
+test src/re/dfa_test.lu::test_dfa_context_and_units ... ok
+test src/re/linear_test.lu::test_leftmost_longest ... ok
+test src/re/linear_test.lu::test_word_and_whole ... ok
+test src/re/linear_test.lu::test_empty_cycle_linear ... ok
+test src/re/prefilter_test.lu::test_constant_capture_proof ... FAILED (trap(assert))
+test src/re/prefilter_test.lu::test_prefilter_retains_match ... ok
+test src/re/prefilter_test.lu::test_prefilter_superset ... ok
+wolf test: 19 passed; 1 failed; 0 rejected; 0 unsupported; 0 filtered out
+END capture-red exit=1
