@@ -1,0 +1,32 @@
+ct08 accepted capture trial: kasumi slot 8-11; one warmup + eleven interleaved samples.
+Baseline runtime: trunk + separator fix, e035896f74f037b9fd2ad8dfb87f5e6573388318.
+Candidate: 18ce308344da1b7cf302b2fefa8b836169d63d10, adding only the capture lever to runtime.
+Units are milliseconds. Exact tuples and all samples: capture-paired.json.
+Hyperfine 1.18.0 companion: shell-free, stdout=pipe; raw single-run exports retained.
+workload before candidate GNU ratio M4 hyperfine-before hyperfine-candidate hyperfine-GNU hyperfine-ratio
+literal 93.725 93.471 11.432 8.176 False 93.049 93.291 11.891 7.845
+class 93.484 92.567 11.138 8.311 False 93.665 93.318 11.877 7.857
+alternation 142.095 142.280 11.209 12.693 False 142.541 141.659 11.148 12.707
+backreference 81.670 8.156 39.765 0.205 True 82.811 7.870 38.827 0.203
+ignore-case 8.318 8.452 3.131 2.700 False 8.105 8.109 3.282 2.471
+word 8.262 8.129 4.731 1.718 True 7.982 7.871 4.398 1.789
+count 11.039 11.123 3.028 3.673 False 10.872 10.785 2.838 3.800
+list 0.511 0.480 0.404 1.188 True 0.428 0.414 0.311 1.332
+only-matching 11.556 11.344 10.408 1.090 True 11.203 11.209 10.178 1.101
+invert 11.271 11.155 3.113 3.583 False 10.900 10.805 2.855 3.784
+binary 19.875 18.434 4.692 3.929 False 19.602 18.319 4.420 4.145
+recursive 55.946 53.824 6.792 7.924 False 54.893 54.523 6.463 8.436
+utf8-fold 107.954 105.400 32.075 3.286 False 106.977 106.926 33.200 3.221
+fixed-1 4.110 4.171 1.229 3.393 False 3.848 3.807 0.910 4.182
+fixed-10 4.838 4.599 1.608 2.860 False 4.556 4.240 1.245 3.406
+fixed-1000 6.862 6.630 1.851 3.582 False 6.684 6.328 1.515 4.176
+
+Decision: RETAIN. Target backreference median improves; no candidate range is wholly slower than its baseline range; unchanged speed ceilings pass.
+Both protocols: four pass, twelve miss. M4 remains unmet. No -P implementation.
+Remaining work is named, not certified as an upstream blocker:
+- literal/class/alternation: no REF to infer; unchanged delimiter and per-record regular-selection paths remain.
+- ignore-case/utf8-fold: intentionally excluded from constant byte-capture inference; folded/scalar paths remain.
+- count/invert/binary/fixed-1/fixed-10/fixed-1000: fixed matcher and count/record dispatch are unchanged by this regex compile-time lever.
+- recursive: per-file/chunk workspace setup remains unchanged beyond already-retained ct07 EOF deferral.
+These are source paths left untouched, not isolated root-cause profiles or claims of impossibility. No new API is certified as necessary for any row.
+ct07 count-only and other rejected controls remain counterfactuals, not adopted code.
