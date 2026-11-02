@@ -185,8 +185,12 @@ one warmup and eleven interleaved GNU/scent pairs on four CPUs, with output
 drained through a pipe. Every row also reports the separate 2× GNU target:
 rows above 2× are misses, even when the regression ceiling passes. The
 measurements and before/after tables are in `notes/ct05-evidence/`,
-`notes/ct06-evidence/` and `notes/ct07-evidence/`. M4 remains unmet; passing a regression ceiling is
-not a waiver of the separate 2× target.
+`notes/ct06-evidence/`, `notes/ct07-evidence/` and `notes/ct08-evidence/`.
+The latest controlled capture proof closes the backreference workload; twelve
+of sixteen measured workloads still miss 2× GNU. M4 remains unmet; passing a
+regression ceiling is not a waiver of the separate 2× target.
+The existing reader gate also checks 271 additional record/capture tuples,
+including the binary-context separator between files and unterminated records.
 The recorder uses `GITHUB_SHA` when supplied, otherwise resolves `HEAD` from
 its own checkout, independently of the caller's working directory. Missing or
 malformed provenance stops the measurement before any workloads run. The
@@ -283,7 +287,10 @@ Input is never a whole-file string. Per-chunk regions release temporary
 reads/output; only unfinished lines and requested context survive.
 
 Regular line selection uses a lazy deterministic cache, with the original
-state-set VM on cache exhaustion and for backreferences. Bounds are 128
+state-set VM on cache exhaustion and for unproved backreferences. Straight-line,
+case-sensitive byte captures can extend an exact literal proof at a reference;
+conditional, repeated, folded, scalar or unfinished captures retain the VM.
+Bounds are 128
 states, 4,096 transitions and 65,536 stored program counters per chunk;
 programs over 2,048 instructions stay on the VM. Exact decoded units and
 word/anchor context distinguish transitions. Exact byte spans use independent
