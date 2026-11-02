@@ -10,6 +10,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 p = argparse.ArgumentParser()
 p.add_argument('--bin', default='target/release/scent')
 p.add_argument('--last-record-only', action='store_true')
+p.add_argument('--binary-context-only', action='store_true')
 a = p.parse_args()
 assert os.environ.get('SCENT_IN_CONTAINER') == '1'
 count = 0
@@ -31,8 +32,13 @@ with tempfile.TemporaryDirectory(prefix='ct08-record-', dir=ROOT/'target') as di
         assert answers[0] == answers[1], f'RED {name}: {flags!r}: {answers!r}'
         count += 1
 
-    check('reader-last-record', ['-F', '-c', 'needle', str(first)])
-    if not a.last_record_only:
+    if not a.binary_context_only:
+        check('reader-last-record', ['-F', '-c', 'needle', str(first)])
+    if a.binary_context_only or not a.last_record_only:
+        first.write_bytes(b'needle\0other\nneedle')
+        second.write_bytes(b'other\nneedle')
+        check('binary-context-separator', ['-F', '-C', '1', 'needle', str(first), str(second)])
+    if not a.last_record_only and not a.binary_context_only:
         for data in [b'', b'needle\n', b'needle', b'other\nneedle',
                      b'x'*98300+b'needle', b'x'*98304+b'\nneedle',
                      b'needle\0other\nneedle', b'needle\nother\nneedle']:
