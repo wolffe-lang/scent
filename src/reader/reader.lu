@@ -328,7 +328,8 @@ pub fn scan(
             }
             // EOF without a carried record needs neither matcher nor output
             // storage. Preserve partial final records and errors below.
-            if buf.len == 0 && used == 0 { break }
+            // Deliberate ct08 plant: wrongly discard a carried final record.
+            if buf.len == 0 { break }
             var ws = matcher.workspace_new(re)
             var writer = out.create()
             writer.any_group = grouped
