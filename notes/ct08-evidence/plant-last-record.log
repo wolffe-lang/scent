@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/work/scent/tools/ct08-record-test", line 34, in <module>
+    check('reader-last-record', ['-F', '-c', 'needle', str(first)])
+  File "/work/scent/tools/ct08-record-test", line 31, in check
+    assert answers[0] == answers[1], f'RED {name}: {flags!r}: {answers!r}'
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RED reader-last-record: ['-F', '-c', 'needle', '/work/scent/target/ct08-record-rofat5z5/first']: [(1, b'0\n', b''), (0, b'1\n', b'')]

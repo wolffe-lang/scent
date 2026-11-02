@@ -1,0 +1,10 @@
+From /home/mfwolffe/lanes/ct08/trial.bundle
+ * branch            ct08       -> FETCH_HEAD
+From /home/mfwolffe/lanes/ct08/plant.bundle
+ * branch            ct08-plant-last-record -> FETCH_HEAD
+Preparing worktree (detached HEAD eeea47e)
+HEAD is now at eeea47e Infer constant captures only at reference nodes
+Preparing worktree (detached HEAD f542334)
+HEAD is now at f542334 Plant omission of carried final records
+ct08 queued trial slot=8-11 head=eeea47ef38355778345e3fc4a7f5170db9d72066 Mon Nov  2 06:08:17 PM UTC 2026
+build: target/release/scent

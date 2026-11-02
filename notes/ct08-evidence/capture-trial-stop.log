@@ -1,0 +1,47 @@
+ct08 trial2 queued slot=8-11 Mon Nov  2 06:10:38 PM UTC 2026
+build: target/release/scent
+END before-build exit=0
+build: target/release/scent
+END plant-build exit=0
+Traceback (most recent call last):
+  File "/work/scent/tools/ct08-record-test", line 34, in <module>
+    check('reader-last-record', ['-F', '-c', 'needle', str(first)])
+  File "/work/scent/tools/ct08-record-test", line 31, in check
+    assert answers[0] == answers[1], f'RED {name}: {flags!r}: {answers!r}'
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RED reader-last-record: ['-F', '-c', 'needle', '/work/scent/target/ct08-record-rofat5z5/first']: [(1, b'0\n', b''), (0, b'1\n', b'')]
+END plant-last-record exit=1
+END plant-witness exit=0
+END fmt exit=0
+test src/re/compile_test.lu::test_compile_syntax_and_intervals ... ok
+test src/re/compile_test.lu::test_compile_brackets_and_assertions ... ok
+test src/re/compile_test.lu::test_parser_diagnostics_and_refs ... ok
+test src/re/compile_test.lu::test_backreference_path ... ok
+test src/re/compile_test.lu::test_empty_pattern_mebibyte ... ok
+test src/re/compile_test.lu::test_leading_interval_span ... ok
+test src/re/compile_test.lu::test_generated_diagnostic_regressions ... ok
+test src/re/compile_test.lu::test_literal_and_interval_validation_paths ... ok
+test src/re/compile_test.lu::test_interval_needs_content_after_operand ... ok
+test src/re/compile_test.lu::test_capture_in_nonfinal_alternative ... ok
+test src/re/compile_test.lu::test_backreference_projection_is_a_superset ... ok
+test src/re/compile_test.lu::test_adjacent_repeat_compatibility_policy ... ok
+test src/re/dfa_test.lu::test_dfa_cache_overflow ... ok
+test src/re/dfa_test.lu::test_dfa_context_and_units ... ok
+test src/re/linear_test.lu::test_leftmost_longest ... ok
+test src/re/linear_test.lu::test_word_and_whole ... ok
+test src/re/linear_test.lu::test_empty_cycle_linear ... ok
+test src/re/prefilter_test.lu::test_constant_capture_proof ... ok
+test src/re/prefilter_test.lu::test_prefilter_retains_match ... ok
+test src/re/prefilter_test.lu::test_prefilter_superset ... ok
+wolf test: 20 passed; 0 failed; 0 rejected; 0 unsupported; 0 filtered out
+END units exit=0
+build: target/release/scent
+END build exit=0
+Traceback (most recent call last):
+  File "/work/scent/tools/ct08-record-test", line 44, in <module>
+    check('reader-record-files', ['-F', *flags, 'needle', str(first), str(second)])
+  File "/work/scent/tools/ct08-record-test", line 31, in check
+    assert answers[0] == answers[1], f'RED {name}: {flags!r}: {answers!r}'
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RED reader-record-files: ['-F', '-C', '1', 'needle', '/work/scent/target/ct08-record-gumm5q3e/first', '/work/scent/target/ct08-record-gumm5q3e/second']: [(0, b'/work/scent/target/ct08-record-gumm5q3e/second-other\n/work/scent/target/ct08-record-gumm5q3e/second:needle\n', b'grep: /work/scent/target/ct08-record-gumm5q3e/first: binary file matches\n'), (0, b'--\n/work/scent/target/ct08-record-gumm5q3e/second-other\n/work/scent/target/ct08-record-gumm5q3e/second:needle\n', b'grep: /work/scent/target/ct08-record-gumm5q3e/first: binary file matches\n')]
+END records exit=1

@@ -1,0 +1,40 @@
+{
+  "argv": [
+    "grep",
+    "-F",
+    "-C",
+    "1",
+    "needle",
+    "first",
+    "second"
+  ],
+  "locale": "C",
+  "inputs_hex": {
+    "first": "6e6565646c65006f746865720a6e6565646c65",
+    "second": "6f746865720a6e6565646c65"
+  },
+  "before_head": "317271411f5e0a597b71fb5b550f41c5a16aec74",
+  "candidate_head": "eeea47ef38355778345e3fc4a7f5170db9d72066",
+  "engines": {
+    "before": {
+      "binary_sha256": "64c016cd24d279e1789c59982b7bc6e95311903c1630088391d0dacebcef06a1",
+      "status": 0,
+      "stdout_hex": "7365636f6e642d6f746865720a7365636f6e643a6e6565646c650a",
+      "stderr_hex": "677265703a2066697273743a2062696e6172792066696c65206d6174636865730a"
+    },
+    "candidate": {
+      "binary_sha256": "d4c231098e079e73d45b03e7b26d504610026ed64d0ae704162a34181eba9ab6",
+      "status": 0,
+      "stdout_hex": "7365636f6e642d6f746865720a7365636f6e643a6e6565646c650a",
+      "stderr_hex": "677265703a2066697273743a2062696e6172792066696c65206d6174636865730a"
+    },
+    "gnu": {
+      "binary_sha256": "92b211f7a6422d621d4ab1330739b3dbe520283c5e628b848f36f8c29b9be7ea",
+      "status": 0,
+      "stdout_hex": "2d2d0a7365636f6e642d6f746865720a7365636f6e643a6e6565646c650a",
+      "stderr_hex": "677265703a2066697273743a2062696e6172792066696c65206d6174636865730a"
+    }
+  },
+  "baseline_equals_candidate": true,
+  "candidate_equals_gnu": false
+}
