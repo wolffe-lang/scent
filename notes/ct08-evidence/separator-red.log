@@ -1,0 +1,10 @@
+build: target/release/scent
+Traceback (most recent call last):
+  File "/work/scent/tools/ct08-record-test", line 40, in <module>
+    check('binary-context-separator', ['-F', '-C', '1', 'needle', str(first), str(second)])
+  File "/work/scent/tools/ct08-record-test", line 32, in check
+    assert answers[0] == answers[1], f'RED {name}: {flags!r}: {answers!r}'
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RED binary-context-separator: ['-F', '-C', '1', 'needle', '/work/scent/target/ct08-record-eszl4kr_/first', '/work/scent/target/ct08-record-eszl4kr_/second']: [(0, b'/work/scent/target/ct08-record-eszl4kr_/second-other\n/work/scent/target/ct08-record-eszl4kr_/second:needle\n', b'grep: /work/scent/target/ct08-record-eszl4kr_/first: binary file matches\n'), (0, b'--\n/work/scent/target/ct08-record-eszl4kr_/second-other\n/work/scent/target/ct08-record-eszl4kr_/second:needle\n', b'grep: /work/scent/target/ct08-record-eszl4kr_/first: binary file matches\n')]
+END separator-red exit=1
+END separator-red-witness exit=0
