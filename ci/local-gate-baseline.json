@@ -1,0 +1,72 @@
+{
+  "main": "ci.yml",
+  "main_name": "ci",
+  "root": "plan",
+  "new_router": false,
+  "router_body": "    name: plan\n    runs-on: ubuntu-latest\n    timeout-minutes: 5\n    steps:\n      - name: full job set selected\n        if: ${{ github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'full-matrix') || contains(github.event.pull_request.labels.*.name, 'ci') || contains(github.event.pull_request.labels.*.name, 'release-matrix') }}\n        run: echo 'SELECTED plan-test linux macos tier'\n      - uses: actions/checkout@v4\n        if: ${{ github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'full-matrix') || contains(github.event.pull_request.labels.*.name, 'ci') || contains(github.event.pull_request.labels.*.name, 'release-matrix') }}\n      - name: local gate wiring proof\n        if: ${{ github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'full-matrix') || contains(github.event.pull_request.labels.*.name, 'ci') || contains(github.event.pull_request.labels.*.name, 'release-matrix') }}\n        run: python3 -I ci/local-gate-test.py\n      - name: local evidence gate\n        if: ${{ !(github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'full-matrix') || contains(github.event.pull_request.labels.*.name, 'ci') || contains(github.event.pull_request.labels.*.name, 'release-matrix')) }}\n        run: echo 'Local gauntlet evidence is the gate; request ci or full-matrix for CI.'\n",
+  "planner": [
+    "python3",
+    "ci/tiers.py",
+    "plan"
+  ],
+  "full": {
+    "tier": "full",
+    "jobs": [
+      "plan-test",
+      "linux",
+      "macos"
+    ]
+  },
+  "selected": [
+    "plan-test",
+    "linux",
+    "macos",
+    "tier"
+  ],
+  "module_path": "src/local-module.lu",
+  "cross_paths": [
+    ".github/workflows/ci.yml",
+    "ci/local-gate-test.py",
+    "tools/shared.sh",
+    "wolf-toolchain.toml"
+  ],
+  "push_patterns": [
+    ".github/**",
+    "ci/**",
+    "!ci/*.md",
+    "!ci/**/*.md",
+    "tools/**",
+    "spec/**",
+    "**/wolf-toolchain.toml",
+    "**/rust-toolchain.toml",
+    "**/*.pin",
+    "**/PAIRING",
+    "**/STD-PIN",
+    "vendor/tools.toml",
+    "gnu-oracle.toml",
+    ".gitmodules",
+    "Cargo.toml",
+    "Cargo.lock"
+  ],
+  "push_before": "  push:\n    branches: [trunk]\n",
+  "preserve_push": false,
+  "workflows": {
+    "ci.yml": {
+      "plan": "    runs-on: ubuntu-24.04\n    outputs:\n      tier: ${{ steps.plan.outputs.tier }}\n      jobs: ${{ steps.plan.outputs.jobs }}\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 2\n      - id: plan\n        env:\n          EVENT: ${{ github.event_name }}\n          ACTION: ${{ github.event.action }}\n          LABEL: ${{ github.event.label.name }}\n          LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}\n          HEAD_SHA: ${{ github.event.pull_request.head.sha }}\n          IN_JOBS: ${{ inputs.jobs }}\n        run: python3 -I ci/tiers.py plan --merge --github-output \"$GITHUB_OUTPUT\"\n",
+      "plan-test": "    needs: plan\n    if: contains(fromJSON(needs.plan.outputs.jobs || '[]'), 'plan-test')\n    runs-on: ubuntu-24.04\n    steps:\n      - uses: actions/checkout@v4\n      - run: python3 -I ci/tiers-test.py\n      - run: python3 -I tools/re-ci-test\n      - run: python3 -I tools/m2-ci-test\n      - run: python3 -I tools/m1-ci-test\n      - run: python3 -I tools/m3-ci-test\n      - run: python3 -I tools/oracle-review-test\n",
+      "linux": "    needs: plan\n    if: contains(fromJSON(needs.plan.outputs.jobs || '[]'), 'linux')\n    runs-on: ubuntu-24.04\n    timeout-minutes: 60\n    env:\n      SCENT_ENGINE: docker\n    steps:\n      - uses: actions/checkout@v4\n      - name: Cache digest-pinned oracle and toolchain\n        uses: actions/cache@v4\n        with:\n          path: |\n            .wolf-bin\n            .oracle\n          key: scent-linux-${{ hashFiles('wolf-toolchain.toml', 'scent-oracle.toml', 'ci/oracle.Containerfile', 'tools/fetch-oracle.py') }}\n      - name: Build own pinned Ubuntu container\n        run: docker build -t localhost/scent-oracle -f ci/oracle.Containerfile ci\n      - name: Stage digest-pinned toolchain and oracle\n        run: tools/in-container bash -c 'tools/fetch-toolchain && tools/fetch-oracle'\n      - name: Generate and guard M2 corpus\n        run: python3 -I tools/m2-ci-test\n      - name: Generate and guard UTF-8 corpus\n        run: python3 -I tools/m3-ci-test\n      - name: Regenerate Unicode tables and compare exhaustive fixtures\n        run: tools/in-container tools/check-ctype-regen\n      - name: Format and both compiler tiers\n        run: tools/in-container bash -c 'tools/check-fmt && tools/build --all'\n      - name: Field filesystem and exact upstream review regressions\n        run: tools/in-container python3 -I tools/oracle-field-test\n      - name: Checked tests with explicit native-fallback reruns, native and lupin\n        if: ${{ !cancelled() }}\n        run: tools/in-container tools/check-test\n      - name: Exact-name and explicit-glob oracle selection\n        if: ${{ !cancelled() }}\n        run: tools/in-container tools/oracle-select-test\n      - name: Reference replay rejects stale pins cases and changed bytes\n        if: ${{ !cancelled() }}\n        run: tools/in-container tools/oracle-replay-test\n      - name: GNU oracle, native\n        if: ${{ !cancelled() }}\n        run: tools/in-container tools/oracle --bin target/native/scent\n      - name: GNU oracle, release\n        if: ${{ !cancelled() }}\n        run: tools/in-container tools/oracle --bin target/release/scent\n      - name: Regex engine units, malformed patterns, gate corpus and costs\n        if: ${{ !cancelled() }}\n        run: tools/in-container tools/re-ci\n      - name: Static build twice and digest\n        if: ${{ !cancelled() }}\n        run: tools/in-container tools/mkscent target/mkscent\n      - name: GNU oracle, static\n        if: ${{ !cancelled() }}\n        run: tools/in-container tools/oracle --bin target/mkscent/scent --capture-reference target/pax-reference.json.gz\n      - name: Plain Ubuntu without locale data (PAX posture)\n        if: ${{ !cancelled() }}\n        run: tools/pax-posture\n      - name: Streaming memory gate and recorded performance\n        if: ${{ !cancelled() }}\n        run: tools/in-container tools/measure\n      - name: Retain byte diffs and measurements\n        if: ${{ !cancelled() }}\n        uses: actions/upload-artifact@v4\n        with:\n          name: linux-evidence\n          path: |\n            target/oracle\n            target/measure.json\n            target/mkscent/sums.txt\n            target/tests\n            target/re\n",
+      "macos": "    needs: plan\n    if: contains(fromJSON(needs.plan.outputs.jobs || '[]'), 'macos')\n    runs-on: macos-latest\n    timeout-minutes: 30\n    steps:\n      - uses: actions/checkout@v4\n      - run: tools/fetch-toolchain\n      - run: tools/build --all\n      - run: tools/check-test\n      - run: python3 -I tools/m2-ci-test\n      - run: python3 -I tools/m3-ci-test\n      - name: Distribution field leg (never the behavioral gate)\n        run: |\n          brew install grep\n          ggrep --version\n          tools/oracle --field --bin target/release/scent\n      - name: Retain macOS field classifications and witnesses\n        if: ${{ !cancelled() }}\n        uses: actions/upload-artifact@v4\n        with:\n          name: macos-field-evidence\n          path: target/oracle\n",
+      "tier": "    name: tier ${{ needs.plan.outputs.tier || 'unplanned' }}\n    if: ${{ !cancelled() }}\n    needs:\n      - plan\n      - plan-test\n      - linux\n      - macos\n    runs-on: ubuntu-24.04\n    steps:\n      - uses: actions/checkout@v4\n      - env:\n          NEEDS: ${{ toJSON(needs) }}\n        run: python3 -I ci/tiers.py verdict\n",
+      "nightly-red": "    needs: tier\n    if: ${{ failure() && github.event_name == 'schedule' }}\n    runs-on: ubuntu-24.04\n    permissions:\n      contents: read\n      issues: write\n    steps:\n      - uses: actions/checkout@v4\n      - env:\n          GH_TOKEN: ${{ github.token }}\n          REPO: ${{ github.repository }}\n          WORKFLOW: ${{ github.workflow }}\n          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\n        run: ci/nightly-red.sh\n"
+    }
+  },
+  "schedules": {
+    "ci.yml": "    - cron: '43 4 * * *'"
+  },
+  "unchanged": {},
+  "exempt_jobs": [
+    "nightly-red",
+    "notify",
+    "sleep-alarm"
+  ]
+}
