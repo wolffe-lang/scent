@@ -140,7 +140,11 @@ tools/pax-posture
 ```
 
 The oracle is a signature-verified release-tarball build in pinned Ubuntu
-24.04/glibc 2.39, never the host's distribution grep. `tools/oracle --only
+24.04/glibc 2.39, never the host's distribution grep. The image installs
+every package from one dated Ubuntu snapshot, so its libc stays at the
+pinned `2.39-0ubuntu8.9`; TLS trust for the snapshot is its own
+`ca-certificates` package, kept in `ci/bootstrap/` by SHA-256, and a failed
+index update stops the build. `tools/oracle --only
 NAME` selects exactly one witness; explicit glob selectors are supported.
 `--field` reports distribution differences without gating. It probes raw-name
 support once on the corpus filesystem; APFS's rejected byte-FF name is
