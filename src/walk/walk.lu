@@ -21,7 +21,7 @@ fn input(path: str) -> int ! {not_found, denied, io} {
     fs_open(path)?
 }
 
-fn scan(o: opts.Options, re: matcher.Matcher, path: str, mut state: State) {
+fn scan(o: opts.Options, re: matcher.Matcher, path: str, mut state: State, mut writer: out.Output) {
     let name = if path == "-" then o.label else path
     let fd = input(path) else |_| {
         let code = os_error()
@@ -31,7 +31,7 @@ fn scan(o: opts.Options, re: matcher.Matcher, path: str, mut state: State) {
     }
     let info = fs_fstat(fd) else [2, 0, 0]
     if o.limit == 0 && info[0] != 1 {
-        var writer = out.create()
+        out.reset(mut writer)
         if o.count && o.listing == 0 && !o.quiet { out.count(mut writer, o, name, 0) }
         if o.listing == 2 && !o.quiet { out.filename(mut writer, o, name) }
         out.flush(mut writer)
@@ -56,7 +56,7 @@ fn scan(o: opts.Options, re: matcher.Matcher, path: str, mut state: State) {
             return
         }
     }
-    let result = reader.scan(o, re, fd, name, path == "-", mut state.grouped)
+    let result = reader.scan(o, re, fd, name, path == "-", mut state.grouped, mut writer)
     if fd != 0 { fs_close(fd) else |_| {} }
     if result.matched { state.matched = true }
     if result.error { state.error = true }
@@ -91,9 +91,10 @@ fn visit(
     root: bool,
     ancestors: List[Identity],
     mut state: State,
+    mut writer: out.Output,
 ) {
     if flags.quiet && state.matched { return }
-    if path == "-" && root { scan(flags, re, path, mut state); return }
+    if path == "-" && root { scan(flags, re, path, mut state, mut writer); return }
     let link = fs.lstat(path) else |_| {
         if excluded(flags, path, basename, root, false) { return }
         if !flags.silent { eprint("{opts.program()}: {path}: {os_error_text(os_error())}") }
@@ -139,7 +140,7 @@ fn visit(
                         continue
                     }
                     let child = if flags.implicit_tree && root then name else fs.join(path, name)
-                    visit(o, re, child, name, false, stack, mut state)
+                    visit(o, re, child, name, false, stack, mut state, mut writer)
                 }
                 if flags.quiet && state.matched { return }
             }
@@ -149,7 +150,7 @@ fn visit(
         (flags.devices == 1 || flags.devices < 0 && !root && !flags.dereference) {
         return
     }
-    scan(flags, re, path, mut state)
+    scan(flags, re, path, mut state, mut writer)
 }
 
 /// Stream depth-first over raw directory entries, retaining ancestor
@@ -158,10 +159,12 @@ pub fn run(o: opts.Options, re: matcher.Matcher) -> int {
     if o.limit == 0 && o.listing != 2 { return 1 }
     var state = State { matched: false, error: false, grouped: false }
     let ancestors = List[Identity]()
+    // One stdout buffer for the whole run, made once outside every operand's region.
+    var writer = out.create()
     for path in o.files {
         region operand {
             let basename = fs.file_name(path) else path
-            visit(o, re, path, basename, true, ancestors, mut state)
+            visit(o, re, path, basename, true, ancestors, mut state, mut writer)
         }
         if o.quiet && state.matched { return 0 }
     }
