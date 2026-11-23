@@ -56,7 +56,7 @@ fn scan(o: opts.Options, re: matcher.Matcher, path: str, mut state: State, mut w
             return
         }
     }
-    let result = reader.scan(o, re, fd, name, path == "-", mut state.grouped, mut writer)
+    let result = reader.scan(o, re, fd, name, path == "-", mut state.grouped, mut writer, info)
     if fd != 0 { fs_close(fd) else |_| {} }
     if result.matched { state.matched = true }
     if result.error { state.error = true }
