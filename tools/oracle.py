@@ -64,6 +64,8 @@ def launch(binary, c, work, bindir):
         output=os.fdopen(slave,'wb',buffering=0);terminal=master
     if c.get('stdout')=='full':output=open('/dev/full','wb')
     if c.get('stdout')=='input':output=open(work/c['stdout_file'],'ab')
+    # A regular file as stdout (read back after the run): GNU buffers a file as it buffers a pipe or not.
+    if c.get('stdout')=='file':output=open(work/'stdout.captured','wb')
     if c.get('stdout')=='closed':
         def pre():os.close(1)
     if c.get('nonroot') and os.getuid()==0:
@@ -96,9 +98,13 @@ def launch(binary, c, work, bindir):
             child.stdin.write(b'none\nx\n');child.stdin.close();child.stdin=None
             rest,err=child.communicate(timeout=3)
             return first+rest,err,child.returncode,b'live-before-EOF' if first==b'x\n' else b'bad-first-line'
-        r=subprocess.run(args,executable=executable,input=input_arg,stdin=source,stdout=output or subprocess.PIPE,stderr=subprocess.PIPE,cwd=work,env=env,preexec_fn=pre,timeout=c.get('timeout',10))
+        r=subprocess.run(args,executable=executable,input=input_arg,stdin=source,stdout=output or subprocess.PIPE,stderr=subprocess.STDOUT if c.get('merge_stderr') else subprocess.PIPE,cwd=work,env=env,preexec_fn=pre,timeout=c.get('timeout',10))
         rest=source.read() if source else b''
         stdout=r.stdout or b''
+        # Merged streams compare the order in which both reached one descriptor; a file
+        # target, or an appended input file, is compared by what it holds afterwards.
+        if c.get('stdout')=='file':output.close();output=None;stdout=(work/'stdout.captured').read_bytes()
+        if c.get('stdout')=='input' and c.get('read_back'):output.close();output=None;stdout=(work/c['stdout_file']).read_bytes()
         if terminal is not None:
             output.close();output=None
             while True:
@@ -109,7 +115,7 @@ def launch(binary, c, work, bindir):
                 except OSError as error:
                     if error.errno!=errno.EIO:raise
                     break
-        return stdout,r.stderr,r.returncode,rest
+        return stdout,r.stderr or b'',r.returncode,rest
     except subprocess.TimeoutExpired:return b'',b'HARNESS TIMEOUT',124,b''
     finally:
         if source:source.close()
