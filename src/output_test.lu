@@ -1,0 +1,24 @@
+//! member: false
+
+use out
+
+fn main() {
+    // One buffer made outside the regions it is written in, as a run's is.
+    var writer = out.create()
+    let size = writer.buf.len
+    for i in 0..2 {
+        region chunk {
+            out.reset(mut writer)
+            assert(writer.used == 0 && !writer.failed && !writer.any_group)
+            let b = "abc".bytes()
+            out.window(mut writer, b, 0, b.len)
+            assert(writer.used == 3 && writer.buf[0] == 97 as byte && writer.buf[2] == 99 as byte)
+            writer.any_group = true
+            writer.failed = i == 0
+        }
+    }
+    assert(writer.failed == false && writer.any_group && writer.used == 3)
+    out.reset(mut writer)
+    assert(writer.used == 0 && !writer.failed && !writer.any_group && writer.buf.len == size)
+    print("output: 3 cases, 0 SKIP")
+}
