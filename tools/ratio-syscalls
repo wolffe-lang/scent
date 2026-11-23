@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+"""System calls per row, counted with strace: a report, never a verdict on bytes.
+
+    tools/ratio-syscalls --output target/ratio-syscalls.json [--bin target/release/scent] [--scale 1]
+
+Runs inside the measurement image (ci/measure.Containerfile: the oracle image plus
+strace from the same snapshot). Each ratio row runs once per engine under
+`strace -f -c`; the report keeps every call's count and the total, and for the
+many-files row the calls per file. Output is not compared here: tools/ratio does that.
+"""
+import argparse, json, os, pathlib, re, runpy, shutil, subprocess
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+
+
+def counts(path):
+    calls = {}
+    for line in pathlib.Path(path).read_text().splitlines():
+        fields = line.split()
+        # % time, seconds, usecs/call, calls, [errors], syscall
+        if len(fields) >= 5 and re.fullmatch(r'\d+\.\d+', fields[0]) and fields[-1] != 'total':
+            calls[fields[-1]] = int(fields[3])
+    return calls
+
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument('--output', required=True)
+    p.add_argument('--bin', default='target/release/scent')
+    p.add_argument('--scale', type=float, default=1.0)
+    a = p.parse_args()
+    if os.environ.get('SCENT_IN_CONTAINER') != '1' or shutil.which('strace') is None:
+        raise SystemExit('ratio-syscalls: REFUSED: run inside the measurement image (strace absent)')
+    ratio = runpy.run_path(str(ROOT / 'tools/ratio'), run_name='ratio')
+    subprocess.run([str(ROOT / 'tools/fetch-oracle')], check=True)
+    where, files, digests = ratio['corpus'](a.scale)
+    rows = {'ratio-count-files': ['-c', 'needle', *('small/' + f for f in files)],
+            'ratio-literal-100M': ['-c', 'needle', 'text'],
+            'ratio-regex-100M': ['-c', '-E', ratio['REGEX'], 'text']}
+    bins = {'gnu': ROOT / '.oracle/grep', 'scent': (ROOT / a.bin).resolve()}
+    scratch = ROOT / 'target' / 'ratio-out'
+    scratch.mkdir(parents=True, exist_ok=True)
+    report = {**ratio['recorded_head'](), 'corpus': digests, 'rows': {}}
+    for name, argv in rows.items():
+        report['rows'][name] = {}
+        for who, binary in bins.items():
+            trace = scratch / f'{name}-{who}.strace'
+            with open(scratch / f'{who}.out', 'wb') as out:
+                subprocess.run(['strace', '-f', '-c', '-o', str(trace), str(binary), *argv], cwd=where,
+                               stdin=subprocess.DEVNULL, stdout=out, env={'LC_ALL': 'C', 'PATH': os.defpath})
+            calls = counts(trace)
+            total = sum(calls.values())
+            entry = {'total': total, 'calls': calls}
+            if name == 'ratio-count-files':
+                entry['per_file'] = round(total / len(files), 3)
+            report['rows'][name][who] = entry
+            print(f"syscalls {name} {who} total={total}" + (f" per_file={entry['per_file']}" if 'per_file' in entry else '')
+                  + ' ' + ' '.join(f'{k}={v}' for k, v in sorted(calls.items(), key=lambda kv: -kv[1])[:8]), flush=True)
+    (ROOT / a.output).write_text(json.dumps(report, indent=1) + '\n')
+
+
+if __name__ == '__main__':
+    main()
