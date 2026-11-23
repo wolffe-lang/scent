@@ -69,7 +69,6 @@ fn run(initial: opts.Options) -> int {
         return 0
     }
     if o.not_yet != "" { eprint("{opts.program()}: not yet implemented: {o.not_yet}"); return 2 }
-    o.colors = colors.configure(o.color_when, opts.program())
     var patterns = List[List[byte]]()
     var source_names = List[str]()
     var source_lines = List[int]()
@@ -131,6 +130,11 @@ fn run(initial: opts.Options) -> int {
         eprint("{opts.program()}: Perl matching not supported in a --disable-perl-regexp build")
         return 2
     }
+    // No pattern can select a line. Unless the run inverts or lists the
+    // files without a match, it reads no file and selects nothing, before
+    // the colour settings are read (measured against GNU 3.12).
+    if unique.len == 0 && !o.invert && o.listing != 2 { return 1 }
+    o.colors = colors.configure(o.color_when, opts.program())
     var diagnostics = re.diagnostics_new()
     let re = matcher.compile(
         unique,
