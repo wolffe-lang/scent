@@ -35,4 +35,26 @@ fn main() {
         }
         size += 1
     }
+    // Past the vector width: every needle place, from starts on both sides of
+    // each 16-byte edge.
+    size = 21
+    while size <= 70 {
+        var needle_at = 0
+        while needle_at <= size {
+            var sample = List[byte]()
+            var i = 0
+            while i < size {
+                (mut sample).push(if i == needle_at then 10 as byte else 120 as byte)
+                i += 1
+            }
+            for start in [0, 1, 15, 16, 17, 31, 32, 33, size - 1, size] {
+                if start <= size {
+                    let want = if needle_at >= start then needle_at else size
+                    assert(bytefind.find(sample, start, 10 as byte) == want)
+                }
+            }
+            needle_at += 1
+        }
+        size += 1
+    }
 }
