@@ -276,8 +276,9 @@ fn append(mut target: List[byte], used: int, buf: List[byte], lo: int, hi: int) 
 
 /// Read one operand in bounded chunks, carrying only the unfinished line
 /// and the requested leading-context ring. Every chunk owns its temporary
-/// reads, formatting and stdout buffer; persistent storage has an explicit
-/// region so a long stream does not retain per-line allocations.
+/// reads and formatting; persistent storage has an explicit region so a long
+/// stream does not retain per-line allocations. `writer` is the run's stdout
+/// buffer, reset where a fresh one used to be made and flushed where it was.
 pub fn scan(
     flags: opts.Options,
     re: matcher.Matcher,
@@ -285,6 +286,7 @@ pub fn scan(
     name: str,
     stdin: bool,
     mut grouped: bool,
+    mut writer: out.Output,
 ) -> Result {
     let storage = region()
     var carry = in storage { List[byte]() }
@@ -330,7 +332,7 @@ pub fn scan(
             // storage. Preserve partial final records and errors below.
             if buf.len == 0 && used == 0 { break }
             var ws = matcher.workspace_new(re)
-            var writer = out.create()
+            out.reset(mut writer)
             writer.any_group = grouped
             if !flags.zero && flags.binary != 1 {
                 if bytefind.find(buf, 0, 0 as byte) < buf.len { current.binary = true }
@@ -456,7 +458,7 @@ pub fn scan(
         let ignored = fs_seek(fd, base + st.resume, 0) else 0
     }
     region summary {
-        var writer = out.create()
+        out.reset(mut writer)
         if !flags.quiet {
             if flags.listing == 1 && st.matches > 0 || flags.listing == 2 && st.matches == 0 {
                 out.filename(mut writer, flags, name)
