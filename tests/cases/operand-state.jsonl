@@ -1,0 +1,9 @@
+{"name":"operand-state-stdin-file-max-count","argv":["-m1","x"],"stdin":"","section":"read","files":{"input":{"text":"abcx\nx\ny\nx\n"}},"stdin_file":"input"}
+{"name":"operand-state-stdin-file-offset-max-count","argv":["-m1","x"],"stdin":"","section":"read","files":{"input":{"text":"abcx\nx\ny\nx\n"}},"stdin_file":"input","stdin_seek":3}
+{"name":"operand-state-stdin-file-offset-max-two","argv":["-m2","-c","x"],"stdin":"","section":"read","files":{"input":{"text":"abcx\nx\ny\nx\n"}},"stdin_file":"input","stdin_seek":5}
+{"name":"operand-state-file-operand-max-count","argv":["-m1","x","input"],"stdin":"","section":"read","files":{"input":{"text":"abcx\nx\ny\nx\n"}}}
+{"name":"operand-state-stdin-dash-between-files","argv":["-m1","-H","x","input","-","input"],"stdin":"","section":"read","files":{"input":{"text":"abcx\nx\ny\nx\n"}},"stdin_file":"input","stdin_seek":4}
+{"name":"operand-state-initial-tab-regular-file","argv":["-T","-n","-b","x","input"],"stdin":"","section":"read","files":{"input":{"parts":[{"text":"y\n","repeat":6000},{"text":"x\n"}]}}}
+{"name":"operand-state-initial-tab-stdin-pipe","argv":["-T","-n","-b","x"],"stdin":{"parts":[{"text":"y\n","repeat":6000},{"text":"x\n"}]},"section":"read"}
+{"name":"operand-state-initial-tab-stdin-file","argv":["-T","-n","-b","x"],"stdin":"","section":"read","files":{"input":{"parts":[{"text":"y\n","repeat":6000},{"text":"x\n"}]}},"stdin_file":"input"}
+{"name":"operand-state-initial-tab-two-files","argv":["-T","-H","-b","x","input","small"],"stdin":"","section":"read","files":{"input":{"parts":[{"text":"y\n","repeat":6000},{"text":"x\n"}]},"small":{"text":"x\n"}}}
