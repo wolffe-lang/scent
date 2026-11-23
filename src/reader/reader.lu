@@ -315,6 +315,28 @@ pub fn scan(
         flags.listing == 0 &&
         !flags.quiet &&
         (!flags.only || flags.invert)
+    // Candidate lines by a whole-chunk search for the pattern's one required
+    // literal, where nothing but the selected lines is ever printed or counted:
+    // no inversion, context (even zero lines of it: its separators need line
+    // numbers), line or byte numbers, spans, colour or line
+    // buffering, C locale, and the accelerated engine. Every other line is
+    // passed over unread; each candidate still goes through line_matches.
+    let term = if flags.zero then 0 as byte else 10 as byte
+    let needle = matcher.required_literal(re)
+    var literal_lines = needle.len > 0 &&
+        !flags.invert &&
+        !flags.context &&
+        flags.before == 0 &&
+        flags.after == 0 &&
+        !flags.only &&
+        !flags.number &&
+        !flags.offset &&
+        !flags.colors.enabled &&
+        !flags.line_buffered &&
+        !flags.utf8 &&
+        (env_get("SCENT_MATCH_ENGINE") else "") != "vm"
+    for b in needle { if b == term { literal_lines = false } }
+    let shifts = if literal_lines then bytefind.literal_shifts(needle) else List[int]()
     // The unfinished record and the context ring live as long as this operand. A
     // block, not a region value: a region value is not freed at its last use.
     region storage {
@@ -350,8 +372,59 @@ pub fn scan(
                 } else {
                     var lo: int = 0
                     var at: int = 0
+                    var searched = false
+                    var lines_before = 0
                     while at < buf.len && !current.stop {
-                        let term = if flags.zero then 0 as byte else 10 as byte
+                        if literal_lines && used == 0 && !current.binary && !searched {
+                            searched = true
+                            var last = buf.len - 1
+                            while last >= lo && buf[last] != term { last -= 1 }
+                            if last >= lo {
+                                var pos = lo
+                                while pos <= last && !current.stop {
+                                    let hit = bytefind.find_literal(buf, pos, last, needle, shifts)
+                                    if hit < 0 { break }
+                                    var start = hit
+                                    while start > pos && buf[start - 1] != term { start -= 1 }
+                                    let end = bytefind.find(buf, hit, term)
+                                    if current.matches < flags.limit &&
+                                        matcher.line_matches(re, mut ws, buf, start, end) {
+                                        let off = current.offset + start - lo
+                                        current.matches += 1
+                                        current.resume = off + end - start + 1
+                                        if flags.quiet || flags.listing != 0 {
+                                            current.stop = true
+                                        } else if !flags.count {
+                                            out.group(mut writer, flags)
+                                            out.line(
+                                                mut writer,
+                                                flags,
+                                                re,
+                                                mut ws,
+                                                name,
+                                                buf,
+                                                start,
+                                                end,
+                                                0,
+                                                off,
+                                                true,
+                                                width,
+                                            )
+                                        }
+                                        if current.matches >= flags.limit { current.stop = true }
+                                        if writer.failed { error = true; current.stop = true }
+                                    }
+                                    pos = end + 1
+                                }
+                                if !current.stop {
+                                    current.number += bytes_count(buf, term) - lines_before
+                                    current.offset += last + 1 - lo
+                                    lo = last + 1
+                                    at = last + 1
+                                    continue
+                                }
+                            }
+                        }
                         at = bytefind.next_end(buf, at, term, current.binary && flags.binary == 0)
                         if at == buf.len { break }
                         let end = buf[at] == term ||
@@ -424,6 +497,7 @@ pub fn scan(
                                 current.offset += at - lo + 1
                             }
                             lo = at + 1
+                            lines_before += 1
                             if current.matches >= flags.limit && current.trailing == 0 {
                                 current.stop = true
                             }
