@@ -90,6 +90,28 @@ pub fn workspace_new(compiled: Matcher) -> Workspace {
     }
 }
 
+/// The one byte literal every selected line must contain, when the compiled
+/// pattern names exactly one and it is case-sensitive C-locale bytes; empty
+/// otherwise. A line without it is never selected, so a whole-buffer search
+/// for it may skip every other line.
+pub fn required_literal(compiled: Matcher) -> List[byte] {
+    var found = List[byte]()
+    if compiled.syntax == "F" {
+        let f = compiled.literal
+        if f.patterns.len != 1 || f.flags.ignore_case { return found }
+        return copy f.patterns[0].bytes
+    }
+    let r = compiled.regular
+    if compiled.syntax == "U" || r.options.utf8 || r.options.icase || r.filters.len != 1 {
+        return found
+    }
+    for unit in r.filters[0].units {
+        if unit < 0 || unit > 255 { return List[byte]() }
+        (mut found).push(unit as byte)
+    }
+    found
+}
+
 /// Select a line, including empty matches, before requesting its spans.
 pub fn line_matches(
     compiled: Matcher,
