@@ -1,24 +1,12 @@
 //! member: true
 
-// Keep matcher/output/control branches out of the byte-search loop. This
-// is scent's own scalar memchr-shaped loop until std#89 provides a measured
-// replacement. Binary default mode additionally treats NUL as a separator.
+// Keep matcher/output/control branches out of the byte-search loop. The
+// one-byte search is the runtime's vector scan (bytes_find: SSE2 on x86-64,
+// NEON on aarch64). Binary default mode additionally treats NUL as a
+// separator, which stays a scalar loop over two bytes.
 /// Return the next matching byte or the buffer length, without allocation.
 pub fn find(buf: List[byte], from: int, needle: byte) -> int {
-    var at = from
-    while at <= buf.len - 8 {
-        if buf[at] == needle { return at }
-        if buf[at + 1] == needle { return at + 1 }
-        if buf[at + 2] == needle { return at + 2 }
-        if buf[at + 3] == needle { return at + 3 }
-        if buf[at + 4] == needle { return at + 4 }
-        if buf[at + 5] == needle { return at + 5 }
-        if buf[at + 6] == needle { return at + 6 }
-        if buf[at + 7] == needle { return at + 7 }
-        at += 8
-    }
-    while at < buf.len && buf[at] != needle { at += 1 }
-    at
+    bytes_find(buf, needle, from) else buf.len
 }
 
 /// Return the next LF/NUL delimiter or the buffer length, without allocation.
