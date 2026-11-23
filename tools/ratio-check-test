@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+"""tools/ratio-check must refuse every malformed or failing report it is shown."""
+import copy, pathlib, runpy, statistics
+
+root = pathlib.Path(__file__).resolve().parent.parent
+check = runpy.run_path(str(root / 'tools/ratio-check'))['check']
+
+
+def samples(user, rss, n=5):
+    return [{'user_us': user, 'sys_us': 10, 'wall_us': user + 20, 'maxrss_kb': rss, 'minflt': 100} for _ in range(n)]
+
+
+def row(name, scent_us, gnu_us, again_us):
+    s = {'gnu': samples(gnu_us, 2000), 'scent': samples(scent_us, 3000), 'gnu-again': samples(again_us, 2000)}
+    median = {w: {'cpu_us': statistics.median(x['user_us'] + x['sys_us'] for x in v),
+                  'wall_us': statistics.median(x['wall_us'] for x in v),
+                  'rss_kb': statistics.median(x['maxrss_kb'] for x in v),
+                  'minflt': statistics.median(x['minflt'] for x in v)} for w, v in s.items()}
+    ratio = lambda a, b: {m: median[a][m] / median[b][m] for m in median[a]}
+    answer = {'status': 0, 'stdout_sha256': '0' * 64, 'stdout_bytes': 2, 'stderr_hex': ''}
+    return {'name': name, 'samples': s, 'median': median, 'ratio': ratio('scent', 'gnu'), 'aa': ratio('gnu-again', 'gnu'),
+            'tuples': {w: [dict(answer)] for w in s}, 'repeat_index': 0}
+
+
+valid = {'runs': 5, 'cpus': [0, 2], 'rows': [row('ratio-count-files', 290, 90, 90), row('ratio-literal-100M', 190, 90, 91)]}
+bounds = {'margin': 0.03, 'ceilings': {'ratio-count-files-cpu': 3.5, 'ratio-count-files-rss': 1.6, 'ratio-literal-100M-cpu': 2.2}}
+lines, wrong, fails, invalid = check(valid, bounds)
+assert len(lines) == 3 and not wrong and not invalid and not fails, (wrong, fails)
+print('PASS ratio-check accepts a valid report:', '; '.join(lines))
+
+
+def expect_refusal(label, report, b):
+    try:
+        check(report, b)
+    except AssertionError as error:
+        print('PASS rejected', label, str(error))
+    else:
+        raise AssertionError('guard did not fail: ' + label)
+
+
+for label in ['samples', 'median', 'ratio', 'aa', 'participant', 'field']:
+    bad = copy.deepcopy(valid)
+    r = bad['rows'][0]
+    if label == 'samples': r['samples']['scent'].pop()
+    if label == 'median': r['median']['scent']['cpu_us'] += 1
+    if label == 'ratio': r['ratio']['cpu_us'] = 1.0
+    if label == 'aa': r['aa']['cpu_us'] = 1.0001
+    if label == 'participant': r['samples']['other'] = r['samples'].pop('gnu-again')
+    if label == 'field': r['samples']['gnu'][0]['user_us'] = -1
+    expect_refusal(label, bad, bounds)
+expect_refusal('bound for an unmeasured row', valid, dict(bounds, ceilings={'ratio-regex-100M-cpu': 2.0}))
+expect_refusal('bound without a margin', valid, {'ceilings': {'ratio-count-files-cpu': 3.5}})
+
+# A metric over its ceiling is a FAIL line by name (the plant evidence the recorder reads).
+_, wrong, fails, invalid = check(valid, dict(bounds, ceilings={'ratio-count-files-cpu': 2.9}))
+assert fails == ['FAIL ratio-count-files-cpu 3.000 > 2.900'] and not wrong and not invalid, fails
+print('PASS over-ceiling row named:', fails[0])
+
+# A take whose own A/A is outside 1 ± 2 × margin is INVALID, never a pass or a fail.
+noisy = copy.deepcopy(valid)
+noisy['rows'][0] = row('ratio-count-files', 290, 90, 99)
+_, wrong, fails, invalid = check(noisy, bounds)
+assert invalid and invalid[0].startswith('INVALID ratio-count-files-cpu') and not fails, (invalid, fails)
+print('PASS noisy A/A is not a verdict:', invalid[0])
+
+# Different outputs fail whatever the timing says.
+differ = copy.deepcopy(valid)
+differ['rows'][1]['tuples']['scent'][0]['stdout_sha256'] = '1' * 64
+_, wrong, fails, invalid = check(differ, bounds)
+assert wrong and wrong[0].startswith('FAIL ratio-tuple-ratio-literal-100M'), wrong
+stderr = copy.deepcopy(valid)
+for who in stderr['rows'][0]['tuples']:
+    stderr['rows'][0]['tuples'][who][0]['stderr_hex'] = '0a'
+_, wrong, _, _ = check(stderr, bounds)
+assert wrong and 'stderr' in wrong[0], wrong
+print('PASS output mismatches and stderr are FAIL lines; SKIP=0')
