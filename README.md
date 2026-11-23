@@ -23,6 +23,9 @@ and the deprecated `GREP_COLOR` warning are supported. `-P` gives the
 configured GNU build's refusal. C and UTF-8 matching are supported, including
 multibyte patterns, classes, word boundaries, backreferences and byte-exact
 spans. C-locale `-i` folds ASCII only; UTF-8 uses generated, measured tables.
+An empty pattern set (an empty `-f` file) without `-v` or `-L` selects
+nothing and reads no file: `-c` prints no counts and a missing operand draws
+no message, as the pinned GNU build does.
 
 The generated CLI matrix has **5,072 cases**: 40 option rows × three
 syntaxes × seven pattern families × six input forms, plus 32 source and
@@ -35,11 +38,11 @@ The M2 generator adds **3,392 cases**: 2,000 shared-tree walk/filter rows,
 18 edge and five self-output rows, 1,152 original colour/environment rows,
 120 glob-syntax rows, and 97 additional byte-pattern, tty, colour-edge,
 reviewed-gap and UTF-8 locale rows. The complete CLI matrix reports
-**9,478 C-locale agreements + 111 published differences + 9 upstream-blocked**.
-The former explicit UTF-8 refusal is now an agreement. A further **38,706
+**9,518 C-locale agreements + 111 published differences + 9 upstream-blocked**.
+The former explicit UTF-8 refusal is now an agreement. A further **38,746
 UTF-8 cases** include every inherited case and generated scalar, encoding-error
-and consistency witnesses. The complete matrix has **48,305 cases**:
-**47,514 agree, 772 published differences, 18 upstream-blocked, one environment
+and consistency witnesses. The complete matrix has **48,385 cases**:
+**47,594 agree, 772 published differences, 18 upstream-blocked, one environment
 difference, zero unapproved differences and zero not-yet rows**. Of the published
 differences, 550 cover the two UTF-8 consistency rules below: 480 case-fold
 rows and 70 dot-span rows.
