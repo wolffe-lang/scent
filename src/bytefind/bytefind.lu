@@ -19,3 +19,44 @@ pub fn next_end(buf: List[byte], from: int, term: byte, nul: bool) -> int {
     }
     at
 }
+
+/// Horspool shifts for `needle`: how far a window may move when the byte under
+/// its last position is b. An empty needle has no table.
+pub fn literal_shifts(needle: List[byte]) -> List[int] {
+    var shifts = List[int]()
+    for b in 0..256 { (mut shifts).push(needle.len) }
+    var i = 0
+    while i + 1 < needle.len {
+        shifts[needle[i] as int] = needle.len - i - 1
+        i += 1
+    }
+    shifts
+}
+
+/// The first place at or after `from` where all of `needle` lies before `hi`,
+/// or -1. A one-byte needle is the vector byte search.
+pub fn find_literal(
+    buf: List[byte],
+    from: int,
+    hi: int,
+    needle: List[byte],
+    shifts: List[int],
+) -> int {
+    let size = needle.len
+    if size == 1 {
+        let at = bytes_find(buf, needle[0], from) else -1
+        return if at >= 0 && at < hi then at else -1
+    }
+    let last = needle[size - 1]
+    var at = from
+    while at + size <= hi {
+        let b = buf[at + size - 1]
+        if b == last {
+            var i = 0
+            while i < size - 1 && buf[at + i] == needle[i] { i += 1 }
+            if i == size - 1 { return at }
+        }
+        at += shifts[b as int]
+    }
+    -1
+}
