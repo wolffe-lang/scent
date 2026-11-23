@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+"""Check a tools/ratio report against tests/ratio-bounds.json; fail closed.
+
+    tools/ratio-check REPORT BOUNDS
+
+Exit 0: every bounded metric is within its ceiling. Exit 1: a `FAIL NAME …` line for
+each metric over its ceiling, or for a row whose output differs between participants
+(that one fails everywhere, hosted CI included: it is a byte difference, not a time).
+Exit 75: the run's own A/A (GNU against itself) lies outside 1 ± 2 × margin on a
+bounded row: the take is INVALID, not a verdict. Under hosted CI (GITHUB_ACTIONS set)
+every line is printed and the exit is 0: those rows are reported there, gated on a
+whole held block.
+"""
+import json, math, os, pathlib, statistics, sys
+
+METRICS = {'cpu': 'cpu_us', 'rss': 'rss_kb', 'minflt': 'minflt', 'wall': 'wall_us'}
+FIELDS = ('user_us', 'sys_us', 'wall_us', 'maxrss_kb', 'minflt')
+
+
+def validate(report):
+    """Every number the verdict reads is recomputed from the samples it came from."""
+    assert type(report['runs']) is int and report['runs'] >= 3, 'RED ratio-protocol: runs'
+    assert report['cpus'] and all(type(c) is int and c >= 0 for c in report['cpus']), 'RED ratio-protocol: cpus'
+    for row in report['rows']:
+        names = set(row['samples'])
+        assert {'gnu', 'scent', 'gnu-again'} <= names <= {'gnu', 'scent', 'gnu-again', 'before'}, 'RED ratio-participants'
+        for who, samples in row['samples'].items():
+            assert len(samples) == report['runs'], 'RED ratio-samples: ' + row['name']
+            for s in samples:
+                assert set(s) == set(FIELDS) and all(type(s[k]) is int and s[k] >= 0 for k in FIELDS), 'RED ratio-sample'
+            want = {'cpu_us': statistics.median(s['user_us'] + s['sys_us'] for s in samples),
+                    'wall_us': statistics.median(s['wall_us'] for s in samples),
+                    'rss_kb': statistics.median(s['maxrss_kb'] for s in samples),
+                    'minflt': statistics.median(s['minflt'] for s in samples)}
+            assert row['median'][who] == want, 'RED ratio-median: ' + row['name']
+        for key, a, b in (('ratio', 'scent', 'gnu'), ('aa', 'gnu-again', 'gnu')):
+            for m, value in row[key].items():
+                base = row['median'][b][m]
+                assert value == (row['median'][a][m] / base if base else None), 'RED ratio-drift: ' + row['name']
+
+
+def check(report, bounds):
+    validate(report)
+    margin = bounds.get('margin')
+    ceilings = bounds.get('ceilings', {})
+    wrong, fails, invalid, lines = [], [], [], []
+    rows = {}
+    for row in report['rows']:
+        rows.setdefault(row['name'], []).append(row)
+        tuples = [t for who in row['tuples'] for t in row['tuples'][who]]
+        if len(tuples) != len(row['tuples']) or any(t != tuples[0] for t in tuples):
+            wrong.append(f"FAIL ratio-tuple-{row['name']} outputs differ: {json.dumps(row['tuples'], sort_keys=True)}")
+        elif tuples[0]['stderr_hex'] or tuples[0]['status'] not in (0, 1):
+            wrong.append(f"FAIL ratio-tuple-{row['name']} status {tuples[0]['status']} stderr {tuples[0]['stderr_hex'][:80]}")
+    for name, limit in sorted(ceilings.items()):
+        row_name, _, metric = name.rpartition('-')
+        assert metric in METRICS and row_name in rows, 'RED ratio-bounds: no measured row for ' + name
+        assert margin is not None and 0 < margin < 0.5 and math.isfinite(limit) and limit > 0, 'RED ratio-bounds: ' + name
+        for row in rows[row_name]:
+            aa = row['aa'][METRICS[metric]]
+            value = row['ratio'][METRICS[metric]]
+            lines.append(f"{name} ratio={value:.3f} ceiling={limit:.3f} aa={aa:.4f} repeat={row.get('repeat_index', 0)}")
+            if abs(aa - 1) > 2 * margin:
+                invalid.append(f"INVALID {name} aa={aa:.4f} outside 1 ± {2 * margin:.4f}")
+            elif value > limit:
+                fails.append(f"FAIL {name} {value:.3f} > {limit:.3f}")
+    return lines, wrong, fails, invalid
+
+
+def main():
+    report = json.loads(pathlib.Path(sys.argv[1]).read_text())
+    bounds = json.loads(pathlib.Path(sys.argv[2]).read_text())
+    lines, wrong, fails, invalid = check(report, bounds)
+    for line in lines + wrong + invalid + fails:
+        print(line, flush=True)
+    if wrong:
+        return 1
+    if os.environ.get('GITHUB_ACTIONS'):
+        print('REPORT ratio rows: hosted runner, not gated', flush=True)
+        return 0
+    if invalid:
+        print('INVALID ratio take: the A/A floor is outside its bound; not a verdict', flush=True)
+        return 75
+    if fails:
+        return 1
+    print(f'PASS ratio rows: {len(lines)} bounded readings within their ceilings', flush=True)
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
