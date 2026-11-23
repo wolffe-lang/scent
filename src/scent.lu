@@ -133,7 +133,6 @@ fn run(initial: opts.Options) -> int {
     // No pattern can select a line. Unless the run inverts or lists the
     // files without a match, it reads no file and selects nothing, before
     // the colour settings are read (measured against GNU 3.12).
-    if unique.len == 0 && !o.invert && o.listing != 2 { return 1 }
     o.colors = colors.configure(o.color_when, opts.program())
     var diagnostics = re.diagnostics_new()
     let re = matcher.compile(
