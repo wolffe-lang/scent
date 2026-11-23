@@ -57,4 +57,28 @@ fn main() {
         }
         size += 1
     }
+    // The literal search against a scalar definition: every needle of one to
+    // four bytes over every window of a small alphabet, each start and end.
+    let text = "abaabcabcdaabbccd\nabcdd".bytes()
+    for needle_text in ["a", "d", "ab", "abc", "abcd", "bcd", "dd", "da", "cab", "x"] {
+        let needle = needle_text.bytes()
+        let shifts = bytefind.literal_shifts(needle)
+        var from = 0
+        while from <= text.len {
+            var hi = from
+            while hi <= text.len {
+                var want = -1
+                var at = from
+                while want < 0 && at + needle.len <= hi {
+                    var i = 0
+                    while i < needle.len && text[at + i] == needle[i] { i += 1 }
+                    if i == needle.len { want = at }
+                    at += 1
+                }
+                assert(bytefind.find_literal(text, from, hi, needle, shifts) == want)
+                hi += 1
+            }
+            from += 1
+        }
+    }
 }
