@@ -1,0 +1,207 @@
+#!/usr/bin/env python3
+"""Ratio rows: scent's cost against the pinned GNU grep, both run in this same take.
+
+    tools/ratio --output target/ratio.json [--bin target/release/scent] [--before-bin PATH]
+                [--rows NAME,...] [--runs 31] [--warmups 2] [--repeat 1] [--scale 1]
+                [--bounds tests/ratio-bounds.json]
+
+Each row runs its command under `gnu` (.oracle/grep), `scent`, `gnu-again` (the same
+GNU binary again: the A/A noise floor of this run) and, with --before-bin, `before`.
+Participants take turns over every ordering of them, `--warmups` uncounted runs each,
+then `--runs` counted runs each. Every run is one tools/ratio-child: a small static
+parent forks and execs the command with stdin /dev/null and stdout a regular file,
+and reports user and system CPU, wall time, peak resident size and minor faults.
+Every run's exit status, stdout digest and length and its (empty) stderr must be the
+same for every participant, or the row is RED. Only ratios of medians taken in this
+run are reported; no absolute time is compared with anything.
+
+--repeat K measures every row K times in turn (the calibration a bound is derived
+from). --scale shrinks the inputs for a dry run. With --bounds the report is checked
+by tools/ratio-check.
+"""
+import argparse, hashlib, itertools, json, os, pathlib, re, statistics, subprocess, sys, time
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+REGEX = 'ne+dle [0-9]{3} in'
+
+
+def recorded_head():
+    sha = os.environ.get('GITHUB_SHA', '')
+    if sha:
+        if not re.fullmatch(r'[0-9a-fA-F]{40}|[0-9a-fA-F]{64}', sha):
+            raise SystemExit('ratio: REFUSED: invalid GITHUB_SHA')
+        return {'head': sha.lower(), 'head_source': 'GITHUB_SHA'}
+    env = {k: v for k, v in os.environ.items() if k not in {'GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR'}}
+    result = subprocess.run(['git', '-C', str(ROOT), 'rev-parse', '--verify', 'HEAD^{commit}'], env=env,
+                            text=True, capture_output=True)
+    sha = result.stdout.strip()
+    if result.returncode or not re.fullmatch(r'[0-9a-fA-F]{40}|[0-9a-fA-F]{64}', sha):
+        raise SystemExit('ratio: REFUSED: cannot record the checkout head and GITHUB_SHA is unset')
+    return {'head': sha.lower(), 'head_source': 'git'}
+
+
+class Stream:
+    """splitmix64: the same bytes on every host and every Python."""
+    def __init__(self, seed):
+        self.state = seed & (2 ** 64 - 1)
+
+    def next(self):
+        self.state = (self.state + 0x9E3779B97F4A7C15) & (2 ** 64 - 1)
+        z = self.state
+        z = ((z ^ (z >> 30)) * 0xBF58476D1CE4E5B9) & (2 ** 64 - 1)
+        z = ((z ^ (z >> 27)) * 0x94D049BB133111EB) & (2 ** 64 - 1)
+        return z ^ (z >> 31)
+
+    def below(self, n):
+        return self.next() % n
+
+
+def line_pool(stream, count):
+    letters = b'abcdefghijklmnopqrstuvwxyz'
+    pool = []
+    for _ in range(count):
+        words = []
+        for _ in range(4 + stream.below(11)):
+            words.append(bytes(letters[stream.below(26)] for _ in range(2 + stream.below(9))))
+        pool.append(b' '.join(words) + b'\n')
+    return pool
+
+
+def digest_tree(path):
+    h = hashlib.sha256()
+    for item in sorted(path.iterdir()):
+        h.update(item.name.encode() + b'\0' + hashlib.sha256(item.read_bytes()).digest())
+    return h.hexdigest()
+
+
+def corpus(scale):
+    """Text of 100 MiB with one needle line in 1,024, and 5,000 files of 20 to 39 lines."""
+    where = ROOT / 'target' / 'ratio-corpus' / ('scale-%g' % scale)
+    stamp = where / 'COMPLETE'
+    if not stamp.exists():
+        where.mkdir(parents=True, exist_ok=True)
+        stream = Stream(20261123)
+        pool = line_pool(stream, 8192)
+        target = max(1, int(100 * 1024 * 1024 * scale))
+        with open(where / 'text', 'wb') as f:
+            written, block = 0, []
+            while written < target:
+                line = pool[stream.below(len(pool))]
+                if stream.below(1024) == 0:
+                    line = b'the needle %03d in a line\n' % stream.below(1000)
+                block.append(line)
+                written += len(line)
+                if len(block) == 65536:
+                    f.write(b''.join(block)); block = []
+            f.write(b''.join(block))
+        small = where / 'small'
+        small.mkdir(exist_ok=True)
+        for i in range(max(10, int(5000 * scale))):
+            body = [pool[stream.below(len(pool))] for _ in range(20 + stream.below(20))]
+            if stream.below(3) == 0:
+                body.insert(stream.below(len(body)), b'a needle %03d here\n' % stream.below(1000))
+            (small / ('f%05d' % i)).write_bytes(b''.join(body))
+        stamp.write_text('complete\n')
+    files = sorted(p.name for p in (where / 'small').iterdir())
+    return where, files, {'text': hashlib.sha256((where / 'text').read_bytes()).hexdigest(),
+                          'small': digest_tree(where / 'small'), 'small_files': len(files)}
+
+
+def child_path():
+    out = ROOT / 'target' / 'ratio-child'
+    src = ROOT / 'tools' / 'ratio-child.c'
+    if not out.exists() or out.stat().st_mtime < src.stat().st_mtime:
+        subprocess.run(['cc', '-O2', '-static', '-o', str(out), str(src)], check=True)
+    return out
+
+
+def run_once(child, program, argv, cwd, scratch, who):
+    out, err = scratch / (who + '.out'), scratch / (who + '.err')
+    line = subprocess.run([str(child), str(out), str(err), str(program), *argv], cwd=cwd, env={'LC_ALL': 'C', 'PATH': os.defpath},
+                          stdin=subprocess.DEVNULL, capture_output=True, text=True, check=True).stdout
+    fields = dict(item.split('=') for item in line.split())
+    data = out.read_bytes()
+    tuple_ = {'status': int(fields['status']), 'stdout_sha256': hashlib.sha256(data).hexdigest(),
+              'stdout_bytes': len(data), 'stderr_hex': err.read_bytes().hex()}
+    sample = {k: int(fields[k]) for k in ('user_us', 'sys_us', 'wall_us', 'maxrss_kb', 'minflt')}
+    return sample, tuple_
+
+
+def measure(row, argv, cwd, bins, child, runs, warmups, scratch):
+    names = list(bins)
+    orders = list(itertools.permutations(names))
+    samples = {n: [] for n in names}
+    tuples = {n: set() for n in names}
+    turn = 0
+    while min(len(v) for v in samples.values()) < runs:
+        for who in orders[turn % len(orders)]:
+            sample, answer = run_once(child, bins[who], argv, cwd, scratch, who)
+            tuples[who].add(json.dumps(answer, sort_keys=True))
+            if turn >= warmups and len(samples[who]) < runs:
+                samples[who].append(sample)
+        turn += 1
+    median = {n: {'cpu_us': statistics.median(s['user_us'] + s['sys_us'] for s in samples[n]),
+                  'wall_us': statistics.median(s['wall_us'] for s in samples[n]),
+                  'rss_kb': statistics.median(s['maxrss_kb'] for s in samples[n]),
+                  'minflt': statistics.median(s['minflt'] for s in samples[n])} for n in names}
+    ratio = lambda a, b: {m: (median[a][m] / median[b][m] if median[b][m] else None) for m in median[a]}
+    agreed = {n: [json.loads(t) for t in sorted(tuples[n])] for n in names}
+    return {'name': row, 'argv_head': argv[:3], 'argv_count': len(argv), 'turns': turn, 'samples': samples,
+            'median': median, 'ratio': ratio('scent', 'gnu'), 'aa': ratio('gnu-again', 'gnu'),
+            'before_ratio': ratio('scent', 'before') if 'before' in bins else None, 'tuples': agreed}
+
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument('--output', required=True)
+    p.add_argument('--bin', default='target/release/scent')
+    p.add_argument('--before-bin')
+    p.add_argument('--rows')
+    p.add_argument('--runs', type=int, default=31)
+    p.add_argument('--warmups', type=int, default=2)
+    p.add_argument('--repeat', type=int, default=1)
+    p.add_argument('--scale', type=float, default=1.0)
+    p.add_argument('--bounds')
+    a = p.parse_args()
+    identity = recorded_head()
+    if os.environ.get('SCENT_IN_CONTAINER') != '1':
+        raise SystemExit('ratio: REFUSED: run inside the pinned container')
+    subprocess.run([str(ROOT / 'tools/fetch-oracle')], check=True)
+    where, files, digests = corpus(a.scale)
+    rows = {'ratio-count-files': ['-c', 'needle', *('small/' + f for f in files)],
+            'ratio-literal-100M': ['-c', 'needle', 'text'],
+            'ratio-regex-100M': ['-c', '-E', REGEX, 'text']}
+    chosen = a.rows.split(',') if a.rows else list(rows)
+    if any(r not in rows for r in chosen):
+        raise SystemExit('ratio: unknown row in ' + a.rows)
+    bins = {'gnu': ROOT / '.oracle/grep', 'scent': (ROOT / a.bin).resolve(), 'gnu-again': ROOT / '.oracle/grep'}
+    if a.before_bin:
+        bins['before'] = (ROOT / a.before_bin).resolve()
+    child = child_path()
+    scratch = ROOT / 'target' / 'ratio-out'
+    scratch.mkdir(parents=True, exist_ok=True)
+    floor, _ = run_once(child, '--floor', [], where, scratch, 'floor')
+    report = {**identity, 'cpus': sorted(os.sched_getaffinity(0)), 'runs': a.runs, 'warmups': a.warmups,
+              'repeat': a.repeat, 'scale': a.scale, 'floor_kb': floor['maxrss_kb'], 'corpus': digests,
+              'binaries': {k: hashlib.sha256(v.read_bytes()).hexdigest() for k, v in bins.items()},
+              'source_sha256': {str(v.relative_to(ROOT)): hashlib.sha256(v.read_bytes()).hexdigest()
+                                for d in ['src', 'tools'] for v in sorted((ROOT / d).rglob('*'))
+                                if v.is_file() and '__pycache__' not in v.parts},
+              'rows': []}
+    for k in range(a.repeat):
+        for row in chosen:
+            started = time.monotonic()
+            result = measure(row, rows[row], where, bins, child, a.runs, a.warmups, scratch)
+            result['repeat_index'] = k
+            report['rows'].append(result)
+            print(f"ratio {row} repeat={k} cpu={result['ratio']['cpu_us']:.3f} rss={result['ratio']['rss_kb']:.3f} "
+                  f"minflt={result['ratio']['minflt']:.3f} aa_cpu={result['aa']['cpu_us']:.4f} "
+                  f"aa_rss={result['aa']['rss_kb']:.4f} secs={time.monotonic() - started:.0f}", flush=True)
+            (ROOT / a.output).write_text(json.dumps(report, indent=1) + '\n')
+    if a.bounds:
+        subprocess.run([sys.executable, '-I', str(ROOT / 'tools/ratio-check'), str(ROOT / a.output),
+                        str(ROOT / a.bounds)], check=True)
+
+
+if __name__ == '__main__':
+    main()
