@@ -288,9 +288,6 @@ pub fn scan(
     mut grouped: bool,
     mut writer: out.Output,
 ) -> Result {
-    let storage = region()
-    var carry = in storage { List[byte]() }
-    var history = in storage { History { rows: List[Record](), next: 0 } }
     var used: int = 0
     var st = State {
         number: 0,
@@ -315,143 +312,151 @@ pub fn scan(
         flags.listing == 0 &&
         !flags.quiet &&
         (!flags.only || flags.invert)
-    while !st.stop {
-        st = copy region chunk {
-            var current = copy st
-            let buf = fs_read_chunk(fd, chunk_size) else |e| match e {
-                eof => { current.stop = true; List[byte]() },
-                io => {
-                    let code = os_error()
-                    if !flags.silent { eprint("{opts.program()}: {name}: {os_error_text(code)}") }
-                    error = true
+    // The unfinished record and the context ring live as long as this operand. A
+    // block, not a region value: a region value is not freed at its last use.
+    region storage {
+        var carry = List[byte]()
+        var history = History { rows: List[Record](), next: 0 }
+        while !st.stop {
+            st = copy region chunk {
+                var current = copy st
+                let buf = fs_read_chunk(fd, chunk_size) else |e| match e {
+                    eof => { current.stop = true; List[byte]() },
+                    io => {
+                        let code = os_error()
+                        if !flags.silent {
+                            eprint("{opts.program()}: {name}: {os_error_text(code)}")
+                        }
+                        error = true
+                        current.stop = true
+                        List[byte]()
+                    },
+                }
+                // EOF without a carried record needs neither matcher nor output
+                // storage. Preserve partial final records and errors below.
+                if buf.len == 0 && used == 0 { break }
+                var ws = matcher.workspace_new(re)
+                out.reset(mut writer)
+                writer.any_group = grouped
+                if !flags.zero && flags.binary != 1 {
+                    if bytefind.find(buf, 0, 0 as byte) < buf.len { current.binary = true }
+                }
+                if current.binary && flags.binary == 2 {
+                    current.matches = 0
                     current.stop = true
-                    List[byte]()
-                },
-            }
-            // EOF without a carried record needs neither matcher nor output
-            // storage. Preserve partial final records and errors below.
-            if buf.len == 0 && used == 0 { break }
-            var ws = matcher.workspace_new(re)
-            out.reset(mut writer)
-            writer.any_group = grouped
-            if !flags.zero && flags.binary != 1 {
-                if bytefind.find(buf, 0, 0 as byte) < buf.len { current.binary = true }
-            }
-            if current.binary && flags.binary == 2 {
-                current.matches = 0
-                current.stop = true
-            } else {
-                var lo: int = 0
-                var at: int = 0
-                while at < buf.len && !current.stop {
-                    let term = if flags.zero then 0 as byte else 10 as byte
-                    at = bytefind.next_end(buf, at, term, current.binary && flags.binary == 0)
-                    if at == buf.len { break }
-                    let end = buf[at] == term ||
-                        current.binary && flags.binary == 0 && buf[at] == 0 as byte
-                    if end {
-                        if used > 0 {
-                            in storage { append(mut carry, used, buf, lo, at) }
-                            used += at - lo
-                            let hit = matcher.line_matches(re, mut ws, carry, 0, used)
-                            let chosen = hit != flags.invert
-                            emit(
-                                flags,
-                                re,
-                                mut ws,
-                                carry,
-                                0,
-                                used,
-                                chosen,
-                                name,
-                                width,
-                                history,
-                                mut current,
-                                mut writer,
-                            )
-                            if keep_history {
-                                in storage {
-                                    save(
-                                        mut history,
-                                        flags,
-                                        carry,
-                                        0,
-                                        used,
-                                        current.number,
-                                        current.offset,
-                                    )
+                } else {
+                    var lo: int = 0
+                    var at: int = 0
+                    while at < buf.len && !current.stop {
+                        let term = if flags.zero then 0 as byte else 10 as byte
+                        at = bytefind.next_end(buf, at, term, current.binary && flags.binary == 0)
+                        if at == buf.len { break }
+                        let end = buf[at] == term ||
+                            current.binary && flags.binary == 0 && buf[at] == 0 as byte
+                        if end {
+                            if used > 0 {
+                                in storage { append(mut carry, used, buf, lo, at) }
+                                used += at - lo
+                                let hit = matcher.line_matches(re, mut ws, carry, 0, used)
+                                let chosen = hit != flags.invert
+                                emit(
+                                    flags,
+                                    re,
+                                    mut ws,
+                                    carry,
+                                    0,
+                                    used,
+                                    chosen,
+                                    name,
+                                    width,
+                                    history,
+                                    mut current,
+                                    mut writer,
+                                )
+                                if keep_history {
+                                    in storage {
+                                        save(
+                                            mut history,
+                                            flags,
+                                            carry,
+                                            0,
+                                            used,
+                                            current.number,
+                                            current.offset,
+                                        )
+                                    }
                                 }
-                            }
-                            current.offset += used + 1
-                            used = 0
-                        } else {
-                            let hit = matcher.line_matches(re, mut ws, buf, lo, at)
-                            let chosen = hit != flags.invert
-                            emit(
-                                flags,
-                                re,
-                                mut ws,
-                                buf,
-                                lo,
-                                at,
-                                chosen,
-                                name,
-                                width,
-                                history,
-                                mut current,
-                                mut writer,
-                            )
-                            if keep_history {
-                                in storage {
-                                    save(
-                                        mut history,
-                                        flags,
-                                        buf,
-                                        lo,
-                                        at,
-                                        current.number,
-                                        current.offset,
-                                    )
+                                current.offset += used + 1
+                                used = 0
+                            } else {
+                                let hit = matcher.line_matches(re, mut ws, buf, lo, at)
+                                let chosen = hit != flags.invert
+                                emit(
+                                    flags,
+                                    re,
+                                    mut ws,
+                                    buf,
+                                    lo,
+                                    at,
+                                    chosen,
+                                    name,
+                                    width,
+                                    history,
+                                    mut current,
+                                    mut writer,
+                                )
+                                if keep_history {
+                                    in storage {
+                                        save(
+                                            mut history,
+                                            flags,
+                                            buf,
+                                            lo,
+                                            at,
+                                            current.number,
+                                            current.offset,
+                                        )
+                                    }
                                 }
+                                current.offset += at - lo + 1
                             }
-                            current.offset += at - lo + 1
+                            lo = at + 1
+                            if current.matches >= flags.limit && current.trailing == 0 {
+                                current.stop = true
+                            }
+                            if writer.failed { error = true; current.stop = true }
                         }
-                        lo = at + 1
-                        if current.matches >= flags.limit && current.trailing == 0 {
-                            current.stop = true
-                        }
-                        if writer.failed { error = true; current.stop = true }
+                        at += 1
                     }
-                    at += 1
+                    if !current.stop && lo < buf.len {
+                        in storage { append(mut carry, used, buf, lo, buf.len) }
+                        used += buf.len - lo
+                    }
+                    if buf.len == 0 && used > 0 && !error {
+                        let hit = matcher.line_matches(re, mut ws, carry, 0, used)
+                        emit(
+                            flags,
+                            re,
+                            mut ws,
+                            carry,
+                            0,
+                            used,
+                            hit != flags.invert,
+                            name,
+                            width,
+                            history,
+                            mut current,
+                            mut writer,
+                        )
+                        if hit != flags.invert { current.resume = current.offset + used }
+                        used = 0
+                    }
                 }
-                if !current.stop && lo < buf.len {
-                    in storage { append(mut carry, used, buf, lo, buf.len) }
-                    used += buf.len - lo
-                }
-                if buf.len == 0 && used > 0 && !error {
-                    let hit = matcher.line_matches(re, mut ws, carry, 0, used)
-                    emit(
-                        flags,
-                        re,
-                        mut ws,
-                        carry,
-                        0,
-                        used,
-                        hit != flags.invert,
-                        name,
-                        width,
-                        history,
-                        mut current,
-                        mut writer,
-                    )
-                    if hit != flags.invert { current.resume = current.offset + used }
-                    used = 0
-                }
+                out.flush(mut writer)
+                grouped = writer.any_group
+                if writer.failed { error = true; current.stop = true }
+                current
             }
-            out.flush(mut writer)
-            grouped = writer.any_group
-            if writer.failed { error = true; current.stop = true }
-            current
         }
     }
     if stdin && st.matches >= flags.limit && flags.limit > 0 {
