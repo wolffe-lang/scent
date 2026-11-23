@@ -13,13 +13,23 @@ pub struct Output {
     any_group: bool,
 }
 
-/// Allocate one reusable 64 KiB stdout buffer.
+/// Allocate one reusable 64 KiB stdout buffer. A run makes one and resets it;
+/// building it is 65,536 pushes, far more than a small file's whole scan.
 pub fn create() -> Output {
     var b = List[byte]()
     for i in 0..65536 {
         (mut b).push(0 as byte)
     }
     Output { buf: b, used: 0, failed: false, any_group: false }
+}
+
+/// Return a buffer to the state `create` gives, keeping its storage. Pending
+/// bytes are dropped, as a fresh buffer would drop them: every caller has
+/// flushed first, and a failed buffer's bytes are never written.
+pub fn reset(mut o: Output) {
+    o.used = 0
+    o.failed = false
+    o.any_group = false
 }
 
 /// Write pending bytes; report the first host write failure.
