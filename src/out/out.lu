@@ -19,7 +19,7 @@ pub struct Output {
     /// A terminal or --line-buffered: every newline leaves at once.
     lines: bool,
     /// A flush before a message failed (silently): reported when the run ends.
-    held: int,
+    held: bool,
 }
 
 /// Allocate the run's one stdout buffer.
@@ -28,7 +28,7 @@ pub fn create() -> Output {
     for i in 0..BLOCK {
         (mut b).push(0 as byte)
     }
-    Output { buf: b, used: 0, failed: false, any_group: false, lines: false, held: 0 }
+    Output { buf: b, used: 0, failed: false, any_group: false, lines: false, held: false }
 }
 
 fn reason(code: int) -> str {
@@ -50,19 +50,18 @@ pub fn flush(mut o: Output) {
 /// the run reports it.
 pub fn before_message(mut o: Output) {
     if o.used == 0 || o.failed { return }
-    fs_write_chunk(1, o.buf[0..o.used]) else |_| {
-        let code = os_error()
-        o.held = if code > 0 then code else -1
-    }
+    fs_write_chunk(1, o.buf[0..o.used]) else |_| { o.held = true }
     o.used = 0
 }
 
 /// End the run's output: write what is pending, then report a failure not yet
-/// reported. True when any write of output failed.
+/// reported. True when any write of output failed. A failed final write names
+/// its reason; an earlier failure with nothing left to write is reported bare,
+/// "write error", as the pinned GNU build reports it.
 pub fn finish(mut o: Output) -> bool {
     flush(mut o)
-    if o.held != 0 && !o.failed {
-        eprint("{opts.program()}: write error: {reason(o.held)}")
+    if o.held && !o.failed {
+        eprint("{opts.program()}: write error")
         o.failed = true
     }
     o.failed
