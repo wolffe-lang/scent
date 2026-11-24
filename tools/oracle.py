@@ -224,11 +224,11 @@ for c in selected:
                     (record/'case.json').write_text(json.dumps(c,indent=2)+'\n')
                     (record/'classification.json').write_text(json.dumps({'class':review['class'],'platform':sys.platform,'source_run':review['source_run']},indent=2)+'\n')
                     print('UPSTREAM-BLOCKED',name,'reviewed',sys.platform,'source-run',review['source_run'],flush=True)
-                else:print('REVIEWED',name,'ruling',review['ruling'],flush=True)
+                else:print('REVIEWED',name,'rule',review['rule'],flush=True)
                 continue
             same=False
             counts['stale-review']+=1
-            print('STALE REVIEW',name,'classification',review.get('ruling',review.get('class')),flush=True)
+            print('STALE REVIEW',name,'classification',review.get('rule',review.get('class')),flush=True)
         if same:counts['agree']+=1
         else:
             counts['differ']+=1

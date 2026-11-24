@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""One-time recording of already-ruled differences, never run by CI.
+"""One-time recording of already-reviewed differences, never run by CI.
 Every unknown family is refused; CI uses exact tuples/identity, not these
-family selectors. Ruling #122 is selection/span consistency, #115-117 and
-#120 are inherited, and R-ct04-1 is the installed-locale environment.
+family selectors. utf8-consistency is selection/span consistency under UTF-8;
+whole-word-leftmost-longest, double-star-means-star, never-cross-records and
+named-socket-obeys-Dskip are inherited; installed-locales is the environment.
 """
 import hashlib,json,pathlib,re
 ROOT=pathlib.Path(__file__).resolve().parent.parent
@@ -16,18 +17,18 @@ for line in log.splitlines():
  if name in ['utf8-cli-22','utf8-edge-cli-03']:continue # implementation corrections, NOT reviews
  review={}
  if name.startswith('m3-fold-'):
-  review={'ruling':122,'class':'gnu-inconsistent','reason':'consistent fold closure, isolated vs combined line', 'witness':'notes/ct04-evidence/utf8-stop-witnesses.json'}
+  review={'rule':'utf8-consistency','class':'gnu-inconsistent','reason':'consistent fold closure, isolated vs combined line', 'witness':'notes/ct04-evidence/utf8-stop-witnesses.json'}
  elif name.startswith(('m3-error-surrogate-','m3-error-above-max-','m3-error-five-byte-','m3-error-six-byte-')):
   assert c['files']['patterns']['base64']=='Lgo=' # dot alone; no broad invalid-byte waiver
-  review={'ruling':122,'class':'gnu-inconsistent','reason':'strict dot, isolated vs combined encoding', 'witness':'notes/ct04-evidence/utf8-stop-witnesses.json'}
+  review={'rule':'utf8-consistency','class':'gnu-inconsistent','reason':'strict dot, isolated vs combined encoding', 'witness':'notes/ct04-evidence/utf8-stop-witnesses.json'}
  elif name=='m3-environment-absent-locale':
-  review={'ruling':'R-ct04-1','class':'environment','reason':'the oracle image installs only C, C.UTF-8 and POSIX'}
+  review={'rule':'installed-locales','class':'environment','reason':'the oracle image installs only C, C.UTF-8 and POSIX'}
  elif name.startswith('utf8-'):
   source=name[5:]
   if source in base:review={k:v for k,v in base[source].items() if k not in ['gnu','scent','case_sha256']}
-  elif source.startswith('cross-F-'):review={'ruling':117}
-  elif source.startswith('ruled-star-'):review={'ruling':116}
-  elif source.startswith('ruled-word-'):review={'ruling':115}
+  elif source.startswith('cross-F-'):review={'rule':'never-cross-records'}
+  elif source.startswith('ruled-star-'):review={'rule':'double-star-means-star'}
+  elif source.startswith('ruled-word-'):review={'rule':'whole-word-leftmost-longest'}
   else:raise SystemExit('STOP unclassified inherited difference '+name)
   review['source_case']=source
  else:raise SystemExit('STOP unclassified difference '+name)

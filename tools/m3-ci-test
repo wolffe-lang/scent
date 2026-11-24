@@ -18,8 +18,8 @@ assert counts=={'gnu-inconsistent':550,'environment':1,'inherited':120},counts
 for name,r in reviews.items():
  assert r['case_sha256']==hashlib.sha256(json.dumps(cases[name],sort_keys=True,separators=(',',':')).encode()).hexdigest(),name
  assert r['gnu']!=r['scent']
- if r.get('class')=='gnu-inconsistent':assert r['ruling']==122 and (root/r['witness']).is_file()
- if r.get('class')=='environment':assert name=='m3-environment-absent-locale' and r['ruling']=='R-ct04-1'
+ if r.get('class')=='gnu-inconsistent':assert r['rule']=='utf8-consistency' and (root/r['witness']).is_file()
+ if r.get('class')=='environment':assert name=='m3-environment-absent-locale' and r['rule']=='installed-locales'
 workflow=(root/'.github/workflows/ci.yml').read_text();gate=(root/'tools/gate').read_text()
 for name in ['m3-ci-test','check-ctype-regen']:
  assert 'tools/'+name in workflow and 'tools/'+name in gate

@@ -1,6 +1,6 @@
 {
   "m3-error-surrogate-low-only-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -19,7 +19,7 @@
     ]
   },
   "m3-error-surrogate-low-inside-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -38,7 +38,7 @@
     ]
   },
   "m3-error-surrogate-low-inside-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -57,7 +57,7 @@
     ]
   },
   "m3-error-surrogate-low-inside-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -76,7 +76,7 @@
     ]
   },
   "m3-error-surrogate-low-before-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -95,7 +95,7 @@
     ]
   },
   "m3-error-surrogate-low-before-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -114,7 +114,7 @@
     ]
   },
   "m3-error-surrogate-low-before-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -133,7 +133,7 @@
     ]
   },
   "m3-error-surrogate-low-after-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -152,7 +152,7 @@
     ]
   },
   "m3-error-surrogate-low-after-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -171,7 +171,7 @@
     ]
   },
   "m3-error-surrogate-low-after-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -190,7 +190,7 @@
     ]
   },
   "m3-error-surrogate-low-other-line-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -209,7 +209,7 @@
     ]
   },
   "m3-error-surrogate-low-eof-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -228,7 +228,7 @@
     ]
   },
   "m3-error-surrogate-low-eof-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -247,7 +247,7 @@
     ]
   },
   "m3-error-surrogate-low-eof-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -266,7 +266,7 @@
     ]
   },
   "m3-error-surrogate-high-only-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -285,7 +285,7 @@
     ]
   },
   "m3-error-surrogate-high-inside-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -304,7 +304,7 @@
     ]
   },
   "m3-error-surrogate-high-inside-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -323,7 +323,7 @@
     ]
   },
   "m3-error-surrogate-high-inside-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -342,7 +342,7 @@
     ]
   },
   "m3-error-surrogate-high-before-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -361,7 +361,7 @@
     ]
   },
   "m3-error-surrogate-high-before-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -380,7 +380,7 @@
     ]
   },
   "m3-error-surrogate-high-before-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -399,7 +399,7 @@
     ]
   },
   "m3-error-surrogate-high-after-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -418,7 +418,7 @@
     ]
   },
   "m3-error-surrogate-high-after-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -437,7 +437,7 @@
     ]
   },
   "m3-error-surrogate-high-after-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -456,7 +456,7 @@
     ]
   },
   "m3-error-surrogate-high-other-line-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -475,7 +475,7 @@
     ]
   },
   "m3-error-surrogate-high-eof-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -494,7 +494,7 @@
     ]
   },
   "m3-error-surrogate-high-eof-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -513,7 +513,7 @@
     ]
   },
   "m3-error-surrogate-high-eof-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -532,7 +532,7 @@
     ]
   },
   "m3-error-above-max-only-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -551,7 +551,7 @@
     ]
   },
   "m3-error-above-max-inside-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -570,7 +570,7 @@
     ]
   },
   "m3-error-above-max-inside-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -589,7 +589,7 @@
     ]
   },
   "m3-error-above-max-inside-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -608,7 +608,7 @@
     ]
   },
   "m3-error-above-max-before-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -627,7 +627,7 @@
     ]
   },
   "m3-error-above-max-before-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -646,7 +646,7 @@
     ]
   },
   "m3-error-above-max-before-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -665,7 +665,7 @@
     ]
   },
   "m3-error-above-max-after-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -684,7 +684,7 @@
     ]
   },
   "m3-error-above-max-after-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -703,7 +703,7 @@
     ]
   },
   "m3-error-above-max-after-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -722,7 +722,7 @@
     ]
   },
   "m3-error-above-max-other-line-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -741,7 +741,7 @@
     ]
   },
   "m3-error-above-max-eof-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -760,7 +760,7 @@
     ]
   },
   "m3-error-above-max-eof-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -779,7 +779,7 @@
     ]
   },
   "m3-error-above-max-eof-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -798,7 +798,7 @@
     ]
   },
   "m3-error-five-byte-only-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -817,7 +817,7 @@
     ]
   },
   "m3-error-five-byte-inside-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -836,7 +836,7 @@
     ]
   },
   "m3-error-five-byte-inside-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -855,7 +855,7 @@
     ]
   },
   "m3-error-five-byte-inside-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -874,7 +874,7 @@
     ]
   },
   "m3-error-five-byte-before-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -893,7 +893,7 @@
     ]
   },
   "m3-error-five-byte-before-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -912,7 +912,7 @@
     ]
   },
   "m3-error-five-byte-before-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -931,7 +931,7 @@
     ]
   },
   "m3-error-five-byte-after-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -950,7 +950,7 @@
     ]
   },
   "m3-error-five-byte-after-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -969,7 +969,7 @@
     ]
   },
   "m3-error-five-byte-after-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -988,7 +988,7 @@
     ]
   },
   "m3-error-five-byte-other-line-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1007,7 +1007,7 @@
     ]
   },
   "m3-error-five-byte-eof-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1026,7 +1026,7 @@
     ]
   },
   "m3-error-five-byte-eof-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1045,7 +1045,7 @@
     ]
   },
   "m3-error-five-byte-eof-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1064,7 +1064,7 @@
     ]
   },
   "m3-error-six-byte-only-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1083,7 +1083,7 @@
     ]
   },
   "m3-error-six-byte-inside-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1102,7 +1102,7 @@
     ]
   },
   "m3-error-six-byte-inside-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1121,7 +1121,7 @@
     ]
   },
   "m3-error-six-byte-inside-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1140,7 +1140,7 @@
     ]
   },
   "m3-error-six-byte-before-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1159,7 +1159,7 @@
     ]
   },
   "m3-error-six-byte-before-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1178,7 +1178,7 @@
     ]
   },
   "m3-error-six-byte-before-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1197,7 +1197,7 @@
     ]
   },
   "m3-error-six-byte-after-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1216,7 +1216,7 @@
     ]
   },
   "m3-error-six-byte-after-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1235,7 +1235,7 @@
     ]
   },
   "m3-error-six-byte-after-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1254,7 +1254,7 @@
     ]
   },
   "m3-error-six-byte-other-line-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1273,7 +1273,7 @@
     ]
   },
   "m3-error-six-byte-eof-9-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1292,7 +1292,7 @@
     ]
   },
   "m3-error-six-byte-eof-10-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1311,7 +1311,7 @@
     ]
   },
   "m3-error-six-byte-eof-16-1": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "strict dot, isolated vs combined encoding",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -1330,7 +1330,7 @@
     ]
   },
   "utf8-cross-F-middle-00": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-middle-00",
     "case_sha256": "ac449d30f71fe34e05625decdb9143c683a1c20962a54a003d15d47626e3c41b",
     "gnu": [
@@ -1347,7 +1347,7 @@
     ]
   },
   "utf8-cross-F-middle-01": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-middle-01",
     "case_sha256": "22a0d0ca90b8a600681443d4229fc886a9e42b4bc76692d2c9ccc566b0fcc398",
     "gnu": [
@@ -1364,7 +1364,7 @@
     ]
   },
   "utf8-cross-F-middle-02": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-middle-02",
     "case_sha256": "41a0afbdcccaba49e92f1c611f16346f6faea45fd7b10fe78f71a69623ce5482",
     "gnu": [
@@ -1381,7 +1381,7 @@
     ]
   },
   "utf8-cross-F-middle-03": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-middle-03",
     "case_sha256": "994f8546845cc4845d06ca4d0729d69d415575a0325ab22b7933edd098babee4",
     "gnu": [
@@ -1398,7 +1398,7 @@
     ]
   },
   "utf8-cross-F-middle-04": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-middle-04",
     "case_sha256": "0ce3ebbbce8b5a5c1f7f91eee15309db91251c600d5895e5d09d6127e062d21e",
     "gnu": [
@@ -1415,7 +1415,7 @@
     ]
   },
   "utf8-cross-F-middle-05": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-middle-05",
     "case_sha256": "eb0eadb475eba28ab13970af46f8f796a78d0714ea02aec49268533b433c1185",
     "gnu": [
@@ -1432,7 +1432,7 @@
     ]
   },
   "utf8-cross-F-middle-06": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-middle-06",
     "case_sha256": "785624600f8cf111fd69cb4fe86b68d8bcaaa6b6756ee77e3a023ed4122552bb",
     "gnu": [
@@ -1449,7 +1449,7 @@
     ]
   },
   "utf8-cross-F-middle-07": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-middle-07",
     "case_sha256": "6d36073f0af6885ff3b0a8de6e0c28a9bf5a740658233aaff2987f1c5f2a19a8",
     "gnu": [
@@ -1466,7 +1466,7 @@
     ]
   },
   "utf8-cross-F-middle-08": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-middle-08",
     "case_sha256": "a75008207b7659be34c2c86d7c05ea1da4f4eb2abb8d40c5a226f74032caad2c",
     "gnu": [
@@ -1483,7 +1483,7 @@
     ]
   },
   "utf8-cross-F-middle-09": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-middle-09",
     "case_sha256": "086cf93007ce41cf37c0bc01b509e8af19a515956b012e6af60ca2b21c4d3024",
     "gnu": [
@@ -1500,7 +1500,7 @@
     ]
   },
   "utf8-cross-F-middle-10": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-middle-10",
     "case_sha256": "0d6962e6f773090aaecdb7c90b8047c549157aa5205c512510a7310fb91f6b21",
     "gnu": [
@@ -1517,7 +1517,7 @@
     ]
   },
   "utf8-cross-F-middle-11": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-middle-11",
     "case_sha256": "dbdc61089364777fc714236b845c3253f8c97ea817abf8d8e45e89a54214ce14",
     "gnu": [
@@ -1534,7 +1534,7 @@
     ]
   },
   "utf8-cross-F-end-00": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-end-00",
     "case_sha256": "672f9893563682cd5a9e411d1e50740c6221417a94eac8f24583aa48c402a4da",
     "gnu": [
@@ -1551,7 +1551,7 @@
     ]
   },
   "utf8-cross-F-end-01": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-end-01",
     "case_sha256": "01fdf18ee56dc9701187e01744baded2d846bc0d1a7a3e6e5d11db933c3ec013",
     "gnu": [
@@ -1568,7 +1568,7 @@
     ]
   },
   "utf8-cross-F-end-02": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-end-02",
     "case_sha256": "845a5f5a175af0e2916b641da08b5d8924d57af85753ee45dc0219766fb6aff1",
     "gnu": [
@@ -1585,7 +1585,7 @@
     ]
   },
   "utf8-cross-F-end-03": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-end-03",
     "case_sha256": "4bd923a3904afd395c7de2a580b97e58f9918817b2fac312d481da1283377d8d",
     "gnu": [
@@ -1602,7 +1602,7 @@
     ]
   },
   "utf8-cross-F-end-04": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-end-04",
     "case_sha256": "de73c6d683c25f31fa9163a1288c7341c693c12c7ab81c839f2dd69ea8c30d24",
     "gnu": [
@@ -1619,7 +1619,7 @@
     ]
   },
   "utf8-cross-F-end-05": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-end-05",
     "case_sha256": "ebfbae87fdc15ad973dca30550e16b4229f31902797c5585350917dd4c2ddfe1",
     "gnu": [
@@ -1636,7 +1636,7 @@
     ]
   },
   "utf8-cross-F-end-06": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-end-06",
     "case_sha256": "fd130433330aacecebe89b41af5e252074a45a1c114ba6c99e4d23738eda19f2",
     "gnu": [
@@ -1653,7 +1653,7 @@
     ]
   },
   "utf8-cross-F-end-09": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-end-09",
     "case_sha256": "2bb683b8271432e0e0b8626ed0a04dd8bfd7015322bd30ed1d4e5178184cb8a0",
     "gnu": [
@@ -1670,7 +1670,7 @@
     ]
   },
   "utf8-cross-F-end-10": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-end-10",
     "case_sha256": "871dd36a6fdbb899efc38a91e6d4c3c9d898489a5c4022c60ff51754a889419a",
     "gnu": [
@@ -1687,7 +1687,7 @@
     ]
   },
   "utf8-cross-F-end-11": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-end-11",
     "case_sha256": "ae0ca77c28fc6f186859d3f8ec81114f34efa0f55b13ea922de6dda9de85642b",
     "gnu": [
@@ -1704,7 +1704,7 @@
     ]
   },
   "utf8-cross-F-start-00": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-start-00",
     "case_sha256": "dd584fc62a7aabc726bcced95c5b16ad336894233763813505106f424468820d",
     "gnu": [
@@ -1721,7 +1721,7 @@
     ]
   },
   "utf8-cross-F-start-01": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-start-01",
     "case_sha256": "45136c964a0aadb135dc2c7d7940bf53370ff1bcc7da583a3b9e7637a4fa1b3c",
     "gnu": [
@@ -1738,7 +1738,7 @@
     ]
   },
   "utf8-cross-F-start-02": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-start-02",
     "case_sha256": "b4b9c041646d37693c6af68e8a752b0992a5b3c64c23b111fbaa5c970a7ae530",
     "gnu": [
@@ -1755,7 +1755,7 @@
     ]
   },
   "utf8-cross-F-start-03": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-start-03",
     "case_sha256": "9dd13312dbed2c9714cf467136342a781fa2edbcc892120e332aa48af4c7de7d",
     "gnu": [
@@ -1772,7 +1772,7 @@
     ]
   },
   "utf8-cross-F-start-04": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-start-04",
     "case_sha256": "752557c358547b4372723e745fe83648b939f1b860a1061c1ac2f5b0ba4248ce",
     "gnu": [
@@ -1789,7 +1789,7 @@
     ]
   },
   "utf8-cross-F-start-05": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-start-05",
     "case_sha256": "0a6fbdfe26a1a56f351dc56e1d26b7e48e6557b394818add3a50c4bffe39b662",
     "gnu": [
@@ -1806,7 +1806,7 @@
     ]
   },
   "utf8-cross-F-start-06": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-start-06",
     "case_sha256": "edb0524cb195f192c98e40bdf06718492dd5ec178656fda9888d98661821d116",
     "gnu": [
@@ -1823,7 +1823,7 @@
     ]
   },
   "utf8-cross-F-start-09": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-start-09",
     "case_sha256": "72c618de62483ac6c6e557300cd850a631af98d574f7818f2bd9edb70e9f4bfc",
     "gnu": [
@@ -1840,7 +1840,7 @@
     ]
   },
   "utf8-cross-F-start-10": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-start-10",
     "case_sha256": "ecb23221fa26b58f7ec283ba0a75f2acddcc1685b20869881e931784a139b24f",
     "gnu": [
@@ -1857,7 +1857,7 @@
     ]
   },
   "utf8-cross-F-start-11": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-start-11",
     "case_sha256": "adb061468e786e7fb9d36eff50dfeebe9a7e8977275d0cbb7a62af7eb1b3074c",
     "gnu": [
@@ -1874,7 +1874,7 @@
     ]
   },
   "utf8-cross-F-three-00": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-three-00",
     "case_sha256": "d77eb03e199df69f99b80d006550ae0edf9ad6b516249118b579a942f1e92aa9",
     "gnu": [
@@ -1891,7 +1891,7 @@
     ]
   },
   "utf8-cross-F-three-01": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-three-01",
     "case_sha256": "5419b8609852e011ed10e14bc35dd98465a7b6117f21a743cac2d6fc35cc92f8",
     "gnu": [
@@ -1908,7 +1908,7 @@
     ]
   },
   "utf8-cross-F-three-02": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-three-02",
     "case_sha256": "10d20e4f4370a2920dcfbc9ffb2e06cafc90549e215d6c9c55325ad9e1fa2374",
     "gnu": [
@@ -1925,7 +1925,7 @@
     ]
   },
   "utf8-cross-F-three-03": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-three-03",
     "case_sha256": "eeb2ff6a3d18b7f6ca43655a176a21fee80d64a40ea42a90a67d6a85640a2cbb",
     "gnu": [
@@ -1942,7 +1942,7 @@
     ]
   },
   "utf8-cross-F-three-04": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-three-04",
     "case_sha256": "0005bf9dd88ea151daa5e70c2257d304c85dc9b4b7b0414a84d7e56ce1a7ef20",
     "gnu": [
@@ -1959,7 +1959,7 @@
     ]
   },
   "utf8-cross-F-three-05": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-three-05",
     "case_sha256": "b4814d7371d612e5cef1b880be49a0626ebb9b7feaccea766f43552445a783e4",
     "gnu": [
@@ -1976,7 +1976,7 @@
     ]
   },
   "utf8-cross-F-three-06": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-three-06",
     "case_sha256": "cf59a26f139e5e5e17b371912ec74e9a4d9e56af0b360c23a889fcb2dc6304fd",
     "gnu": [
@@ -1993,7 +1993,7 @@
     ]
   },
   "utf8-cross-F-three-07": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-three-07",
     "case_sha256": "b1321f9591926cf41dfde2b4236aaf8207fe5f9c36826d53366f0c505e786dd7",
     "gnu": [
@@ -2010,7 +2010,7 @@
     ]
   },
   "utf8-cross-F-three-08": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-three-08",
     "case_sha256": "e0a02dc3a7dd82b141dc2b6ab7f09c302e3bc5c65cdbdbcc2f7aed2be3d45015",
     "gnu": [
@@ -2027,7 +2027,7 @@
     ]
   },
   "utf8-cross-F-three-09": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-three-09",
     "case_sha256": "6d812559f08468b9e8ad35d54ffcdb9206dfe78dd2f56c1b336766e48ce82a6d",
     "gnu": [
@@ -2044,7 +2044,7 @@
     ]
   },
   "utf8-cross-F-three-10": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-three-10",
     "case_sha256": "4e39dda919fd4811124ca86bfd58017e3313a14d355e7d020c8c21d97f2d0a53",
     "gnu": [
@@ -2061,7 +2061,7 @@
     ]
   },
   "utf8-cross-F-three-11": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-three-11",
     "case_sha256": "3b8b934ed4eca58947b75aeae810b3dac69e617eb018d279c6e853b16a880822",
     "gnu": [
@@ -2078,7 +2078,7 @@
     ]
   },
   "utf8-cross-F-alone-00": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-alone-00",
     "case_sha256": "8cfe1dc3e667918ff632c8f50cf90233b7b51b8a5e7fb8fe330c139927033084",
     "gnu": [
@@ -2095,7 +2095,7 @@
     ]
   },
   "utf8-cross-F-alone-01": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-alone-01",
     "case_sha256": "9325d85fa2a5d85b145f919068f57029c9ca90d6b4965f54c9c459a90385a673",
     "gnu": [
@@ -2112,7 +2112,7 @@
     ]
   },
   "utf8-cross-F-alone-02": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-alone-02",
     "case_sha256": "f7d178195f8e1fd4360d9a2933375328d216c9099b8edf3e92b9cedf7e08c040",
     "gnu": [
@@ -2129,7 +2129,7 @@
     ]
   },
   "utf8-cross-F-alone-03": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-alone-03",
     "case_sha256": "fa26df8030a9889614df673a58a336484fa100d785cdf304c7740c587d752b7b",
     "gnu": [
@@ -2146,7 +2146,7 @@
     ]
   },
   "utf8-cross-F-alone-04": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-alone-04",
     "case_sha256": "ce9fb2e5dbfa2448d629d10d710a885607956ea94e41cd6d4629b8da04a8a7d8",
     "gnu": [
@@ -2163,7 +2163,7 @@
     ]
   },
   "utf8-cross-F-alone-05": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-alone-05",
     "case_sha256": "de48a1c259151dd92a497c6e20086915e9f2f9ee0386a606402df940faa95537",
     "gnu": [
@@ -2180,7 +2180,7 @@
     ]
   },
   "utf8-cross-F-alone-06": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-alone-06",
     "case_sha256": "7aebdb524303063f6712caa9cee0e1bb6bb82f9443ef824266b8d8f18c22eac7",
     "gnu": [
@@ -2197,7 +2197,7 @@
     ]
   },
   "utf8-cross-F-alone-09": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-alone-09",
     "case_sha256": "8927053afa8d61b0205f6c4c681e14990336ee96996738a30de97bb366a1a0cd",
     "gnu": [
@@ -2214,7 +2214,7 @@
     ]
   },
   "utf8-cross-F-alone-10": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-alone-10",
     "case_sha256": "8a316a85321866e382415300cb1e5b6bfa7f615fb0bc1c2c1f926d6452390a66",
     "gnu": [
@@ -2231,7 +2231,7 @@
     ]
   },
   "utf8-cross-F-alone-11": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "cross-F-alone-11",
     "case_sha256": "a40979fd02db6663ca7e8642eb2f1834bf67cbe8864166a0b2f70833cfbcadac",
     "gnu": [
@@ -2248,7 +2248,7 @@
     ]
   },
   "utf8-not-yet-argv0-diagnostic-0": {
-    "ruling": "R-ct02-5",
+    "rule": "upstream-invocation-name",
     "kind": "upstream",
     "issues": [
       899,
@@ -2271,7 +2271,7 @@
     ]
   },
   "utf8-not-yet-argv0-diagnostic-1": {
-    "ruling": "R-ct02-5",
+    "rule": "upstream-invocation-name",
     "kind": "upstream",
     "issues": [
       899,
@@ -2294,7 +2294,7 @@
     ]
   },
   "utf8-not-yet-argv0-diagnostic-2": {
-    "ruling": "R-ct02-5",
+    "rule": "upstream-invocation-name",
     "kind": "upstream",
     "issues": [
       899,
@@ -2317,7 +2317,7 @@
     ]
   },
   "utf8-not-yet-argv0-usage-0": {
-    "ruling": "R-ct02-5",
+    "rule": "upstream-invocation-name",
     "kind": "upstream",
     "issues": [
       899,
@@ -2340,7 +2340,7 @@
     ]
   },
   "utf8-not-yet-argv0-usage-1": {
-    "ruling": "R-ct02-5",
+    "rule": "upstream-invocation-name",
     "kind": "upstream",
     "issues": [
       899,
@@ -2363,7 +2363,7 @@
     ]
   },
   "utf8-not-yet-argv0-usage-2": {
-    "ruling": "R-ct02-5",
+    "rule": "upstream-invocation-name",
     "kind": "upstream",
     "issues": [
       899,
@@ -2386,7 +2386,7 @@
     ]
   },
   "utf8-not-yet-argv-bytes-0": {
-    "ruling": "R-ct02-6",
+    "rule": "upstream-byte-argv",
     "kind": "upstream",
     "issues": [
       406,
@@ -2409,7 +2409,7 @@
     ]
   },
   "utf8-not-yet-argv-bytes-1": {
-    "ruling": "R-ct02-6",
+    "rule": "upstream-byte-argv",
     "kind": "upstream",
     "issues": [
       406,
@@ -2432,7 +2432,7 @@
     ]
   },
   "utf8-nul-pattern-z": {
-    "ruling": 117,
+    "rule": "never-cross-records",
     "source_case": "nul-pattern-z",
     "case_sha256": "61527760ea1f05385666720d00c470a0dcd9409b0bc7aa3b426e38acfed392c6",
     "gnu": [
@@ -2449,7 +2449,7 @@
     ]
   },
   "utf8-m2-edges-11": {
-    "ruling": 120,
+    "rule": "named-socket-obeys-Dskip",
     "source_case": "m2-edges-11",
     "case_sha256": "54d50989b711cd859822b100b88dac4fbf5b58af62a11dec18a8aced2585ee19",
     "gnu": [
@@ -2466,7 +2466,7 @@
     ]
   },
   "utf8-m2-upstream-byte-name": {
-    "ruling": "R-ct03-3",
+    "rule": "upstream-byte-path",
     "kind": "upstream",
     "issues": [
       "wolf-lang#687",
@@ -2488,7 +2488,7 @@
     ]
   },
   "utf8-m2-socket-skip": {
-    "ruling": 120,
+    "rule": "named-socket-obeys-Dskip",
     "source_case": "m2-socket-skip",
     "case_sha256": "489900b031d8d86ed92cc9f939c1bb0bdc39cd1a1425089da19b01a3759d1222",
     "gnu": [
@@ -2505,7 +2505,7 @@
     ]
   },
   "utf8-ruled-word-01": {
-    "ruling": 115,
+    "rule": "whole-word-leftmost-longest",
     "source_case": "ruled-word-01",
     "case_sha256": "745ac53022bce9aef38c6bb8b942d001929ef80fbf1ae96f17b67062f31acbf5",
     "gnu": [
@@ -2522,7 +2522,7 @@
     ]
   },
   "utf8-ruled-word-02": {
-    "ruling": 115,
+    "rule": "whole-word-leftmost-longest",
     "source_case": "ruled-word-02",
     "case_sha256": "862ad6b6cfbd054f8aa3aa33e151ce44425b642c630956969d3703985d9e2407",
     "gnu": [
@@ -2539,7 +2539,7 @@
     ]
   },
   "utf8-ruled-word-04": {
-    "ruling": 115,
+    "rule": "whole-word-leftmost-longest",
     "source_case": "ruled-word-04",
     "case_sha256": "505e951c358c4417fe15a3bf27a92d38c9451231f638ac00403acc952835f36e",
     "gnu": [
@@ -2556,7 +2556,7 @@
     ]
   },
   "utf8-ruled-word-05": {
-    "ruling": 115,
+    "rule": "whole-word-leftmost-longest",
     "source_case": "ruled-word-05",
     "case_sha256": "b100f21ba4e5c2d10950e2f4754fff49d7bfa3f3c77f759f38b1f9a5f8bf29d2",
     "gnu": [
@@ -2573,7 +2573,7 @@
     ]
   },
   "utf8-ruled-word-06": {
-    "ruling": 115,
+    "rule": "whole-word-leftmost-longest",
     "source_case": "ruled-word-06",
     "case_sha256": "c72aa735f7b237a90f3d9f29b75912006c1b84cac7ac1a0424da0a6e9310ffeb",
     "gnu": [
@@ -2590,7 +2590,7 @@
     ]
   },
   "utf8-ruled-word-07": {
-    "ruling": 115,
+    "rule": "whole-word-leftmost-longest",
     "source_case": "ruled-word-07",
     "case_sha256": "b56ee9c1258d076a1ba08f23d63aca7f8fd9fe9951b1264aa6a254362332b277",
     "gnu": [
@@ -2607,7 +2607,7 @@
     ]
   },
   "utf8-ruled-word-11": {
-    "ruling": 115,
+    "rule": "whole-word-leftmost-longest",
     "source_case": "ruled-word-11",
     "case_sha256": "fb19d604bc26ce25b7292e4655861c482f05f6fe01d5862113d56ec83e8d2f67",
     "gnu": [
@@ -2624,7 +2624,7 @@
     ]
   },
   "utf8-ruled-word-12": {
-    "ruling": 115,
+    "rule": "whole-word-leftmost-longest",
     "source_case": "ruled-word-12",
     "case_sha256": "8215780b88d17e8e93fe888d58d396f2879678c473a0f6ad7ef389a07ea969fa",
     "gnu": [
@@ -2641,7 +2641,7 @@
     ]
   },
   "utf8-ruled-word-14": {
-    "ruling": 115,
+    "rule": "whole-word-leftmost-longest",
     "source_case": "ruled-word-14",
     "case_sha256": "ac52e0d21ff192bc005103fa2b16722ddd13933ed88b90d01619529ab83fed1a",
     "gnu": [
@@ -2658,7 +2658,7 @@
     ]
   },
   "utf8-ruled-word-15": {
-    "ruling": 115,
+    "rule": "whole-word-leftmost-longest",
     "source_case": "ruled-word-15",
     "case_sha256": "f613f88da6c25e8a7c4f25f0845c8d9c19e21df389780ec592f02b2560851c00",
     "gnu": [
@@ -2675,7 +2675,7 @@
     ]
   },
   "utf8-ruled-word-16": {
-    "ruling": 115,
+    "rule": "whole-word-leftmost-longest",
     "source_case": "ruled-word-16",
     "case_sha256": "33e5ff40c1b286b81f36e956651b0d2217ccfd0ef10d93fdc1825544592dea22",
     "gnu": [
@@ -2692,7 +2692,7 @@
     ]
   },
   "utf8-ruled-word-17": {
-    "ruling": 115,
+    "rule": "whole-word-leftmost-longest",
     "source_case": "ruled-word-17",
     "case_sha256": "41a280cc12c0bfeb5b409bc84a31f5e61561d7f19ed0d30aa956a949c651d7e2",
     "gnu": [
@@ -2709,7 +2709,7 @@
     ]
   },
   "utf8-ruled-word-cli-G": {
-    "ruling": 115,
+    "rule": "whole-word-leftmost-longest",
     "source_case": "ruled-word-cli-G",
     "case_sha256": "d8aab843bdb03938e066de2ef9e9d4e0e91da3d47d4890997c4f5ca0e2b3e7b7",
     "gnu": [
@@ -2726,7 +2726,7 @@
     ]
   },
   "utf8-ruled-word-cli-E": {
-    "ruling": 115,
+    "rule": "whole-word-leftmost-longest",
     "source_case": "ruled-word-cli-E",
     "case_sha256": "585e83348211d53e67f265e41a50d84248b13d284830037c5f0ad4609c213b4a",
     "gnu": [
@@ -2743,7 +2743,7 @@
     ]
   },
   "utf8-ruled-star-G-01-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-01-select",
     "case_sha256": "6a02370609dafaca1618cd20472894a5770e28eacc995f1715aa4602c108b3d7",
     "gnu": [
@@ -2760,7 +2760,7 @@
     ]
   },
   "utf8-ruled-star-G-01-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-01-span",
     "case_sha256": "49ff473635a74ed6e527bb3d3936263683fa0f27e99b799e27360dace933f4cc",
     "gnu": [
@@ -2777,7 +2777,7 @@
     ]
   },
   "utf8-ruled-star-G-03-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-03-select",
     "case_sha256": "9f2e7dd7ae2e8fe4d30d28c20cdab858e96a2ba1987ea9bd13c801b6efdeb44d",
     "gnu": [
@@ -2794,7 +2794,7 @@
     ]
   },
   "utf8-ruled-star-G-03-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-03-span",
     "case_sha256": "9780d45d28ea61cad44d13565ff66af0c66d6164fe19915d0101f1114e07d3d9",
     "gnu": [
@@ -2811,7 +2811,7 @@
     ]
   },
   "utf8-ruled-star-G-05-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-05-select",
     "case_sha256": "adc304e3cb2d5f636e62871c1c07caef26c8fdc24190689c4bb45a63ec96c9aa",
     "gnu": [
@@ -2828,7 +2828,7 @@
     ]
   },
   "utf8-ruled-star-G-05-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-05-span",
     "case_sha256": "6c46409d1712334dac7ad46c76fe7ce39e0c9dc58f1f1896645be3addfedc653",
     "gnu": [
@@ -2845,7 +2845,7 @@
     ]
   },
   "utf8-ruled-star-G-08-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-08-select",
     "case_sha256": "35d924027fd5fb6c9b9f1b5f96eda2edd09180af09918008a4503f6c38e5823e",
     "gnu": [
@@ -2862,7 +2862,7 @@
     ]
   },
   "utf8-ruled-star-G-08-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-08-span",
     "case_sha256": "fe8f8bba3da70cb6a19cf9c8322b1d27fd2edfd882d977fc0225ecea0538c9d9",
     "gnu": [
@@ -2879,7 +2879,7 @@
     ]
   },
   "utf8-ruled-star-G-09-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-09-select",
     "case_sha256": "a4925191c7b05cb62d5d2a1b6392a78aa7b8c951a873fcf74fc02b2db5e5e8b8",
     "gnu": [
@@ -2896,7 +2896,7 @@
     ]
   },
   "utf8-ruled-star-G-09-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-09-span",
     "case_sha256": "39960b6f6f6cf34019add69e6928511a2d8de59387ff6b506a11fcc33e0c5bef",
     "gnu": [
@@ -2913,7 +2913,7 @@
     ]
   },
   "utf8-ruled-star-G-22-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-22-select",
     "case_sha256": "35c66acf0ce848de2657c2c47a7507690617551e2d5cedebf4ee115a64007896",
     "gnu": [
@@ -2930,7 +2930,7 @@
     ]
   },
   "utf8-ruled-star-G-22-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-22-span",
     "case_sha256": "7c05d920fb2ec67cdee97e339a3a0bee54e4cd526df9e49d6b617fc4dc907275",
     "gnu": [
@@ -2947,7 +2947,7 @@
     ]
   },
   "utf8-ruled-star-G-24-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-24-select",
     "case_sha256": "f3db27f114234fe248b7d46db6750c770c092f1bbb992861dc304323885cfbe6",
     "gnu": [
@@ -2964,7 +2964,7 @@
     ]
   },
   "utf8-ruled-star-G-24-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-24-span",
     "case_sha256": "6e2a3d04afcc9da1f1ea363267b1ea33134d371c72cbaff42c6e74178b16cb39",
     "gnu": [
@@ -2981,7 +2981,7 @@
     ]
   },
   "utf8-ruled-star-G-25-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-25-select",
     "case_sha256": "484270d72302350abe52b3f135dce9ee2df75e9cac4cf8a449c24f1c791dbebf",
     "gnu": [
@@ -2998,7 +2998,7 @@
     ]
   },
   "utf8-ruled-star-G-25-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-25-span",
     "case_sha256": "fae31bc69a0d35fed6e9c9c6314d0d583b5808e55f9ac592e05b943b79ecf2d0",
     "gnu": [
@@ -3015,7 +3015,7 @@
     ]
   },
   "utf8-ruled-star-G-29-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-29-select",
     "case_sha256": "707599b47631dd0aab635edcee1913982239095a0a1d3b3989818ff0815a759c",
     "gnu": [
@@ -3032,7 +3032,7 @@
     ]
   },
   "utf8-ruled-star-G-29-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-29-span",
     "case_sha256": "8b7466160634b0fe52f2fca38b9119848c4ee72988ebddcde4ec2f04e372b5d3",
     "gnu": [
@@ -3049,7 +3049,7 @@
     ]
   },
   "utf8-ruled-star-G-30-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-30-select",
     "case_sha256": "5593b91fcd03646fa90297b32c5ef129c84f96782b40bf714d2414a739b553ee",
     "gnu": [
@@ -3066,7 +3066,7 @@
     ]
   },
   "utf8-ruled-star-G-30-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-G-30-span",
     "case_sha256": "46bbea94707f6d0e0587d10f1a583a7aa260ab8536b4c99a419bf1b68597eddd",
     "gnu": [
@@ -3083,7 +3083,7 @@
     ]
   },
   "utf8-ruled-star-E-01-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-01-select",
     "case_sha256": "460b054c1697dbaaf31c4e1e9ecb12219e16dbde907a935d7b503fa45b714e00",
     "gnu": [
@@ -3100,7 +3100,7 @@
     ]
   },
   "utf8-ruled-star-E-01-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-01-span",
     "case_sha256": "4c35d6fe467cf16095225dc182bcf42120aaed5ffa50abeca3f508a8ecb41863",
     "gnu": [
@@ -3117,7 +3117,7 @@
     ]
   },
   "utf8-ruled-star-E-03-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-03-select",
     "case_sha256": "8b84fba4cb9e4b9534326f48ca34233cb2aad87adc682ce1907111407f53cf3d",
     "gnu": [
@@ -3134,7 +3134,7 @@
     ]
   },
   "utf8-ruled-star-E-03-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-03-span",
     "case_sha256": "475d532c2c6f995708fbe9f826957f6d0d895875e56f6681a32dd761e8325c51",
     "gnu": [
@@ -3151,7 +3151,7 @@
     ]
   },
   "utf8-ruled-star-E-05-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-05-select",
     "case_sha256": "b175765d69b8e6d930eeaa5da2521fdf6990bdbfd076612563a9394512a4a5e0",
     "gnu": [
@@ -3168,7 +3168,7 @@
     ]
   },
   "utf8-ruled-star-E-05-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-05-span",
     "case_sha256": "fdc66689cd56ee81a68fae5d1d9a5742ec1caf7fbe968c8fb9093fdff1e738a6",
     "gnu": [
@@ -3185,7 +3185,7 @@
     ]
   },
   "utf8-ruled-star-E-08-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-08-select",
     "case_sha256": "c5d2a36ec61e963313ee0a08ac8e5180343fb38bd594f9a439ef85f4619bc08f",
     "gnu": [
@@ -3202,7 +3202,7 @@
     ]
   },
   "utf8-ruled-star-E-08-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-08-span",
     "case_sha256": "979fcac9d9caf7799c2929bd7ed0d7e8043cda2610c66aad10ebb4ce6cb17615",
     "gnu": [
@@ -3219,7 +3219,7 @@
     ]
   },
   "utf8-ruled-star-E-09-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-09-select",
     "case_sha256": "0cd93df89ba648d3029ba795c0d28b9e06d71cc3b98b1eb1d53e20f46efdaeec",
     "gnu": [
@@ -3236,7 +3236,7 @@
     ]
   },
   "utf8-ruled-star-E-09-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-09-span",
     "case_sha256": "1be207979f4aefded2014f555e27dbf454c821da641e88134f695adc17a8b604",
     "gnu": [
@@ -3253,7 +3253,7 @@
     ]
   },
   "utf8-ruled-star-E-22-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-22-select",
     "case_sha256": "ca5408c59540362ec032ac077b2841327930bda4f52687a729b5150714a645d4",
     "gnu": [
@@ -3270,7 +3270,7 @@
     ]
   },
   "utf8-ruled-star-E-22-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-22-span",
     "case_sha256": "ab7d5e7342c76610c26435fd99ee3d7bc23d58c0fd885342d26e4a096772f80a",
     "gnu": [
@@ -3287,7 +3287,7 @@
     ]
   },
   "utf8-ruled-star-E-24-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-24-select",
     "case_sha256": "c46995f64227223946994c5196950b10f3d79569e218d76f428064a07f2b6c0e",
     "gnu": [
@@ -3304,7 +3304,7 @@
     ]
   },
   "utf8-ruled-star-E-24-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-24-span",
     "case_sha256": "4e9db7cb87fec327eecf841546e88792d19f71280fed2af3be8785c4fb7029cd",
     "gnu": [
@@ -3321,7 +3321,7 @@
     ]
   },
   "utf8-ruled-star-E-25-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-25-select",
     "case_sha256": "a78663ab216236823aed6492aba0e4f669b60d76ded3403bd5edf718f7b98425",
     "gnu": [
@@ -3338,7 +3338,7 @@
     ]
   },
   "utf8-ruled-star-E-25-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-25-span",
     "case_sha256": "dc9ab8971285a13d14d6cbae2d74ac4a4a7b9e6cb445efe612111292b52b7b88",
     "gnu": [
@@ -3355,7 +3355,7 @@
     ]
   },
   "utf8-ruled-star-E-29-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-29-select",
     "case_sha256": "b8b78a947997cba6cb0f71854ddfa99ea8cfabe7d2b70eddf05eb1bef0607e94",
     "gnu": [
@@ -3372,7 +3372,7 @@
     ]
   },
   "utf8-ruled-star-E-29-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-29-span",
     "case_sha256": "07b823db42e87e2a32847a289a29e1f19cd3ab9078e700525443fcc9bafaa424",
     "gnu": [
@@ -3389,7 +3389,7 @@
     ]
   },
   "utf8-ruled-star-E-30-select": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-30-select",
     "case_sha256": "66114b8f7e864ab1becfa88391664d0cdd0c2e3cce7ae900716fc10527ede7b5",
     "gnu": [
@@ -3406,7 +3406,7 @@
     ]
   },
   "utf8-ruled-star-E-30-span": {
-    "ruling": 116,
+    "rule": "double-star-means-star",
     "source_case": "ruled-star-E-30-span",
     "case_sha256": "7156a37061851413abdc590c5716d4a093ab83abc4e07318facc4a0319fa181c",
     "gnu": [
@@ -3423,7 +3423,7 @@
     ]
   },
   "m3-fold-00-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3442,7 +3442,7 @@
     ]
   },
   "m3-fold-00-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3461,7 +3461,7 @@
     ]
   },
   "m3-fold-00-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3480,7 +3480,7 @@
     ]
   },
   "m3-fold-00-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3499,7 +3499,7 @@
     ]
   },
   "m3-fold-00-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3518,7 +3518,7 @@
     ]
   },
   "m3-fold-00-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3537,7 +3537,7 @@
     ]
   },
   "m3-fold-00-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3556,7 +3556,7 @@
     ]
   },
   "m3-fold-00-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3575,7 +3575,7 @@
     ]
   },
   "m3-fold-00-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3594,7 +3594,7 @@
     ]
   },
   "m3-fold-00-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3613,7 +3613,7 @@
     ]
   },
   "m3-fold-00-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3632,7 +3632,7 @@
     ]
   },
   "m3-fold-00-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3651,7 +3651,7 @@
     ]
   },
   "m3-fold-00-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3670,7 +3670,7 @@
     ]
   },
   "m3-fold-00-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3689,7 +3689,7 @@
     ]
   },
   "m3-fold-00-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3708,7 +3708,7 @@
     ]
   },
   "m3-fold-00-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3727,7 +3727,7 @@
     ]
   },
   "m3-fold-00-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3746,7 +3746,7 @@
     ]
   },
   "m3-fold-00-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3765,7 +3765,7 @@
     ]
   },
   "m3-fold-00-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3784,7 +3784,7 @@
     ]
   },
   "m3-fold-00-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3803,7 +3803,7 @@
     ]
   },
   "m3-fold-00-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3822,7 +3822,7 @@
     ]
   },
   "m3-fold-00-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3841,7 +3841,7 @@
     ]
   },
   "m3-fold-00-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3860,7 +3860,7 @@
     ]
   },
   "m3-fold-00-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3879,7 +3879,7 @@
     ]
   },
   "m3-fold-01-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3898,7 +3898,7 @@
     ]
   },
   "m3-fold-01-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3917,7 +3917,7 @@
     ]
   },
   "m3-fold-01-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3936,7 +3936,7 @@
     ]
   },
   "m3-fold-01-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3955,7 +3955,7 @@
     ]
   },
   "m3-fold-01-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3974,7 +3974,7 @@
     ]
   },
   "m3-fold-01-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -3993,7 +3993,7 @@
     ]
   },
   "m3-fold-01-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4012,7 +4012,7 @@
     ]
   },
   "m3-fold-01-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4031,7 +4031,7 @@
     ]
   },
   "m3-fold-01-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4050,7 +4050,7 @@
     ]
   },
   "m3-fold-01-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4069,7 +4069,7 @@
     ]
   },
   "m3-fold-01-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4088,7 +4088,7 @@
     ]
   },
   "m3-fold-01-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4107,7 +4107,7 @@
     ]
   },
   "m3-fold-01-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4126,7 +4126,7 @@
     ]
   },
   "m3-fold-01-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4145,7 +4145,7 @@
     ]
   },
   "m3-fold-01-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4164,7 +4164,7 @@
     ]
   },
   "m3-fold-01-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4183,7 +4183,7 @@
     ]
   },
   "m3-fold-01-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4202,7 +4202,7 @@
     ]
   },
   "m3-fold-01-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4221,7 +4221,7 @@
     ]
   },
   "m3-fold-01-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4240,7 +4240,7 @@
     ]
   },
   "m3-fold-01-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4259,7 +4259,7 @@
     ]
   },
   "m3-fold-01-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4278,7 +4278,7 @@
     ]
   },
   "m3-fold-01-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4297,7 +4297,7 @@
     ]
   },
   "m3-fold-01-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4316,7 +4316,7 @@
     ]
   },
   "m3-fold-01-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4335,7 +4335,7 @@
     ]
   },
   "m3-fold-02-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4354,7 +4354,7 @@
     ]
   },
   "m3-fold-02-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4373,7 +4373,7 @@
     ]
   },
   "m3-fold-02-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4392,7 +4392,7 @@
     ]
   },
   "m3-fold-02-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4411,7 +4411,7 @@
     ]
   },
   "m3-fold-02-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4430,7 +4430,7 @@
     ]
   },
   "m3-fold-02-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4449,7 +4449,7 @@
     ]
   },
   "m3-fold-02-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4468,7 +4468,7 @@
     ]
   },
   "m3-fold-02-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4487,7 +4487,7 @@
     ]
   },
   "m3-fold-02-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4506,7 +4506,7 @@
     ]
   },
   "m3-fold-02-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4525,7 +4525,7 @@
     ]
   },
   "m3-fold-02-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4544,7 +4544,7 @@
     ]
   },
   "m3-fold-02-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4563,7 +4563,7 @@
     ]
   },
   "m3-fold-02-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4582,7 +4582,7 @@
     ]
   },
   "m3-fold-02-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4601,7 +4601,7 @@
     ]
   },
   "m3-fold-02-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4620,7 +4620,7 @@
     ]
   },
   "m3-fold-02-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4639,7 +4639,7 @@
     ]
   },
   "m3-fold-02-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4658,7 +4658,7 @@
     ]
   },
   "m3-fold-02-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4677,7 +4677,7 @@
     ]
   },
   "m3-fold-02-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4696,7 +4696,7 @@
     ]
   },
   "m3-fold-02-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4715,7 +4715,7 @@
     ]
   },
   "m3-fold-02-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4734,7 +4734,7 @@
     ]
   },
   "m3-fold-02-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4753,7 +4753,7 @@
     ]
   },
   "m3-fold-02-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4772,7 +4772,7 @@
     ]
   },
   "m3-fold-02-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4791,7 +4791,7 @@
     ]
   },
   "m3-fold-03-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4810,7 +4810,7 @@
     ]
   },
   "m3-fold-03-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4829,7 +4829,7 @@
     ]
   },
   "m3-fold-03-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4848,7 +4848,7 @@
     ]
   },
   "m3-fold-03-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4867,7 +4867,7 @@
     ]
   },
   "m3-fold-03-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4886,7 +4886,7 @@
     ]
   },
   "m3-fold-03-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4905,7 +4905,7 @@
     ]
   },
   "m3-fold-03-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4924,7 +4924,7 @@
     ]
   },
   "m3-fold-03-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4943,7 +4943,7 @@
     ]
   },
   "m3-fold-03-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4962,7 +4962,7 @@
     ]
   },
   "m3-fold-03-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -4981,7 +4981,7 @@
     ]
   },
   "m3-fold-03-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5000,7 +5000,7 @@
     ]
   },
   "m3-fold-03-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5019,7 +5019,7 @@
     ]
   },
   "m3-fold-03-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5038,7 +5038,7 @@
     ]
   },
   "m3-fold-03-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5057,7 +5057,7 @@
     ]
   },
   "m3-fold-03-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5076,7 +5076,7 @@
     ]
   },
   "m3-fold-03-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5095,7 +5095,7 @@
     ]
   },
   "m3-fold-03-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5114,7 +5114,7 @@
     ]
   },
   "m3-fold-03-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5133,7 +5133,7 @@
     ]
   },
   "m3-fold-03-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5152,7 +5152,7 @@
     ]
   },
   "m3-fold-03-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5171,7 +5171,7 @@
     ]
   },
   "m3-fold-03-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5190,7 +5190,7 @@
     ]
   },
   "m3-fold-03-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5209,7 +5209,7 @@
     ]
   },
   "m3-fold-03-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5228,7 +5228,7 @@
     ]
   },
   "m3-fold-03-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5247,7 +5247,7 @@
     ]
   },
   "m3-fold-04-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5266,7 +5266,7 @@
     ]
   },
   "m3-fold-04-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5285,7 +5285,7 @@
     ]
   },
   "m3-fold-04-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5304,7 +5304,7 @@
     ]
   },
   "m3-fold-04-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5323,7 +5323,7 @@
     ]
   },
   "m3-fold-04-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5342,7 +5342,7 @@
     ]
   },
   "m3-fold-04-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5361,7 +5361,7 @@
     ]
   },
   "m3-fold-04-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5380,7 +5380,7 @@
     ]
   },
   "m3-fold-04-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5399,7 +5399,7 @@
     ]
   },
   "m3-fold-04-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5418,7 +5418,7 @@
     ]
   },
   "m3-fold-04-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5437,7 +5437,7 @@
     ]
   },
   "m3-fold-04-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5456,7 +5456,7 @@
     ]
   },
   "m3-fold-04-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5475,7 +5475,7 @@
     ]
   },
   "m3-fold-04-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5494,7 +5494,7 @@
     ]
   },
   "m3-fold-04-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5513,7 +5513,7 @@
     ]
   },
   "m3-fold-04-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5532,7 +5532,7 @@
     ]
   },
   "m3-fold-04-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5551,7 +5551,7 @@
     ]
   },
   "m3-fold-04-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5570,7 +5570,7 @@
     ]
   },
   "m3-fold-04-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5589,7 +5589,7 @@
     ]
   },
   "m3-fold-04-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5608,7 +5608,7 @@
     ]
   },
   "m3-fold-04-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5627,7 +5627,7 @@
     ]
   },
   "m3-fold-04-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5646,7 +5646,7 @@
     ]
   },
   "m3-fold-04-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5665,7 +5665,7 @@
     ]
   },
   "m3-fold-04-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5684,7 +5684,7 @@
     ]
   },
   "m3-fold-04-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5703,7 +5703,7 @@
     ]
   },
   "m3-fold-05-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5722,7 +5722,7 @@
     ]
   },
   "m3-fold-05-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5741,7 +5741,7 @@
     ]
   },
   "m3-fold-05-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5760,7 +5760,7 @@
     ]
   },
   "m3-fold-05-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5779,7 +5779,7 @@
     ]
   },
   "m3-fold-05-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5798,7 +5798,7 @@
     ]
   },
   "m3-fold-05-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5817,7 +5817,7 @@
     ]
   },
   "m3-fold-05-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5836,7 +5836,7 @@
     ]
   },
   "m3-fold-05-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5855,7 +5855,7 @@
     ]
   },
   "m3-fold-05-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5874,7 +5874,7 @@
     ]
   },
   "m3-fold-05-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5893,7 +5893,7 @@
     ]
   },
   "m3-fold-05-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5912,7 +5912,7 @@
     ]
   },
   "m3-fold-05-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5931,7 +5931,7 @@
     ]
   },
   "m3-fold-05-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5950,7 +5950,7 @@
     ]
   },
   "m3-fold-05-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5969,7 +5969,7 @@
     ]
   },
   "m3-fold-05-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -5988,7 +5988,7 @@
     ]
   },
   "m3-fold-05-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6007,7 +6007,7 @@
     ]
   },
   "m3-fold-05-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6026,7 +6026,7 @@
     ]
   },
   "m3-fold-05-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6045,7 +6045,7 @@
     ]
   },
   "m3-fold-05-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6064,7 +6064,7 @@
     ]
   },
   "m3-fold-05-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6083,7 +6083,7 @@
     ]
   },
   "m3-fold-05-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6102,7 +6102,7 @@
     ]
   },
   "m3-fold-05-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6121,7 +6121,7 @@
     ]
   },
   "m3-fold-05-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6140,7 +6140,7 @@
     ]
   },
   "m3-fold-05-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6159,7 +6159,7 @@
     ]
   },
   "m3-fold-06-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6178,7 +6178,7 @@
     ]
   },
   "m3-fold-06-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6197,7 +6197,7 @@
     ]
   },
   "m3-fold-06-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6216,7 +6216,7 @@
     ]
   },
   "m3-fold-06-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6235,7 +6235,7 @@
     ]
   },
   "m3-fold-06-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6254,7 +6254,7 @@
     ]
   },
   "m3-fold-06-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6273,7 +6273,7 @@
     ]
   },
   "m3-fold-06-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6292,7 +6292,7 @@
     ]
   },
   "m3-fold-06-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6311,7 +6311,7 @@
     ]
   },
   "m3-fold-06-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6330,7 +6330,7 @@
     ]
   },
   "m3-fold-06-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6349,7 +6349,7 @@
     ]
   },
   "m3-fold-06-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6368,7 +6368,7 @@
     ]
   },
   "m3-fold-06-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6387,7 +6387,7 @@
     ]
   },
   "m3-fold-06-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6406,7 +6406,7 @@
     ]
   },
   "m3-fold-06-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6425,7 +6425,7 @@
     ]
   },
   "m3-fold-06-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6444,7 +6444,7 @@
     ]
   },
   "m3-fold-06-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6463,7 +6463,7 @@
     ]
   },
   "m3-fold-06-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6482,7 +6482,7 @@
     ]
   },
   "m3-fold-06-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6501,7 +6501,7 @@
     ]
   },
   "m3-fold-06-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6520,7 +6520,7 @@
     ]
   },
   "m3-fold-06-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6539,7 +6539,7 @@
     ]
   },
   "m3-fold-06-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6558,7 +6558,7 @@
     ]
   },
   "m3-fold-06-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6577,7 +6577,7 @@
     ]
   },
   "m3-fold-06-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6596,7 +6596,7 @@
     ]
   },
   "m3-fold-06-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6615,7 +6615,7 @@
     ]
   },
   "m3-fold-07-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6634,7 +6634,7 @@
     ]
   },
   "m3-fold-07-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6653,7 +6653,7 @@
     ]
   },
   "m3-fold-07-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6672,7 +6672,7 @@
     ]
   },
   "m3-fold-07-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6691,7 +6691,7 @@
     ]
   },
   "m3-fold-07-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6710,7 +6710,7 @@
     ]
   },
   "m3-fold-07-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6729,7 +6729,7 @@
     ]
   },
   "m3-fold-07-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6748,7 +6748,7 @@
     ]
   },
   "m3-fold-07-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6767,7 +6767,7 @@
     ]
   },
   "m3-fold-07-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6786,7 +6786,7 @@
     ]
   },
   "m3-fold-07-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6805,7 +6805,7 @@
     ]
   },
   "m3-fold-07-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6824,7 +6824,7 @@
     ]
   },
   "m3-fold-07-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6843,7 +6843,7 @@
     ]
   },
   "m3-fold-07-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6862,7 +6862,7 @@
     ]
   },
   "m3-fold-07-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6881,7 +6881,7 @@
     ]
   },
   "m3-fold-07-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6900,7 +6900,7 @@
     ]
   },
   "m3-fold-07-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6919,7 +6919,7 @@
     ]
   },
   "m3-fold-07-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6938,7 +6938,7 @@
     ]
   },
   "m3-fold-07-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6957,7 +6957,7 @@
     ]
   },
   "m3-fold-07-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6976,7 +6976,7 @@
     ]
   },
   "m3-fold-07-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -6995,7 +6995,7 @@
     ]
   },
   "m3-fold-07-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7014,7 +7014,7 @@
     ]
   },
   "m3-fold-07-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7033,7 +7033,7 @@
     ]
   },
   "m3-fold-07-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7052,7 +7052,7 @@
     ]
   },
   "m3-fold-07-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7071,7 +7071,7 @@
     ]
   },
   "m3-fold-08-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7090,7 +7090,7 @@
     ]
   },
   "m3-fold-08-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7109,7 +7109,7 @@
     ]
   },
   "m3-fold-08-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7128,7 +7128,7 @@
     ]
   },
   "m3-fold-08-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7147,7 +7147,7 @@
     ]
   },
   "m3-fold-08-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7166,7 +7166,7 @@
     ]
   },
   "m3-fold-08-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7185,7 +7185,7 @@
     ]
   },
   "m3-fold-08-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7204,7 +7204,7 @@
     ]
   },
   "m3-fold-08-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7223,7 +7223,7 @@
     ]
   },
   "m3-fold-08-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7242,7 +7242,7 @@
     ]
   },
   "m3-fold-08-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7261,7 +7261,7 @@
     ]
   },
   "m3-fold-08-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7280,7 +7280,7 @@
     ]
   },
   "m3-fold-08-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7299,7 +7299,7 @@
     ]
   },
   "m3-fold-08-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7318,7 +7318,7 @@
     ]
   },
   "m3-fold-08-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7337,7 +7337,7 @@
     ]
   },
   "m3-fold-08-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7356,7 +7356,7 @@
     ]
   },
   "m3-fold-08-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7375,7 +7375,7 @@
     ]
   },
   "m3-fold-08-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7394,7 +7394,7 @@
     ]
   },
   "m3-fold-08-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7413,7 +7413,7 @@
     ]
   },
   "m3-fold-08-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7432,7 +7432,7 @@
     ]
   },
   "m3-fold-08-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7451,7 +7451,7 @@
     ]
   },
   "m3-fold-08-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7470,7 +7470,7 @@
     ]
   },
   "m3-fold-08-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7489,7 +7489,7 @@
     ]
   },
   "m3-fold-08-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7508,7 +7508,7 @@
     ]
   },
   "m3-fold-08-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7527,7 +7527,7 @@
     ]
   },
   "m3-fold-09-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7546,7 +7546,7 @@
     ]
   },
   "m3-fold-09-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7565,7 +7565,7 @@
     ]
   },
   "m3-fold-09-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7584,7 +7584,7 @@
     ]
   },
   "m3-fold-09-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7603,7 +7603,7 @@
     ]
   },
   "m3-fold-09-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7622,7 +7622,7 @@
     ]
   },
   "m3-fold-09-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7641,7 +7641,7 @@
     ]
   },
   "m3-fold-09-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7660,7 +7660,7 @@
     ]
   },
   "m3-fold-09-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7679,7 +7679,7 @@
     ]
   },
   "m3-fold-09-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7698,7 +7698,7 @@
     ]
   },
   "m3-fold-09-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7717,7 +7717,7 @@
     ]
   },
   "m3-fold-09-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7736,7 +7736,7 @@
     ]
   },
   "m3-fold-09-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7755,7 +7755,7 @@
     ]
   },
   "m3-fold-09-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7774,7 +7774,7 @@
     ]
   },
   "m3-fold-09-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7793,7 +7793,7 @@
     ]
   },
   "m3-fold-09-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7812,7 +7812,7 @@
     ]
   },
   "m3-fold-09-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7831,7 +7831,7 @@
     ]
   },
   "m3-fold-09-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7850,7 +7850,7 @@
     ]
   },
   "m3-fold-09-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7869,7 +7869,7 @@
     ]
   },
   "m3-fold-09-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7888,7 +7888,7 @@
     ]
   },
   "m3-fold-09-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7907,7 +7907,7 @@
     ]
   },
   "m3-fold-09-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7926,7 +7926,7 @@
     ]
   },
   "m3-fold-09-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7945,7 +7945,7 @@
     ]
   },
   "m3-fold-09-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7964,7 +7964,7 @@
     ]
   },
   "m3-fold-09-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -7983,7 +7983,7 @@
     ]
   },
   "m3-fold-10-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8002,7 +8002,7 @@
     ]
   },
   "m3-fold-10-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8021,7 +8021,7 @@
     ]
   },
   "m3-fold-10-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8040,7 +8040,7 @@
     ]
   },
   "m3-fold-10-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8059,7 +8059,7 @@
     ]
   },
   "m3-fold-10-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8078,7 +8078,7 @@
     ]
   },
   "m3-fold-10-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8097,7 +8097,7 @@
     ]
   },
   "m3-fold-10-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8116,7 +8116,7 @@
     ]
   },
   "m3-fold-10-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8135,7 +8135,7 @@
     ]
   },
   "m3-fold-10-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8154,7 +8154,7 @@
     ]
   },
   "m3-fold-10-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8173,7 +8173,7 @@
     ]
   },
   "m3-fold-10-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8192,7 +8192,7 @@
     ]
   },
   "m3-fold-10-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8211,7 +8211,7 @@
     ]
   },
   "m3-fold-10-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8230,7 +8230,7 @@
     ]
   },
   "m3-fold-10-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8249,7 +8249,7 @@
     ]
   },
   "m3-fold-10-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8268,7 +8268,7 @@
     ]
   },
   "m3-fold-10-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8287,7 +8287,7 @@
     ]
   },
   "m3-fold-10-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8306,7 +8306,7 @@
     ]
   },
   "m3-fold-10-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8325,7 +8325,7 @@
     ]
   },
   "m3-fold-10-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8344,7 +8344,7 @@
     ]
   },
   "m3-fold-10-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8363,7 +8363,7 @@
     ]
   },
   "m3-fold-10-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8382,7 +8382,7 @@
     ]
   },
   "m3-fold-10-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8401,7 +8401,7 @@
     ]
   },
   "m3-fold-10-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8420,7 +8420,7 @@
     ]
   },
   "m3-fold-10-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8439,7 +8439,7 @@
     ]
   },
   "m3-fold-11-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8458,7 +8458,7 @@
     ]
   },
   "m3-fold-11-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8477,7 +8477,7 @@
     ]
   },
   "m3-fold-11-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8496,7 +8496,7 @@
     ]
   },
   "m3-fold-11-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8515,7 +8515,7 @@
     ]
   },
   "m3-fold-11-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8534,7 +8534,7 @@
     ]
   },
   "m3-fold-11-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8553,7 +8553,7 @@
     ]
   },
   "m3-fold-11-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8572,7 +8572,7 @@
     ]
   },
   "m3-fold-11-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8591,7 +8591,7 @@
     ]
   },
   "m3-fold-11-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8610,7 +8610,7 @@
     ]
   },
   "m3-fold-11-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8629,7 +8629,7 @@
     ]
   },
   "m3-fold-11-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8648,7 +8648,7 @@
     ]
   },
   "m3-fold-11-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8667,7 +8667,7 @@
     ]
   },
   "m3-fold-11-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8686,7 +8686,7 @@
     ]
   },
   "m3-fold-11-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8705,7 +8705,7 @@
     ]
   },
   "m3-fold-11-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8724,7 +8724,7 @@
     ]
   },
   "m3-fold-11-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8743,7 +8743,7 @@
     ]
   },
   "m3-fold-11-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8762,7 +8762,7 @@
     ]
   },
   "m3-fold-11-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8781,7 +8781,7 @@
     ]
   },
   "m3-fold-11-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8800,7 +8800,7 @@
     ]
   },
   "m3-fold-11-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8819,7 +8819,7 @@
     ]
   },
   "m3-fold-11-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8838,7 +8838,7 @@
     ]
   },
   "m3-fold-11-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8857,7 +8857,7 @@
     ]
   },
   "m3-fold-11-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8876,7 +8876,7 @@
     ]
   },
   "m3-fold-11-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8895,7 +8895,7 @@
     ]
   },
   "m3-fold-12-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8914,7 +8914,7 @@
     ]
   },
   "m3-fold-12-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8933,7 +8933,7 @@
     ]
   },
   "m3-fold-12-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8952,7 +8952,7 @@
     ]
   },
   "m3-fold-12-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8971,7 +8971,7 @@
     ]
   },
   "m3-fold-12-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -8990,7 +8990,7 @@
     ]
   },
   "m3-fold-12-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9009,7 +9009,7 @@
     ]
   },
   "m3-fold-12-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9028,7 +9028,7 @@
     ]
   },
   "m3-fold-12-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9047,7 +9047,7 @@
     ]
   },
   "m3-fold-12-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9066,7 +9066,7 @@
     ]
   },
   "m3-fold-12-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9085,7 +9085,7 @@
     ]
   },
   "m3-fold-12-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9104,7 +9104,7 @@
     ]
   },
   "m3-fold-12-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9123,7 +9123,7 @@
     ]
   },
   "m3-fold-12-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9142,7 +9142,7 @@
     ]
   },
   "m3-fold-12-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9161,7 +9161,7 @@
     ]
   },
   "m3-fold-12-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9180,7 +9180,7 @@
     ]
   },
   "m3-fold-12-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9199,7 +9199,7 @@
     ]
   },
   "m3-fold-12-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9218,7 +9218,7 @@
     ]
   },
   "m3-fold-12-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9237,7 +9237,7 @@
     ]
   },
   "m3-fold-12-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9256,7 +9256,7 @@
     ]
   },
   "m3-fold-12-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9275,7 +9275,7 @@
     ]
   },
   "m3-fold-12-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9294,7 +9294,7 @@
     ]
   },
   "m3-fold-12-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9313,7 +9313,7 @@
     ]
   },
   "m3-fold-12-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9332,7 +9332,7 @@
     ]
   },
   "m3-fold-12-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9351,7 +9351,7 @@
     ]
   },
   "m3-fold-13-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9370,7 +9370,7 @@
     ]
   },
   "m3-fold-13-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9389,7 +9389,7 @@
     ]
   },
   "m3-fold-13-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9408,7 +9408,7 @@
     ]
   },
   "m3-fold-13-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9427,7 +9427,7 @@
     ]
   },
   "m3-fold-13-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9446,7 +9446,7 @@
     ]
   },
   "m3-fold-13-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9465,7 +9465,7 @@
     ]
   },
   "m3-fold-13-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9484,7 +9484,7 @@
     ]
   },
   "m3-fold-13-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9503,7 +9503,7 @@
     ]
   },
   "m3-fold-13-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9522,7 +9522,7 @@
     ]
   },
   "m3-fold-13-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9541,7 +9541,7 @@
     ]
   },
   "m3-fold-13-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9560,7 +9560,7 @@
     ]
   },
   "m3-fold-13-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9579,7 +9579,7 @@
     ]
   },
   "m3-fold-13-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9598,7 +9598,7 @@
     ]
   },
   "m3-fold-13-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9617,7 +9617,7 @@
     ]
   },
   "m3-fold-13-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9636,7 +9636,7 @@
     ]
   },
   "m3-fold-13-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9655,7 +9655,7 @@
     ]
   },
   "m3-fold-13-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9674,7 +9674,7 @@
     ]
   },
   "m3-fold-13-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9693,7 +9693,7 @@
     ]
   },
   "m3-fold-13-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9712,7 +9712,7 @@
     ]
   },
   "m3-fold-13-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9731,7 +9731,7 @@
     ]
   },
   "m3-fold-13-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9750,7 +9750,7 @@
     ]
   },
   "m3-fold-13-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9769,7 +9769,7 @@
     ]
   },
   "m3-fold-13-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9788,7 +9788,7 @@
     ]
   },
   "m3-fold-13-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9807,7 +9807,7 @@
     ]
   },
   "m3-fold-14-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9826,7 +9826,7 @@
     ]
   },
   "m3-fold-14-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9845,7 +9845,7 @@
     ]
   },
   "m3-fold-14-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9864,7 +9864,7 @@
     ]
   },
   "m3-fold-14-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9883,7 +9883,7 @@
     ]
   },
   "m3-fold-14-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9902,7 +9902,7 @@
     ]
   },
   "m3-fold-14-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9921,7 +9921,7 @@
     ]
   },
   "m3-fold-14-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9940,7 +9940,7 @@
     ]
   },
   "m3-fold-14-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9959,7 +9959,7 @@
     ]
   },
   "m3-fold-14-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9978,7 +9978,7 @@
     ]
   },
   "m3-fold-14-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -9997,7 +9997,7 @@
     ]
   },
   "m3-fold-14-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10016,7 +10016,7 @@
     ]
   },
   "m3-fold-14-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10035,7 +10035,7 @@
     ]
   },
   "m3-fold-14-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10054,7 +10054,7 @@
     ]
   },
   "m3-fold-14-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10073,7 +10073,7 @@
     ]
   },
   "m3-fold-14-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10092,7 +10092,7 @@
     ]
   },
   "m3-fold-14-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10111,7 +10111,7 @@
     ]
   },
   "m3-fold-14-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10130,7 +10130,7 @@
     ]
   },
   "m3-fold-14-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10149,7 +10149,7 @@
     ]
   },
   "m3-fold-14-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10168,7 +10168,7 @@
     ]
   },
   "m3-fold-14-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10187,7 +10187,7 @@
     ]
   },
   "m3-fold-14-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10206,7 +10206,7 @@
     ]
   },
   "m3-fold-14-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10225,7 +10225,7 @@
     ]
   },
   "m3-fold-14-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10244,7 +10244,7 @@
     ]
   },
   "m3-fold-14-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10263,7 +10263,7 @@
     ]
   },
   "m3-fold-15-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10282,7 +10282,7 @@
     ]
   },
   "m3-fold-15-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10301,7 +10301,7 @@
     ]
   },
   "m3-fold-15-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10320,7 +10320,7 @@
     ]
   },
   "m3-fold-15-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10339,7 +10339,7 @@
     ]
   },
   "m3-fold-15-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10358,7 +10358,7 @@
     ]
   },
   "m3-fold-15-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10377,7 +10377,7 @@
     ]
   },
   "m3-fold-15-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10396,7 +10396,7 @@
     ]
   },
   "m3-fold-15-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10415,7 +10415,7 @@
     ]
   },
   "m3-fold-15-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10434,7 +10434,7 @@
     ]
   },
   "m3-fold-15-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10453,7 +10453,7 @@
     ]
   },
   "m3-fold-15-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10472,7 +10472,7 @@
     ]
   },
   "m3-fold-15-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10491,7 +10491,7 @@
     ]
   },
   "m3-fold-15-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10510,7 +10510,7 @@
     ]
   },
   "m3-fold-15-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10529,7 +10529,7 @@
     ]
   },
   "m3-fold-15-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10548,7 +10548,7 @@
     ]
   },
   "m3-fold-15-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10567,7 +10567,7 @@
     ]
   },
   "m3-fold-15-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10586,7 +10586,7 @@
     ]
   },
   "m3-fold-15-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10605,7 +10605,7 @@
     ]
   },
   "m3-fold-15-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10624,7 +10624,7 @@
     ]
   },
   "m3-fold-15-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10643,7 +10643,7 @@
     ]
   },
   "m3-fold-15-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10662,7 +10662,7 @@
     ]
   },
   "m3-fold-15-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10681,7 +10681,7 @@
     ]
   },
   "m3-fold-15-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10700,7 +10700,7 @@
     ]
   },
   "m3-fold-15-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10719,7 +10719,7 @@
     ]
   },
   "m3-fold-16-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10738,7 +10738,7 @@
     ]
   },
   "m3-fold-16-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10757,7 +10757,7 @@
     ]
   },
   "m3-fold-16-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10776,7 +10776,7 @@
     ]
   },
   "m3-fold-16-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10795,7 +10795,7 @@
     ]
   },
   "m3-fold-16-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10814,7 +10814,7 @@
     ]
   },
   "m3-fold-16-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10833,7 +10833,7 @@
     ]
   },
   "m3-fold-16-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10852,7 +10852,7 @@
     ]
   },
   "m3-fold-16-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10871,7 +10871,7 @@
     ]
   },
   "m3-fold-16-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10890,7 +10890,7 @@
     ]
   },
   "m3-fold-16-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10909,7 +10909,7 @@
     ]
   },
   "m3-fold-16-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10928,7 +10928,7 @@
     ]
   },
   "m3-fold-16-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10947,7 +10947,7 @@
     ]
   },
   "m3-fold-16-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10966,7 +10966,7 @@
     ]
   },
   "m3-fold-16-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -10985,7 +10985,7 @@
     ]
   },
   "m3-fold-16-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11004,7 +11004,7 @@
     ]
   },
   "m3-fold-16-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11023,7 +11023,7 @@
     ]
   },
   "m3-fold-16-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11042,7 +11042,7 @@
     ]
   },
   "m3-fold-16-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11061,7 +11061,7 @@
     ]
   },
   "m3-fold-16-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11080,7 +11080,7 @@
     ]
   },
   "m3-fold-16-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11099,7 +11099,7 @@
     ]
   },
   "m3-fold-16-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11118,7 +11118,7 @@
     ]
   },
   "m3-fold-16-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11137,7 +11137,7 @@
     ]
   },
   "m3-fold-16-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11156,7 +11156,7 @@
     ]
   },
   "m3-fold-16-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11175,7 +11175,7 @@
     ]
   },
   "m3-fold-17-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11194,7 +11194,7 @@
     ]
   },
   "m3-fold-17-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11213,7 +11213,7 @@
     ]
   },
   "m3-fold-17-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11232,7 +11232,7 @@
     ]
   },
   "m3-fold-17-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11251,7 +11251,7 @@
     ]
   },
   "m3-fold-17-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11270,7 +11270,7 @@
     ]
   },
   "m3-fold-17-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11289,7 +11289,7 @@
     ]
   },
   "m3-fold-17-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11308,7 +11308,7 @@
     ]
   },
   "m3-fold-17-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11327,7 +11327,7 @@
     ]
   },
   "m3-fold-17-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11346,7 +11346,7 @@
     ]
   },
   "m3-fold-17-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11365,7 +11365,7 @@
     ]
   },
   "m3-fold-17-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11384,7 +11384,7 @@
     ]
   },
   "m3-fold-17-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11403,7 +11403,7 @@
     ]
   },
   "m3-fold-17-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11422,7 +11422,7 @@
     ]
   },
   "m3-fold-17-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11441,7 +11441,7 @@
     ]
   },
   "m3-fold-17-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11460,7 +11460,7 @@
     ]
   },
   "m3-fold-17-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11479,7 +11479,7 @@
     ]
   },
   "m3-fold-17-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11498,7 +11498,7 @@
     ]
   },
   "m3-fold-17-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11517,7 +11517,7 @@
     ]
   },
   "m3-fold-17-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11536,7 +11536,7 @@
     ]
   },
   "m3-fold-17-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11555,7 +11555,7 @@
     ]
   },
   "m3-fold-17-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11574,7 +11574,7 @@
     ]
   },
   "m3-fold-17-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11593,7 +11593,7 @@
     ]
   },
   "m3-fold-17-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11612,7 +11612,7 @@
     ]
   },
   "m3-fold-17-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11631,7 +11631,7 @@
     ]
   },
   "m3-fold-18-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11650,7 +11650,7 @@
     ]
   },
   "m3-fold-18-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11669,7 +11669,7 @@
     ]
   },
   "m3-fold-18-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11688,7 +11688,7 @@
     ]
   },
   "m3-fold-18-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11707,7 +11707,7 @@
     ]
   },
   "m3-fold-18-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11726,7 +11726,7 @@
     ]
   },
   "m3-fold-18-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11745,7 +11745,7 @@
     ]
   },
   "m3-fold-18-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11764,7 +11764,7 @@
     ]
   },
   "m3-fold-18-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11783,7 +11783,7 @@
     ]
   },
   "m3-fold-18-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11802,7 +11802,7 @@
     ]
   },
   "m3-fold-18-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11821,7 +11821,7 @@
     ]
   },
   "m3-fold-18-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11840,7 +11840,7 @@
     ]
   },
   "m3-fold-18-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11859,7 +11859,7 @@
     ]
   },
   "m3-fold-18-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11878,7 +11878,7 @@
     ]
   },
   "m3-fold-18-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11897,7 +11897,7 @@
     ]
   },
   "m3-fold-18-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11916,7 +11916,7 @@
     ]
   },
   "m3-fold-18-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11935,7 +11935,7 @@
     ]
   },
   "m3-fold-18-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11954,7 +11954,7 @@
     ]
   },
   "m3-fold-18-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11973,7 +11973,7 @@
     ]
   },
   "m3-fold-18-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -11992,7 +11992,7 @@
     ]
   },
   "m3-fold-18-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12011,7 +12011,7 @@
     ]
   },
   "m3-fold-18-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12030,7 +12030,7 @@
     ]
   },
   "m3-fold-18-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12049,7 +12049,7 @@
     ]
   },
   "m3-fold-18-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12068,7 +12068,7 @@
     ]
   },
   "m3-fold-18-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12087,7 +12087,7 @@
     ]
   },
   "m3-fold-19-G-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12106,7 +12106,7 @@
     ]
   },
   "m3-fold-19-G--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12125,7 +12125,7 @@
     ]
   },
   "m3-fold-19-G--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12144,7 +12144,7 @@
     ]
   },
   "m3-fold-19-G--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12163,7 +12163,7 @@
     ]
   },
   "m3-fold-19-G--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12182,7 +12182,7 @@
     ]
   },
   "m3-fold-19-G--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12201,7 +12201,7 @@
     ]
   },
   "m3-fold-19-G--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12220,7 +12220,7 @@
     ]
   },
   "m3-fold-19-G--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12239,7 +12239,7 @@
     ]
   },
   "m3-fold-19-E-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12258,7 +12258,7 @@
     ]
   },
   "m3-fold-19-E--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12277,7 +12277,7 @@
     ]
   },
   "m3-fold-19-E--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12296,7 +12296,7 @@
     ]
   },
   "m3-fold-19-E--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12315,7 +12315,7 @@
     ]
   },
   "m3-fold-19-E--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12334,7 +12334,7 @@
     ]
   },
   "m3-fold-19-E--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12353,7 +12353,7 @@
     ]
   },
   "m3-fold-19-E--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12372,7 +12372,7 @@
     ]
   },
   "m3-fold-19-E--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12391,7 +12391,7 @@
     ]
   },
   "m3-fold-19-F-plain-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12410,7 +12410,7 @@
     ]
   },
   "m3-fold-19-F--o-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12429,7 +12429,7 @@
     ]
   },
   "m3-fold-19-F--c-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12448,7 +12448,7 @@
     ]
   },
   "m3-fold-19-F--l-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12467,7 +12467,7 @@
     ]
   },
   "m3-fold-19-F--L-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12486,7 +12486,7 @@
     ]
   },
   "m3-fold-19-F--q-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12505,7 +12505,7 @@
     ]
   },
   "m3-fold-19-F--w-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12524,7 +12524,7 @@
     ]
   },
   "m3-fold-19-F--x-0": {
-    "ruling": 122,
+    "rule": "utf8-consistency",
     "class": "gnu-inconsistent",
     "reason": "consistent fold closure, isolated vs combined line",
     "witness": "notes/ct04-evidence/utf8-stop-witnesses.json",
@@ -12543,7 +12543,7 @@
     ]
   },
   "m3-environment-absent-locale": {
-    "ruling": "R-ct04-1",
+    "rule": "installed-locales",
     "class": "environment",
     "reason": "the oracle image installs only C, C.UTF-8 and POSIX",
     "case_sha256": "ae99ec6db30305de5858b2e9f3cdcfb495bb79e655a8f43e71987a266359d819",

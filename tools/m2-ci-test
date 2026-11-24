@@ -16,7 +16,7 @@ for name in ['m2-edges-11','m2-socket-skip','m2-upstream-byte-name']:
  c=names[name];review=reviews[name]
  assert not c.get('not_yet') and review['gnu']!=review['scent']
  assert review['case_sha256']==hashlib.sha256(json.dumps(c,sort_keys=True,separators=(',',':')).encode()).hexdigest()
- assert review['ruling']==('R-ct03-3' if name=='m2-upstream-byte-name' else 120)
+ assert review['rule']==('upstream-byte-path' if name=='m2-upstream-byte-name' else 'named-socket-obeys-Dskip')
 workflow=(root/'.github/workflows/ci.yml').read_text()
 assert 'run: python3 -I tools/m2-ci-test' in workflow
 assert 'python3 -I tools/m2-ci-test' in (root/'tools/gate').read_text()
