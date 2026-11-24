@@ -1,6 +1,6 @@
 //! Backreference-only depth-first execution. POSIX XBD 9.3.6 and GNU
 //! info 3.5 define participation and last-capture semantics. No other
-//! implementation consulted. R-ct01-2: this path has a separate high-water
+//! implementation consulted. This path has its own, separately bounded high-water
 //! stack; its storage can depend on input, unlike the linear state sets.
 //! Captures are inline scalars, never an allocated list per branch.
 

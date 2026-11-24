@@ -1,5 +1,5 @@
 //! Locale selection from measured environment precedence (tools/locale-probe).
-//! R-ct04-1: scent supplies its own tables, so codesets do not depend on
+//! scent supplies its own tables, so codesets do not depend on
 //! installed locale files. Unknown names without a UTF-8 codeset use C.
 
 /// First nonempty LC_ALL, LC_CTYPE, LANG; no installed-locale lookup.

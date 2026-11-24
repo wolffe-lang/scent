@@ -110,7 +110,7 @@ pub fn defaults() -> Options {
     }
 }
 
-// R-ct00-3, wolf-lang#899: this ONE prefix seam changes when argv[0]
+// The prefix is grep until wolf-lang#899: this ONE seam changes when argv[0]
 // becomes observable. Never use os_exe (it is a different name).
 /// Diagnostic prefix seam for wolf-lang#899; currently grep.
 pub fn program() -> str {

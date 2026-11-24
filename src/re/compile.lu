@@ -175,7 +175,7 @@ pub fn compile(
         (mut span_proofs).push(literal_filters(span, options))
         // GNU's literal shortcut bypasses selection-parser anchor quirks.
         if byte_literal(patterns[index], span) { re.starts[index] = span_start }
-        // Ruling #117: a terminator-bearing pattern never crosses records,
+        // Never cross records: a terminator-bearing pattern never matches,
         // even when another alternative would otherwise match this record.
         for b in patterns[index] {
             if b == options.terminator {
