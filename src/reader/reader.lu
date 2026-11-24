@@ -115,8 +115,10 @@ fn invalid_output(
     mut writer: out.Output,
 ) -> bool {
     if !flags.utf8 || flags.binary == 1 || !utf8.locale_invalid(buf, lo, hi) { return false }
-    out.flush(mut writer)
-    if flags.binary == 0 { eprint("{opts.program()}: {name}: binary file matches") }
+    if flags.binary == 0 {
+        out.before_message(mut writer)
+        eprint("{opts.program()}: {name}: binary file matches")
+    }
     true
 }
 
@@ -151,7 +153,7 @@ fn emit(
             // A suppressed binary match is still an earlier output group.
             // Do not emit here; separate the next text group, even in a new file.
             writer.any_group = true
-            out.flush(mut writer)
+            out.before_message(mut writer)
             eprint("{opts.program()}: {name}: binary file matches")
             st.stop = true
         }
@@ -285,7 +287,7 @@ const LITERAL_SHARE: int = 7
 /// and the requested leading-context ring. Every chunk owns its temporary
 /// reads and formatting; persistent storage has an explicit region so a long
 /// stream does not retain per-line allocations. `writer` is the run's stdout
-/// buffer, reset where a fresh one used to be made and flushed where it was.
+/// buffer: it leaves in blocks and before each message, never per chunk or file.
 pub fn scan(
     flags: opts.Options,
     re: matcher.Matcher,
@@ -357,6 +359,7 @@ pub fn scan(
                     io => {
                         let code = os_error()
                         if !flags.silent {
+                            out.before_message(mut writer)
                             eprint("{opts.program()}: {name}: {os_error_text(code)}")
                         }
                         error = true
@@ -368,7 +371,6 @@ pub fn scan(
                 // storage. Preserve partial final records and errors below.
                 if buf.len == 0 && used == 0 { break }
                 var ws = matcher.workspace_new(re)
-                out.reset(mut writer)
                 writer.any_group = grouped
                 if !flags.zero && flags.binary != 1 {
                     if bytefind.find(buf, 0, 0 as byte) < buf.len { current.binary = true }
@@ -566,7 +568,6 @@ pub fn scan(
                         used = 0
                     }
                 }
-                out.flush(mut writer)
                 grouped = writer.any_group
                 if writer.failed { error = true; current.stop = true }
                 current
@@ -577,7 +578,6 @@ pub fn scan(
         let ignored = fs_seek(fd, base + st.resume, 0) else 0
     }
     region summary {
-        out.reset(mut writer)
         if !flags.quiet {
             if flags.listing == 1 && st.matches > 0 || flags.listing == 2 && st.matches == 0 {
                 out.filename(mut writer, flags, name)
@@ -585,7 +585,6 @@ pub fn scan(
                 out.count(mut writer, flags, name, st.matches)
             }
         }
-        out.flush(mut writer)
         if writer.failed { error = true }
     }
     Result { matched: st.matches > 0, error: error }

@@ -5,51 +5,75 @@
 use opts
 use matcher
 
-/// Fixed-capacity stdout staging and write-failure state.
+/// Bytes leave in blocks of this size, as the pinned GNU build writes a regular
+/// file or a pipe; the remainder leaves at the end of the run or before a message.
+const BLOCK: int = 4096
+
+/// The run's stdout staging and its write-failure state.
 pub struct Output {
     buf: List[byte],
     used: int,
+    /// A write of output failed: reported once, and the run ends.
     failed: bool,
     any_group: bool,
+    /// A terminal or --line-buffered: every newline leaves at once.
+    lines: bool,
+    /// A flush before a message failed (silently): reported when the run ends.
+    held: int,
 }
 
-/// Allocate one reusable 64 KiB stdout buffer. A run makes one and resets it;
-/// building it is 65,536 pushes, far more than a small file's whole scan.
+/// Allocate the run's one stdout buffer.
 pub fn create() -> Output {
     var b = List[byte]()
-    for i in 0..65536 {
+    for i in 0..BLOCK {
         (mut b).push(0 as byte)
     }
-    Output { buf: b, used: 0, failed: false, any_group: false }
+    Output { buf: b, used: 0, failed: false, any_group: false, lines: false, held: 0 }
 }
 
-/// Return a buffer to the state `create` gives, keeping its storage. Pending
-/// bytes are dropped, as a fresh buffer would drop them: every caller has
-/// flushed first, and a failed buffer's bytes are never written.
-pub fn reset(mut o: Output) {
-    o.used = 0
-    o.failed = false
-    o.any_group = false
+fn reason(code: int) -> str {
+    if code > 0 then os_error_text(code) else "Bad file descriptor"
 }
 
-/// Write pending bytes; report the first host write failure.
+/// Write pending output. A failure is reported once and ends the run.
 pub fn flush(mut o: Output) {
     if o.used == 0 || o.failed { return }
     fs_write_chunk(1, o.buf[0..o.used]) else |_| {
-        let code = os_error()
-        let reason = if code > 0 then os_error_text(code) else "Bad file descriptor"
-        eprint("{opts.program()}: write error: {reason}")
+        eprint("{opts.program()}: write error: {reason(os_error())}")
         o.failed = true
     }
     o.used = 0
 }
 
-/// Append one byte, flushing a full staging buffer.
+/// Write pending output before a message goes to stderr, so the two keep their
+/// order. A failure here is not reported now: the run goes on, and the end of
+/// the run reports it.
+pub fn before_message(mut o: Output) {
+    if o.used == 0 || o.failed { return }
+    fs_write_chunk(1, o.buf[0..o.used]) else |_| {
+        let code = os_error()
+        o.held = if code > 0 then code else -1
+    }
+    o.used = 0
+}
+
+/// End the run's output: write what is pending, then report a failure not yet
+/// reported. True when any write of output failed.
+pub fn finish(mut o: Output) -> bool {
+    flush(mut o)
+    if o.held != 0 && !o.failed {
+        eprint("{opts.program()}: write error: {reason(o.held)}")
+        o.failed = true
+    }
+    o.failed
+}
+
+/// Append one byte; a full block, or a newline in line mode, leaves at once.
 pub fn byte_put(mut o: Output, b: byte) {
     if o.failed { return }
     o.buf[o.used] = b
     o.used += 1
-    if o.used == o.buf.len { flush(mut o) }
+    if o.used == BLOCK || o.lines && b == 10 as byte { flush(mut o) }
 }
 
 /// Append UTF-8 bytes without a whole-string bytes binding.
