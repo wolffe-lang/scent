@@ -25,7 +25,7 @@
         3
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "basic",
@@ -61,7 +61,7 @@
         8
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "basic",
@@ -97,7 +97,7 @@
         7
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "basic",
@@ -129,7 +129,7 @@
         6
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "basic",
@@ -173,7 +173,7 @@
         10
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "basic",
@@ -197,7 +197,7 @@
         2
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "basic",
@@ -224,7 +224,7 @@
         2
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "basic",
@@ -251,7 +251,7 @@
         2
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "basic",
@@ -295,7 +295,7 @@
         12
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "basic",
@@ -331,7 +331,7 @@
         8
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "extended",
@@ -359,7 +359,7 @@
         3
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "extended",
@@ -395,7 +395,7 @@
         8
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "extended",
@@ -431,7 +431,7 @@
         7
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "extended",
@@ -463,7 +463,7 @@
         6
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "extended",
@@ -507,7 +507,7 @@
         10
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "extended",
@@ -531,7 +531,7 @@
         2
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "extended",
@@ -558,7 +558,7 @@
         2
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "extended",
@@ -585,7 +585,7 @@
         2
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "extended",
@@ -629,7 +629,7 @@
         12
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   },
   {
     "syntax": "extended",
@@ -665,6 +665,6 @@
         8
       ]
     ],
-    "reason": "R-ct01-3 reviewed word-span retry/stepping witness"
+    "reason": "reviewed word-span retry/stepping witness; selection and spans may use separate programs"
   }
 ]
