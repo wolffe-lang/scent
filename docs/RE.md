@@ -44,8 +44,8 @@ The parser uses explicit group frames and an indexed AST. The Thompson
 compiler uses explicit continuation tasks, expanding bounded repetitions
 without a recursive compiler walk. Classes are flat 256-entry byte tables;
 ASCII case closure is applied before bracket negation. No consuming
-instruction accepts the configured terminator. Ruling #117 also makes
-each terminator-bearing pattern unreachable after syntax validation,
+instruction accepts the configured terminator. Never crossing records also
+makes each terminator-bearing pattern unreachable after syntax validation,
 including a pattern with an otherwise matching alternative. Assertions inspect the
 original line window.
 
@@ -105,7 +105,7 @@ host); process RSS also includes compiled code, input, and allocator storage.
 
 ## Word-span divergences
 
-Ruling #115 publishes these differences: for a selected line, scent keeps
+The whole-word, leftmost-longest rule publishes these differences: for a selected line, scent keeps
 leftmost-longest word spans where GNU's
 shorter-candidate retry/stepping fails to follow a general rule. These rows
 are counted separately, never as agreement. Selection, diagnostics, and exit
@@ -138,7 +138,7 @@ the run. The two dialects account for 20 separately counted pairs.
 ## GNU extension compatibility exceptions
 
 POSIX leaves adjacent duplication symbols undefined (XBD 9.3.6 and 9.4.6),
-and ERE backreferences are a GNU extension. Ruling #116 retains the consistent `**` = `*` interpretation.
+and ERE backreferences are a GNU extension. The double-star rule retains the consistent `**` = `*` interpretation.
 The exception below is therefore
 **not a contradiction of a POSIX requirement**. scent gives `**` the
 compositional meaning of `*`; GNU's measured answer differs in this reviewed

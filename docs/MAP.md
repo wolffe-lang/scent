@@ -7,7 +7,7 @@ feeds each operand through `reader.scan` to the byte writer in `out`.
 `argv → options → pattern list → matcher → reader → output`
 
 - `src/opts/`: getopt_long-shaped parsing, permutation, diagnostics and
-  the sole `program()` prefix seam. R-ct00-3 fixes it to `grep` until
+  the sole `program()` prefix seam, fixed to `grep` until
   wolf-lang#899/#904 provides argv[0]. No `os_exe` substitution.
 - `src/walk/`: depth-first raw `std.fs.entries` order (never sorted),
   command-line versus walked symlink policy, ancestor dev+ino loop checks,
@@ -63,7 +63,7 @@ PATH as the bare word `grep`; stdout, stderr, status and (where requested)
 remaining stdin bytes must agree. Help/version prose belongs to scent;
 those two cases compare stream shape and status instead of FSF prose.
 
-R-ct00-4 corrects the initial contract: different explicit matcher
+A correction to the initial contract: different explicit matcher
 syntaxes conflict; the same syntax may be repeated. Other-name/path
 invocations and non-UTF-8 arguments are exact upstream-blocked reviews
 under #899/#406/#904, not not-yet. Since wolf 0.2.36 the two byte-argument
@@ -74,8 +74,8 @@ not read it yet.
 
 ## Terminator-bearing patterns
 
-Ruling #117 replaces R-ct00-5: no pattern containing the active terminator
-matches any record, for F/G/E alike. The ordinary bounded reader is
+Never cross records (this replaces an earlier, narrower rule): no pattern
+containing the active terminator matches any record, for F/G/E alike. The ordinary bounded reader is
 unchanged. GNU G/E consistently reject such matches; GNU F sometimes
 crosses records within a read, but loses the same match across reads or
 under -w. The 216 cross-* cases now count as164 agreement and52 exact
@@ -95,7 +95,7 @@ CI wiring. `tools/gate` is the whole local acceptance, and
 three 400-file trees with varied creation orders. The pin's open/stat
 interfaces still require UTF-8 paths. The exact FF-name witness is an
 upstream-blocked row (#687/#912), not M3 and not a blanket tree waiver.
-Ruling #120's explicit socket skip is likewise one exact published
+The explicitly named socket's skip under `-Dskip` is likewise one exact published
 comparison family; walked sockets and FIFOs still agree with GNU.
 
 `tools/m2-ci-test` guards the generated 3,392-case floor, shared-fixture
@@ -129,8 +129,8 @@ measured environment differences.
 
 `LC_CTYPE=C.UTF-8` and `LANG=C.UTF-8` each work when the higher-precedence
 variables are unset or empty. `LC_ALL=C` overrides a UTF-8 `LANG`.
-`LANG=en_US.UTF-8` falls back to C in this image. R-ct04-1 classifies
-that as an environment difference: the oracle image installs only C,
+`LANG=en_US.UTF-8` falls back to C in this image. That is classified
+as an environment difference (installed-locales): the oracle image installs only C,
 C.UTF-8 and POSIX. The normal matrices use explicit `LC_ALL=C` and
 `LC_ALL=C.UTF-8`, never an installation-dependent locale name.
 
@@ -151,8 +151,8 @@ Unicode bracket classes store explicit members and named-property bits;
 non-ASCII range/collation endpoints are rejected exactly as measured.
 `ctype_tables.lu` stores compact sorted scalar ranges and fold pairs in
 7-bit byte strings. `tools/gen-ctype-tables` derives UCD records and applies
-the committed override lists, then computes ruling #122's consistent fold
-closure. Every class member and directed measurement remains separately
+the committed override lists, then computes the UTF-8 consistency rule's
+consistent fold closure. Every class member and directed measurement remains separately
 checked; no library's locale table is imported. Dot excludes every nonscalar.
 
 The reader validates only emitted line/span windows for encoding-error
