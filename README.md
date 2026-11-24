@@ -114,11 +114,12 @@ contains the minimal examples; it has not been sent.
 
 ## Install and build
 
-No release is published yet. `packaging/scent.rb` and `packaging/PKGBUILD`
-are **drafts** for a future `v0.2.0` source tag: their release digest must be
-filled before use. They build with the pinned compiler, not a moving wolf
-package, and do not replace the system grep. Optional compatibility names
-are installed in a separate directory.
+Releases are source tags, `v0.2.0` the first. `packaging/scent.rb` and
+`packaging/PKGBUILD` build a tag's source archive; that archive's digest is
+filled where a package is published, since it cannot live in the tagged tree.
+They build with the pinned compiler, not a moving wolf package, check that the
+binary prints its own version, and do not replace the system grep. Optional
+compatibility names are installed in a separate directory.
 
 ```sh
 tools/fetch-toolchain
