@@ -17,7 +17,7 @@ run are reported; no absolute time is compared with anything.
 
 --repeat K measures every row K times in turn (the calibration a bound is derived
 from). --scale shrinks the inputs for a dry run. With --bounds the report is checked
-by tools/ratio-check.
+by tools/ratio-check, whose exit status is this one's (75 for an INVALID take).
 """
 import argparse, hashlib, itertools, json, os, pathlib, re, statistics, subprocess, sys, time
 
@@ -151,6 +151,12 @@ def measure(row, argv, cwd, bins, child, runs, warmups, scratch):
             'before_ratio': ratio('scent', 'before') if 'before' in bins else None, 'tuples': agreed}
 
 
+def check_bounds(report, bounds, **run):
+    """tools/ratio-check's verdict on a written report, as its exit status (75: INVALID)."""
+    return subprocess.run([sys.executable, '-I', str(ROOT / 'tools/ratio-check'), str(report), str(bounds)],
+                          **run).returncode
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--output', required=True)
@@ -199,8 +205,7 @@ def main():
                   f"aa_rss={result['aa']['rss_kb']:.4f} secs={time.monotonic() - started:.0f}", flush=True)
             (ROOT / a.output).write_text(json.dumps(report, indent=1) + '\n')
     if a.bounds:
-        subprocess.run([sys.executable, '-I', str(ROOT / 'tools/ratio-check'), str(ROOT / a.output),
-                        str(ROOT / a.bounds)], check=True)
+        sys.exit(check_bounds(ROOT / a.output, ROOT / a.bounds))
 
 
 if __name__ == '__main__':
