@@ -2,6 +2,8 @@
 
 ## Unreleased — 0.2.0
 
+- Make one stdout buffer per run; add CPU and resident-size ratio rows against the pinned GNU build, bounded from a calibrated take.
+
 - Select nothing and read no file for an empty pattern set without -v or -L; read colour settings after the pattern files.
 
 - Pin wolf 0.2.36 / lupin 0.1.58; replay the byte-FF argv reviews at its argument-utf8 trap.
