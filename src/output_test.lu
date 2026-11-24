@@ -17,7 +17,7 @@ fn main() {
     // Nothing pending: the flush before a message has nothing to write.
     var quiet = out.create()
     out.before_message(mut quiet)
-    assert(quiet.used == 0 && quiet.held == 0 && !quiet.failed)
+    assert(quiet.used == 0 && !quiet.held && !quiet.failed)
     assert(!out.finish(mut quiet))
     print("output: 3 cases, 0 SKIP")
 }
