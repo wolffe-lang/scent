@@ -161,7 +161,7 @@ with progress.open('w') as log:
                 candidates.add(x); pending.append(x)
         if len(folds) % 25 == 0:
             print('fold', len(folds), '/', len(candidates), f'{time.monotonic()-START:.1f}s', flush=True)
-# R-ct04-2: retain the directed relation, not a symmetric closure.
+# Retain the directed relation, not a symmetric closure.
 # The nine historical Cyrillic sources are deliberately asymmetric.
 edges = sorted((cp, other) for cp, members in folds.items() for other in members if cp != other)
 non_equivalence = [(f"{cp:06X}", f"{other:06X}") for cp, members in folds.items()

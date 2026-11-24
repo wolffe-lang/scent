@@ -3,7 +3,7 @@
 """ci/tiers.py — which jobs a CI run runs, and whether it ran them.
 
 wolf-lang's planner (its ci/tiers.py, tl21), as lope has it, with
-scent's jobs and paths; the house rule for every repository (ruling #92).
+scent's jobs and paths; the house rule for every repository.
 
     ci/tiers.py plan [--event E] [--action A] [--label L] [--labels L1,L2]
                      [--merge [--head-sha SHA] | --paths-from FILE]
