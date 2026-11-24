@@ -224,7 +224,10 @@ and resident size on the many-files row; its margins come from the A/A spread
 of a calibration take (CPU 3 %, resident size 8.5 %), and a take whose own A/A
 lies outside twice its margin is INVALID (exit 75), not a verdict. The rows
 gate a record on a whole held block and are reported, not gated, on hosted
-runners. With one stdout buffer per run, scent's many-files CPU fell from
+runners: a hosted runner is a different machine on each run, and two hosted
+runs of near-identical code differ by 25 to 35 % on the same workloads, so a
+ceiling measured on one machine holds nothing on another.
+`tools/ratio-hosted-test` proves the switch through the container itself. With one stdout buffer per run, scent's many-files CPU fell from
 12.3 to 2.5 times GNU's, the literal row from 3.1 to 2.8 and the regular
 expression from 2.5 to 2.3.
 
