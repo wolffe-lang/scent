@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased — 0.2.0
+## 0.2.0 — 2026-11-24
+
+- Release as the v0.2.0 source tag: the binary, this file and both packaging recipes are checked to name one version.
 
 - Name each reviewed difference by its rule in words, never by a number or a tag.
 
