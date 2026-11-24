@@ -27,6 +27,7 @@ pub fn create() -> Output {
 /// bytes are dropped, as a fresh buffer would drop them: every caller has
 /// flushed first, and a failed buffer's bytes are never written.
 pub fn reset(mut o: Output) {
+    let ignored = create()
     o.used = 0
     o.failed = false
     o.any_group = false
