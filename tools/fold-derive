@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate R-ct04-2's simple-mapping derivation and cross-engine controls."""
+"""Validate the directed simple case-mapping derivation and cross-engine controls."""
 import hashlib, json, os, pathlib, subprocess, tomllib
 ROOT=pathlib.Path(__file__).resolve().parent.parent
 pin=tomllib.loads((ROOT/'scent-oracle.toml').read_text())['oracle']
@@ -40,7 +40,7 @@ for cp,other in edges:
                              'stdin_hex':(chr(target)+'\n').encode().hex(),
                              'stdout_hex':r.stdout.hex(),'stderr_hex':r.stderr.hex(),'status':r.returncode})
             answers.append((r.stdout,r.stderr,r.returncode))
-        assert answers[0]==answers[1]==answers[2],('STOP R-ct04-3',source,target,answers)
+        assert answers[0]==answers[1]==answers[2],('STOP engines disagree on a fold',source,target,answers)
 (fixture/'fold-engine-controls.json').write_text(json.dumps(controls,indent=2)+'\n')
 summary={'queries':len(queries),'directed_edges':sum(len(m)-1 for m in measured.values()),
          'asymmetric_edges':len(edges),'cross_engine_controls':len(controls),

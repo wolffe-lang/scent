@@ -159,7 +159,7 @@ def oracle_row(grep, row):
 
 
 def exception_name(row, engine, oracle):
-    # Ruling #116: the original 32 pairs per syntax, both answers exact.
+    # Double star means star: the original 32 pairs per syntax, both answers exact.
     # No new subject or output is admitted merely by sharing a pattern.
     normalized=lambda value: json.loads(json.dumps(value,default=encode))
     for approved in EXTENSION_DIVERGENCES:

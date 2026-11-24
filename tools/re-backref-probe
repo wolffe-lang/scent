@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""R-ct01-4 neighbourhood; no expected result or implementation source."""
+"""The double-star neighbourhood; no expected result or implementation source."""
 from pathlib import Path
 import json
 import runpy

@@ -26,7 +26,7 @@ for path in sorted((ROOT/'tests/cases').glob('*.jsonl')):
   c['name']='utf8-'+c['name']
   c['env']={**c.get('env',{}),'LC_ALL':'C.UTF-8'}
   rows.append(c)
-# Every extra edge introduced by ruling #122, both an isolated witness and
+# Every extra edge the UTF-8 consistent fold closure introduces, both an isolated witness and
 # a combined-line control, under selection/span/count/list/word/whole modes.
 pairs=[tuple(int(x,16) for x in line.split()) for line in (ROOT/'tests/fixtures/ctype/folds.tsv').read_text().splitlines()]
 parent={x:x for pair in pairs for x in pair}

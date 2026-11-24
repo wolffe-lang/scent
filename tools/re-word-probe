@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""R-ct01-3: one bounded word-stepping/backreference-dispatch matrix."""
+"""One bounded word-stepping/backreference-dispatch matrix (selection and spans may use separate programs)."""
 import json
 from pathlib import Path
 import runpy
