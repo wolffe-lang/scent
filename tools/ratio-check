@@ -7,7 +7,8 @@ Exit 0: every bounded metric is within its ceiling. Exit 1: a `FAIL NAME …` li
 each metric over its ceiling, or for a row whose output differs between participants
 (that one fails everywhere, hosted CI included: it is a byte difference, not a time).
 Exit 75: the run's own A/A (GNU against itself) lies outside 1 ± 2 × margin on a
-bounded row: the take is INVALID, not a verdict. Under hosted CI (GITHUB_ACTIONS set)
+bounded row: the take is INVALID, not a verdict. The margin is one number, or one per
+metric ({"cpu": …, "rss": …}) where the metrics' noise floors differ. Under hosted CI (GITHUB_ACTIONS set)
 every line is printed and the exit is 0: those rows are reported there, gated on a
 whole held block.
 """
@@ -39,6 +40,14 @@ def validate(report):
                 assert value == (row['median'][a][m] / base if base else None), 'RED ratio-drift: ' + row['name']
 
 
+def metric_margin(margin, metric):
+    """The A/A margin a metric is held to: the bound's one margin, or its own."""
+    value = margin.get(metric) if isinstance(margin, dict) else margin
+    assert type(value) in (int, float) and math.isfinite(value) and 0 < value < 0.5, \
+        'RED ratio-bounds: no usable margin for ' + metric
+    return value
+
+
 def check(report, bounds):
     validate(report)
     margin = bounds.get('margin')
@@ -55,13 +64,14 @@ def check(report, bounds):
     for name, limit in sorted(ceilings.items()):
         row_name, _, metric = name.rpartition('-')
         assert metric in METRICS and row_name in rows, 'RED ratio-bounds: no measured row for ' + name
-        assert margin is not None and 0 < margin < 0.5 and math.isfinite(limit) and limit > 0, 'RED ratio-bounds: ' + name
+        m = metric_margin(margin, metric)
+        assert type(limit) in (int, float) and math.isfinite(limit) and limit > 0, 'RED ratio-bounds: ' + name
         for row in rows[row_name]:
             aa = row['aa'][METRICS[metric]]
             value = row['ratio'][METRICS[metric]]
             lines.append(f"{name} ratio={value:.3f} ceiling={limit:.3f} aa={aa:.4f} repeat={row.get('repeat_index', 0)}")
-            if abs(aa - 1) > 2 * margin:
-                invalid.append(f"INVALID {name} aa={aa:.4f} outside 1 ± {2 * margin:.4f}")
+            if abs(aa - 1) > 2 * m:
+                invalid.append(f"INVALID {name} aa={aa:.4f} outside 1 ± {2 * m:.4f}")
             elif value > limit:
                 fails.append(f"FAIL {name} {value:.3f} > {limit:.3f}")
     return lines, wrong, fails, invalid

@@ -10,8 +10,8 @@ def samples(user, rss, n=5):
     return [{'user_us': user, 'sys_us': 10, 'wall_us': user + 20, 'maxrss_kb': rss, 'minflt': 100} for _ in range(n)]
 
 
-def row(name, scent_us, gnu_us, again_us):
-    s = {'gnu': samples(gnu_us, 2000), 'scent': samples(scent_us, 3000), 'gnu-again': samples(again_us, 2000)}
+def row(name, scent_us, gnu_us, again_us, again_rss=2000):
+    s = {'gnu': samples(gnu_us, 2000), 'scent': samples(scent_us, 3000), 'gnu-again': samples(again_us, again_rss)}
     median = {w: {'cpu_us': statistics.median(x['user_us'] + x['sys_us'] for x in v),
                   'wall_us': statistics.median(x['wall_us'] for x in v),
                   'rss_kb': statistics.median(x['maxrss_kb'] for x in v),
@@ -74,3 +74,21 @@ for who in stderr['rows'][0]['tuples']:
 _, wrong, _, _ = check(stderr, bounds)
 assert wrong and 'stderr' in wrong[0], wrong
 print('PASS output mismatches and stderr are FAIL lines; SKIP=0')
+
+# A margin per metric: resident size is noisier than CPU in the same take, so each
+# metric's A/A is held to its own margin.
+per_metric = dict(bounds, margin={'cpu': 0.03, 'rss': 0.085})
+lines, wrong, fails, invalid = check(valid, per_metric)
+assert len(lines) == 3 and not wrong and not invalid and not fails, (wrong, fails, invalid)
+rss_noise = copy.deepcopy(valid)
+rss_noise['rows'][0] = row('ratio-count-files', 290, 90, 90, again_rss=2200)
+_, wrong, fails, invalid = check(rss_noise, per_metric)
+assert not invalid and not fails, (invalid, fails)
+_, _, _, invalid = check(rss_noise, bounds)
+assert invalid == ['INVALID ratio-count-files-rss aa=1.1000 outside 1 ± 0.0600'], invalid
+_, _, _, invalid = check(noisy, per_metric)
+assert invalid and invalid[0].startswith('INVALID ratio-count-files-cpu'), invalid
+print('PASS each metric is held to its own margin:', invalid[0])
+expect_refusal('a metric with no margin', valid, dict(bounds, margin={'cpu': 0.03}))
+expect_refusal('a margin that is not a number', valid, dict(bounds, margin={'cpu': 0.03, 'rss': True}))
+
