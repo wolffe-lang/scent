@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+"""Ratio rows are reported, not gated, on a hosted runner: proven through the real container.
+
+    tools/ratio-hosted-test        (on the host, never inside the container)
+
+A hosted runner is a different machine on every run, so tools/ratio-check gates the ratio
+rows only where GITHUB_ACTIONS is unset (a whole held block) and reports them on a hosted
+runner. The check runs inside the pinned container, so the switch must cross
+tools/in-container. This test writes one report whose many-files CPU ratio is over its
+ceiling and runs the real entry, tools/in-container python3 -I tools/ratio-check, twice:
+with GITHUB_ACTIONS set it must exit 0 and print the REPORT line beside the reading; without
+it, it must exit 1 with the FAIL line. Exit 0 when both hold, 1 otherwise, 2 when it is run
+inside the container or no engine answers.
+"""
+import json, os, pathlib, shutil, statistics, subprocess, sys
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+REPORT = 'REPORT ratio rows: hosted runner, not gated'
+FAILING = 'FAIL ratio-count-files-cpu 3.000 > 2.900'
+
+
+def samples(user, rss, n=5):
+    return [{'user_us': user, 'sys_us': 10, 'wall_us': user + 20, 'maxrss_kb': rss, 'minflt': 100} for _ in range(n)]
+
+
+def row(name, scent_us, gnu_us):
+    s = {'gnu': samples(gnu_us, 2000), 'scent': samples(scent_us, 3000), 'gnu-again': samples(gnu_us, 2000)}
+    median = {w: {'cpu_us': statistics.median(x['user_us'] + x['sys_us'] for x in v),
+                  'wall_us': statistics.median(x['wall_us'] for x in v),
+                  'rss_kb': statistics.median(x['maxrss_kb'] for x in v),
+                  'minflt': statistics.median(x['minflt'] for x in v)} for w, v in s.items()}
+    ratio = lambda a, b: {m: median[a][m] / median[b][m] for m in median[a]}
+    answer = {'status': 0, 'stdout_sha256': '0' * 64, 'stdout_bytes': 2, 'stderr_hex': ''}
+    return {'name': name, 'samples': s, 'median': median, 'ratio': ratio('scent', 'gnu'),
+            'aa': ratio('gnu-again', 'gnu'), 'tuples': {w: [dict(answer)] for w in s}, 'repeat_index': 0}
+
+
+def main():
+    if os.environ.get('SCENT_IN_CONTAINER') == '1':
+        print('STOP ratio-hosted-test runs on the host: it starts the container itself', flush=True)
+        return 2
+    engine = os.environ.get('SCENT_ENGINE', 'podman')
+    if shutil.which(engine) is None and not os.path.isfile(engine):
+        print('STOP ratio-hosted-test: no container engine ' + engine, flush=True)
+        return 2
+    work = ROOT / 'target' / 'ratio-hosted'
+    work.mkdir(parents=True, exist_ok=True)
+    (work / 'report.json').write_text(json.dumps(
+        {'runs': 5, 'cpus': [0, 2], 'rows': [row('ratio-count-files', 290, 90)]}))
+    (work / 'bounds.json').write_text(json.dumps(
+        {'margin': {'cpu': 0.03, 'rss': 0.085}, 'ceilings': {'ratio-count-files-cpu': 2.9}}))
+    base = {k: v for k, v in os.environ.items() if k != 'GITHUB_ACTIONS'}
+    argv = [str(ROOT / 'tools/in-container'), 'python3', '-I', 'tools/ratio-check',
+            'target/ratio-hosted/report.json', 'target/ratio-hosted/bounds.json']
+    fails = 0
+    for label, env, want_status, want_lines in [
+            ('hosted', dict(base, GITHUB_ACTIONS='true'), 0, [FAILING, REPORT]),
+            ('held block', base, 1, [FAILING])]:
+        r = subprocess.run(argv, cwd=ROOT, env=env, capture_output=True, text=True)
+        lines = r.stdout.splitlines()
+        ok = r.returncode == want_status and all(w in lines for w in want_lines) and (
+            label != 'held block' or REPORT not in lines)
+        print(('PASS' if ok else 'RED') + ' ratio-hosted-path %s: exit %d; %s' % (
+            label, r.returncode, ' | '.join(lines[-3:]) or r.stderr.strip()[-200:]), flush=True)
+        fails += not ok
+    print('PASS ratio rows are reported, not gated, on a hosted runner; SKIP=0' if not fails
+          else 'RED ratio-hosted-path: %d case(s)' % fails, flush=True)
+    return 1 if fails else 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
