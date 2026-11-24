@@ -236,6 +236,12 @@ expression from 2.5 to 2.3.
 These deliberate differences keep matching and file-selection rules consistent.
 The witness bytes use `\0` for NUL; ordinary output ends in newline.
 The complete individual cases and exact answers are in the two manifests above.
+Each reviewed row carries its rule's key, in the review files and in the oracle's
+`REVIEWED` lines: `whole-word-leftmost-longest`, `double-star-means-star`,
+`never-cross-records` and `named-socket-obeys-Dskip` for the four rules in this table,
+`utf8-consistency` for the two UTF-8 consistency rules, `upstream-invocation-name`,
+`upstream-byte-argv` and `upstream-byte-path` for the upstream-blocked rows, and
+`installed-locales` for the one environment difference.
 
 | Rule | Minimal witness | GNU 3.12 | scent | Why |
 | --- | --- | --- | --- | --- |
