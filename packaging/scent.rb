@@ -1,10 +1,11 @@
-# PREPARED, NOT PUBLISHED. Shape: lope bc388673 packaging/lope.rb.
-# Source build from a future tag; no dependency on a moving wolf formula.
+# Shape: lope bc388673 packaging/lope.rb. Source build from the v0.2.0 tag; no
+# dependency on a moving wolf formula. The archive's digest exists only once the tag
+# does, so it is filled where the formula is published, never in the tagged tree.
 class Scent < Formula
-  desc "Recursive byte-oriented grep in wolf with terminal colour"
+  desc "Byte-oriented grep in wolf, held to GNU grep 3.12, with terminal colour"
   homepage "https://github.com/wolffe-lang/scent"
   url "https://github.com/wolffe-lang/scent/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "RELEASE-LANE-FILLS-THIS"
+  sha256 "SHA256-OF-THE-TAG-ARCHIVE"
   license "GPL-3.0-or-later"
   depends_on "llvm" => :build
 
@@ -37,7 +38,7 @@ class Scent < Formula
   end
 
   def caveats
-    "Optional grep/egrep/fgrep names are in #{libexec}/gnubin. They do not replace the system grep. Use LC_ALL=C until UTF-8 locale support arrives."
+    "Optional grep/egrep/fgrep names are in #{libexec}/gnubin. They do not replace the system grep."
   end
 
   test do
