@@ -2,6 +2,8 @@
 
 ## Unreleased — 0.2.0
 
+- Name each reviewed difference by its rule in words, never by a number or a tag.
+
 - Make one stdout buffer per run; add CPU and resident-size ratio rows against the pinned GNU build, bounded from a calibrated take.
 
 - Select nothing and read no file for an empty pattern set without -v or -L; read colour settings after the pattern files.
