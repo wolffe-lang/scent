@@ -24,6 +24,8 @@ lope cut it, cut again to scent's workflow). python3 only.
       nightly-red job runs on a failed schedule only, after the verdict.
   T9  the plain rule for current text: no file outside notes/ names a
       ruling, by number or by tag.
+  T10 one version: the binary's --version line, the newest CHANGELOG
+      section and both packaging recipes name the same release.
 
 Exit 0 when every check passes, 1 otherwise.
 """
@@ -223,6 +225,31 @@ for top in sorted(os.listdir(ROOT)):
 say(not named, "T9 no current text outside notes/ names a ruling%s" % (": " + ", ".join(named) if named else ""))
 for n in named:
     print("FAIL plain-rule " + n)  # by name, for a record's plant evidence
+
+# T10, one version: what `scent --version` prints, the newest CHANGELOG section
+# (`## Unreleased — X` while X is being made, `## X — YYYY-MM-DD` once tagged) and
+# both packaging recipes name the same X.
+def _read(*parts):
+    with open(os.path.join(ROOT, *parts), encoding="utf-8") as fh:
+        return fh.read()
+
+
+VERSION = r"(\d+\.\d+\.\d+)"
+named = {}
+m = re.search(r'print\("scent %s"\)' % VERSION, _read("src", "scent.lu"))
+named["--version"] = m and m.group(1)
+top = next((line for line in _read("CHANGELOG.md").splitlines() if line.startswith("## ")), "")
+m = re.fullmatch(r"## (?:Unreleased — %s|%s — \d{4}-\d{2}-\d{2})" % (VERSION, VERSION), top)
+named["CHANGELOG"] = m and (m.group(1) or m.group(2))
+m = re.search(r"^pkgver=%s$" % VERSION, _read("packaging", "PKGBUILD"), re.M)
+named["PKGBUILD"] = m and m.group(1)
+m = re.search(r"/archive/refs/tags/v%s\.tar\.gz" % VERSION, _read("packaging", "scent.rb"))
+named["scent.rb"] = m and m.group(1)
+one = None not in named.values() and len(set(named.values())) == 1
+listed = ", ".join("%s %s" % (k, v) for k, v in named.items())
+say(one, "T10 one version: %s" % listed)
+if not one:
+    print("FAIL one-version " + listed)  # by name, for a record's plant evidence
 
 print("tiers-test: %s" % ("every check passes" if not fails else "%d check(s) FAILED" % fails))
 sys.exit(1 if fails else 0)
