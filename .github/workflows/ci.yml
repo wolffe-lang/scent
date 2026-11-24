@@ -25,7 +25,7 @@ on:
       - 'Cargo.toml'
       - 'Cargo.lock'
   schedule:
-    - cron: '43 4 * * *'
+    - cron: '13 19 * * *'
   workflow_dispatch:
     inputs:
       jobs:
