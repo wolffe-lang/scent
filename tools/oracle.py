@@ -132,6 +132,11 @@ if a.field and (ROOT/'tests/m3-field-divergences.json').exists():
         field_reviews.setdefault(platform,{}).update(entries)
 field_support=runpy.run_path(str(ROOT/'tools/oracle-field.py'))
 cases=[json.loads(raw) for file in sorted((ROOT/a.cases).glob('*.jsonl')) for raw in file.read_text().splitlines()]
+# The work directory's own paths: a fixture under one of them would replace the harness's.
+RESERVED={'bin','stdout.captured'}
+for c in cases:
+    names=list(c.get('files',{}))+[os.fsdecode(base64.b64decode(r['name_base64'])) for r in c.get('raw_names',[])]
+    require(not any(n.split('/')[0] in RESERVED for n in names),'case '+c['name']+' names a fixture path the harness reserves ('+', '.join(sorted(RESERVED))+')')
 selected=[c for c in cases if not a.only or fnmatch.fnmatchcase(c['name'],a.only)]
 capabilities={}
 if a.field and any(field_support['needs_non_utf8_name'](case) for case in selected):
