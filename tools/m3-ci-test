@@ -12,6 +12,13 @@ for name,c in inherited.items():
  if name=='m2-m3-locale-refusal':assert not c.get('not_yet');continue
  clone=dict(c,name='utf8-'+name,env={**c.get('env',{}),'LC_ALL':'C.UTF-8'})
  assert cases[clone['name']]==clone
+# No case names a fixture under the oracle's own work paths (its bin/ and captured stdout).
+import ast,base64,os,re
+reserved=ast.literal_eval(re.search(r"^RESERVED=(\{.*\})$",(root/'tools/oracle.py').read_text(),re.M)[1])
+assert reserved>={'bin','stdout.captured'},reserved
+for c in list(inherited.values())+rows:
+ names=list(c.get('files',{}))+[os.fsdecode(base64.b64decode(r['name_base64'])) for r in c.get('raw_names',[])]
+ assert not any(n.split('/')[0] in reserved for n in names),('reserved fixture path',c['name'])
 reviews=json.loads((root/'tests/m3-divergences.json').read_text())
 counts=collections.Counter(r.get('class','inherited') for r in reviews.values())
 assert counts=={'gnu-inconsistent':550,'environment':1,'inherited':120},counts
