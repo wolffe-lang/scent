@@ -1,4 +1,13 @@
 {
-  "margin": null,
-  "ceilings": {}
+  "note": "From one take on a whole held block: per metric, margin = max(3 x the largest |A/A - 1| of every gated reading, 0.03); each ceiling = the head's worst repeat x (1 + its metric's margin).",
+  "margin": {
+    "cpu": 0.03,
+    "rss": 0.085
+  },
+  "ceilings": {
+    "ratio-count-files-cpu": 2.579,
+    "ratio-count-files-rss": 5.233,
+    "ratio-literal-100M-cpu": 2.911,
+    "ratio-regex-100M-cpu": 2.373
+  }
 }
