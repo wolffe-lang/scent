@@ -22,6 +22,8 @@ lope cut it, cut again to scent's workflow). python3 only.
       issue opens one; an open one is commented on; a label that exists is
       no failure; the script refuses without its environment; the
       nightly-red job runs on a failed schedule only, after the verdict.
+  T9  the plain rule for current text: no file outside notes/ names a
+      ruling, by number or by tag.
 
 Exit 0 when every check passes, 1 otherwise.
 """
@@ -194,6 +196,33 @@ written = "\n".join(c for e in ("", "41") for c in _log_lines(nightly_red(existi
 said = sorted({m.group(0) for m in PLAIN.finditer(written)}) + ["listed word %d" % n for n, rx in LISTED if rx.search(written)]
 say(bool(written) and not said, "T8 nothing the reporter writes in public carries an internal word (%s)%s" % (
     "the plain rule and %d listed words" % len(LISTED) if LISTED else "the plain rule", ": " + ", ".join(said) if said else ""))
+
+# T9, current text is public too: no file outside notes/ names a ruling, by number
+# or by tag; each published difference is named by its rule in words. notes/ keeps
+# the historical notes and the recorded evidence logs as they were recorded (their
+# digests are cited), and build outputs and dot-directories are not the tree's text.
+RULED = re.compile(r"(?<![A-Za-z])rulings?(?![A-Za-z])|(?<![A-Za-z0-9])R-[a-z]{2}\d{2}-\d+", re.I)
+named = []
+for top in sorted(os.listdir(ROOT)):
+    if top in ("notes", "target") or (top.startswith(".") and top not in (".github", ".gitignore")):
+        continue
+    start = os.path.join(ROOT, top)
+    paths = [start] if not os.path.isdir(start) else [
+        os.path.join(d, f) for d, subdirs, files in os.walk(start)
+        for f in files if "__pycache__" not in d.split(os.sep)]
+    for path in sorted(paths):
+        if os.path.abspath(path) == os.path.abspath(__file__):
+            continue  # this check's own pattern
+        try:
+            with open(path, encoding="utf-8") as fh:
+                count = len(RULED.findall(fh.read()))
+        except (UnicodeDecodeError, OSError):
+            continue
+        if count:
+            named.append("%s (%d)" % (os.path.relpath(path, ROOT), count))
+say(not named, "T9 no current text outside notes/ names a ruling%s" % (": " + ", ".join(named) if named else ""))
+for n in named:
+    print("FAIL plain-rule " + n)  # by name, for a record's plant evidence
 
 print("tiers-test: %s" % ("every check passes" if not fails else "%d check(s) FAILED" % fails))
 sys.exit(1 if fails else 0)
