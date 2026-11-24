@@ -30,7 +30,8 @@ no message, as the pinned GNU build does.
 The generated CLI matrix has **5,072 cases**: 40 option rows × three
 syntaxes × seven pattern families × six input forms, plus 32 source and
 diagnostic cases. Separate CLI rows cover the original 958-case corpus,
-150 reviewed-family cases, 18 wrapper cases and nine context/span joins.
+150 reviewed-family cases, 18 wrapper cases, nine context/span joins and
+sixteen rows that carry output state across files.
 The engine also gates 20,000 generated pattern–line pairs per syntax,
 exhaustive short malformed patterns, and bounded regular/backreference costs.
 
@@ -38,11 +39,11 @@ The M2 generator adds **3,392 cases**: 2,000 shared-tree walk/filter rows,
 18 edge and five self-output rows, 1,152 original colour/environment rows,
 120 glob-syntax rows, and 97 additional byte-pattern, tty, colour-edge,
 reviewed-gap and UTF-8 locale rows. The complete CLI matrix reports
-**9,518 C-locale agreements + 111 published differences + 9 upstream-blocked**.
-The former explicit UTF-8 refusal is now an agreement. A further **38,746
+**9,534 C-locale agreements + 111 published differences + 9 upstream-blocked**.
+The former explicit UTF-8 refusal is now an agreement. A further **38,762
 UTF-8 cases** include every inherited case and generated scalar, encoding-error
-and consistency witnesses. The complete matrix has **48,385 cases**:
-**47,594 agree, 772 published differences, 18 upstream-blocked, one environment
+and consistency witnesses. The complete matrix has **48,417 cases**:
+**47,626 agree, 772 published differences, 18 upstream-blocked, one environment
 difference, zero unapproved differences and zero not-yet rows**. Of the published
 differences, 550 cover the two UTF-8 consistency rules below: 480 case-fold
 rows and 70 dot-span rows.
@@ -212,6 +213,20 @@ improvement and rejects any other candidate range wholly slower than its before
 range. Source and binary hashes bind each new run. `SCENT_CPUS` selects the
 four-core block for `tools/speed-ci` (default `0-3`); no taskset shim is needed.
 Full CI adds the macOS field leg.
+
+`tools/ratio` adds three ratio rows against the pinned GNU build in the same
+run: `-c` over 5,000 small files, a literal and a regular expression over
+100 MiB. Each row runs GNU, scent and GNU again (the run's own A/A floor) in
+rotating order on two cores, 31 counted runs each from a small static parent,
+and compares only ratios of medians: CPU (user plus system), peak resident
+size and minor faults. `tests/ratio-bounds.json` bounds CPU on all three rows
+and resident size on the many-files row; its margins come from the A/A spread
+of a calibration take (CPU 3 %, resident size 8.5 %), and a take whose own A/A
+lies outside twice its margin is INVALID (exit 75), not a verdict. The rows
+gate a record on a whole held block and are reported, not gated, on hosted
+runners. With one stdout buffer per run, scent's many-files CPU fell from
+12.3 to 2.5 times GNU's, the literal row from 3.1 to 2.8 and the regular
+expression from 2.5 to 2.3.
 
 ## Published differences
 
