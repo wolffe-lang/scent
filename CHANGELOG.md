@@ -2,6 +2,8 @@
 
 ## Unreleased — 0.2.0
 
+- Name each reviewed difference by its rule in words, never by a number or a tag.
+
 - Select nothing and read no file for an empty pattern set without -v or -L; read colour settings after the pattern files.
 
 - Pin wolf 0.2.36 / lupin 0.1.58; replay the byte-FF argv reviews at its argument-utf8 trap.
