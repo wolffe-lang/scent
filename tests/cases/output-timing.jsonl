@@ -41,3 +41,7 @@
 {"name":"output-timing-full-missing-last","argv":["x","a","missing"],"files":{"a":{"text":"x 1\n"},"missing":{"kind":"missing"}},"stdin":"","section":"output","stdout":"full"}
 {"name":"output-timing-full-silent-missing-between","argv":["-s","x","a","missing","b"],"files":{"a":{"text":"x 1\n"},"missing":{"kind":"missing"},"b":{"text":"x 3\n"}},"stdin":"","section":"output","stdout":"full"}
 {"name":"output-timing-full-line-buffered","argv":["--line-buffered","x","a","missing","b"],"files":{"a":{"text":"x 1\n"},"missing":{"kind":"missing"},"b":{"text":"x 3\n"}},"stdin":"","section":"output","stdout":"full"}
+{"name":"output-timing-full-binary-message","argv":["x","a","bin"],"files":{"a":{"text":"x 1\n"},"bin":{"base64":"eAB5Cg=="}},"stdin":"","section":"output","stdout":"full"}
+{"name":"output-timing-full-directory-message","argv":["x","a","d"],"files":{"a":{"text":"x 1\n"},"d":{"kind":"directory"}},"stdin":"","section":"output","stdout":"full"}
+{"name":"output-timing-full-two-missing","argv":["x","a","m1","b","m2"],"files":{"a":{"text":"x 1\n"},"b":{"text":"x 3\n"},"m1":{"kind":"missing"},"m2":{"kind":"missing"}},"stdin":"","section":"output","stdout":"full"}
+{"name":"output-timing-full-silent-missing-last","argv":["-s","x","a","missing"],"files":{"a":{"text":"x 1\n"},"missing":{"kind":"missing"}},"stdin":"","section":"output","stdout":"full"}
