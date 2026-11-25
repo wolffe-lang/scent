@@ -213,7 +213,11 @@ length, empty stderr and twelve checked runs are retained with the row.
 improvement and rejects any other candidate range wholly slower than its before
 range. Source and binary hashes bind each new run. `SCENT_CPUS` selects the
 four-core block for `tools/speed-ci` (default `0-3`); no taskset shim is needed.
-Full CI adds the macOS field leg.
+Full CI adds the macOS field leg, under its own 35-minute limit inside the
+job's 40. Its length never fails the job; `tools/field-report`, the step
+after it, is its verdict: red on a stale review, an early end without the
+oracle's summary, or a leg that never started, and a report, not red, when
+the runner cuts it at the limit.
 
 `tools/ratio` adds three ratio rows against the pinned GNU build in the same
 run: `-c` over 5,000 small files, a literal and a regular expression over
