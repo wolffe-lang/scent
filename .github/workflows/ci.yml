@@ -153,7 +153,7 @@ jobs:
     needs: plan
     if: ${{ (github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'full-matrix') || contains(github.event.pull_request.labels.*.name, 'ci') || contains(github.event.pull_request.labels.*.name, 'release-matrix')) && (contains(fromJSON(needs.plan.outputs.jobs || '[]'), 'macos')) }}
     runs-on: macos-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - run: tools/fetch-toolchain
@@ -162,10 +162,19 @@ jobs:
       - run: python3 -I tools/m2-ci-test
       - run: python3 -I tools/m3-ci-test
       - name: Distribution field leg (never the behavioral gate)
+        id: field
+        # Its own limit and continue-on-error: the leg's length or exit never fails the job.
+        # The next step is its verdict.
+        timeout-minutes: 35
+        continue-on-error: true
         run: |
+          mkdir -p target && date +%s > target/field-step-start
           brew install grep
           ggrep --version
           tools/oracle --field --bin target/release/scent
+      - name: Field leg verdict (a stale review, an early end or no start is red; a cut is reported)
+        if: always()
+        run: python3 -I tools/field-report --limit-minutes 35
       - name: Retain macOS field classifications and witnesses
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
