@@ -11,8 +11,13 @@ ceiling and runs the real entry, tools/in-container python3 -I tools/ratio-check
 with GITHUB_ACTIONS set it must exit 0 and print the REPORT line beside the reading; without
 it, it must exit 1 with the FAIL line. Exit 0 when both hold, 1 otherwise, 2 when it is run
 inside the container or no engine answers.
+
+First, with a stand-in engine and no container: tools/in-container must make target/ on the
+host before the engine runs. An engine running as root would otherwise make target/ itself,
+root-owned, on the first write under it (a toolchain fetch with no cache makes target/tmp),
+and this test, on the host, could not then make target/ratio-hosted.
 """
-import json, os, pathlib, shutil, statistics, subprocess, sys
+import json, os, pathlib, shutil, statistics, subprocess, sys, tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 REPORT = 'REPORT ratio rows: hosted runner, not gated'
@@ -35,10 +40,30 @@ def row(name, scent_us, gnu_us):
             'aa': ratio('gnu-again', 'gnu'), 'tuples': {w: [dict(answer)] for w in s}, 'repeat_index': 0}
 
 
+def launcher_makes_target():
+    """tools/in-container makes target/ before it starts the engine (a stand-in engine here)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        root = pathlib.Path(tmp)
+        (root / 'tools').mkdir()
+        shutil.copy2(ROOT / 'tools/in-container', root / 'tools/in-container')
+        engine = root / 'engine'
+        engine.write_text('#!/bin/sh\n[ "$1" = run ] || exit 0\n'
+                          '[ -d "%s/target" ] && echo target-present || echo target-absent\n' % root)
+        engine.chmod(0o755)
+        r = subprocess.run([str(root / 'tools/in-container'), 'true'], capture_output=True, text=True,
+                           env=dict(os.environ, SCENT_ENGINE=str(engine), SCENT_IMAGE='stub'))
+        ok = r.returncode == 0 and r.stdout.strip() == 'target-present'
+        print(('PASS' if ok else 'RED') + ' in-container makes target/ on the host before the engine runs: '
+              + (r.stdout.strip() or r.stderr.strip()[-200:]), flush=True)
+        return ok
+
+
 def main():
     if os.environ.get('SCENT_IN_CONTAINER') == '1':
         print('STOP ratio-hosted-test runs on the host: it starts the container itself', flush=True)
         return 2
+    if not launcher_makes_target():
+        return 1
     engine = os.environ.get('SCENT_ENGINE', 'podman')
     if shutil.which(engine) is None and not os.path.isfile(engine):
         print('STOP ratio-hosted-test: no container engine ' + engine, flush=True)
