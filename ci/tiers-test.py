@@ -28,7 +28,8 @@ lope cut it, cut again to scent's workflow). python3 only.
       section and both packaging recipes name the same release.
   T11 tools/field-report over the macOS field leg's five ends: completed,
       cut at the step's limit, a stale review, an early end without a
-      summary, and a leg that never started.
+      summary, and a leg that never started; and a summary older than the
+      leg's start, which is not the leg's and reads as no summary.
 
 Exit 0 when every check passes, 1 otherwise.
 """
@@ -281,15 +282,19 @@ if not one:
 FIELD_REPORT = os.path.join(ROOT, "tools", "field-report")
 
 
-def field_end(started_min_ago, summary):
+def field_end(started_min_ago, summary, summary_before_start=False):
     root = tempfile.mkdtemp()
     os.makedirs(os.path.join(root, "target", "oracle"))
+    start = int(time.time() - (started_min_ago or 0) * 60)
     if started_min_ago is not None:
         with open(os.path.join(root, "target", "field-step-start"), "w") as fh:
-            fh.write("%d\n" % int(time.time() - started_min_ago * 60))
+            fh.write("%d\n" % start)
     if summary is not None:
-        with open(os.path.join(root, "target", "oracle", "summary.json"), "w") as fh:
+        path = os.path.join(root, "target", "oracle", "summary.json")
+        with open(path, "w") as fh:
             json.dump(summary, fh, sort_keys=True)
+        if summary_before_start:  # left by something before the leg began
+            os.utime(path, (start - 120, start - 120))
     try:
         if not os.path.isfile(FIELD_REPORT):
             return None, "tools/field-report is absent"
@@ -301,13 +306,14 @@ def field_end(started_min_ago, summary):
 
 
 counts = {"agree": 47000, "differ": 120, "reviewed": 2, "field-unavailable": 3, "stale-review": 0}
-for name, ago, summary, want_rc, want in [
-        ("completed", 22, counts, 0, "REPORT field leg: completed"),
-        ("cut", 35.2, None, 0, "REPORT field leg: cut at 35 min"),
-        ("stale", 22, dict(counts, **{"stale-review": 2}), 1, "FAIL field leg: 2 stale field review(s)"),
-        ("early", 3, None, 1, "FAIL field leg: ended early without a summary after 3 min"),
-        ("never-started", None, None, 1, "FAIL field leg: never started")]:
-    rc, out = field_end(ago, summary)
+for name, ago, summary, old, want_rc, want in [
+        ("completed", 22, counts, False, 0, "REPORT field leg: completed"),
+        ("cut", 35.2, None, False, 0, "REPORT field leg: cut at 35 min"),
+        ("stale", 22, dict(counts, **{"stale-review": 2}), False, 1, "FAIL field leg: 2 stale field review(s)"),
+        ("early", 3, None, False, 1, "FAIL field leg: ended early without a summary after 3 min"),
+        ("never-started", None, None, False, 1, "FAIL field leg: never started"),
+        ("old-summary", 3, counts, True, 1, "FAIL field leg: ended early without a summary after 3 min")]:
+    rc, out = field_end(ago, summary, old)
     ok = rc == want_rc and out.startswith(want)
     say(ok, "T11 field-report %s: exit %s, %s" % (name, rc, out.splitlines()[0] if out else "no output"))
     if not ok:
