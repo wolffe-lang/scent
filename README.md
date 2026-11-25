@@ -320,7 +320,9 @@ patterns, trims trailing C-locale whitespace and preserves rule order.
 [docs/MAP.md](docs/MAP.md) describes the matcher seam and bounded buffers;
 [docs/RE.md](docs/RE.md) describes the immutable regex and reusable workspace.
 Input is never a whole-file string. Per-chunk regions release temporary
-reads/output; only unfinished lines and requested context survive.
+reads/output; only unfinished lines and requested context survive, in a
+region block freed when the operand ends, so memory does not grow with the
+number of files.
 
 Regular line selection uses a lazy deterministic cache, with the original
 state-set VM on cache exhaustion and for unproved backreferences. Straight-line,
