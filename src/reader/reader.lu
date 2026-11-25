@@ -274,10 +274,12 @@ fn append(mut target: List[byte], used: int, buf: List[byte], lo: int, hi: int) 
     }
 }
 
-// After this many literal hits in consecutive lines of one read, the rest of the read takes the
-// ordinary path: where most lines hold the literal, searching for it first costs more than
-// visiting every line. Chosen by a measured sweep (see the README).
-const LITERAL_RUN: int = 16
+// Once a read has at least LITERAL_HITS lines that hold the literal, and those lines make up at
+// least LITERAL_SHARE sixteenths of the bytes covered since the read's start, the rest of the read
+// takes the ordinary path: where that much of the input holds the literal, searching for it first
+// costs more than visiting every line. Both chosen by measured sweeps (see the README).
+const LITERAL_HITS: int = 16
+const LITERAL_SHARE: int = 7
 
 /// Read one operand in bounded chunks, carrying only the unfinished line
 /// and the requested leading-context ring. Every chunk owns its temporary
@@ -386,7 +388,8 @@ pub fn scan(
                             while last >= lo && buf[last] != term { last -= 1 }
                             if last >= lo {
                                 var pos = lo
-                                var run = 0
+                                var hits = 0
+                                var hit_bytes = 0
                                 var fallback = false
                                 while pos <= last && !current.stop {
                                     let hit = bytefind.find_literal(buf, pos, last, needle, shifts)
@@ -400,10 +403,9 @@ pub fn scan(
                                         start = hit
                                         while start > end && buf[start - 1] != term { start -= 1 }
                                         end = bytefind.find(buf, hit, term)
-                                        run = 1
-                                    } else {
-                                        run += 1
                                     }
+                                    hits += 1
+                                    hit_bytes += end + 1 - start
                                     if current.matches < flags.limit &&
                                         matcher.line_matches(re, mut ws, buf, start, end) {
                                         let off = current.offset + start - lo
@@ -432,7 +434,10 @@ pub fn scan(
                                         if writer.failed { error = true; current.stop = true }
                                     }
                                     pos = end + 1
-                                    if run >= LITERAL_RUN && !current.stop && pos <= last {
+                                    if hits >= LITERAL_HITS &&
+                                        hit_bytes * 16 >= (pos - lo) * LITERAL_SHARE &&
+                                        !current.stop &&
+                                        pos <= last {
                                         // The lines from lo to pos are behind us: count them,
                                         // then the ordinary path goes on from pos.
                                         var q = bytefind.find(buf, lo, term)
