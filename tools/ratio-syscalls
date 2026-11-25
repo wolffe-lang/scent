@@ -2,11 +2,19 @@
 """System calls per row, counted with strace: a report, never a verdict on bytes.
 
     tools/ratio-syscalls --output target/ratio-syscalls.json [--bin target/release/scent] [--scale 1]
+                         [--expect tests/syscall-counts.json]
 
 Runs inside the measurement image (ci/measure.Containerfile: the oracle image plus
 strace from the same snapshot). Each ratio row runs once per engine under
 `strace -f -c`; the report keeps every call's count and the total, and for the
 many-files row the calls per file. Output is not compared here: tools/ratio does that.
+
+With --expect, the counts it names are a gate, held exactly: for each row, engine and
+call, the count must be the wanted number per file times the files. A mismatch prints
+`FAIL syscalls-<row>-<call> per_file=<got> want=<want>` and the exit is 1. It fails
+closed: an empty trace is a FAIL, and a call wanted above zero with no line in the trace
+is a FAIL (`per_file=absent`). A call wanted at zero passes only when it has no line in a
+trace that is not empty.
 """
 import argparse, json, os, pathlib, re, runpy, shutil, subprocess
 
@@ -23,11 +31,51 @@ def counts(path):
     return calls
 
 
+def check_expect(report, expected):
+    """(lines, fails) for the counts `expected` names, held exactly; fails closed."""
+    rows = expected.get('rows')
+    if not isinstance(rows, dict) or not rows:
+        raise SystemExit('ratio-syscalls: REFUSED: the expected counts name no row')
+    lines, fails = [], []
+    for row, engines in sorted(rows.items()):
+        key = row[len('ratio-'):] if row.startswith('ratio-') else row
+        for who, wants in sorted(engines.items()):
+            entry = report.get('rows', {}).get(row, {}).get(who)
+            if not isinstance(wants, dict) or not wants:
+                raise SystemExit(f'ratio-syscalls: REFUSED: no wanted call for {row} {who}')
+            for call, want in wants.items():
+                if type(want) is not int or want < 0:
+                    raise SystemExit(f'ratio-syscalls: REFUSED: {row} {who} {call} wants {want!r}, not a count')
+            if entry is None:
+                fails.append(f'FAIL syscalls-{key}-trace no {who} run of {row} in the report')
+                continue
+            files = entry.get('files')
+            if type(files) is not int or files <= 0:
+                fails.append(f'FAIL syscalls-{key}-trace no file count for {who}')
+                continue
+            calls = entry.get('calls') or {}
+            if not calls:
+                fails.append(f'FAIL syscalls-{key}-trace empty: strace listed no call for {who}')
+                continue
+            for call, want in sorted(wants.items()):
+                got = calls.get(call)
+                if got is None and want > 0:
+                    fails.append(f'FAIL syscalls-{key}-{call} per_file=absent want={want} (no line in the trace)')
+                elif (got or 0) != want * files:
+                    fails.append(f'FAIL syscalls-{key}-{call} per_file={(got or 0) / files:g} want={want}')
+                else:
+                    lines.append(f'{key}-{call}={want}')
+    if not fails:
+        lines = ['PASS syscalls per file, exact: ' + ' '.join(lines)]
+    return lines, fails
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--output', required=True)
     p.add_argument('--bin', default='target/release/scent')
     p.add_argument('--scale', type=float, default=1.0)
+    p.add_argument('--expect')
     a = p.parse_args()
     if os.environ.get('SCENT_IN_CONTAINER') != '1' or shutil.which('strace') is None:
         raise SystemExit('ratio-syscalls: REFUSED: run inside the measurement image (strace absent)')
@@ -52,11 +100,18 @@ def main():
             total = sum(calls.values())
             entry = {'total': total, 'calls': calls}
             if name == 'ratio-count-files':
+                entry['files'] = len(files)
                 entry['per_file'] = round(total / len(files), 3)
             report['rows'][name][who] = entry
             print(f"syscalls {name} {who} total={total}" + (f" per_file={entry['per_file']}" if 'per_file' in entry else '')
                   + ' ' + ' '.join(f'{k}={v}' for k, v in sorted(calls.items(), key=lambda kv: -kv[1])[:8]), flush=True)
     (ROOT / a.output).write_text(json.dumps(report, indent=1) + '\n')
+    if a.expect:
+        lines, fails = check_expect(report, json.loads((ROOT / a.expect).read_text()))
+        for line in lines + fails:
+            print(line, flush=True)
+        if fails:
+            raise SystemExit(1)
 
 
 if __name__ == '__main__':
