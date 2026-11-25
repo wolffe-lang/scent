@@ -6,7 +6,9 @@
 // separator, which stays a scalar loop over two bytes.
 /// Return the next matching byte or the buffer length, without allocation.
 pub fn find(buf: List[byte], from: int, needle: byte) -> int {
-    bytes_find(buf, needle, from) else buf.len
+    var at = from
+    while at < buf.len && buf[at] != needle { at += 1 }
+    at
 }
 
 /// Return the next LF/NUL delimiter or the buffer length, without allocation.
