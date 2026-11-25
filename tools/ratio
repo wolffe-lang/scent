@@ -76,7 +76,8 @@ def digest_tree(path):
 
 def corpus(scale):
     """Text of 100 MiB with one needle line in 1,024; dense, 100 MiB with the needle at the end
-    of every line; and 5,000 files of 20 to 39 lines."""
+    of every line; bursts, 100 MiB of short runs of such lines among lines without it; and
+    5,000 files of 20 to 39 lines."""
     where = ROOT / 'target' / 'ratio-corpus' / ('scale-%g' % scale)
     stamp = where / 'COMPLETE'
     if not stamp.exists():
@@ -121,9 +122,31 @@ def corpus(scale):
                     f.write(b''.join(block)); block = []
             f.write(b''.join(block))
         dense_stamp.write_text('complete\n')
+    # Runs of consecutive lines that end with the literal, among lines without it: a run is 1 plus
+    # a geometric count with continuation 3/4 (mean 4), and 200 to 1,000 lines follow each run.
+    bursts_stamp = where / 'BURSTS-COMPLETE'
+    if not bursts_stamp.exists():
+        stream = Stream(20261126)
+        pool = line_pool(stream, 8192)
+        target = max(1, int(100 * 1024 * 1024 * scale))
+        with open(where / 'bursts', 'wb') as f:
+            written, block = 0, []
+            while written < target:
+                run = 1
+                while stream.below(4) != 0:
+                    run += 1
+                lines = [pool[stream.below(len(pool))][:-1] + b' needle\n' for _ in range(run)]
+                lines += [pool[stream.below(len(pool))] for _ in range(200 + stream.below(801))]
+                block.extend(lines)
+                written += sum(len(x) for x in lines)
+                if len(block) >= 65536:
+                    f.write(b''.join(block)); block = []
+            f.write(b''.join(block))
+        bursts_stamp.write_text('complete\n')
     files = sorted(p.name for p in (where / 'small').iterdir())
     return where, files, {'text': hashlib.sha256((where / 'text').read_bytes()).hexdigest(),
                           'dense': hashlib.sha256((where / 'dense').read_bytes()).hexdigest(),
+                          'bursts': hashlib.sha256((where / 'bursts').read_bytes()).hexdigest(),
                           'small': digest_tree(where / 'small'), 'small_files': len(files)}
 
 
@@ -200,7 +223,9 @@ def main():
             # A literal search's best input (the literal in no line) and its worst (in every
             # line, at its end).
             'ratio-literal-absent-100M': ['-c', 'absent-needle', 'text'],
-            'ratio-literal-dense-100M': ['-c', 'needle', 'dense']}
+            'ratio-literal-dense-100M': ['-c', 'needle', 'dense'],
+            # The literal in short runs of consecutive lines among lines without it.
+            'ratio-literal-bursts-100M': ['-c', 'needle', 'bursts']}
     chosen = a.rows.split(',') if a.rows else list(rows)
     if any(r not in rows for r in chosen):
         raise SystemExit('ratio: unknown row in ' + a.rows)
