@@ -2,6 +2,8 @@
 
 ## Unreleased — 0.2.1
 
+- Ask the descriptor's offset only for standard input and stat each file once: two system calls fewer per file. scent's system calls per file on the many-files row are held exactly; add oracle rows for operand offsets and widths.
+
 - Find line ends with the runtime's vector byte search, sixteen bytes at a time; add oracle rows for line ends at vector and chunk edges.
 
 - Hold each operand's unfinished line and context in a region block freed when the operand ends: resident memory no longer grows with the number of files.
