@@ -279,7 +279,7 @@ fn append(mut target: List[byte], used: int, buf: List[byte], lo: int, hi: int) 
 // takes the ordinary path: where that much of the input holds the literal, searching for it first
 // costs more than visiting every line. Both chosen by measured sweeps (see the README).
 const LITERAL_HITS: int = 16
-const LITERAL_SHARE: int = 7
+const LITERAL_SHARE: int = 4
 
 /// Read one operand in bounded chunks, carrying only the unfinished line
 /// and the requested leading-context ring. Every chunk owns its temporary
