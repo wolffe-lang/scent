@@ -445,7 +445,6 @@ pub fn scan(
                                             current.number += 1
                                             q = bytefind.find(buf, q + 1, term)
                                         }
-                                        current.offset += pos - lo
                                         lo = pos
                                         at = pos
                                         fallback = true
