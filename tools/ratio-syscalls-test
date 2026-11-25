@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+"""tools/ratio-syscalls --expect: exact counts per file, failing closed. No strace needed."""
+import json, os, pathlib, runpy, tempfile
+
+root = pathlib.Path(__file__).resolve().parent.parent
+tool = runpy.run_path(str(root / 'tools/ratio-syscalls'))
+counts, check = tool['counts'], tool['check_expect']
+
+# `strace -f -c` as it prints a summary: the errors column is present on some lines only.
+TRACE = """% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+ 31.02    0.010001           1     10002           read
+ 20.11    0.006483           0     10000           statx
+ 15.40    0.004966           0      5003         2 openat
+ 14.90    0.004805           0      5003           close
+ 14.01    0.004517           0      5000           write
+  4.56    0.001471         105        14           mmap
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.032243           0     35022         2 total
+"""
+WANT = {'rows': {'ratio-count-files': {'scent': {'statx': 2, 'lseek': 0, 'write': 1}}}}
+
+
+def parsed(text):
+    with tempfile.NamedTemporaryFile('w', suffix='.strace', delete=False) as fh:
+        fh.write(text)
+    try:
+        return counts(fh.name)
+    finally:
+        os.unlink(fh.name)
+
+
+def report(calls, files=5000):
+    return {'rows': {'ratio-count-files': {'scent': {'total': sum(calls.values()), 'calls': calls, 'files': files}}}}
+
+
+def refused(expected, rep):
+    try:
+        check(rep, expected)
+    except SystemExit as e:
+        return 'REFUSED' in str(e)
+    return False
+
+
+calls = parsed(TRACE)
+assert calls == {'read': 10002, 'statx': 10000, 'openat': 5003, 'close': 5003, 'write': 5000, 'mmap': 14}, calls
+print('PASS strace -c summary parsed, the errors column and the total line handled')
+
+lines, fails = check(report(calls), WANT)
+assert not fails and lines == ['PASS syscalls per file, exact: count-files-lseek=0 count-files-statx=2 count-files-write=1'], (lines, fails)
+print('PASS exact counts accepted; a call wanted at zero passes with no line in a trace that is not empty')
+
+base = dict(calls, statx=15000, lseek=5000)
+_, fails = check(report(base), WANT)
+assert fails == ['FAIL syscalls-count-files-lseek per_file=1 want=0',
+                 'FAIL syscalls-count-files-statx per_file=3 want=2'], fails
+print('PASS a mismatch is a FAIL line by call:', ' | '.join(fails))
+
+no_write = {k: v for k, v in calls.items() if k != 'write'}
+_, fails = check(report(no_write), WANT)
+assert fails == ['FAIL syscalls-count-files-write per_file=absent want=1 (no line in the trace)'], fails
+print('PASS a call wanted above zero with no line in the trace fails closed')
+
+_, fails = check(report(parsed('')), WANT)
+assert fails == ['FAIL syscalls-count-files-trace empty: strace listed no call for scent'], fails
+_, fails = check(report({}), WANT)
+assert len(fails) == 1 and 'trace empty' in fails[0], fails
+print('PASS an empty trace fails closed, from an empty file as from an empty count')
+
+_, fails = check(report(dict(calls, statx=10001)), WANT)
+assert fails == ['FAIL syscalls-count-files-statx per_file=2.0002 want=2'], fails
+print('PASS a count that is not the wanted number per file exactly fails')
+
+_, fails = check({'rows': {}}, WANT)
+assert fails == ['FAIL syscalls-count-files-trace no scent run of ratio-count-files in the report'], fails
+_, fails = check(report(calls, files=0), WANT)
+assert fails == ['FAIL syscalls-count-files-trace no file count for scent'], fails
+print('PASS a missing run or file count fails closed')
+
+for bad in [{}, {'rows': {}}, {'rows': {'ratio-count-files': {'scent': {}}}},
+            {'rows': {'ratio-count-files': {'scent': {'statx': 2.0}}}},
+            {'rows': {'ratio-count-files': {'scent': {'statx': -1}}}},
+            {'rows': {'ratio-count-files': {'scent': {'statx': True}}}}]:
+    assert refused(bad, report(calls)), bad
+print('PASS malformed expected counts are refused')
+
+expected = json.loads((root / 'tests/syscall-counts.json').read_text()) if (root / 'tests/syscall-counts.json').exists() else None
+if expected is not None:
+    assert not check(report(calls), expected)[1], 'the committed counts disagree with the fixture of the head'
+    print('PASS tests/syscall-counts.json reads as the fixture expects')
+print('ratio-syscalls-test: every check passes')
