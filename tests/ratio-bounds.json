@@ -1,12 +1,12 @@
 {
-  "note": "From one take on a whole held block: per metric, margin = max(3 x the largest |A/A - 1| of every gated reading, 0.03); each ceiling = the head's worst repeat x (1 + its metric's margin).",
+  "note": "From one take on a whole held block: per metric, margin = max(3 x the largest |A/A - 1| of every gated reading, 0.03); each ceiling = the head's worst repeat x (1 + its metric's margin). The two many-files ceilings come from a later trial take, on the same block, of the change that holds an operand's carried record in a region block (worst repeats: CPU 2.326, resident size 1.757); the two 100 MiB ceilings are unchanged.",
   "margin": {
     "cpu": 0.03,
     "rss": 0.085
   },
   "ceilings": {
-    "ratio-count-files-cpu": 2.579,
-    "ratio-count-files-rss": 5.233,
+    "ratio-count-files-cpu": 2.396,
+    "ratio-count-files-rss": 1.906,
     "ratio-literal-100M-cpu": 2.911,
     "ratio-regex-100M-cpu": 2.373
   }
