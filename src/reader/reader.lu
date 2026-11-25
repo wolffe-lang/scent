@@ -384,9 +384,16 @@ pub fn scan(
                                 while pos <= last && !current.stop {
                                     let hit = bytefind.find_literal(buf, pos, last, needle, shifts)
                                     if hit < 0 { break }
-                                    var start = hit
-                                    while start > pos && buf[start - 1] != term { start -= 1 }
-                                    let end = bytefind.find(buf, hit, term)
+                                    // The first line end from pos: past the hit, the hit's line
+                                    // starts at pos and ends there, with no walk back. Before it,
+                                    // the hit's line starts after the last line end before the hit.
+                                    var start = pos
+                                    var end = bytefind.find(buf, pos, term)
+                                    if end < hit {
+                                        start = hit
+                                        while start > end && buf[start - 1] != term { start -= 1 }
+                                        end = bytefind.find(buf, hit, term)
+                                    }
                                     if current.matches < flags.limit &&
                                         matcher.line_matches(re, mut ws, buf, start, end) {
                                         let off = current.offset + start - lo
