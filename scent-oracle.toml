@@ -8,6 +8,10 @@
 # is re-pinned (read twice on hasu and on the Mac). The new file still yields
 # VALIDSIG at the pinned fingerprint, and the oracle built from it matches the
 # pinned binary_sha256; the fingerprint and the binary digest are unchanged.
+# 2026-11-25: GNU replaced gnu-keyring.gpg again (Last-Modified 18:23:07 GMT), so
+# its digest is re-pinned (two downloads a minute apart, identical). The new file
+# still yields VALIDSIG at the pinned fingerprint for the unchanged tarball; the
+# fingerprint and the binary digest are unchanged.
 [oracle]
 version = "3.12"
 version_line = "grep (GNU grep) 3.12"
@@ -15,7 +19,7 @@ url = "https://ftp.gnu.org/gnu/grep/grep-3.12.tar.xz"
 sha256 = "2649b27c0e90e632eadcd757be06c6e9a4f48d941de51e7c0f83ff76408a07b9"
 sig_url = "https://ftp.gnu.org/gnu/grep/grep-3.12.tar.xz.sig"
 keyring_url = "https://ftp.gnu.org/gnu/gnu-keyring.gpg"
-keyring_sha256 = "8013de59880f7a59f53b6bd207f4d2a408d67b84a82fa9cba1dbbf443428e2db"
+keyring_sha256 = "703f7df6305b7f208bea45cc0dd6545bd96b4cf45034997d212490fdf22df017"
 signing_fingerprint = "155D3FC500C834486D1EEA677FD9FCCB000BEEEE"
 configure_args = "--disable-perl-regexp"
 image = "docker.io/library/ubuntu:24.04@sha256:534baea6a22c03a63003dbc8dbe78fe34bc0d7e595d9a9dc9834884ff530eb55"
