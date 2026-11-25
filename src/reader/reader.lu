@@ -314,9 +314,10 @@ pub fn scan(
         (!flags.only || flags.invert)
     // The unfinished record and the context ring live as long as this operand. A
     // block, not a region value: a region value is not freed at its last use.
-    region storage {
-        var carry = List[byte]()
-        var history = History { rows: List[Record](), next: 0 }
+    let storage = region()
+    if true {
+        var carry = in storage { List[byte]() }
+        var history = in storage { History { rows: List[Record](), next: 0 } }
         while !st.stop {
             st = copy region chunk {
                 var current = copy st
