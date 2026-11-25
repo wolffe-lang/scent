@@ -1,10 +1,10 @@
-# Shape: lope bc388673 packaging/lope.rb. Source build from the v0.2.0 tag; no
+# Shape: lope bc388673 packaging/lope.rb. Source build from the v0.2.1 tag; no
 # dependency on a moving wolf formula. The archive's digest exists only once the tag
 # does, so it is filled where the formula is published, never in the tagged tree.
 class Scent < Formula
   desc "Byte-oriented grep in wolf, held to GNU grep 3.12, with terminal colour"
   homepage "https://github.com/wolffe-lang/scent"
-  url "https://github.com/wolffe-lang/scent/archive/refs/tags/v0.2.0.tar.gz"
+  url "https://github.com/wolffe-lang/scent/archive/refs/tags/v0.2.1.tar.gz"
   sha256 "SHA256-OF-THE-TAG-ARCHIVE"
   license "GPL-3.0-or-later"
   depends_on "llvm" => :build

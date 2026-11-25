@@ -2,7 +2,7 @@
 # The archive's digest exists only once the tag does, so it is filled where the
 # package is published, never in the tagged tree.
 pkgname=scent
-pkgver=0.2.0
+pkgver=0.2.1
 pkgrel=1
 pkgdesc='Byte-oriented grep in wolf, held to GNU grep 3.12, with C and UTF-8 locales and terminal colour'
 arch=('x86_64')
