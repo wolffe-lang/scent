@@ -75,7 +75,8 @@ def digest_tree(path):
 
 
 def corpus(scale):
-    """Text of 100 MiB with one needle line in 1,024, and 5,000 files of 20 to 39 lines."""
+    """Text of 100 MiB with one needle line in 1,024; dense, 100 MiB with the needle at the end
+    of every line; and 5,000 files of 20 to 39 lines."""
     where = ROOT / 'target' / 'ratio-corpus' / ('scale-%g' % scale)
     stamp = where / 'COMPLETE'
     if not stamp.exists():
@@ -102,8 +103,27 @@ def corpus(scale):
                 body.insert(stream.below(len(body)), b'a needle %03d here\n' % stream.below(1000))
             (small / ('f%05d' % i)).write_bytes(b''.join(body))
         stamp.write_text('complete\n')
+    # A one-literal search's worst input: the literal in every line, at its end, so a search
+    # for it reads each line whole before the line is matched. Its own stamp: a corpus made
+    # before this file existed gains it without being remade.
+    dense_stamp = where / 'DENSE-COMPLETE'
+    if not dense_stamp.exists():
+        stream = Stream(20261125)
+        pool = line_pool(stream, 8192)
+        target = max(1, int(100 * 1024 * 1024 * scale))
+        with open(where / 'dense', 'wb') as f:
+            written, block = 0, []
+            while written < target:
+                line = pool[stream.below(len(pool))][:-1] + b' needle\n'
+                block.append(line)
+                written += len(line)
+                if len(block) == 65536:
+                    f.write(b''.join(block)); block = []
+            f.write(b''.join(block))
+        dense_stamp.write_text('complete\n')
     files = sorted(p.name for p in (where / 'small').iterdir())
     return where, files, {'text': hashlib.sha256((where / 'text').read_bytes()).hexdigest(),
+                          'dense': hashlib.sha256((where / 'dense').read_bytes()).hexdigest(),
                           'small': digest_tree(where / 'small'), 'small_files': len(files)}
 
 
@@ -176,7 +196,11 @@ def main():
     where, files, digests = corpus(a.scale)
     rows = {'ratio-count-files': ['-c', 'needle', *('small/' + f for f in files)],
             'ratio-literal-100M': ['-c', 'needle', 'text'],
-            'ratio-regex-100M': ['-c', '-E', REGEX, 'text']}
+            'ratio-regex-100M': ['-c', '-E', REGEX, 'text'],
+            # A literal search's best input (the literal in no line) and its worst (in every
+            # line, at its end).
+            'ratio-literal-absent-100M': ['-c', 'absent-needle', 'text'],
+            'ratio-literal-dense-100M': ['-c', 'needle', 'dense']}
     chosen = a.rows.split(',') if a.rows else list(rows)
     if any(r not in rows for r in chosen):
         raise SystemExit('ratio: unknown row in ' + a.rows)
