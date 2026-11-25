@@ -76,8 +76,8 @@ def digest_tree(path):
 
 def corpus(scale):
     """Text of 100 MiB with one needle line in 1,024; dense, 100 MiB with the needle at the end
-    of every line; bursts, 100 MiB of short runs of such lines among lines without it; gap15 and
-    density25/50/75, 100 MiB each by how much of it holds the needle; and 5,000 files of 20 to
+    of every line; bursts, 100 MiB of short runs of such lines among lines without it; gap15,
+    density25/50/75 and runs4, 100 MiB each by how much of it holds the needle; and 5,000 files of 20 to
     39 lines."""
     where = ROOT / 'target' / 'ratio-corpus' / ('scale-%g' % scale)
     stamp = where / 'COMPLETE'
@@ -146,11 +146,14 @@ def corpus(scale):
         bursts_stamp.write_text('complete\n')
     # How much of the input holds the literal. gap15: runs of 15 lines that end with it and one line
     # without, repeated (a fallback that counts consecutive hits never sees 16). density25/50/75:
-    # each line ends with it independently with probability 1/4, 1/2, 3/4.
+    # each line ends with it independently with probability 1/4, 1/2, 3/4. runs4: runs of 4 lines
+    # that end with it and 12 without, repeated: a quarter, as density25, but most of its literal
+    # lines follow another one.
     for name, seed, holds in [('gap15', 20261127, lambda stream, i: i % 16 != 15),
                               ('density25', 20261128, lambda stream, i: stream.below(4) == 0),
                               ('density50', 20261129, lambda stream, i: stream.below(2) == 0),
-                              ('density75', 20261130, lambda stream, i: stream.below(4) != 0)]:
+                              ('density75', 20261130, lambda stream, i: stream.below(4) != 0),
+                              ('runs4', 20261201, lambda stream, i: i % 16 < 4)]:
         stamp_n = where / (name.upper() + '-COMPLETE')
         if stamp_n.exists():
             continue
@@ -175,7 +178,7 @@ def corpus(scale):
                           'dense': hashlib.sha256((where / 'dense').read_bytes()).hexdigest(),
                           'bursts': hashlib.sha256((where / 'bursts').read_bytes()).hexdigest(),
                           **{n: hashlib.sha256((where / n).read_bytes()).hexdigest()
-                             for n in ('gap15', 'density25', 'density50', 'density75')},
+                             for n in ('gap15', 'density25', 'density50', 'density75', 'runs4')},
                           'small': digest_tree(where / 'small'), 'small_files': len(files)}
 
 
@@ -255,12 +258,13 @@ def main():
             'ratio-literal-dense-100M': ['-c', 'needle', 'dense'],
             # The literal in short runs of consecutive lines among lines without it.
             'ratio-literal-bursts-100M': ['-c', 'needle', 'bursts'],
-            # How much of the input holds the literal: runs of 15 and one line without, and
-            # independent lines at 1/4, 1/2 and 3/4.
+            # How much of the input holds the literal: runs of 15 and one line without,
+            # independent lines at 1/4, 1/2 and 3/4, and runs of 4 and 12 lines without.
             'ratio-literal-gap15-100M': ['-c', 'needle', 'gap15'],
             'ratio-literal-density25-100M': ['-c', 'needle', 'density25'],
             'ratio-literal-density50-100M': ['-c', 'needle', 'density50'],
-            'ratio-literal-density75-100M': ['-c', 'needle', 'density75']}
+            'ratio-literal-density75-100M': ['-c', 'needle', 'density75'],
+            'ratio-literal-runs4-100M': ['-c', 'needle', 'runs4']}
     chosen = a.rows.split(',') if a.rows else list(rows)
     if any(r not in rows for r in chosen):
         raise SystemExit('ratio: unknown row in ' + a.rows)
