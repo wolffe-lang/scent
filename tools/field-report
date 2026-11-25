@@ -7,7 +7,8 @@ The field leg (brew's GNU grep against scent, never the behavioral gate) runs as
 its own limit L and continue-on-error, so neither its length nor its exit can fail the job.
 This report decides what may: it reads the start the step wrote first
 (target/field-step-start, seconds since the epoch) and the oracle's own summary, written
-last (target/oracle/summary.json).
+last (target/oracle/summary.json). A summary older than the start is not this leg's and counts
+as no summary.
 
     no start marker                      FAIL field leg: never started                 exit 1
     summary, stale-review above 0        FAIL field leg: N stale field review(s)       exit 1
@@ -37,7 +38,7 @@ def main():
     minutes = (time.time() - start) / 60
     try:
         with open(summary_path) as fh:
-            counts = json.load(fh)
+            counts = json.load(fh) if os.fstat(fh.fileno()).st_mtime >= start else None  # older: not this leg's
     except OSError:
         counts = None
     except ValueError:
