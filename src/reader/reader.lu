@@ -379,10 +379,12 @@ pub fn scan(
                 } else {
                     var lo: int = 0
                     var at: int = 0
-                    var searched = false
+                    // Settled once per read: after the path has run, or where it cannot, each line
+                    // tests one flag.
+                    var searched = !literal_lines || current.binary
                     var lines_before = 0
                     while at < buf.len && !current.stop {
-                        if literal_lines && used == 0 && !current.binary && !searched {
+                        if !searched && used == 0 {
                             searched = true
                             var last = buf.len - 1
                             while last >= lo && buf[last] != term { last -= 1 }
