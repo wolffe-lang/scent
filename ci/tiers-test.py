@@ -26,10 +26,13 @@ lope cut it, cut again to scent's workflow). python3 only.
       ruling, by number or by tag.
   T10 one version: the binary's --version line, the newest CHANGELOG
       section and both packaging recipes name the same release.
+  T11 tools/field-report over the macOS field leg's five ends: completed,
+      cut at the step's limit, a stale review, an early end without a
+      summary, and a leg that never started.
 
 Exit 0 when every check passes, 1 otherwise.
 """
-import json, os, re, shutil, subprocess, sys, tempfile
+import json, os, re, shutil, subprocess, sys, tempfile, time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PLAN = os.path.join(ROOT, "ci", "tiers.py")
@@ -115,6 +118,28 @@ say(all("- %s" % j in tblk for j in ["plan"] + ALL) and "!cancelled()" in tblk a
 say("cancel-in-progress: ${{ github.event_name == 'pull_request' }}" in WF, "T4 cancel-in-progress for pull requests only")
 say("branches: [trunk]" in WF and "schedule:" in WF and "labeled" in WF and "inputs:" in WF,
     "T4 the trunk push, the nightly, the label and the dispatch input")
+# T4, the macOS field leg cannot fail a run by its length. Its step has its own limit
+# under the job's and continues on error; the step after it always runs
+# tools/field-report, which is the leg's verdict (a stale review, an early end or a leg
+# that never started is red; a cut at the step's limit is reported, not red).
+mblk = WF.split("\n  macos:\n", 1)[1].split("\n  tier:\n", 1)[0]
+msteps = re.split(r"\n(?=      - )", mblk)
+fi = next((i for i, t in enumerate(msteps) if "Distribution field leg" in t), None)
+fstep = msteps[fi] if fi is not None else ""
+rstep = msteps[fi + 1] if fi is not None and fi + 1 < len(msteps) else ""
+wiring = [
+    ("timeout-minutes: 40" in msteps[0], "the job's limit is 40"),
+    ("id: field" in fstep, "the field step has id field"),
+    ("timeout-minutes: 35" in fstep, "the field step's limit is 35"),
+    ("continue-on-error: true" in fstep, "the field step continues on error"),
+    ("date +%s > target/field-step-start" in fstep, "the field step writes its start first"),
+    ("if: always()" in rstep and "python3 -I tools/field-report --limit-minutes 35" in rstep,
+     "the next step always runs tools/field-report --limit-minutes 35"),
+]
+missing = [what for ok, what in wiring if not ok]
+say(not missing, "T4 the macOS field leg's limits and its report%s" % (": missing " + "; ".join(missing) if missing else ""))
+if missing:
+    print("FAIL macos-field-wiring " + "; ".join(missing))  # by name, for a record's plant evidence
 # T6
 say(verdict(needs_for("full", ALL)) == 0, "T6 a green full")
 say(verdict(needs_for("pr", PR)) == 0, "T6 a green pr")
@@ -250,6 +275,43 @@ listed = ", ".join("%s %s" % (k, v) for k, v in named.items())
 say(one, "T10 one version: %s" % listed)
 if not one:
     print("FAIL one-version " + listed)  # by name, for a record's plant evidence
+
+# T11, tools/field-report over the field leg's five ends, each in its own directory: the
+# start marker the field step writes first, and the oracle's own summary, written last.
+FIELD_REPORT = os.path.join(ROOT, "tools", "field-report")
+
+
+def field_end(started_min_ago, summary):
+    root = tempfile.mkdtemp()
+    os.makedirs(os.path.join(root, "target", "oracle"))
+    if started_min_ago is not None:
+        with open(os.path.join(root, "target", "field-step-start"), "w") as fh:
+            fh.write("%d\n" % int(time.time() - started_min_ago * 60))
+    if summary is not None:
+        with open(os.path.join(root, "target", "oracle", "summary.json"), "w") as fh:
+            json.dump(summary, fh, sort_keys=True)
+    try:
+        if not os.path.isfile(FIELD_REPORT):
+            return None, "tools/field-report is absent"
+        r = subprocess.run([sys.executable, "-I", FIELD_REPORT, "--limit-minutes", "35", "--root", root],
+                           capture_output=True, text=True)
+        return r.returncode, (r.stdout + r.stderr).strip()
+    finally:
+        shutil.rmtree(root)
+
+
+counts = {"agree": 47000, "differ": 120, "reviewed": 2, "field-unavailable": 3, "stale-review": 0}
+for name, ago, summary, want_rc, want in [
+        ("completed", 22, counts, 0, "REPORT field leg: completed"),
+        ("cut", 35.2, None, 0, "REPORT field leg: cut at 35 min"),
+        ("stale", 22, dict(counts, **{"stale-review": 2}), 1, "FAIL field leg: 2 stale field review(s)"),
+        ("early", 3, None, 1, "FAIL field leg: ended early without a summary after 3 min"),
+        ("never-started", None, None, 1, "FAIL field leg: never started")]:
+    rc, out = field_end(ago, summary)
+    ok = rc == want_rc and out.startswith(want)
+    say(ok, "T11 field-report %s: exit %s, %s" % (name, rc, out.splitlines()[0] if out else "no output"))
+    if not ok:
+        print("FAIL field-report-%s want exit %d and %r" % (name, want_rc, want))  # by name, for a plant
 
 print("tiers-test: %s" % ("every check passes" if not fails else "%d check(s) FAILED" % fails))
 sys.exit(1 if fails else 0)
