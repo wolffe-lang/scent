@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+"""The macOS field leg's verdict, from the step that always runs after it.
+
+    tools/field-report --limit-minutes L [--root DIR]
+
+The field leg (brew's GNU grep against scent, never the behavioral gate) runs as a step with
+its own limit L and continue-on-error, so neither its length nor its exit can fail the job.
+This report decides what may: it reads the start the step wrote first
+(target/field-step-start, seconds since the epoch) and the oracle's own summary, written
+last (target/oracle/summary.json).
+
+    no start marker                      FAIL field leg: never started                 exit 1
+    summary, stale-review above 0        FAIL field leg: N stale field review(s)       exit 1
+    summary, no stale review             REPORT field leg: completed: …                exit 0
+    no summary, ended before L - 1 min   FAIL field leg: ended early without a summary exit 1
+    no summary, at the limit             REPORT field leg: cut at L min                exit 0
+
+A cut is the runner's length, not a verdict on scent; a stale review is the repository's own
+classification gone wrong, and an early end is the leg broken. Both of those stay red.
+"""
+import argparse, json, os, sys, time
+
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument('--limit-minutes', type=float, required=True)
+    p.add_argument('--root', default='.')
+    a = p.parse_args()
+    start_path = os.path.join(a.root, 'target', 'field-step-start')
+    summary_path = os.path.join(a.root, 'target', 'oracle', 'summary.json')
+    try:
+        with open(start_path) as fh:
+            start = int(fh.read().strip())
+    except (OSError, ValueError):
+        print('FAIL field leg: never started (no readable %s)' % start_path, flush=True)
+        return 1
+    minutes = (time.time() - start) / 60
+    try:
+        with open(summary_path) as fh:
+            counts = json.load(fh)
+    except OSError:
+        counts = None
+    except ValueError:
+        print('FAIL field leg: its summary is unreadable after %d min' % minutes, flush=True)
+        return 1
+    if counts is not None:
+        stale = int(counts.get('stale-review', 0))
+        if stale:
+            print('FAIL field leg: %d stale field review(s)' % stale, flush=True)
+            return 1
+        print('REPORT field leg: completed in %d min: %s' % (minutes, ', '.join(
+            '%s %s' % (counts.get(k, 0), k) for k in ('agree', 'differ', 'reviewed', 'field-unavailable'))), flush=True)
+        return 0
+    if minutes < a.limit_minutes - 1:
+        print('FAIL field leg: ended early without a summary after %d min (limit %g)' % (minutes, a.limit_minutes),
+              flush=True)
+        return 1
+    print('REPORT field leg: cut at %g min (no summary: the runner ran out of time, not a verdict)'
+          % a.limit_minutes, flush=True)
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
