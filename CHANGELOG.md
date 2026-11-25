@@ -2,6 +2,8 @@
 
 ## Unreleased — 0.2.1
 
+- Find line ends with the runtime's vector byte search, sixteen bytes at a time; add oracle rows for line ends at vector and chunk edges.
+
 - Hold each operand's unfinished line and context in a region block freed when the operand ends: resident memory no longer grows with the number of files.
 
 ## 0.2.0 — 2026-11-24
