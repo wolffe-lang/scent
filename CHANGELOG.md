@@ -2,6 +2,8 @@
 
 ## Unreleased — 0.2.1
 
+- Hold each operand's unfinished line and context in a region block freed when the operand ends: resident memory no longer grows with the number of files.
+
 ## 0.2.0 — 2026-11-24
 
 - Release as the v0.2.0 source tag: the binary, this file and both packaging recipes are checked to name one version.
