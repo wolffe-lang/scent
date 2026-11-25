@@ -8,12 +8,14 @@
     "ratio-count-files-cpu": 2.083,
     "ratio-count-files-rss": 1.906,
     "ratio-literal-100M-cpu": 2.302,
-    "ratio-regex-100M-cpu": 1.922
+    "ratio-regex-100M-cpu": 1.922,
+    "ratio-literal-dense-100M-cpu": 1.505
   },
   "readings": {
     "ratio-count-files-cpu": "2026-11-24: 2.016, 1.996; 2026-11-25: 2.022, 2.021; worst 2.022 x 1.03",
     "ratio-count-files-rss": "kept: set by the region-block change (2026-11-24: 1.737, 1.757; 2026-11-25: 1.739; worst 1.757 x 1.085). The line-end scan read 2026-11-24: 1.771, 1.764; 2026-11-25: 1.674, 1.729; its head record 1.727. This change reads 2026-11-24: 1.770, 1.732; 2026-11-25: 1.713, 1.738. A ceiling does not rise while the code under it still fits",
     "ratio-literal-100M-cpu": "kept: set by the line-end scan (2026-11-24: 2.231, 2.221; 2026-11-25: 2.235, 2.224; worst 2.235 x 1.03); its head record read 2.245 on 2026-11-25. This change reads 2026-11-24: 2.241, 2.245; 2026-11-25: 2.212, 2.194",
-    "ratio-regex-100M-cpu": "kept: set by the line-end scan (2026-11-24: 1.865, 1.864; 2026-11-25: 1.866, 1.861; worst 1.866 x 1.03); its head record read 1.875 on 2026-11-25. This change reads 2026-11-24: 1.903, 1.879; 2026-11-25: 1.865, 1.878"
+    "ratio-regex-100M-cpu": "kept: set by the line-end scan (2026-11-24: 1.865, 1.864; 2026-11-25: 1.866, 1.861; worst 1.866 x 1.03); its head record read 1.875 on 2026-11-25. This change reads 2026-11-24: 1.903, 1.879; 2026-11-25: 1.865, 1.878",
+    "ratio-literal-dense-100M-cpu": "until this row has readings of its own code on two days: the code before the literal path read 1.458, 1.461 on 2026-11-25 (worst 1.461; 1.461 x 1.03 = 1.505); the literal path as first written read 2.457, 2.454"
   }
 }
