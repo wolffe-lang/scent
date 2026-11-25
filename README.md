@@ -39,11 +39,11 @@ The M2 generator adds **3,392 cases**: 2,000 shared-tree walk/filter rows,
 18 edge and five self-output rows, 1,152 original colour/environment rows,
 120 glob-syntax rows, and 97 additional byte-pattern, tty, colour-edge,
 reviewed-gap and UTF-8 locale rows. The complete CLI matrix reports
-**9,534 C-locale agreements + 111 published differences + 9 upstream-blocked**.
-The former explicit UTF-8 refusal is now an agreement. A further **38,762
+**9,638 C-locale agreements + 111 published differences + 9 upstream-blocked**.
+The former explicit UTF-8 refusal is now an agreement. A further **38,866
 UTF-8 cases** include every inherited case and generated scalar, encoding-error
-and consistency witnesses. The complete matrix has **48,417 cases**:
-**47,626 agree, 772 published differences, 18 upstream-blocked, one environment
+and consistency witnesses. The complete matrix has **48,625 cases**:
+**47,834 agree, 772 published differences, 18 upstream-blocked, one environment
 difference, zero unapproved differences and zero not-yet rows**. Of the published
 differences, 550 cover the two UTF-8 consistency rules below: 480 case-fold
 rows and 70 dot-span rows.
@@ -227,14 +227,22 @@ and compares only ratios of medians: CPU (user plus system), peak resident
 size and minor faults. `tests/ratio-bounds.json` bounds CPU on all three rows
 and resident size on the many-files row; its margins come from the A/A spread
 of a calibration take (CPU 3 %, resident size 8.5 %), and a take whose own A/A
-lies outside twice its margin is INVALID (exit 75), not a verdict. The rows
+lies outside twice its margin is INVALID (exit 75), not a verdict. Each
+ceiling is the worst reading of the change's own code across takes on at
+least two different days on the held block, times one plus its metric's
+margin: the margin covers the spread inside one run, and the second day
+covers the drift between takes on the same block, which that spread does not
+(up to 2 % on the many-files row). The bounds file lists the readings beside
+each ceiling, and a ceiling is not raised while the code under it still fits.
+The rows
 gate a record on a whole held block and are reported, not gated, on hosted
 runners: a hosted runner is a different machine on each run, and two hosted
 runs of near-identical code differ by 25 to 35 % on the same workloads, so a
 ceiling measured on one machine holds nothing on another.
 `tools/ratio-hosted-test` proves the switch through the container itself. With one stdout buffer per run, scent's many-files CPU fell from
 12.3 to 2.5 times GNU's, the literal row from 3.1 to 2.8 and the regular
-expression from 2.5 to 2.3.
+expression from 2.5 to 2.3. Scanning for line ends sixteen bytes at a time
+took them to 2.1, 2.2 and 1.9.
 
 ## Published differences
 
@@ -337,7 +345,9 @@ leftmost-longest engine. Mandatory-literal proofs reject impossible records.
 A fully exact top-level union can retain up to 32 separate literal branches;
 an unproved branch or exhausted bound falls back as a whole. Fixed-string
 selection shares prefixes and suffix links, with byte-indexed roots and
-scalar-aware UTF-8 folding. Delimiter scans are scalar and unrolled; inactive
+scalar-aware UTF-8 folding. Line ends are found with the runtime's vector byte
+search, sixteen bytes at a time; binary default mode's scan for a line end or
+NUL stays a scalar loop over two bytes. Inactive
 context history does not enter its storage region. EOF with no unfinished record
 skips matcher/output workspace allocation; unterminated records still take the
 normal matching path. Optional or unproved
@@ -345,8 +355,8 @@ literals never reject a record. No optimization changes the published difference
 
 The current std pin still allocates each read chunk. The newer `read_into`
 wrapper is measured separately rather than silently changing the dependency:
-it also allocates a chunk and copies it into the retained buffer. A vectorized
-delimiter search and a genuinely allocation-free read remain separate work.
+it also allocates a chunk and copies it into the retained buffer. A genuinely
+allocation-free read remains separate work.
 
 
 Sources are POSIX.1-2024, GNU grep documentation and black-box runs, plus
