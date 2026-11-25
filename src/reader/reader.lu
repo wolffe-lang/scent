@@ -281,6 +281,84 @@ fn append(mut target: List[byte], used: int, buf: List[byte], lo: int, hi: int) 
 const LITERAL_HITS: int = 16
 const LITERAL_SHARE: int = 7
 
+// The literal path over one read, from lo to the read's last line end at last: candidate lines by
+// a search for the literal, each through line_matches and then counted or printed as the ordinary
+// path would. Returns the position the ordinary path goes on from when the rest of the read falls
+// back (see LITERAL_SHARE), or last + 1 when the search covered the read; a limit, -q, -l or a write
+// failure sets current.stop instead. A function of its own, so the per-line loop in scan is compiled
+// as it was before the path existed.
+fn literal_read(
+    flags: opts.Options,
+    re: matcher.Matcher,
+    mut ws: matcher.Workspace,
+    buf: List[byte],
+    lo: int,
+    last: int,
+    needle: List[byte],
+    shifts: List[int],
+    term: byte,
+    name: str,
+    width: int,
+    mut current: State,
+    mut writer: out.Output,
+    mut error: bool,
+) -> int {
+    var pos = lo
+    var hits = 0
+    var hit_bytes = 0
+    while pos <= last && !current.stop {
+        let hit = bytefind.find_literal(buf, pos, last, needle, shifts)
+        if hit < 0 { break }
+        // The first line end from pos: past the hit, the hit's line
+        // starts at pos and ends there, with no walk back. Before it,
+        // the hit's line starts after the last line end before the hit.
+        var start = pos
+        var end = bytefind.find(buf, pos, term)
+        if end < hit {
+            start = hit
+            while start > end && buf[start - 1] != term { start -= 1 }
+            end = bytefind.find(buf, hit, term)
+        }
+        hits += 1
+        hit_bytes += end + 1 - start
+        if current.matches < flags.limit &&
+            matcher.line_matches(re, mut ws, buf, start, end) {
+            let off = current.offset + start - lo
+            current.matches += 1
+            current.resume = off + end - start + 1
+            if flags.quiet || flags.listing != 0 {
+                current.stop = true
+            } else if !flags.count {
+                out.group(mut writer, flags)
+                out.line(
+                    mut writer,
+                    flags,
+                    re,
+                    mut ws,
+                    name,
+                    buf,
+                    start,
+                    end,
+                    0,
+                    off,
+                    true,
+                    width,
+                )
+            }
+            if current.matches >= flags.limit { current.stop = true }
+            if writer.failed { error = true; current.stop = true }
+        }
+        pos = end + 1
+        if hits >= LITERAL_HITS &&
+            hit_bytes * 16 >= (pos - lo) * LITERAL_SHARE &&
+            !current.stop &&
+            pos <= last {
+            return pos
+        }
+    }
+    last + 1
+}
+
 /// Read one operand in bounded chunks, carrying only the unfinished line
 /// and the requested leading-context ring. Every chunk owns its temporary
 /// reads and formatting; persistent storage has an explicit region so a long
@@ -387,57 +465,24 @@ pub fn scan(
                             var last = buf.len - 1
                             while last >= lo && buf[last] != term { last -= 1 }
                             if last >= lo {
-                                var pos = lo
-                                var hits = 0
-                                var hit_bytes = 0
-                                var fallback = false
-                                while pos <= last && !current.stop {
-                                    let hit = bytefind.find_literal(buf, pos, last, needle, shifts)
-                                    if hit < 0 { break }
-                                    // The first line end from pos: past the hit, the hit's line
-                                    // starts at pos and ends there, with no walk back. Before it,
-                                    // the hit's line starts after the last line end before the hit.
-                                    var start = pos
-                                    var end = bytefind.find(buf, pos, term)
-                                    if end < hit {
-                                        start = hit
-                                        while start > end && buf[start - 1] != term { start -= 1 }
-                                        end = bytefind.find(buf, hit, term)
-                                    }
-                                    hits += 1
-                                    hit_bytes += end + 1 - start
-                                    if current.matches < flags.limit &&
-                                        matcher.line_matches(re, mut ws, buf, start, end) {
-                                        let off = current.offset + start - lo
-                                        current.matches += 1
-                                        current.resume = off + end - start + 1
-                                        if flags.quiet || flags.listing != 0 {
-                                            current.stop = true
-                                        } else if !flags.count {
-                                            out.group(mut writer, flags)
-                                            out.line(
-                                                mut writer,
-                                                flags,
-                                                re,
-                                                mut ws,
-                                                name,
-                                                buf,
-                                                start,
-                                                end,
-                                                0,
-                                                off,
-                                                true,
-                                                width,
-                                            )
-                                        }
-                                        if current.matches >= flags.limit { current.stop = true }
-                                        if writer.failed { error = true; current.stop = true }
-                                    }
-                                    pos = end + 1
-                                    if hits >= LITERAL_HITS &&
-                                        hit_bytes * 16 >= (pos - lo) * LITERAL_SHARE &&
-                                        !current.stop &&
-                                        pos <= last {
+                                let pos = literal_read(
+                                    flags,
+                                    re,
+                                    mut ws,
+                                    buf,
+                                    lo,
+                                    last,
+                                    needle,
+                                    shifts,
+                                    term,
+                                    name,
+                                    width,
+                                    mut current,
+                                    mut writer,
+                                    mut error,
+                                )
+                                if !current.stop {
+                                    if pos <= last {
                                         // The lines from lo to pos are behind us: count them,
                                         // then the ordinary path goes on from pos.
                                         var q = bytefind.find(buf, lo, term)
@@ -448,16 +493,12 @@ pub fn scan(
                                         current.offset += pos - lo
                                         lo = pos
                                         at = pos
-                                        fallback = true
-                                        break
+                                    } else {
+                                        current.number += bytes_count(buf, term) - lines_before
+                                        current.offset += last + 1 - lo
+                                        lo = last + 1
+                                        at = last + 1
                                     }
-                                }
-                                if fallback { continue }
-                                if !current.stop {
-                                    current.number += bytes_count(buf, term) - lines_before
-                                    current.offset += last + 1 - lo
-                                    lo = last + 1
-                                    at = last + 1
                                     continue
                                 }
                             }
