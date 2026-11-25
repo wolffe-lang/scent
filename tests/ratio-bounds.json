@@ -1,13 +1,19 @@
 {
-  "note": "From one take on a whole held block: per metric, margin = max(3 x the largest |A/A - 1| of every gated reading, 0.03); each ceiling = the head's worst repeat x (1 + its metric's margin). The two many-files ceilings come from a later trial take, on the same block, of the change that holds an operand's carried record in a region block (worst repeats: CPU 2.326, resident size 1.757); the two 100 MiB ceilings are unchanged.",
+  "note": "Per metric, margin = max(3 x the largest |A/A - 1| of every gated reading of one calibration take on a whole held block, 0.03). Each ceiling = the worst reading of the change's own code across takes on at least two different days on that block, x (1 + its metric's margin): the margin covers the spread inside one run, the second day the drift between takes, which that spread does not. `readings` lists the readings behind each ceiling. A ceiling is not raised while the code under it still fits.",
   "margin": {
     "cpu": 0.03,
     "rss": 0.085
   },
   "ceilings": {
-    "ratio-count-files-cpu": 2.396,
+    "ratio-count-files-cpu": 2.154,
     "ratio-count-files-rss": 1.906,
-    "ratio-literal-100M-cpu": 2.911,
-    "ratio-regex-100M-cpu": 2.373
+    "ratio-literal-100M-cpu": 2.302,
+    "ratio-regex-100M-cpu": 1.922
+  },
+  "readings": {
+    "ratio-count-files-cpu": "2026-11-24: 2.079, 2.091; 2026-11-25: 2.064, 2.046; worst 2.091 x 1.03",
+    "ratio-count-files-rss": "kept from the change before this one, whose own readings set it (2026-11-24: 1.737, 1.757; 2026-11-25: 1.739; worst 1.757 x 1.085). This change reads 2026-11-24: 1.771, 1.764; 2026-11-25: 1.674, 1.729: its worst sits 7 % under the ceiling, and a ceiling does not rise while the code under it still fits",
+    "ratio-literal-100M-cpu": "2026-11-24: 2.231, 2.221; 2026-11-25: 2.235, 2.224; worst 2.235 x 1.03",
+    "ratio-regex-100M-cpu": "2026-11-24: 1.865, 1.864; 2026-11-25: 1.866, 1.861; worst 1.866 x 1.03"
   }
 }
