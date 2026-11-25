@@ -434,7 +434,7 @@ pub fn scan(
                                         if writer.failed { error = true; current.stop = true }
                                     }
                                     pos = end + 1
-                                    if hits >= LITERAL_HITS &&
+                                    if false && hits >= LITERAL_HITS &&
                                         hit_bytes * 16 >= (pos - lo) * LITERAL_SHARE &&
                                         !current.stop &&
                                         pos <= last {
