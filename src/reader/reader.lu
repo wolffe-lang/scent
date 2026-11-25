@@ -277,7 +277,7 @@ fn append(mut target: List[byte], used: int, buf: List[byte], lo: int, hi: int) 
 // After this many literal hits in consecutive lines of one read, the rest of the read takes the
 // ordinary path: where most lines hold the literal, searching for it first costs more than
 // visiting every line. Chosen by a measured sweep (see the README).
-const LITERAL_RUN: int = 16
+const LITERAL_RUN: int = 32
 
 /// Read one operand in bounded chunks, carrying only the unfinished line
 /// and the requested leading-context ring. Every chunk owns its temporary
