@@ -39,11 +39,11 @@ The M2 generator adds **3,392 cases**: 2,000 shared-tree walk/filter rows,
 18 edge and five self-output rows, 1,152 original colour/environment rows,
 120 glob-syntax rows, and 97 additional byte-pattern, tty, colour-edge,
 reviewed-gap and UTF-8 locale rows. The complete CLI matrix reports
-**9,638 C-locale agreements + 111 published differences + 9 upstream-blocked**.
-The former explicit UTF-8 refusal is now an agreement. A further **38,866
+**9,647 C-locale agreements + 111 published differences + 9 upstream-blocked**.
+The former explicit UTF-8 refusal is now an agreement. A further **38,875
 UTF-8 cases** include every inherited case and generated scalar, encoding-error
-and consistency witnesses. The complete matrix has **48,625 cases**:
-**47,834 agree, 772 published differences, 18 upstream-blocked, one environment
+and consistency witnesses. The complete matrix has **48,643 cases**:
+**47,852 agree, 772 published differences, 18 upstream-blocked, one environment
 difference, zero unapproved differences and zero not-yet rows**. Of the published
 differences, 550 cover the two UTF-8 consistency rules below: 480 case-fold
 rows and 70 dot-span rows.
@@ -243,6 +243,17 @@ ceiling measured on one machine holds nothing on another.
 12.3 to 2.5 times GNU's, the literal row from 3.1 to 2.8 and the regular
 expression from 2.5 to 2.3. Scanning for line ends sixteen bytes at a time
 took them to 2.1, 2.2 and 1.9.
+
+System calls per file are held exactly, not by a ratio.
+`tools/ratio-syscalls` counts every call of each ratio row with strace in the
+measurement image (`ci/measure.Containerfile`: the oracle image plus strace),
+and with `--expect tests/syscall-counts.json` it fails unless scent's calls
+per file on the many-files row are exactly the numbers named there: statx 2,
+lseek 0 and write 1. An empty trace fails, and so does a call wanted above
+zero with no line in the trace. The row gates records on the held block and
+does not run on hosted runners. Asking the descriptor's offset only for
+standard input, and calling stat on each file once, took scent from 9.0 to 7.0 calls
+per file on that row (GNU makes 5.0).
 
 ## Published differences
 
