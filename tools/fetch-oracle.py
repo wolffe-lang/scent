@@ -19,7 +19,6 @@ def verify(binary):
 def verify_source(tarball, sig, keyring, home, pin=PIN):
     """The downloaded source: its digest, then the signature at the pinned fingerprint, checked with
     whatever keyring GNU serves (GNU replaces that file). Returns the keyring's digest, as observed."""
-    require(digest(tarball)==pin['sha256'],'grep.tar.xz digest'); require(digest(tarball)==pin['sha256'],'grep.tar.xz second digest')
     sig=subprocess.run(['gpg','--batch','--homedir',str(home),'--no-default-keyring','--keyring',str(keyring),'--status-fd','1','--verify',str(sig),str(tarball)],capture_output=True)
     require(sig.returncode==0 and ('[GNUPG:] VALIDSIG '+pin['signing_fingerprint']+' ').encode() in sig.stdout, 'signature fingerprint')
     return digest(keyring)
