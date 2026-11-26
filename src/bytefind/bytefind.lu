@@ -50,13 +50,13 @@ pub fn find_literal(
     let last = needle[size - 1]
     var at = from
     while at + size <= hi {
-        let b = buf[at + size - 1]
-        if b == last {
-            var i = 0
-            while i < size - 1 && buf[at + i] == needle[i] { i += 1 }
-            if i == size - 1 { return at }
-        }
-        at += shifts[b as int]
+        let p = bytes_find(buf, last, at + size - 1) else -1
+        if p < 0 || p >= hi { return -1 }
+        let start = p - size + 1
+        var i = 0
+        while i < size - 1 && buf[start + i] == needle[i] { i += 1 }
+        if i == size - 1 { return start }
+        at = start + 1
     }
     -1
 }
