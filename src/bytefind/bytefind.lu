@@ -33,9 +33,86 @@ pub fn literal_shifts(needle: List[byte]) -> List[int] {
     shifts
 }
 
+/// After this many candidates in one read that were not the needle, the rest of
+/// that read takes the Horspool loop: a search byte the input is full of costs a
+/// call per byte, more than the loop's step.
+const GUARD: int = 32
+
+/// Bytes from commonest to rarest in typical text, for choosing which needle byte
+/// to search for: space and newline, the letters by English frequency, the same
+/// in upper case, digits, ASCII punctuation, tab. Any other byte (control bytes,
+/// then 0x80-0xFF) ranks rarer still. Bytes, not characters: the same in every
+/// locale, and no input is sampled.
+fn rank(b: byte) -> int {
+    let order = " \netaoinshrdlcumwfgypbvkjxqzETAOINSHRDLCUMWFGYPBVKJXQZ0123456789.,'\"-;:!?()[]{{}}/\\@#$%^&*_+=<>|`~\t".bytes()
+    var i = 0
+    while i < order.len {
+        if order[i] == b { return i }
+        i += 1
+    }
+    if (b as int) < 128 then 200 + (b as int) else 400 + (b as int)
+}
+
+/// The index of the needle byte to search for: its rarest by `rank`, the later
+/// one on a tie.
+pub fn rare_index(needle: List[byte]) -> int {
+    var best = 0
+    var i = 1
+    while i < needle.len {
+        if rank(needle[i]) >= rank(needle[best]) { best = i }
+        i += 1
+    }
+    best
+}
+
+/// Candidates of the needle's search byte that were not the needle, in this read.
+pub struct Misses {
+    count: int,
+}
+
+/// A fresh count, for the start of a read.
+pub fn misses() -> Misses {
+    Misses { count: 0 }
+}
+
 /// The first place at or after `from` where all of `needle` lies before `hi`,
-/// or -1. A one-byte needle is the vector byte search.
+/// or -1. A one-byte needle is the vector byte search; a longer one searches
+/// for its byte `rare` (`rare_index`) with the vector search and checks the
+/// needle around each candidate, until GUARD candidates of a read were not it,
+/// and takes the Horspool loop after that. Both give the same first place.
 pub fn find_literal(
+    buf: List[byte],
+    from: int,
+    hi: int,
+    needle: List[byte],
+    shifts: List[int],
+    rare: int,
+    mut missed: Misses,
+) -> int {
+    let size = needle.len
+    if size == 1 {
+        let at = bytes_find(buf, needle[0], from) else -1
+        return if at >= 0 && at < hi then at else -1
+    }
+    let key = needle[rare]
+    var at = from
+    while at + size <= hi {
+        if missed.count >= GUARD { return horspool(buf, at, hi, needle, shifts) }
+        let p = bytes_find(buf, key, at + rare) else -1
+        if p < 0 || p - rare + size > hi { return -1 }
+        let start = p - rare
+        var i = 0
+        while i < size && buf[start + i] == needle[i] { i += 1 }
+        if i == size { return start }
+        missed.count += 1
+        at = start + 1
+    }
+    -1
+}
+
+/// The Horspool loop: the first place at or after `from` where all of `needle`
+/// lies before `hi`, or -1.
+fn horspool(
     buf: List[byte],
     from: int,
     hi: int,
@@ -43,10 +120,6 @@ pub fn find_literal(
     shifts: List[int],
 ) -> int {
     let size = needle.len
-    if size == 1 {
-        let at = bytes_find(buf, needle[0], from) else -1
-        return if at >= 0 && at < hi then at else -1
-    }
     let last = needle[size - 1]
     var at = from
     while at + size <= hi {

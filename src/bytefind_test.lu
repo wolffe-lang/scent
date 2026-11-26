@@ -58,11 +58,14 @@ fn main() {
         size += 1
     }
     // The literal search against a scalar definition: every needle of one to
-    // four bytes over every window of a small alphabet, each start and end.
+    // four bytes over every window of a small alphabet, each start and end,
+    // by the vector search for the needle's rarest byte and, once a read has
+    // had its fill of candidates that were not the needle, by the Horspool loop.
     let text = "abaabcabcdaabbccd\nabcdd".bytes()
-    for needle_text in ["a", "d", "ab", "abc", "abcd", "bcd", "dd", "da", "cab", "x"] {
+    for needle_text in ["a", "d", "ab", "abc", "abcd", "bcd", "dd", "da", "cab", "x", "aab", "abab", "bb"] {
         let needle = needle_text.bytes()
         let shifts = bytefind.literal_shifts(needle)
+        let rare = bytefind.rare_index(needle)
         var from = 0
         while from <= text.len {
             var hi = from
@@ -75,10 +78,28 @@ fn main() {
                     if i == needle.len { want = at }
                     at += 1
                 }
-                assert(bytefind.find_literal(text, from, hi, needle, shifts) == want)
+                var fresh = bytefind.misses()
+                assert(bytefind.find_literal(text, from, hi, needle, shifts, rare, mut fresh) == want)
+                var spent = bytefind.misses()
+                spent.count = 1000
+                assert(bytefind.find_literal(text, from, hi, needle, shifts, rare, mut spent) == want)
                 hi += 1
             }
             from += 1
         }
     }
+    // The search byte: the rarest by the table, the later one on a tie.
+    assert(bytefind.rare_index("needle".bytes()) == 4)
+    assert(bytefind.rare_index("zebra".bytes()) == 0)
+    assert(bytefind.rare_index("quiz".bytes()) == 3)
+    assert(bytefind.rare_index("fizzy".bytes()) == 3)
+    assert(bytefind.rare_index("ab".bytes()) == 1)
+    assert(bytefind.rare_index("a1".bytes()) == 1)
+    // A candidate that is not the needle counts toward the guard; a found
+    // needle does not.
+    var count_misses = bytefind.misses()
+    let ls = "lllll needle".bytes()
+    let nd = "needle".bytes()
+    assert(bytefind.find_literal(ls, 0, ls.len, nd, bytefind.literal_shifts(nd), 4, mut count_misses) == 6)
+    assert(count_misses.count == 1)
 }

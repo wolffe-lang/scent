@@ -344,6 +344,7 @@ pub fn scan(
         (env_get("SCENT_MATCH_ENGINE") else "") != "vm"
     for b in needle { if b == term { literal_lines = false } }
     let shifts = if literal_lines then bytefind.literal_shifts(needle) else List[int]()
+    let rare = if literal_lines then bytefind.rare_index(needle) else 0
     // The unfinished record and the context ring live as long as this operand. A
     // block, not a region value: a region value is not freed at its last use.
     region storage {
@@ -391,8 +392,9 @@ pub fn scan(
                                 var hits = 0
                                 var hit_bytes = 0
                                 var fallback = false
+                                var missed = bytefind.misses()
                                 while pos <= last && !current.stop {
-                                    let hit = bytefind.find_literal(buf, pos, last, needle, shifts)
+                                    let hit = bytefind.find_literal(buf, pos, last, needle, shifts, rare, mut missed)
                                     if hit < 0 { break }
                                     // The first line end from pos: past the hit, the hit's line
                                     // starts at pos and ends there, with no walk back. Before it,
