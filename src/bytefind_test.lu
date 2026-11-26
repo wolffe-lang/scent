@@ -113,6 +113,14 @@ fn main() {
     assert(bytefind.rare_index("fizzy".bytes()) == 3)
     assert(bytefind.rare_index("ab".bytes()) == 1)
     assert(bytefind.rare_index("a1".bytes()) == 1)
+    // The table's tail: a byte it does not list ranks rarer than any it lists,
+    // ASCII by value, then 0x80-0xFF rarer still, by value.
+    assert(bytefind.rare_index(bytes_of([97, 1])) == 1)
+    assert(bytefind.rare_index(bytes_of([1, 195])) == 1)
+    assert(bytefind.rare_index(bytes_of([195, 128])) == 0)
+    assert(bytefind.rare_index(bytes_of([128, 195])) == 1)
+    assert(bytefind.rare_index(bytes_of([127, 1])) == 0)
+    assert(bytefind.rare_index(bytes_of([126, 1])) == 1)
     // A candidate that is not the needle counts toward the guard; a found
     // needle does not.
     var count_misses = bytefind.misses()
@@ -131,4 +139,10 @@ fn main() {
             6,
     )
     assert(count_misses.count == 1)
+}
+
+fn bytes_of(values: List[int]) -> List[byte] {
+    var out = List[byte]()
+    for v in values { (mut out).push(v as byte) }
+    out
 }
