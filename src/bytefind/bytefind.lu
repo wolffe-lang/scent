@@ -36,7 +36,7 @@ pub fn literal_shifts(needle: List[byte]) -> List[int] {
 /// After this many candidates in one read that were not the needle, the rest of
 /// that read takes the Horspool loop: a search byte the input is full of costs a
 /// call per byte, more than the loop's step.
-const GUARD: int = 32
+const GUARD: int = 1 << 40
 
 /// Bytes from commonest to rarest in typical text, for choosing which needle byte
 /// to search for: space and newline, the letters by English frequency, the same
