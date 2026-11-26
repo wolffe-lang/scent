@@ -116,6 +116,7 @@ print('PASS a wanted value that is neither a count nor "gnu" is refused')
 
 expected = json.loads((root / 'tests/syscall-counts.json').read_text()) if (root / 'tests/syscall-counts.json').exists() else None
 if expected is not None:
-    assert not check(report(calls), expected)[1], 'the committed counts disagree with the fixture of the head'
+    # The head's fixture: one write per 4,096 bytes, as GNU writes them.
+    assert not check(paired(dict(calls, write=19), gnu_calls), expected)[1], 'the committed counts disagree with the fixture of the head'
     print('PASS tests/syscall-counts.json reads as the fixture expects')
 print('ratio-syscalls-test: every check passes')
