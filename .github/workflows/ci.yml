@@ -21,6 +21,7 @@ on:
       - '**/STD-PIN'
       - 'vendor/tools.toml'
       - 'gnu-oracle.toml'
+      - 'scent-oracle.toml'
       - '.gitmodules'
       - 'Cargo.toml'
       - 'Cargo.lock'
