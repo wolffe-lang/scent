@@ -502,7 +502,7 @@ pub fn scan(
                                 current.offset += used + 1
                                 used = 0
                             } else {
-                                let hit = matcher.line_matches(re, mut ws, buf, lo, at)
+                                let hit = false
                                 let chosen = hit != flags.invert
                                 emit(
                                     flags,
