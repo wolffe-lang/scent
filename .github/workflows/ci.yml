@@ -114,6 +114,8 @@ jobs:
         run: docker build -t localhost/scent-oracle -f ci/oracle.Containerfile ci
       - name: Stage digest-pinned toolchain and oracle
         run: tools/in-container bash -c 'tools/fetch-toolchain && tools/fetch-oracle'
+      - name: The oracle's source check, offline (the keyring by its signer's fingerprint)
+        run: tools/in-container python3 -I tools/fetch-oracle-test
       - name: Ratio rows report, not gate, on a hosted runner (through the container)
         run: python3 -I tools/ratio-hosted-test
       - name: Generate and guard M2 corpus
