@@ -394,7 +394,15 @@ pub fn scan(
                                 var fallback = false
                                 var missed = bytefind.misses()
                                 while pos <= last && !current.stop {
-                                    let hit = bytefind.find_literal(buf, pos, last, needle, shifts, rare, mut missed)
+                                    let hit = bytefind.find_literal(
+                                        buf,
+                                        pos,
+                                        last,
+                                        needle,
+                                        shifts,
+                                        rare,
+                                        mut missed,
+                                    )
                                     if hit < 0 { break }
                                     // The first line end from pos: past the hit, the hit's line
                                     // starts at pos and ends there, with no walk back. Before it,

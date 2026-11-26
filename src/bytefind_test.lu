@@ -62,7 +62,21 @@ fn main() {
     // by the vector search for the needle's rarest byte and, once a read has
     // had its fill of candidates that were not the needle, by the Horspool loop.
     let text = "abaabcabcdaabbccd\nabcdd".bytes()
-    for needle_text in ["a", "d", "ab", "abc", "abcd", "bcd", "dd", "da", "cab", "x", "aab", "abab", "bb"] {
+    for needle_text in [
+        "a",
+        "d",
+        "ab",
+        "abc",
+        "abcd",
+        "bcd",
+        "dd",
+        "da",
+        "cab",
+        "x",
+        "aab",
+        "abab",
+        "bb",
+    ] {
         let needle = needle_text.bytes()
         let shifts = bytefind.literal_shifts(needle)
         let rare = bytefind.rare_index(needle)
@@ -79,10 +93,14 @@ fn main() {
                     at += 1
                 }
                 var fresh = bytefind.misses()
-                assert(bytefind.find_literal(text, from, hi, needle, shifts, rare, mut fresh) == want)
+                assert(
+                    bytefind.find_literal(text, from, hi, needle, shifts, rare, mut fresh) == want,
+                )
                 var spent = bytefind.misses()
                 spent.count = 1000
-                assert(bytefind.find_literal(text, from, hi, needle, shifts, rare, mut spent) == want)
+                assert(
+                    bytefind.find_literal(text, from, hi, needle, shifts, rare, mut spent) == want,
+                )
                 hi += 1
             }
             from += 1
@@ -100,6 +118,17 @@ fn main() {
     var count_misses = bytefind.misses()
     let ls = "lllll needle".bytes()
     let nd = "needle".bytes()
-    assert(bytefind.find_literal(ls, 0, ls.len, nd, bytefind.literal_shifts(nd), 4, mut count_misses) == 6)
+    assert(
+        bytefind.find_literal(
+            ls,
+            0,
+            ls.len,
+            nd,
+            bytefind.literal_shifts(nd),
+            4,
+            mut count_misses,
+        ) ==
+            6,
+    )
     assert(count_misses.count == 1)
 }

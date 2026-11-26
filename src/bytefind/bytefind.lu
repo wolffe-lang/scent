@@ -44,13 +44,14 @@ const GUARD: int = 32
 /// then 0x80-0xFF) ranks rarer still. Bytes, not characters: the same in every
 /// locale, and no input is sampled.
 fn rank(b: byte) -> int {
-    let order = " \netaoinshrdlcumwfgypbvkjxqzETAOINSHRDLCUMWFGYPBVKJXQZ0123456789.,'\"-;:!?()[]{{}}/\\@#$%^&*_+=<>|`~\t".bytes()
+    let order = " \netaoinshrdlcumwfgypbvkjxqzETAOINSHRDLCUMWFGYPBVKJXQZ0123456789.,'\"-;:!?()[]{{}}/\\@#$%^&*_+=<>|`~\t".
+        bytes()
     var i = 0
     while i < order.len {
         if order[i] == b { return i }
         i += 1
     }
-    if (b as int) < 128 then 200 + (b as int) else 400 + (b as int)
+    if b as int < 128 then 200 + b as int else 400 + b as int
 }
 
 /// The index of the needle byte to search for: its rarest by `rank`, the later
@@ -112,13 +113,7 @@ pub fn find_literal(
 
 /// The Horspool loop: the first place at or after `from` where all of `needle`
 /// lies before `hi`, or -1.
-fn horspool(
-    buf: List[byte],
-    from: int,
-    hi: int,
-    needle: List[byte],
-    shifts: List[int],
-) -> int {
+fn horspool(buf: List[byte], from: int, hi: int, needle: List[byte], shifts: List[int]) -> int {
     let size = needle.len
     let last = needle[size - 1]
     var at = from
