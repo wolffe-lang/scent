@@ -8,6 +8,8 @@
 
 - Hold each operand's unfinished line and context in a region block freed when the operand ends: resident memory no longer grows with the number of files.
 
+- Accept GNU's keyring by the signer's fingerprint, not by the file's digest: GNU replaced the file three times in 26 days with the tarball, its signer and the oracle binary unchanged. The tarball digest, the signer's fingerprint and the binary digest stay pinned; the keyring's digest is recorded as observed. Add an offline test of the source check.
+
 ## 0.2.0 — 2026-11-24
 
 - Release as the v0.2.0 source tag: the binary, this file and both packaging recipes are checked to name one version.
