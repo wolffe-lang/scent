@@ -16,6 +16,12 @@
 # so its digest is re-pinned (two downloads, identical, 3,884,405 bytes). The new
 # file still yields VALIDSIG at the pinned fingerprint for the unchanged tarball;
 # the fingerprint and the binary digest are unchanged.
+# Then the keyring stopped being pinned by its file's digest: three replacements
+# in 26 days (2026-11-01, 2026-11-25 18:23:07 GMT and 2026-11-26 04:22:38 GMT),
+# each with the tarball, its signer and the built binary unchanged. The tarball
+# digest, the signer's fingerprint (VALIDSIG) and the binary digest stay pinned;
+# the keyring's digest is recorded in .oracle/identity.json as observed, and
+# nothing compares it.
 [oracle]
 version = "3.12"
 version_line = "grep (GNU grep) 3.12"
@@ -23,7 +29,6 @@ url = "https://ftp.gnu.org/gnu/grep/grep-3.12.tar.xz"
 sha256 = "2649b27c0e90e632eadcd757be06c6e9a4f48d941de51e7c0f83ff76408a07b9"
 sig_url = "https://ftp.gnu.org/gnu/grep/grep-3.12.tar.xz.sig"
 keyring_url = "https://ftp.gnu.org/gnu/gnu-keyring.gpg"
-keyring_sha256 = "0ed9052a6d6c70bf0cfcbdc59022f94c2493c6df02973f94d19e95ab9f125812"
 signing_fingerprint = "155D3FC500C834486D1EEA677FD9FCCB000BEEEE"
 configure_args = "--disable-perl-regexp"
 image = "docker.io/library/ubuntu:24.04@sha256:534baea6a22c03a63003dbc8dbe78fe34bc0d7e595d9a9dc9834884ff530eb55"
