@@ -26,12 +26,19 @@ spans. C-locale `-i` folds ASCII only; UTF-8 uses generated, measured tables.
 An empty pattern set (an empty `-f` file) without `-v` or `-L` selects
 nothing and reads no file: `-c` prints no counts and a missing operand draws
 no message, as the pinned GNU build does.
+Output reaches its descriptor when the pinned GNU build's does: a regular file
+or a pipe receives it in blocks of 4,096 bytes across files, pending output is
+written before each message, and a terminal or `--line-buffered` receives each
+line at once. A write that fails mid-run ends the run with one message, and a
+write that fails before a message is reported when the run ends.
 
 The generated CLI matrix has **5,072 cases**: 40 option rows × three
 syntaxes × seven pattern families × six input forms, plus 32 source and
 diagnostic cases. Separate CLI rows cover the original 958-case corpus,
-150 reviewed-family cases, 18 wrapper cases, nine context/span joins and
-sixteen rows that carry output state across files.
+150 reviewed-family cases, 18 wrapper cases, nine context/span joins,
+sixteen rows that carry output state across files and 47 rows on when output
+reaches its descriptor (a regular file, a pipe, a full device, merged stdout
+and stderr, an operand that is also the output).
 The engine also gates 20,000 generated pattern–line pairs per syntax,
 exhaustive short malformed patterns, and bounded regular/backreference costs.
 
@@ -39,11 +46,11 @@ The M2 generator adds **3,392 cases**: 2,000 shared-tree walk/filter rows,
 18 edge and five self-output rows, 1,152 original colour/environment rows,
 120 glob-syntax rows, and 97 additional byte-pattern, tty, colour-edge,
 reviewed-gap and UTF-8 locale rows. The complete CLI matrix reports
-**9,707 C-locale agreements + 111 published differences + 9 upstream-blocked**.
-The former explicit UTF-8 refusal is now an agreement. A further **38,935
+**9,754 C-locale agreements + 111 published differences + 9 upstream-blocked**.
+The former explicit UTF-8 refusal is now an agreement. A further **38,982
 UTF-8 cases** include every inherited case and generated scalar, encoding-error
-and consistency witnesses. The complete matrix has **48,763 cases**:
-**47,972 agree, 772 published differences, 18 upstream-blocked, one environment
+and consistency witnesses. The complete matrix has **48,857 cases**:
+**48,066 agree, 772 published differences, 18 upstream-blocked, one environment
 difference, zero unapproved differences and zero not-yet rows**. Of the published
 differences, 550 cover the two UTF-8 consistency rules below: 480 case-fold
 rows and 70 dot-span rows.
@@ -266,12 +273,18 @@ System calls per file are held exactly, not by a ratio.
 `tools/ratio-syscalls` counts every call of each ratio row with strace in the
 measurement image (`ci/measure.Containerfile`: the oracle image plus strace),
 and with `--expect tests/syscall-counts.json` it fails unless scent's calls
-per file on the many-files row are exactly the numbers named there: statx 2,
-lseek 0 and write 1. An empty trace fails, and so does a call wanted above
-zero with no line in the trace. The row gates records on the held block and
+per file on the many-files row are exactly the numbers named there: statx 2
+and lseek 0, and as many writes as GNU makes on the same row (`"gnu"`: 19,
+GNU's blocks of 4,096 bytes for the row's 75,000 bytes). An empty trace fails,
+and so does a call wanted above zero with no line in the trace, or a GNU run
+missing from the report. The row gates records on the held block and
 does not run on hosted runners. Asking the descriptor's offset only for
 standard input, and calling stat on each file once, took scent from 9.0 to 7.0 calls
-per file on that row (GNU makes 5.0).
+per file on that row (GNU makes 5.0); writing output in GNU's blocks takes it to
+6.0. That last change is for GNU's output timing, not for speed: measured with
+GNU's own writes (the same binary with `--line-buffered` writes once per line),
+a write costs 0.2 to 0.4 µs on the held block, about 0.08 of GNU's time on the
+many-files row and 0.05 on the recursive workload.
 
 ## Published differences
 

@@ -49,11 +49,11 @@ feeds each operand through `reader.scan` to the byte writer in `out`.
   as delimiters. CR bytes are preserved on POSIX, including with `-U`.
   Each read/format/output turn has a temporary region. Carried bytes,
   context buffers live in a separate explicit region. Matcher workspace is
-  chunk-local, as are stdout buffers: conservative mut-region tracking
-  otherwise rejects a call with the transient output writer. Only scalar
+  chunk-local; the stdout buffer is made once per run and passed down. Only scalar
   reader state is copied out of the temporary region.
-- `src/out/`: fixed 64 KiB stdout staging, byte windows and GNU prefix
-  ordering. Context has `-` fields; selected lines have `:` fields.
+- `src/out/`: one 4,096-byte stdout staging buffer per run, written in
+  blocks across files, before each message and at the end (a terminal or
+  `--line-buffered` line by line), byte windows and GNU prefix ordering. Context has `-` fields; selected lines have `:` fields.
   Writes use descriptor 1 directly and report `os_error_text` failures.
 
 GNU 3.12, configured `--disable-perl-regexp`, is the oracle. The source
