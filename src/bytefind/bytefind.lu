@@ -102,7 +102,7 @@ pub fn find_literal(
         let p = bytes_find(buf, key, at + rare) else -1
         if p < 0 || p - rare + size > hi { return -1 }
         let start = p - rare
-        var i = 0
+        var i = 1
         while i < size && buf[start + i] == needle[i] { i += 1 }
         if i == size { return start }
         missed.count += 1
