@@ -16,7 +16,8 @@
     "ratio-literal-density25-100M-cpu": 1.646,
     "ratio-literal-density50-100M-cpu": 1.772,
     "ratio-literal-density75-100M-cpu": 1.63,
-    "ratio-literal-runs4-100M-cpu": 1.527
+    "ratio-literal-runs4-100M-cpu": 1.527,
+    "ratio-literal-sparse-100M-cpu": 3.09
   },
   "readings": {
     "ratio-count-files-cpu": "kept: set by the system-call change (2026-11-24: 2.016, 1.996; 2026-11-25: 2.022, 2.021; worst 2.022 x 1.03). The literal search reads 2026-11-26: 1.742, 1.756, one day of its own code (as first written it read 2026-11-24: 1.706, 1.726; 2026-11-25: 1.740, 1.742); kept until this code has two days of its own",
@@ -30,6 +31,7 @@
     "ratio-literal-density25-100M-cpu": "2026-11-25: 1.594, 1.597, 1.598, 1.593; 2026-11-26: 1.590, 1.594; worst 1.598 x 1.03",
     "ratio-literal-density50-100M-cpu": "2026-11-25: 1.710, 1.715, 1.709, 1.692; 2026-11-26: 1.711, 1.720; worst 1.720 x 1.03. A regression ceiling as for dense, not the selection bar (its bar 1.657 x 1.04 = 1.723, met at 1.709; at 1.03 (1.707) missed by 0.1 %)",
     "ratio-literal-density75-100M-cpu": "2026-11-25: 1.580, 1.582, 1.576, 1.573; 2026-11-26: 1.583, 1.583; worst 1.583 x 1.03. A regression ceiling as for dense, not the selection bar (its bar 1.526 x 1.04 = 1.587, met at 1.576; at 1.03 (1.572) missed by 0.3 %)",
-    "ratio-literal-runs4-100M-cpu": "2026-11-25: 1.480, 1.480, 1.473, 1.470; 2026-11-26: 1.483, 1.482; worst 1.483 x 1.03"
+    "ratio-literal-runs4-100M-cpu": "2026-11-25: 1.480, 1.480, 1.473, 1.470; 2026-11-26: 1.483, 1.482; worst 1.483 x 1.03",
+    "ratio-literal-sparse-100M-cpu": "red-first: the vector skip's predicted top, 3.0 x 1.03 = 3.09, set before the change from its frozen prediction (2.0 to 3.0 with it; 4.5 to 6.5 at the code before it). Replaced by this change's own worst reading on two days x 1.03 once it has them."
   }
 }
