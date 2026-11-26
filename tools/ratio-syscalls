@@ -14,7 +14,9 @@ call, the count must be the wanted number per file times the files. A mismatch p
 `FAIL syscalls-<row>-<call> per_file=<got> want=<want>` and the exit is 1. It fails
 closed: an empty trace is a FAIL, and a call wanted above zero with no line in the trace
 is a FAIL (`per_file=absent`). A call wanted at zero passes only when it has no line in a
-trace that is not empty.
+trace that is not empty. In place of a count, "gnu" asks scent's count of that call on the
+row to equal GNU's in the same report (`FAIL syscalls-<row>-<call> total=<got>
+want=gnu(<gnu's>)`), failing closed when GNU's run or its line for the call is missing.
 """
 import argparse, json, os, pathlib, re, runpy, shutil, subprocess
 
@@ -31,6 +33,22 @@ def counts(path):
     return calls
 
 
+def against_gnu(report, row, key, call, got):
+    """scent's count of a call held to GNU's on the same row of the same report: a PASS fragment or
+    a FAIL line, failing closed when GNU's run is missing or empty."""
+    entry = report.get('rows', {}).get(row, {}).get('gnu')
+    if entry is None:
+        return f'FAIL syscalls-{key}-{call} no gnu run of {row} to compare with'
+    gnu = entry.get('calls') or {}
+    if not gnu:
+        return f'FAIL syscalls-{key}-{call} gnu trace empty for {row}'
+    if call not in gnu:
+        return f'FAIL syscalls-{key}-{call} total={got} want=gnu(absent) (no line in the gnu trace)'
+    if got != gnu[call]:
+        return f'FAIL syscalls-{key}-{call} total={got} want=gnu({gnu[call]})'
+    return f'{key}-{call}=gnu({gnu[call]})'
+
+
 def check_expect(report, expected):
     """(lines, fails) for the counts `expected` names, held exactly; fails closed."""
     rows = expected.get('rows')
@@ -44,8 +62,8 @@ def check_expect(report, expected):
             if not isinstance(wants, dict) or not wants:
                 raise SystemExit(f'ratio-syscalls: REFUSED: no wanted call for {row} {who}')
             for call, want in wants.items():
-                if type(want) is not int or want < 0:
-                    raise SystemExit(f'ratio-syscalls: REFUSED: {row} {who} {call} wants {want!r}, not a count')
+                if want != 'gnu' and (type(want) is not int or want < 0):
+                    raise SystemExit(f'ratio-syscalls: REFUSED: {row} {who} {call} wants {want!r}, not a count or "gnu"')
             if entry is None:
                 fails.append(f'FAIL syscalls-{key}-trace no {who} run of {row} in the report')
                 continue
@@ -59,6 +77,10 @@ def check_expect(report, expected):
                 continue
             for call, want in sorted(wants.items()):
                 got = calls.get(call)
+                if want == 'gnu':
+                    said = against_gnu(report, row, key, call, got or 0)
+                    (fails if said.startswith('FAIL ') else lines).append(said)
+                    continue
                 if got is None and want > 0:
                     fails.append(f'FAIL syscalls-{key}-{call} per_file=absent want={want} (no line in the trace)')
                 elif (got or 0) != want * files:

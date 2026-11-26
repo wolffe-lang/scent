@@ -1,11 +1,11 @@
 {
-  "note": "System calls per file that scent makes on the many-files row (-c over 5,000 small files), held exactly by tools/ratio-syscalls --expect in the measurement image. Counted there at the change that asks the offset only for standard input and stats each file once, 2026-11-24: statx 10000, write 5000 and no lseek over 5,000 files. The code before it made statx 15000 and lseek 5000.",
+  "note": "System calls per file that scent makes on the many-files row (-c over 5,000 small files), held exactly by tools/ratio-syscalls --expect in the measurement image. Counted there at the change that asks the offset only for standard input and stats each file once, 2026-11-24: statx 10000 and no lseek over 5,000 files (the code before it made statx 15000 and lseek 5000). Writes are held to GNU's on the same row (\"gnu\"): GNU writes a regular file in blocks of 4,096 bytes, 19 writes for the row's 75,000 bytes, where scent wrote once per file (5000) until its output went out in GNU's blocks.",
   "rows": {
     "ratio-count-files": {
       "scent": {
         "statx": 2,
         "lseek": 0,
-        "write": 1
+        "write": "gnu"
       }
     }
   }

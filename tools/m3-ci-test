@@ -4,14 +4,21 @@ import collections,hashlib,json,pathlib,subprocess,sys
 root=pathlib.Path(__file__).resolve().parent.parent
 subprocess.run([sys.executable,'-I',str(root/'tools/m3-cases')],check=True)
 rows=[json.loads(x) for x in (root/'tests/cases/m3.jsonl').read_text().splitlines()]
-assert len(rows)==38935,len(rows)
+assert len(rows)==38982,len(rows)
 cases={c['name']:c for c in rows};assert len(cases)==len(rows)
 inherited={c['name']:c for p in (root/'tests/cases').glob('*.jsonl') if p.name!='m3.jsonl' for c in map(json.loads,p.read_text().splitlines())}
-assert len(inherited)==9828 and sum(c['name'].startswith('utf8-') for c in rows)==9827
+assert len(inherited)==9875 and sum(c['name'].startswith('utf8-') for c in rows)==9874
 for name,c in inherited.items():
  if name=='m2-m3-locale-refusal':assert not c.get('not_yet');continue
  clone=dict(c,name='utf8-'+name,env={**c.get('env',{}),'LC_ALL':'C.UTF-8'})
  assert cases[clone['name']]==clone
+# No case names a fixture under the oracle's own work paths (its bin/ and captured stdout).
+import ast,base64,os,re
+reserved=ast.literal_eval(re.search(r"^RESERVED=(\{.*\})$",(root/'tools/oracle.py').read_text(),re.M)[1])
+assert reserved>={'bin','stdout.captured'},reserved
+for c in list(inherited.values())+rows:
+ names=list(c.get('files',{}))+[os.fsdecode(base64.b64decode(r['name_base64'])) for r in c.get('raw_names',[])]
+ assert not any(n.split('/')[0] in reserved for n in names),('reserved fixture path',c['name'])
 reviews=json.loads((root/'tests/m3-divergences.json').read_text())
 counts=collections.Counter(r.get('class','inherited') for r in reviews.values())
 assert counts=={'gnu-inconsistent':550,'environment':1,'inherited':120},counts
@@ -25,4 +32,4 @@ for name in ['m3-ci-test','check-ctype-regen']:
  assert 'tools/'+name in workflow and 'tools/'+name in gate
 assert '--capture-reference target/pax-reference.json.gz' in workflow and '--capture-reference target/pax-reference.json.gz' in gate
 assert '--replay-reference target/pax-reference.json.gz' in (root/'tools/pax-posture').read_text()
-print('PASS M3 floors: 38,935 rows; 550 inconsistent, 120 inherited, one environment; all identities exact')
+print('PASS M3 floors: 38,982 rows; 550 inconsistent, 120 inherited, one environment; all identities exact')
