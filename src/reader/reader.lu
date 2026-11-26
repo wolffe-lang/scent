@@ -585,6 +585,7 @@ pub fn scan(
                 out.count(mut writer, flags, name, st.matches)
             }
         }
+        out.flush(mut writer)
         if writer.failed { error = true }
     }
     Result { matched: st.matches > 0, error: error }
