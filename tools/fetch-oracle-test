@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+"""The oracle's source check, offline: the keyring is taken by the signer's fingerprint.
+
+A throwaway key pair made here signs a stand-in tarball. Keyring A holds the pinned key alone, B the
+pinned key and another, C the other alone. tools/fetch-oracle.py's verify_source() must accept B (a
+keyring GNU replaced, the pinned key still in it), refuse C and a signature by the other key for the
+signature, and refuse a tarball off its digest; tools/re-oracle-identity's check_identity() must pass
+a kept identity whose keyring digest differs from today's. It also checks tools/gate and CI run it.
+"""
+import os, pathlib, runpy, shutil, subprocess, sys, tempfile
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+fetch = runpy.run_path(str(ROOT/'tools/fetch-oracle.py'), run_name='fetch_oracle_test')
+ident = runpy.run_path(str(ROOT/'tools/re-oracle-identity'), run_name='fetch_oracle_test')
+failed = []
+
+
+def check(name, ok, detail):
+    print(('PASS ' if ok else 'FAIL fetch-oracle-test-') + name + ': ' + detail)
+    if not ok:
+        failed.append(name)
+
+
+def gpg(home, *args, **kw):
+    return subprocess.run(['gpg', '--batch', '--homedir', str(home), *args], capture_output=True, check=True, **kw)
+
+
+def source(tarball, sig, keyring, tmp, pin):
+    """verify_source() in a fresh, empty gpg home, as the fetcher calls it: None or the refusal."""
+    home = pathlib.Path(tempfile.mkdtemp(prefix='h', dir=tmp)); home.chmod(0o700)
+    try:
+        fetch['verify_source'](tarball, sig, keyring, home, pin)
+        return None
+    except SystemExit as refusal:
+        return str(refusal)
+    finally:
+        subprocess.run(['gpgconf', '--homedir', str(home), '--kill', 'gpg-agent'], capture_output=True)
+
+
+def main():
+    tmp = pathlib.Path(tempfile.mkdtemp(prefix='fot'))
+    keys = tmp/'k'; keys.mkdir(mode=0o700)
+    try:
+        fpr = {}
+        for who in ['pinned', 'other']:
+            gpg(keys, '--pinentry-mode', 'loopback', '--passphrase', '', '--quick-gen-key',
+                'scent test %s <%s@example.invalid>' % (who, who), 'ed25519', 'sign', 'never')
+            out = gpg(keys, '--with-colons', '--list-keys', '%s@example.invalid' % who).stdout.decode()
+            fpr[who] = [l.split(':')[9] for l in out.splitlines() if l.startswith('fpr:')][0]
+        for name, who in [('A', ['pinned']), ('B', ['pinned', 'other']), ('C', ['other'])]:
+            (tmp/(name + '.gpg')).write_bytes(gpg(keys, '--export', *[fpr[w] for w in who]).stdout)
+        tarball = tmp/'grep.tar.xz'; tarball.write_bytes(b'a stand-in for the pinned tarball\n')
+        other_tarball = tmp/'other.tar.xz'; other_tarball.write_bytes(b'not the pinned tarball\n')
+        for who in ['pinned', 'other']:
+            gpg(keys, '--pinentry-mode', 'loopback', '--passphrase', '', '--local-user', fpr[who],
+                '--detach-sign', '--output', str(tmp/(who + '.sig')), str(tarball))
+            gpg(keys, '--pinentry-mode', 'loopback', '--passphrase', '', '--local-user', fpr[who],
+                '--detach-sign', '--output', str(tmp/(who + '-other.sig')), str(other_tarball))
+        # The pin as scent-oracle.toml spells it today, keyring digest included: the check must not need it.
+        pin = {'sha256': fetch['digest'](tarball), 'keyring_sha256': fetch['digest'](tmp/'A.gpg'),
+               'signing_fingerprint': fpr['pinned']}
+        r = source(tarball, tmp/'pinned.sig', tmp/'B.gpg', tmp, pin)
+        check('1-replaced-keyring', r is None, 'a keyring holding the pinned key and another is accepted (%s)' % (r or 'accepted'))
+        r = source(tarball, tmp/'pinned.sig', tmp/'C.gpg', tmp, pin)
+        check('2-keyring-without-the-key', r is not None and 'signature fingerprint' in r,
+              'a keyring without the pinned key is refused for the signature (%s)' % (r or 'accepted'))
+        r = source(tarball, tmp/'other.sig', tmp/'B.gpg', tmp, pin)
+        check('3-another-signer', r is not None and 'signature fingerprint' in r,
+              'a signature by another key in the keyring is refused for the signature (%s)' % (r or 'accepted'))
+        r = source(other_tarball, tmp/'pinned-other.sig', tmp/'A.gpg', tmp, pin)
+        check('4-tarball-off-its-digest', r is not None and 'grep.tar.xz digest' in r,
+              'a tarball off its pinned digest is refused, whatever its signature (%s)' % (r or 'accepted'))
+        kept = dict(ident['PIN'], keyring_sha256='0' * 64)
+        try:
+            ident['check_identity'](kept); r = None
+        except RuntimeError as stop:
+            r = str(stop)
+        check('5-kept-identity', r is None, "a kept identity recording another keyring's digest passes (%s)" % (r or 'passes'))
+    finally:
+        subprocess.run(['gpgconf', '--homedir', str(keys), '--kill', 'gpg-agent'], capture_output=True)
+        shutil.rmtree(tmp, ignore_errors=True)
+    workflow = (ROOT/'.github/workflows/ci.yml').read_text(); gate = (ROOT/'tools/gate').read_text()
+    check('wiring', 'tools/fetch-oracle-test' in workflow and 'tools/fetch-oracle-test' in gate,
+          'tools/gate and the CI linux job run this test')
+    print(('RED fetch-oracle-test: ' + ', '.join(failed)) if failed else 'PASS fetch-oracle-test: five cases and the wiring')
+    return 1 if failed else 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
