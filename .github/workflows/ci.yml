@@ -32,8 +32,10 @@ on:
         description: 'job ids, space-separated; empty selects all'
         type: string
         default: ''
+# The plan job reads this workflow's runs at a trunk push's commit (ci/tiers.py); no job writes.
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: ${{ github.event_name == 'pull_request' && format('ci-pr-{0}-{1}', github.head_ref, contains(github.event.pull_request.labels.*.name, 'full-matrix') && 'full' || 'pr') || format('ci-{0}-{1}', github.event_name, github.run_id) }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
@@ -43,11 +45,25 @@ jobs:
     outputs:
       tier: ${{ steps.plan.outputs.tier }}
       jobs: ${{ steps.plan.outputs.jobs }}
+      macos_covered: ${{ steps.plan.outputs.macos_covered }}
     steps:
       - uses: actions/checkout@v4
         if: ${{ github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'full-matrix') || contains(github.event.pull_request.labels.*.name, 'ci') || contains(github.event.pull_request.labels.*.name, 'release-matrix') }}
         with:
           fetch-depth: 2
+      # The tree this run tests, in a step's name, where the jobs listing
+      # shows it: a trunk push leaves the macOS job a run at its commit
+      # already ran green over the same tree (a pull request's run tests
+      # its merge with the base).
+      - name: the tree under test
+        if: ${{ github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'full-matrix') || contains(github.event.pull_request.labels.*.name, 'ci') || contains(github.event.pull_request.labels.*.name, 'release-matrix') }}
+        id: tree
+        run: |
+          tree=$(git rev-parse 'HEAD^{tree}')
+          echo "tree=$tree" >> "$GITHUB_OUTPUT"
+      - name: the tree under test is ${{ steps.tree.outputs.tree }}
+        if: ${{ github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'full-matrix') || contains(github.event.pull_request.labels.*.name, 'ci') || contains(github.event.pull_request.labels.*.name, 'release-matrix') }}
+        run: test "$(git rev-parse 'HEAD^{tree}')" = "${{ steps.tree.outputs.tree }}"
       - id: plan
         if: ${{ github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'full-matrix') || contains(github.event.pull_request.labels.*.name, 'ci') || contains(github.event.pull_request.labels.*.name, 'release-matrix') }}
         env:
@@ -57,6 +73,8 @@ jobs:
           LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           IN_JOBS: ${{ inputs.jobs }}
+          # the workflow's own token, read-only: a trunk push reads its commit's runs
+          PLAN_TOKEN: ${{ github.token }}
         run: python3 -I ci/tiers.py plan --merge --github-output "$GITHUB_OUTPUT"
       - name: local gate wiring proof
         if: ${{ github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'full-matrix') || contains(github.event.pull_request.labels.*.name, 'ci') || contains(github.event.pull_request.labels.*.name, 'release-matrix') }}
