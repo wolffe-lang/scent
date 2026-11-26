@@ -332,7 +332,6 @@ pub fn scan(
     let needle = matcher.required_literal(re)
     var literal_lines = needle.len > 0 &&
         !flags.invert &&
-        !flags.context &&
         flags.before == 0 &&
         flags.after == 0 &&
         !flags.only &&
