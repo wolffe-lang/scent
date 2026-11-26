@@ -274,11 +274,11 @@ fn append(mut target: List[byte], used: int, buf: List[byte], lo: int, hi: int) 
     }
 }
 
-// Once a read has at least LITERAL_HITS lines that hold the literal, and those lines make up at
-// least LITERAL_SHARE sixteenths of the bytes covered since the read's start, the rest of the read
-// takes the ordinary path: where that much of the input holds the literal, searching for it first
-// costs more than visiting every line. Both chosen by measured sweeps (see the README).
+// Once a read has LITERAL_HITS lines holding the literal and they make up LITERAL_SHARE sixteenths
+// of the bytes covered since the read's start, the rest of the read takes the ordinary path: there,
+// searching first costs more than visiting every line. Both were chosen by measured sweeps.
 const LITERAL_HITS: int = 16
+
 const LITERAL_SHARE: int = 7
 
 /// Read one operand in bounded chunks, carrying only the unfinished line
