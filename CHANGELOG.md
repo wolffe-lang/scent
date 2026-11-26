@@ -12,6 +12,8 @@
 
 - Accept GNU's keyring by the signer's fingerprint, not by the file's digest: GNU replaced the file three times in 26 days with the tarball, its signer and the oracle binary unchanged. The tarball digest, the signer's fingerprint and the binary digest stay pinned; the keyring's digest is recorded as observed. Add an offline test of the source check.
 
+- Search for the literal's rarest byte with the runtime's vector byte search and check the literal around each place it is found, instead of moving one window at a time by the Horspool shift; the byte is chosen by a fixed ranking of bytes, the same in every locale, and after 32 places in one read that were not the literal the rest of the read takes the Horspool shift. Add 56 oracle rows (and their UTF-8 clones) on every place the search could change which lines are found, and two ratio rows: long lines without the literal's bytes, and lines made of the byte the search looks for.
+
 ## 0.2.0 — 2026-11-24
 
 - Release as the v0.2.0 source tag: the binary, this file and both packaging recipes are checked to name one version.
