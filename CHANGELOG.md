@@ -12,6 +12,8 @@
 
 - Accept GNU's keyring by the signer's fingerprint, not by the file's digest: GNU replaced the file three times in 26 days with the tarball, its signer and the oracle binary unchanged. The tarball digest, the signer's fingerprint and the binary digest stay pinned; the keyring's digest is recorded as observed. Add an offline test of the source check.
 
+- Write output when the pinned GNU build does: a regular file or a pipe in blocks of 4,096 bytes across files, pending output before each message, a terminal or --line-buffered line by line; a write that fails mid-run ends the run with one message, and one that fails before a message is reported, bare, when the run ends. scent's writes on the many-files row are held to GNU's exactly; add 47 oracle rows (and their UTF-8 clones) on when output reaches its descriptor. The cost gain is small: a write costs 0.2 to 0.4 µs on the held block, so this saves about 0.08 of GNU's time on the many-files row and 0.05 on the recursive workload.
+
 ## 0.2.0 — 2026-11-24
 
 - Release as the v0.2.0 source tag: the binary, this file and both packaging recipes are checked to name one version.
