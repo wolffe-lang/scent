@@ -7,13 +7,29 @@
   "ceilings": {
     "ratio-count-files-cpu": 2.083,
     "ratio-count-files-rss": 1.906,
-    "ratio-literal-100M-cpu": 2.302,
-    "ratio-regex-100M-cpu": 1.922
+    "ratio-literal-100M-cpu": 1.138,
+    "ratio-regex-100M-cpu": 1.008,
+    "ratio-literal-dense-100M-cpu": 1.545,
+    "ratio-literal-absent-100M-cpu": 1.077,
+    "ratio-literal-bursts-100M-cpu": 1.151,
+    "ratio-literal-gap15-100M-cpu": 1.557,
+    "ratio-literal-density25-100M-cpu": 1.646,
+    "ratio-literal-density50-100M-cpu": 1.772,
+    "ratio-literal-density75-100M-cpu": 1.63,
+    "ratio-literal-runs4-100M-cpu": 1.527
   },
   "readings": {
-    "ratio-count-files-cpu": "2026-11-24: 2.016, 1.996; 2026-11-25: 2.022, 2.021; worst 2.022 x 1.03",
-    "ratio-count-files-rss": "kept: set by the region-block change (2026-11-24: 1.737, 1.757; 2026-11-25: 1.739; worst 1.757 x 1.085). The line-end scan read 2026-11-24: 1.771, 1.764; 2026-11-25: 1.674, 1.729; its head record 1.727. This change reads 2026-11-24: 1.770, 1.732; 2026-11-25: 1.713, 1.738. A ceiling does not rise while the code under it still fits",
-    "ratio-literal-100M-cpu": "kept: set by the line-end scan (2026-11-24: 2.231, 2.221; 2026-11-25: 2.235, 2.224; worst 2.235 x 1.03); its head record read 2.245 on 2026-11-25. This change reads 2026-11-24: 2.241, 2.245; 2026-11-25: 2.212, 2.194",
-    "ratio-regex-100M-cpu": "kept: set by the line-end scan (2026-11-24: 1.865, 1.864; 2026-11-25: 1.866, 1.861; worst 1.866 x 1.03); its head record read 1.875 on 2026-11-25. This change reads 2026-11-24: 1.903, 1.879; 2026-11-25: 1.865, 1.878"
+    "ratio-count-files-cpu": "kept: set by the system-call change (2026-11-24: 2.016, 1.996; 2026-11-25: 2.022, 2.021; worst 2.022 x 1.03). The literal search reads 2026-11-26: 1.742, 1.756, one day of its own code (as first written it read 2026-11-24: 1.706, 1.726; 2026-11-25: 1.740, 1.742); kept until this code has two days of its own",
+    "ratio-count-files-rss": "kept: set by the region-block change (2026-11-24: 1.737, 1.757; 2026-11-25: 1.739; worst 1.757 x 1.085). The line-end scan read 2026-11-24: 1.771, 1.764; 2026-11-25: 1.674, 1.729; its head record 1.727. This change reads 2026-11-24: 1.770, 1.732; 2026-11-25: 1.713, 1.738. A ceiling does not rise while the code under it still fits. The literal search reads 2026-11-26: 1.759, 1.755 (as first written 2026-11-24: 1.783, 1.774; 2026-11-25: 1.722, 1.733)",
+    "ratio-literal-100M-cpu": "2026-11-25: 1.101, 1.104, 1.102, 1.101; 2026-11-26: 1.102, 1.105; worst 1.105 x 1.03. Lowered from 2.302, set by the line-end scan: this change is the literal search",
+    "ratio-regex-100M-cpu": "2026-11-25: 0.978, 0.979, 0.978, 0.978; 2026-11-26: 0.978, 0.978; worst 0.979 x 1.03. Lowered from 1.922, set by the line-end scan: this change is the literal search",
+    "ratio-literal-dense-100M-cpu": "2026-11-25: 1.490, 1.500, 1.491, 1.495; 2026-11-26: 1.497, 1.493; worst 1.500 x 1.03. This is the ceiling that catches a later regression of this code beyond noise, not the bar the change was chosen by: that bar was the code before the literal search x 1.03 in one series (1.459 x 1.03 = 1.503, met at 1.495). A ceiling at the bar would leave 0.3 % for noise over this code's 1.500, so this one sits about 5.7 % over the code before the search. It replaces 1.505, a red-first gate set inside this change from the code before the search (1.458, 1.461 on 2026-11-25) that named its own end: until this row had readings of its own code on two days. The same holds for gap15, density50 and density75",
+    "ratio-literal-absent-100M-cpu": "2026-11-25: 1.043, 1.044, 1.043, 1.041; 2026-11-26: 1.046, 1.042; worst 1.046 x 1.03",
+    "ratio-literal-bursts-100M-cpu": "2026-11-25: 1.116, 1.116, 1.115, 1.114; 2026-11-26: 1.115, 1.117; worst 1.117 x 1.03",
+    "ratio-literal-gap15-100M-cpu": "2026-11-25: 1.501, 1.512, 1.508, 1.507; 2026-11-26: 1.512, 1.504; worst 1.512 x 1.03. A regression ceiling as for dense, not the selection bar (its bar 1.473 x 1.03 = 1.517, met at 1.508)",
+    "ratio-literal-density25-100M-cpu": "2026-11-25: 1.594, 1.597, 1.598, 1.593; 2026-11-26: 1.590, 1.594; worst 1.598 x 1.03",
+    "ratio-literal-density50-100M-cpu": "2026-11-25: 1.710, 1.715, 1.709, 1.692; 2026-11-26: 1.711, 1.720; worst 1.720 x 1.03. A regression ceiling as for dense, not the selection bar (its bar 1.657 x 1.04 = 1.723, met at 1.709; at 1.03 (1.707) missed by 0.1 %)",
+    "ratio-literal-density75-100M-cpu": "2026-11-25: 1.580, 1.582, 1.576, 1.573; 2026-11-26: 1.583, 1.583; worst 1.583 x 1.03. A regression ceiling as for dense, not the selection bar (its bar 1.526 x 1.04 = 1.587, met at 1.576; at 1.03 (1.572) missed by 0.3 %)",
+    "ratio-literal-runs4-100M-cpu": "2026-11-25: 1.480, 1.480, 1.473, 1.470; 2026-11-26: 1.483, 1.482; worst 1.483 x 1.03"
   }
 }
