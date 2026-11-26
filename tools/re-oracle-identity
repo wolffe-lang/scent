@@ -13,10 +13,13 @@ PIN=tomllib.loads((ROOT/'scent-oracle.toml').read_text())['oracle']
 def digest(path):
     with open(path,'rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 
+def check_identity(data,pin=PIN):
+    if any(data.get(k)!=v for k,v in pin.items()):raise RuntimeError('STOP: oracle manifest differs from shared pin')
+
 def validate(binary,identity):
     binary=str(Path(binary).resolve())
     data=json.loads(Path(identity).read_text())
-    if any(data.get(k)!=v for k,v in PIN.items()):raise RuntimeError('STOP: oracle manifest differs from shared pin')
+    check_identity(data)
     if digest(binary)!=PIN['binary_sha256']:raise RuntimeError('STOP: oracle executable digest drift')
     if subprocess.check_output(['ldd','--version']).splitlines()[0].decode()!=PIN['glibc_line']:raise RuntimeError('STOP: wrong oracle glibc')
     if subprocess.check_output([binary,'--version']).splitlines()[0].decode()!=PIN['version_line']:raise RuntimeError('STOP: wrong oracle version')
