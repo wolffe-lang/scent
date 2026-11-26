@@ -39,11 +39,11 @@ The M2 generator adds **3,392 cases**: 2,000 shared-tree walk/filter rows,
 18 edge and five self-output rows, 1,152 original colour/environment rows,
 120 glob-syntax rows, and 97 additional byte-pattern, tty, colour-edge,
 reviewed-gap and UTF-8 locale rows. The complete CLI matrix reports
-**9,647 C-locale agreements + 111 published differences + 9 upstream-blocked**.
-The former explicit UTF-8 refusal is now an agreement. A further **38,875
+**9,707 C-locale agreements + 111 published differences + 9 upstream-blocked**.
+The former explicit UTF-8 refusal is now an agreement. A further **38,935
 UTF-8 cases** include every inherited case and generated scalar, encoding-error
-and consistency witnesses. The complete matrix has **48,643 cases**:
-**47,852 agree, 772 published differences, 18 upstream-blocked, one environment
+and consistency witnesses. The complete matrix has **48,763 cases**:
+**47,972 agree, 772 published differences, 18 upstream-blocked, one environment
 difference, zero unapproved differences and zero not-yet rows**. Of the published
 differences, 550 cover the two UTF-8 consistency rules below: 480 case-fold
 rows and 70 dot-span rows.
@@ -219,12 +219,18 @@ after it, is its verdict: red on a stale review, an early end without the
 oracle's summary, or a leg that never started, and a report, not red, when
 the runner cuts it at the limit.
 
-`tools/ratio` adds three ratio rows against the pinned GNU build in the same
+`tools/ratio` adds ratio rows against the pinned GNU build in the same
 run: `-c` over 5,000 small files, a literal and a regular expression over
-100 MiB. Each row runs GNU, scent and GNU again (the run's own A/A floor) in
-rotating order on two cores, 31 counted runs each from a small static parent,
+100 MiB, and eight more over 100 MiB for the literal search described under
+Design and sources: the literal absent (`absent`), ending every line (`dense`),
+in short runs among long stretches without it (`bursts`), in runs of fifteen
+lines broken by one line without it (`gap15`), on each line independently
+with probability 1/4, 1/2 and 3/4 (`density25`, `density50`, `density75`), and
+in runs of four among twelve lines without it (`runs4`). Each row runs GNU,
+scent and GNU again (the run's own A/A floor) in rotating order on two cores,
+31 counted runs each from a small static parent,
 and compares only ratios of medians: CPU (user plus system), peak resident
-size and minor faults. `tests/ratio-bounds.json` bounds CPU on all three rows
+size and minor faults. `tests/ratio-bounds.json` bounds CPU on every row
 and resident size on the many-files row; its margins come from the A/A spread
 of a calibration take (CPU 3 %, resident size 8.5 %), and a take whose own A/A
 lies outside twice its margin is INVALID (exit 75), not a verdict. Each
@@ -242,7 +248,19 @@ ceiling measured on one machine holds nothing on another.
 `tools/ratio-hosted-test` proves the switch through the container itself. With one stdout buffer per run, scent's many-files CPU fell from
 12.3 to 2.5 times GNU's, the literal row from 3.1 to 2.8 and the regular
 expression from 2.5 to 2.3. Scanning for line ends sixteen bytes at a time
-took them to 2.1, 2.2 and 1.9.
+took them to 2.1, 2.2 and 1.9. Searching each read for the pattern's one
+required literal took the literal row to 1.10 times GNU's CPU, the regular
+expression to 0.98 and the many-files row to 1.75 (worst calibration readings
+1.105, 0.979 and 1.756), on the one held block, in the C locale, and only
+where nothing but the selected lines is counted or printed; in a UTF-8 locale
+every line takes the ordinary path and gains nothing, and costs about 35 more
+instructions than before, 0.5 % (counted on one Mac, not timed). Where most
+lines hold the literal, searching for it first costs more than visiting every
+line, so a read falls back to the ordinary path; the rows that do read 2.4 to
+3.6 % over the code before the search. Their ceilings, like every other, are
+this code's own worst reading on two days times 1.03, which puts dense's about
+5.7 % over the code before the search: a ceiling at 3 % over it would leave
+0.3 % for noise.
 
 System calls per file are held exactly, not by a ratio.
 `tools/ratio-syscalls` counts every call of each ratio row with strace in the
@@ -358,7 +376,15 @@ an unproved branch or exhausted bound falls back as a whole. Fixed-string
 selection shares prefixes and suffix links, with byte-indexed roots and
 scalar-aware UTF-8 folding. Line ends are found with the runtime's vector byte
 search, sixteen bytes at a time; binary default mode's scan for a line end or
-NUL stays a scalar loop over two bytes. Inactive
+NUL stays a scalar loop over two bytes. Where nothing but the selected lines
+is counted or printed (no -v, no context of any width, no -n, -b, -o, colour
+or --line-buffered), in the C locale, with the accelerated engine and no NUL in
+the read under binary default mode, each read is searched once for the one
+literal every selected line must contain, and only the lines it lands in go
+to the matcher; line numbers, offsets, the -m stop and the resume offset are
+kept as the ordinary path keeps them. Once 16 lines of a read hold the literal
+and they make up seven sixteenths of the bytes searched in it, the rest of the
+read takes the ordinary path. Inactive
 context history does not enter its storage region. EOF with no unfinished record
 skips matcher/output workspace allocation; unterminated records still take the
 normal matching path. Optional or unproved
