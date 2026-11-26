@@ -98,7 +98,7 @@ pub fn find_literal(
     var at = from
     while at + size <= hi {
         if missed.count >= GUARD { return horspool(buf, at, hi, needle, shifts) }
-        let p = bytes_find(buf, key, at + rare) else -1
+        let p = bytes_find(buf, key, at + rare + 1) else -1
         if p < 0 || p - rare + size > hi { return -1 }
         let start = p - rare
         var i = 0
