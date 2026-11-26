@@ -8,6 +8,8 @@
 
 - Hold each operand's unfinished line and context in a region block freed when the operand ends: resident memory no longer grows with the number of files.
 
+- Search each read once for the pattern's one required literal where nothing but the selected lines is counted or printed, in the C locale, and send only the lines it lands in to the matcher; a read falls back to visiting every line once seven sixteenths of its bytes hold the literal. On the held block the literal row reads 1.10 times GNU's CPU (from 2.2), the regular expression 0.98 (from 1.87) and the many-files row 1.75 (from 2.0). Where reads fall back, the rows read up to 3.6 % over the code before the search: dense and gap15 within 3 % of it, density50 and density75 within 4 % (they measured 3.1 to 3.6 % and 3.3 % over it). Under a UTF-8 locale the search never runs, and each line costs about 35 more instructions than before, 0.5 % (counted on one Mac, not timed). Add ratio rows by how much of the input holds the literal, and oracle rows on both sides of the search and across its fallback.
+
 ## 0.2.0 — 2026-11-24
 
 - Release as the v0.2.0 source tag: the binary, this file and both packaging recipes are checked to name one version.
