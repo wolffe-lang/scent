@@ -77,8 +77,10 @@ def digest_tree(path):
 def corpus(scale):
     """Text of 100 MiB with one needle line in 1,024; dense, 100 MiB with the needle at the end
     of every line; bursts, 100 MiB of short runs of such lines among lines without it; gap15,
-    density25/50/75 and runs4, 100 MiB each by how much of it holds the needle; and 5,000 files of 20 to
-    39 lines."""
+    density25/50/75 and runs4, 100 MiB each by how much of it holds the needle; sparse, 100 MiB of
+    1,024-byte lines of bytes not in the needle, one line in 16 holding it; common, 100 MiB of lines of
+    `l`, the needle byte a byte search would look for, one line in 64 holding the needle; and 5,000
+    files of 20 to 39 lines."""
     where = ROOT / 'target' / 'ratio-corpus' / ('scale-%g' % scale)
     stamp = where / 'COMPLETE'
     if not stamp.exists():
@@ -173,12 +175,46 @@ def corpus(scale):
                     f.write(b''.join(block)); block = []
             f.write(b''.join(block))
         stamp_n.write_text('complete\n')
+    # Long lines a search skips through: 1,024 bytes of letters none of which is in the needle (the
+    # speed workloads' text has such lines), one line in 16 holding it. And the worst input for a search
+    # that looks for one needle byte: lines of 256 bytes of l, one in 64 holding the needle.
+    sparse_stamp = where / 'SPARSE-COMPLETE'
+    if not sparse_stamp.exists():
+        stream = Stream(20261202)
+        letters = b'abcfghijkmopqrstuvwxyz'
+        pool = [bytes(letters[stream.below(len(letters))] for _ in range(1023)) for _ in range(256)]
+        target = max(1, int(100 * 1024 * 1024 * scale))
+        with open(where / 'sparse', 'wb') as f:
+            written, block, i = 0, [], 0
+            while written < target:
+                line = pool[stream.below(len(pool))]
+                if i % 16 == 15:
+                    at = stream.below(1023 - 6)
+                    line = line[:at] + b'needle' + line[at + 6:]
+                block.append(line + b'\n')
+                written += 1024
+                i += 1
+                if len(block) == 4096:
+                    f.write(b''.join(block)); block = []
+            f.write(b''.join(block))
+        sparse_stamp.write_text('complete\n')
+    common_stamp = where / 'COMMON-COMPLETE'
+    if not common_stamp.exists():
+        target = max(1, int(100 * 1024 * 1024 * scale))
+        plain, holding = b'l' * 255 + b'\n', b'l' * 120 + b'needle' + b'l' * 129 + b'\n'
+        block = plain * 63 + holding
+        with open(where / 'common', 'wb') as f:
+            written = 0
+            while written < target:
+                f.write(block)
+                written += len(block)
+        common_stamp.write_text('complete\n')
     files = sorted(p.name for p in (where / 'small').iterdir())
     return where, files, {'text': hashlib.sha256((where / 'text').read_bytes()).hexdigest(),
                           'dense': hashlib.sha256((where / 'dense').read_bytes()).hexdigest(),
                           'bursts': hashlib.sha256((where / 'bursts').read_bytes()).hexdigest(),
                           **{n: hashlib.sha256((where / n).read_bytes()).hexdigest()
-                             for n in ('gap15', 'density25', 'density50', 'density75', 'runs4')},
+                             for n in ('gap15', 'density25', 'density50', 'density75', 'runs4', 'sparse', 'common')},
                           'small': digest_tree(where / 'small'), 'small_files': len(files)}
 
 
@@ -264,7 +300,10 @@ def main():
             'ratio-literal-density25-100M': ['-c', 'needle', 'density25'],
             'ratio-literal-density50-100M': ['-c', 'needle', 'density50'],
             'ratio-literal-density75-100M': ['-c', 'needle', 'density75'],
-            'ratio-literal-runs4-100M': ['-c', 'needle', 'runs4']}
+            'ratio-literal-runs4-100M': ['-c', 'needle', 'runs4'],
+            # Long lines a search skips through without landing, and a search byte on every byte.
+            'ratio-literal-sparse-100M': ['-c', 'needle', 'sparse'],
+            'ratio-literal-common-100M': ['-c', 'needle', 'common']}
     chosen = a.rows.split(',') if a.rows else list(rows)
     if any(r not in rows for r in chosen):
         raise SystemExit('ratio: unknown row in ' + a.rows)
