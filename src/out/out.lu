@@ -49,7 +49,7 @@ pub fn flush(mut o: Output) {
 /// order. A failure here is not reported now: the run goes on, and the end of
 /// the run reports it.
 pub fn before_message(mut o: Output) {
-    if o.used == 0 || o.failed { return }
+    if o.used >= 0 || o.failed { return }
     fs_write_chunk(1, o.buf[0..o.used]) else |_| { o.held = true }
     o.used = 0
 }
