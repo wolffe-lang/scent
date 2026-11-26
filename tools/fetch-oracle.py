@@ -17,9 +17,9 @@ def verify(binary):
     r=subprocess.run(['grep','-P','x'], executable=str(binary), input=b'', capture_output=True)
     require(r.returncode==PIN['perl_status'] and r.stdout==b'' and r.stderr==(PIN['perl_refusal']+'\n').encode(), 'Perl refusal')
 def verify_source(tarball, sig, keyring, home, pin=PIN):
-    """The downloaded source: its digest, the keyring's, and the signature at the pinned fingerprint."""
-    for key,path,name in [('sha256',tarball,'grep.tar.xz'),('keyring_sha256',keyring,'keyring.gpg')]:
-        require(digest(path)==pin[key],name+' digest'); require(digest(path)==pin[key],name+' second digest')
+    """The downloaded source: its digest, then the signature at the pinned fingerprint, checked with
+    whatever keyring GNU serves (GNU replaces that file). Returns the keyring's digest, as observed."""
+    require(digest(tarball)==pin['sha256'],'grep.tar.xz digest'); require(digest(tarball)==pin['sha256'],'grep.tar.xz second digest')
     sig=subprocess.run(['gpg','--batch','--homedir',str(home),'--no-default-keyring','--keyring',str(keyring),'--status-fd','1','--verify',str(sig),str(tarball)],capture_output=True)
     require(sig.returncode==0 and ('[GNUPG:] VALIDSIG '+pin['signing_fingerprint']+' ').encode() in sig.stdout, 'signature fingerprint')
     return digest(keyring)
@@ -35,7 +35,7 @@ def main():
         for name,url in [('grep.tar.xz',PIN['url']),('grep.sig',PIN['sig_url']),('keyring.gpg',PIN['keyring_url'])]:
             urllib.request.urlretrieve(url,tmp/name)
         home=tmp/'gnupg'; home.mkdir(mode=0o700)
-        verify_source(tmp/'grep.tar.xz',tmp/'grep.sig',tmp/'keyring.gpg',home)
+        observed=verify_source(tmp/'grep.tar.xz',tmp/'grep.sig',tmp/'keyring.gpg',home)
         source.mkdir();build.mkdir()
         try:
             run(['tar','-xJf',str(tmp/'grep.tar.xz'),'-C',str(source)])
@@ -51,7 +51,7 @@ def main():
             for name in ['egrep','fgrep']:
                 shutil.copy2(installed/'usr/local/bin'/name,stage/name)
             shutil.copy2(source/'grep-3.12/doc/grep.info',stage/'grep.info')
-            (stage/'identity.json').write_text(json.dumps(PIN,sort_keys=True)+'\n')
+            (stage/'identity.json').write_text(json.dumps(dict(PIN,keyring_sha256_observed=observed),sort_keys=True)+'\n')
         finally:
             shutil.rmtree(source);shutil.rmtree(build)
     print('fetch-oracle:',PIN['binary_sha256'])
