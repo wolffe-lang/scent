@@ -30,8 +30,9 @@ no message, as the pinned GNU build does.
 The generated CLI matrix has **5,072 cases**: 40 option rows × three
 syntaxes × seven pattern families × six input forms, plus 32 source and
 diagnostic cases. Separate CLI rows cover the original 958-case corpus,
-150 reviewed-family cases, 18 wrapper cases, nine context/span joins and
-sixteen rows that carry output state across files.
+150 reviewed-family cases, 18 wrapper cases, nine context/span joins,
+sixteen rows that carry output state across files and 56 rows on where the
+literal search could change which lines are found.
 The engine also gates 20,000 generated pattern–line pairs per syntax,
 exhaustive short malformed patterns, and bounded regular/backreference costs.
 
@@ -39,11 +40,11 @@ The M2 generator adds **3,392 cases**: 2,000 shared-tree walk/filter rows,
 18 edge and five self-output rows, 1,152 original colour/environment rows,
 120 glob-syntax rows, and 97 additional byte-pattern, tty, colour-edge,
 reviewed-gap and UTF-8 locale rows. The complete CLI matrix reports
-**9,707 C-locale agreements + 111 published differences + 9 upstream-blocked**.
-The former explicit UTF-8 refusal is now an agreement. A further **38,935
+**9,763 C-locale agreements + 111 published differences + 9 upstream-blocked**.
+The former explicit UTF-8 refusal is now an agreement. A further **38,991
 UTF-8 cases** include every inherited case and generated scalar, encoding-error
-and consistency witnesses. The complete matrix has **48,763 cases**:
-**47,972 agree, 772 published differences, 18 upstream-blocked, one environment
+and consistency witnesses. The complete matrix has **48,875 cases**:
+**48,084 agree, 772 published differences, 18 upstream-blocked, one environment
 difference, zero unapproved differences and zero not-yet rows**. Of the published
 differences, 550 cover the two UTF-8 consistency rules below: 480 case-fold
 rows and 70 dot-span rows.
@@ -221,12 +222,14 @@ the runner cuts it at the limit.
 
 `tools/ratio` adds ratio rows against the pinned GNU build in the same
 run: `-c` over 5,000 small files, a literal and a regular expression over
-100 MiB, and eight more over 100 MiB for the literal search described under
+100 MiB, and ten more over 100 MiB for the literal search described under
 Design and sources: the literal absent (`absent`), ending every line (`dense`),
 in short runs among long stretches without it (`bursts`), in runs of fifteen
 lines broken by one line without it (`gap15`), on each line independently
-with probability 1/4, 1/2 and 3/4 (`density25`, `density50`, `density75`), and
-in runs of four among twelve lines without it (`runs4`). Each row runs GNU,
+with probability 1/4, 1/2 and 3/4 (`density25`, `density50`, `density75`),
+in runs of four among twelve lines without it (`runs4`), in one line of 16 among
+1,024-byte lines of bytes it does not contain (`sparse`), and in one line of 64
+among lines made of the byte its search looks for (`common`). Each row runs GNU,
 scent and GNU again (the run's own A/A floor) in rotating order on two cores,
 31 counted runs each from a small static parent,
 and compares only ratios of medians: CPU (user plus system), peak resident
@@ -381,7 +384,13 @@ is counted or printed (no -v, no context of any width, no -n, -b, -o, colour
 or --line-buffered), in the C locale, with the accelerated engine and no NUL in
 the read under binary default mode, each read is searched once for the one
 literal every selected line must contain, and only the lines it lands in go
-to the matcher; line numbers, offsets, the -m stop and the resume offset are
+to the matcher. The search looks for the literal's rarest byte with the vector
+byte search and checks the literal around each place it finds; the byte is chosen
+by a fixed ranking of bytes from commonest to rarest in typical text (space and
+newline, the letters by English frequency, upper case, digits, ASCII
+punctuation, then control bytes and 0x80-0xFF), the same in every locale. After
+32 places in one read that were not the literal, the rest of the read moves by
+the Horspool shift instead; line numbers, offsets, the -m stop and the resume offset are
 kept as the ordinary path keeps them. Once 16 lines of a read hold the literal
 and they make up seven sixteenths of the bytes searched in it, the rest of the
 read takes the ordinary path. Inactive
