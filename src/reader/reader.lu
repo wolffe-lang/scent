@@ -502,22 +502,7 @@ pub fn scan(
                                 current.offset += used + 1
                                 used = 0
                             } else {
-                                let hit = false
-                                let chosen = hit != flags.invert
-                                emit(
-                                    flags,
-                                    re,
-                                    mut ws,
-                                    buf,
-                                    lo,
-                                    at,
-                                    chosen,
-                                    name,
-                                    width,
-                                    history,
-                                    mut current,
-                                    mut writer,
-                                )
+                                current.number += 1
                                 if keep_history {
                                     in storage {
                                         save(
