@@ -330,7 +330,7 @@ pub fn scan(
     // passed over unread; each candidate still goes through line_matches.
     let term = if flags.zero then 0 as byte else 10 as byte
     let needle = matcher.required_literal(re)
-    var literal_lines = needle.len > 0 &&
+    var literal_lines = false && needle.len > 0 &&
         !flags.invert &&
         !flags.context &&
         flags.before == 0 &&
